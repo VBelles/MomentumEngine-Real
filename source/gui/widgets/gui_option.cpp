@@ -27,20 +27,21 @@ void COption::render() {
 		optionParams._imageParams._color);
 
 	// render text
-	CFont font = EngineGUI.getFont(optionParams._textParams._size);
+	VEC2 scale = VEC2(Engine.globalConfig.resolution.x / 1920.f, Engine.globalConfig.resolution.y / 1080.f);
+	CFont font = EngineGUI.getFont(optionParams._textParams._size * scale.x);
 
 	float textWidth = font.getWidth(optionParams._textParams._text);
-	float textHeight = font.getHeight();
+	float textHeight = font.getHeight(optionParams._textParams._text);
 
 	VEC2 offset;
 	if (optionParams._textParams._hAlign == TTextParams::Center)
-		offset.x = textSpace.x * 0.5f - textWidth * 0.5f;
+		offset.x = textSpace.x * 0.5f - textWidth * 0.5f / scale.x;
 	else if (optionParams._textParams._hAlign == TTextParams::Right)
 		offset.x = textSpace.x - textWidth;
 	if (optionParams._textParams._vAlign == TTextParams::Center)
-		offset.y = _params._size.y * 0.5f - textHeight * 0.5f;
+		offset.y = textSpace.y * 0.5f - textHeight * 0.5f / scale.y;
 	else if (optionParams._textParams._vAlign == TTextParams::Bottom)
-		offset.y = _params._size.y - textHeight;
+		offset.y = textSpace.y - textHeight;
 
 	MAT44 tr = MAT44::CreateTranslation(offset.x, offset.y, 0.f);
 	MAT44 w = MAT44::CreateScale(font.getSize()) * tr * _absolute;

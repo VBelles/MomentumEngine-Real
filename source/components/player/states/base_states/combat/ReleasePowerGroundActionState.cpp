@@ -35,13 +35,12 @@ void ReleasePowerGroundActionState::update(float delta) {
 	else if (phase == AttackPhases::Startup && timer.elapsed() >= hitboxOutTime) {
 		timer.reset();
 		//Depende de buttonPresses y del nivel de poder sacará una hitbox u otra
-		Particles::LaunchConfig releasePowerLaunchConfig{ getPlayerEntity(), "", VEC3(0.f, 0.75f, 0.f) };
 		switch (getPowerGauge()->getPowerLevel()) {
 		case 1:
 			getPowerGauge()->releasePower();
 			break;
 		case 2:
-			EngineParticles.launchSystem(PARTICLES_RELEASE_POWER, releasePowerLaunchConfig);
+			getParticles()->launch("release_power");
 			getSound()->play("release_power");
 			getBlurRadial()->setEnable(true);
 			getPowerGauge()->releasePower();
@@ -49,7 +48,7 @@ void ReleasePowerGroundActionState::update(float delta) {
 			if (buttonPresses > 1) getPowerGauge()->releasePower();
 			break;
 		case 3:
-			EngineParticles.launchSystem(PARTICLES_RELEASE_POWER, releasePowerLaunchConfig);
+			getParticles()->launch("release_power");
 			getSound()->play("release_power");
 			getBlurRadial()->setEnable(true);
 			getPowerGauge()->releasePower();

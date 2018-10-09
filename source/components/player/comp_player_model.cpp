@@ -165,7 +165,7 @@ void TCompPlayerModel::onLevelChange(const TMsgPowerLvlChange& msg) {
 			"",							// Bone
 			VEC3(0, 0.4f, 0)			// Offset
 		};
-		EngineParticles.launchSystem(particleSystems[msg.powerLvl - 1], config);
+		getParticles()->launch(msg.powerLvl == 2 ? "lvl_up_2" : "lvl_up_3");
 		getSound()->play(msg.powerLvl == 2 ? "lvl_up_2" : "lvl_up_3");
 	}
 		
@@ -469,7 +469,7 @@ void TCompPlayerModel::disableClimbing() {
 }
 
 void TCompPlayerModel::onPlatform() {
-	getCollider()->controller->setSlopeLimit(cosf(deg2rad(45)));
+	getCollider()->controller->setSlopeLimit(cosf(deg2rad(55)));
 	platformChangeSlopeTimer.reset();
 	//dbg("On platform\n");
 }

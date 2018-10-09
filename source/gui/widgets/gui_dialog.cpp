@@ -14,7 +14,8 @@ void CDialog::render() {
 		_imageParams._color);
 
 	// render text
-	CFont font = EngineGUI.getFont(_textParams._size);
+	VEC2 scale = VEC2(Engine.globalConfig.resolution.x / 1920.f, Engine.globalConfig.resolution.y / 1080.f);
+	CFont font = EngineGUI.getFont(_textParams._size * scale.x);
 
 	float textWidth = font.getWidth(_textParams._text);
 	float textHeight = font.getHeight(_textParams._text);
@@ -22,11 +23,11 @@ void CDialog::render() {
 	VEC2 textSpace = _params._size;
 	VEC2 offset = VEC2(padding.z, padding.x);
 	if (_textParams._hAlign == TTextParams::Center)
-		offset.x += textSpace.x * 0.5f - textWidth * 0.5f;
+		offset.x = textSpace.x * 0.5f - textWidth * 0.5f / scale.x;
 	else if (_textParams._hAlign == TTextParams::Right)
 		offset.x = textSpace.x - textWidth - padding.w;
 	if (_textParams._vAlign == TTextParams::Center)
-		offset.y += textSpace.y * 0.5f - textHeight * 0.5f;
+		offset.y = textSpace.y * 0.5f - textHeight * 0.5f / scale.y;
 	else if (_textParams._vAlign == TTextParams::Bottom)
 		offset.y = textSpace.y - textHeight - padding.y;
 

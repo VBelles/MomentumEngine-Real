@@ -26,6 +26,7 @@
     "data/scenes/milestone4_dani-spikesMove.scene",
     "data/scenes/milestone4_dani-cameras_definitivas.scene",
     "data/scenes/milestone4_dani-fireplaces.scene",
+    "data/scenes/milestone4_dani-platf_director.scene",
     
     "data/scenes/milestone4_nestor-0.scene",
     "data/scenes/milestone4_nestor-chrysalis.scene",
@@ -44,8 +45,8 @@
     
     "data/scenes/milestone4_miguel_raices-0.scene",
     "data/scenes/milestone4_miguel_raices-trimesh.scene",
+    "data/scenes/milestone4_miguel_raices-lights.scene",
 
-    "data/scenes/platf_director.scene",
     
     "data/scenes/milestone4_andrea-0.scene",
     
@@ -54,6 +55,7 @@
     "data/scenes/ambiental_particles.scene"
   ],
   "unused_scenes": [
+    "data/scenes/platf_director.scene",
     "data/scenes/test_particles.scene",
     "data/scenes/prefabs-0.scene",
     "data/scenes/prefabs-trimesh.scene",

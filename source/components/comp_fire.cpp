@@ -38,6 +38,10 @@ void TCompFire::onEntityCreated(const TMsgEntityCreated& msg) {
 	lightHandle = get<TCompLightPoint>();
 	lightFlicker = get<TCompLightFlicker>();
 	assert(particlesHandle.isValid());
+	assert(lightHandle.isValid());
+	assert(lightFlicker.isValid());
+	hasFire = true;
+	playerOnFire = false;
 }
 
 void TCompFire::onPlayerEnter(const TMsgTriggerEnter& msg) {

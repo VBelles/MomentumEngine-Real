@@ -44,3 +44,7 @@ void AttackActionFlying::debugInMenu() {
 	ImGui::Text("Animation: %s\n", animation.c_str());
 	ImGui::Text("Attack: %s\n", attack.c_str());
 }
+
+void AttackActionFlying::onExit() {
+	enemy->killParticles(enemy->attacks[attack].particles);
+}

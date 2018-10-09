@@ -77,9 +77,9 @@ void TCompParticles::onAllScenesCreated(const TMsgAllScenesCreated&) {
 	for (auto& p : systems) {
 		auto& system = p.second;
 		system.launchConfig.targetEntity = system.target.empty() ? launchConfig.targetEntity : getEntityByName(system.target);
-	}
-	if (launchOnStart) {
-		launch();
+		if (system.launchOnStart) {
+			launch(system.id);
+		}
 	}
 }
 

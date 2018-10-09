@@ -19,9 +19,7 @@
       },
       "givePower": {
         "maxPowerToGive": 12000.0,
-        "baseMultiplier": 1.0,
-        "particles": "data/particles/energy.particles",
-        "particlesOffset": "0 0.2 0"
+        "baseMultiplier": 1.0
       },
       "enemy": {
         "behavior_tree": "data/behavior_trees/dreidel_behavior_tree.json",
@@ -177,6 +175,11 @@
         "launch": false,
         "systems": [
           {
+            "id": "hit",
+            "core": "data/particles/hit_sparks.particles",
+            "offset": "0 0.5 0"
+          },
+          {
             "id": "area_attack",
             "core": "data/particles/dreidel/area_attack.particles",
             "offset": "0 1.45 0"
@@ -189,7 +192,12 @@
           {
             "id": "tackle",
             "core": "data/particles/dreidel/tackle.particles",
-            "offset": "0 0.5 0"
+            "offset": "0 0.7 0"
+          },
+          {
+            "id": "lose_power",
+            "core": "data/particles/energy.particles",
+            "offset": "0 0.2 0"
           }
         ]
       }

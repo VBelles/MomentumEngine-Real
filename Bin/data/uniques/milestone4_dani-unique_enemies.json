@@ -2,6 +2,20 @@
   "unique_enemies":
   [
     {
+      "id": "tutorialEnemyAir",
+      "done": false,
+      "position": "-111.108 -44.2349 198.743",
+      "level": "level00",
+      "type": "kippah"
+    },
+    {
+      "id": "tutorialEnemyMelee",
+      "done": false,
+      "position": "-98.8553 -39.612 172.407",
+      "level": "level00",
+      "type": "dreidel"
+    },
+    {
       "id": "dani_air_020",
       "done": false,
       "position": "62.2932 -4.34164 -205.431",

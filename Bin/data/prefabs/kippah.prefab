@@ -19,9 +19,7 @@
       },
       "givePower": {
         "maxPowerToGive": 10000.0,
-        "baseMultiplier": 3.5,
-        "particles": "data/particles/energy.particles",
-        "particlesOffset": "0 0.2 0"
+        "baseMultiplier": 3.5
       },
       "enemy": {
         "behavior_tree": "data/behavior_trees/kippah_behavior_tree.json",
@@ -47,7 +45,8 @@
             "damage": 1.0,
             "invulnerabilityTime": 1.5,
             "stun": 1.0,
-            "hitbox": "spinAttack"
+            "hitbox": "spinAttack",
+            "particles": "spin_attack"
           },
           {
             "name": "rangedAttack",
@@ -133,6 +132,26 @@
           {
             "id": "block",
             "path": "event:/PROTA/golpes/golpe_hit"
+          }
+        ]
+      },
+      "particles": {
+        "launch": false,
+        "systems": [
+          {
+            "id": "hit",
+            "core": "data/particles/hit_sparks.particles",
+            "offset": "0 0.5 0"
+          },
+          {
+            "id": "spin_attack",
+            "core": "data/particles/dreidel/spin_attack.particles",
+            "offset": "0 1 0"
+          },
+          {
+            "id": "lose_power",
+            "core": "data/particles/energy.particles",
+            "offset": "0 0.2 0"
           }
         ]
       }

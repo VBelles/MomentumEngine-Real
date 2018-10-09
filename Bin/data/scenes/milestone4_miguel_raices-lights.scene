@@ -1,0 +1,290 @@
+[
+  {
+    "entity":
+    {
+      "name": "bombilla_light_017",
+      "transform":
+      {
+        "pos": "-113.493 10.0147 21.113"
+      },
+      "light_point":
+      {
+        "intensity": 6.0,
+        "radius": 20.0,
+        "color": "0.639216 0.894118 0.0862745 1"
+      }
+    }
+  },
+  {
+    "entity":
+    {
+      "name": "bombilla_light_016",
+      "transform":
+      {
+        "pos": "-169.804 2.22692 -105.634"
+      },
+      "light_point":
+      {
+        "intensity": 6.0,
+        "radius": 20.0,
+        "color": "0.639216 0.894118 0.0862745 1"
+      }
+    }
+  },
+  {
+    "entity":
+    {
+      "name": "bombilla_light_015",
+      "transform":
+      {
+        "pos": "-146.265 50.8251 37.8423"
+      },
+      "light_point":
+      {
+        "intensity": 6.0,
+        "radius": 20.0,
+        "color": "0.639216 0.894118 0.0862745 1"
+      }
+    }
+  },
+  {
+    "entity":
+    {
+      "name": "bombilla_light_014",
+      "transform":
+      {
+        "pos": "170.538 -1.10141 57.5093"
+      },
+      "light_point":
+      {
+        "intensity": 6.0,
+        "radius": 20.0,
+        "color": "0.639216 0.894118 0.0862745 1"
+      }
+    }
+  },
+  {
+    "entity":
+    {
+      "name": "bombilla_light_013",
+      "transform":
+      {
+        "pos": "17.0201 9.22012 165.757"
+      },
+      "light_point":
+      {
+        "intensity": 6.0,
+        "radius": 20.0,
+        "color": "0.639216 0.894118 0.0862745 1"
+      }
+    }
+  },
+  {
+    "entity":
+    {
+      "name": "bombilla_light_012",
+      "transform":
+      {
+        "pos": "68.8781 -1.52211 -167.91"
+      },
+      "light_point":
+      {
+        "intensity": 6.0,
+        "radius": 20.0,
+        "color": "0.639216 0.894118 0.0862745 1"
+      }
+    }
+  },
+  {
+    "entity":
+    {
+      "name": "bombilla_light_011",
+      "transform":
+      {
+        "pos": "-46.2589 8.59941 -203.701"
+      },
+      "light_point":
+      {
+        "intensity": 6.0,
+        "radius": 20.0,
+        "color": "0.639216 0.894118 0.0862745 1"
+      }
+    }
+  },
+  {
+    "entity":
+    {
+      "name": "bombilla_light_010",
+      "transform":
+      {
+        "pos": "-192.83 21.8386 70.9929"
+      },
+      "light_point":
+      {
+        "intensity": 6.0,
+        "radius": 20.0,
+        "color": "0.639216 0.894118 0.0862745 1"
+      }
+    }
+  },
+  {
+    "entity":
+    {
+      "name": "bombilla_light_009",
+      "transform":
+      {
+        "pos": "-130.248 71.7636 -92.684"
+      },
+      "light_point":
+      {
+        "intensity": 6.0,
+        "radius": 20.0,
+        "color": "0.639216 0.894118 0.0862745 1"
+      }
+    }
+  },
+  {
+    "entity":
+    {
+      "name": "bombilla_light_008",
+      "transform":
+      {
+        "pos": "67.9684 5.26344 69.6708"
+      },
+      "light_point":
+      {
+        "intensity": 6.0,
+        "radius": 20.0,
+        "color": "0.639216 0.894118 0.0862745 1"
+      }
+    }
+  },
+  {
+    "entity":
+    {
+      "name": "bombilla_light_007",
+      "transform":
+      {
+        "pos": "56.3509 3.96688 90.9252"
+      },
+      "light_point":
+      {
+        "intensity": 6.0,
+        "radius": 20.0,
+        "color": "0.639216 0.894118 0.0862745 1"
+      }
+    }
+  },
+  {
+    "entity":
+    {
+      "name": "bombilla_light_006",
+      "transform":
+      {
+        "pos": "44.8281 2.01991 107.093"
+      },
+      "light_point":
+      {
+        "intensity": 6.0,
+        "radius": 20.0,
+        "color": "0.639216 0.894118 0.0862745 1"
+      }
+    }
+  },
+  {
+    "entity":
+    {
+      "name": "bombilla_light_005",
+      "transform":
+      {
+        "pos": "171.556 30.14 -109.152"
+      },
+      "light_point":
+      {
+        "intensity": 6.0,
+        "radius": 20.0,
+        "color": "0.639216 0.894118 0.0862745 1"
+      }
+    }
+  },
+  {
+    "entity":
+    {
+      "name": "bombilla_light_004",
+      "transform":
+      {
+        "pos": "65.0649 2.52324 -198.674"
+      },
+      "light_point":
+      {
+        "intensity": 6.0,
+        "radius": 20.0,
+        "color": "0.639216 0.894118 0.0862745 1"
+      }
+    }
+  },
+  {
+    "entity":
+    {
+      "name": "bombilla_light_003",
+      "transform":
+      {
+        "pos": "198.208 3.95478 -133.966"
+      },
+      "light_point":
+      {
+        "intensity": 6.0,
+        "radius": 20.0,
+        "color": "0.639216 0.894118 0.0862745 1"
+      }
+    }
+  },
+  {
+    "entity":
+    {
+      "name": "bombilla_light_002",
+      "transform":
+      {
+        "pos": "148.98 9.03234 108.198"
+      },
+      "light_point":
+      {
+        "intensity": 6.0,
+        "radius": 20.0,
+        "color": "0.639216 0.894118 0.0862745 1"
+      }
+    }
+  },
+  {
+    "entity":
+    {
+      "name": "bombilla_light_001",
+      "transform":
+      {
+        "pos": "-3.14868 15.5174 40.2114"
+      },
+      "light_point":
+      {
+        "intensity": 6.0,
+        "radius": 20.0,
+        "color": "0.639216 0.894118 0.0862745 1"
+      }
+    }
+  },
+  {
+    "entity":
+    {
+      "name": "bombilla_light_000",
+      "transform":
+      {
+        "pos": "0.0304577 4.6973 37.722"
+      },
+      "light_point":
+      {
+        "intensity": 6.0,
+        "radius": 20.0,
+        "color": "0.639216 0.894118 0.0862745 1"
+      }
+    }
+  }
+]

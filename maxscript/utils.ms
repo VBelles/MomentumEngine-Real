@@ -71,6 +71,38 @@ struct TUtils (
 			append objsToSelect objCopy
 		)
 		select objsToSelect --Select children so it's easy to add attributes.
+	),
+
+	fn collapseAllLayers = (
+		local sceneExplorerInstance = SceneExplorerManager.GetActiveExplorer()
+		if sceneExplorerInstance != undefined then
+			sceneExplorerInstance.CollapseAll()
+	),
+
+	-- Returns array of selected layers, including selected object's ones.
+	-- Undefined if nothing is selected.
+	fn getSelectedLayers = (
+		local sceneExplorerInstance = SceneExplorerManager.GetActiveExplorer()
+		local explorerSelectedItems = #()
+		if sceneExplorerInstance == undefined then ( --Explorer is closed.
+			explorerSelectedItems = selection
+		) else ( --Explorer is open.
+			explorerSelectedItems = sceneExplorerInstance.SelectedItems()
+		)
+		if explorerSelectedItems.count <= 0 then return undefined
+		
+		local selectedLayers = #()
+		for item in explorerSelectedItems do (
+			local selClass = classOf item
+			if selClass == Base_LayerBase_Layer then (
+				--Item is a layer.
+				appendIfUnique selectedLayers (LayerManager.getLayerFromName item.name)
+			) else (
+				--Item is an object. Empty selections were discarded before.
+				appendIfUnique selectedLayers item.layer
+			)
+		)
+		return selectedLayers
 	)
 )
 
