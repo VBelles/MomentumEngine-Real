@@ -118,8 +118,8 @@ namespace GUI {
 		EngineGUI.getCamera().setPerspective(-1.f, 1.f, Render.width, Render.height);
 		activateCamera(EngineGUI.getCamera(), Render.width, Render.height);
 
-		VEC2 scale( Engine.globalConfig.resolution.x / 1920.f,
-			Engine.globalConfig.resolution.y / 1080.f);
+		VEC2 scale( Engine.globalConfig.resolution.x / EngineGUI.getResolution().x,
+			Engine.globalConfig.resolution.y / EngineGUI.getResolution().y);
 
 		MAT44 worldScaled = MAT44::CreateScale(size)
 			* MAT44::CreateTranslation(world.Translation().x * scale.x, world.Translation().y * scale.y, world.Translation().z);
@@ -145,7 +145,7 @@ namespace GUI {
 			}
 		}
 
-		EngineGUI.getCamera().setPerspective(-1.f, 1.f, 1920, 1080);
+		EngineGUI.getCamera().setPerspective(-1.f, 1.f, EngineGUI.getResolution().x, EngineGUI.getResolution().y);
 		activateCamera(EngineGUI.getCamera(), Render.width, Render.height);
 	}
 
