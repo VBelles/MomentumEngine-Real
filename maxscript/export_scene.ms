@@ -1294,7 +1294,7 @@ struct TSceneExporter (
 					fs.writeKeyValue "radius" obj.DecayRadius
 				)
 				fs.writeComma()
-				fs.writeKeyValue "color" ((obj.color as point3) / 255)
+				fs.writeKeyValue "color" (obj.color as point4) --Converts to 0..1
 				if obj.projector then (
 					fs.writeComma()
 					fs.writeKeyValue "projector" obj.projectorMap
