@@ -10,13 +10,10 @@ private:
 	float baseMultiplier = 0.f;
 	float stateMultiplier = 1.f;
 
-	void onGetPower(const TMsgGetPower& msg);
-
-	std::string particles;
-	VEC3 particlesOffset;
-
 	CTimer resetTimer;
 	float resetTime = 0.f;
+
+	void onGetPower(const TMsgGetPower& msg);
 
 public:
 	DECL_SIBLING_ACCESS();
@@ -26,6 +23,7 @@ public:
 	void debugInMenu();
 
 	void setStateMultiplier(float multiplier);
+	float getStateMultiplier();
 	void reset();
 
 	float getPowerToGive();
