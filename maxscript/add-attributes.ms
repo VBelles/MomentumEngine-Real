@@ -38,8 +38,6 @@ global rotationsData = attributes rotateData (
 		rotSpeed type: #float   ui:rotSpeed default:0.5
 
 		rolSpeed type: #float   ui:rolSpeed default:0.0
-		wait 	 type: #float   ui:waitDur 	default:2
-
 		dir 	 type: #integer ui:plDir 	default:0
 		--https://help.autodesk.com/view/3DSMAX/2018/ENU/?guid=__files_GUID_461915FA_31A2_49CE_84AF_2544B782ACA3_htm
 		slot 	 type: #intTab ui:slt default:1 tabSize:1 tabSizeVariable:true
@@ -53,8 +51,6 @@ global rotationsData = attributes rotateData (
 
 		label lab2 "Roll:"
 		spinner rolSpeed "Roll speed" 	   type: #float  range:[-100, 100, 0]
-		spinner waitDur  "Wait duration"   type: #float  range:[0, 100, 2]
-
 		spinner plDir    "Platf director"  type: #integer range:[0, 100, 0]
 		multiListBox slt "Platf dir slots"  items: #("1","2","3","4","5") \ 
 			height:5 width:70 align:#right
@@ -167,9 +163,19 @@ global animsData = attributes animData (
 global lightsData = attributes lightData (
 	parameters main rollout:params (
 		fov type: #float ui:lfov default:40.0
+
+		fli type: #boolean ui:flick  default:false
+		inV type: #float   ui:inVar  default:0.1
+		vSp type: #float   ui:varSpd default:0.5
 	)
 	rollout params "Lights Data" (
 		spinner lfov "FoV" type: #float range:[0, 1000.0, 40.0] --min, max, initial value
+		
+		group "Flicker" (
+			checkbox flick "Add flicker" type: #boolean align:#right
+			spinner inVar "Int var"		 type: #float range:[0, 1000.0, 0.1]
+			spinner varSpd "Var speed"	 type: #float range:[0, 1000.0, 0.5]
+		)
 	)
 )
 

@@ -752,29 +752,6 @@
         "type": "random",
         "children": [
           {
-            "name": "idleActionSeq",
-            "type": "sequence",
-            "children": [
-              {
-                "name": "onIdleAction",
-                "type": "action",
-                "action": {
-                  "type": "OnIdleAction",
-                  "animation": "enemigo_bola_idle"
-                }
-              },
-              {
-                "name": "idleAction",
-                "type": "action",
-                "action": {
-                  "type": "IdleAction",
-                  "animation": "enemigo_bola_idle",
-                  "cancel_condition": "combat"
-                }
-              }
-            ]
-          },
-          {
             "name": "idleLoopSeq",
             "type": "sequence",
             "children": [

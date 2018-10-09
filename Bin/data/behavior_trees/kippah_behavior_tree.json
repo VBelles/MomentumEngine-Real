@@ -551,29 +551,6 @@
         "type": "random",
         "children": [
           {
-            "name": "idleActionSeq",
-            "type": "sequence",
-            "children": [
-              {
-                "name": "onIdleAction",
-                "type": "action",
-                "action": {
-                  "type": "OnIdleAction",
-                  "animation": "medusa_idle"
-                }
-              },
-              {
-                "name": "idleAction",
-                "type": "action",
-                "action": {
-                  "type": "IdleActionFlying",
-                  "animation": "medusa_idle",
-                  "cancel_condition": "shortDistanceCombat"
-                }
-              }
-            ]
-          },
-          {
             "name": "idleLoopSeq",
             "type": "sequence",
             "children": [

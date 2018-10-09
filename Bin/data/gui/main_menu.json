@@ -1,135 +1,163 @@
 [
 	{
-		"name" : "main_menu",
-		"type" : "widget",
-		"size" : "1920 1080",
-		"children" : [
+		"name": "main_menu",
+		"type": "widget",
+		"size": "1920 1080",
+		"children": [
 			{
-				"name" : "background",
-				"children" : [
+				"name": "background",
+				"children": [
 					{
-						"name" : "background01",
-						"type" : "image",
-						"size" : "1920 1080",
-						"texture" : "data/textures/gui/menuinicio_background_01.dds",
-						"minUV" : "0.33 0",
-						"maxUV" : "0.66 1",
-						"effects" : [
+						"name": "background01",
+						"type": "image",
+						"size": "1920 1080",
+						"texture": "data/textures/gui/menuinicio_background_01.dds",
+						"minUV": "0.3333 0",
+						"maxUV": "0.6666 1",
+						"effects": [
 							{
-								"type" : "animate_uv",
-								"speed" : "-0.002 0"
+								"type": "animate_uv",
+								"speed": "-0.002 0"
 							}
 						]
 					},
 					{
-						"name" : "background02",
-						"type" : "image",
-						"size" : "1920 1080",
-						"texture" : "data/textures/gui/menuinicio_background_02.dds",
-						"minUV" : "0.33 0",
-						"maxUV" : "0.66 1",
-						"effects" : [
+						"name": "background02",
+						"type": "image",
+						"size": "1920 1080",
+						"texture": "data/textures/gui/menuinicio_background_02.dds",
+						"minUV": "0.3333 0",
+						"maxUV": "0.6666 1",
+						"effects": [
 							{
-								"type" : "animate_uv",
-								"speed" : "0.0025 0"
+								"type": "animate_uv",
+								"speed": "-0.0015 0"
 							}
 						]
 					},
 					{
-						"name" : "background03",
-						"type" : "image",
-						"size" : "1920 1080",
-						"texture" : "data/textures/gui/menuinicio_background_03.dds",
-						"minUV" : "0.33 0",
-						"maxUV" : "0.66 1",
-						"effects" : [
+						"name": "background03",
+						"type": "image",
+						"size": "1920 1080",
+						"texture": "data/textures/gui/menuinicio_background_03.dds",
+						"minUV": "0.3333 0",
+						"maxUV": "0.6666 1",
+						"effects": [
 							{
-								"type" : "animate_uv",
-								"speed" : "0.005 0"
+								"type": "animate_uv",
+								"speed": "0.0025 0"
 							}
 						]
 					},
 					{
-						"name" : "background04",
-						"type" : "image",
-						"size" : "1920 1080",
-						"texture" : "data/textures/gui/menuinicio_background_04.dds",
-						"minUV" : "0.33 0",
-						"maxUV" : "0.66 1",
-						"effects" : [
+						"name": "background04",
+						"type": "image",
+						"size": "1920 1080",
+						"texture": "data/textures/gui/menuinicio_background_04.dds",
+						"minUV": "0.3333 0",
+						"maxUV": "0.6666 1",
+						"effects": [
 							{
-								"type" : "animate_uv",
-								"speed" : "0.0075 0"
+								"type": "animate_uv",
+								"speed": "-0.0037 0"
 							}
 						]
 					},
 					{
-						"name" : "foreground",
-						"type" : "image",
-						"size" : "1920 1080",
-						"texture" : "data/textures/gui/menuinicio_foreground.dds",
-						"minUV" : "0.25 0",
-						"maxUV" : "0.58 1"
+						"name": "background05",
+						"type": "image",
+						"size": "1920 1080",
+						"texture": "data/textures/gui/menuinicio_background_05.dds",
+						"minUV": "0.3333 0",
+						"maxUV": "0.6666 1",
+						"effects": [
+							{
+								"type": "animate_uv",
+								"speed": "0.005 0"
+							}
+						]
 					},
 					{
-						"name" : "title",
-						"type" : "image",
-						"size" : "1920 1080",
-						"texture" : "data/textures/gui/menuinicio_title.dds"
+						"name": "background06",
+						"type": "image",
+						"size": "1920 1080",
+						"texture": "data/textures/gui/menuinicio_background_06.dds",
+						"minUV": "0.3333 0",
+						"maxUV": "0.6666 1",
+						"effects": [
+							{
+								"type": "animate_uv",
+								"speed": "0.0075 0"
+							}
+						]
+					},
+					{
+						"name": "foreground",
+						"type": "image",
+						"size": "1920 1080",
+						"texture": "data/textures/gui/menuinicio_foreground.dds",
+						"minUV": "0.25 0",
+						"maxUV": "0.58 1"
+					},
+					{
+						"name": "title",
+						"type": "image",
+						"size": "1920 1080",
+						"texture": "data/textures/gui/menuinicio_title.dds"
 					}
 				]
 			},
 			{
-				"name" : "test_buttons",
-				"type" : "widget",
-				"position" : "300 600",
-				"children" : [
+				"name": "test_buttons",
+				"type": "widget",
+				"position": "300 600",
+				"children": [
 					{
-						"name" : "start_game",
-						"type" : "button",
-						"position" : "0 0",
-						"size" : "336 104",
-						"texture" : "data/textures/gui/start_game.dds",
-						"selected" : {
-							"position" : "-30 0",
-							"texture" : "data/textures/gui/start_game_selected.dds"
+						"name": "start_game",
+						"type": "button",
+						"position": "0 0",
+						"size": "336 104",
+						"texture": "data/textures/gui/start_game.dds",
+						"selected": {
+							"position": "-30 0",
+							"texture": "data/textures/gui/start_game_selected.dds"
 						},
-						"pressed" : {
-							"position" : "-30 0",
-							"color" : "0.8 0.8 0.8 1",
-							"texture" : "data/textures/gui/start_game_selected.dds"
+						"pressed": {
+							"position": "-30 0",
+							"color": "0.8 0.8 0.8 1",
+							"texture": "data/textures/gui/start_game_selected.dds"
 						}
 					},
 					{
-						"name" : "options_menu",
-						"type" : "button",
-						"position" : "0 80",
-						"size" : "336 104",
-						"texture" : "data/textures/gui/options.dds",
-						"selected" : {
-							"position" : "-30 80",
-							"texture" : "data/textures/gui/options_selected.dds"
+						"name": "options_menu",
+						"type": "button",
+						"position": "0 80",
+						"size": "336 104",
+						"texture": "data/textures/gui/options.dds",
+						"selected": {
+							"position": "-30 80",
+							"texture": "data/textures/gui/options_selected.dds"
 						},
-						"pressed" : {
-							"position" : "-30 80",
-							"color" : "0.8 0.8 0.8 1",
-							"texture" : "data/textures/gui/options_selected.dds"
+						"pressed": {
+							"position": "-30 80",
+							"color": "0.8 0.8 0.8 1",
+							"texture": "data/textures/gui/options_selected.dds"
 						}
 					},
 					{
-						"name" : "exit_game",
-						"type" : "button",
-						"position" : "0 160",
-						"size" : "336 104",
-						"texture" : "data/textures/gui/exit.dds",
-						"selected" : {
-							"position" : "-30 160",
-							"texture" : "data/textures/gui/exit_selected.dds"
+						"name": "exit_game",
+						"type": "button",
+						"position": "0 160",
+						"size": "336 104",
+						"texture": "data/textures/gui/exit.dds",
+						"selected": {
+							"position": "-30 160",
+							"texture": "data/textures/gui/exit_selected.dds"
 						},
-						"pressed" : {
-							"position" : "-30 160",
-							"color" : "0.8 0.8 0.8 1",
-							"texture" : "data/textures/gui/exit_selected.dds"
+						"pressed": {
+							"position": "-30 160",
+							"color": "0.8 0.8 0.8 1",
+							"texture": "data/textures/gui/exit_selected.dds"
 						}
 					}
 				]

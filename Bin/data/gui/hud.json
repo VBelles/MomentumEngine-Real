@@ -276,9 +276,9 @@
 					{
 						"name": "chrysalis_text",
 						"type": "text",
-						"size": "64 64",
+						"size": "128 64",
 						"position": "64 0",
-						"font_size": 32,
+						"font_size": 64,
 						"template_text": "{{chrysalis}}",
 						"valign": "center"
 					}
