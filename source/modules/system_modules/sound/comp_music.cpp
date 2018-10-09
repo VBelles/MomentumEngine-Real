@@ -34,8 +34,13 @@ void TCompMusic::onDestroyed(const TMsgEntityDestroyed&) {
 
 void TCompMusic::update(float delta) {
 	//controlar timers y ratios
-	combatRatio = lerp(combatStartingRatio, combatTargetRatio,clamp(combatTimer.elapsed() * 1000 / combatTimeMiliseconds, 0.f, 1.f));
-	momentumThemeInstance->setParameterValue("combat_ratio", combatRatio);
+	combatRatio = lerp(combatStartingRatio, combatTargetRatio, clamp(combatTimer.elapsed() * 1000 / combatTimeMiliseconds, 0.f, 1.f));
+	if ((!combatEntersOnBeat && combatTargetRatio == 1) || (!combatExitsOnBeat && combatTargetRatio == 0)) {
+		momentumThemeInstance->setParameterValue("combat_ratio", combatRatio);
+	}
+	else if(combatRatio == combatTargetRatio){
+		momentumThemeInstance->setParameterValue("combat_ratio", combatRatio);
+	}
 }
 
 void TCompMusic::play() {
@@ -55,13 +60,13 @@ void TCompMusic::setCombat(Combat combat) {
 		switch (combat) {
 		case OFF:
 			//se puede hacer que salga al final del compás
-			//combatTimeMiliseconds = milisecondsPerBar - (timeMiliseconds % milisecondsPerBar);
 			combatTimeMiliseconds = 5000;
 			combatState = OFF;
 			combatTargetRatio = 0;
 			break;
 		case DANGER:
 			//o que entre al siguiente beat
+			//combatTimeMiliseconds = milisecondsPerBar - (timeMiliseconds % milisecondsPerBar);
 			combatTimeMiliseconds = milisecondsPerBeat - (timeMiliseconds % milisecondsPerBeat);
 			combatState = DANGER;
 			combatTargetRatio = 1;

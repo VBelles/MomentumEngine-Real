@@ -11,11 +11,31 @@ private:
 	int milisecondsPerBeat;
 	int milisecondsPerBar;
 
+	/*struct EventInfo {
+		CTimer timer;
+		int timeMiliseconds;
+		float targetRatio = 0;
+		float startingRatio;
+		float combatRatio = 0;
+		bool entersOnBeat = true;
+		bool exitsOnBeat = false;
+	};
+
+	enum EventTypes {
+		COMBAT, LEVEL, DAYNIGHT, PLACE_CEMETERY, PLACE_CIVILIZATION,
+		PLACE_CHRYSTALS, PLACE_MUSHROOMS, PLACE_TEMPLE
+	};
+
+	std::map<EventTypes, EventInfo> eventInfos;*/
+
 	CTimer combatTimer;
 	int combatTimeMiliseconds;
 	float combatTargetRatio = 0;
 	float combatStartingRatio;
 	float combatRatio = 0;
+	bool combatEntersOnBeat = true;
+	bool combatExitsOnBeat = false;
+
 	//Message callbacks
 	void onEntityCreated(const TMsgEntityCreated&);
 	void onDestroyed(const TMsgEntityDestroyed&);
@@ -37,7 +57,7 @@ public:
 	};
 
 	enum Place {
-		CEMENTERY, CIVILIZATION, CHRYSTALS, MUSHROOMS, TEMPLE
+		CEMETERY, CIVILIZATION, CHRYSTALS, MUSHROOMS, TEMPLE
 	};
 
 	DECL_SIBLING_ACCESS();
