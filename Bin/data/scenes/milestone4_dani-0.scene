@@ -1004,38 +1004,6 @@
   {
     "entity":
     {
-      "name": "tutorial_plataforma_roca_000",
-      "transform":
-      {
-        "pos": "-60.3099 -69.5516 279.735",
-        "rotation": "0.0 0.0 0.0 -1.0"
-      },
-      "render":
-      [
-        {
-          "mesh": "data/meshes/tutorial_plataforma_roca_000.mesh",
-          "materials":
-          [
-            "data/materials/platform_terrain_material.material"
-          ],
-          "enabled": true
-        }
-      ],
-      "collider":
-      {
-        "mesh_src": "data/meshes/tutorial_plataforma_roca_col_000.col_mesh",
-        "shape": "convex_mesh",
-        "type": "static",
-        "group":
-        [
-          "scenario"
-        ]
-      }
-    }
-  },
-  {
-    "entity":
-    {
       "name": "tutorial_plataforma_roca_grande_000",
       "transform":
       {
