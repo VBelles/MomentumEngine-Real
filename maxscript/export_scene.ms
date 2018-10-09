@@ -596,6 +596,10 @@ struct TSceneExporter (
 			fs.writeKeyValue "number_of_mechanisms" 1
 		fs.endObj()
 
+		local change_rend = true
+		local change_coll = true
+		local change_plat = true
+		local change_anim = true
 		local rend = true
 		local coll = true
 		local plat = true
