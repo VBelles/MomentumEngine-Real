@@ -153,25 +153,30 @@ void CModuleSound::render() {
 			}
 
 			for (auto bank : banks) {
-				int eventCount = 0;
-				bank->getEventCount(&eventCount);
-				if (eventCount == 0) continue;
-				std::vector<Studio::EventDescription*> events;
-				events.resize(eventCount);
-				bank->getEventList(&events[0], eventCount, &eventCount);
-				if (eventCount == 0) continue;
-				ImGui::Text("Events: %d", eventCount);
-				for (auto event : events) {
-					char path[256];
-					event->getPath(path, 256, nullptr);
-					if (!Filter.IsActive() || Filter.PassFilter(path)) {
-						int instancesCount = 0;
-						event->getInstanceCount(&instancesCount);
-						ImGui::Text("(%d) %s", instancesCount, path);
+				char bankPath[256];
+				bank->getPath(bankPath, 256, nullptr);
+				if (ImGui::TreeNode("Bank: %s", bankPath)) {
+					int eventCount = 0;
+					bank->getEventCount(&eventCount);
+					//if (eventCount == 0) continue;
+					std::vector<Studio::EventDescription*> events;
+					events.resize(eventCount);
+					bank->getEventList(&events[0], eventCount, &eventCount);
+					//if (eventCount == 0) continue;
+					ImGui::Text("Events: %d", eventCount);
+					for (auto event : events) {
+						char path[256];
+						event->getPath(path, 256, nullptr);
+						if (!Filter.IsActive() || Filter.PassFilter(path)) {
+							int instancesCount = 0;
+							event->getInstanceCount(&instancesCount);
+							ImGui::Text("(%d) %s", instancesCount, path);
+						}
 					}
+					ImGui::TreePop();
 				}
-				ImGui::TreePop();
 			}
+			ImGui::TreePop();
 		}
 	}
 }
