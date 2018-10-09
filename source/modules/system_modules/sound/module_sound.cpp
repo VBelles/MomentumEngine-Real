@@ -25,6 +25,7 @@ bool CModuleSound::start() {
 		assert(res == FMOD_OK);
 		banks[bankFile] = bank;
 	}
+	
 	return true;
 }
 
@@ -119,9 +120,55 @@ void CModuleSound::stopEvent(Studio::EventInstance* instance, bool fadeout) {
 	}
 }
 
+void CModuleSound::setVolume(float volume) {
+	masterVolume = volume;
+	FMOD::ChannelGroup* masterChannelGroup = nullptr;
+	lowLevelSystem->getMasterChannelGroup(&masterChannelGroup);
+	masterChannelGroup->setVolume(masterVolume);
+	/*for (auto bank : getBanks()) {
+		for (auto description : getEventDescriptions(bank)) {
+			for (auto eventInstance : getEventInstances(description)) {
+				eventInstance->setVolume(10);
+			}
+		}
+	}*/
+	
+}
+
+std::vector<Studio::Bank*> CModuleSound::getBanks() {
+	int bankCount = 0;
+	system->getBankCount(&bankCount);
+	std::vector<Studio::Bank*> banks;
+	banks.resize(bankCount);
+	system->getBankList(&banks[0], bankCount, &bankCount);
+	return banks;
+}
+
+
+std::vector<Studio::EventDescription*> CModuleSound::getEventDescriptions(Studio::Bank* bank) {
+	int descriptionsCount = 0;
+	bank->getEventCount(&descriptionsCount);
+	std::vector<Studio::EventDescription*> descriptions;
+	descriptions.resize(descriptionsCount);
+	bank->getEventList(&descriptions[0], descriptionsCount, &descriptionsCount);
+	return descriptions;
+}
+
+std::vector<FMOD::Studio::EventInstance*> CModuleSound::getEventInstances(Studio::EventDescription * eventDescription) {
+	int eventsCount = 0;
+	eventDescription->getInstanceCount(&eventsCount);
+	std::vector<Studio::EventInstance*> events;
+	events.resize(eventsCount);
+	eventDescription->getInstanceList(&events[0], eventsCount, &eventsCount);
+	return events;
+}
+
 void CModuleSound::render() {
 	if (CApp::get().isDebug()) {
 		if (ImGui::TreeNode("Sound")) {
+			if (ImGui::DragFloat("Master volume", &masterVolume, 0.01f, 0.f, 1.f)) {
+				setVolume(masterVolume);
+			}
 			int bankCount = 0;
 			system->getBankCount(&bankCount);
 			std::vector<Studio::Bank*> banks;
