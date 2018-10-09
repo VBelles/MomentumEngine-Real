@@ -42,7 +42,7 @@ void IdleActionState::update(float delta) {
 
 	if (closeCameraTimer.elapsed() >= closeCameraTime) {
 		getCameraPlayer()->moveCameraCloser(true);
-		EngineGame->showChrysalis();
+		EngineGame->showChrysalis(1.f);
 	}
 }
 
@@ -54,7 +54,6 @@ void IdleActionState::onStateEnter(IActionState * lastState) {
 
 void IdleActionState::onStateExit(IActionState * nextState) {
 	GroundedActionState::onStateExit(nextState);
-	EngineGame->hideChrysalis();
 }
 
 void IdleActionState::onSpendCoinsButton() {

@@ -114,6 +114,16 @@ namespace GUI {
 
 	void CFont::renderText(const MAT44& world, const std::string& text, const VEC4& color) {
 		assert(fontTexture);
+
+		EngineGUI.getCamera().setPerspective(-1.f, 1.f, Render.width, Render.height);
+		activateCamera(EngineGUI.getCamera(), Render.width, Render.height);
+
+		VEC2 scale( Engine.globalConfig.resolution.x / EngineGUI.getResolution().x,
+			Engine.globalConfig.resolution.y / EngineGUI.getResolution().y);
+
+		MAT44 worldScaled = MAT44::CreateScale(size)
+			* MAT44::CreateTranslation(world.Translation().x * scale.x, world.Translation().y * scale.y, world.Translation().z);
+
 		VEC2 gap(0, 0);
 		for (size_t i = 0; i < text.size(); ++i) {
 			char c = text[i];
@@ -123,16 +133,20 @@ namespace GUI {
 			}
 			else {
 				VEC2 minUV = VEC2(characters[c].x / (float)scaleW, characters[c].y / (float)scaleH);
-				VEC2 maxUV = minUV + VEC2((characters[c].width + characters[c].xoffset + spacing[0]) / (float)scaleW,
+				VEC2 maxUV = minUV + VEC2((characters[c].width + characters[c].xoffset /*+ spacing[0]*/) / (float)scaleW,
 					(characters[c].height + characters[c].yoffset + spacing[1]) / (float)scaleH);
-				MAT44 w = MAT44::CreateTranslation(gap.x, gap.y, 0.f) * world;
+				MAT44 w = MAT44::CreateTranslation(gap.x, gap.y, 0.f) * worldScaled;
 				gap += VEC2(characters[c].xadvance / (float)size, 0.f);
 
-				VEC2 charSize = VEC2(characters[c].width / (float)size, characters[c].height / (float)size);
+				VEC2 charSize = VEC2((characters[c].width + characters[c].xoffset) / (float)size,
+					(characters[c].height + characters[c].yoffset) / (float)size);
 
 				EngineGUI.renderText(w, fontTexture, minUV, maxUV, color, charSize);
 			}
 		}
+
+		EngineGUI.getCamera().setPerspective(-1.f, 1.f, EngineGUI.getResolution().x, EngineGUI.getResolution().y);
+		activateCamera(EngineGUI.getCamera(), Render.width, Render.height);
 	}
 
 	int CFont::getSize() {

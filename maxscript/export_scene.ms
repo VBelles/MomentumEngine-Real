@@ -596,6 +596,10 @@ struct TSceneExporter (
 			fs.writeKeyValue "number_of_mechanisms" 1
 		fs.endObj()
 
+		local change_rend = true
+		local change_coll = true
+		local change_plat = true
+		local change_anim = true
 		local rend = true
 		local coll = true
 		local plat = true
@@ -1290,7 +1294,7 @@ struct TSceneExporter (
 					fs.writeKeyValue "radius" obj.DecayRadius
 				)
 				fs.writeComma()
-				fs.writeKeyValue "color" ((obj.color as point3) / 255)
+				fs.writeKeyValue "color" (obj.color as point4) --Converts to 0..1
 				if obj.projector then (
 					fs.writeComma()
 					fs.writeKeyValue "projector" obj.projectorMap
@@ -1952,7 +1956,8 @@ struct TSceneExporter (
 	),
 
 	fn exportPlatfDirector = (
-		if platfDirectors.count == 0 then return false
+		if platfDirectors.count == 0 or
+		   platfDirWaits.count  == 0 then return false
 
 		local ofilename = getFilenameFile maxFileName
 		local plDirFilePath = project_path + scenes_path + \
@@ -1964,6 +1969,7 @@ struct TSceneExporter (
 		--DEBUGprintPlatfDirs() --DEBUG
 
 		local validDirectors = 0
+
 		for i = 1 to platfDirectors.count where
 		platfDirectors[i] != undefined and
 		platfDirectors[i][1] != undefined do (
@@ -1971,7 +1977,7 @@ struct TSceneExporter (
 			if validDirectors >= 1 then fs.writeComma()
 
 			beginEntity()
-			fs.writeKeyValue "name" ("platform_director_" + i as string)
+			fs.writeKeyValue "name" (ofilename + "platform_director_" + i as string)
 			fs.writeComma()
 			fs.writeKey "platforms_director"
 			fs.beginObj()
