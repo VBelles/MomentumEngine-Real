@@ -315,41 +315,6 @@
         ]
       },
       {
-        "name": "blockingBreak",
-        "type": "sequence",
-        "condition": {
-          "type": "OnBlockingBreakCondition"
-        },
-        "children": [
-          {
-            "name": "onBlockingBreakAction",
-            "type": "action",
-            "action": {
-              "type": "OnBlockingBreakAction",
-              "animation": "gorila_knockback"
-            }
-          },
-          {
-            "name": "blockingBreakAction",
-            "type": "action",
-            "action": {
-              "type": "BlockingBreakAction",
-              "animation": "gorila_knockback"
-            }
-          }
-        ]
-      },
-      {
-        "name": "blockAction",
-        "type": "action",
-        "condition": {
-          "type": "BlockCondition"
-        },
-        "action": {
-          "type": "BlockAction"
-        }
-      },
-      {
         "name": "teleport",
         "type": "sequence",
         "condition": {
@@ -471,25 +436,25 @@
                     ]
                   },
                   {
-                    "name": "shortSpinAttack",
+                    "name": "shortAttack",
                     "type": "sequence",
                     "children": [
                       {
-                        "name": "onShortSpinAttackAction",
+                        "name": "onShortAttackAction",
                         "type": "action",
                         "action": {
                           "type": "OnAttackAction",
                           "animation": "gorila_ataquelento",
-                          "attack": "spin_attack"
+                          "attack": "attack"
                         }
                       },
                       {
-                        "name": "shortSpinAttackAction",
+                        "name": "shortAttackAction",
                         "type": "action",
                         "action": {
                           "type": "AttackAction",
                           "animation": "gorila_ataquelento",
-                          "attack": "spin_attack"
+                          "attack": "attack"
                         }
                       }
                     ]

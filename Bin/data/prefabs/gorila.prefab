@@ -41,36 +41,18 @@
         "medium_combat_distance": 0,
         "long_combat_distance": 0,
         "step_back_distance": 0.6,
-        "attack_cool_down": 1.0,
+        "attack_cool_down": 2.0,
         "block_time": 1.5,
         "attack_slots": 1.0,
         "attacks": [
           {
-            "name": "spin_attack",
-            "frame_data": "25 60 68",
+            "name": "attack",
+            "frame_data": "30 45 60",
             "damage": 1.0,
             "invulnerabilityTime": 1.5,
             "stun": 1.0,
-            "hitbox": "spin_attack",
-            "particles": "spin_attack"
-          },
-          {
-            "name": "area_attack",
-            "frame_data": "38 46 62",
-            "damage": 1.0,
-            "invulnerabilityTime": 1.5,
-            "stun": 1.0,
-            "hitbox": "area_attack",
-            "particles": "area_attack"
-          },
-          {
-            "name": "tackle",
-            "frame_data": "15 10000 10000",
-            "damage": 1.0,
-            "invulnerabilityTime": 1.5,
-            "stun": 1.0,
-            "hitbox": "tackle",
-            "particles": "tackle"
+            "hitbox": "attack",
+            "particles": "attack"
           },
           {
             "name": "launched",
@@ -103,7 +85,7 @@
       "hitboxes": {
         "hitboxes": [
           {
-            "name": "spin_attack",
+            "name": "attack",
             "shape": "sphere",
             "radius": 1.5,
             "group": [
@@ -112,7 +94,7 @@
             "mask": [
               "player"
             ],
-            "bone": "Bip001 R Hand"
+            "offset": "0 1.0 1.5"
           },
           {
             "name": "launched",
@@ -142,10 +124,6 @@
           {
             "id": "hit",
             "path": "event:/PROTA/golpes/golpe_hit"
-          },
-          {
-            "id": "block",
-            "path": "event:/PROTA/golpes/golpe_hit"
           }
         ]
       },
@@ -158,19 +136,9 @@
             "offset": "0 0.5 0"
           },
           {
-            "id": "area_attack",
-            "core": "data/particles/dreidel/area_attack.particles",
-            "offset": "0 1.45 0"
-          },
-          {
-            "id": "spin_attack",
+            "id": "attack",
             "core": "data/particles/dreidel/spin_attack.particles",
             "offset": "0 0.7 0"
-          },
-          {
-            "id": "tackle",
-            "core": "data/particles/dreidel/tackle.particles",
-            "offset": "0 0.5 0"
           }
         ]
       }
