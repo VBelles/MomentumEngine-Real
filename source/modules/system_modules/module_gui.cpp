@@ -11,9 +11,7 @@ CModuleGUI::CModuleGUI(const std::string& name)
 }
 
 bool CModuleGUI::start() {
-	const float width = 1920;
-	const float height = 1080;
-	_orthoCamera.setPerspective(-1.f, 1.f, width, height);
+	_orthoCamera.setPerspective(-1.f, 1.f, resolution.x, resolution.y);
 
 	_technique = Resources.get("gui.tech")->as<CRenderTechnique>();
 	_technique_clamp = Resources.get("gui_clamp.tech")->as<CRenderTechnique>();
@@ -240,4 +238,8 @@ void CModuleGUI::hideDialog() {
 
 bool CModuleGUI::isDialogActive() {
 	return dialogController->isActive();
+}
+
+VEC2 CModuleGUI::getResolution() {
+	return resolution;
 }
