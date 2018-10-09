@@ -1968,6 +1968,8 @@ struct TSceneExporter (
 		--DEBUGprintPlatfDirs() --DEBUG
 
 		local validDirectors = 0
+		if platfDirWaits.count == 0 then return undefined
+
 		for i = 1 to platfDirectors.count where
 		platfDirectors[i] != undefined and
 		platfDirectors[i][1] != undefined do (
@@ -1975,7 +1977,7 @@ struct TSceneExporter (
 			if validDirectors >= 1 then fs.writeComma()
 
 			beginEntity()
-			fs.writeKeyValue "name" ("platform_director_" + i as string)
+			fs.writeKeyValue "name" (ofilename + "platform_director_" + i as string)
 			fs.writeComma()
 			fs.writeKey "platforms_director"
 			fs.beginObj()
