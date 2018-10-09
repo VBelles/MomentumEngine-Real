@@ -24,7 +24,7 @@ private:
 	Particles::LaunchConfig launchConfig;
 
 	//Message callbacks
-	void onAllScenesCreated(const TMsgAllScenesCreated&);
+	void onEntitiesGroupCreated(const TMsgEntitiesGroupCreated&);
 	void onDestroyed(const TMsgEntityDestroyed&);
 	void onParticleSystemDestroyed(const TMsgParticleSystemDestroyed &);
 
