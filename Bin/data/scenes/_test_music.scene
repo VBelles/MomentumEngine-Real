@@ -2,7 +2,7 @@
   {
     "entity":
     {
-      "name": "music",
+      "name": "music_player",
       "music":{}
     }
   }

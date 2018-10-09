@@ -68,6 +68,7 @@
     "slash",
     "givePower",
     "sound",
+    "music",
     "fire"
   ],
   "render_debug" : [

@@ -47,7 +47,6 @@ void TCompMusic::stop() {
 }
 
 void TCompMusic::setCombat(Combat combat) {
-
 	if (combat != combatState) {
 		int timeMiliseconds;
 		momentumThemeInstance->getTimelinePosition(&timeMiliseconds);
@@ -56,7 +55,8 @@ void TCompMusic::setCombat(Combat combat) {
 		switch (combat) {
 		case OFF:
 			//se puede hacer que salga al final del compás
-			combatTimeMiliseconds = milisecondsPerBar - (timeMiliseconds % milisecondsPerBar);
+			//combatTimeMiliseconds = milisecondsPerBar - (timeMiliseconds % milisecondsPerBar);
+			combatTimeMiliseconds = 5000;
 			combatState = OFF;
 			combatTargetRatio = 0;
 			break;

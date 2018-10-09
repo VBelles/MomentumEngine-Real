@@ -13,7 +13,7 @@ private:
 
 	CTimer combatTimer;
 	int combatTimeMiliseconds;
-	float combatTargetRatio;
+	float combatTargetRatio = 0;
 	float combatStartingRatio;
 	float combatRatio = 0;
 	//Message callbacks
