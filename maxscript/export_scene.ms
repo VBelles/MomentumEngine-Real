@@ -1956,7 +1956,8 @@ struct TSceneExporter (
 	),
 
 	fn exportPlatfDirector = (
-		if platfDirectors.count == 0 then return false
+		if platfDirectors.count == 0 or
+		   platfDirWaits.count  == 0 then return false
 
 		local ofilename = getFilenameFile maxFileName
 		local plDirFilePath = project_path + scenes_path + \
@@ -1968,7 +1969,6 @@ struct TSceneExporter (
 		--DEBUGprintPlatfDirs() --DEBUG
 
 		local validDirectors = 0
-		if platfDirWaits.count == 0 then return undefined
 
 		for i = 1 to platfDirectors.count where
 		platfDirectors[i] != undefined and
