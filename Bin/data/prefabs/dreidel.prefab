@@ -194,7 +194,7 @@
           {
             "id": "tackle",
             "core": "data/particles/dreidel/tackle.particles",
-            "offset": "0 0.5 0"
+            "offset": "0 0.7 0"
           }
         ]
       }
