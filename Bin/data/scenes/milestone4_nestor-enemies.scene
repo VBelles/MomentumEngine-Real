@@ -2,6 +2,30 @@
   {
     "entity":
     {
+      "name": "nes_enemyMelee040",
+      "prefab": "data/prefabs/dreidel.prefab",
+      "transform":
+      {
+        "pos": "-187.158 59.0999 -6.15091",
+        "lookat": "-1.0 59.0999 -1.0"
+      }
+    }
+  },
+  {
+    "entity":
+    {
+      "name": "nes_enemyMelee039",
+      "prefab": "data/prefabs/dreidel.prefab",
+      "transform":
+      {
+        "pos": "-203.6 59.0999 -35.0154",
+        "lookat": "-1.0 59.0999 -1.0"
+      }
+    }
+  },
+  {
+    "entity":
+    {
       "name": "nes_enemyMelee038",
       "prefab": "data/prefabs/dreidel.prefab",
       "transform":
@@ -186,8 +210,8 @@
       "prefab": "data/prefabs/kippah.prefab",
       "transform":
       {
-        "pos": "-106.58 24.3941 -44.2207",
-        "lookat": "-1.0 24.3941 -1.0"
+        "pos": "-111.932 25.8903 -51.2763",
+        "lookat": "-1.0 25.8903 -1.0"
       }
     }
   },
@@ -198,8 +222,8 @@
       "prefab": "data/prefabs/kippah.prefab",
       "transform":
       {
-        "pos": "-88.8287 21.8308 -45.0453",
-        "lookat": "-1.0 21.8308 -1.0"
+        "pos": "-100.741 18.767 -48.6838",
+        "lookat": "-1.0 18.767 -1.0"
       }
     }
   },
@@ -402,8 +426,8 @@
       "prefab": "data/prefabs/kippah.prefab",
       "transform":
       {
-        "pos": "86.1398 35.428 0.856559",
-        "lookat": "-1.0 35.428 -1.0"
+        "pos": "75.1046 37.2842 -3.82716",
+        "lookat": "-1.0 37.2842 -1.0"
       }
     }
   },
@@ -498,7 +522,7 @@
       "prefab": "data/prefabs/kippah.prefab",
       "transform":
       {
-        "pos": "-77.8342 32.6393 -65.5351",
+        "pos": "-62.9084 32.6393 -37.8833",
         "lookat": "-1.0 32.6393 -1.0"
       }
     }
@@ -510,7 +534,7 @@
       "prefab": "data/prefabs/kippah.prefab",
       "transform":
       {
-        "pos": "-71.4357 32.6393 -60.4366",
+        "pos": "-55.5835 32.6393 -41.5275",
         "lookat": "-1.0 32.6393 -1.0"
       }
     }
@@ -522,7 +546,7 @@
       "prefab": "data/prefabs/kippah.prefab",
       "transform":
       {
-        "pos": "-68.0074 32.6393 -67.4229",
+        "pos": "-60.4663 32.6393 -47.5871",
         "lookat": "-1.0 32.6393 -1.0"
       }
     }
@@ -534,7 +558,7 @@
       "prefab": "data/prefabs/kippah.prefab",
       "transform":
       {
-        "pos": "-60.5858 32.7017 -62.4144",
+        "pos": "-52.7906 32.7017 -52.1968",
         "lookat": "-1.0 32.7017 -1.0"
       }
     }
@@ -834,8 +858,8 @@
       "prefab": "data/prefabs/dreidel.prefab",
       "transform":
       {
-        "pos": "-54.1295 18.6461 -45.6465",
-        "lookat": "-1.0 18.6461 -1.0"
+        "pos": "-65.1748 18.3993 -30.4245",
+        "lookat": "-1.0 18.3993 -1.0"
       }
     }
   },

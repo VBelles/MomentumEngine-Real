@@ -17,6 +17,7 @@ private:
 	void onPerfectDodged(const TMsgPerfectDodged& msg);
 	void onColliderDestroyed(const TMsgColliderDestroyed& msg);
 	void onHitboxEnter(const TMsgHitboxEnter& msg);
+	void onLosePower(const TMsgLosePower& msg);
 
 public:
 	DECL_SIBLING_ACCESS();

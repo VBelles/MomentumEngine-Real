@@ -2,6 +2,870 @@
   {
     "entity":
     {
+      "name": "nes_aro_006",
+      "transform":
+      {
+        "pos": "139.695 42.519 -16.361",
+        "rotation": "-0.706434 0.0308436 -0.0308436 -0.706434"
+      },
+      "render":
+      [
+        {
+          "mesh": "data/meshes/nes_aro_006.mesh",
+          "materials":
+          [
+            "data/materials/m_aro_00.material"
+          ],
+          "enabled": true
+        }
+      ],
+      "collider":
+      {
+        "mesh_src": "data/meshes/nes_aro_col_006.col_mesh",
+        "shape": "tri_mesh",
+        "type": "static",
+        "group":
+        [
+          "scenario"
+        ]
+      }
+    }
+  },
+  {
+    "entity":
+    {
+      "name": "nes_aro_005",
+      "transform":
+      {
+        "pos": "138.383 42.519 -1.01476",
+        "rotation": "-0.706434 0.0308436 -0.0308436 -0.706434"
+      },
+      "render":
+      [
+        {
+          "mesh": "data/meshes/nes_aro_005.mesh",
+          "materials":
+          [
+            "data/materials/m_aro_00.material"
+          ],
+          "enabled": true
+        }
+      ],
+      "collider":
+      {
+        "mesh_src": "data/meshes/nes_aro_col_005.col_mesh",
+        "shape": "tri_mesh",
+        "type": "static",
+        "group":
+        [
+          "scenario"
+        ]
+      }
+    }
+  },
+  {
+    "entity":
+    {
+      "name": "nes_aro_004",
+      "transform":
+      {
+        "pos": "137.188 42.519 11.7611",
+        "rotation": "-0.706434 0.0308436 -0.0308436 -0.706434"
+      },
+      "render":
+      [
+        {
+          "mesh": "data/meshes/nes_aro_004.mesh",
+          "materials":
+          [
+            "data/materials/m_aro_00.material"
+          ],
+          "enabled": true
+        }
+      ],
+      "collider":
+      {
+        "mesh_src": "data/meshes/nes_aro_col_004.col_mesh",
+        "shape": "tri_mesh",
+        "type": "static",
+        "group":
+        [
+          "scenario"
+        ]
+      }
+    }
+  },
+  {
+    "entity":
+    {
+      "name": "nes_estaca_emisivo_2_007",
+      "transform":
+      {
+        "pos": "78.7131 30.2701 -32.1224",
+        "rotation": "-0.13536 0.46449 -0.778476 -0.399878"
+      },
+      "render":
+      [
+        {
+          "mesh": "data/meshes/nes_estaca_emisivo_2_007.mesh",
+          "materials":
+          [
+            "data/materials/m_estaca_03.material"
+          ],
+          "enabled": true
+        }
+      ],
+      "collider":
+      {
+        "mesh_src": "data/meshes/nes_estaca_emisivo_2_col_007.col_mesh",
+        "shape": "convex_mesh",
+        "type": "static",
+        "group":
+        [
+          "scenario"
+        ]
+      }
+    }
+  },
+  {
+    "entity":
+    {
+      "name": "nes_estaca_emisivo_3_007",
+      "transform":
+      {
+        "pos": "90.0773 35.8325 -19.6459",
+        "rotation": "0.0202755 0.26966 -0.00668486 -0.962719"
+      },
+      "render":
+      [
+        {
+          "mesh": "data/meshes/nes_estaca_emisivo_3_007.mesh",
+          "materials":
+          [
+            "data/materials/m_estaca_04.material"
+          ],
+          "enabled": true
+        }
+      ],
+      "collider":
+      {
+        "mesh_src": "data/meshes/nes_estaca_emisivo_3_col_007.col_mesh",
+        "shape": "convex_mesh",
+        "type": "static",
+        "group":
+        [
+          "scenario"
+        ]
+      }
+    }
+  },
+  {
+    "entity":
+    {
+      "name": "nes_estaca_emisivo_3_006",
+      "transform":
+      {
+        "pos": "83.1228 29.6253 -23.8503",
+        "rotation": "-0.00668486 -0.962719 -0.0202755 -0.269659"
+      },
+      "render":
+      [
+        {
+          "mesh": "data/meshes/nes_estaca_emisivo_3_006.mesh",
+          "materials":
+          [
+            "data/materials/m_estaca_04.material"
+          ],
+          "enabled": true
+        }
+      ],
+      "collider":
+      {
+        "mesh_src": "data/meshes/nes_estaca_emisivo_3_col_006.col_mesh",
+        "shape": "convex_mesh",
+        "type": "static",
+        "group":
+        [
+          "scenario"
+        ]
+      }
+    }
+  },
+  {
+    "entity":
+    {
+      "name": "nes_estaca_emisivo_2_006",
+      "transform":
+      {
+        "pos": "90.6444 23.5203 -19.1798",
+        "rotation": "0.00125804 0.265038 0.0251138 -0.96391"
+      },
+      "render":
+      [
+        {
+          "mesh": "data/meshes/nes_estaca_emisivo_2_006.mesh",
+          "materials":
+          [
+            "data/materials/m_estaca_03.material"
+          ],
+          "enabled": true
+        }
+      ],
+      "collider":
+      {
+        "mesh_src": "data/meshes/nes_estaca_emisivo_2_col_006.col_mesh",
+        "shape": "convex_mesh",
+        "type": "static",
+        "group":
+        [
+          "scenario"
+        ]
+      }
+    }
+  },
+  {
+    "entity":
+    {
+      "name": "nes_crystal_low_233",
+      "transform":
+      {
+        "pos": "-48.2784 4.55593 -65.0513",
+        "rotation": "0.50706 0.095281 0.0181648 -0.856436"
+      },
+      "render":
+      [
+        {
+          "mesh": "data/meshes/nes_crystal_low_233.mesh",
+          "materials":
+          [
+            "data/materials/m_crystal_02.material"
+          ],
+          "enabled": true
+        }
+      ],
+      "collider":
+      {
+        "mesh_src": "data/meshes/nes_crystal_low_col_192.col_mesh",
+        "shape": "convex_mesh",
+        "type": "static",
+        "group":
+        [
+          "scenario"
+        ]
+      }
+    }
+  },
+  {
+    "entity":
+    {
+      "name": "nes_crystal_low_232",
+      "transform":
+      {
+        "pos": "-47.0704 4.75267 -64.0948",
+        "rotation": "0.300436 0.06963 0.360849 -0.880158"
+      },
+      "render":
+      [
+        {
+          "mesh": "data/meshes/nes_crystal_low_232.mesh",
+          "materials":
+          [
+            "data/materials/m_crystal_00.material"
+          ],
+          "enabled": true
+        }
+      ],
+      "collider":
+      {
+        "mesh_src": "data/meshes/nes_crystal_low_col_191.col_mesh",
+        "shape": "convex_mesh",
+        "type": "static",
+        "group":
+        [
+          "scenario"
+        ]
+      }
+    }
+  },
+  {
+    "entity":
+    {
+      "name": "nes_crystal_low_231",
+      "transform":
+      {
+        "pos": "-48.5396 5.14715 -63.2344",
+        "rotation": "0.0886597 0.167836 0.00626748 -0.9818"
+      },
+      "render":
+      [
+        {
+          "mesh": "data/meshes/nes_crystal_low_231.mesh",
+          "materials":
+          [
+            "data/materials/m_crystal_04.material"
+          ],
+          "enabled": true
+        }
+      ],
+      "collider":
+      {
+        "mesh_src": "data/meshes/nes_crystal_low_col_190.col_mesh",
+        "shape": "convex_mesh",
+        "type": "static",
+        "group":
+        [
+          "scenario"
+        ]
+      }
+    }
+  },
+  {
+    "entity":
+    {
+      "name": "nes_crystal_low_230",
+      "transform":
+      {
+        "pos": "-46.9864 4.04279 -65.1836",
+        "rotation": "0.392475 0.106597 0.243163 -0.880609"
+      },
+      "render":
+      [
+        {
+          "mesh": "data/meshes/nes_crystal_low_230.mesh",
+          "materials":
+          [
+            "data/materials/m_crystal_03.material"
+          ],
+          "enabled": true
+        }
+      ],
+      "collider":
+      {
+        "mesh_src": "data/meshes/nes_crystal_low_col_189.col_mesh",
+        "shape": "convex_mesh",
+        "type": "static",
+        "group":
+        [
+          "scenario"
+        ]
+      }
+    }
+  },
+  {
+    "entity":
+    {
+      "name": "nes_estaca_emisivo_6_010",
+      "transform":
+      {
+        "pos": "-142.742 23.6749 -55.6654",
+        "rotation": "-0.538066 -0.599698 0.159156 -0.570541"
+      },
+      "render":
+      [
+        {
+          "mesh": "data/meshes/nes_estaca_emisivo_6_010.mesh",
+          "materials":
+          [
+            "data/materials/m_estaca_07.material"
+          ],
+          "enabled": true
+        }
+      ],
+      "collider":
+      {
+        "mesh_src": "data/meshes/nes_estaca_emisivo_6_col_010.col_mesh",
+        "shape": "convex_mesh",
+        "type": "static",
+        "group":
+        [
+          "scenario"
+        ]
+      }
+    }
+  },
+  {
+    "entity":
+    {
+      "name": "nes_estaca_emisivo_6_009",
+      "transform":
+      {
+        "pos": "-27.4386 49.5118 -55.7689",
+        "rotation": "-0.405636 0.0577139 -0.574856 -0.708286"
+      },
+      "render":
+      [
+        {
+          "mesh": "data/meshes/nes_estaca_emisivo_6_009.mesh",
+          "materials":
+          [
+            "data/materials/m_estaca_07.material"
+          ],
+          "enabled": true
+        }
+      ],
+      "collider":
+      {
+        "mesh_src": "data/meshes/nes_estaca_emisivo_6_col_009.col_mesh",
+        "shape": "convex_mesh",
+        "type": "static",
+        "group":
+        [
+          "scenario"
+        ]
+      }
+    }
+  },
+  {
+    "entity":
+    {
+      "name": "nes_estaca_emisivo_6_008",
+      "transform":
+      {
+        "pos": "-72.2356 -2.34179 -82.683",
+        "rotation": "-0.37941 -0.0392499 -0.124485 -0.915976"
+      },
+      "render":
+      [
+        {
+          "mesh": "data/meshes/nes_estaca_emisivo_6_008.mesh",
+          "materials":
+          [
+            "data/materials/m_estaca_07.material"
+          ],
+          "enabled": true
+        }
+      ],
+      "collider":
+      {
+        "mesh_src": "data/meshes/nes_estaca_emisivo_6_col_008.col_mesh",
+        "shape": "convex_mesh",
+        "type": "static",
+        "group":
+        [
+          "scenario"
+        ]
+      }
+    }
+  },
+  {
+    "entity":
+    {
+      "name": "nes_estaca_emisivo_6_007",
+      "transform":
+      {
+        "pos": "148.243 76.1355 -140.244",
+        "rotation": "0.0 -0.866025 0.0 0.5"
+      },
+      "render":
+      [
+        {
+          "mesh": "data/meshes/nes_estaca_emisivo_6_007.mesh",
+          "materials":
+          [
+            "data/materials/m_estaca_07.material"
+          ],
+          "enabled": true
+        }
+      ],
+      "collider":
+      {
+        "mesh_src": "data/meshes/nes_estaca_emisivo_6_col_007.col_mesh",
+        "shape": "convex_mesh",
+        "type": "static",
+        "group":
+        [
+          "scenario"
+        ]
+      }
+    }
+  },
+  {
+    "entity":
+    {
+      "name": "nes_estaca_emisivo_6_006",
+      "transform":
+      {
+        "pos": "160.858 76.1355 -147.398",
+        "rotation": "0.0 -0.866025 0.0 -0.5"
+      },
+      "render":
+      [
+        {
+          "mesh": "data/meshes/nes_estaca_emisivo_6_006.mesh",
+          "materials":
+          [
+            "data/materials/m_estaca_07.material"
+          ],
+          "enabled": true
+        }
+      ],
+      "collider":
+      {
+        "mesh_src": "data/meshes/nes_estaca_emisivo_6_col_006.col_mesh",
+        "shape": "convex_mesh",
+        "type": "static",
+        "group":
+        [
+          "scenario"
+        ]
+      }
+    }
+  },
+  {
+    "entity":
+    {
+      "name": "nes_estaca_emisivo_6_005",
+      "transform":
+      {
+        "pos": "148.32 76.1355 -154.682",
+        "rotation": "0.0 0.0 0.0 -1.0"
+      },
+      "render":
+      [
+        {
+          "mesh": "data/meshes/nes_estaca_emisivo_6_005.mesh",
+          "materials":
+          [
+            "data/materials/m_estaca_07.material"
+          ],
+          "enabled": true
+        }
+      ],
+      "collider":
+      {
+        "mesh_src": "data/meshes/nes_estaca_emisivo_6_col_005.col_mesh",
+        "shape": "convex_mesh",
+        "type": "static",
+        "group":
+        [
+          "scenario"
+        ]
+      }
+    }
+  },
+  {
+    "entity":
+    {
+      "name": "nes_crystal_low_229",
+      "transform":
+      {
+        "pos": "-188.335 57.8246 6.0323",
+        "rotation": "0.29007 -0.86506 -0.361108 0.192695"
+      },
+      "render":
+      [
+        {
+          "mesh": "data/meshes/nes_crystal_low_229.mesh",
+          "materials":
+          [
+            "data/materials/m_crystal_02.material"
+          ],
+          "enabled": true
+        }
+      ],
+      "collider":
+      {
+        "mesh_src": "data/meshes/nes_crystal_low_col_188.col_mesh",
+        "shape": "convex_mesh",
+        "type": "static",
+        "group":
+        [
+          "scenario"
+        ]
+      }
+    }
+  },
+  {
+    "entity":
+    {
+      "name": "nes_crystal_low_228",
+      "transform":
+      {
+        "pos": "-189.405 56.8431 5.48159",
+        "rotation": "0.628846 -0.72574 -0.196376 0.198218"
+      },
+      "render":
+      [
+        {
+          "mesh": "data/meshes/nes_crystal_low_228.mesh",
+          "materials":
+          [
+            "data/materials/m_crystal_00.material"
+          ],
+          "enabled": true
+        }
+      ],
+      "collider":
+      {
+        "mesh_src": "data/meshes/nes_crystal_low_col_187.col_mesh",
+        "shape": "convex_mesh",
+        "type": "static",
+        "group":
+        [
+          "scenario"
+        ]
+      }
+    }
+  },
+  {
+    "entity":
+    {
+      "name": "nes_crystal_low_227",
+      "transform":
+      {
+        "pos": "-188.703 57.7196 4.14232",
+        "rotation": "0.381356 -0.924194 0.0149283 -0.0145425"
+      },
+      "render":
+      [
+        {
+          "mesh": "data/meshes/nes_crystal_low_227.mesh",
+          "materials":
+          [
+            "data/materials/m_crystal_04.material"
+          ],
+          "enabled": true
+        }
+      ],
+      "collider":
+      {
+        "mesh_src": "data/meshes/nes_crystal_low_col_186.col_mesh",
+        "shape": "convex_mesh",
+        "type": "static",
+        "group":
+        [
+          "scenario"
+        ]
+      }
+    }
+  },
+  {
+    "entity":
+    {
+      "name": "nes_crystal_low_226",
+      "transform":
+      {
+        "pos": "-188.884 56.7092 6.66778",
+        "rotation": "0.517905 -0.787811 -0.281043 0.179283"
+      },
+      "render":
+      [
+        {
+          "mesh": "data/meshes/nes_crystal_low_226.mesh",
+          "materials":
+          [
+            "data/materials/m_crystal_03.material"
+          ],
+          "enabled": true
+        }
+      ],
+      "collider":
+      {
+        "mesh_src": "data/meshes/nes_crystal_low_col_185.col_mesh",
+        "shape": "convex_mesh",
+        "type": "static",
+        "group":
+        [
+          "scenario"
+        ]
+      }
+    }
+  },
+  {
+    "entity":
+    {
+      "name": "nes_escalera_caracol_S_004",
+      "transform":
+      {
+        "pos": "-160.878 33.0619 20.2078",
+        "rotation": "0.0 -0.707107 0.0 -0.707107"
+      },
+      "render":
+      [
+        {
+          "mesh": "data/meshes/nes_escalera_caracol_S_004.mesh",
+          "materials":
+          [
+            "data/materials/m_escalera_caracol.material"
+          ],
+          "enabled": true
+        }
+      ],
+      "collider":
+      {
+        "mesh_src": "data/meshes/nes_escalera_caracol_S_col_004.col_mesh",
+        "shape": "tri_mesh",
+        "type": "static",
+        "group":
+        [
+          "scenario"
+        ]
+      }
+    }
+  },
+  {
+    "entity":
+    {
+      "name": "nes_muro_vertical008",
+      "transform":
+      {
+        "pos": "-204.961 57.1244 -36.3278",
+        "rotation": "0.612372 -0.612372 0.353553 -0.353553"
+      },
+      "render":
+      [
+        {
+          "mesh": "data/meshes/nes_muro_vertical008.mesh",
+          "materials":
+          [
+            "data/materials/m_ms_murovertical.material"
+          ],
+          "enabled": true
+        }
+      ],
+      "collider":
+      {
+        "mesh_src": "data/meshes/nes_muro_vertical_collider008.col_mesh",
+        "shape": "convex_mesh",
+        "type": "static",
+        "group":
+        [
+          "scenario"
+        ]
+      }
+    }
+  },
+  {
+    "entity":
+    {
+      "name": "nes_estaca_emisivo_3_005",
+      "transform":
+      {
+        "pos": "-161.974 46.9676 15.0476",
+        "rotation": "0.0173269 -0.0323168 -0.0124724 -0.99925"
+      },
+      "render":
+      [
+        {
+          "mesh": "data/meshes/nes_estaca_emisivo_3_005.mesh",
+          "materials":
+          [
+            "data/materials/m_estaca_04.material"
+          ],
+          "enabled": true
+        }
+      ],
+      "collider":
+      {
+        "mesh_src": "data/meshes/nes_estaca_emisivo_3_col_005.col_mesh",
+        "shape": "convex_mesh",
+        "type": "static",
+        "group":
+        [
+          "scenario"
+        ]
+      }
+    }
+  },
+  {
+    "entity":
+    {
+      "name": "nes_estaca_emisivo_2_005",
+      "transform":
+      {
+        "pos": "-170.814 40.8626 15.5359",
+        "rotation": "0.0235732 -0.998996 -0.00875164 0.037082"
+      },
+      "render":
+      [
+        {
+          "mesh": "data/meshes/nes_estaca_emisivo_2_005.mesh",
+          "materials":
+          [
+            "data/materials/m_estaca_03.material"
+          ],
+          "enabled": true
+        }
+      ],
+      "collider":
+      {
+        "mesh_src": "data/meshes/nes_estaca_emisivo_2_col_005.col_mesh",
+        "shape": "convex_mesh",
+        "type": "static",
+        "group":
+        [
+          "scenario"
+        ]
+      }
+    }
+  },
+  {
+    "entity":
+    {
+      "name": "nes_escalera_caracol_S_003",
+      "transform":
+      {
+        "pos": "-178.562 48.1662 11.9961",
+        "rotation": "0.0 -0.258819 0.0 -0.965926"
+      },
+      "render":
+      [
+        {
+          "mesh": "data/meshes/nes_escalera_caracol_S_003.mesh",
+          "materials":
+          [
+            "data/materials/m_escalera_caracol.material"
+          ],
+          "enabled": true
+        }
+      ],
+      "collider":
+      {
+        "mesh_src": "data/meshes/nes_escalera_caracol_S_col_003.col_mesh",
+        "shape": "tri_mesh",
+        "type": "static",
+        "group":
+        [
+          "scenario"
+        ]
+      }
+    }
+  },
+  {
+    "entity":
+    {
+      "name": "nes_muro_vertical007",
+      "transform":
+      {
+        "pos": "-188.018 57.1244 -7.10228",
+        "rotation": "-0.353553 0.353553 0.612372 -0.612372"
+      },
+      "render":
+      [
+        {
+          "mesh": "data/meshes/nes_muro_vertical007.mesh",
+          "materials":
+          [
+            "data/materials/m_ms_murovertical.material"
+          ],
+          "enabled": true
+        }
+      ],
+      "collider":
+      {
+        "mesh_src": "data/meshes/nes_muro_vertical_collider007.col_mesh",
+        "shape": "convex_mesh",
+        "type": "static",
+        "group":
+        [
+          "scenario"
+        ]
+      }
+    }
+  },
+  {
+    "entity":
+    {
       "name": "nes_plataforma_roca_051",
       "transform":
       {
@@ -709,8 +1573,8 @@
       "name": "nes_mushroom_head_043",
       "transform":
       {
-        "pos": "85.3886 39.5773 -4.13575",
-        "rotation": "0.0262083 0.606445 -0.083122 -0.790335"
+        "pos": "71.6258 41.4335 -7.48575",
+        "rotation": "0.0 0.340718 -0.0871558 -0.936117"
       },
       "render":
       [
@@ -741,8 +1605,8 @@
       "name": "nes_mushroom_body_038",
       "transform":
       {
-        "pos": "85.4703 38.5169 -3.12581",
-        "rotation": "0.0262083 0.606445 -0.083122 -0.790335"
+        "pos": "72.272 40.3731 -6.7053",
+        "rotation": "0.0 0.340718 -0.0871558 -0.936117"
       },
       "render":
       [
@@ -773,8 +1637,8 @@
       "name": "nes_crystal_low_221",
       "transform":
       {
-        "pos": "86.189 34.759 6.59664",
-        "rotation": "-0.344339 0.323983 0.201292 -0.857873"
+        "pos": "78.4372 36.6152 0.846659",
+        "rotation": "-0.267873 0.0510205 0.295521 -0.915592"
       },
       "render":
       [
@@ -805,8 +1669,8 @@
       "name": "nes_crystal_low_220",
       "transform":
       {
-        "pos": "84.7311 35.3008 5.48661",
-        "rotation": "-0.0378134 0.333703 -0.346632 -0.875819"
+        "pos": "76.6063 37.157 0.773571",
+        "rotation": "-0.140297 0.0548945 -0.319218 -0.93563"
       },
       "render":
       [
@@ -837,8 +1701,8 @@
       "name": "nes_plataforma_roca_038",
       "transform":
       {
-        "pos": "95.3216 37.5891 -8.30227",
-        "rotation": "0.0 0.422618 0.0 -0.906308"
+        "pos": "77.3726 39.4453 -16.5961",
+        "rotation": "0.0 0.130526 0.0 -0.991445"
       },
       "render":
       [
@@ -869,8 +1733,8 @@
       "name": "nes_mushroom_head_042",
       "transform":
       {
-        "pos": "97.0229 44.3257 -7.40051",
-        "rotation": "-0.084186 -0.816035 -0.0225576 -0.571394"
+        "pos": "79.2835 46.1819 -16.8332",
+        "rotation": "-0.0870728 -0.950088 0.00380169 -0.299561"
       },
       "render":
       [
@@ -901,8 +1765,8 @@
       "name": "nes_mushroom_head_041",
       "transform":
       {
-        "pos": "97.9461 42.6112 -8.42079",
-        "rotation": "-0.084186 -0.816035 -0.0225576 -0.571394"
+        "pos": "79.4545 44.4674 -18.1985",
+        "rotation": "-0.0870728 -0.950088 0.00380169 -0.299561"
       },
       "render":
       [
@@ -933,8 +1797,8 @@
       "name": "nes_mushroom_head_040",
       "transform":
       {
-        "pos": "96.9581 42.1306 -6.14034",
-        "rotation": "-0.084186 -0.816035 -0.0225576 -0.571394"
+        "pos": "79.9532 43.9868 -15.7638",
+        "rotation": "-0.0870728 -0.950088 0.00380169 -0.299561"
       },
       "render":
       [
@@ -965,8 +1829,8 @@
       "name": "nes_mushroom_body_037",
       "transform":
       {
-        "pos": "96.7984 42.1065 -7.63633",
-        "rotation": "-0.084186 -0.816035 -0.0225576 -0.571394"
+        "pos": "78.9642 43.9627 -16.8976",
+        "rotation": "-0.0870728 -0.950088 0.00380169 -0.299561"
       },
       "render":
       [
@@ -997,8 +1861,8 @@
       "name": "nes_mushroom_body_036",
       "transform":
       {
-        "pos": "97.2989 41.3423 -8.27736",
-        "rotation": "-0.084186 -0.816035 -0.0225576 -0.571394"
+        "pos": "79.0066 43.1985 -17.7098",
+        "rotation": "-0.0870728 -0.950088 0.00380169 -0.299561"
       },
       "render":
       [
@@ -1029,8 +1893,8 @@
       "name": "nes_mushroom_body_035",
       "transform":
       {
-        "pos": "96.7888 41.0703 -7.13932",
-        "rotation": "-0.084186 -0.816035 -0.0225576 -0.571394"
+        "pos": "79.2415 42.9265 -16.485",
+        "rotation": "-0.0870728 -0.950088 0.00380169 -0.299561"
       },
       "render":
       [
@@ -1335,38 +2199,6 @@
       {
         "mesh_src": "data/meshes/nes_platform_civilization_col_003.col_mesh",
         "shape": "convex_mesh",
-        "type": "static",
-        "group":
-        [
-          "scenario"
-        ]
-      }
-    }
-  },
-  {
-    "entity":
-    {
-      "name": "nes_escalera_caracol_M_002",
-      "transform":
-      {
-        "pos": "-74.2688 4.4402 -67.4865",
-        "rotation": "0.0 -0.887011 0.0 0.461749"
-      },
-      "render":
-      [
-        {
-          "mesh": "data/meshes/nes_escalera_caracol_M_002.mesh",
-          "materials":
-          [
-            "data/materials/m_escalera_caracol.material"
-          ],
-          "enabled": true
-        }
-      ],
-      "collider":
-      {
-        "mesh_src": "data/meshes/nes_escalera_caracol_M_col_002.col_mesh",
-        "shape": "tri_mesh",
         "type": "static",
         "group":
         [
@@ -2658,16 +3490,16 @@
   {
     "entity":
     {
-      "name": "nes_torre_mesh057",
+      "name": "nes_torre_anillos_mesh057",
       "transform":
       {
-        "pos": "84.9642 35.8357 2.13959",
-        "rotation": "0.0922959 0.560986 -0.701057 0.430459"
+        "pos": "74.8775 37.6919 -2.10184",
+        "rotation": "-0.122788 0.664463 -0.696364 0.241845"
       },
       "render":
       [
         {
-          "mesh": "data/meshes/nes_torre_mesh057.mesh",
+          "mesh": "data/meshes/nes_torre_anillos_mesh057.mesh",
           "materials":
           [
             "data/materials/Material_Torre.material"
@@ -2677,7 +3509,7 @@
       ],
       "collider":
       {
-        "mesh_src": "data/meshes/nes_torre_mesh_COLLIDER058.col_mesh",
+        "mesh_src": "data/meshes/nes_torre_mesh_anillos_COLLIDER058.col_mesh",
         "shape": "tri_mesh",
         "type": "static",
         "group":
@@ -9745,8 +10577,8 @@
       "name": "nes_plataforma_roca_024",
       "transform":
       {
-        "pos": "-30.7948 40.4936 -66.92",
-        "rotation": "0.0 -0.362549 0.0 -0.931965"
+        "pos": "-30.8296 40.4936 -67.1117",
+        "rotation": "0.0 0.065284 0.0 -0.997867"
       },
       "render":
       [
@@ -9809,8 +10641,8 @@
       "name": "nes_plataforma_roca_022",
       "transform":
       {
-        "pos": "-25.7227 34.8467 -60.509",
-        "rotation": "0.0 -0.362549 0.0 -0.931965"
+        "pos": "-25.7438 34.8467 -60.7386",
+        "rotation": "0.0 0.152006 0.0 -0.98838"
       },
       "render":
       [
@@ -9905,8 +10737,8 @@
       "name": "nes_plataforma_roca_019",
       "transform":
       {
-        "pos": "-49.8507 30.5012 -61.6472",
-        "rotation": "0.0 -0.362549 0.0 -0.931965"
+        "pos": "-49.8115 30.5012 -61.9562",
+        "rotation": "0.0 0.362327 0.0 -0.932051"
       },
       "render":
       [
@@ -9969,8 +10801,8 @@
       "name": "nes_plataforma_roca_017",
       "transform":
       {
-        "pos": "-30.4399 31.4895 -53.0283",
-        "rotation": "0.0 -0.362549 0.0 -0.931965"
+        "pos": "-30.1552 31.4895 -53.3707",
+        "rotation": "0.0 0.806374 0.0 -0.591406"
       },
       "render":
       [
@@ -11985,7 +12817,7 @@
       "name": "nes_mushroom_head_019",
       "transform":
       {
-        "pos": "-58.4389 21.1846 -9.54578",
+        "pos": "-58.0863 21.1846 -35.1671",
         "rotation": "0.0 0.0 0.0 -1.0"
       },
       "render":
@@ -12017,7 +12849,7 @@
       "name": "nes_mushroom_head_018",
       "transform":
       {
-        "pos": "-58.0784 19.4634 -8.2265",
+        "pos": "-57.7258 19.4634 -33.8479",
         "rotation": "0.0 0.0 0.0 -1.0"
       },
       "render":
@@ -12049,7 +12881,7 @@
       "name": "nes_mushroom_head_017",
       "transform":
       {
-        "pos": "-59.9459 19.1833 -9.91211",
+        "pos": "-59.5933 19.1832 -35.5335",
         "rotation": "0.0 0.0 0.0 -1.0"
       },
       "render":
@@ -12081,7 +12913,7 @@
       "name": "nes_mushroom_body_016",
       "transform":
       {
-        "pos": "-58.5073 18.9426 -9.5427",
+        "pos": "-58.1547 18.9426 -35.1641",
         "rotation": "0.0 0.0 0.0 -1.0"
       },
       "render":
@@ -12113,7 +12945,7 @@
       "name": "nes_mushroom_body_015",
       "transform":
       {
-        "pos": "-58.2032 18.1607 -8.80676",
+        "pos": "-57.8506 18.1607 -34.4281",
         "rotation": "0.0 0.0 0.0 -1.0"
       },
       "render":
@@ -12145,7 +12977,7 @@
       "name": "nes_mushroom_body_014",
       "transform":
       {
-        "pos": "-59.1348 17.9872 -9.66205",
+        "pos": "-58.7822 17.9872 -35.2834",
         "rotation": "0.0 0.0 0.0 -1.0"
       },
       "render":
@@ -12334,16 +13166,16 @@
   {
     "entity":
     {
-      "name": "nes_torre_mesh053",
+      "name": "nes_torre_inclinada_mesh053",
       "transform":
       {
-        "pos": "-49.3512 14.5691 -21.9832",
-        "rotation": "0.0 0.0 -0.382683 -0.92388"
+        "pos": "-73.1083 8.49717 -80.3865",
+        "rotation": "-0.232963 -0.562422 -0.303603 -0.732963"
       },
       "render":
       [
         {
-          "mesh": "data/meshes/nes_torre_mesh053.mesh",
+          "mesh": "data/meshes/nes_torre_inclinada_mesh053.mesh",
           "materials":
           [
             "data/materials/Material_Torre.material"
@@ -12353,7 +13185,7 @@
       ],
       "collider":
       {
-        "mesh_src": "data/meshes/nes_torre_mesh_COLLIDER054.col_mesh",
+        "mesh_src": "data/meshes/nes_torre_inclinada_mesh_COLLIDER054.col_mesh",
         "shape": "tri_mesh",
         "type": "static",
         "group":
@@ -12366,16 +13198,16 @@
   {
     "entity":
     {
-      "name": "nes_torre_mesh052",
+      "name": "nes_torre_inclinada_mesh052",
       "transform":
       {
-        "pos": "-49.3512 14.5691 -21.9832",
-        "rotation": "0.0 0.0 -0.382683 -0.92388"
+        "pos": "-73.1083 8.49717 -80.3865",
+        "rotation": "-0.232963 -0.562422 -0.303603 -0.732963"
       },
       "render":
       [
         {
-          "mesh": "data/meshes/nes_torre_mesh052.mesh",
+          "mesh": "data/meshes/nes_torre_inclinada_mesh052.mesh",
           "materials":
           [
             "data/materials/Material_Torre.material"
@@ -12385,7 +13217,7 @@
       ],
       "collider":
       {
-        "mesh_src": "data/meshes/nes_torre_mesh_COLLIDER053.col_mesh",
+        "mesh_src": "data/meshes/nes_torre_inclinada_mesh_COLLIDER053.col_mesh",
         "shape": "tri_mesh",
         "type": "static",
         "group":

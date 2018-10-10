@@ -80,7 +80,7 @@ private:
 	std::set<std::string> attackers;
 
 	bool isInvulnerable = false;
-	CTimer invulnerableTimer;
+	CTimer2 invulnerableTimer;
 	float invulnerableTime = 1.f;
 
 	CTimer damageVisionTimer;

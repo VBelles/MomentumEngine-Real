@@ -2,7 +2,7 @@
   {
     "entity":
     {
-      "name": "platform_director_1",
+      "name": "milestone4_nestorplatform_director_1",
       "platforms_director":
       {
         "slots":
@@ -60,7 +60,7 @@
   {
     "entity":
     {
-      "name": "platform_director_2",
+      "name": "milestone4_nestorplatform_director_2",
       "platforms_director":
       {
         "slots":
@@ -89,7 +89,7 @@
   {
     "entity":
     {
-      "name": "platform_director_3",
+      "name": "milestone4_nestorplatform_director_3",
       "platforms_director":
       {
         "slots":

@@ -1,5 +1,23 @@
 [
+	"data/gui/fonts/font_simplifica_32_bold.fnt",
+	"data/gui/fonts/font_simplifica_34_bold.fnt",
+	"data/gui/fonts/font_simplifica_36_bold.fnt",
+	"data/gui/fonts/font_simplifica_38_bold.fnt",
+	"data/gui/fonts/font_simplifica_40_bold.fnt",
+	"data/gui/fonts/font_simplifica_42_bold.fnt",
+	"data/gui/fonts/font_simplifica_44_bold.fnt",
+	"data/gui/fonts/font_simplifica_46.fnt",
 	"data/gui/fonts/font_simplifica_48.fnt",
+	"data/gui/fonts/font_simplifica_50.fnt",
+	"data/gui/fonts/font_simplifica_52.fnt",
+	"data/gui/fonts/font_simplifica_54.fnt",
+	"data/gui/fonts/font_simplifica_56.fnt",
+	"data/gui/fonts/font_simplifica_58.fnt",
+	"data/gui/fonts/font_simplifica_60.fnt",
+	"data/gui/fonts/font_simplifica_62.fnt",
 	"data/gui/fonts/font_simplifica_64.fnt",
+	"data/gui/fonts/font_simplifica_66.fnt",
+	"data/gui/fonts/font_simplifica_68.fnt",
+	"data/gui/fonts/font_simplifica_70.fnt",
 	"data/gui/fonts/font_simplifica_72.fnt"
 ]

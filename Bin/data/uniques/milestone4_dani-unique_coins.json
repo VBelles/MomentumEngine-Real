@@ -2,226 +2,324 @@
   "unique_coins":
   [
     {
-      "id": "ms3_coin016unique001",
+      "id": "ms3_coin016unique049",
       "done": false,
-      "position": "-137.35 -33.611 284.043",
+      "position": "-67.1204 -14.7037 218.914",
       "level": "level00",
       "type": "coins"
     },
     {
-      "id": "ms3_coin016unique002",
+      "id": "ms3_coin016unique048",
       "done": false,
-      "position": "-137.307 -33.7676 285.68",
+      "position": "-67.1204 -15.9185 218.914",
       "level": "level00",
       "type": "coins"
     },
     {
-      "id": "ms3_coin016unique003",
+      "id": "ms3_coin016unique047",
       "done": false,
-      "position": "-135.704 -33.7676 283.853",
+      "position": "-72.3271 -17.7833 210.604",
       "level": "level00",
       "type": "coins"
     },
     {
-      "id": "ms3_coin016unique004",
+      "id": "ms3_coin016unique046",
       "done": false,
-      "position": "-135.563 -33.7676 285.606",
+      "position": "-72.3271 -18.9981 210.604",
       "level": "level00",
       "type": "coins"
     },
     {
-      "id": "ms3_coin016unique005",
+      "id": "ms3_coin016unique045",
       "done": false,
-      "position": "-135.438 -33.7676 287.016",
+      "position": "-67.7378 -19.5799 200.528",
       "level": "level00",
       "type": "coins"
     },
     {
-      "id": "ms3_coin016unique006",
+      "id": "ms3_coin016unique044",
       "done": false,
-      "position": "-137.141 -33.7676 287.136",
+      "position": "-67.7378 -20.7946 200.528",
       "level": "level00",
       "type": "coins"
     },
     {
-      "id": "ms3_coin016unique007",
+      "id": "ms3_coin016unique040",
       "done": false,
-      "position": "-135.341 -33.7676 288.377",
+      "position": "-141.951 -34.0392 310.18",
       "level": "level00",
       "type": "coins"
     },
     {
-      "id": "ms3_coin016unique008",
+      "id": "ms3_coin016unique039",
       "done": false,
-      "position": "-137.044 -33.7676 288.497",
+      "position": "-140.248 -34.0273 310.06",
       "level": "level00",
       "type": "coins"
     },
     {
-      "id": "ms3_coin016unique009",
+      "id": "ms3_coin016unique038",
       "done": false,
-      "position": "-132.778 -33.8245 276.973",
+      "position": "-142.048 -34.0746 308.819",
       "level": "level00",
       "type": "coins"
     },
     {
-      "id": "ms3_coin016unique010",
+      "id": "ms3_coin016unique037",
       "done": false,
-      "position": "-132.735 -33.981 278.61",
+      "position": "-140.345 -34.0531 308.7",
       "level": "level00",
       "type": "coins"
     },
     {
-      "id": "ms3_coin016unique011",
+      "id": "ms3_coin016unique036",
       "done": false,
-      "position": "-131.132 -33.981 276.783",
+      "position": "-140.47 -33.9861 307.29",
       "level": "level00",
       "type": "coins"
     },
     {
-      "id": "ms3_coin016unique012",
+      "id": "ms3_coin016unique035",
       "done": false,
-      "position": "-130.991 -33.981 278.536",
+      "position": "-140.611 -34.1068 305.536",
       "level": "level00",
       "type": "coins"
     },
     {
-      "id": "ms3_coin016unique013",
+      "id": "ms3_coin016unique034",
       "done": false,
-      "position": "-130.866 -33.981 279.946",
+      "position": "-142.214 -34.0868 307.364",
       "level": "level00",
       "type": "coins"
     },
     {
-      "id": "ms3_coin016unique014",
+      "id": "ms3_coin016unique033",
       "done": false,
-      "position": "-132.569 -33.981 280.065",
-      "level": "level00",
-      "type": "coins"
-    },
-    {
-      "id": "ms3_coin016unique015",
-      "done": false,
-      "position": "-130.769 -33.981 281.307",
-      "level": "level00",
-      "type": "coins"
-    },
-    {
-      "id": "ms3_coin016unique016",
-      "done": false,
-      "position": "-132.472 -33.981 281.426",
-      "level": "level00",
-      "type": "coins"
-    },
-    {
-      "id": "ms3_coin016unique017",
-      "done": false,
-      "position": "-72.9095 -23.3993 161.401",
-      "level": "level00",
-      "type": "coins"
-    },
-    {
-      "id": "ms3_coin016unique018",
-      "done": false,
-      "position": "-72.8669 -23.5559 163.039",
-      "level": "level00",
-      "type": "coins"
-    },
-    {
-      "id": "ms3_coin016unique019",
-      "done": false,
-      "position": "-71.2632 -23.5559 161.211",
-      "level": "level00",
-      "type": "coins"
-    },
-    {
-      "id": "ms3_coin016unique020",
-      "done": false,
-      "position": "-71.1226 -23.5559 162.965",
-      "level": "level00",
-      "type": "coins"
-    },
-    {
-      "id": "ms3_coin016unique021",
-      "done": false,
-      "position": "-70.998 -23.5559 164.375",
-      "level": "level00",
-      "type": "coins"
-    },
-    {
-      "id": "ms3_coin016unique022",
-      "done": false,
-      "position": "-72.7008 -23.5559 164.494",
-      "level": "level00",
-      "type": "coins"
-    },
-    {
-      "id": "ms3_coin016unique023",
-      "done": false,
-      "position": "-70.9009 -23.5559 165.735",
-      "level": "level00",
-      "type": "coins"
-    },
-    {
-      "id": "ms3_coin016unique024",
-      "done": false,
-      "position": "-72.6037 -23.5559 165.855",
-      "level": "level00",
-      "type": "coins"
-    },
-    {
-      "id": "ms3_coin016unique025",
-      "done": false,
-      "position": "-68.3375 -23.6128 154.331",
-      "level": "level00",
-      "type": "coins"
-    },
-    {
-      "id": "ms3_coin016unique026",
-      "done": false,
-      "position": "-68.2949 -23.7693 155.968",
-      "level": "level00",
-      "type": "coins"
-    },
-    {
-      "id": "ms3_coin016unique027",
-      "done": false,
-      "position": "-66.6911 -23.7693 154.141",
-      "level": "level00",
-      "type": "coins"
-    },
-    {
-      "id": "ms3_coin016unique028",
-      "done": false,
-      "position": "-66.5506 -23.7693 155.894",
-      "level": "level00",
-      "type": "coins"
-    },
-    {
-      "id": "ms3_coin016unique029",
-      "done": false,
-      "position": "-66.426 -23.7693 157.304",
-      "level": "level00",
-      "type": "coins"
-    },
-    {
-      "id": "ms3_coin016unique030",
-      "done": false,
-      "position": "-68.1288 -23.7693 157.424",
-      "level": "level00",
-      "type": "coins"
-    },
-    {
-      "id": "ms3_coin016unique031",
-      "done": false,
-      "position": "-66.3289 -23.7693 158.665",
+      "position": "-142.257 -34.1127 305.726",
       "level": "level00",
       "type": "coins"
     },
     {
       "id": "ms3_coin016unique032",
       "done": false,
-      "position": "-68.0317 -23.7693 158.784",
+      "position": "-68.2265 -23.7693 186.731",
+      "level": "level00",
+      "type": "coins"
+    },
+    {
+      "id": "ms3_coin016unique031",
+      "done": false,
+      "position": "-66.5237 -23.7693 186.611",
+      "level": "level00",
+      "type": "coins"
+    },
+    {
+      "id": "ms3_coin016unique030",
+      "done": false,
+      "position": "-68.3236 -23.7693 185.37",
+      "level": "level00",
+      "type": "coins"
+    },
+    {
+      "id": "ms3_coin016unique029",
+      "done": false,
+      "position": "-66.6208 -23.7693 185.25",
+      "level": "level00",
+      "type": "coins"
+    },
+    {
+      "id": "ms3_coin016unique028",
+      "done": false,
+      "position": "-66.7454 -23.7693 183.84",
+      "level": "level00",
+      "type": "coins"
+    },
+    {
+      "id": "ms3_coin016unique027",
+      "done": false,
+      "position": "-66.8859 -23.7693 182.087",
+      "level": "level00",
+      "type": "coins"
+    },
+    {
+      "id": "ms3_coin016unique026",
+      "done": false,
+      "position": "-68.4897 -23.7693 183.914",
+      "level": "level00",
+      "type": "coins"
+    },
+    {
+      "id": "ms3_coin016unique025",
+      "done": false,
+      "position": "-68.5323 -23.7633 182.277",
+      "level": "level00",
+      "type": "coins"
+    },
+    {
+      "id": "ms3_coin016unique024",
+      "done": false,
+      "position": "-67.5136 -23.5559 194.238",
+      "level": "level00",
+      "type": "coins"
+    },
+    {
+      "id": "ms3_coin016unique023",
+      "done": false,
+      "position": "-65.8108 -23.5559 194.118",
+      "level": "level00",
+      "type": "coins"
+    },
+    {
+      "id": "ms3_coin016unique022",
+      "done": false,
+      "position": "-67.6107 -23.5559 192.877",
+      "level": "level00",
+      "type": "coins"
+    },
+    {
+      "id": "ms3_coin016unique021",
+      "done": false,
+      "position": "-65.9079 -23.5559 192.757",
+      "level": "level00",
+      "type": "coins"
+    },
+    {
+      "id": "ms3_coin016unique020",
+      "done": false,
+      "position": "-66.0325 -23.5559 191.347",
+      "level": "level00",
+      "type": "coins"
+    },
+    {
+      "id": "ms3_coin016unique019",
+      "done": false,
+      "position": "-66.173 -23.5169 189.594",
+      "level": "level00",
+      "type": "coins"
+    },
+    {
+      "id": "ms3_coin016unique018",
+      "done": false,
+      "position": "-67.7768 -23.5559 191.421",
+      "level": "level00",
+      "type": "coins"
+    },
+    {
+      "id": "ms3_coin016unique017",
+      "done": false,
+      "position": "-67.8194 -23.5846 189.784",
+      "level": "level00",
+      "type": "coins"
+    },
+    {
+      "id": "ms3_coin016unique016",
+      "done": false,
+      "position": "-132.472 -34.0848 310.18",
+      "level": "level00",
+      "type": "coins"
+    },
+    {
+      "id": "ms3_coin016unique015",
+      "done": false,
+      "position": "-130.769 -34.1443 310.06",
+      "level": "level00",
+      "type": "coins"
+    },
+    {
+      "id": "ms3_coin016unique014",
+      "done": false,
+      "position": "-132.569 -34.093 308.819",
+      "level": "level00",
+      "type": "coins"
+    },
+    {
+      "id": "ms3_coin016unique013",
+      "done": false,
+      "position": "-130.866 -34.0605 308.7",
+      "level": "level00",
+      "type": "coins"
+    },
+    {
+      "id": "ms3_coin016unique012",
+      "done": false,
+      "position": "-130.991 -34.0349 307.29",
+      "level": "level00",
+      "type": "coins"
+    },
+    {
+      "id": "ms3_coin016unique011",
+      "done": false,
+      "position": "-131.132 -34.1858 305.536",
+      "level": "level00",
+      "type": "coins"
+    },
+    {
+      "id": "ms3_coin016unique010",
+      "done": false,
+      "position": "-132.735 -34.0627 307.364",
+      "level": "level00",
+      "type": "coins"
+    },
+    {
+      "id": "ms3_coin016unique009",
+      "done": false,
+      "position": "-132.778 -34.1326 305.726",
+      "level": "level00",
+      "type": "coins"
+    },
+    {
+      "id": "ms3_coin016unique008",
+      "done": false,
+      "position": "-137.044 -34.3373 317.25",
+      "level": "level00",
+      "type": "coins"
+    },
+    {
+      "id": "ms3_coin016unique007",
+      "done": false,
+      "position": "-135.341 -34.3559 317.131",
+      "level": "level00",
+      "type": "coins"
+    },
+    {
+      "id": "ms3_coin016unique006",
+      "done": false,
+      "position": "-137.141 -34.2411 315.89",
+      "level": "level00",
+      "type": "coins"
+    },
+    {
+      "id": "ms3_coin016unique005",
+      "done": false,
+      "position": "-135.438 -34.1797 315.77",
+      "level": "level00",
+      "type": "coins"
+    },
+    {
+      "id": "ms3_coin016unique004",
+      "done": false,
+      "position": "-135.563 -34.1276 314.36",
+      "level": "level00",
+      "type": "coins"
+    },
+    {
+      "id": "ms3_coin016unique003",
+      "done": false,
+      "position": "-135.704 -34.0597 312.607",
+      "level": "level00",
+      "type": "coins"
+    },
+    {
+      "id": "ms3_coin016unique002",
+      "done": false,
+      "position": "-137.307 -34.1946 314.434",
+      "level": "level00",
+      "type": "coins"
+    },
+    {
+      "id": "ms3_coin016unique001",
+      "done": false,
+      "position": "-137.35 -34.0771 312.797",
       "level": "level00",
       "type": "coins"
     },

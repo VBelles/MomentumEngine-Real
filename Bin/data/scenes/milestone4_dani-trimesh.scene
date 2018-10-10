@@ -2,6 +2,40 @@
   {
     "entity":
     {
+      "name": "cacho_de_suelo_0_col_001",
+      "transform":
+      {
+        "pos": "-72.7059 -20.9186 234.564",
+        "rotation": "0.0313892 0.0021623 0.00209704 -0.999503"
+      },
+      "collider":
+      {
+        "mesh_src": "data/meshes/cacho_de_suelo_0_col_001.col_mesh",
+        "shape": "tri_mesh",
+        "type": "static"
+      }
+    }
+  },
+  {
+    "entity":
+    {
+      "name": "trozo_terreno_7_col_002",
+      "transform":
+      {
+        "pos": "-117.281 -49.3193 368.447",
+        "rotation": "0.0 0.0 0.0 -1.0"
+      },
+      "collider":
+      {
+        "mesh_src": "data/meshes/trozo_terreno_7_col_002.col_mesh",
+        "shape": "tri_mesh",
+        "type": "static"
+      }
+    }
+  },
+  {
+    "entity":
+    {
       "name": "dani_planos_tramposos_001",
       "transform":
       {
