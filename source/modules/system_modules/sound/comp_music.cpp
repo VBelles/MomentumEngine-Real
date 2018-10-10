@@ -138,6 +138,46 @@ void TCompMusic::setLevel(Level level) {
 }
 
 void TCompMusic::setDayNight(DayNight dayNight) {
+	if (dayNight != dayNightState) {
+		int timeMiliseconds;
+		momentumThemeInstance->getTimelinePosition(&timeMiliseconds);
+
+		eventInfos[CYCLE_NIGHT].timer.reset();
+		eventInfos[CYCLE_NIGHT].startingRatio = eventInfos[CYCLE_NIGHT].ratio;
+		eventInfos[CYCLE_DAWN].timer.reset();
+		eventInfos[CYCLE_DAWN].startingRatio = eventInfos[CYCLE_DAWN].ratio;
+		eventInfos[CYCLE_DAY].timer.reset();
+		eventInfos[CYCLE_DAY].startingRatio = eventInfos[CYCLE_DAY].ratio;
+
+		float nightRatio = 0;
+		float dawnRatio = 0;
+		float dayRatio = 0;
+
+		switch (dayNight) {
+		case NIGHT:
+			nightRatio = 1.f;
+			break;
+		case DAWN:
+			dawnRatio = 1.f;
+			break;
+		case DAY:
+			dayRatio = 1.f;
+			break;
+		case DUSK:
+			dawnRatio = 1.f;
+			break;
+		}
+		eventInfos[CYCLE_NIGHT].timeMiliseconds = milisecondsPerBar - (timeMiliseconds % milisecondsPerBar) + milisecondsPerBar * 1;
+		eventInfos[CYCLE_NIGHT].targetRatio = nightRatio;
+
+		eventInfos[CYCLE_DAWN].timeMiliseconds = milisecondsPerBar - (timeMiliseconds % milisecondsPerBar) + milisecondsPerBar * 1;
+		eventInfos[CYCLE_DAWN].targetRatio = dawnRatio;
+
+		eventInfos[CYCLE_DAY].timeMiliseconds = milisecondsPerBar - (timeMiliseconds % milisecondsPerBar) + milisecondsPerBar * 1;
+		eventInfos[CYCLE_DAY].targetRatio = dayRatio;
+
+		dayNightState = dayNight;
+	}
 }
 
 void TCompMusic::setPlace(Place place) {

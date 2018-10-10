@@ -55,14 +55,6 @@ private:
 
 	std::map<EventType, EventInfo> eventInfos;
 
-	CTimer combatTimer;
-	int combatTimeMiliseconds;
-	float combatTargetRatio = 0;
-	float combatStartingRatio;
-	float combatRatio = 0;
-	bool combatEntersOnBeat = true;
-	bool combatExitsOnBeat = false;
-
 	EventInfo loadEventInfo(const json& j_event_info);
 
 	//Message callbacks
