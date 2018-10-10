@@ -2,6 +2,24 @@
 
 #include "modules/system_modules/sound/module_sound.h"
 
+#define EVENT_TYPES \
+	etype(COMBAT), \
+	etype(LEVEL_SSJ2), \
+	etype(LEVEL_SSJ3), \
+	etype(LAST)
+
+#define etype(x) x
+typedef enum { EVENT_TYPES } EventType;
+#undef etype
+#define etype(x) #x
+static const char *strEventTypes[] = { EVENT_TYPES };
+#undef etype
+
+//esto puede que no haga falta
+#define etype(x) { #x, x }
+static const std::map<std::string, EventType> eventTypesMap = { EVENT_TYPES };
+#undef etype
+
 class TCompMusic : public TCompBase {
 private:
 	FMOD::Studio::EventInstance* momentumThemeInstance = nullptr;
@@ -11,22 +29,23 @@ private:
 	int milisecondsPerBeat;
 	int milisecondsPerBar;
 
-	/*struct EventInfo {
-		CTimer timer;
+	struct EventInfo {
+		CTimer2 timer;
 		int timeMiliseconds;
 		float targetRatio = 0;
 		float startingRatio;
-		float combatRatio = 0;
+		float ratio = 0;
 		bool entersOnBeat = true;
 		bool exitsOnBeat = false;
+		std::string fmodVariable = "";
 	};
 
-	enum EventTypes {
-		COMBAT, LEVEL, DAYNIGHT, PLACE_CEMETERY, PLACE_CIVILIZATION,
-		PLACE_CHRYSTALS, PLACE_MUSHROOMS, PLACE_TEMPLE
-	};
+	//enum EventType {
+	//	COMBAT, LEVEL_SSJ2, LEVEL_SSJ3, CYCLE_NIGHT, CYCLE_DAWN, CYCLE_DAY, PLACE_CEMETERY, PLACE_CIVILIZATION,
+	//	PLACE_CHRYSTALS, PLACE_MUSHROOMS, PLACE_TEMPLE
+	//};
 
-	std::map<EventTypes, EventInfo> eventInfos;*/
+	std::map<EventType, EventInfo> eventInfos;
 
 	CTimer combatTimer;
 	int combatTimeMiliseconds;
@@ -35,6 +54,8 @@ private:
 	float combatRatio = 0;
 	bool combatEntersOnBeat = true;
 	bool combatExitsOnBeat = false;
+
+	EventInfo loadEventInfo(const json& j_event_info);
 
 	//Message callbacks
 	void onEntityCreated(const TMsgEntityCreated&);
@@ -46,15 +67,19 @@ public:
 		OFF, DANGER
 	};
 
-	Combat combatState;
+	Combat combatState = OFF;
 
 	enum Level {
 		LEVEL_1, LEVEL_2, LEVEL_3
 	};
+	
+	Level levelState = LEVEL_1;
 
 	enum DayNight {
 		DAWN, DAY, DUSK, NIGHT
 	};
+
+	DayNight dayNightState = DAY;
 
 	enum Place {
 		CEMETERY, CIVILIZATION, CHRYSTALS, MUSHROOMS, TEMPLE
@@ -74,5 +99,7 @@ public:
 	void setLevel(Level level);
 	void setDayNight(DayNight dayNight);
 	void setPlace(Place place);
+
+	void setPauseMenu(bool paused);
 
 };

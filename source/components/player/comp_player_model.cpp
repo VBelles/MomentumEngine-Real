@@ -167,6 +167,8 @@ void TCompPlayerModel::onLevelChange(const TMsgPowerLvlChange& msg) {
 		getParticles()->launch(msg.powerLvl == 2 ? "lvl_up_2" : "lvl_up_3");
 		getSound()->play(msg.powerLvl == 2 ? "lvl_up_2" : "lvl_up_3");
 	}	
+
+	getMusicPlayer()->setLevel(static_cast<TCompMusic::Level>(msg.powerLvl - 1));
 }
 
 void TCompPlayerModel::onAllScenesCreated(const TMsgAllScenesCreated& msg) {
