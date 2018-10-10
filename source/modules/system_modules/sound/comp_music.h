@@ -2,10 +2,14 @@
 
 #include "modules/system_modules/sound/module_sound.h"
 
+
 #define EVENT_TYPES \
 	etype(COMBAT), \
 	etype(LEVEL_SSJ2), \
 	etype(LEVEL_SSJ3), \
+	etype(CYCLE_NIGHT), \
+	etype(CYCLE_DAWN), \
+	etype(CYCLE_DAY), \
 	etype(LAST)
 
 #define etype(x) x
@@ -20,6 +24,7 @@ static const char *strEventTypes[] = { EVENT_TYPES };
 static const std::map<std::string, EventType> eventTypesMap = { EVENT_TYPES };
 #undef etype
 
+
 class TCompMusic : public TCompBase {
 private:
 	FMOD::Studio::EventInstance* momentumThemeInstance = nullptr;
@@ -28,6 +33,9 @@ private:
 	int timeSignature = 4;//numerador del 4/4
 	int milisecondsPerBeat;
 	int milisecondsPerBar;
+
+	bool paused = false;
+	float pausedVolumeMultiplier = 0.5f;
 
 	struct EventInfo {
 		CTimer2 timer;

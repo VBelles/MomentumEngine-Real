@@ -3,6 +3,9 @@
     "entity": {
       "name": "music_player",
       "music": {
+        "paused_volume_multiplier" : 0.5,
+        "tempo" : 107,
+        "time_signature" : 4, 
         "event_infos": {
           "COMBAT": {
             "target_ratio": 0,
@@ -21,6 +24,24 @@
             "enters_on_beat": true,
             "exits_on_beat": false,
             "fmod_variable": "ssj3_ratio"
+          },
+          "CYCLE_NIGHT": {
+            "target_ratio": 0,
+            "enters_on_beat": true,
+            "exits_on_beat": true,
+            "fmod_variable": "night_ratio"
+          },
+          "CYCLE_DAWN": {
+            "target_ratio": 0,
+            "enters_on_beat": true,
+            "exits_on_beat": true,
+            "fmod_variable": "dawn_ratio"
+          },
+          "CYCLE_DAY": {
+            "target_ratio": 1,
+            "enters_on_beat": true,
+            "exits_on_beat": true,
+            "fmod_variable": "day_ratio"
           }
         }
       }

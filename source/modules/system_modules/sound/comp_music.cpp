@@ -12,10 +12,15 @@ void TCompMusic::registerMsgs() {
 }
 
 void TCompMusic::debugInMenu() {
-
+	if (ImGui::Checkbox("lowpass", &paused)) {
+		setPauseMenu(paused);
+	}
 }
 
 void TCompMusic::load(const json& j, TEntityParseContext& ctx) {
+	pausedVolumeMultiplier = j.value("paused_volume_multiplier", pausedVolumeMultiplier);
+	tempo = j.value("tempo", tempo);
+	timeSignature = j.value("time_signature", timeSignature);
 	auto& j_event_infos = j["event_infos"];
 	for (int i = 0; i < LAST; i++) {
 		eventInfos[static_cast<EventType>(i)] = loadEventInfo(j_event_infos[strEventTypes[i]]);
@@ -139,12 +144,19 @@ void TCompMusic::setPlace(Place place) {
 }
 
 void TCompMusic::setPauseMenu(bool paused) {
-	//cambiar la ecualización
+	if (paused != this->paused) {
+		//molaría también bajar el volumen un poco
+		float previousVolume;
+		momentumThemeInstance->getVolume(&previousVolume);
+		if (paused) {
+			momentumThemeInstance->setVolume(previousVolume * pausedVolumeMultiplier);
+		}
+		else {
+			momentumThemeInstance->setVolume(previousVolume / pausedVolumeMultiplier);
+		}
+		//cambiar la ecualización (cutoff: 1.5kHz, ressonance: 5)
+		float activation = paused ? 1.f : 0.f;
+		momentumThemeInstance->setParameterValue("activate_lowpass", activation);
+		this->paused = paused;
+	}
 }
-
-
-
-
-
-
-
