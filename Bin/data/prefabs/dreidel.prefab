@@ -50,7 +50,8 @@
             "invulnerabilityTime": 1.5,
             "stun": 1.0,
             "hitbox": "spin_attack",
-            "particles": "spin_attack"
+            "particles": "spin_attack",
+            "sounds": "spin_attack"
           },
           {
             "name": "area_attack",
@@ -59,7 +60,8 @@
             "invulnerabilityTime": 1.5,
             "stun": 1.0,
             "hitbox": "area_attack",
-            "particles": "area_attack"
+            "particles": "area_attack",
+            "sounds": "area_attack"
           },
           {
             "name": "tackle",
@@ -166,8 +168,60 @@
             "path": "event:/PROTA/golpes/golpe_hit"
           },
           {
-            "id": "block",
+            "id": "stun",
             "path": "event:/PROTA/golpes/golpe_hit"
+          },
+          {
+            "id": "block",
+            "path": "event:/ENEMIGO BOLA/bola_block"
+          },
+          {
+            "id": "block_break",
+            "path": "event:/ENEMIGO BOLA/bola_block_break"
+          },
+          {
+            "id": "spin_attack",
+            "path": "event:/ENEMIGO BOLA/bola_ataque_corto"
+          },
+          {
+            "id": "area_attack",
+            "path": "event:/ENEMIGO BOLA/bola_ataque_lento"
+          },
+          {
+            "id": "chase",
+            "path": "event:/ENEMIGO BOLA/bola_chase"
+          },
+          {
+            "id": "death",
+            "path": "event:/ENEMIGO BOLA/bola_death"
+          },
+          {
+            "id": "appear",
+            "path": "event:/ENEMIGO BOLA/bola_appear"
+          },
+          {
+            "id": "disappear",
+            "path": "event:/ENEMIGO BOLA/bola_dissappear"
+          },
+          {
+            "id": "idle_war",
+            "path": "event:/ENEMIGO BOLA/bola_idlewar"
+          },
+          {
+            "id": "tackle_braking",
+            "path": "event:/ENEMIGO BOLA/bola_placaje_frenazo"
+          },
+          {
+            "id": "tackle_hit",
+            "path": "event:/ENEMIGO BOLA/bola_placaje_hit"
+          },
+          {
+            "id": "stroll",
+            "path": "event:/ENEMIGO BOLA/bola_walk"
+          },
+          {
+            "id": "idle",
+            "path": "event:/ENEMIGO BOLA/bola_stroll"
           }
         ]
       },

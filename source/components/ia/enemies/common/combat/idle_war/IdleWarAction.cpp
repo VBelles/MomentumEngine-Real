@@ -34,3 +34,7 @@ void IdleWarAction::load(IBehaviorTree* bt, const json& j) {
 void IdleWarAction::debugInMenu() {
 	ImGui::Text("Animation: %s\n", animation.c_str());
 }
+
+void IdleWarAction::onExit() {
+	enemy->getSound()->stop("idle_war");
+}

@@ -38,3 +38,7 @@ void IdleLoop::debugInMenu() {
 	ImGui::Text("Animation: %s\n", animation.c_str());
 	ImGui::Text("Cancel condition: %s\n", cancelCondition.c_str());
 }
+
+void IdleLoop::onExit() {
+	enemy->getSound()->stop("idle");
+}

@@ -46,3 +46,7 @@ void StrollAction::load(IBehaviorTree* bt, const json& j) {
 void StrollAction::debugInMenu() {
 	ImGui::Text("Cancel condition: %s\n", cancelCondition.c_str());
 }
+
+void StrollAction::onExit() {
+	enemy->getSound()->stop("stroll");
+}

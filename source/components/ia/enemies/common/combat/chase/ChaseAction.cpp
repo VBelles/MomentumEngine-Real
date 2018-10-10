@@ -53,3 +53,7 @@ void ChaseAction::load(IBehaviorTree* bt, const json& j) {
 	enemy = dynamic_cast<Enemy*>(bt);
 	assert(enemy);
 }
+
+void ChaseAction::onExit() {
+	enemy->getSound()->stop("chase");
+}

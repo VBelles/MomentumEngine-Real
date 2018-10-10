@@ -9,7 +9,6 @@ private:
 	Enemy* enemy = nullptr;
 	std::string animation = "";
 	std::string attack = "";
-	std::vector<std::string> particles;
 public:
 	OnAttackAction();
 	OnAttackAction(Enemy* enemy, std::string animation, std::string attack);

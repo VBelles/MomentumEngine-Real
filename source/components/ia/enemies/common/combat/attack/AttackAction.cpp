@@ -50,5 +50,7 @@ void AttackAction::debugInMenu() {
 }
 
 void AttackAction::onExit() {
-	enemy->killParticles(enemy->attacks[attack].particles);
+	auto& attackAction = enemy->attacks[attack];
+	enemy->killParticles(attackAction.particles);
+	enemy->stopSounds(attackAction.sounds);
 }

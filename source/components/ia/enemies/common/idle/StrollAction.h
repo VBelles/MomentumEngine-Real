@@ -14,4 +14,5 @@ public:
 	int execAction(float delta) override;
 	void load(IBehaviorTree* bt, const json& j) override;
 	void debugInMenu() override;
+	void onExit() override;
 };

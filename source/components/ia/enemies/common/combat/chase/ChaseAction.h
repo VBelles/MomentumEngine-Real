@@ -12,4 +12,5 @@ public:
 	ChaseAction(Enemy* enemy);
 	int execAction(float delta) override;
 	void load(IBehaviorTree* bt, const json& j) override;
+	void onExit() override;
 };

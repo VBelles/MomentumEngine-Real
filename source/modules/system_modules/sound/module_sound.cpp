@@ -21,7 +21,7 @@ bool CModuleSound::start() {
 	for (const std::string& bankFile : j["banks"]) {
 		Studio::Bank* bank = nullptr;
 		res = system->loadBankFile(bankFile.c_str(), FMOD_STUDIO_LOAD_BANK_NORMAL, &bank);
-
+		dbg("Loading bank: %s\n", bankFile.c_str());
 		assert(res == FMOD_OK);
 		banks[bankFile] = bank;
 	}

@@ -19,6 +19,7 @@ int OnIdleWarAction::execAction(float delta) {
 	enemy->rotateTowards(delta, playerPosition, enemy->rotationSpeed);
 	enemy->getSkeleton()->blendCycle(animation, 0.1f, 0.1f);
 	enemy->animationTimer.reset();
+	enemy->getSound()->play("idle_war");
 	return Leave;
 }
 

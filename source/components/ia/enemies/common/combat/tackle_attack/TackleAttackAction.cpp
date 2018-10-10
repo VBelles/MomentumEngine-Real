@@ -29,6 +29,7 @@ int TackleAttackAction::execAction(float delta) {
 		enemy->getHitboxes()->disable(enemyAttack.hitboxName);
 		enemy->currentAttack = "";
 		enemy->attackTimer.reset();
+		enemy->getSound()->play("tackle_braking");
 		return Leave;
 	}
 	else {
