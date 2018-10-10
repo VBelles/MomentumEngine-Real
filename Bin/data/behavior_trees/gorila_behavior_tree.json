@@ -15,7 +15,7 @@
             "type": "action",
             "action": {
               "type": "OnDisappearAction",
-              "animation": "enemigo_bola_desaparecer"
+              "animation": "gorila_dissappear"
             }
           },
           {
@@ -23,7 +23,7 @@
             "type": "action",
             "action": {
               "type": "DisappearAction",
-              "animation": "enemigo_bola_desaparecer"
+              "animation": "gorila_dissappear"
             }
           }
         ]
@@ -40,7 +40,7 @@
             "type": "action",
             "action": {
               "type": "OnAppearAction",
-              "animation": "enemigo_bola_aparecer"
+              "animation": "gorila_appear"
             }
           },
           {
@@ -48,7 +48,7 @@
             "type": "action",
             "action": {
               "type": "AppearAction",
-              "animation": "enemigo_bola_aparecer",
+              "animation": "gorila_appear",
               "sound": ""
             }
           }
@@ -66,7 +66,7 @@
             "type": "action",
             "action": {
               "type": "OnDisappearAction",
-              "animation": "enemigo_bola_desaparecer"
+              "animation": "gorila_dissappear"
             }
           },
           {
@@ -74,7 +74,7 @@
             "type": "action",
             "action": {
               "type": "DisappearAction",
-              "animation": "enemigo_bola_desaparecer"
+              "animation": "gorila_dissappear"
             }
           }
         ]
@@ -326,7 +326,7 @@
             "type": "action",
             "action": {
               "type": "OnTeleportAction",
-              "animation": "enemigo_bola_desaparecer"
+              "animation": "gorila_dissappear"
             }
           },
           {
@@ -334,7 +334,7 @@
             "type": "action",
             "action": {
               "type": "TeleportAction",
-              "animation": "enemigo_bola_desaparecer"
+              "animation": "gorila_dissappear"
             }
           },
           {
@@ -346,7 +346,7 @@
                 "type": "action",
                 "action": {
                   "type": "OnAppearAction",
-                  "animation": "enemigo_bola_aparecer"
+                  "animation": "gorila_appear"
                 }
               },
               {
@@ -354,7 +354,7 @@
                 "type": "action",
                 "action": {
                   "type": "AppearAction",
-                  "animation": "enemigo_bola_aparecer"
+                  "animation": "gorila_appear"
                 }
               }
             ]

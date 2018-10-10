@@ -8,6 +8,7 @@ class DisappearAction : public IBehaviorTreeAction {
 private:
 	Enemy* enemy = nullptr;
 	std::string animation = "";
+	float animationEndPadding = 0.2f;
 public:
 	DisappearAction();
 	DisappearAction(Enemy* enemy, std::string animation);

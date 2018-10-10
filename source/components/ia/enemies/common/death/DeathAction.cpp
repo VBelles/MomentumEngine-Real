@@ -15,7 +15,7 @@ DeathAction::DeathAction(Enemy* enemy, std::string animation) :
 }
 
 int DeathAction::execAction(float delta) {
-	if (enemy->animationTimer.elapsed() < enemy->getSkeleton()->getAnimationDuration(animation)) {
+	if (enemy->animationTimer.elapsed() < enemy->getSkeleton()->getAnimationDuration(animation) - animationEndPadding) {
 		return Stay;
 	}
 	enemy->onDisappear = true;
@@ -27,8 +27,10 @@ void DeathAction::load(IBehaviorTree* bt, const json& j) {
 	assert(enemy);
 
 	animation = j.value("animation", animation);
+	animationEndPadding = j.value("enimation_end_padding", animationEndPadding);
 }
 
 void DeathAction::debugInMenu() {
 	ImGui::Text("Animation: %s\n", animation.c_str());
+	ImGui::DragFloat("Animation end padding", &animationEndPadding, 0.01f, 0.f, 50.f);
 }

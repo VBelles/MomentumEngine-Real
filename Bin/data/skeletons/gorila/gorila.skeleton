@@ -13,8 +13,8 @@
 		{ "name" : "gorila_knockback"},
 		{ "name" : "gorila_stun"},
 		{ "name" : "gorila_walk"},
-		{ "name" : "enemigo_bola_aparecer"},
-		{ "name" : "enemigo_bola_desaparecer"}
+		{ "name" : "gorila_appear"},
+		{ "name" : "gorila_dissappear"}
 	],
 	"bone_ids_to_debug" : [
 		3
