@@ -18,14 +18,14 @@
     {
       "id": "nes_enemyMelee038",
       "done": false,
-      "position": "-128.932 12.2119 61.6907",
+      "position": "-128.224 12.5716 57.5871",
       "level": "level00",
       "type": "dreidel"
     },
     {
       "id": "nes_enemyMelee037",
       "done": false,
-      "position": "-128.182 12.9132 55.1541",
+      "position": "-127.473 13.2257 51.0505",
       "level": "level00",
       "type": "dreidel"
     },
@@ -508,7 +508,7 @@
     {
       "id": "nes_enemyMelee08",
       "done": false,
-      "position": "-60.748 16.754 2.99741",
+      "position": "-42.3996 16.754 -32.2702",
       "level": "level00",
       "type": "dreidel"
     },
@@ -571,7 +571,7 @@
     {
       "id": "nes_enemyMelee01",
       "done": false,
-      "position": "-18.6279 -8.71036 -166.651",
+      "position": "-17.9147 -8.71036 -155.88",
       "level": "level00",
       "type": "dreidel"
     },

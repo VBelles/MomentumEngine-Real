@@ -6,8 +6,8 @@
       "prefab": "data/prefabs/mech.prefab",
       "transform":
       {
-        "pos": "23.8303 -1.08568 -94.0433",
-        "rotation": "0.246669 0.662687 -0.662687 0.246669"
+        "pos": "-53.4817 19.614 0.291329",
+        "rotation": "-0.666204 -0.237008 0.237008 -0.666204"
       },
       "mechanism":
       {
@@ -16,8 +16,74 @@
         "isResettable": false,
         "systems":
         [
+           "nes_estaca_emisivo_3_008",
            "nes_estaca_emisivo_2_008",
-           "nes_estaca_emisivo_3_008"
+           "nes_estaca_emisivo_3_009",
+           "nes_estaca_emisivo_4_005"
+        ]
+      }
+    }
+  },
+  {
+    "entity":
+    {
+      "name": "nes_estaca_emisivo_3_008",
+      "transform":
+      {
+        "pos": "-48.3151 27.6638 -14.0385",
+        "rotation": "0.0112351 -0.412253 -0.0181538 -0.910819"
+      },
+      "mechanism_system":
+      {
+        "number_of_mechanisms": 1
+      },
+      "activate_listener":
+      {
+        "change_render": false,
+        "change_collider": false,
+        "change_platform": true,
+        "change_animation": true,
+        "render_enabled_on_active": true,
+        "collider_enabled_on_active": true,
+        "platform_enabled_on_active": true,
+        "animation_enabled_on_active": true
+      },
+      "render":
+      [
+        {
+          "mesh": "data/meshes/nes_estaca_emisivo_3_008.mesh",
+          "materials":
+          [
+            "data/materials/m_estaca_04.material"
+          ],
+          "enabled": true
+        }
+      ],
+      "collider":
+      {
+        "mesh_src": "data/meshes/nes_estaca_emisivo_3_col_008.col_mesh",
+        "shape": "convex_mesh",
+        "type": "kinematic",
+        "group":
+        [
+          "scenario"
+        ]
+      },
+      "platform_simple":
+      {
+        "curve_type": "catmull-rom",
+        "automove": true,
+        "loop": false,
+        "closed": false,
+        "move_offset": 0,
+        "travel_wait_time": 1.0,
+        "speed": 0.1,
+        "knots":
+        [
+           "-48.7171 27.6542 -13.3533",
+           "-48.7171 27.6542 -13.3533",
+           "-54.8647 27.6542 -6.20422",
+           "-54.8647 27.6542 -6.20422"
         ]
       }
     }
@@ -28,8 +94,8 @@
       "name": "nes_estaca_emisivo_2_008",
       "transform":
       {
-        "pos": "29.7037 1.5811 -95.5624",
-        "rotation": "0.00125796 0.265038 0.0251139 -0.96391"
+        "pos": "-66.9641 22.8663 7.74889",
+        "rotation": "0.0184298 -0.908761 -0.0171065 0.416558"
       },
       "mechanism_system":
       {
@@ -78,10 +144,10 @@
         "speed": 0.1,
         "knots":
         [
-           "29.0716 0.698978 -95.8893",
-           "29.0716 0.698978 -95.8893",
-           "29.8804 0.698971 -80.5916",
-           "29.8804 0.698971 -80.5916"
+           "-66.347 21.9841 6.93815",
+           "-66.347 21.9841 6.93815",
+           "-60.1994 21.9841 -0.210981",
+           "-60.1994 21.9841 -0.210981"
         ]
       }
     }
@@ -89,11 +155,11 @@
   {
     "entity":
     {
-      "name": "nes_estaca_emisivo_3_008",
+      "name": "nes_estaca_emisivo_3_009",
       "transform":
       {
-        "pos": "22.1822 7.68605 -100.233",
-        "rotation": "-0.00668487 -0.962719 -0.0202755 -0.269659"
+        "pos": "-66.9478 33.814 7.84811",
+        "rotation": "-0.0181537 -0.910819 -0.0112351 0.412253"
       },
       "mechanism_system":
       {
@@ -101,8 +167,8 @@
       },
       "activate_listener":
       {
-        "change_render": true,
-        "change_collider": true,
+        "change_render": false,
+        "change_collider": false,
         "change_platform": true,
         "change_animation": true,
         "render_enabled_on_active": true,
@@ -113,7 +179,7 @@
       "render":
       [
         {
-          "mesh": "data/meshes/nes_estaca_emisivo_3_008.mesh",
+          "mesh": "data/meshes/nes_estaca_emisivo_3_009.mesh",
           "materials":
           [
             "data/materials/m_estaca_04.material"
@@ -123,12 +189,93 @@
       ],
       "collider":
       {
-        "mesh_src": "data/meshes/nes_estaca_emisivo_3_col_008.col_mesh",
+        "mesh_src": "data/meshes/nes_estaca_emisivo_3_col_009.col_mesh",
         "shape": "convex_mesh",
-        "type": "static",
+        "type": "kinematic",
         "group":
         [
           "scenario"
+        ]
+      },
+      "platform_simple":
+      {
+        "curve_type": "catmull-rom",
+        "automove": true,
+        "loop": false,
+        "closed": false,
+        "move_offset": 0,
+        "travel_wait_time": 1.0,
+        "speed": 0.1,
+        "knots":
+        [
+           "-66.3327 33.2104 6.94378",
+           "-66.3327 33.2104 6.94378",
+           "-60.185 33.2104 -0.205359",
+           "-60.185 33.2104 -0.205359"
+        ]
+      }
+    }
+  },
+  {
+    "entity":
+    {
+      "name": "nes_estaca_emisivo_4_005",
+      "transform":
+      {
+        "pos": "-48.8023 38.5606 -13.4686",
+        "rotation": "0.0 0.0871557 0.0 -0.996195"
+      },
+      "mechanism_system":
+      {
+        "number_of_mechanisms": 1
+      },
+      "activate_listener":
+      {
+        "change_render": false,
+        "change_collider": false,
+        "change_platform": true,
+        "change_animation": true,
+        "render_enabled_on_active": true,
+        "collider_enabled_on_active": true,
+        "platform_enabled_on_active": true,
+        "animation_enabled_on_active": true
+      },
+      "render":
+      [
+        {
+          "mesh": "data/meshes/nes_estaca_emisivo_4_005.mesh",
+          "materials":
+          [
+            "data/materials/m_estaca_05.material"
+          ],
+          "enabled": true
+        }
+      ],
+      "collider":
+      {
+        "mesh_src": "data/meshes/nes_estaca_emisivo_4_col_005.col_mesh",
+        "shape": "convex_mesh",
+        "type": "kinematic",
+        "group":
+        [
+          "scenario"
+        ]
+      },
+      "platform_simple":
+      {
+        "curve_type": "catmull-rom",
+        "automove": true,
+        "loop": false,
+        "closed": false,
+        "move_offset": 0,
+        "travel_wait_time": 1.0,
+        "speed": 0.1,
+        "knots":
+        [
+           "-49.1024 38.5173 -12.9119",
+           "-49.1024 38.5173 -12.9119",
+           "-55.25 38.5173 -5.76276",
+           "-55.25 38.5173 -5.76276"
         ]
       }
     }

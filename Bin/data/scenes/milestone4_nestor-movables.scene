@@ -2,6 +2,154 @@
   {
     "entity":
     {
+      "name": "nes_estaca_emisivo_6_011",
+      "transform":
+      {
+        "pos": "-83.9005 42.9955 -13.3555",
+        "rotation": "0.0 0.0 0.0 -1.0"
+      },
+      "render":
+      [
+        {
+          "mesh": "data/meshes/nes_estaca_emisivo_6_011.mesh",
+          "materials":
+          [
+            "data/materials/m_estaca_07.material"
+          ],
+          "enabled": true
+        }
+      ],
+      "collider":
+      {
+        "mesh_src": "data/meshes/nes_estaca_emisivo_6_col_011.col_mesh",
+        "shape": "convex_mesh",
+        "type": "kinematic",
+        "group":
+        [
+          "scenario"
+        ]
+      },
+      "platform_simple":
+      {
+        "rotation_axis": "0.0 -1.0 0.0",
+        "rotation_speed": 1.0
+      }
+    }
+  },
+  {
+    "entity":
+    {
+      "name": "nes_mariosunshine_MS012",
+      "transform":
+      {
+        "pos": "-185.842 55.1578 -50.2487",
+        "rotation": "-0.124915 -0.973124 0.00808409 0.193288"
+      },
+      "render":
+      [
+        {
+          "mesh": "data/meshes/nes_mariosunshine_MS012.mesh",
+          "materials":
+          [
+            "data/materials/m_ms_mariosunshine.material"
+          ],
+          "enabled": true
+        }
+      ],
+      "collider":
+      {
+        "mesh_src": "data/meshes/nes_mariosunshine_collider013.col_mesh",
+        "shape": "convex_mesh",
+        "type": "kinematic",
+        "group":
+        [
+          "scenario"
+        ]
+      },
+      "platform_simple":
+      {
+        "rotation_axis": "0.0 0.0 -1.0",
+        "rotation_speed": 0.5
+      }
+    }
+  },
+  {
+    "entity":
+    {
+      "name": "nes_mariosunshine_MS011",
+      "transform":
+      {
+        "pos": "-196.212 49.8698 -44.5428",
+        "rotation": "-0.124915 -0.973124 0.00808409 0.193288"
+      },
+      "render":
+      [
+        {
+          "mesh": "data/meshes/nes_mariosunshine_MS011.mesh",
+          "materials":
+          [
+            "data/materials/m_ms_mariosunshine.material"
+          ],
+          "enabled": true
+        }
+      ],
+      "collider":
+      {
+        "mesh_src": "data/meshes/nes_mariosunshine_collider012.col_mesh",
+        "shape": "convex_mesh",
+        "type": "kinematic",
+        "group":
+        [
+          "scenario"
+        ]
+      },
+      "platform_simple":
+      {
+        "rotation_axis": "0.0 0.0 -1.0",
+        "rotation_speed": 0.5
+      }
+    }
+  },
+  {
+    "entity":
+    {
+      "name": "nes_mariosunshine_MS010",
+      "transform":
+      {
+        "pos": "-210.592 49.6605 -21.7794",
+        "rotation": "0.00628484 -0.943832 -0.0287934 0.329109"
+      },
+      "render":
+      [
+        {
+          "mesh": "data/meshes/nes_mariosunshine_MS010.mesh",
+          "materials":
+          [
+            "data/materials/m_ms_mariosunshine.material"
+          ],
+          "enabled": true
+        }
+      ],
+      "collider":
+      {
+        "mesh_src": "data/meshes/nes_mariosunshine_collider011.col_mesh",
+        "shape": "convex_mesh",
+        "type": "kinematic",
+        "group":
+        [
+          "scenario"
+        ]
+      },
+      "platform_simple":
+      {
+        "rotation_axis": "0.0 0.0 1.0",
+        "rotation_speed": 0.5
+      }
+    }
+  },
+  {
+    "entity":
+    {
       "name": "nes_platform_civilization_emissive_mini_001",
       "transform":
       {
@@ -45,117 +193,6 @@
            "35.6266 36.288 -107.879",
            "35.6266 36.288 -107.879"
         ]
-      }
-    }
-  },
-  {
-    "entity":
-    {
-      "name": "nes_mariosunshine_MS012",
-      "transform":
-      {
-        "pos": "-185.842 55.1578 -50.2487",
-        "rotation": "-0.124915 -0.973124 0.00808409 0.193288"
-      },
-      "render":
-      [
-        {
-          "mesh": "data/meshes/nes_mariosunshine_MS012.mesh",
-          "materials":
-          [
-            "data/materials/m_ms_mariosunshine.material"
-          ],
-          "enabled": true
-        }
-      ],
-      "collider":
-      {
-        "mesh_src": "data/meshes/nes_mariosunshine_collider013.col_mesh",
-        "shape": "convex_mesh",
-        "type": "kinematic",
-        "group":
-        [
-          "scenario"
-        ]
-      },
-      "platform_simple":
-      {
-        "rotation_axis": "0.0 0.0 -1.0",
-        "rotation_speed": 0.7
-      }
-    }
-  },
-  {
-    "entity":
-    {
-      "name": "nes_mariosunshine_MS011",
-      "transform":
-      {
-        "pos": "-196.212 49.8698 -44.5428",
-        "rotation": "-0.124915 -0.973124 0.00808409 0.193288"
-      },
-      "render":
-      [
-        {
-          "mesh": "data/meshes/nes_mariosunshine_MS011.mesh",
-          "materials":
-          [
-            "data/materials/m_ms_mariosunshine.material"
-          ],
-          "enabled": true
-        }
-      ],
-      "collider":
-      {
-        "mesh_src": "data/meshes/nes_mariosunshine_collider012.col_mesh",
-        "shape": "convex_mesh",
-        "type": "kinematic",
-        "group":
-        [
-          "scenario"
-        ]
-      },
-      "platform_simple":
-      {
-        "rotation_axis": "0.0 0.0 -1.0",
-        "rotation_speed": 0.7
-      }
-    }
-  },
-  {
-    "entity":
-    {
-      "name": "nes_mariosunshine_MS010",
-      "transform":
-      {
-        "pos": "-210.592 49.6605 -21.7794",
-        "rotation": "0.00628484 -0.943832 -0.0287934 0.329109"
-      },
-      "render":
-      [
-        {
-          "mesh": "data/meshes/nes_mariosunshine_MS010.mesh",
-          "materials":
-          [
-            "data/materials/m_ms_mariosunshine.material"
-          ],
-          "enabled": true
-        }
-      ],
-      "collider":
-      {
-        "mesh_src": "data/meshes/nes_mariosunshine_collider011.col_mesh",
-        "shape": "convex_mesh",
-        "type": "kinematic",
-        "group":
-        [
-          "scenario"
-        ]
-      },
-      "platform_simple":
-      {
-        "rotation_axis": "0.0 0.0 1.0",
-        "rotation_speed": 0.7
       }
     }
   },
@@ -244,7 +281,7 @@
       "platform_simple":
       {
         "rotation_axis": "0.0 0.0 1.0",
-        "rotation_speed": 0.7
+        "rotation_speed": 0.5
       }
     }
   },
@@ -281,7 +318,7 @@
       "platform_simple":
       {
         "rotation_axis": "0.0 0.0 -1.0",
-        "rotation_speed": 0.7
+        "rotation_speed": 0.5
       }
     }
   },
@@ -318,7 +355,7 @@
       "platform_simple":
       {
         "rotation_axis": "0.0 0.0 -1.0",
-        "rotation_speed": 0.7
+        "rotation_speed": 0.5
       }
     }
   },
@@ -2290,7 +2327,7 @@
       "name": "nes_mariosunshine_MS004",
       "transform":
       {
-        "pos": "-126.377 38.9809 -174.255",
+        "pos": "-126.038 38.9809 -173.031",
         "rotation": "0.0298407 -0.439579 -0.190791 -0.877199"
       },
       "render":
