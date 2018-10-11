@@ -1,0 +1,14 @@
+{
+  "technique": "pure.tech",
+  "shadows": true,
+  "textures":
+  {
+    "albedo": "data/textures/mushroom_body_02_BaseColor.dds",
+    "normal": "data/textures/mushroom_body_02_Normal.dds",
+    "metallic": "data/textures/mushroom_body_02_Metallic.dds",
+    "roughness": "data/textures/mushroom_body_02_Roughness.dds",
+    "self_illum": "data/textures/null_self_illum.dds",
+    "height": "data/textures/null_height.dds",
+    "detail_normal": "data/textures/null_detail_normal.dds"
+  }
+}

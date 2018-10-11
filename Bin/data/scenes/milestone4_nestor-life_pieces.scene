@@ -2,6 +2,18 @@
   {
     "entity":
     {
+      "name": "nes_life_piece005",
+      "prefab": "data/prefabs/lifePiece.prefab",
+      "transform":
+      {
+        "pos": "-90.7143 48.6282 5.26836",
+        "rotation": "0.0 -0.976296 0.0 -0.21644"
+      }
+    }
+  },
+  {
+    "entity":
+    {
       "name": "nes_life_piece004",
       "prefab": "data/prefabs/lifePiece.prefab",
       "transform":

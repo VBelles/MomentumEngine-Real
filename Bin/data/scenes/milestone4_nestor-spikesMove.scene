@@ -2,6 +2,94 @@
   {
     "entity":
     {
+      "name": "nes_plataformaSpikes005_col007_spikes",
+      "transform":
+      {
+        "pos": "-85.3028 44.9693 0.493199",
+        "rotation": "0.0 0.0 0.0 -1.0"
+      },
+      "hierarchy":
+      {
+        "parent": "nes_plataformaSpikes024",
+        "pos": "0 0 0",
+        "axis": "0 0 1",
+        "angle": 180
+      },
+      "render":
+      [
+        {
+          "mesh": "data/meshes/spikes_plat_hex_small.mesh",
+          "materials":
+          [
+            "data/materials/spikes_plat_hex_small.material"
+          ]
+        }
+      ],
+      "collider":
+      {
+        "mesh_src": "data/meshes/spikes_plat_hex_small_col.col_mesh",
+        "shape": "convex_mesh",
+        "type": "kinematic",
+        "is_trigger": true,
+        "group":
+        [
+          "trigger"
+        ],
+        "mask":
+        [
+          "player"
+        ]
+      },
+      "prefab": "data/prefabs/spikes.prefab"
+    }
+  },
+  {
+    "entity":
+    {
+      "name": "nes_plataformaSpikes005_col006_spikes",
+      "transform":
+      {
+        "pos": "-79.9898 42.0917 -2.76551",
+        "rotation": "0.0 0.0 0.0 -1.0"
+      },
+      "hierarchy":
+      {
+        "parent": "nes_plataformaSpikes023",
+        "pos": "0 0 0",
+        "axis": "0 0 1",
+        "angle": 180
+      },
+      "render":
+      [
+        {
+          "mesh": "data/meshes/spikes_plat_hex_small.mesh",
+          "materials":
+          [
+            "data/materials/spikes_plat_hex_small.material"
+          ]
+        }
+      ],
+      "collider":
+      {
+        "mesh_src": "data/meshes/spikes_plat_hex_small_col.col_mesh",
+        "shape": "convex_mesh",
+        "type": "kinematic",
+        "is_trigger": true,
+        "group":
+        [
+          "trigger"
+        ],
+        "mask":
+        [
+          "player"
+        ]
+      },
+      "prefab": "data/prefabs/spikes.prefab"
+    }
+  },
+  {
+    "entity":
+    {
       "name": "nes_plataformaSpikes005_col005_spikes",
       "transform":
       {

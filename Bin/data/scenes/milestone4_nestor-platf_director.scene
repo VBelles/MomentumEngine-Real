@@ -115,5 +115,45 @@
         ]
       }
     }
+  },
+  {
+    "entity":
+    {
+      "name": "milestone4_nestorplatform_director_4",
+      "platforms_director":
+      {
+        "slots":
+        [
+          {
+            "wait_time": 3.0,
+            "platforms":
+            [
+              "nes_plataformaSpikes023"
+            ]
+          },
+          {
+            "wait_time": 7.0,
+            "platforms":
+            [
+              "nes_plataformaSpikes024"
+            ]
+          },
+          {
+            "wait_time": 3.0,
+            "platforms":
+            [
+              "nes_plataformaSpikes023"
+            ]
+          },
+          {
+            "wait_time": 7.0,
+            "platforms":
+            [
+              "nes_plataformaSpikes024"
+            ]
+          }
+        ]
+      }
+    }
   }
 ]
