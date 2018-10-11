@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<objects serializationModel="Studio.01.10.00">
+    <object class="AudioFile" id="{2d718f70-2df3-4614-a813-fd756505f26a}">
+        <property name="assetPath">
+            <value>Day - Brass (melodia).wav</value>
+        </property>
+        <property name="isStreaming">
+            <value>true</value>
+        </property>
+        <property name="frequencyInKHz">
+            <value>48</value>
+        </property>
+        <property name="channelCount">
+            <value>2</value>
+        </property>
+        <property name="length">
+            <value>66</value>
+        </property>
+        <relationship name="masterAssetFolder">
+            <destination>{36905f10-66a8-4c8e-8e61-b834e0293f37}</destination>
+        </relationship>
+    </object>
+</objects>

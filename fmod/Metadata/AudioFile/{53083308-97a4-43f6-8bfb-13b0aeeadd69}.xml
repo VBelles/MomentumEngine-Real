@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<objects serializationModel="Studio.01.10.00">
+    <object class="AudioFile" id="{53083308-97a4-43f6-8bfb-13b0aeeadd69}">
+        <property name="assetPath">
+            <value>Places - Civilization V2.wav</value>
+        </property>
+        <property name="isStreaming">
+            <value>true</value>
+        </property>
+        <property name="frequencyInKHz">
+            <value>48</value>
+        </property>
+        <property name="channelCount">
+            <value>2</value>
+        </property>
+        <property name="length">
+            <value>66</value>
+        </property>
+        <relationship name="masterAssetFolder">
+            <destination>{36905f10-66a8-4c8e-8e61-b834e0293f37}</destination>
+        </relationship>
+    </object>
+</objects>

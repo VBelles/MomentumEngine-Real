@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<objects serializationModel="Studio.01.10.00">
+    <object class="AudioFile" id="{5ca7e6bf-719d-4781-8b28-6b4386b41d4b}">
+        <property name="assetPath">
+            <value>Dawn -Clarinete (melodia).wav</value>
+        </property>
+        <property name="isStreaming">
+            <value>true</value>
+        </property>
+        <property name="frequencyInKHz">
+            <value>48</value>
+        </property>
+        <property name="channelCount">
+            <value>2</value>
+        </property>
+        <property name="length">
+            <value>66</value>
+        </property>
+        <relationship name="masterAssetFolder">
+            <destination>{36905f10-66a8-4c8e-8e61-b834e0293f37}</destination>
+        </relationship>
+    </object>
+</objects>

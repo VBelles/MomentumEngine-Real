@@ -2,7 +2,7 @@
 <objects serializationModel="Studio.01.10.00">
     <object class="Event" id="{64cc3926-abc8-442c-bb03-47b24c3a2b1a}">
         <property name="name">
-            <value>momentum_theme</value>
+            <value>momentum_theme_placeholder</value>
         </property>
         <property name="outputFormat">
             <value>1</value>
