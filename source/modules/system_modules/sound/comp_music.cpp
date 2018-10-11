@@ -18,6 +18,8 @@ void TCompMusic::debugInMenu() {
 }
 
 void TCompMusic::load(const json& j, TEntityParseContext& ctx) {
+	mainTheme = j.value("main_theme", mainTheme);
+
 	pausedVolumeMultiplier = j.value("paused_volume_multiplier", pausedVolumeMultiplier);
 	tempo = j.value("tempo", tempo);
 	timeSignature = j.value("time_signature", timeSignature);
@@ -37,7 +39,7 @@ TCompMusic::EventInfo TCompMusic::loadEventInfo(const json & j_event_info) {
 }
 
 void TCompMusic::onEntityCreated(const TMsgEntityCreated&) {
-	momentumThemeInstance = EngineSound.emitEvent("event:/momentum_theme");
+	momentumThemeInstance = EngineSound.emitEvent(mainTheme);
 	milisecondsPerBeat = 60000 / tempo;//1 min = 60000 ms
 	milisecondsPerBar = milisecondsPerBeat * timeSignature;
 	for (int i = 0; i < LAST; i++) {
@@ -181,7 +183,7 @@ void TCompMusic::addLocation(Location location) {
 	int timeMiliseconds;
 	momentumThemeInstance->getTimelinePosition(&timeMiliseconds);
 
-	int fadeInTime = 6000;
+	int fadeInTime = 2000;
 	switch (location) {
 	case CEMETERY:
 		eventInfos[LOCATION_CEMETERY].timer.reset();

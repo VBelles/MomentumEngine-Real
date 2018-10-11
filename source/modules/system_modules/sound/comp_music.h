@@ -33,6 +33,8 @@ private:
 	int milisecondsPerBeat;
 	int milisecondsPerBar;
 
+	std::string mainTheme = "event:/momentum_theme";
+
 	bool paused = false;
 	float pausedVolumeMultiplier = 0.5f;
 

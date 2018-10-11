@@ -3,6 +3,7 @@
     "entity": {
       "name": "music_player",
       "music": {
+        "main_theme" : "event:/momentum_theme",
         "paused_volume_multiplier" : 0.5,
         "tempo" : 107,
         "time_signature" : 4, 
