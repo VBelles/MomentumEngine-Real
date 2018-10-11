@@ -5,6 +5,7 @@
 #include "modules/system_modules/particles/comp_particles.h"
 #include "components/comp_light_point.h"
 #include "components/lights/comp_light_flicker.h"
+#include "modules/system_modules/sound/comp_sound.h"
 
 
 DECL_OBJ_MANAGER("fire", TCompFire);
@@ -35,6 +36,7 @@ void TCompFire::load(const json& j, TEntityParseContext& ctx) {
 
 void TCompFire::onEntityCreated(const TMsgEntityCreated& msg) {
 	particlesHandle = get<TCompParticles>();
+	soundHandle = get<TCompSound>();
 	lightHandle = get<TCompLightPoint>();
 	lightFlicker = get<TCompLightFlicker>();
 	assert(particlesHandle.isValid());
@@ -51,15 +53,18 @@ void TCompFire::onPlayerEnter(const TMsgTriggerEnter& msg) {
 	//dbg("kill fire\n");
 	getLight()->setIntensity(0.f);
 	getLightFlicker()->setActive(false);
-	for (auto& particleId : fireParticles) {
-		getParticles()->kill(particleId);
-	}
-	// Launch smoke
+
 	if (hasFire) {
-		//dbg("launch smoke\n");
+		// Kill fire
+		for (auto& particleId : fireParticles) {
+			getParticles()->kill(particleId);
+		}
+		// Launch smoke
 		for (auto& particleId : smokeParticles) {
 			getParticles()->launch(particleId);
 		}
+		getSound()->play("fire_off");
+		getSound()->stop("fire");
 	}
 	hasFire = false;
 	playerOnFire = true;
@@ -81,11 +86,17 @@ void TCompFire::update(float delta) {
 		for (auto& particleId : fireParticles) {
 			getParticles()->launch(particleId);
 		}
+		getSound()->play("fire_on");
+		getSound()->play("fire");
 	}
 }
 
 TCompParticles* TCompFire::getParticles() {
 	return particlesHandle;
+}
+
+TCompSound* TCompFire::getSound() {
+	return soundHandle;
 }
 
 TCompLightPoint* TCompFire::getLight() {

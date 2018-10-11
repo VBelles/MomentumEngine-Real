@@ -5,6 +5,7 @@
 class TCompSound : public TCompBase {
 private:
 	struct Sound {
+		std::string id;
 		std::string path;
 		FMOD::Studio::EventDescription* eventDescription = nullptr;
 		std::vector<FMOD::Studio::EventInstance*> eventInstances;
@@ -12,6 +13,7 @@ private:
 		bool following = false;
 		bool multiInstancing = true;
 		bool is3D = true;
+		bool playOnStart = false;
 	};
 	
 	std::map<std::string, Sound> events;

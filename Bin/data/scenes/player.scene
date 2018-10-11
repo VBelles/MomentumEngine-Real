@@ -408,11 +408,11 @@
 				"events": [
 					{
 						"id": "attack",
-						"path": "event:/PROTA/golpe_movimiento"
+						"path": "event:/PROTA/golpes_movimiento"
 					},
 					{
 						"id": "finisher_ground",
-						"path": "event:/PROTA/golpe_movimiento"
+						"path": "event:/PROTA/finisher_ground"
 					},
 					{
 						"id": "launcher_horizontal",
@@ -472,11 +472,11 @@
 					},
 					{
 						"id": "lvl_up_2",
-						"path": "event:/PROTA/cambio de estado/cambio_2"
+						"path": "event:/PROTA/cambio_estado1"
 					},
 					{
 						"id": "lvl_up_3",
-						"path": "event:/PROTA/cambio de estado/cambio_3"
+						"path": "event:/PROTA/cambio_estado2"
 					},
 					{
 						"id": "lvl_down",

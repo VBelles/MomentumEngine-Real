@@ -156,20 +156,28 @@
         "events": [
           {
             "id": "launcher_loop",
-            "path": "event:/PROTA/launcher/launcher_estatica",
+            "path": "event:/PROTA/launcher_estatica",
             "following": true
           },
           {
             "id": "launcher_end",
-            "path": "event:/PROTA/launcher/launcher_final"
+            "path": "event:/PROTA/launcher_final"
+          },
+          {
+            "id": "vertical_launcher_hit",
+            "path": "event:/PROTA/launcherv_lanzar"
+          },
+          {
+            "id": "horizontal_launcher_hit",
+            "path": "event:/PROTA/launcherh_lanzar"
           },
           {
             "id": "hit",
-            "path": "event:/PROTA/golpes/golpe_hit"
+            "path": "event:/PROTA/golpes_hit"
           },
           {
             "id": "stun",
-            "path": "event:/PROTA/golpes/golpe_hit"
+            "path": "event:/PROTA/golpes_hit"
           },
           {
             "id": "block",

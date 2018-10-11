@@ -34,16 +34,18 @@ void TCompSound::debugInMenu() {
 void TCompSound::load(const json& j, TEntityParseContext& ctx) {
 	assert(j.count("events"));
 	bool is3D = j.value("3D", true);
+	bool playOnStart = j.value("play", false);
 	for (auto& jEvent : j["events"]) {
 		Sound sound;
-		std::string id = jEvent.value("id", "");
+		sound.id = jEvent.value("id", "");
 		assert(!id.empty());
 		sound.path = jEvent.value("path", sound.path);
 		sound.following = jEvent.value("following", sound.following);
 		sound.multiInstancing = jEvent.value("multi_instancing", sound.multiInstancing);
 		sound.stopFadeOut = jEvent.value("stop_fade_out", sound.stopFadeOut);
 		sound.is3D = jEvent.value("3D", is3D);
-		events[id] = sound;
+		sound.playOnStart = jEvent.value("play", playOnStart);
+		events[sound.id] = sound;
 	}
 }
 
@@ -56,6 +58,9 @@ void TCompSound::onEntityCreated(const TMsgEntityCreated&) {
 		if (sound.is3D != is3D) {
 			dbg("Warning: %s declared as %s but the component declares it as %s\n",
 				sound.path.c_str(), is3D ? "3D" : "not 3D", sound.is3D ? "3D" : "not 3D");
+		}
+		if (sound.playOnStart) {
+			play(sound.id);
 		}
 	}
 }

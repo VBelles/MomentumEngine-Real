@@ -3,6 +3,7 @@
 class TCompParticles;
 class TCompLightPoint;
 class TCompLightFlicker;
+class TCompSound;
 
 class TCompFire : public TCompBase {
 private:
@@ -10,6 +11,7 @@ private:
 	std::vector<std::string> fireParticles;
 	std::vector<std::string> smokeParticles;
 	CHandle particlesHandle;
+	CHandle soundHandle;
 	CHandle lightHandle;
 	CHandle lightFlicker;
 	bool hasFire = true;
@@ -19,6 +21,7 @@ private:
 	float time = 2.f;
 
 	TCompParticles* getParticles();
+	TCompSound* getSound();
 	TCompLightPoint* getLight();
 	TCompLightFlicker* getLightFlicker();
 	void onEntityCreated(const TMsgEntityCreated& msg);

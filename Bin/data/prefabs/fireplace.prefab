@@ -82,6 +82,23 @@
 			"light_flicker": {
 				"intensityVariation": 0.1,
 				"variationSpeed": 0.5
+			},
+			"sound": {
+				"events": [
+				  {
+					"id": "fire",
+					"path": "event:/INTERACTUABLE/fuego",
+					"play": true
+				  },
+				  {
+					"id": "fire_on",
+					"path": ""
+				  },
+				  {
+					"id": "fire_off",
+					"path": ""
+				  }
+				]
 			}
 		}
 	}
