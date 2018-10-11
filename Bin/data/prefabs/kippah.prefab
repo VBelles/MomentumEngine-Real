@@ -52,6 +52,7 @@
             "name": "rangedAttack",
             "frame_data": "0 120 140",
             "damage": 1.0,
+            "is_ranged": true,
             "invulnerabilityTime": 1.0,
             "hitbox": "attack",
             "type": "ranged",

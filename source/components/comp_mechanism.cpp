@@ -2,6 +2,7 @@
 #include "comp_mechanism.h"
 #include "entity/common_msgs.h"
 #include "components/player/attack_info.h"
+#include "modules/system_modules/sound/comp_sound.h"
 
 DECL_OBJ_MANAGER("mechanism", TCompMechanism);
 
@@ -84,7 +85,15 @@ void TCompMechanism::onActivated(bool isActive, bool sound) {
 	render->setMeshEnabled(1, isActive);
 	render->refreshMeshesInRenderManager();
 	if (sound) {
-		TCompTransform* transform = get<TCompTransform>();
-		EngineSound.emitEvent(isActive ? SOUND_MECHANISM_ON : SOUND_MECHANISM_OFF, transform);
+		TCompSound* sound = get<TCompSound>();
+		if(isActivated) {
+			sound->play("activate");
+			if (isResettable) {
+				sound->play("clock");
+			}
+		}
+		else {
+			sound->stop("clock");
+		}
 	}
 }

@@ -62,32 +62,9 @@ static const std::string INTERPOLATOR_SINE_IN_OUT = "Sine in out";
 static const std::string AUTOLOAD_SCRIPTS_PATH = "data/scripts/autoload/";
 
 // Sound
-auto constexpr SOUND_LANDING = "event:/PROTA/caida";
-auto constexpr SOUND_STEP_LEFT = "event:/PROTA/correr terreno/walk_ground_l";
-auto constexpr SOUND_STEP_RIGHT = "event:/PROTA/correr terreno/walk_ground_l";
-auto constexpr SOUND_JUMP = "event:/PROTA/saltar/salto corto/salto_corto_saltar";
-auto constexpr SOUND_JUMP_FLY = "event:/PROTA/saltar/salto corto/salto_corto_volar";
-auto constexpr SOUND_JUMP_LONG = "event:/PROTA/saltar/salto largo/salto_largo_saltar";
-auto constexpr SOUND_JUMP_LONG_FLY = "event:/PROTA/saltar/salto largo/salto_largo_volar";
-auto constexpr SOUND_DODGE = "event:/PROTA/dodge";
-auto constexpr SOUND_HUGGING_WALL = "event:/PROTA/deslizar_pared";
-auto constexpr SOUND_RELEASE_POWER = "event:/PROTA/liberar_energia";
-auto constexpr SOUND_DIE = "event:/PROTA/muerte";
-auto constexpr SOUND_ATTACK_HIT = "event:/PROTA/golpes/golpe_hit";
-auto constexpr SOUND_ATTACK_MOVEMENT = "event:/PROTA/golpes/golpe_movimiento";
-auto constexpr SOUND_LAUNCHER_HORIZONTAL = "event:/PROTA/launcher/launcher_horizontal_lanzar";
-auto constexpr SOUND_LAUNCHER_VERTICAL = "event:/PROTA/launcher/launcher_vertical_lanzar";
-auto constexpr SOUND_LAUNCHER_LOOP = "event:/PROTA/launcher/launcher_estatica";
-auto constexpr SOUND_LAUNCHER_END = "event:/PROTA/launcher/launcher_final";
-auto constexpr SOUND_COIN = "event:/ELEMENTOS GAMEPLAY/coger_crisalida";
-auto constexpr SOUND_COLLECT_CHRYSALIS = "event:/ELEMENTOS GAMEPLAY/coger_crisalida";
-auto constexpr SOUND_MECHANISM_ON = "event:/ELEMENTOS GAMEPLAY/mecanismo/mecanismo_on";
-auto constexpr SOUND_MECHANISM_OFF = "event:/ELEMENTOS GAMEPLAY/mecanismo/mecanismo_off";
-auto constexpr SOUND_AMBIENT_WIND = "event:/AMBIENTACION/viento";
-auto constexpr SOUND_AMBIENT = "event:/AMBIENTACION/ambientacion";
-auto constexpr SOUND_LVL_UP_1 = "event:/PROTA/cambio de estado/cambio_1";
-auto constexpr SOUND_LVL_UP_2 = "event:/PROTA/cambio de estado/cambio_2";
-auto constexpr SOUND_LVL_UP_3 = "event:/PROTA/cambio de estado/cambio_3";
+auto constexpr SOUND_COLLECT_COIN = "event:/INTERACTUABLE/coger_moneda";
+auto constexpr SOUND_COLLECT_CHRYSALIS = "event:/INTERACTUABLE/coger_crisalida";
+
 
 // Particles
 auto constexpr SLASH_CLOCKWISE = "data/particles/player/slash_clockwise.particles";

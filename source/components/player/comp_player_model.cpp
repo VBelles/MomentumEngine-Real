@@ -166,7 +166,10 @@ void TCompPlayerModel::onLevelChange(const TMsgPowerLvlChange& msg) {
 		};
 		getParticles()->launch(msg.powerLvl == 2 ? "lvl_up_2" : "lvl_up_3");
 		getSound()->play(msg.powerLvl == 2 ? "lvl_up_2" : "lvl_up_3");
-	}	
+	}
+	else {
+		getSound()->play("lvl_down");
+	}
 }
 
 void TCompPlayerModel::onAllScenesCreated(const TMsgAllScenesCreated& msg) {
@@ -584,6 +587,7 @@ void TCompPlayerModel::gainPowerButtonPressed() {//Debug Only
 
 void TCompPlayerModel::onAttackHit(const TMsgAttackHit& msg) {
 	if (!isInvulnerable) {
+		CEntity* attacker = msg.attacker;
 		receivedAttack = msg.info;
 		stateManager->getState()->onDamage(msg);
 		//lo que diferencia hard de soft es el stun

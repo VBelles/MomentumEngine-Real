@@ -69,9 +69,11 @@ void TCompWalkSound::update(float delta) {
 
 void TCompWalkSound::emitSound(const FootInfo& footInfo) {
 	IActionState* state = getPlayerModel()->getStateManager()->getState();
-	if (((state->state == State::Run && getPlayerModel()->getPowerGauge()->getPowerLevel() != 3) 
-			|| state->state == State::Walk)
+	if ((state->state == State::Run && getPlayerModel()->getPowerGauge()->getPowerLevel() != 3)
 		&& state->getMovementInput().Length() > 0) {
+		EngineSound.emitEvent(footInfo.eventName.c_str());
+	}
+	else if (state->state == State::Walk) {
 		EngineSound.emitEvent(footInfo.eventName.c_str());
 	}
 }

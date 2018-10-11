@@ -396,11 +396,11 @@
 				"feet": [
 					{
 						"bone": "Bip001 R Foot",
-						"event": "event:/PROTA/correr terreno/run_ground_r"
+						"event": "event:/PROTA/walk_right"
 					},
 					{
 						"bone": "Bip001 L Foot",
-						"event": "event:/PROTA/correr terreno/run_ground_l"
+						"event": "event:/PROTA/walk_left"
 					}
 				]
 			},
@@ -408,15 +408,19 @@
 				"events": [
 					{
 						"id": "attack",
-						"path": "event:/PROTA/golpes/golpe_movimiento"
+						"path": "event:/PROTA/golpe_movimiento"
+					},
+					{
+						"id": "finisher_ground",
+						"path": "event:/PROTA/golpe_movimiento"
 					},
 					{
 						"id": "launcher_horizontal",
-						"path": "event:/PROTA/launcher/launcher_horizontal_lanzar"
+						"path": "event:/PROTA/launcherh_lanzar"
 					},
 					{
 						"id": "launcher_vertical",
-						"path": "event:/PROTA/launcher/launcher_vertical_lanzar"
+						"path": "event:/PROTA/launcherv_lanzar"
 					},
 					{
 						"id": "release_power",
@@ -424,11 +428,19 @@
 					},
 					{
 						"id": "jump",
-						"path": "event:/PROTA/saltar/salto corto/salto_corto_saltar"
+						"path": "event:/PROTA/salto_corto_salto"
+					},
+					{
+						"id": "jump_fly",
+						"path": "event:/PROTA/salto_corto_vuelo"
 					},
 					{
 						"id": "jump_long",
-						"path": "event:/PROTA/saltar/salto largo/salto_largo_saltar"
+						"path": "event:/PROTA/salto_largo_salto"
+					},
+					{
+						"id": "jump_long_fly",
+						"path": "event:/PROTA/salto_largo_vuelo"
 					},
 					{
 						"id": "dodge",
@@ -440,7 +452,7 @@
 					},
 					{
 						"id": "climbing",
-						"path": ""
+						"path": "event:/PROTA/trepar"
 					},
 					{
 						"id": "landing",
@@ -448,7 +460,7 @@
 					},
 					{
 						"id": "hard_landing",
-						"path": "event:/PROTA/caida"
+						"path": "event:/PROTA/fallingattack_hardlanding"
 					},
 					{
 						"id": "death",
@@ -465,6 +477,54 @@
 					{
 						"id": "lvl_up_3",
 						"path": "event:/PROTA/cambio de estado/cambio_3"
+					},
+					{
+						"id": "lvl_down",
+						"path": "event:/PROTA/level_down"
+					},
+					{
+						"id": "lvl_down_pre",
+						"path": "event:/PROTA/level_down_pre"
+					},
+					{
+						"id": "spend_coins",
+						"path": "event:/PROTA/gastar_moneda"
+					},
+					{
+						"id": "float",
+						"path": "event:/PROTA/flotar"
+					},
+					{
+						"id": "getting_hit",
+						"path": ""
+					},
+					{
+						"id": "getting_shot",
+						"path": "event:/PROTA/recibe_disparo"
+					},
+					{
+						"id": "step_ground_right",
+						"path": "event:/PROTA/steps_ground_right"
+					},
+					{
+						"id": "step_ground_left",
+						"path": "event:/PROTA/steps_ground_left"
+					},
+					{
+						"id": "step_platform_right",
+						"path": "event:/PROTA/steps_platform_right"
+					},
+					{
+						"id": "step_platform_left",
+						"path": "event:/PROTA/steps_platform_left"
+					},
+					{
+						"id": "step_walk_right",
+						"path": "event:/PROTA/walk_left"
+					},
+					{
+						"id": "step_walk_left",
+						"path": "event:/PROTA/walk_right"
 					}
 				]
 			},

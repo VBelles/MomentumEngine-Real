@@ -122,7 +122,7 @@ void TCompCollectableManager::onCollect(const TMsgCollect& msg) {
 			spendCoins(getNumberOfCoins() - maxCoins);
 		}
 		EngineParticles.launchSystem(PARTICLES_COIN, { entity });
-		EngineSound.emitEvent(SOUND_COLLECT_CHRYSALIS, transform);
+		EngineSound.emitEvent(SOUND_COLLECT_COIN, transform);
 		break;
 	case Type::LIFEPIECE:
 		collectable->collect();
