@@ -10,6 +10,11 @@
 	etype(CYCLE_NIGHT), \
 	etype(CYCLE_DAWN), \
 	etype(CYCLE_DAY), \
+	etype(LOCATION_CEMETERY), \
+	etype(LOCATION_CIVILIZATION), \
+	etype(LOCATION_CHRYSTALS), \
+	etype(LOCATION_MUSHROOMS), \
+	etype(LOCATION_TEMPLE), \
 	etype(LAST)
 
 #define etype(x) x
@@ -18,12 +23,6 @@ typedef enum { EVENT_TYPES } EventType;
 #define etype(x) #x
 static const char *strEventTypes[] = { EVENT_TYPES };
 #undef etype
-
-//esto puede que no haga falta
-#define etype(x) { #x, x }
-static const std::map<std::string, EventType> eventTypesMap = { EVENT_TYPES };
-#undef etype
-
 
 class TCompMusic : public TCompBase {
 private:
@@ -47,11 +46,6 @@ private:
 		bool exitsOnBeat = false;
 		std::string fmodVariable = "";
 	};
-
-	//enum EventType {
-	//	COMBAT, LEVEL_SSJ2, LEVEL_SSJ3, CYCLE_NIGHT, CYCLE_DAWN, CYCLE_DAY, PLACE_CEMETERY, PLACE_CIVILIZATION,
-	//	PLACE_CHRYSTALS, PLACE_MUSHROOMS, PLACE_TEMPLE
-	//};
 
 	std::map<EventType, EventInfo> eventInfos;
 
@@ -81,9 +75,16 @@ public:
 
 	DayNight dayNightState = DAY;
 
-	enum Place {
-		CEMETERY, CIVILIZATION, CHRYSTALS, MUSHROOMS, TEMPLE
+	enum Location {
+		NONE			= 0,
+		CEMETERY		= 1 << 0,
+		CIVILIZATION	= 1 << 1,
+		CHRYSTALS		= 1 << 2,
+		MUSHROOMS		= 1 << 3,
+		TEMPLE			= 1 << 4
 	};
+
+	Location locationState = NONE;
 
 	DECL_SIBLING_ACCESS();
 	TCompMusic() = default;
@@ -98,7 +99,8 @@ public:
 	void setCombat(Combat combat);
 	void setLevel(Level level);
 	void setDayNight(DayNight dayNight);
-	void setPlace(Place place);
+	void addLocation(Location location);
+	void removeLocation(Location location);
 
 	void setPauseMenu(bool paused);
 

@@ -78,109 +78,187 @@ void TCompMusic::stop() {
 }
 
 void TCompMusic::setCombat(Combat combat) {
-	if (combat != combatState) {
-		int timeMiliseconds;
-		momentumThemeInstance->getTimelinePosition(&timeMiliseconds);
-		eventInfos[COMBAT].timer.reset();
-		eventInfos[COMBAT].startingRatio = eventInfos[COMBAT].ratio;
-		switch (combat) {
-		case OFF:
-			//se puede hacer que salga al final del compás
-			eventInfos[COMBAT].timeMiliseconds = 5000;
-			eventInfos[COMBAT].targetRatio = 0;
-			break;
-		case DANGER:
-			//o que entre al siguiente beat
-			//combatTimeMiliseconds = milisecondsPerBar - (timeMiliseconds % milisecondsPerBar);
-			eventInfos[COMBAT].timeMiliseconds = milisecondsPerBeat - (timeMiliseconds % milisecondsPerBeat);
-			eventInfos[COMBAT].targetRatio = 1;
-			break;
-		}
-		combatState = combat;
+	if (combat == combatState) return;
+	int timeMiliseconds;
+	momentumThemeInstance->getTimelinePosition(&timeMiliseconds);
+	eventInfos[COMBAT].timer.reset();
+	eventInfos[COMBAT].startingRatio = eventInfos[COMBAT].ratio;
+	switch (combat) {
+	case OFF:
+		//se puede hacer que salga al final del compás
+		eventInfos[COMBAT].timeMiliseconds = 5000;
+		eventInfos[COMBAT].targetRatio = 0;
+		break;
+	case DANGER:
+		//o que entre al siguiente beat
+		//combatTimeMiliseconds = milisecondsPerBar - (timeMiliseconds % milisecondsPerBar);
+		eventInfos[COMBAT].timeMiliseconds = milisecondsPerBeat - (timeMiliseconds % milisecondsPerBeat);
+		eventInfos[COMBAT].targetRatio = 1;
+		break;
 	}
+	combatState = combat;
 }
 
 void TCompMusic::setLevel(Level level) {
-	if (level != levelState) {
-		int timeMiliseconds;
-		momentumThemeInstance->getTimelinePosition(&timeMiliseconds);
-		eventInfos[LEVEL_SSJ2].timer.reset();
-		eventInfos[LEVEL_SSJ2].startingRatio = eventInfos[LEVEL_SSJ2].ratio;
-		eventInfos[LEVEL_SSJ3].timer.reset();
-		eventInfos[LEVEL_SSJ3].startingRatio = eventInfos[LEVEL_SSJ3].ratio;
-		int fadeOutTime = 3000;
-		switch (level) {
-		case LEVEL_1:
-			eventInfos[LEVEL_SSJ2].timeMiliseconds = fadeOutTime;
-			eventInfos[LEVEL_SSJ2].targetRatio = 0;
+	if (level == levelState) return;
+	int timeMiliseconds;
+	momentumThemeInstance->getTimelinePosition(&timeMiliseconds);
+	eventInfos[LEVEL_SSJ2].timer.reset();
+	eventInfos[LEVEL_SSJ2].startingRatio = eventInfos[LEVEL_SSJ2].ratio;
+	eventInfos[LEVEL_SSJ3].timer.reset();
+	eventInfos[LEVEL_SSJ3].startingRatio = eventInfos[LEVEL_SSJ3].ratio;
+	int fadeOutTime = 3000;
+	switch (level) {
+	case LEVEL_1:
+		eventInfos[LEVEL_SSJ2].timeMiliseconds = fadeOutTime;
+		eventInfos[LEVEL_SSJ2].targetRatio = 0;
 
-			eventInfos[LEVEL_SSJ3].timeMiliseconds = fadeOutTime;
-			eventInfos[LEVEL_SSJ3].targetRatio = 0;
-			break;
-		case LEVEL_2:
-			eventInfos[LEVEL_SSJ2].timeMiliseconds = milisecondsPerBar - (timeMiliseconds % milisecondsPerBar);
-			eventInfos[LEVEL_SSJ2].targetRatio = 1;
+		eventInfos[LEVEL_SSJ3].timeMiliseconds = fadeOutTime;
+		eventInfos[LEVEL_SSJ3].targetRatio = 0;
+		break;
+	case LEVEL_2:
+		eventInfos[LEVEL_SSJ2].timeMiliseconds = milisecondsPerBar - (timeMiliseconds % milisecondsPerBar);
+		eventInfos[LEVEL_SSJ2].targetRatio = 1;
 
-			eventInfos[LEVEL_SSJ3].timeMiliseconds = fadeOutTime;
-			eventInfos[LEVEL_SSJ3].targetRatio = 0;
-			break;
-		case LEVEL_3:
-			eventInfos[LEVEL_SSJ2].timeMiliseconds = milisecondsPerBar - (timeMiliseconds % milisecondsPerBar);
-			eventInfos[LEVEL_SSJ2].targetRatio = 1;
+		eventInfos[LEVEL_SSJ3].timeMiliseconds = fadeOutTime;
+		eventInfos[LEVEL_SSJ3].targetRatio = 0;
+		break;
+	case LEVEL_3:
+		eventInfos[LEVEL_SSJ2].timeMiliseconds = milisecondsPerBar - (timeMiliseconds % milisecondsPerBar);
+		eventInfos[LEVEL_SSJ2].targetRatio = 1;
 
-			eventInfos[LEVEL_SSJ3].timeMiliseconds = milisecondsPerBar - (timeMiliseconds % milisecondsPerBar);
-			eventInfos[LEVEL_SSJ3].targetRatio = 1;
-			break;
-		}
-		levelState = level;
-
+		eventInfos[LEVEL_SSJ3].timeMiliseconds = milisecondsPerBar - (timeMiliseconds % milisecondsPerBar);
+		eventInfos[LEVEL_SSJ3].targetRatio = 1;
+		break;
 	}
+	levelState = level;
 }
 
 void TCompMusic::setDayNight(DayNight dayNight) {
-	if (dayNight != dayNightState) {
-		int timeMiliseconds;
-		momentumThemeInstance->getTimelinePosition(&timeMiliseconds);
+	if (dayNight == dayNightState) return;
+	int timeMiliseconds;
+	momentumThemeInstance->getTimelinePosition(&timeMiliseconds);
 
-		eventInfos[CYCLE_NIGHT].timer.reset();
-		eventInfos[CYCLE_NIGHT].startingRatio = eventInfos[CYCLE_NIGHT].ratio;
-		eventInfos[CYCLE_DAWN].timer.reset();
-		eventInfos[CYCLE_DAWN].startingRatio = eventInfos[CYCLE_DAWN].ratio;
-		eventInfos[CYCLE_DAY].timer.reset();
-		eventInfos[CYCLE_DAY].startingRatio = eventInfos[CYCLE_DAY].ratio;
+	eventInfos[CYCLE_NIGHT].timer.reset();
+	eventInfos[CYCLE_NIGHT].startingRatio = eventInfos[CYCLE_NIGHT].ratio;
+	eventInfos[CYCLE_DAWN].timer.reset();
+	eventInfos[CYCLE_DAWN].startingRatio = eventInfos[CYCLE_DAWN].ratio;
+	eventInfos[CYCLE_DAY].timer.reset();
+	eventInfos[CYCLE_DAY].startingRatio = eventInfos[CYCLE_DAY].ratio;
 
-		float nightRatio = 0;
-		float dawnRatio = 0;
-		float dayRatio = 0;
+	float nightRatio = 0;
+	float dawnRatio = 0;
+	float dayRatio = 0;
 
-		switch (dayNight) {
-		case NIGHT:
-			nightRatio = 1.f;
-			break;
-		case DAWN:
-			dawnRatio = 1.f;
-			break;
-		case DAY:
-			dayRatio = 1.f;
-			break;
-		case DUSK:
-			dawnRatio = 1.f;
-			break;
-		}
-		eventInfos[CYCLE_NIGHT].timeMiliseconds = milisecondsPerBar - (timeMiliseconds % milisecondsPerBar) + milisecondsPerBar * 1;
-		eventInfos[CYCLE_NIGHT].targetRatio = nightRatio;
-
-		eventInfos[CYCLE_DAWN].timeMiliseconds = milisecondsPerBar - (timeMiliseconds % milisecondsPerBar) + milisecondsPerBar * 1;
-		eventInfos[CYCLE_DAWN].targetRatio = dawnRatio;
-
-		eventInfos[CYCLE_DAY].timeMiliseconds = milisecondsPerBar - (timeMiliseconds % milisecondsPerBar) + milisecondsPerBar * 1;
-		eventInfos[CYCLE_DAY].targetRatio = dayRatio;
-
-		dayNightState = dayNight;
+	switch (dayNight) {
+	case NIGHT:
+		nightRatio = 1.f;
+		break;
+	case DAWN:
+		dawnRatio = 1.f;
+		break;
+	case DAY:
+		dayRatio = 1.f;
+		break;
+	case DUSK:
+		dawnRatio = 1.f;
+		break;
 	}
+	eventInfos[CYCLE_NIGHT].timeMiliseconds = milisecondsPerBar - (timeMiliseconds % milisecondsPerBar) + milisecondsPerBar * 1;
+	eventInfos[CYCLE_NIGHT].targetRatio = nightRatio;
+
+	eventInfos[CYCLE_DAWN].timeMiliseconds = milisecondsPerBar - (timeMiliseconds % milisecondsPerBar) + milisecondsPerBar * 1;
+	eventInfos[CYCLE_DAWN].targetRatio = dawnRatio;
+
+	eventInfos[CYCLE_DAY].timeMiliseconds = milisecondsPerBar - (timeMiliseconds % milisecondsPerBar) + milisecondsPerBar * 1;
+	eventInfos[CYCLE_DAY].targetRatio = dayRatio;
+
+	dayNightState = dayNight;
 }
 
-void TCompMusic::setPlace(Place place) {
+void TCompMusic::addLocation(Location location) {
+	if (locationState & location) return;
+	int timeMiliseconds;
+	momentumThemeInstance->getTimelinePosition(&timeMiliseconds);
+
+	int fadeInTime = 6000;
+	switch (location) {
+	case CEMETERY:
+		eventInfos[LOCATION_CEMETERY].timer.reset();
+		eventInfos[LOCATION_CEMETERY].startingRatio = eventInfos[LOCATION_CEMETERY].ratio;
+		eventInfos[LOCATION_CEMETERY].timeMiliseconds = fadeInTime;
+		eventInfos[LOCATION_CEMETERY].targetRatio = 1;
+		break;
+	case CIVILIZATION:
+		eventInfos[LOCATION_CIVILIZATION].timer.reset();
+		eventInfos[LOCATION_CIVILIZATION].startingRatio = eventInfos[LOCATION_CIVILIZATION].ratio;
+		eventInfos[LOCATION_CIVILIZATION].timeMiliseconds = fadeInTime;
+		eventInfos[LOCATION_CIVILIZATION].targetRatio = 1;
+		break;
+	case CHRYSTALS:
+		eventInfos[LOCATION_CHRYSTALS].timer.reset();
+		eventInfos[LOCATION_CHRYSTALS].startingRatio = eventInfos[LOCATION_CHRYSTALS].ratio;
+		eventInfos[LOCATION_CHRYSTALS].timeMiliseconds = fadeInTime;
+		eventInfos[LOCATION_CHRYSTALS].targetRatio = 1;
+		break;
+	case MUSHROOMS:
+		eventInfos[LOCATION_MUSHROOMS].timer.reset();
+		eventInfos[LOCATION_MUSHROOMS].startingRatio = eventInfos[LOCATION_MUSHROOMS].ratio;
+		eventInfos[LOCATION_MUSHROOMS].timeMiliseconds = fadeInTime;
+		eventInfos[LOCATION_MUSHROOMS].targetRatio = 1;
+		break;
+	case TEMPLE:
+		eventInfos[LOCATION_TEMPLE].timer.reset();
+		eventInfos[LOCATION_TEMPLE].startingRatio = eventInfos[LOCATION_TEMPLE].ratio;
+		eventInfos[LOCATION_TEMPLE].timeMiliseconds = fadeInTime;
+		eventInfos[LOCATION_TEMPLE].targetRatio = 1;
+		break;
+	}
+
+	locationState = static_cast<Location>(locationState | location);
+}
+
+void TCompMusic::removeLocation(Location location) {
+	if (!(locationState & location)) return;
+
+	int timeMiliseconds;
+	momentumThemeInstance->getTimelinePosition(&timeMiliseconds);
+
+	int fadeOutTime = 6000;
+	switch (location) {
+	case CEMETERY:
+		eventInfos[LOCATION_CEMETERY].timer.reset();
+		eventInfos[LOCATION_CEMETERY].startingRatio = eventInfos[LOCATION_CEMETERY].ratio;
+		eventInfos[LOCATION_CEMETERY].timeMiliseconds = fadeOutTime;
+		eventInfos[LOCATION_CEMETERY].targetRatio = 0;
+		break;
+	case CIVILIZATION:
+		eventInfos[LOCATION_CIVILIZATION].timer.reset();
+		eventInfos[LOCATION_CIVILIZATION].startingRatio = eventInfos[LOCATION_CIVILIZATION].ratio;
+		eventInfos[LOCATION_CIVILIZATION].timeMiliseconds = fadeOutTime;
+		eventInfos[LOCATION_CIVILIZATION].targetRatio = 0;
+		break;
+	case CHRYSTALS:
+		eventInfos[LOCATION_CHRYSTALS].timer.reset();
+		eventInfos[LOCATION_CHRYSTALS].startingRatio = eventInfos[LOCATION_CHRYSTALS].ratio;
+		eventInfos[LOCATION_CHRYSTALS].timeMiliseconds = fadeOutTime;
+		eventInfos[LOCATION_CHRYSTALS].targetRatio = 0;
+		break;
+	case MUSHROOMS:
+		eventInfos[LOCATION_MUSHROOMS].timer.reset();
+		eventInfos[LOCATION_MUSHROOMS].startingRatio = eventInfos[LOCATION_MUSHROOMS].ratio;
+		eventInfos[LOCATION_MUSHROOMS].timeMiliseconds = fadeOutTime;
+		eventInfos[LOCATION_MUSHROOMS].targetRatio = 0;
+		break;
+	case TEMPLE:
+		eventInfos[LOCATION_TEMPLE].timer.reset();
+		eventInfos[LOCATION_TEMPLE].startingRatio = eventInfos[LOCATION_TEMPLE].ratio;
+		eventInfos[LOCATION_TEMPLE].timeMiliseconds = fadeOutTime;
+		eventInfos[LOCATION_TEMPLE].targetRatio = 0;
+		break;
+	}
+
+	locationState = static_cast<Location>(locationState & !location);
 }
 
 void TCompMusic::setPauseMenu(bool paused) {
