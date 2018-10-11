@@ -254,8 +254,9 @@ struct TMaterialExporter (
 			exportStdMaterial mat (mat_path + mat_name) pure:pure
 		) else if matClass == MultiMaterial then (
 			local multi_mat = mat
-		setMaterialIDs obj --set Material IDs to 1. TODO: REMOVE WHEN USING ACTUAL MULTIMATERIALS.
+		--setMaterialIDs obj --set Material IDs to 1. TODO: REMOVE WHEN USING ACTUAL MULTIMATERIALS.
 			local materials_of_mesh = getMaterialsUsedByMesh obj
+			format "materials_of_mesh.count: %\n" materials_of_mesh.count
 			for mat_idx = 1 to materials_of_mesh.count do (
 				if materials_of_mesh[ mat_idx ] == undefined then continue
 				local mat_of_mesh = multi_mat[ mat_idx ]

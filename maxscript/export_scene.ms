@@ -2172,9 +2172,6 @@ struct TSceneExporter (
 )
 
 /*
-TODO: NO PONER ID 1 A MULTIMATERIAL CUANDO LOS USEMOS, está provisional
-	  para whitebox (está en función exportMaterial).
-
 TODO: Que el trigger de las cámaras sea el parent, y no el hijo como ahora.
 
 NOTA: Si una capa pasa a estar vacía, no se exporta pero no se borra el

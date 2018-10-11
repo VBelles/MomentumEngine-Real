@@ -30,7 +30,7 @@ struct TUtils (
 			if (j + 1) > objArr.count then j = 1
 		)
 		)
-		return objArr[1]
+		return convertToMesh objArr[1]
 	),
 
 	fn attachSel = (
