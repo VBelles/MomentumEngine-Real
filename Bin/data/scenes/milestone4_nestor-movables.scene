@@ -2,6 +2,203 @@
   {
     "entity":
     {
+      "name": "nes_estaca_emisivo_6_011",
+      "transform":
+      {
+        "pos": "-83.9005 42.9955 -13.3555",
+        "rotation": "0.0 0.0 0.0 -1.0"
+      },
+      "render":
+      [
+        {
+          "mesh": "data/meshes/nes_estaca_emisivo_6_011.mesh",
+          "materials":
+          [
+            "data/materials/m_estaca_07.material"
+          ],
+          "enabled": true
+        }
+      ],
+      "collider":
+      {
+        "mesh_src": "data/meshes/nes_estaca_emisivo_6_col_011.col_mesh",
+        "shape": "convex_mesh",
+        "type": "kinematic",
+        "group":
+        [
+          "scenario"
+        ]
+      },
+      "platform_simple":
+      {
+        "rotation_axis": "0.0 -1.0 0.0",
+        "rotation_speed": 1.0
+      }
+    }
+  },
+  {
+    "entity":
+    {
+      "name": "nes_mariosunshine_MS012",
+      "transform":
+      {
+        "pos": "-185.842 55.1578 -50.2487",
+        "rotation": "-0.124915 -0.973124 0.00808409 0.193288"
+      },
+      "render":
+      [
+        {
+          "mesh": "data/meshes/nes_mariosunshine_MS012.mesh",
+          "materials":
+          [
+            "data/materials/m_ms_mariosunshine.material"
+          ],
+          "enabled": true
+        }
+      ],
+      "collider":
+      {
+        "mesh_src": "data/meshes/nes_mariosunshine_collider013.col_mesh",
+        "shape": "convex_mesh",
+        "type": "kinematic",
+        "group":
+        [
+          "scenario"
+        ]
+      },
+      "platform_simple":
+      {
+        "rotation_axis": "0.0 0.0 -1.0",
+        "rotation_speed": 0.5
+      }
+    }
+  },
+  {
+    "entity":
+    {
+      "name": "nes_mariosunshine_MS011",
+      "transform":
+      {
+        "pos": "-196.212 49.8698 -44.5428",
+        "rotation": "-0.124915 -0.973124 0.00808409 0.193288"
+      },
+      "render":
+      [
+        {
+          "mesh": "data/meshes/nes_mariosunshine_MS011.mesh",
+          "materials":
+          [
+            "data/materials/m_ms_mariosunshine.material"
+          ],
+          "enabled": true
+        }
+      ],
+      "collider":
+      {
+        "mesh_src": "data/meshes/nes_mariosunshine_collider012.col_mesh",
+        "shape": "convex_mesh",
+        "type": "kinematic",
+        "group":
+        [
+          "scenario"
+        ]
+      },
+      "platform_simple":
+      {
+        "rotation_axis": "0.0 0.0 -1.0",
+        "rotation_speed": 0.5
+      }
+    }
+  },
+  {
+    "entity":
+    {
+      "name": "nes_mariosunshine_MS010",
+      "transform":
+      {
+        "pos": "-210.592 49.6605 -21.7794",
+        "rotation": "0.00628484 -0.943832 -0.0287934 0.329109"
+      },
+      "render":
+      [
+        {
+          "mesh": "data/meshes/nes_mariosunshine_MS010.mesh",
+          "materials":
+          [
+            "data/materials/m_ms_mariosunshine.material"
+          ],
+          "enabled": true
+        }
+      ],
+      "collider":
+      {
+        "mesh_src": "data/meshes/nes_mariosunshine_collider011.col_mesh",
+        "shape": "convex_mesh",
+        "type": "kinematic",
+        "group":
+        [
+          "scenario"
+        ]
+      },
+      "platform_simple":
+      {
+        "rotation_axis": "0.0 0.0 1.0",
+        "rotation_speed": 0.5
+      }
+    }
+  },
+  {
+    "entity":
+    {
+      "name": "nes_platform_civilization_emissive_mini_001",
+      "transform":
+      {
+        "pos": "36.2626 36.4334 -117.992",
+        "rotation": "0.0 0.0 0.0 -1.0"
+      },
+      "render":
+      [
+        {
+          "mesh": "data/meshes/nes_platform_civilization_emissive_mini_001.mesh",
+          "materials":
+          [
+            "data/materials/platform_v1.material"
+          ],
+          "enabled": true
+        }
+      ],
+      "collider":
+      {
+        "mesh_src": "data/meshes/nes_platform_civilization_emissive_mini_col_001.col_mesh",
+        "shape": "convex_mesh",
+        "type": "kinematic",
+        "group":
+        [
+          "scenario"
+        ]
+      },
+      "platform_simple":
+      {
+        "curve_type": "catmull-rom",
+        "automove": true,
+        "loop": true,
+        "closed": false,
+        "move_offset": 0,
+        "travel_wait_time": 1.0,
+        "speed": 0.15,
+        "knots":
+        [
+           "36.5326 36.288 -129.384",
+           "36.5326 36.288 -129.384",
+           "35.6266 36.288 -107.879",
+           "35.6266 36.288 -107.879"
+        ]
+      }
+    }
+  },
+  {
+    "entity":
+    {
       "name": "nes_platform_civilization_emissive_082",
       "transform":
       {
@@ -57,8 +254,8 @@
       "name": "nes_mariosunshine_MS009",
       "transform":
       {
-        "pos": "-185.703 54.321 -27.7145",
-        "rotation": "-0.126079 0.256605 -0.0337826 -0.957662"
+        "pos": "-217.149 47.8514 19.6567",
+        "rotation": "0.0583337 0.788414 0.00282577 -0.612366"
       },
       "render":
       [
@@ -84,7 +281,7 @@
       "platform_simple":
       {
         "rotation_axis": "0.0 0.0 1.0",
-        "rotation_speed": 0.7
+        "rotation_speed": 0.5
       }
     }
   },
@@ -94,8 +291,8 @@
       "name": "nes_mariosunshine_MS008",
       "transform":
       {
-        "pos": "-198.666 45.6928 -0.3605",
-        "rotation": "-0.106921 0.568669 -0.0748667 -0.812144"
+        "pos": "-201.921 42.3598 2.02288",
+        "rotation": "0.0446426 -0.931653 0.122655 0.339094"
       },
       "render":
       [
@@ -120,8 +317,8 @@
       },
       "platform_simple":
       {
-        "rotation_axis": "0.0 0.0 1.0",
-        "rotation_speed": 0.7
+        "rotation_axis": "0.0 0.0 -1.0",
+        "rotation_speed": 0.5
       }
     }
   },
@@ -158,7 +355,7 @@
       "platform_simple":
       {
         "rotation_axis": "0.0 0.0 -1.0",
-        "rotation_speed": 0.7
+        "rotation_speed": 0.5
       }
     }
   },
@@ -195,7 +392,7 @@
       "platform_simple":
       {
         "rotation_axis": "0.0 -1.0 0.0",
-        "rotation_speed": 0.3
+        "rotation_speed": 0.27
       }
     }
   },
@@ -232,7 +429,7 @@
       "platform_simple":
       {
         "rotation_axis": "0.0 -1.0 0.0",
-        "rotation_speed": 0.3
+        "rotation_speed": 0.27
       }
     }
   },
@@ -269,7 +466,7 @@
       "platform_simple":
       {
         "rotation_axis": "0.0 -1.0 0.0",
-        "rotation_speed": 0.3
+        "rotation_speed": 0.27
       }
     }
   },
@@ -306,7 +503,7 @@
       "platform_simple":
       {
         "rotation_axis": "0.0 -1.0 0.0",
-        "rotation_speed": 0.3
+        "rotation_speed": 0.27
       }
     }
   },
@@ -343,7 +540,7 @@
       "platform_simple":
       {
         "rotation_axis": "0.0 -1.0 0.0",
-        "rotation_speed": 0.3
+        "rotation_speed": 0.27
       }
     }
   },
@@ -380,7 +577,7 @@
       "platform_simple":
       {
         "rotation_axis": "0.0 -1.0 0.0",
-        "rotation_speed": 0.3
+        "rotation_speed": 0.27
       }
     }
   },
@@ -417,7 +614,7 @@
       "platform_simple":
       {
         "rotation_axis": "0.0 -1.0 0.0",
-        "rotation_speed": 0.3
+        "rotation_speed": 0.27
       }
     }
   },
@@ -454,7 +651,7 @@
       "platform_simple":
       {
         "rotation_axis": "0.0 -1.0 0.0",
-        "rotation_speed": 0.3
+        "rotation_speed": 0.27
       }
     }
   },
@@ -491,7 +688,7 @@
       "platform_simple":
       {
         "rotation_axis": "0.0 -1.0 0.0",
-        "rotation_speed": 0.3
+        "rotation_speed": 0.27
       }
     }
   },
@@ -528,7 +725,7 @@
       "platform_simple":
       {
         "rotation_axis": "0.0 -1.0 0.0",
-        "rotation_speed": 0.3
+        "rotation_speed": 0.27
       }
     }
   },
@@ -565,7 +762,7 @@
       "platform_simple":
       {
         "rotation_axis": "0.0 -1.0 0.0",
-        "rotation_speed": 0.3
+        "rotation_speed": 0.27
       }
     }
   },
@@ -602,7 +799,7 @@
       "platform_simple":
       {
         "rotation_axis": "0.0 -1.0 0.0",
-        "rotation_speed": 0.3
+        "rotation_speed": 0.27
       }
     }
   },
@@ -1236,8 +1433,8 @@
       "name": "nes_platform_civilization_emissive_065",
       "transform":
       {
-        "pos": "-75.2635 20.3751 -52.211",
-        "rotation": "0.0 0.0 0.0 -1.0"
+        "pos": "-96.0969 14.7412 -51.7575",
+        "rotation": "0.0 -0.173648 0.0 -0.984808"
       },
       "render":
       [
@@ -1271,13 +1468,13 @@
         "speed": 0.05,
         "knots":
         [
-           "-77.722 20.3876 -44.6009",
-           "-85.5061 20.3876 -44.6009",
-           "-85.5061 20.3876 -44.6009",
-           "-77.722 20.3876 -36.8168",
-           "-69.9379 20.3876 -44.6009",
-           "-77.722 20.3876 -52.385",
-           "-77.722 20.3876 -52.385"
+           "-95.8043 14.7537 -43.7655",
+           "-103.119 14.7537 -41.1032",
+           "-103.119 14.7537 -41.1032",
+           "-93.142 14.7537 -36.4508",
+           "-88.4897 14.7537 -46.4278",
+           "-98.4667 14.7537 -51.0802",
+           "-98.4667 14.7537 -51.0802"
         ]
       }
     }
@@ -1288,8 +1485,8 @@
       "name": "nes_platform_civilization_emissive_064",
       "transform":
       {
-        "pos": "-83.7734 20.3751 -56.7056",
-        "rotation": "0.0 0.0 0.0 -1.0"
+        "pos": "-105.631 14.7412 -53.0705",
+        "rotation": "0.0 -0.173648 0.0 -0.984808"
       },
       "render":
       [
@@ -1323,13 +1520,13 @@
         "speed": 0.05,
         "knots":
         [
-           "-86.1904 20.3876 -49.1483",
-           "-78.4063 20.3876 -49.1483",
-           "-78.4063 20.3876 -49.1483",
-           "-86.1904 20.3876 -56.9324",
-           "-93.9745 20.3876 -49.1483",
-           "-86.1904 20.3876 -41.3642",
-           "-86.1904 20.3876 -41.3642"
+           "-105.317 14.7537 -45.1423",
+           "-98.0026 14.7537 -47.8046",
+           "-98.0026 14.7537 -47.8046",
+           "-107.98 14.7537 -52.4569",
+           "-112.632 14.7537 -42.4799",
+           "-102.655 14.7537 -37.8276",
+           "-102.655 14.7537 -37.8276"
         ]
       }
     }
@@ -1340,8 +1537,8 @@
       "name": "nes_platform_civilization_emissive_063",
       "transform":
       {
-        "pos": "-88.096 20.3751 -33.0376",
-        "rotation": "0.0 0.0 0.0 -1.0"
+        "pos": "-101.598 14.7412 -29.3515",
+        "rotation": "0.0 -0.173648 0.0 -0.984808"
       },
       "render":
       [
@@ -1375,13 +1572,13 @@
         "speed": 0.05,
         "knots":
         [
-           "-85.6435 20.3876 -40.6802",
-           "-93.4276 20.3876 -40.6802",
-           "-93.4276 20.3876 -40.6802",
-           "-85.6435 20.3876 -32.8961",
-           "-77.8594 20.3876 -40.6802",
-           "-85.6435 20.3876 -48.4643",
-           "-85.6435 20.3876 -48.4643"
+           "-101.907 14.7537 -37.3719",
+           "-109.222 14.7537 -34.7096",
+           "-109.222 14.7537 -34.7096",
+           "-99.2448 14.7537 -30.0573",
+           "-94.5925 14.7537 -40.0342",
+           "-104.569 14.7537 -44.6866",
+           "-104.569 14.7537 -44.6866"
         ]
       }
     }
@@ -1392,8 +1589,8 @@
       "name": "nes_platform_civilization_emissive_062",
       "transform":
       {
-        "pos": "-96.492 20.3751 -37.5911",
-        "rotation": "0.0 0.0 0.0 -1.0"
+        "pos": "-111.045 14.7412 -30.7588",
+        "rotation": "0.0 -0.173648 0.0 -0.984808"
       },
       "render":
       [
@@ -1427,13 +1624,13 @@
         "speed": 0.05,
         "knots":
         [
-           "-94.1119 20.3876 -45.2276",
-           "-86.3278 20.3876 -45.2275",
-           "-86.3278 20.3876 -45.2275",
-           "-94.1119 20.3876 -53.0117",
-           "-101.896 20.3876 -45.2276",
-           "-94.1119 20.3876 -37.4434",
-           "-94.1119 20.3876 -37.4434"
+           "-111.42 14.7537 -38.7487",
+           "-104.105 14.7537 -41.411",
+           "-104.105 14.7537 -41.411",
+           "-114.082 14.7537 -46.0634",
+           "-118.735 14.7537 -36.0864",
+           "-108.758 14.7537 -31.434",
+           "-108.758 14.7537 -31.434"
         ]
       }
     }
@@ -2130,7 +2327,7 @@
       "name": "nes_mariosunshine_MS004",
       "transform":
       {
-        "pos": "-126.377 38.9809 -174.255",
+        "pos": "-126.038 38.9809 -173.031",
         "rotation": "0.0298407 -0.439579 -0.190791 -0.877199"
       },
       "render":
@@ -4791,8 +4988,8 @@
       "name": "nes_platform_civilization_001",
       "transform":
       {
-        "pos": "-76.1804 41.4784 -22.0742",
-        "rotation": "0.0 0.0 0.0 -1.0"
+        "pos": "-80.1402 35.4065 -54.495",
+        "rotation": "0.0 -0.608761 0.0 -0.793353"
       },
       "render":
       [
@@ -4819,55 +5016,6 @@
       {
         "rotation_axis": "0.0 0.0 -1.0",
         "rotation_speed": 0.5
-      }
-    }
-  },
-  {
-    "entity":
-    {
-      "name": "nes_platform_civilization_emissive_mini_001",
-      "transform":
-      {
-        "pos": "36.2626 36.4334 -117.992",
-        "rotation": "0.0 0.0 0.0 -1.0"
-      },
-      "render":
-      [
-        {
-          "mesh": "data/meshes/nes_platform_civilization_emissive_mini_001.mesh",
-          "materials":
-          [
-            "data/materials/platform_v1.material"
-          ],
-          "enabled": true
-        }
-      ],
-      "collider":
-      {
-        "mesh_src": "data/meshes/nes_platform_civilization_emissive_mini_col_001.col_mesh",
-        "shape": "convex_mesh",
-        "type": "kinematic",
-        "group":
-        [
-          "scenario"
-        ]
-      },
-      "platform_simple":
-      {
-        "curve_type": "catmull-rom",
-        "automove": true,
-        "loop": true,
-        "closed": false,
-        "move_offset": 0,
-        "travel_wait_time": 1.0,
-        "speed": 0.15,
-        "knots":
-        [
-           "36.5326 36.288 -129.384",
-           "36.5326 36.288 -129.384",
-           "35.6266 36.288 -107.879",
-           "35.6266 36.288 -107.879"
-        ]
       }
     }
   },

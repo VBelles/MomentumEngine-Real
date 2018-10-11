@@ -6,7 +6,7 @@
       "prefab": "data/prefabs/lifePiece.prefab",
       "transform":
       {
-        "pos": "-218.321 4.71242 -54.5008",
+        "pos": "-219.607 2.787 -53.5191",
         "rotation": "0.0 0.130526 0.0 -0.991445"
       }
     }
@@ -30,7 +30,7 @@
       "prefab": "data/prefabs/lifePiece.prefab",
       "transform":
       {
-        "pos": "-3.58997 17.8129 -293.912",
+        "pos": "-3.26427 15.8012 -292.878",
         "rotation": "0.0 0.130526 0.0 -0.991445"
       }
     }
@@ -54,7 +54,7 @@
       "prefab": "data/prefabs/lifePiece.prefab",
       "transform":
       {
-        "pos": "38.3146 47.5387 -120.248",
+        "pos": "38.3546 45.3755 -118.952",
         "rotation": "0.0 0.130526 0.0 -0.991445"
       }
     }

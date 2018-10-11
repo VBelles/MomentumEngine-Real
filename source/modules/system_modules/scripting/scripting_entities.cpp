@@ -36,6 +36,7 @@ void ScriptingEntities::bindConstants(SLB::Manager* manager) {
 	manager->set("PREFAB_CHRYSALIS", SLB::Value::copy(PREFAB_CHRYSALIS));
 	manager->set("PREFAB_COIN", SLB::Value::copy(PREFAB_COIN));
 	manager->set("PREFAB_DREIDEL", SLB::Value::copy(PREFAB_DREIDEL));
+	manager->set("PREFAB_GORILA", SLB::Value::copy(PREFAB_GORILA));
 	manager->set("PREFAB_KIPPAH", SLB::Value::copy(PREFAB_KIPPAH));
 	manager->set("PREFAB_KIPPAH_DUMMY", SLB::Value::copy(PREFAB_KIPPAH_DUMMY));
 	manager->set("PREFAB_MURO", SLB::Value::copy(PREFAB_MURO));

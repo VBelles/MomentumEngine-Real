@@ -17,8 +17,11 @@ IdleLoop::IdleLoop(Enemy* enemy, std::string animation, std::string cancelCondit
 
 int IdleLoop::execAction(float delta) {
 	enemy->updateGravity(delta);
-	if (enemy->animationTimer.elapsed() >= enemy->getSkeleton()->getAnimationDuration(animation)
-		|| (!cancelCondition.empty() && enemy->testCondition(cancelCondition, delta))) {
+	if (enemy->animationTimer.elapsed() >= enemy->getSkeleton()->getAnimationDuration(animation)) {
+		return Leave;
+	}
+	else if (!cancelCondition.empty() && enemy->testCondition(cancelCondition, delta)) {
+		enemy->getSkeleton()->clear(0.1f);
 		return Leave;
 	}
 	else {

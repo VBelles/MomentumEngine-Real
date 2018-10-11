@@ -15,7 +15,8 @@ void CButton::render() {
                             btParams._imageParams._color);
 
 	// render text
-	VEC2 scale = VEC2(Engine.globalConfig.resolution.x / 1920.f, Engine.globalConfig.resolution.y / 1080.f);
+	VEC2 scale(Engine.globalConfig.resolution.x / EngineGUI.getResolution().x,
+		Engine.globalConfig.resolution.y / EngineGUI.getResolution().y);
 	CFont font = EngineGUI.getFont(btParams._textParams._size * scale.x);
 
 	float textWidth = font.getWidth(btParams._textParams._text);

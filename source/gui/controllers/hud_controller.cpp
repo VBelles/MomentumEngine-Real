@@ -62,7 +62,7 @@ namespace GUI {
 
 	void CHudController::showChrysalis(float time) {
 		chrysalisWidget->getParams()->_visible = true;
-		if (time > 0.f) {
+		if (time > 0.f && chrysalisVisibleTime - timer.elapsed() < time) {
 			chrysalisVisibleTime = time;
 			timer.reset();
 		}

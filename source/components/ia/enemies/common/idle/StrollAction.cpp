@@ -17,10 +17,14 @@ StrollAction::StrollAction(Enemy* enemy, std::string cancelCondition) :
 int StrollAction::execAction(float delta) {
 	enemy->updateGravity(delta);
 	float movementIncrement = enemy->movementSpeed * delta;
-	if (enemy->currentPathPoint >= enemy->smoothPath.size()
-		|| !cancelCondition.empty() && enemy->testCondition(cancelCondition, delta)) {
+	if (enemy->currentPathPoint >= enemy->smoothPath.size()) {
 		return Leave;
 	}
+	else if (!cancelCondition.empty() && enemy->testCondition(cancelCondition, delta)) {
+		enemy->getSkeleton()->clear(0.1f);
+		return Leave;
+	}
+
 	VEC3 nextPoint = enemy->smoothPath[enemy->currentPathPoint];
 	VEC3 pos = enemy->getTransform()->getPosition();
 	nextPoint.y = 0;

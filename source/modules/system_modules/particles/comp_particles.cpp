@@ -5,7 +5,7 @@
 DECL_OBJ_MANAGER("particles", TCompParticles);
 
 void TCompParticles::registerMsgs() {
-	DECL_MSG(TCompParticles, TMsgAllScenesCreated, onAllScenesCreated);
+	DECL_MSG(TCompParticles, TMsgEntitiesGroupCreated, onEntitiesGroupCreated);
 	DECL_MSG(TCompParticles, TMsgEntityDestroyed, onDestroyed);
 	DECL_MSG(TCompParticles, TMsgParticleSystemDestroyed, onParticleSystemDestroyed);
 }
@@ -72,7 +72,7 @@ void TCompParticles::load(const json& j, TEntityParseContext& ctx) {
 
 }
 
-void TCompParticles::onAllScenesCreated(const TMsgAllScenesCreated&) {
+void TCompParticles::onEntitiesGroupCreated(const TMsgEntitiesGroupCreated&) {
 	launchConfig.targetEntity = target.empty() ? CHandle(this).getOwner() : getEntityByName(target);
 	for (auto& p : systems) {
 		auto& system = p.second;

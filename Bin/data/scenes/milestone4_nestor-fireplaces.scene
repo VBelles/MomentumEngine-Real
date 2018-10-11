@@ -2,6 +2,138 @@
   {
     "entity":
     {
+      "name": "nes_fireplace_034",
+      "prefab": "data/prefabs/fireplace.prefab",
+      "transform":
+      {
+        "pos": "138.904 31.03 -174.469",
+        "rotation": "0.0 0.0 0.0 -1.0"
+      }
+    }
+  },
+  {
+    "entity":
+    {
+      "name": "nes_fireplace_033",
+      "prefab": "data/prefabs/fireplace.prefab",
+      "transform":
+      {
+        "pos": "21.3702 -7.49885 -194.177",
+        "rotation": "0.0 0.0 0.0 -1.0"
+      }
+    }
+  },
+  {
+    "entity":
+    {
+      "name": "nes_fireplace_032",
+      "prefab": "data/prefabs/fireplace.prefab",
+      "transform":
+      {
+        "pos": "-173.181 38.612 -48.9211",
+        "rotation": "0.0 0.0 0.0 -1.0"
+      }
+    }
+  },
+  {
+    "entity":
+    {
+      "name": "nes_fireplace_031",
+      "prefab": "data/prefabs/fireplace.prefab",
+      "transform":
+      {
+        "pos": "-130.441 12.7874 29.052",
+        "rotation": "0.0 0.0 0.0 -1.0"
+      }
+    }
+  },
+  {
+    "entity":
+    {
+      "name": "nes_fireplace_030",
+      "prefab": "data/prefabs/fireplace.prefab",
+      "transform":
+      {
+        "pos": "-166.435 34.4383 2.6873",
+        "rotation": "0.0 0.0 0.0 -1.0"
+      }
+    }
+  },
+  {
+    "entity":
+    {
+      "name": "nes_fireplace_029",
+      "prefab": "data/prefabs/fireplace.prefab",
+      "transform":
+      {
+        "pos": "-216.245 59.0132 -47.1875",
+        "rotation": "0.0 0.0 0.0 -1.0"
+      }
+    }
+  },
+  {
+    "entity":
+    {
+      "name": "nes_fireplace_028",
+      "prefab": "data/prefabs/fireplace.prefab",
+      "transform":
+      {
+        "pos": "-208.936 59.0132 -51.3926",
+        "rotation": "0.0 0.0 0.0 -1.0"
+      }
+    }
+  },
+  {
+    "entity":
+    {
+      "name": "nes_fireplace_027",
+      "prefab": "data/prefabs/fireplace.prefab",
+      "transform":
+      {
+        "pos": "-199.926 59.0132 -19.6015",
+        "rotation": "0.0 0.0 0.0 -1.0"
+      }
+    }
+  },
+  {
+    "entity":
+    {
+      "name": "nes_fireplace_026",
+      "prefab": "data/prefabs/fireplace.prefab",
+      "transform":
+      {
+        "pos": "-192.618 59.0132 -23.8066",
+        "rotation": "0.0 0.0 0.0 -1.0"
+      }
+    }
+  },
+  {
+    "entity":
+    {
+      "name": "nes_fireplace_025",
+      "prefab": "data/prefabs/fireplace.prefab",
+      "transform":
+      {
+        "pos": "-184.057 59.0132 8.08333",
+        "rotation": "0.0 0.0 0.0 -1.0"
+      }
+    }
+  },
+  {
+    "entity":
+    {
+      "name": "nes_fireplace_024",
+      "prefab": "data/prefabs/fireplace.prefab",
+      "transform":
+      {
+        "pos": "-176.749 59.0132 3.87822",
+        "rotation": "0.0 0.0 0.0 -1.0"
+      }
+    }
+  },
+  {
+    "entity":
+    {
       "name": "nes_fireplace_023",
       "prefab": "data/prefabs/fireplace.prefab",
       "transform":
@@ -54,7 +186,7 @@
       "prefab": "data/prefabs/fireplace.prefab",
       "transform":
       {
-        "pos": "-114.29 6.59051 -95.6927",
+        "pos": "-109.702 6.59051 -98.5946",
         "rotation": "0.0 0.0 0.0 -1.0"
       }
     }
@@ -198,8 +330,8 @@
       "prefab": "data/prefabs/fireplace.prefab",
       "transform":
       {
-        "pos": "94.989 40.279 -8.85998",
-        "rotation": "0.0 0.422618 0.0 -0.906308"
+        "pos": "76.4969 42.1352 -17.8289",
+        "rotation": "0.0 0.130526 0.0 -0.991445"
       }
     }
   },
@@ -246,7 +378,7 @@
       "prefab": "data/prefabs/fireplace.prefab",
       "transform":
       {
-        "pos": "38.3341 43.7624 -120.259",
+        "pos": "37.9271 43.7624 -121.367",
         "rotation": "0.0 0.0 0.0 -1.0"
       }
     }
@@ -258,7 +390,7 @@
       "prefab": "data/prefabs/fireplace.prefab",
       "transform":
       {
-        "pos": "-3.59174 13.9811 -293.919",
+        "pos": "-3.66157 13.9811 -294.812",
         "rotation": "0.0 0.0 0.0 -1.0"
       }
     }

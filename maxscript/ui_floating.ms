@@ -440,9 +440,9 @@ ButtonText: "Momentum"
 				)
 
 				rollout colParams "Collider parameters" (
-					checkbox cType "Tri mesh" type: #boolean across:2 align:#right
+					checkbox cType "Tri mesh" type: #boolean default:true across:2 align:#right
 					button btnSetType "Set" width:24 align:#left
-					checkbox spike "Spikes"   type: #boolean across:2 align:#right
+					checkbox spike "Spikes"   type: #boolean default:false across:2 align:#right
 					button btnSetSpike "Set" width:24 align:#left
 					dropdownlist powerUp "Power-up" across:2 items:#("-NONE-", \
 															"AirborneLong", \
@@ -511,7 +511,7 @@ ButtonText: "Momentum"
 				)
 
 				rollout rotationParams "Rotation parameters" (
-					label lab1 "Rotation:"
+					group "Rotation:" (
 					spinner xRot "x axis" type: #integer across:2 align:#right range:[-1, 1, 0] --min, max, initial value
 					button btnSetXrot "Set" width:24 align:#left
 					spinner yRot "y axis" type: #integer across:2 align:#right range:[-1, 1, 0]
@@ -520,15 +520,16 @@ ButtonText: "Momentum"
 					button btnSetZrot "Set" width:24 align:#left
 					spinner rotSpeed "Rot speed" type: #float across:2 align:#right range:[-100, 100, 0]
 					button btnSetRotSpd "Set" width:24 align:#left
+					)
 
-					label lab2 "Roll:"
+					group "Roll:" (
 					spinner rolSpeed "Roll speed" 	   type: #float   across:2 align:#right range:[-100, 100, 0]
 					button btnSetRolSpd "Set" width:24 align:#left
 					spinner dir     "Platf dir"  type: #integer across:2 align:#right range:[0, 1000, 0]
 					button btnSetDir "Set" width:24 align:#left
 					multiListBox slt "Platf dir slots" items: #("1","2","3","4","5") height:5 width:70 across:2 align:#right
 					button btnSetSlot "Set" width:24 align:#left
-
+					)
 					button btnSetAll "SetAll"
 
 					on btnSetXrot	pressed do (setAttribute "rotateData" #x 		xRot.value)
@@ -585,9 +586,9 @@ ButtonText: "Momentum"
 				)
 
 				rollout moveParams "Move parameters" (
-					checkbox autoMove "Automove" 	   type: #boolean across:2 align:#right
+					checkbox autoMove "Automove" 	   type: #boolean default:true across:2 align:#right
 					button btnSetAutoM "Set" width:24 align:#left
-					checkbox loops 	  "Loops" 		   type: #boolean across:2 align:#right
+					checkbox loops 	  "Loops" 		   type: #boolean default:true across:2 align:#right
 					button btnSetLoop "Set" width:24 align:#left
 					spinner  waitTime "Wait time" 	   type: #float   across:2 align:#right range:[0, 100.0, 1.0] --min, max, initial value
 					button btnSetWtime "Set" width:24 align:#left
@@ -614,7 +615,7 @@ ButtonText: "Momentum"
 					button btnSetDeacT "Set" width:24 align:#left
 					spinner  reacTime "React time" type: #float   across:2 align:#right range:[0, 1000.0, 3.0]
 					button btnSetReacT "Set" width:24 align:#left
-					checkbox isResettable "Resettable" type: #boolean across:2 align:#right
+					checkbox isResettable "Resettable" type: #boolean default:true across:2 align:#right
 					button btnSetReset "Set" width:24 align:#left
 
 					button btnSetAll "SetAll"
@@ -631,21 +632,21 @@ ButtonText: "Momentum"
 				)
 
 				rollout mechParams "Mech parameters" (
-					checkbox change_render 		"Change rend" type: #boolean across:2 align:#right
+					checkbox change_render 		"Change rend" type: #boolean default:true across:2 align:#right
 					button btnSetChRender "Set" width:24 align:#left
-					checkbox change_collider 	"Change coll" type: #boolean across:2 align:#right
+					checkbox change_collider 	"Change coll" type: #boolean default:true across:2 align:#right
 					button btnSetChCol "Set" width:24 align:#left
-					checkbox change_platform 	"Change platf" type: #boolean across:2 align:#right
+					checkbox change_platform 	"Change platf" type: #boolean default:true across:2 align:#right
 					button btnSetChPlatf "Set" width:24 align:#left
-					checkbox change_animation 	"Change anim" type: #boolean across:2 align:#right
+					checkbox change_animation 	"Change anim" type: #boolean default:true across:2 align:#right
 					button btnSetChAnim "Set" width:24 align:#left
-					checkbox render 			"Rend enabled" type: #boolean across:2 align:#right
+					checkbox render 			"Rend enabled" type: #boolean default:true across:2 align:#right
 					button btnSetRender "Set" width:24 align:#left
-					checkbox collider 			"Coll enabled" type: #boolean across:2 align:#right
+					checkbox collider 			"Coll enabled" type: #boolean default:true across:2 align:#right
 					button btnSetCol "Set" width:24 align:#left
-					checkbox platform 			"Platf enabled" type: #boolean across:2 align:#right
+					checkbox platform 			"Platf enabled" type: #boolean default:true across:2 align:#right
 					button btnSetPlatf "Set" width:24 align:#left
-					checkbox animation 			"Anim enabled" type: #boolean across:2 align:#right
+					checkbox animation 			"Anim enabled" type: #boolean default:true across:2 align:#right
 					button btnSetAnim "Set" width:24 align:#left
 
 					button btnSetAll "SetAll"
@@ -672,18 +673,18 @@ ButtonText: "Momentum"
 				)
 
 				rollout uniqueParams "Unique parameters" (
-					checkbox isUnique "Is unique" type: #boolean across:2 align:#right
+					checkbox isUnique "Is unique" type: #boolean default:false across:2 align:#right
 					button btnSetUnique "Set" width:24 align:#left
 
 					on btnSetUnique pressed do (setAttribute "uniqueData" #unique isUnique.state)
 				)
 
 				rollout animParams "Anim parameters" (
-					checkbox moves "Is moving" type: #boolean across:2 align:#right
+					checkbox moves "Is moving" type: #boolean default:false across:2 align:#right
 					button btnSetMoves "Set" width:24 align:#left
-					checkbox loops "Loops" type: #boolean across:2 align:#right
+					checkbox loops "Loops" type: #boolean default:false across:2 align:#right
 					button btnSetLoops "Set" width:24 align:#left
-					checkbox killAfter "Kill on finish"	type: #boolean across:2 align:#right
+					checkbox killAfter "Kill on finish"	type: #boolean default:true across:2 align:#right
 					button btnSetKill "Set" width:24 align:#left
 
 					button btnSetAll "SetAll"
@@ -703,7 +704,7 @@ ButtonText: "Momentum"
 					spinner lfov "FoV" type: #float across:2 range:[0, 1000.0, 40.0] --min, max, initial value
 					button btnSetLfov "Set" width:24 align:#left
 					group "Flicker" (
-						checkbox flick "Add flicker" type: #boolean across:2 align:#right
+						checkbox flick "Add flicker" type: #boolean default:false across:2 align:#right
 						button btnSetFlick "Set" width:24 align:#left
 						spinner inVar "Int var"		 type: #float across:2 align:#right range:[0, 1000.0, 0.1]
 						button btnSetinVar "Set" width:24 align:#left
@@ -725,9 +726,9 @@ ButtonText: "Momentum"
 				)
 
 				rollout camParams "Camera parameters" (
-					checkbox retToPl "Return to player"  type: #boolean across:2 align:#right
+					checkbox retToPl "Return to player"  type: #boolean default:false across:2 align:#right
 					button btnSetRetToPl "Set" width:24 align:#left
-					checkbox modPlRo "Mod player rot" type: #boolean across:2 align:#right
+					checkbox modPlRo "Mod player rot" type: #boolean default:true across:2 align:#right
 					button btnSetModPlRo "Set" width:24 align:#left
 					spinner tMixO "Time mix out" type: #float across:2 align:#right range:[0, 1000.0, 1.0] --min, max, initial value
 					button btnSetTMixO "Set" width:24 align:#left

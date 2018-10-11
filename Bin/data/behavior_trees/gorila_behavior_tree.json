@@ -1,0 +1,597 @@
+{
+  "root": {
+    "name": "gorila",
+    "type": "priority",
+    "children": [
+      {
+        "name": "disappear",
+        "type": "sequence",
+        "condition": {
+          "type": "OnDisappearCondition"
+        },
+        "children": [
+          {
+            "name": "onDisappearAction",
+            "type": "action",
+            "action": {
+              "type": "OnDisappearAction",
+              "animation": "gorila_dissappear"
+            }
+          },
+          {
+            "name": "disappearAction",
+            "type": "action",
+            "action": {
+              "type": "DisappearAction",
+              "animation": "gorila_dissappear"
+            }
+          }
+        ]
+      },
+      {
+        "name": "spawn",
+        "type": "sequence",
+        "condition": {
+          "type": "OnSpawnCondition"
+        },
+        "children": [
+          {
+            "name": "onAppearActionSpawn",
+            "type": "action",
+            "action": {
+              "type": "OnAppearAction",
+              "animation": "gorila_appear"
+            }
+          },
+          {
+            "name": "appearActionSpawn",
+            "type": "action",
+            "action": {
+              "type": "AppearAction",
+              "animation": "gorila_appear",
+              "sound": ""
+            }
+          }
+        ]
+      },
+      {
+        "name": "outOfBounds",
+        "type": "sequence",
+        "condition": {
+          "type": "OnOutOfBoundsCondition"
+        },
+        "children": [
+          {
+            "name": "onDisappearActionOutOfBounds",
+            "type": "action",
+            "action": {
+              "type": "OnDisappearAction",
+              "animation": "gorila_dissappear"
+            }
+          },
+          {
+            "name": "disappearActionOutOfBounds",
+            "type": "action",
+            "action": {
+              "type": "DisappearAction",
+              "animation": "gorila_dissappear"
+            }
+          }
+        ]
+      },
+      {
+        "name": "hit",
+        "type": "sequence",
+        "condition": {
+          "type": "OnHitCondition"
+        },
+        "children": [
+          {
+            "name": "onHit",
+            "type": "action",
+            "action": {
+              "type": "OnHit",
+              "animation": "gorila_knockback",
+              "particles": "data/particles/hit_sparks.particles",
+              "particles_offset": "0 0.4 0",
+              "on_blocking_hit_sound": "",
+              "on_hit_sound": "event:/PROTA/golpes/golpe_hit"
+            }
+          },
+          {
+            "name": "attackProperties",
+            "type": "priority",
+            "children": [
+              {
+                "name": "horizontalLaunch",
+                "type": "sequence",
+                "condition": {
+                  "type": "OnHorizontalLaunchCondition"
+                },
+                "children": [
+                  {
+                    "name": "onHorizontalLaunchAction",
+                    "type": "action",
+                    "action": {
+                      "type": "OnHorizontalLaunchAction",
+                      "animation": "gorila_knockback",
+                      "attack": "launched"
+                    }
+                  },
+                  {
+                    "name": "horizontalLaunchedAction",
+                    "type": "action",
+                    "action": {
+                      "type": "HorizontalLaunchedAction",
+                      "attack": "launched",
+                      "on_launched_sound": ""
+                    }
+                  }
+                ]
+              },
+              {
+                "name": "verticalLaunch",
+                "type": "sequence",
+                "condition": {
+                  "type": "OnVerticalLaunchCondition"
+                },
+                "children": [
+                  {
+                    "name": "onVerticalLaunchAction",
+                    "type": "action",
+                    "action": {
+                      "type": "OnVerticalLaunchAction",
+                      "animation": "gorila_knockback",
+                      "attack": "launched"
+                    }
+                  },
+                  {
+                    "name": "verticalLaunchedAction",
+                    "type": "action",
+                    "action": {
+                      "type": "VerticalLaunchedAction",
+                      "attack": "launched",
+                      "on_launched_sound": ""
+                    }
+                  }
+                ]
+              },
+              {
+                "name": "grab",
+                "type": "sequence",
+                "condition": {
+                  "type": "OnGrabCondition"
+                },
+                "children": [
+                  {
+                    "name": "onGrabAction",
+                    "type": "action",
+                    "action": {
+                      "type": "OnGrabAction"
+                    }
+                  },
+                  {
+                    "name": "grabAction",
+                    "type": "action",
+                    "action": {
+                      "type": "GrabAction"
+                    }
+                  }
+                ]
+              },
+              {
+                "name": "propel",
+                "type": "sequence",
+                "condition": {
+                  "type": "OnPropelCondition"
+                },
+                "children": [
+                  {
+                    "name": "onPropelAction",
+                    "type": "action",
+                    "action": {
+                      "type": "OnPropelAction",
+                      "attack": "launched"
+                    }
+                  },
+                  {
+                    "name": "propelAction",
+                    "type": "action",
+                    "action": {
+                      "type": "PropelAction",
+                      "attack": "launched"
+                    }
+                  }
+                ]
+              },
+              {
+                "name": "hitStun",
+                "type": "action",
+                "action": {
+                  "type": "HitStun",
+                  "animation": "gorila_knockback"
+                }
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "name": "suspension",
+        "type": "sequence",
+        "condition": {
+          "type": "OnSuspensionCondition"
+        },
+        "children": [
+          {
+            "name": "onSuspensionAction",
+            "type": "action",
+            "action": {
+              "type": "OnSuspensionAction",
+              "animation_start": "",
+              "animation_loop": "gorila_stun"
+            }
+          },
+          {
+            "name": "suspensionAction",
+            "type": "action",
+            "action": {
+              "type": "SuspensionAction",
+              "sound_loop": "",
+              "sound_end": "event:/PROTA/launcher/launcher_final"
+            }
+          }
+        ]
+      },
+      {
+        "name": "onAirborneAction",
+        "type": "action",
+        "condition": {
+          "type": "OnAirborneCondition"
+        },
+        "action": {
+          "type": "OnAirborneAction",
+          "animation": "gorila_stun"
+        }
+      },
+      {
+        "name": "airborneAction",
+        "type": "action",
+        "condition": {
+          "type": "AirborneCondition"
+        },
+        "action": {
+          "type": "AirborneAction"
+        }
+      },
+      {
+        "name": "stun",
+        "type": "sequence",
+        "condition": {
+          "type": "OnStunCondition"
+        },
+        "children": [
+          {
+            "name": "onStunAction",
+            "type": "action",
+            "action": {
+              "type": "OnStunAction",
+              "animation_start": "",
+              "animation_loop": "gorila_stun"
+            }
+          },
+          {
+            "name": "stunAction",
+            "type": "action",
+            "action": {
+              "type": "StunAction"
+            }
+          }
+        ]
+      },
+      {
+        "name": "death",
+        "type": "sequence",
+        "condition": {
+          "type": "OnDeathCondition"
+        },
+        "children": [
+          {
+            "name": "onDeathAction",
+            "type": "action",
+            "action": {
+              "type": "OnDeathAction",
+              "animation": "gorila_death"
+            }
+          },
+          {
+            "name": "deathAction",
+            "type": "action",
+            "action": {
+              "type": "DeathAction",
+              "animation": "gorila_death"
+            }
+          }
+        ]
+      },
+      {
+        "name": "teleport",
+        "type": "sequence",
+        "condition": {
+          "type": "OnTeleportCondition"
+        },
+        "children": [
+          {
+            "name": "onTeleportAction",
+            "type": "action",
+            "action": {
+              "type": "OnTeleportAction",
+              "animation": "gorila_dissappear"
+            }
+          },
+          {
+            "name": "teleportAction",
+            "type": "action",
+            "action": {
+              "type": "TeleportAction",
+              "animation": "gorila_dissappear"
+            }
+          },
+          {
+            "name": "appear",
+            "type": "sequence",
+            "children": [
+              {
+                "name": "onAppearAction",
+                "type": "action",
+                "action": {
+                  "type": "OnAppearAction",
+                  "animation": "gorila_appear"
+                }
+              },
+              {
+                "name": "appearAction",
+                "type": "action",
+                "action": {
+                  "type": "AppearAction",
+                  "animation": "gorila_appear"
+                }
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "name": "combat",
+        "type": "priority",
+        "condition": {
+          "type": "CombatCondition"
+        },
+        "children": [
+          {
+            "name": "combating",
+            "type": "priority",
+            "condition": {
+              "type": "AddAttackerCondition"
+            },
+            "children": [
+              {
+                "name": "attackCooldownCombat",
+                "type": "random",
+                "condition": {
+                  "type": "AttackCoolDownCondition"
+                },
+                "children": [
+                  {
+                    "name": "CDIdleWar",
+                    "type": "sequence",
+                    "children": [
+                      {
+                        "name": "onCDIdleWar",
+                        "type": "action",
+                        "action": {
+                          "type": "OnIdleWarAction",
+                          "animation": "gorila_idlewar"
+                        }
+                      },
+                      {
+                        "name": "CDIdleWarAction",
+                        "type": "action",
+                        "action": {
+                          "type": "IdleWarAction",
+                          "animation": "gorila_idlewar"
+                        }
+                      }
+                    ]
+                  }
+                ]
+              },
+              {
+                "name": "shortDistanceCombat",
+                "type": "random",
+                "condition": {
+                  "type": "ShortDistanceCombatCondition"
+                },
+                "children": [
+                  {
+                    "name": "shortIdleWar",
+                    "type": "sequence",
+                    "children": [
+                      {
+                        "name": "onShortIdleWar",
+                        "type": "action",
+                        "action": {
+                          "type": "OnIdleWarAction",
+                          "animation": "gorila_idlewar"
+                        }
+                      },
+                      {
+                        "name": "shortIdleWarAction",
+                        "type": "action",
+                        "action": {
+                          "type": "IdleWarAction",
+                          "animation": "gorila_idlewar"
+                        }
+                      }
+                    ]
+                  },
+                  {
+                    "name": "shortAttack",
+                    "type": "sequence",
+                    "children": [
+                      {
+                        "name": "onShortAttackAction",
+                        "type": "action",
+                        "action": {
+                          "type": "OnAttackAction",
+                          "animation": "gorila_ataquelento",
+                          "attack": "attack"
+                        }
+                      },
+                      {
+                        "name": "shortAttackAction",
+                        "type": "action",
+                        "action": {
+                          "type": "AttackAction",
+                          "animation": "gorila_ataquelento",
+                          "attack": "attack"
+                        }
+                      }
+                    ]
+                  }
+                ]
+              },
+              {
+                "name": "chase",
+                "type": "sequence",
+                "children": [
+                  {
+                    "name": "onChaseAction",
+                    "type": "action",
+                    "action": {
+                      "type": "OnChaseAction",
+                      "animation": "gorila_chase"
+                    }
+                  },
+                  {
+                    "name": "chaseAction",
+                    "type": "action",
+                    "action": {
+                      "type": "ChaseAction",
+                      "sound": ""
+                    }
+                  }
+                ]
+              }
+            ]
+          },
+          {
+            "name": "animating",
+            "type": "random",
+            "children": [
+              {
+                "name": "animatingIdleWar",
+                "type": "sequence",
+                "children": [
+                  {
+                    "name": "onAnimatingIdleWar",
+                    "type": "action",
+                    "action": {
+                      "type": "OnIdleWarAction",
+                      "animation": "gorila_idlewar"
+                    }
+                  },
+                  {
+                    "name": "animatingIdleWarAction",
+                    "type": "action",
+                    "action": {
+                      "type": "IdleWarAction",
+                      "animation": "gorila_idlewar"
+                    }
+                  }
+                ]
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "name": "returnToSpawn",
+        "type": "sequence",
+        "condition": {
+          "type": "OnReturnToSpawnCondition"
+        },
+        "children": [
+          {
+            "name": "onReturnToSpawnAction",
+            "type": "action",
+            "action": {
+              "type": "OnReturnToSpawnAction",
+              "animation": "gorila_chase"
+            }
+          },
+          {
+            "name": "returnToSpawnAction",
+            "type": "action",
+            "action": {
+              "type": "ReturnToSpawnAction",
+              "cancel_condition": "combat"
+            }
+          }
+        ]
+      },
+      {
+        "name": "idle",
+        "type": "random",
+        "children": [
+          {
+            "name": "idleLoopSeq",
+            "type": "sequence",
+            "children": [
+              {
+                "name": "onIdleLoop",
+                "type": "action",
+                "action": {
+                  "type": "OnIdleLoop",
+                  "animation": "gorila_idle"
+                }
+              },
+              {
+                "name": "idleLoop",
+                "type": "action",
+                "action": {
+                  "type": "IdleLoop",
+                  "animation": "gorila_idle",
+                  "cancel_condition": "combat"
+                }
+              }
+            ]
+          },
+          {
+            "name": "stroll",
+            "type": "sequence",
+            "children": [
+              {
+                "name": "onStrollAction",
+                "type": "action",
+                "action": {
+                  "type": "OnStrollAction",
+                  "animation": "gorila_chase"
+                }
+              },
+              {
+                "name": "strollAction",
+                "type": "action",
+                "action": {
+                  "type": "StrollAction",
+                  "cancel_condition": "combat",
+                  "sound": ""
+                }
+              }
+            ]
+          }
+        ]
+      }
+    ]
+  }
+}
