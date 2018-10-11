@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<objects serializationModel="Studio.01.10.00">
+    <object class="AudioFile" id="{16af732e-7f5a-4796-bfc5-9c2ad6da1eb7}">
+        <property name="assetPath">
+            <value>momentum_placeholder_ssj2_piano.wav</value>
+        </property>
+        <property name="isStreaming">
+            <value>true</value>
+        </property>
+        <property name="frequencyInKHz">
+            <value>44.0999985</value>
+        </property>
+        <property name="channelCount">
+            <value>2</value>
+        </property>
+        <property name="length">
+            <value>71.796054421768702</value>
+        </property>
+        <relationship name="masterAssetFolder">
+            <destination>{36905f10-66a8-4c8e-8e61-b834e0293f37}</destination>
+        </relationship>
+    </object>
+</objects>

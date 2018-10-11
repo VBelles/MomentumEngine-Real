@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<objects serializationModel="Studio.01.10.00">
+    <object class="Event" id="{82398a8d-71f1-4558-a6cc-4d6adf5fb9c2}"/>
+    <object class="MasterTrack" id="{17263fb0-17b8-41bd-ad63-42e0a2d992c2}"/>
+    <object class="MixerInput" id="{c7ef060b-4b60-4294-bd51-e7302b4577e7}"/>
+    <object class="EventAutomatableProperties" id="{e26dc76f-8788-4b85-b9c4-4db04a955f46}"/>
+    <object class="MarkerTrack" id="{4ebbe05c-31e8-48cd-b11c-ab53c407af7b}"/>
+    <object class="GroupTrack" id="{b20c3fc9-d4f9-44d8-8228-028ea812513f}"/>
+    <object class="Timeline" id="{a838d51f-5312-41ac-8b76-246471ce5410}"/>
+    <object class="EventMixerMaster" id="{072f1f11-a8a3-421f-a32f-b1cdfdc74989}">
+        <relationship name="input">
+            <destination>{e8e5f9db-4f5a-4604-9c5d-4ee5ff1bc73c}</destination>
+        </relationship>
+    </object>
+    <object class="MixerBusEffectChain" id="{7d04d7c8-f38e-4396-8053-505601c2e71c}"/>
+    <object class="MixerBusPanner" id="{9c75cdbd-ea19-41ca-93c5-cce7e571391f}"/>
+    <object class="SingleSound" id="{ee528f05-e8d1-4a7c-992f-a42749e706cf}"/>
+    <object class="EventMixerGroup" id="{e8e5f9db-4f5a-4604-9c5d-4ee5ff1bc73c}"/>
+    <object class="MixerBusEffectChain" id="{21b02446-a9e5-4538-9cb6-eebf608daa92}"/>
+    <object class="MixerBusPanner" id="{041b3128-cb8c-4caf-a8b3-69b452eeba60}"/>
+    <object class="MixerBusFader" id="{aa763635-2b4f-4752-a07e-8e24870d5331}"/>
+    <object class="MixerBusEffectChain" id="{fb277153-a4db-4505-90de-f18c1fb22ce5}"/>
+    <object class="MixerBusPanner" id="{5d616846-8c48-415b-991e-d418b27c613e}"/>
+    <object class="MixerBusFader" id="{353a74f0-3141-4ba6-b5b1-1664c9c86e07}"/>
+    <object class="ProxyEffect" id="{d5f0f55f-ac9c-4435-9320-6464c8c2700e}"/>
+    <object class="ProxyEffect" id="{da5b6e20-f110-4bc3-bc3b-8a101f7edef4}"/>
+    <object class="MixerBusFader" id="{f80a0cc6-856b-4a2f-bd5d-1579d6494cd0}"/>
+    <object class="ThreeEQEffect" id="{b003b281-795d-4ad8-9b14-634bd9733b18}"/>
+</objects>

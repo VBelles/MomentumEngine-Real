@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<objects serializationModel="Studio.01.10.00">
+    <object class="Event" id="{6ffd159a-6f68-4c1a-b250-9c7f0923074e}"/>
+    <object class="MasterTrack" id="{c58454ab-8383-4acd-bfca-211d3f928c2d}"/>
+    <object class="MixerInput" id="{4395b198-2ca3-4fcf-afdc-c34413c0c260}"/>
+    <object class="EventAutomatableProperties" id="{ffd72372-ee5b-42f6-9bcf-dc32f45fdc5e}"/>
+    <object class="MarkerTrack" id="{ba3a957b-52ec-4a1d-864c-8e50326034ef}"/>
+    <object class="GroupTrack" id="{10125cd2-15b4-42a0-81ab-7fc50f1d5573}"/>
+    <object class="Timeline" id="{59298c7a-6d87-44a3-80b1-74e8f0217edf}"/>
+    <object class="EventMixerMaster" id="{5f430d7e-627b-4202-8503-d6267a216589}">
+        <relationship name="input">
+            <destination>{546236e3-6438-4dba-8f22-67218db7f932}</destination>
+        </relationship>
+    </object>
+    <object class="MixerBusEffectChain" id="{b4bbff70-355c-4761-90c3-60095e3d05ff}"/>
+    <object class="MixerBusPanner" id="{fc2a10a7-e953-465c-aca2-b4c4e414ec56}"/>
+    <object class="SingleSound" id="{9f56cf51-0666-4687-bc64-d79c9b8728ca}"/>
+    <object class="EventMixerGroup" id="{546236e3-6438-4dba-8f22-67218db7f932}"/>
+    <object class="MixerBusEffectChain" id="{067e2e57-70dd-4437-8433-47a5b6b670ff}"/>
+    <object class="MixerBusPanner" id="{8e1039ba-d596-4031-8e6b-f4574b40ef93}"/>
+    <object class="MixerBusFader" id="{f1528937-91e2-4d47-9a59-3e56cc728673}"/>
+    <object class="MixerBusEffectChain" id="{210b6c4c-9d46-4518-b91d-c6d894034cb5}"/>
+    <object class="MixerBusPanner" id="{aabbe601-3d60-4412-9544-4073d2579371}"/>
+    <object class="MixerBusFader" id="{e7201f83-729f-4d12-8d93-bd30e6d8dac7}"/>
+    <object class="ProxyEffect" id="{e4ecb19b-2459-4ec4-a1f0-27d86a31095d}"/>
+    <object class="ProxyEffect" id="{ba6dca84-0bfd-40c0-a955-47cb82b3a539}"/>
+    <object class="MixerBusFader" id="{f1f44f1c-f2ac-4833-9bb7-c1feee47a78d}"/>
+    <object class="CompressorEffect" id="{9ff66204-0c85-4d5d-a550-10b19fd04e7e}"/>
+    <object class="ChorusEffect" id="{214d3781-7c06-41cd-893c-4b9f7a1e1644}"/>
+</objects>

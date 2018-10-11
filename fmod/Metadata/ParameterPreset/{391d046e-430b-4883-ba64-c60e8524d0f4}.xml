@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<objects serializationModel="Studio.01.10.00">
+    <object class="ParameterPreset" id="{391d046e-430b-4883-ba64-c60e8524d0f4}">
+        <property name="name">
+            <value>mushrooms_ratio</value>
+        </property>
+        <relationship name="folder">
+            <destination>{0851b688-1516-0cd0-203a-51fd7ab25bd7}</destination>
+        </relationship>
+        <relationship name="parameter">
+            <destination>{255391a2-d742-48ba-b382-d15fc0dbce2a}</destination>
+        </relationship>
+    </object>
+    <object class="GameParameter" id="{255391a2-d742-48ba-b382-d15fc0dbce2a}">
+        <property name="initialValue">
+            <value>0</value>
+        </property>
+    </object>
+</objects>

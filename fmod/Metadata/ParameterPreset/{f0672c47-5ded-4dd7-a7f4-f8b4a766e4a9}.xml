@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<objects serializationModel="Studio.01.10.00">
+    <object class="ParameterPreset" id="{f0672c47-5ded-4dd7-a7f4-f8b4a766e4a9}">
+        <property name="name">
+            <value>chrystals_ratio</value>
+        </property>
+        <relationship name="folder">
+            <destination>{0851b688-1516-0cd0-203a-51fd7ab25bd7}</destination>
+        </relationship>
+        <relationship name="parameter">
+            <destination>{c715beba-28c4-44fe-a528-7a187ae57489}</destination>
+        </relationship>
+    </object>
+    <object class="GameParameter" id="{c715beba-28c4-44fe-a528-7a187ae57489}">
+        <property name="initialValue">
+            <value>0</value>
+        </property>
+    </object>
+</objects>

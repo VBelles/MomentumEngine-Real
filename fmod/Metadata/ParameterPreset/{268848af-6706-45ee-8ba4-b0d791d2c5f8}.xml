@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<objects serializationModel="Studio.01.10.00">
+    <object class="ParameterPreset" id="{268848af-6706-45ee-8ba4-b0d791d2c5f8}">
+        <property name="name">
+            <value>civilization_ratio</value>
+        </property>
+        <relationship name="folder">
+            <destination>{0851b688-1516-0cd0-203a-51fd7ab25bd7}</destination>
+        </relationship>
+        <relationship name="parameter">
+            <destination>{a6c87528-5a36-48c1-9847-46e183d89bdb}</destination>
+        </relationship>
+    </object>
+    <object class="GameParameter" id="{a6c87528-5a36-48c1-9847-46e183d89bdb}">
+        <property name="initialValue">
+            <value>0</value>
+        </property>
+    </object>
+</objects>

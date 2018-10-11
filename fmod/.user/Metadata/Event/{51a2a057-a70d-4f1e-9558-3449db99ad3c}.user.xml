@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<objects serializationModel="Studio.01.10.00">
+    <object class="Event" id="{51a2a057-a70d-4f1e-9558-3449db99ad3c}"/>
+    <object class="MasterTrack" id="{7bf9cc73-a644-454d-8e58-b331ee531800}"/>
+    <object class="MixerInput" id="{fa19af72-2875-4fd1-902d-d9e8bc60a4c9}"/>
+    <object class="EventAutomatableProperties" id="{adf083fb-26c6-4208-a1d0-7e72080cce11}"/>
+    <object class="MarkerTrack" id="{578f55b2-70bc-41bb-a7d1-d36d71fc961c}"/>
+    <object class="GroupTrack" id="{0a27a183-587e-488a-b4a3-81560f41656b}"/>
+    <object class="Timeline" id="{f907d969-5738-4c3d-ab2f-41cd02cd0593}"/>
+    <object class="EventMixerMaster" id="{1dca51dd-86f7-4e8c-b444-6bc66d6accb5}">
+        <relationship name="input">
+            <destination>{20e69de0-7f83-47f9-904d-bdc991cf4bf7}</destination>
+        </relationship>
+    </object>
+    <object class="MixerBusEffectChain" id="{a4482cc1-6fce-4d82-b1a1-f8e21e2e06ed}"/>
+    <object class="MixerBusPanner" id="{724fd334-b460-41e1-ac43-e3ed3c7501c8}"/>
+    <object class="SingleSound" id="{5756ac77-ec51-48d4-b4f4-07971c58b296}"/>
+    <object class="EventMixerGroup" id="{20e69de0-7f83-47f9-904d-bdc991cf4bf7}"/>
+    <object class="LoopRegion" id="{4101e805-554a-4dd0-a55a-b5ebf1d3b97c}"/>
+    <object class="MixerBusEffectChain" id="{b4f3dcd7-ae5d-4ff8-adbe-1929e221f716}"/>
+    <object class="MixerBusPanner" id="{56a0ecfb-5124-4eec-b806-9030fc6fb9f1}"/>
+    <object class="MixerBusFader" id="{6d4c72b0-9955-4863-bf40-437bb2c19592}"/>
+    <object class="MixerBusEffectChain" id="{97ff8bf1-55bb-4904-93ae-6c507468229a}"/>
+    <object class="MixerBusPanner" id="{65d9b718-300f-4156-a1d4-cb74252a154b}"/>
+    <object class="MixerBusFader" id="{4123cf32-3bc6-4ee2-a447-5259a8968b37}"/>
+    <object class="ProxyEffect" id="{292c72bf-d944-4662-b527-d4dc259d056c}"/>
+    <object class="ProxyEffect" id="{f0c7d6b0-f407-49aa-9b61-31704d9c68c0}"/>
+    <object class="MixerBusFader" id="{b47a7163-2587-4e2d-8617-83f9325784b3}"/>
+    <object class="CompressorEffect" id="{d6351e4b-74e1-4dca-beef-1e8e760a270d}"/>
+    <object class="SFXReverbEffect" id="{d0607510-d431-49c6-a37b-4efbc52e7a72}"/>
+</objects>

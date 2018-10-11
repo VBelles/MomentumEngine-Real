@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<objects serializationModel="Studio.01.10.00">
+    <object class="Event" id="{8a486dca-26b8-4916-ae8d-0959b0ff9123}"/>
+    <object class="MasterTrack" id="{e71da70f-a6b6-4f9d-b46e-388e3b29b66e}"/>
+    <object class="MixerInput" id="{25c4a395-6af4-4b69-96c5-f91104263b47}"/>
+    <object class="EventAutomatableProperties" id="{ac8b95a8-dd70-4512-9a4b-b6bf7404deb7}"/>
+    <object class="MarkerTrack" id="{92c1b164-7f50-4d72-b779-86af9146fb45}"/>
+    <object class="GroupTrack" id="{246d52d5-a739-4512-b7c5-83ec27d95b28}"/>
+    <object class="Timeline" id="{eae26966-4acc-4ffb-8607-6139822001b0}"/>
+    <object class="EventMixerMaster" id="{6bae756f-75ce-4c35-9109-57368a05412a}">
+        <relationship name="input">
+            <destination>{5309b76a-20c0-40fb-9598-ace7316f744e}</destination>
+        </relationship>
+    </object>
+    <object class="MixerBusEffectChain" id="{c3c79574-bf0c-4ecb-af74-6d5b2b5f4fa5}"/>
+    <object class="MixerBusPanner" id="{faacaee7-c538-4559-ad75-beffc181b23a}"/>
+    <object class="SingleSound" id="{f26f9068-4dd4-441f-bd0a-474f53bdf445}"/>
+    <object class="EventMixerGroup" id="{5309b76a-20c0-40fb-9598-ace7316f744e}"/>
+    <object class="MixerBusEffectChain" id="{40dc7cca-4d23-4257-8f16-8d8d3d3fa5e0}"/>
+    <object class="MixerBusPanner" id="{0658c901-a156-46ac-b70e-63324dcfcf61}"/>
+    <object class="MixerBusFader" id="{0bc8200a-812e-4539-9e49-47d207227fd9}"/>
+    <object class="MixerBusEffectChain" id="{11ed87f9-ef62-4ffc-be62-8013c685c408}"/>
+    <object class="MixerBusPanner" id="{04cefe45-f9c3-4908-9505-09111e5b37eb}"/>
+    <object class="MixerBusFader" id="{a0f72aea-3ba3-4ed0-8a37-44243a00d53f}"/>
+    <object class="MixerBusFader" id="{5bb5b3af-9ba9-448d-97c7-e29f85ead056}"/>
+    <object class="ThreeEQEffect" id="{387b0a21-f70d-4c7b-ab65-20ad347b072b}"/>
+    <object class="PitchShifterEffect" id="{6981dc34-1233-4d5f-a755-e06c272eefb1}"/>
+    <object class="ChorusEffect" id="{1c094100-287f-4744-ba5e-3edb2279d93a}"/>
+</objects>

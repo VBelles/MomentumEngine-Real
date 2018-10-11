@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<objects serializationModel="Studio.01.10.00">
+    <object class="Event" id="{5a5348dd-8dba-4b17-8814-9cbf1fbb0b17}"/>
+    <object class="MasterTrack" id="{63ace6f0-c17f-4611-8ea4-3281ff271146}"/>
+    <object class="MixerInput" id="{ed777e65-c4ba-4b04-9289-7e881a785267}"/>
+    <object class="EventAutomatableProperties" id="{7653258b-89e7-4473-8ccb-b2ec555ac1b9}"/>
+    <object class="MarkerTrack" id="{d11e6382-4465-472f-9fd8-173ce803d207}"/>
+    <object class="GroupTrack" id="{aedabe24-62c7-47d3-8c4a-ccfb210ac46a}"/>
+    <object class="Timeline" id="{b60355d3-8cdf-42fb-b9c2-f3c4c41ec932}"/>
+    <object class="EventMixerMaster" id="{a53e1135-eebc-4c17-8edc-c241103cdef3}">
+        <relationship name="input">
+            <destination>{b6f0ef24-40cf-4138-acf3-315259566b43}</destination>
+        </relationship>
+    </object>
+    <object class="MixerBusEffectChain" id="{d5b3e06d-89bf-4958-8f1e-6d58b3df85ab}"/>
+    <object class="MixerBusPanner" id="{d2770bcd-d81c-481d-b4f8-5ba2ac70a89e}"/>
+    <object class="SingleSound" id="{bd67199d-4097-4983-b5a6-0bab87118d94}"/>
+    <object class="SingleSound" id="{58554d48-d281-4b00-b6c7-48e9063d9a3e}"/>
+    <object class="EventMixerGroup" id="{b6f0ef24-40cf-4138-acf3-315259566b43}"/>
+    <object class="MixerBusEffectChain" id="{9dac28cc-8c19-4e20-9e20-1f4a06d339c0}"/>
+    <object class="MixerBusPanner" id="{b812229d-d874-4053-8b39-ea1e46801cde}"/>
+    <object class="MixerBusFader" id="{184c38e4-e2a8-4193-a273-d5504f3a014e}"/>
+    <object class="MixerBusEffectChain" id="{02c95099-90b6-40ce-80ec-36333d0ca627}"/>
+    <object class="MixerBusPanner" id="{22257cf7-0736-4f34-9972-3c7a7f65b3bb}"/>
+    <object class="MixerBusFader" id="{42f7dff0-11f3-495c-bae1-fe8d73b44316}"/>
+    <object class="MixerBusFader" id="{a48559a4-df6a-4d0a-b8ef-b5595b8c57a1}"/>
+    <object class="CompressorEffect" id="{8693f753-26da-490c-8e20-3ef4a9ab0a55}"/>
+    <object class="SFXReverbEffect" id="{e2e1b3af-a879-489b-a904-ad786f923f15}"/>
+</objects>

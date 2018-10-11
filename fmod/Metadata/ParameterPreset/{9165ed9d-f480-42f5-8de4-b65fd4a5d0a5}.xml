@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<objects serializationModel="Studio.01.10.00">
+    <object class="ParameterPreset" id="{9165ed9d-f480-42f5-8de4-b65fd4a5d0a5}">
+        <property name="name">
+            <value>dawn_ratio</value>
+        </property>
+        <relationship name="folder">
+            <destination>{0851b688-1516-0cd0-203a-51fd7ab25bd7}</destination>
+        </relationship>
+        <relationship name="parameter">
+            <destination>{38ade4b0-6ba7-4606-9ba3-d39953cad6e3}</destination>
+        </relationship>
+    </object>
+    <object class="GameParameter" id="{38ade4b0-6ba7-4606-9ba3-d39953cad6e3}">
+        <property name="initialValue">
+            <value>0</value>
+        </property>
+    </object>
+</objects>
