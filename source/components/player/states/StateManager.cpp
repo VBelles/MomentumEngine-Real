@@ -5,6 +5,7 @@
 #include "modules/system_modules/slash/comp_slash.h"
 #include "components/player/states/AirborneActionState.h"
 #include "components/player/states/GroundedActionState.h"
+#include "components/player/states/DummyActionState.h"
 #include "components/player/states/base_states/GhostJumpWindowActionState.h"
 #include "components/player/states/base_states/SpendCoinsActionState.h"
 #include "components/player/states/base_states/moving_around/RunActionState.h"
@@ -135,6 +136,7 @@ void StateManager::registerStates() {
 	registerState<AirDodgeActionState>();
 	registerState<SpendCoinsActionState>();
 	registerState<LandingHurtActionState>();
+	registerState<DummyActionState>();
 
 	registerConcurrentState<FreeActionState>();
 	registerConcurrentState<FastAttackActionState>();
