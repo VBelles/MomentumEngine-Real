@@ -31,6 +31,7 @@ void TCompMusic::load(const json& j, TEntityParseContext& ctx) {
 
 TCompMusic::EventInfo TCompMusic::loadEventInfo(const json & j_event_info) {
 	EventInfo info;
+	info.timeMiliseconds = 1;
 	info.targetRatio = j_event_info.value("target_ratio", 0);
 	info.entersOnBeat = j_event_info.value("enters_on_beat", false);
 	info.exitsOnBeat = j_event_info.value("exits_on_beat", false);
