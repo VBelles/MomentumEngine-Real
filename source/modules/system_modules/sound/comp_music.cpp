@@ -180,7 +180,8 @@ void TCompMusic::setDayNight(DayNight dayNight) {
 }
 
 void TCompMusic::addLocation(Location location) {
-	if (locationState & location) return;
+	if (locationState & location == location) return;
+
 	int timeMiliseconds;
 	momentumThemeInstance->getTimelinePosition(&timeMiliseconds);
 
@@ -222,7 +223,7 @@ void TCompMusic::addLocation(Location location) {
 }
 
 void TCompMusic::removeLocation(Location location) {
-	if (!(locationState & location)) return;
+	if (locationState & location != location) return;
 
 	int timeMiliseconds;
 	momentumThemeInstance->getTimelinePosition(&timeMiliseconds);
