@@ -26,16 +26,22 @@ static const char *strEventTypes[] = { EVENT_TYPES };
 
 class TCompMusic : public TCompBase {
 private:
-	FMOD::Studio::EventInstance* momentumThemeInstance = nullptr;
 
 	int tempo = 107;//bpm
 	int timeSignature = 4;//numerador del 4/4
 	int milisecondsPerBeat;
 	int milisecondsPerBar;
 
-	std::string mainTheme = "event:/momentum_theme";
+	FMOD::Studio::EventInstance* currentSongInstance = nullptr;
+	FMOD::Studio::EventInstance* momentumThemeInstance = nullptr;
+	FMOD::Studio::EventInstance* introThemeInstance = nullptr;
 
-	bool paused = false;
+	std::string mainTheme = "event:/momentum_theme";
+	std::string introTheme = "event:/momentum_theme_placeholder";
+
+	bool isSongPlaying = false;
+
+	bool isGamePaused = false;
 	float pausedVolumeMultiplier = 0.5f;
 
 	struct EventInfo {
@@ -88,6 +94,10 @@ public:
 
 	Location locationState = NONE;
 
+	enum Song {
+		INTRO, MAIN
+	};
+
 	DECL_SIBLING_ACCESS();
 	TCompMusic() = default;
 	static void registerMsgs();
@@ -105,5 +115,6 @@ public:
 	void removeLocation(Location location);
 
 	void setPauseMenu(bool paused);
-
+	void setCurrentSong(Song song);
+	void setCurrentSong(std::string song);
 };

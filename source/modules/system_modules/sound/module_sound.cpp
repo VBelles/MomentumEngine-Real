@@ -95,6 +95,18 @@ Studio::EventInstance* CModuleSound::emitEvent(const std::string& sound, const C
 }
 
 Studio::EventInstance* CModuleSound::emitEvent(const std::string& sound, const FMOD_3D_ATTRIBUTES* attributes) {
+	Studio::EventInstance* eventInstance = getEventInstance(sound, attributes);
+	eventInstance->start();
+	eventInstance->release();
+	return eventInstance;
+}
+
+FMOD::Studio::EventInstance * CModuleSound::getEventInstance(const std::string & sound, const CTransform * transform) {
+	FMOD_3D_ATTRIBUTES attributes = toFMODAttributes(*transform);
+	return getEventInstance(sound, &attributes);
+}
+
+FMOD::Studio::EventInstance * CModuleSound::getEventInstance(const std::string & sound, const FMOD_3D_ATTRIBUTES * attributes) {
 	if (sound.empty()) return nullptr;
 	Studio::EventDescription* descriptor = nullptr;
 	Studio::EventInstance* eventInstance = nullptr;
@@ -105,8 +117,6 @@ Studio::EventInstance* CModuleSound::emitEvent(const std::string& sound, const F
 	}
 	res = descriptor->createInstance(&eventInstance);
 	eventInstance->set3DAttributes(attributes);
-	eventInstance->start();
-	eventInstance->release();
 	return eventInstance;
 }
 

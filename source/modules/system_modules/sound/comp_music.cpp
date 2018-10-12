@@ -12,13 +12,14 @@ void TCompMusic::registerMsgs() {
 }
 
 void TCompMusic::debugInMenu() {
-	if (ImGui::Checkbox("lowpass", &paused)) {
-		setPauseMenu(paused);
+	if (ImGui::Checkbox("lowpass", &isGamePaused)) {
+		setPauseMenu(isGamePaused);
 	}
 }
 
 void TCompMusic::load(const json& j, TEntityParseContext& ctx) {
 	mainTheme = j.value("main_theme", mainTheme);
+	introTheme = j.value("intro_theme", introTheme);
 
 	pausedVolumeMultiplier = j.value("paused_volume_multiplier", pausedVolumeMultiplier);
 	tempo = j.value("tempo", tempo);
@@ -40,18 +41,34 @@ TCompMusic::EventInfo TCompMusic::loadEventInfo(const json & j_event_info) {
 }
 
 void TCompMusic::onEntityCreated(const TMsgEntityCreated&) {
+	introThemeInstance = EngineSound.emitEvent(introTheme);
 	momentumThemeInstance = EngineSound.emitEvent(mainTheme);
+	currentSongInstance = momentumThemeInstance;
 	milisecondsPerBeat = 60000 / tempo;//1 min = 60000 ms
 	milisecondsPerBar = milisecondsPerBeat * timeSignature;
 	for (int i = 0; i < LAST; i++) {
 		eventInfos[static_cast<EventType>(i)].timer.setTimeStamp(0);
 	}
+	stop();//si hago getEventInstance en vez de emitEvent las pistas se desincronizan
 	play();
 }
 
 
 void TCompMusic::onDestroyed(const TMsgEntityDestroyed&) {
 	stop();
+}
+
+
+void TCompMusic::play() {
+	currentSongInstance->start();
+	currentSongInstance->release();
+	isSongPlaying = true;
+}
+
+void TCompMusic::stop() {
+	momentumThemeInstance->stop(FMOD_STUDIO_STOP_ALLOWFADEOUT);
+	introThemeInstance->stop(FMOD_STUDIO_STOP_ALLOWFADEOUT);
+	isSongPlaying = false;
 }
 
 void TCompMusic::update(float delta) {
@@ -70,14 +87,6 @@ void TCompMusic::update(float delta) {
 			momentumThemeInstance->setParameterValue(eventInfo.fmodVariable.c_str(), eventInfo.ratio);
 		}
 	}
-}
-
-void TCompMusic::play() {
-	momentumThemeInstance->start();
-}
-
-void TCompMusic::stop() {
-	momentumThemeInstance->stop(FMOD_STUDIO_STOP_ALLOWFADEOUT);
 }
 
 void TCompMusic::setCombat(Combat combat) {
@@ -266,7 +275,7 @@ void TCompMusic::removeLocation(Location location) {
 }
 
 void TCompMusic::setPauseMenu(bool paused) {
-	if (paused != this->paused) {
+	if (paused != this->isGamePaused) {
 		//molaría también bajar el volumen un poco
 		float previousVolume;
 		momentumThemeInstance->getVolume(&previousVolume);
@@ -279,6 +288,36 @@ void TCompMusic::setPauseMenu(bool paused) {
 		//cambiar la ecualización (cutoff: 1.5kHz, ressonance: 5)
 		float activation = paused ? 1.f : 0.f;
 		momentumThemeInstance->setParameterValue("activate_lowpass", activation);
-		this->paused = paused;
+		this->isGamePaused = paused;
 	}
+}
+
+void TCompMusic::setCurrentSong(Song song) {
+	switch (song) {
+	case MAIN:
+		if (currentSongInstance != momentumThemeInstance) {
+			stop();
+			currentSongInstance = momentumThemeInstance;
+			play();
+		}
+		else if(!isSongPlaying){
+			play();
+		}
+		break;
+	case INTRO:
+		if (currentSongInstance != introThemeInstance) {
+			stop();
+			currentSongInstance = introThemeInstance;
+			play();
+		}
+		else if (!isSongPlaying) {
+			play();
+		}
+		break;
+	}
+}
+
+void TCompMusic::setCurrentSong(std::string song) {
+	if (song == "main" || song == "MAIN") setCurrentSong(MAIN);
+	else if (song == "intro" || song == "INTRO") setCurrentSong(INTRO);
 }
