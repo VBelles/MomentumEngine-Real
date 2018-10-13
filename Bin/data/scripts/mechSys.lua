@@ -187,18 +187,18 @@ function onMechanismSystemDeactivated_nes_tumba_0_003()
   openDoor("nes_tumba_0_003", 0)
 end
 
-function onMechanismSystemActivated_nes_estaca_emisivo_2_004()
-  closeDoor("nes_estaca_emisivo_2_004", 0)
-end
-function onMechanismSystemDeactivated_nes_estaca_emisivo_2_004()
-  openDoor("nes_estaca_emisivo_2_004", 0)
-end
-
 function onMechanismSystemActivated_nes_estaca_emisivo_1_004()
   closeDoor("nes_estaca_emisivo_1_004", 0)
 end
 function onMechanismSystemDeactivated_nes_estaca_emisivo_1_004()
   openDoor("nes_estaca_emisivo_1_004", 0)
+end
+
+function onMechanismSystemActivated_nes_estaca_emisivo_2_004()
+  closeDoor("nes_estaca_emisivo_2_004", 0)
+end
+function onMechanismSystemDeactivated_nes_estaca_emisivo_2_004()
+  openDoor("nes_estaca_emisivo_2_004", 0)
 end
 
 function onMechanismSystemActivated_nes_pasarela_collider011()

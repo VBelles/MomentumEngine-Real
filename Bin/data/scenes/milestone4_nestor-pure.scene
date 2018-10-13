@@ -43,109 +43,31 @@
   {
     "entity":
     {
-      "name": "nes_crystal_low_330",
+      "name": "nes_crystal_low_328",
       "transform":
       {
-        "pos": "-93.1641 48.6402 5.02058",
-        "rotation": "0.255377 0.723248 -0.146179 -0.624761"
+        "pos": "-93.6356 48.3801 5.3818",
+        "rotation": "0.0 0.0 0.0 -1.0"
       },
       "render":
       [
         {
-          "mesh": "data/meshes/nes_crystal_low_330.mesh",
+          "mesh": "data/meshes/nes_crystal_low_328.mesh",
           "materials":
           [
-            "data/materials/m_crystal_02_pureON.material"
-          ],
-          "enabled": false
-        },
-        {
-          "mesh": "data/meshes/nes_crystal_low_330.mesh",
-          "materials":
-          [
-            "data/materials/m_crystal_02_pure.material"
-          ],
-          "enabled": true
-        }
-      ],
-      "purity": {},
-      "collider":
-      {
-        "mesh_src": "data/meshes/nes_crystal_low_330.col_mesh",
-        "shape": "convex_mesh",
-        "type": "static",
-        "group":
-        [
-          "scenario"
-        ]
-      }
-    }
-  },
-  {
-    "entity":
-    {
-      "name": "nes_crystal_low_329",
-      "transform":
-      {
-        "pos": "-93.8283 47.8474 6.38604",
-        "rotation": "-0.0499012 0.592621 -0.00833589 -0.803891"
-      },
-      "render":
-      [
-        {
-          "mesh": "data/meshes/nes_crystal_low_329.mesh",
-          "materials":
-          [
+            "data/materials/m_crystal_04_pureON.material",
+            "data/materials/m_crystal_02_pureON.material",
             "data/materials/m_crystal_00_pureON.material"
           ],
           "enabled": false
         },
         {
-          "mesh": "data/meshes/nes_crystal_low_329.mesh",
+          "mesh": "data/meshes/nes_crystal_low_328.mesh",
           "materials":
           [
+            "data/materials/m_crystal_04_pure.material",
+            "data/materials/m_crystal_02_pure.material",
             "data/materials/m_crystal_00_pure.material"
-          ],
-          "enabled": true
-        }
-      ],
-      "purity": {},
-      "collider":
-      {
-        "mesh_src": "data/meshes/nes_crystal_low_329.col_mesh",
-        "shape": "convex_mesh",
-        "type": "static",
-        "group":
-        [
-          "scenario"
-        ]
-      }
-    }
-  },
-  {
-    "entity":
-    {
-      "name": "nes_crystal_low_328",
-      "transform":
-      {
-        "pos": "-94.7929 47.7633 5.56542",
-        "rotation": "-0.0883241 0.637046 -0.411067 -0.646062"
-      },
-      "render":
-      [
-        {
-          "mesh": "data/meshes/nes_crystal_low_328.mesh",
-          "materials":
-          [
-            "data/materials/m_crystal_04_pureON.material"
-          ],
-          "enabled": false
-        },
-        {
-          "mesh": "data/meshes/nes_crystal_low_328.mesh",
-          "materials":
-          [
-            "data/materials/m_crystal_04_pure.material"
           ],
           "enabled": true
         }
@@ -209,7 +131,7 @@
         "loop": true,
         "closed": false,
         "move_offset": 0,
-        "travel_wait_time": 1.0,
+        "travel_wait_time": 3.0,
         "speed": 0.13,
         "knots":
         [
