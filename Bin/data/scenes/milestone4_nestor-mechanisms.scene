@@ -77,7 +77,7 @@
         "closed": false,
         "move_offset": 0,
         "travel_wait_time": 1.0,
-        "speed": 0.1,
+        "speed": 0.13,
         "knots":
         [
            "-48.7171 27.6542 -13.3533",
@@ -141,7 +141,7 @@
         "closed": false,
         "move_offset": 0,
         "travel_wait_time": 1.0,
-        "speed": 0.1,
+        "speed": 0.13,
         "knots":
         [
            "-66.347 21.9841 6.93815",
@@ -205,7 +205,7 @@
         "closed": false,
         "move_offset": 0,
         "travel_wait_time": 1.0,
-        "speed": 0.1,
+        "speed": 0.13,
         "knots":
         [
            "-66.3327 33.2104 6.94378",
@@ -269,7 +269,7 @@
         "closed": false,
         "move_offset": 0,
         "travel_wait_time": 1.0,
-        "speed": 0.1,
+        "speed": 0.13,
         "knots":
         [
            "-49.1024 38.5173 -12.9119",
@@ -1739,8 +1739,8 @@
       "prefab": "data/prefabs/mech.prefab",
       "transform":
       {
-        "pos": "-119.256 29.401 -69.9779",
-        "rotation": "-0.706191 0.0359788 -0.0359788 -0.706191"
+        "pos": "-106.074 42.9645 -73.7639",
+        "rotation": "-0.496352 0.503622 -0.503622 -0.496352"
       },
       "mechanism":
       {
@@ -1749,55 +1749,8 @@
         "isResettable": false,
         "systems":
         [
-           "nes_estaca_emisivo_2_004",
-           "nes_estaca_emisivo_1_004"
-        ]
-      }
-    }
-  },
-  {
-    "entity":
-    {
-      "name": "nes_estaca_emisivo_2_004",
-      "transform":
-      {
-        "pos": "-112.413 27.6209 -74.9275",
-        "rotation": "0.409174 -0.710039 -0.286137 0.496534"
-      },
-      "mechanism_system":
-      {
-        "number_of_mechanisms": 1
-      },
-      "activate_listener":
-      {
-        "change_render": true,
-        "change_collider": true,
-        "change_platform": true,
-        "change_animation": true,
-        "render_enabled_on_active": true,
-        "collider_enabled_on_active": true,
-        "platform_enabled_on_active": true,
-        "animation_enabled_on_active": true
-      },
-      "render":
-      [
-        {
-          "mesh": "data/meshes/nes_estaca_emisivo_2_004.mesh",
-          "materials":
-          [
-            "data/materials/m_estaca_03.material"
-          ],
-          "enabled": true
-        }
-      ],
-      "collider":
-      {
-        "mesh_src": "data/meshes/nes_estaca_emisivo_2_col_004.col_mesh",
-        "shape": "convex_mesh",
-        "type": "static",
-        "group":
-        [
-          "scenario"
+           "nes_estaca_emisivo_1_004",
+           "nes_estaca_emisivo_2_004"
         ]
       }
     }
@@ -1840,6 +1793,53 @@
       "collider":
       {
         "mesh_src": "data/meshes/nes_estaca_emisivo_1_col_004.col_mesh",
+        "shape": "convex_mesh",
+        "type": "static",
+        "group":
+        [
+          "scenario"
+        ]
+      }
+    }
+  },
+  {
+    "entity":
+    {
+      "name": "nes_estaca_emisivo_2_004",
+      "transform":
+      {
+        "pos": "-111.258 27.6209 -74.9275",
+        "rotation": "0.409174 -0.710039 -0.286137 0.496534"
+      },
+      "mechanism_system":
+      {
+        "number_of_mechanisms": 1
+      },
+      "activate_listener":
+      {
+        "change_render": true,
+        "change_collider": true,
+        "change_platform": true,
+        "change_animation": true,
+        "render_enabled_on_active": true,
+        "collider_enabled_on_active": true,
+        "platform_enabled_on_active": true,
+        "animation_enabled_on_active": true
+      },
+      "render":
+      [
+        {
+          "mesh": "data/meshes/nes_estaca_emisivo_2_004.mesh",
+          "materials":
+          [
+            "data/materials/m_estaca_03.material"
+          ],
+          "enabled": true
+        }
+      ],
+      "collider":
+      {
+        "mesh_src": "data/meshes/nes_estaca_emisivo_2_col_004.col_mesh",
         "shape": "convex_mesh",
         "type": "static",
         "group":

@@ -2,6 +2,114 @@
   {
     "entity":
     {
+      "name": "nes_fireplace_044",
+      "prefab": "data/prefabs/fireplace.prefab",
+      "transform":
+      {
+        "pos": "109.644 4.46185 -73.6759",
+        "rotation": "0.0 0.0 0.0 -1.0"
+      }
+    }
+  },
+  {
+    "entity":
+    {
+      "name": "nes_fireplace_043",
+      "prefab": "data/prefabs/fireplace.prefab",
+      "transform":
+      {
+        "pos": "156.921 33.9419 -132.731",
+        "rotation": "0.0 0.0 0.0 -1.0"
+      }
+    }
+  },
+  {
+    "entity":
+    {
+      "name": "nes_fireplace_042",
+      "prefab": "data/prefabs/fireplace.prefab",
+      "transform":
+      {
+        "pos": "147.585 33.9419 -132.925",
+        "rotation": "0.0 0.0 0.0 -1.0"
+      }
+    }
+  },
+  {
+    "entity":
+    {
+      "name": "nes_fireplace_041",
+      "prefab": "data/prefabs/fireplace.prefab",
+      "transform":
+      {
+        "pos": "161.297 122.05 -137.359",
+        "rotation": "0.0 0.0 0.0 -1.0"
+      }
+    }
+  },
+  {
+    "entity":
+    {
+      "name": "nes_fireplace_040",
+      "prefab": "data/prefabs/fireplace.prefab",
+      "transform":
+      {
+        "pos": "141.61 83.5781 -163.617",
+        "rotation": "0.0 0.0 0.0 -1.0"
+      }
+    }
+  },
+  {
+    "entity":
+    {
+      "name": "nes_fireplace_039",
+      "prefab": "data/prefabs/fireplace.prefab",
+      "transform":
+      {
+        "pos": "51.2986 4.58465 -118.863",
+        "rotation": "0.0 0.0 0.0 -1.0"
+      }
+    }
+  },
+  {
+    "entity":
+    {
+      "name": "nes_fireplace_038",
+      "prefab": "data/prefabs/fireplace.prefab",
+      "transform":
+      {
+        "pos": "-98.2644 55.6275 -86.4731",
+        "rotation": "0.0 0.0 0.0 -1.0"
+      }
+    }
+  },
+  {
+    "entity":
+    {
+      "name": "nes_fireplace_037",
+      "prefab": "data/prefabs/fireplace.prefab",
+      "transform":
+      {
+        "pos": "-106.363 55.6275 -86.4731",
+        "rotation": "0.0 0.0 0.0 -1.0"
+      }
+    }
+  },
+  {
+    "entity":
+    {
+      "name": "nes_fireplace_036",
+      "prefab": "data/prefabs/fireplace.prefab",
+      "transform":
+      {
+        "pos": "-102.441 50.299 -61.1461",
+        "rotation": "0.0 0.0 0.0 -1.0"
+      }
+    }
+  },
+  {
+    "entity":
+    {
       "name": "nes_fireplace_035",
       "prefab": "data/prefabs/fireplace.prefab",
       "transform":

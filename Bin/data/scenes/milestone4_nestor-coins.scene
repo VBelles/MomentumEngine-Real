@@ -2,6 +2,215 @@
   {
     "entity":
     {
+      "name": "nes_coin339",
+      "prefab": "data/prefabs/coin.prefab",
+      "transform":
+      {
+        "pos": "94.1869 20.8165 46.9042"
+      }
+    }
+  },
+  {
+    "entity":
+    {
+      "name": "nes_coin338",
+      "prefab": "data/prefabs/coin.prefab",
+      "transform":
+      {
+        "pos": "-71.5496 31.5936 15.1471"
+      }
+    }
+  },
+  {
+    "entity":
+    {
+      "name": "nes_coin337",
+      "prefab": "data/prefabs/coin.prefab",
+      "transform":
+      {
+        "pos": "-107.744 18.6984 -33.4927"
+      }
+    }
+  },
+  {
+    "entity":
+    {
+      "name": "nes_coin336",
+      "prefab": "data/prefabs/coin.prefab",
+      "transform":
+      {
+        "pos": "-109.22 18.6984 -31.1738"
+      }
+    }
+  },
+  {
+    "entity":
+    {
+      "name": "nes_coin335",
+      "prefab": "data/prefabs/coin.prefab",
+      "transform":
+      {
+        "pos": "-109.61 18.6984 -28.3215"
+      }
+    }
+  },
+  {
+    "entity":
+    {
+      "name": "nes_coin334",
+      "prefab": "data/prefabs/coin.prefab",
+      "transform":
+      {
+        "pos": "-106.669 18.6984 -26.4678"
+      }
+    }
+  },
+  {
+    "entity":
+    {
+      "name": "nes_coin333",
+      "prefab": "data/prefabs/coin.prefab",
+      "transform":
+      {
+        "pos": "-105.662 61.1483 -78.4828"
+      }
+    }
+  },
+  {
+    "entity":
+    {
+      "name": "nes_coin332",
+      "prefab": "data/prefabs/coin.prefab",
+      "transform":
+      {
+        "pos": "-99.4562 61.1483 -79.0731"
+      }
+    }
+  },
+  {
+    "entity":
+    {
+      "name": "nes_coin331",
+      "prefab": "data/prefabs/coin.prefab",
+      "transform":
+      {
+        "pos": "-102.055 61.1483 -76.2171"
+      }
+    }
+  },
+  {
+    "entity":
+    {
+      "name": "nes_coin330",
+      "prefab": "data/prefabs/coin.prefab",
+      "transform":
+      {
+        "pos": "-102.85 61.1483 -80.6998"
+      }
+    }
+  },
+  {
+    "entity":
+    {
+      "name": "nes_coin329",
+      "prefab": "data/prefabs/coin.prefab",
+      "transform":
+      {
+        "pos": "-106.439 22.2403 -60.5611"
+      }
+    }
+  },
+  {
+    "entity":
+    {
+      "name": "nes_coin328",
+      "prefab": "data/prefabs/coin.prefab",
+      "transform":
+      {
+        "pos": "-102.6 22.2403 -65.6703"
+      }
+    }
+  },
+  {
+    "entity":
+    {
+      "name": "nes_coin327",
+      "prefab": "data/prefabs/coin.prefab",
+      "transform":
+      {
+        "pos": "-107.762 20.3247 -43.6627"
+      }
+    }
+  },
+  {
+    "entity":
+    {
+      "name": "nes_coin326",
+      "prefab": "data/prefabs/coin.prefab",
+      "transform":
+      {
+        "pos": "-111.25 20.3247 -49.0173"
+      }
+    }
+  },
+  {
+    "entity":
+    {
+      "name": "nes_coin325",
+      "prefab": "data/prefabs/coin.prefab",
+      "transform":
+      {
+        "pos": "-102.309 56.7369 -84.0103"
+      }
+    }
+  },
+  {
+    "entity":
+    {
+      "name": "nes_coin324",
+      "prefab": "data/prefabs/coin.prefab",
+      "transform":
+      {
+        "pos": "-102.309 56.7369 -86.6136"
+      }
+    }
+  },
+  {
+    "entity":
+    {
+      "name": "nes_coin323",
+      "prefab": "data/prefabs/coin.prefab",
+      "transform":
+      {
+        "pos": "-103.912 51.4715 -67.1157"
+      }
+    }
+  },
+  {
+    "entity":
+    {
+      "name": "nes_coin322",
+      "prefab": "data/prefabs/coin.prefab",
+      "transform":
+      {
+        "pos": "-100.96 51.4715 -67.0113"
+      }
+    }
+  },
+  {
+    "entity":
+    {
+      "name": "nes_coin321",
+      "prefab": "data/prefabs/coin.prefab",
+      "transform":
+      {
+        "pos": "-102.515 51.4715 -65.0106"
+      }
+    }
+  },
+  {
+    "entity":
+    {
       "name": "nes_coin320",
       "prefab": "data/prefabs/coin.prefab",
       "transform":
@@ -909,50 +1118,6 @@
       "transform":
       {
         "pos": "139.924 38.5775 53.7739"
-      }
-    }
-  },
-  {
-    "entity":
-    {
-      "name": "nes_coin237",
-      "prefab": "data/prefabs/coin.prefab",
-      "transform":
-      {
-        "pos": "-125.692 33.4019 -45.5862"
-      }
-    }
-  },
-  {
-    "entity":
-    {
-      "name": "nes_coin236",
-      "prefab": "data/prefabs/coin.prefab",
-      "transform":
-      {
-        "pos": "-105.167 27.9619 -65.906"
-      }
-    }
-  },
-  {
-    "entity":
-    {
-      "name": "nes_coin235",
-      "prefab": "data/prefabs/coin.prefab",
-      "transform":
-      {
-        "pos": "-103.772 27.9619 -63.4828"
-      }
-    }
-  },
-  {
-    "entity":
-    {
-      "name": "nes_coin234",
-      "prefab": "data/prefabs/coin.prefab",
-      "transform":
-      {
-        "pos": "-124.073 33.4019 -43.2236"
       }
     }
   },
