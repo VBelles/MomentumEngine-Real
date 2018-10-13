@@ -26,6 +26,7 @@ void ScriptingPlayer::bind(SLB::Manager* manager) {
 	manager->set("disablePlayerOutline", SLB::FuncCall::create(ScriptingPlayer::disablePlayerOutline));
 	manager->set("enablePlayerOutline", SLB::FuncCall::create(ScriptingPlayer::enablePlayerOutline));
 	manager->set("isPlayerGrounded", SLB::FuncCall::create(ScriptingPlayer::isPlayerGrounded));
+	manager->set("setDummyState", SLB::FuncCall::create(ScriptingPlayer::setDummyState));
 }
 
 float ScriptingPlayer::getPlayerHp() {
@@ -103,6 +104,10 @@ void ScriptingPlayer::walkTo(float x, float z) {
 void ScriptingPlayer::rotatePlayerTowards(float x, float z, float speed) {
 	VEC3 targetPosition = VEC3(x, 0, z);
 	getPlayerModel()->rotatePlayerTowards(targetPosition, speed);
+}
+
+void ScriptingPlayer::setDummyState(std::string animation, bool isLoop, float duration, std::string exitAnimation) {
+	getPlayerModel()->setDummyState(animation, isLoop, duration, exitAnimation);
 }
 
 TCompPlayerModel* ScriptingPlayer::getPlayerModel() {

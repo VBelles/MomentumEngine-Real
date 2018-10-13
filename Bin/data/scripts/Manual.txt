@@ -37,6 +37,7 @@ Funciones:
 	void changePlayerConcurrentState(std::string state)
 	void rotatePlayerTowards(float x, float z, float speed)
 	void walkTo(float x, float z)
+	void setDummyState(string animation, bool isLoop, float duration, string exitAnimation)
 
 	string spawnEntityAt(PREFAB, float x, float y, float z)
 	string spawnEntity(PREFAB)

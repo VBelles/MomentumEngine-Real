@@ -5,6 +5,7 @@
 #include "components/controllers/comp_camera_player.h"
 #include "components/player/states/AirborneActionState.h"
 #include "components/player/states/GroundedActionState.h"
+#include "components/player/states/DummyActionState.h"
 #include "components/player/states/base_states/moving_around/RunActionState.h"
 #include "components/player/states/base_states/moving_around/IdleActionState.h"
 #include "components/player/states/StateManager.h"
@@ -735,4 +736,8 @@ void TCompPlayerModel::changeState(std::string state) {
 
 void TCompPlayerModel::changeConcurrentState(std::string state) {
 	getStateManager()->changeConcurrentState(state);
+}
+
+void TCompPlayerModel::setDummyState(std::string animation, bool isLoop, float duration, std::string exitAnimation) {
+	dynamic_cast<DummyActionState*>(stateManager->getState(Dummy))->setDummyState(animation, isLoop, duration, exitAnimation);
 }
