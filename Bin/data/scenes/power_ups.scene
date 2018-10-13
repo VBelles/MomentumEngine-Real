@@ -1,0 +1,89 @@
+[
+	{
+		"entity":
+		{
+			"name" : "power_up_hugging_wall",
+			"power_up":{
+				"state_to_unlock" : "HuggingWall",
+				"message" : "You got the power to wall jump."
+			},
+			"transform": {
+				"pos": "-85.162 -37.629 184.919"
+			},
+			"render": [
+				{
+					"mesh": "data/meshes/monedas_raras.mesh",
+					"materials": [
+						"data/materials/black.material"
+					]
+				}
+			],
+			"collider" : {
+				"shape": "sphere",
+				"is_trigger" : true,
+				"radius" : 0.65,
+				"type": "kinematic",
+				"group": ["scenario"],
+				"mask": ["player"]
+			}
+		}
+	},
+	{
+		"entity":
+		{
+			"name" : "power_up_spring_jump",
+			"power_up":{
+				"state_to_unlock" : "JumpSquatSpring",
+				"message" : "You can now jump higher after a hard landing.\nTime your jump correctly."
+			},
+			"transform": {
+				"pos": "180.777 53.951 123.919"
+			},
+			"render": [
+				{
+					"mesh": "data/meshes/monedas_raras.mesh",
+					"materials": [
+						"data/materials/black.material"
+					]
+				}
+			],
+			"collider" : {
+				"shape": "sphere",
+				"is_trigger" : true,
+				"radius" : 0.65,
+				"type": "kinematic",
+				"group": ["scenario"],
+				"mask": ["player"]
+			}
+		}
+	},
+	{
+		"entity":
+		{
+			"name" : "power_up_plummet",
+			"power_up":{
+				"state_to_unlock" : "WallJumpSquatPlummet",
+				"message" : "Plummet towards the ground from a wall."
+			},
+			"transform": {
+				"pos": "221.377 25.807 -215.652"
+			},
+			"render": [
+				{
+					"mesh": "data/meshes/monedas_raras.mesh",
+					"materials": [
+						"data/materials/black.material"
+					]
+				}
+			],
+			"collider" : {
+				"shape": "sphere",
+				"is_trigger" : true,
+				"radius" : 0.65,
+				"type": "kinematic",
+				"group": ["scenario"],
+				"mask": ["player"]
+			}
+		}
+	}
+]

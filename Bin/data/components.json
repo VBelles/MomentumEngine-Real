@@ -108,6 +108,7 @@
     "platform_simple",
     "collectable",
     "collectable_manager",
+    "power_up",
     "breakable",
     "mechanism",
     "mechanism_system",
