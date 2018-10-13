@@ -20,12 +20,21 @@ private:
 
 	float showChrysalisTime = 5.f;
 
+	CTimer2 collectTimer;
+	bool isCollecting = false;
+
+	float collectPitch = deg2rad(-20.f);
+	float collectDistance = 2.f;
+	VEC2 cameraSpeed = VEC2(1.5f, 1.5f);
+	float collectDuration = 3.f;
+
 public:
 	DECL_SIBLING_ACCESS();
 
 	static void registerMsgs();
 	void load(const json& j, TEntityParseContext& ctx);
 	void update(float delta);
+	void debugInMenu();
 
 	void addUniqueCollectable(TCompCollectable::Type type, std::string id);
 	void addCollectable(TCompCollectable::Type type, int amount);

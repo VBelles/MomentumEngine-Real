@@ -107,6 +107,7 @@
     "platforms_director",
     "platform_simple",
     "collectable",
+    "collectable_manager",
     "breakable",
     "mechanism",
     "mechanism_system",
