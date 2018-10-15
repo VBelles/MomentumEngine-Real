@@ -17,7 +17,7 @@ void CProfiler::setNFramesToCapture(uint32_t new_n) {
 void CProfiler::beginFrame() {
 
   if (max_entries == 0)
-    create(1 << 16);
+    create(1 << 18);
 
   if (!is_capturing) {
     if (nframes_to_capture) {
