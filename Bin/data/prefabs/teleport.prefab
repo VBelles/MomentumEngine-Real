@@ -1,0 +1,40 @@
+[
+  {
+    "entity":
+    {
+      "name": "teleport",
+      "transform":
+      {
+        "pos": "0.0 0.0 0.0",
+        "rotation": "0.0 0.0 0.0 -1.0"
+      },
+      "render":
+      [
+        {
+          "mesh": "data/meshes/_teleportPREFAB.mesh",
+          "materials":
+          [
+            "data/materials/teleport_deactivated.material"
+          ]
+        },
+        {
+          "mesh": "data/meshes/_teleportPREFAB.mesh",
+          "materials":
+          [
+            "data/materials/teleport_activated.material"
+          ]
+        }
+      ],
+      "collider":
+      {
+        "mesh_src": "data/meshes/_teleportPREFABcol.col_mesh",
+        "shape": "tri_mesh",
+        "type": "static",
+        "group":
+        [
+          "scenario"
+        ]
+      }
+    }
+  }
+]

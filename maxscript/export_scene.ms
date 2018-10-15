@@ -1179,6 +1179,15 @@ struct TSceneExporter (
 		return true
 	),
 
+	-- --ENTITY: TELEPORT (also exports child line)-----------------------------
+	fn exportEntityTeleport obj nValidObjs = (
+		if nValidObjs > 0 then fs.writeComma()
+
+		exportPrefabEntity obj "teleport"
+		
+		return true
+	),
+
 	-- --ENTITY: COIN (also exports child line)---------------------------------
 	fn exportEntityCoin obj nValidObjs = (
 		if nValidObjs > 0 then fs.writeComma()
@@ -2128,6 +2137,7 @@ struct TSceneExporter (
 							"breakables":	( wasValid = exportEntityDefault   obj nValidObjs )
 							"cameras":      ( wasValid = exportEntityCamera    obj nValidObjs )
 							"chrysalis":    ( wasValid = exportEntityChrysalis obj nValidObjs )
+							"teleports":    ( wasValid = exportEntityTeleport  obj nValidObjs )
 							"coins": 	    ( wasValid = exportEntityCoin      obj nValidObjs )
 							"collisions":   ( wasValid = exportEntityCollision obj nValidObjs )
 							"enemies":      ( wasValid = exportEntityEnemy	   obj nValidObjs )

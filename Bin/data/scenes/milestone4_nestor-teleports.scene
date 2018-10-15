@@ -1,0 +1,14 @@
+[
+  {
+    "entity":
+    {
+      "name": "teleport_001",
+      "prefab": "data/prefabs/teleport.prefab",
+      "transform":
+      {
+        "pos": "6.22754 -0.899292 -8.44519",
+        "rotation": "0.0 0.0 0.0 -1.0"
+      }
+    }
+  }
+]
