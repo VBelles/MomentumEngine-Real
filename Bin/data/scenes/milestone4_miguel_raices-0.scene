@@ -14,28 +14,6 @@
           "mesh": "data/meshes/root_gran_028_bombilla_collider.mesh",
           "materials":
           [
-            "data/materials/empty.material"
-          ],
-          "enabled": true
-        }
-      ]
-    }
-  },
-  {
-    "entity":
-    {
-      "name": "raiz6_bombilla",
-      "transform":
-      {
-        "pos": "44.7892 2.11375 107.181",
-        "rotation": "0.835102 -0.0140325 -0.176107 -0.520955"
-      },
-      "render":
-      [
-        {
-          "mesh": "data/meshes/raiz6_bombilla.mesh",
-          "materials":
-          [
             "data/materials/m_bombilla.material"
           ],
           "enabled": true
@@ -2875,6 +2853,28 @@
           "materials":
           [
             "data/materials/Material #4.material"
+          ],
+          "enabled": true
+        }
+      ]
+    }
+  },
+  {
+    "entity":
+    {
+      "name": "raiz6_bombilla",
+      "transform":
+      {
+        "pos": "44.7892 2.11375 107.181",
+        "rotation": "0.835102 -0.0140325 -0.176107 -0.520955"
+      },
+      "render":
+      [
+        {
+          "mesh": "data/meshes/raiz6_bombilla.mesh",
+          "materials":
+          [
+            "data/materials/m_bombilla.material"
           ],
           "enabled": true
         }

@@ -373,13 +373,6 @@
       "type": "coins"
     },
     {
-      "id": "dani_coin_132",
-      "done": false,
-      "position": "221.018 25.255 -215.826",
-      "level": "level00",
-      "type": "coins"
-    },
-    {
       "id": "dani_coin_131",
       "done": false,
       "position": "196.674 13.5056 -233.738",
@@ -403,35 +396,35 @@
     {
       "id": "dani_coin_128",
       "done": false,
-      "position": "214.902 67.6966 -238.878",
+      "position": "214.902 68.1483 -238.878",
       "level": "level00",
       "type": "coins"
     },
     {
       "id": "dani_coin_127",
       "done": false,
-      "position": "216.174 70.2479 -241.082",
+      "position": "216.174 70.6996 -241.082",
       "level": "level00",
       "type": "coins"
     },
     {
       "id": "dani_coin_126",
       "done": false,
-      "position": "217.409 72.4595 -243.221",
+      "position": "217.409 72.9112 -243.221",
       "level": "level00",
       "type": "coins"
     },
     {
       "id": "dani_coin_125",
       "done": false,
-      "position": "217.409 75.5635 -243.221",
+      "position": "217.409 76.0151 -243.221",
       "level": "level00",
       "type": "coins"
     },
     {
       "id": "dani_coin_124",
       "done": false,
-      "position": "217.409 78.4996 -243.221",
+      "position": "217.409 78.9513 -243.221",
       "level": "level00",
       "type": "coins"
     },

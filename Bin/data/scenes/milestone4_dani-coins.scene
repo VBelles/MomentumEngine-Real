@@ -585,17 +585,6 @@
   {
     "entity":
     {
-      "name": "dani_coin_132",
-      "prefab": "data/prefabs/coin.prefab",
-      "transform":
-      {
-        "pos": "221.018 25.255 -215.826"
-      }
-    }
-  },
-  {
-    "entity":
-    {
       "name": "dani_coin_131",
       "prefab": "data/prefabs/coin.prefab",
       "transform":
@@ -633,7 +622,7 @@
       "prefab": "data/prefabs/coin.prefab",
       "transform":
       {
-        "pos": "214.902 67.6966 -238.878"
+        "pos": "214.902 68.1483 -238.878"
       }
     }
   },
@@ -644,7 +633,7 @@
       "prefab": "data/prefabs/coin.prefab",
       "transform":
       {
-        "pos": "216.174 70.2479 -241.082"
+        "pos": "216.174 70.6996 -241.082"
       }
     }
   },
@@ -655,7 +644,7 @@
       "prefab": "data/prefabs/coin.prefab",
       "transform":
       {
-        "pos": "217.409 72.4595 -243.221"
+        "pos": "217.409 72.9112 -243.221"
       }
     }
   },
@@ -666,7 +655,7 @@
       "prefab": "data/prefabs/coin.prefab",
       "transform":
       {
-        "pos": "217.409 75.5635 -243.221"
+        "pos": "217.409 76.0151 -243.221"
       }
     }
   },
@@ -677,7 +666,7 @@
       "prefab": "data/prefabs/coin.prefab",
       "transform":
       {
-        "pos": "217.409 78.4996 -243.221"
+        "pos": "217.409 78.9513 -243.221"
       }
     }
   },
