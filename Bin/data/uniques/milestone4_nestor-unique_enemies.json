@@ -2,6 +2,76 @@
   "unique_enemies":
   [
     {
+      "id": "nes_enemyAir057",
+      "done": false,
+      "position": "-154.925 49.0728 5.90272",
+      "level": "level00",
+      "type": "kippah"
+    },
+    {
+      "id": "nes_enemyAir056",
+      "done": false,
+      "position": "-152.504 46.3157 -44.7609",
+      "level": "level00",
+      "type": "kippah"
+    },
+    {
+      "id": "nes_enemyAir055",
+      "done": false,
+      "position": "-153.65 44.9642 -66.0936",
+      "level": "level00",
+      "type": "kippah"
+    },
+    {
+      "id": "nes_enemyAir054",
+      "done": false,
+      "position": "-170.681 57.9892 -23.6768",
+      "level": "level00",
+      "type": "kippah"
+    },
+    {
+      "id": "nes_enemyAir053",
+      "done": false,
+      "position": "-170.681 45.8019 -23.6768",
+      "level": "level00",
+      "type": "kippah"
+    },
+    {
+      "id": "nes_enemyAir052",
+      "done": false,
+      "position": "1.53661 48.3787 205.49",
+      "level": "level00",
+      "type": "kippah"
+    },
+    {
+      "id": "nes_enemyMelee045",
+      "done": false,
+      "position": "-27.2783 10.7426 176.582",
+      "level": "level00",
+      "type": "dreidel"
+    },
+    {
+      "id": "nes_enemyMelee044",
+      "done": false,
+      "position": "-16.4972 10.7426 176.45",
+      "level": "level00",
+      "type": "dreidel"
+    },
+    {
+      "id": "nes_enemyMelee043",
+      "done": false,
+      "position": "-21.8785 10.7426 167.12",
+      "level": "level00",
+      "type": "dreidel"
+    },
+    {
+      "id": "nes_enemyMelee042",
+      "done": false,
+      "position": "52.0069 1.91982 10.4252",
+      "level": "level00",
+      "type": "dreidel"
+    },
+    {
       "id": "nes_enemyAir051",
       "done": false,
       "position": "-95.4257 45.1441 17.8368",
@@ -25,14 +95,14 @@
     {
       "id": "nes_enemyAir048",
       "done": false,
-      "position": "138.856 38.4859 -9.10413",
+      "position": "132.927 38.4859 -9.10413",
       "level": "level00",
       "type": "kippah"
     },
     {
       "id": "nes_enemyAir047",
       "done": false,
-      "position": "137.418 38.4859 5.3472",
+      "position": "131.489 38.4859 5.3472",
       "level": "level00",
       "type": "kippah"
     },
@@ -102,7 +172,7 @@
     {
       "id": "nes_enemyMelee034",
       "done": false,
-      "position": "-12.418 2.29457 -81.6987",
+      "position": "-9.33875 2.53334 -79.7656",
       "level": "level00",
       "type": "dreidel"
     },
