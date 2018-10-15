@@ -1,0 +1,14 @@
+{
+  "technique": "pbr.tech",
+  "shadows": true,
+  "textures":
+  {
+    "albedo": "data/textures/powerup_BaseColor.dds",
+    "normal": "data/textures/powerup_Normal.dds",
+    "metallic": "data/textures/powerup_Metallic.dds",
+    "roughness": "data/textures/powerup_Roughness.dds",
+    "self_illum": "data/textures/powerup_Emissive.dds",
+    "height": "data/textures/powerup_Height.dds",
+    "detail_normal": "data/textures/null_detail_normal.dds"
+  }
+}

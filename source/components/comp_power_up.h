@@ -22,6 +22,8 @@ private:
 	TCompPlayerModel* getPlayerModel();
 	TCompTransform* getPlayerTransform();
 
+	float rotationSpeed = 2.5f;
+
 	CTimer2 collectTimer;
 	bool isCollecting = false;
 

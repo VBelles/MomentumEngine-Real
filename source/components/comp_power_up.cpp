@@ -19,6 +19,7 @@ void TCompPowerUp::registerMsgs() {
 void TCompPowerUp::load(const json& j, TEntityParseContext& ctx) {
 	stateToUnlock = j.value("state_to_unlock","");
 	message = j.value("message", "You unlocked a new ability!");
+	rotationSpeed = j.value("rotation_speed", rotationSpeed);
 }
 
 void TCompPowerUp::onGroupCreated(const TMsgEntitiesGroupCreated & msg) {
@@ -35,6 +36,12 @@ void TCompPowerUp::onAllScenesCreated(const TMsgAllScenesCreated & msg) {
 }
 
 void TCompPowerUp::update(float delta) {
+	if (abs(rotationSpeed) > 0) {
+		TCompTransform* transform = getTransform();
+		VEC3 rotationAxis = VEC3(0, 1, 0);
+		QUAT quat = QUAT::CreateFromAxisAngle(rotationAxis, rotationSpeed * delta);
+		transform->setRotation(transform->getRotation() * quat);
+	}
 	if (isCollecting) {
 		if (collectTimer.elapsed() >= collectDuration) {
 			getPlayerModel()->changeState("AirborneNormal");

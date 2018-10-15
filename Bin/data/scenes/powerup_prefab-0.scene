@@ -1,0 +1,24 @@
+[
+  {
+    "entity":
+    {
+      "name": "powerup_00",
+      "transform":
+      {
+        "pos": "0.0 0.0 0.0",
+        "rotation": "0.0 0.0 0.0 -1.0"
+      },
+      "render":
+      [
+        {
+          "mesh": "data/meshes/powerup_00.mesh",
+          "materials":
+          [
+            "data/materials/m_powerup.material"
+          ],
+          "enabled": true
+        }
+      ]
+    }
+  }
+]

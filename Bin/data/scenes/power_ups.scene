@@ -8,13 +8,13 @@
 				"message" : "You got the power to wall jump."
 			},
 			"transform": {
-				"pos": "-85.162 -37.629 184.919"
+				"pos": "-85.162 -37.629 185.119"
 			},
 			"render": [
 				{
-					"mesh": "data/meshes/monedas_raras.mesh",
+					"mesh": "data/meshes/powerup_00.mesh",
 					"materials": [
-						"data/materials/black.material"
+						"data/materials/m_powerup.material"
 					]
 				}
 			],
@@ -37,13 +37,13 @@
 				"message" : "You can now jump higher after a hard landing.\nTime your jump correctly."
 			},
 			"transform": {
-				"pos": "180.777 53.951 123.919"
+				"pos": "179.352 53.951 124.619"
 			},
 			"render": [
 				{
-					"mesh": "data/meshes/monedas_raras.mesh",
+					"mesh": "data/meshes/powerup_00.mesh",
 					"materials": [
-						"data/materials/black.material"
+						"data/materials/m_powerup.material"
 					]
 				}
 			],
@@ -66,13 +66,13 @@
 				"message" : "Plummet towards the ground from a wall."
 			},
 			"transform": {
-				"pos": "221.377 25.807 -215.652"
+				"pos": "221.027 25.807 -215.852"
 			},
 			"render": [
 				{
-					"mesh": "data/meshes/monedas_raras.mesh",
+					"mesh": "data/meshes/powerup_00.mesh",
 					"materials": [
-						"data/materials/black.material"
+						"data/materials/m_powerup.material"
 					]
 				}
 			],
