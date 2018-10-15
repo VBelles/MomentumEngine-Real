@@ -27,6 +27,29 @@
       ],
       "collider":
       {
+        "mesh_src": "data/meshes/_teleportPREFABtrigger.col_mesh",
+        "shape": "convex_mesh",
+        "type": "kinematic",
+        "is_trigger" : true,
+        "group": ["scenario"],
+				"mask": ["player"]
+      },
+      "teleport_point" : {
+
+      }
+    }
+  },
+  {
+    "entity" :
+    {
+      "name": "collider",
+      "transform":
+      {
+        "pos": "0.0 0.0 0.0",
+        "rotation": "0.0 0.0 0.0 -1.0"
+      },
+      "collider":
+      {
         "mesh_src": "data/meshes/_teleportPREFABcol.col_mesh",
         "shape": "tri_mesh",
         "type": "static",

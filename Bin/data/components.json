@@ -112,6 +112,7 @@
     "breakable",
     "mechanism",
     "mechanism_system",
+    "teleport_point",
     "door",
     "day_night_cycle",
     "sky",
