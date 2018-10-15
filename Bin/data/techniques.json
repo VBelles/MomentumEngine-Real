@@ -545,6 +545,16 @@
     "priority": 400
   },
 
+  "enredaderas": {
+    "vs_file": "data/shaders/enredaderas.fx",
+    "ps_file": "data/shaders/enredaderas.fx",
+    "vs_entry_point": "VS",
+    "ps_entry_point": "PS",
+    "vertex_type": "PosNUvUvT",
+    "category": "general",
+    "priority": 150
+  },
+
   "pure": {
     "vs_file": "data/shaders/pure.fx",
     "ps_file": "data/shaders/pure.fx",
