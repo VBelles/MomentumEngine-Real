@@ -26,13 +26,13 @@ void TCompTeleportPoint::load(const json& j, TEntityParseContext& ctx) {
 void TCompTeleportPoint::onTriggerEnter(const TMsgTriggerEnter& msg) {
 	CEntity* entity = msg.h_other_entity;
 	if (entity->getName() == PLAYER_NAME) {
-		/*std::string name = ((CEntity*)CHandle(this).getOwner())->getName();
+		std::string name = ((CEntity*)CHandle(this).getOwner())->getName();
 		UniqueElement* uniqueEvent = EngineUniques.getUniqueEvent(name);
 		if (uniqueEvent && !uniqueEvent->done) {
-			uniqueEvent->done = true;*/
+			uniqueEvent->done = true;
 			setActive();
 			((TCompCollider*)get<TCompCollider>())->destroy();
-		//}
+		}
 	}
 }
 
@@ -40,11 +40,11 @@ void TCompTeleportPoint::onGroupCreated(const TMsgEntitiesGroupCreated & msg) {
 	changeMaterialToPaused();
 	TCompRender *render = get<TCompRender>();
 	render->selfIllumRatio = 0;
-	//std::string name = ((CEntity*)CHandle(this).getOwner())->getName();
-	//UniqueElement* uniqueEvent = EngineUniques.getUniqueEvent(name);
-	//if (uniqueEvent && uniqueEvent->done) {
-	//	setActive();
-	//}
+	std::string name = ((CEntity*)CHandle(this).getOwner())->getName();
+	UniqueElement* uniqueEvent = EngineUniques.getUniqueEvent(name);
+	if (uniqueEvent && uniqueEvent->done) {
+		setActive();
+	}
 }
 
 void TCompTeleportPoint::setActive() {

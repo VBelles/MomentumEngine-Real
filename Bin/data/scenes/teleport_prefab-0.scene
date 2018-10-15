@@ -28,6 +28,10 @@
         [
           "scenario"
         ]
+      },
+      "power_up":
+      {
+        "state_to_unlock": "AirborneNormal"
       }
     }
   }

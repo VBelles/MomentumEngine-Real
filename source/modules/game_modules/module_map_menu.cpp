@@ -11,9 +11,9 @@ bool CModuleMapMenu::start() {
 
 	controller = new GUI::CMapMenuController();
 	controller->registerOption("Temple");
-	controller->registerOption("Origin");
-	controller->registerOption("Inicio_cementerio");
-	controller->registerOption("Derecha_cementerio");
+	controller->registerOption("central_field_teleport");
+	controller->registerOption("tower_entrance_teleport");
+	controller->registerOption("behind_statue_teleport");
 	controller->registerOption("Primer_altar");
 	controller->registerOption("Pie_faro");
 

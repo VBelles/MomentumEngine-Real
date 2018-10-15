@@ -2,12 +2,36 @@
   {
     "entity":
     {
-      "name": "teleport_001",
+      "name": "behind_statue",
       "prefab": "data/prefabs/teleport.prefab",
       "transform":
       {
-        "pos": "6.22754 -0.899292 -8.44519",
-        "rotation": "0.0 0.0 0.0 -1.0"
+        "pos": "-193.399 60.8976 -16.7005",
+        "rotation": "0.0 0.34202 0.0 -0.939693"
+      }
+    }
+  },
+  {
+    "entity":
+    {
+      "name": "tower_entrance",
+      "prefab": "data/prefabs/teleport.prefab",
+      "transform":
+      {
+        "pos": "169.787 35.3706 -128.655",
+        "rotation": "0.0 0.793353 0.0 -0.608761"
+      }
+    }
+  },
+  {
+    "entity":
+    {
+      "name": "central_field",
+      "prefab": "data/prefabs/teleport.prefab",
+      "transform":
+      {
+        "pos": "6.22754 0.27057 -8.44519",
+        "rotation": "0.0 0.67559 0.0 -0.737277"
       }
     }
   }

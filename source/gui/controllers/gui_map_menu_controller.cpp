@@ -67,7 +67,7 @@ namespace GUI {
 				else {
 					pos = _options[_currentOption]->getPos();
 				}
-				ScriptingPlayer::teleportPlayer(pos.x, pos.y, pos.z);
+				ScriptingPlayer::teleportPlayer(pos.x, pos.y + 1.f, pos.z);
 
 				CModuleMapMenu* module = (CModuleMapMenu*)EngineModules.getModule(mapModule);
 				if (module->isActive()) {

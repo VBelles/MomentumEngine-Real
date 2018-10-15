@@ -9,23 +9,23 @@
       "type": "teleport_point"
     },
     {
-      "id": "Origin",
+      "id": "central_field_teleport",
       "done": false,
-      "position": "0 0 0",
+      "position": "6.22754 0.27057 -8.44519",
       "level": "level00",
       "type": "teleport_point"
     },
     {
-      "id": "Inicio_cementerio",
+      "id": "tower_entrance_teleport",
       "done": false,
-      "position": "-7 -7 21",
+      "position": "169.787 35.3706 -128.655",
       "level": "level00",
       "type": "teleport_point"
     },
     {
-      "id": "Derecha_cementerio",
+      "id": "behind_statue_teleport",
       "done": false,
-      "position": "172 44 -175.4",
+      "position": "-193.399 60.8976 -16.7005",
       "level": "level00",
       "type": "teleport_point"
     },
