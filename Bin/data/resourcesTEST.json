@@ -1675,5 +1675,12 @@
 "data/textures/powerup_Roughness.dds",
 "data/textures/powerup_Emissive.dds",
 "data/textures/powerup_Height.dds",
-"data/materials/m_powerup.material"
+"data/materials/m_powerup.material",
+"data/meshes/life.mesh",
+"data/textures/life_BaseColor.dds",
+"data/textures/life_Normal.dds",
+"data/textures/life_Metallic.dds",
+"data/textures/life_Roughness.dds",
+"data/textures/life_Emissive.dds",
+"data/materials/life_01_material.material"
 ]
