@@ -1,0 +1,11 @@
+{
+    "technique": "enredaderas.tech",
+    "textures":
+    {
+      "albedo": "data/textures/grass_00.dds",
+      "normal": "data/textures/grass_normal.dds",
+      "metallic": "data/textures/black.dds",
+      "roughness": "data/textures/black.dds",
+      "self_illum": "data/textures/white.dds"
+    }
+  }
