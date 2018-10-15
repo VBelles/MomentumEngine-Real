@@ -1,0 +1,14 @@
+{
+  "technique": "pbr.tech",
+  "shadows": true,
+  "textures":
+  {
+    "albedo": "data/textures/cierre_cupula_Base_Color.dds",
+    "normal": "data/textures/cierre_cupula_Normal_OpenGL.dds",
+    "metallic": "data/textures/cierre_cupula_Metallic.dds",
+    "roughness": "data/textures/cierre_cupula_Roughness.dds",
+    "self_illum": "data/textures/null_self_illum.dds",
+    "height": "data/textures/cierre_cupula_Height.dds",
+    "detail_normal": "data/textures/null_detail_normal.dds"
+  }
+}
