@@ -19,20 +19,20 @@
 				"position": "100 200",
 				"children": [
 					{
-						"name": "Tutorial",
+						"name": "Temple",
 						"type": "map_marker",
-						"position": "-72.1 60.7 381.6",
+						"position": "-116.585 -23.970 367.051",
 						"map": "map",
 						"altern_text": "???",
 						"visible": true,
 						"button": {
-							"name" : "Tutorial_button",
+							"name" : "Temple_button",
 							"type" : "button",
 							"position" : "0 0",
 							"size" : "800 50",
 							"texture" : "data/textures/gui/menu_boton.dds",
 							"font_size" : 32.0,
-							"text" : "TUTORIAL",
+							"text" : "TEMPLE",
 							"halign" : "center",
 							"valign" : "center",
 							"color" : "0.5 0.5 0.5 1",
@@ -46,7 +46,7 @@
 							}
 						},
 						"marker": {
-							"name" : "Tutorial_marker",
+							"name" : "Temple_marker",
 							"type" : "button",
 							"position" : "10 10",
 							"size" : "50 50",

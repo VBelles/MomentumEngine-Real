@@ -2,9 +2,9 @@
   "unique_events":
   [
     {
-      "id": "Tutorial",
+      "id": "Temple",
       "done": true,
-      "position": "-72.1 60.7 381.6",
+      "position": "-116.585 -23.970 367.051",
       "level": "level00",
       "type": "teleport_point"
     },

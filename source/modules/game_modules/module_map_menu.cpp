@@ -10,7 +10,7 @@ bool CModuleMapMenu::start() {
 	parser.parseFile(menuFile);
 
 	controller = new GUI::CMapMenuController();
-	controller->registerOption("Tutorial");
+	controller->registerOption("Temple");
 	controller->registerOption("Origin");
 	controller->registerOption("Inicio_cementerio");
 	controller->registerOption("Derecha_cementerio");
