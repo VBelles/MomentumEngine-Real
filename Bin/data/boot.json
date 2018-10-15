@@ -29,6 +29,7 @@
     "data/scenes/milestone4_dani-platf_director.scene",
     
     "data/scenes/milestone4_nestor-0.scene",
+    "data/scenes/milestone4_nestor-cameras.scene",
     "data/scenes/milestone4_nestor-chrysalis.scene",
     "data/scenes/milestone4_nestor-collisions.scene",
     "data/scenes/milestone4_nestor-enemies.scene",
@@ -40,6 +41,7 @@
     "data/scenes/milestone4_nestor-pure.scene",
     "data/scenes/milestone4_nestor-spikes.scene",
     "data/scenes/milestone4_nestor-spikesMove.scene",
+    "data/scenes/milestone4_nestor-teleports.scene",
     "data/scenes/milestone4_nestor-triggers.scene",
     "data/scenes/milestone4_nestor-trimesh.scene",
     

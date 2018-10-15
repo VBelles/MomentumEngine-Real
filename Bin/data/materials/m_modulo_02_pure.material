@@ -1,0 +1,14 @@
+{
+  "technique": "pure.tech",
+  "shadows": true,
+  "textures":
+  {
+    "albedo": "data/textures/modulo02_BaseColor.dds",
+    "normal": "data/textures/modulo02_Normal.dds",
+    "metallic": "data/textures/modulo02_Metallic.dds",
+    "roughness": "data/textures/modulo02_Roughness.dds",
+    "self_illum": "data/textures/null_self_illum.dds",
+    "height": "data/textures/modulo02_Height.dds",
+    "detail_normal": "data/textures/null_detail_normal.dds"
+  }
+}

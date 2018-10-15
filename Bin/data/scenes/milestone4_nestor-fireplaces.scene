@@ -2,6 +2,30 @@
   {
     "entity":
     {
+      "name": "nes_fireplace_046",
+      "prefab": "data/prefabs/fireplace.prefab",
+      "transform":
+      {
+        "pos": "146.917 114.666 -142.394",
+        "rotation": "0.0 0.0 0.0 -1.0"
+      }
+    }
+  },
+  {
+    "entity":
+    {
+      "name": "nes_fireplace_045",
+      "prefab": "data/prefabs/fireplace.prefab",
+      "transform":
+      {
+        "pos": "153.811 78.2201 -138.377",
+        "rotation": "0.0 0.0 0.0 -1.0"
+      }
+    }
+  },
+  {
+    "entity":
+    {
       "name": "nes_fireplace_044",
       "prefab": "data/prefabs/fireplace.prefab",
       "transform":

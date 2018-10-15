@@ -1,11 +1,14 @@
 {
-  "technique": "pbr_clear_stencil.tech",
+  "technique": "pbr.tech",
   "shadows": true,
   "textures":
   {
-    "albedo": "data/textures/chrysalis/crisalida_low_crisalida_low_default_BaseColor.dds",
-    "normal": "data/textures/chrysalis/crisalida_low_crisalida_low_default_Normal.dds",
-    "metallic": "data/textures/chrysalis/crisalida_low_crisalida_low_default_Metallic.dds",
-    "roughness": "data/textures/chrysalis/crisalida_low_crisalida_low_default_Roughness.dds"
+    "albedo": "data/textures/chrysalis/crisalida_low_default_BaseColor.dds",
+    "normal": "data/textures/chrysalis/crisalida_low_default_Normal.dds",
+    "metallic": "data/textures/chrysalis/crisalida_low_default_Metallic.dds",
+    "roughness": "data/textures/chrysalis/crisalida_low_default_Roughness.dds",
+    "self_illum": "data/textures/chrysalis/crisalida_low_default_Emissive.dds",
+    "height": "data/textures/chrysalis/crisalida_low_default_Height.dds",
+    "detail_normal": "data/textures/chrysalis/null_detail_normal.dds"
   }
 }

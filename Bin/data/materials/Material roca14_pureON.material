@@ -1,0 +1,14 @@
+{
+  "technique": "pureON.tech",
+  "shadows": true,
+  "textures":
+  {
+    "albedo": "data/textures/roca14_BaseColor.dds",
+    "normal": "data/textures/roca14_Normal.dds",
+    "metallic": "data/textures/null_metallic.dds",
+    "roughness": "data/textures/roca14_Roughness.dds",
+    "self_illum": "data/textures/null_self_illum.dds",
+    "height": "data/textures/null_height.dds",
+    "detail_normal": "data/textures/t_grietasmicro_normal.dds"
+  }
+}

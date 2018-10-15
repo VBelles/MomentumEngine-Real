@@ -2,6 +2,349 @@
   "unique_coins":
   [
     {
+      "id": "nes_coin388",
+      "done": false,
+      "position": "3.14034 39.2568 191.312",
+      "level": "level00",
+      "type": "coins"
+    },
+    {
+      "id": "nes_coin387",
+      "done": false,
+      "position": "3.14034 33.8503 191.312",
+      "level": "level00",
+      "type": "coins"
+    },
+    {
+      "id": "nes_coin386",
+      "done": false,
+      "position": "3.14034 29.4407 191.312",
+      "level": "level00",
+      "type": "coins"
+    },
+    {
+      "id": "nes_coin385",
+      "done": false,
+      "position": "-18.9609 11.3211 162.42",
+      "level": "level00",
+      "type": "coins"
+    },
+    {
+      "id": "nes_coin384",
+      "done": false,
+      "position": "-24.6878 11.3211 162.42",
+      "level": "level00",
+      "type": "coins"
+    },
+    {
+      "id": "nes_coin383",
+      "done": false,
+      "position": "-24.6878 11.3211 180.994",
+      "level": "level00",
+      "type": "coins"
+    },
+    {
+      "id": "nes_coin382",
+      "done": false,
+      "position": "-19.1772 11.3211 180.994",
+      "level": "level00",
+      "type": "coins"
+    },
+    {
+      "id": "nes_coin381",
+      "done": false,
+      "position": "-16.3153 11.3211 166.932",
+      "level": "level00",
+      "type": "coins"
+    },
+    {
+      "id": "nes_coin380",
+      "done": false,
+      "position": "-27.4516 11.3211 166.932",
+      "level": "level00",
+      "type": "coins"
+    },
+    {
+      "id": "nes_coin379",
+      "done": false,
+      "position": "-24.5272 11.3211 171.61",
+      "level": "level00",
+      "type": "coins"
+    },
+    {
+      "id": "nes_coin378",
+      "done": false,
+      "position": "-18.9117 11.3211 171.61",
+      "level": "level00",
+      "type": "coins"
+    },
+    {
+      "id": "nes_coin377",
+      "done": false,
+      "position": "-21.6359 11.3211 176.328",
+      "level": "level00",
+      "type": "coins"
+    },
+    {
+      "id": "nes_coin376",
+      "done": false,
+      "position": "-162.275 34.3165 -104.712",
+      "level": "level00",
+      "type": "coins"
+    },
+    {
+      "id": "nes_coin375",
+      "done": false,
+      "position": "-168.735 45.9061 -109.891",
+      "level": "level00",
+      "type": "coins"
+    },
+    {
+      "id": "nes_coin374",
+      "done": false,
+      "position": "-161.533 48.098 -110.131",
+      "level": "level00",
+      "type": "coins"
+    },
+    {
+      "id": "nes_coin373",
+      "done": false,
+      "position": "-165.107 46.8134 -109.935",
+      "level": "level00",
+      "type": "coins"
+    },
+    {
+      "id": "nes_coin372",
+      "done": false,
+      "position": "-163.876 59.9188 -91.0139",
+      "level": "level00",
+      "type": "coins"
+    },
+    {
+      "id": "nes_coin371",
+      "done": false,
+      "position": "-160.969 58.2233 -78.8524",
+      "level": "level00",
+      "type": "coins"
+    },
+    {
+      "id": "nes_coin370",
+      "done": false,
+      "position": "-157.259 59.5345 -55.6789",
+      "level": "level00",
+      "type": "coins"
+    },
+    {
+      "id": "nes_coin369",
+      "done": false,
+      "position": "-158.19 60.9144 -0.773448",
+      "level": "level00",
+      "type": "coins"
+    },
+    {
+      "id": "nes_coin368",
+      "done": false,
+      "position": "-161.491 57.9806 19.7315",
+      "level": "level00",
+      "type": "coins"
+    },
+    {
+      "id": "nes_coin367",
+      "done": false,
+      "position": "-164.378 59.7216 41.0609",
+      "level": "level00",
+      "type": "coins"
+    },
+    {
+      "id": "nes_coin366",
+      "done": false,
+      "position": "-165.447 62.2167 49.6068",
+      "level": "level00",
+      "type": "coins"
+    },
+    {
+      "id": "nes_coin365",
+      "done": false,
+      "position": "86.5669 29.663 -21.8798",
+      "level": "level00",
+      "type": "coins"
+    },
+    {
+      "id": "nes_coin364",
+      "done": false,
+      "position": "86.5669 21.0851 -21.8798",
+      "level": "level00",
+      "type": "coins"
+    },
+    {
+      "id": "nes_coin363",
+      "done": false,
+      "position": "-102.376 37.6549 -70.9064",
+      "level": "level00",
+      "type": "coins"
+    },
+    {
+      "id": "nes_coin362",
+      "done": false,
+      "position": "-102.376 31.4532 -70.9064",
+      "level": "level00",
+      "type": "coins"
+    },
+    {
+      "id": "nes_coin361",
+      "done": false,
+      "position": "-102.376 25.2098 -70.9064",
+      "level": "level00",
+      "type": "coins"
+    },
+    {
+      "id": "nes_coin360",
+      "done": false,
+      "position": "17.1992 46.662 -248.155",
+      "level": "level00",
+      "type": "coins"
+    },
+    {
+      "id": "nes_coin359",
+      "done": false,
+      "position": "17.1992 40.5405 -248.155",
+      "level": "level00",
+      "type": "coins"
+    },
+    {
+      "id": "nes_coin358",
+      "done": false,
+      "position": "-21.226 44.5164 200.429",
+      "level": "level00",
+      "type": "coins"
+    },
+    {
+      "id": "nes_coin357",
+      "done": false,
+      "position": "-17.7477 44.5164 198.78",
+      "level": "level00",
+      "type": "coins"
+    },
+    {
+      "id": "nes_coin356",
+      "done": false,
+      "position": "-14.919 44.5164 202.361",
+      "level": "level00",
+      "type": "coins"
+    },
+    {
+      "id": "nes_coin355",
+      "done": false,
+      "position": "-14.919 44.5164 205.391",
+      "level": "level00",
+      "type": "coins"
+    },
+    {
+      "id": "nes_coin354",
+      "done": false,
+      "position": "-14.919 44.5164 208.865",
+      "level": "level00",
+      "type": "coins"
+    },
+    {
+      "id": "nes_coin353",
+      "done": false,
+      "position": "-17.7477 44.5164 211.93",
+      "level": "level00",
+      "type": "coins"
+    },
+    {
+      "id": "nes_coin352",
+      "done": false,
+      "position": "-21.226 44.5164 210.286",
+      "level": "level00",
+      "type": "coins"
+    },
+    {
+      "id": "nes_coin351",
+      "done": false,
+      "position": "-24.4416 44.5164 208.729",
+      "level": "level00",
+      "type": "coins"
+    },
+    {
+      "id": "nes_coin350",
+      "done": false,
+      "position": "-24.4416 44.5164 201.537",
+      "level": "level00",
+      "type": "coins"
+    },
+    {
+      "id": "nes_coin349",
+      "done": false,
+      "position": "1.37166 54.9373 214.027",
+      "level": "level00",
+      "type": "coins"
+    },
+    {
+      "id": "nes_coin348",
+      "done": false,
+      "position": "-55.223 -0.730047 -131.454",
+      "level": "level00",
+      "type": "coins"
+    },
+    {
+      "id": "nes_coin347",
+      "done": false,
+      "position": "-11.672 2.92108 -83.2215",
+      "level": "level00",
+      "type": "coins"
+    },
+    {
+      "id": "nes_coin346",
+      "done": false,
+      "position": "28.7937 5.91278 -14.4006",
+      "level": "level00",
+      "type": "coins"
+    },
+    {
+      "id": "nes_coin345",
+      "done": false,
+      "position": "-15.0616 -5.29718 43.9363",
+      "level": "level00",
+      "type": "coins"
+    },
+    {
+      "id": "nes_coin344",
+      "done": false,
+      "position": "-68.4986 -2.39752 87.7758",
+      "level": "level00",
+      "type": "coins"
+    },
+    {
+      "id": "nes_coin343",
+      "done": false,
+      "position": "-178.103 0.807497 52.8213",
+      "level": "level00",
+      "type": "coins"
+    },
+    {
+      "id": "nes_coin342",
+      "done": false,
+      "position": "-177.495 0.811586 46.2381",
+      "level": "level00",
+      "type": "coins"
+    },
+    {
+      "id": "nes_coin341",
+      "done": false,
+      "position": "-182.253 12.6995 -89.304",
+      "level": "level00",
+      "type": "coins"
+    },
+    {
+      "id": "nes_coin340",
+      "done": false,
+      "position": "-245.892 10.1311 -14.0653",
+      "level": "level00",
+      "type": "coins"
+    },
+    {
       "id": "nes_coin339",
       "done": false,
       "position": "94.1869 20.8165 46.9042",
@@ -690,7 +1033,7 @@
     {
       "id": "nes_coin241",
       "done": false,
-      "position": "133.998 40.2319 20.3372",
+      "position": "130.538 40.2319 20.7706",
       "level": "level00",
       "type": "coins"
     },
@@ -877,20 +1220,6 @@
       "type": "coins"
     },
     {
-      "id": "nes_coin210",
-      "done": false,
-      "position": "-14.693 21.8631 150.383",
-      "level": "level00",
-      "type": "coins"
-    },
-    {
-      "id": "nes_coin209",
-      "done": false,
-      "position": "-16.5728 21.8631 148.675",
-      "level": "level00",
-      "type": "coins"
-    },
-    {
       "id": "nes_coin208",
       "done": false,
       "position": "77.0896 40.1732 3.57012",
@@ -991,7 +1320,7 @@
     {
       "id": "nes_coin194",
       "done": false,
-      "position": "134.708 40.5493 18.8478",
+      "position": "130.837 40.5493 19.1484",
       "level": "level00",
       "type": "coins"
     },

@@ -3,10 +3,11 @@
   "shadows": true,
   "textures":
   {
-    "albedo": "data/textures/mecanismos/sim01/mec1_albedo.dds",
-    "normal": "data/textures/mecanismos/mecanismos_normal.dds",
-    "metallic": "data/textures/mecanismos/sim01/mec1_metallic.dds",
-    "roughness": "data/textures/mecanismos/sim01/mec1_roughness.dds",
-    "self_illum": "data/textures/mecanismos/sim01/mec1_emissive.dds"
+    "albedo": "data/textures/mecanismos/sim_01/tuerca_sim01_BaseColor.dds",
+    "normal": "data/textures/mecanismos/sim_01/tuerca_sim01_Normal.dds",
+    "metallic": "data/textures/mecanismos/sim_01/tuerca_sim01_Metallic.dds",
+    "self_illum": "data/textures/mecanismos/sim_01/tuerca_sim01_Emissive.dds",
+    "height": "data/textures/mecanismos/sim_01/tuerca_sim01_Height.dds",
+    "roughness": "data/textures/mecanismos/sim_01/tuerca_sim01_Roughness.dds"
   }
 }
