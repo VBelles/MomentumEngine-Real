@@ -496,7 +496,51 @@
           "enabled": true
         }
       ],
-      "abs_aabb" : {}
+      "local_aabb": null,
+      "abs_aabb": null
+    }
+  },
+  {
+    "entity":
+    {
+      "name": "rocas_nariz_lod",
+      "transform":
+      {
+        "pos": "-49.9359 5.11437 -53.157",
+        "rotation": "0.0 -0.300706 0.0 -0.953717"
+      },
+      "render":
+      [
+        {
+          "mesh": "data/meshes/rocas_nariz_lod.mesh",
+          "materials":
+          [
+            "data/materials/Material roca07.material",
+            "data/materials/Material roca11.material",
+            "data/materials/Material roca02.material",
+            "data/materials/Material roca03.material",
+            "data/materials/Material roca16.material",
+            "data/materials/Material roca05.material",
+            "data/materials/Material roca04.material",
+            "data/materials/Material roca01.material",
+            "data/materials/Material roca06.material",
+            "data/materials/Material roca12.material",
+            "data/materials/Material roca15.material",
+            "data/materials/Material roca14.material",
+            "data/materials/Material roca13.material",
+            "data/materials/Material roca08.material"
+          ],
+          "enabled": true
+        }
+      ],
+      "lod" : {
+        "threshold" : 0.5,
+        "children" : [
+          "rocas_nariz"
+        ]
+      },
+      "local_aabb": null,
+      "abs_aabb": null
     }
   },
   {
