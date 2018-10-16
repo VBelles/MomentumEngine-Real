@@ -2,36 +2,211 @@
   {
     "entity":
     {
-      "name": "rocas_nariz_lod",
+      "name": "rocas_ceja_izquierda_lod",
       "transform":
       {
-        "pos": "-49.9359 5.11437 -53.157",
-        "rotation": "0.0 -0.300706 0.0 -0.953717"
+        "pos": "53.3339 -8.35626 134.917",
+        "rotation": "-0.0289404 0.00242794 -0.0749703 -0.996763"
       },
       "render":
       [
         {
-          "mesh": "data/meshes/rocas_nariz_lod.mesh",
+          "mesh": "data/meshes/rocas_ceja_izquierda_lod.mesh",
+          "materials":
+          [
+            "data/materials/Material roca11.material",
+            "data/materials/Material roca09.material",
+            "data/materials/Material roca16.material",
+            "data/materials/Material roca07.material",
+            "data/materials/Material roca12.material",
+            "data/materials/Material roca13.material",
+            "data/materials/Material roca14.material",
+            "data/materials/Material roca03.material",
+            "data/materials/Material roca05.material",
+            "data/materials/Material roca02.material",
+            "data/materials/Material roca01.material",
+            "data/materials/Material roca04.material",
+            "data/materials/Material roca06.material"
+          ],
+          "enabled": true
+        }
+      ],
+      "lod" : {
+        "threshold" : 0.5,
+        "children" : [
+          "rocas_ceja_izquierda"
+        ]
+      },
+      "local_aabb": null,
+      "abs_aabb": null
+    }
+  },
+  {
+    "entity":
+    {
+      "name": "rocas_boca_2_lod",
+      "transform":
+      {
+        "pos": "-200.889 19.3322 -54.045",
+        "rotation": "0.0 0.0243667 0.0 -0.999703"
+      },
+      "render":
+      [
+        {
+          "mesh": "data/meshes/rocas_boca_2_lod.mesh",
+          "materials":
+          [
+            "data/materials/Material roca13.material",
+            "data/materials/Material roca05.material",
+            "data/materials/Material roca07.material",
+            "data/materials/Material roca03.material",
+            "data/materials/Material roca16.material",
+            "data/materials/Material roca02.material",
+            "data/materials/Material roca01.material",
+            "data/materials/Material roca06.material",
+            "data/materials/Material roca09.material",
+            "data/materials/Material roca11.material",
+            "data/materials/Material roca14.material",
+            "data/materials/Material roca15.material",
+            "data/materials/Material roca12.material"
+          ],
+          "enabled": true
+        }
+      ],
+      "lod" : {
+        "threshold" : 0.5,
+        "children" : [
+          "rocas_boca_2"
+        ]
+      },
+      "local_aabb": null,
+      "abs_aabb": null
+    }
+  },
+  {
+    "entity":
+    {
+      "name": "rocas_ceja_derecha_2_lod",
+      "transform":
+      {
+        "pos": "100.946 -2.95345 -48.0629",
+        "rotation": "-0.0413509 -0.290465 0.0168693 -0.955843"
+      },
+      "render":
+      [
+        {
+          "mesh": "data/meshes/rocas_ceja_derecha_2_lod.mesh",
+          "materials":
+          [
+            "data/materials/Material roca16.material",
+            "data/materials/Material roca06.material",
+            "data/materials/Material roca04.material",
+            "data/materials/Material roca05.material",
+            "data/materials/Material roca01.material",
+            "data/materials/Material roca11.material",
+            "data/materials/Material roca07.material",
+            "data/materials/Material roca02.material",
+            "data/materials/Material roca03.material",
+            "data/materials/Material roca08.material",
+            "data/materials/Material roca15.material",
+            "data/materials/Material roca12.material",
+            "data/materials/Material roca14.material"
+          ],
+          "enabled": true
+        }
+      ],
+      "lod" : {
+        "threshold" : 0.5,
+        "children" : [
+          "rocas_ceja_derecha_2"
+        ]
+      },
+      "local_aabb": null,
+      "abs_aabb": null
+    }
+  },
+  {
+    "entity":
+    {
+      "name": "rocas_boca_1_lod",
+      "transform":
+      {
+        "pos": "-162.414 -1.88553 41.7102",
+        "rotation": "-0.00903756 -0.997898 0.0452096 -0.0455458"
+      },
+      "render":
+      [
+        {
+          "mesh": "data/meshes/rocas_boca_1_lod.mesh",
           "materials":
           [
             "data/materials/Material roca07.material",
             "data/materials/Material roca11.material",
+            "data/materials/Material roca16.material",
+            "data/materials/Material roca01.material",
             "data/materials/Material roca02.material",
             "data/materials/Material roca03.material",
-            "data/materials/Material roca16.material",
-            "data/materials/Material roca05.material",
             "data/materials/Material roca04.material",
-            "data/materials/Material roca01.material",
+            "data/materials/Material roca05.material",
             "data/materials/Material roca06.material",
-            "data/materials/Material roca12.material",
-            "data/materials/Material roca15.material",
             "data/materials/Material roca14.material",
-            "data/materials/Material roca13.material",
-            "data/materials/Material roca08.material"
+            "data/materials/Material roca15.material",
+            "data/materials/Material roca12.material"
           ],
           "enabled": true
         }
-      ]
+      ],
+      "lod" : {
+        "threshold" : 0.5,
+        "children" : [
+          "rocas_boca_1"
+        ]
+      },
+      "local_aabb": null,
+      "abs_aabb": null
+    }
+  },
+  {
+    "entity":
+    {
+      "name": "rocas_ceja_derecha_1_lod",
+      "transform":
+      {
+        "pos": "94.981 -0.570997 -134.583",
+        "rotation": "0.0 -0.550852 0.0 -0.834603"
+      },
+      "render":
+      [
+        {
+          "mesh": "data/meshes/rocas_ceja_derecha_1_lod.mesh",
+          "materials":
+          [
+            "data/materials/Material roca13.material",
+            "data/materials/Material roca02.material",
+            "data/materials/Material roca16.material",
+            "data/materials/Material roca08.material",
+            "data/materials/Material roca15.material",
+            "data/materials/Material roca14.material",
+            "data/materials/Material roca11.material",
+            "data/materials/Material roca07.material",
+            "data/materials/Material roca03.material",
+            "data/materials/Material roca05.material",
+            "data/materials/Material roca12.material",
+            "data/materials/Material roca04.material",
+            "data/materials/Material roca01.material",
+            "data/materials/Material roca06.material"
+          ],
+          "enabled": true
+        }
+      ],
+      "lod" : {
+        "threshold" : 0.5,
+        "children" : [
+          "rocas_ceja_derecha_1"
+        ]
+      },
+      "local_aabb": null,
+      "abs_aabb": null
     }
   }
 ]
