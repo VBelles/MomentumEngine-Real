@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<objects serializationModel="Studio.01.10.00">
+    <object class="ParameterPreset" id="{e543abe4-a368-4c35-b12f-8c078604d6c2}">
+        <property name="name">
+            <value>cemetery_ratio</value>
+        </property>
+        <relationship name="folder">
+            <destination>{c946cd3c-8ab5-4bcf-889d-a734d6d23b2f}</destination>
+        </relationship>
+        <relationship name="parameter">
+            <destination>{ca91f016-0e83-4530-a1c1-26ac217de14b}</destination>
+        </relationship>
+    </object>
+    <object class="GameParameter" id="{ca91f016-0e83-4530-a1c1-26ac217de14b}">
+        <property name="initialValue">
+            <value>0</value>
+        </property>
+    </object>
+</objects>

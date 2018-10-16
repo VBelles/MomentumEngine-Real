@@ -162,6 +162,7 @@ void TCompMusic::setDayNight(DayNight dayNight) {
 	float dawnRatio = 0;
 	float dayRatio = 0;
 
+
 	switch (dayNight) {
 	case NIGHT:
 		nightRatio = 1.f;
@@ -176,13 +177,18 @@ void TCompMusic::setDayNight(DayNight dayNight) {
 		dawnRatio = 1.f;
 		break;
 	}
-	eventInfos[CYCLE_NIGHT].timeMiliseconds = milisecondsPerBar - (timeMiliseconds % milisecondsPerBar) + milisecondsPerBar * 1;
+	//int extraBars = 1;
+	int fadeTime = 6000;
+	//eventInfos[CYCLE_NIGHT].timeMiliseconds = milisecondsPerBar - (timeMiliseconds % milisecondsPerBar) + milisecondsPerBar * extraBars;
+	eventInfos[CYCLE_NIGHT].timeMiliseconds = fadeTime;
 	eventInfos[CYCLE_NIGHT].targetRatio = nightRatio;
 
-	eventInfos[CYCLE_DAWN].timeMiliseconds = milisecondsPerBar - (timeMiliseconds % milisecondsPerBar) + milisecondsPerBar * 1;
+	//eventInfos[CYCLE_DAWN].timeMiliseconds = milisecondsPerBar - (timeMiliseconds % milisecondsPerBar) + milisecondsPerBar * extraBars;
+	eventInfos[CYCLE_DAWN].timeMiliseconds = fadeTime;
 	eventInfos[CYCLE_DAWN].targetRatio = dawnRatio;
 
-	eventInfos[CYCLE_DAY].timeMiliseconds = milisecondsPerBar - (timeMiliseconds % milisecondsPerBar) + milisecondsPerBar * 1;
+	//eventInfos[CYCLE_DAY].timeMiliseconds = milisecondsPerBar - (timeMiliseconds % milisecondsPerBar) + milisecondsPerBar * extraBars;
+	eventInfos[CYCLE_DAY].timeMiliseconds = fadeTime;
 	eventInfos[CYCLE_DAY].targetRatio = dayRatio;
 
 	dayNightState = dayNight;

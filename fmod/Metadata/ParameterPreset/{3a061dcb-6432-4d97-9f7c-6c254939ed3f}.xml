@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<objects serializationModel="Studio.01.10.00">
+    <object class="ParameterPreset" id="{3a061dcb-6432-4d97-9f7c-6c254939ed3f}">
+        <property name="name">
+            <value>temple_ratio</value>
+        </property>
+        <relationship name="folder">
+            <destination>{c946cd3c-8ab5-4bcf-889d-a734d6d23b2f}</destination>
+        </relationship>
+        <relationship name="parameter">
+            <destination>{c26ae46a-da9e-4828-ba5f-068587071869}</destination>
+        </relationship>
+    </object>
+    <object class="GameParameter" id="{c26ae46a-da9e-4828-ba5f-068587071869}">
+        <property name="initialValue">
+            <value>0</value>
+        </property>
+    </object>
+</objects>
