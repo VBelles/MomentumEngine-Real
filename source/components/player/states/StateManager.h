@@ -49,10 +49,10 @@ public:
 	~StateManager();
 
 	void updateStates(float delta);
-	void changeState(State newState);
-	void changeState(std::string newStateName);
-	void changeConcurrentState(ConcurrentState newState);
-	void changeConcurrentState(std::string newStateName);
+	bool changeState(State newState);
+	bool changeState(std::string newStateName);
+	bool changeConcurrentState(ConcurrentState newState);
+	bool changeConcurrentState(std::string newStateName);
 	void performStateChange();
 
 	IActionState* getState();

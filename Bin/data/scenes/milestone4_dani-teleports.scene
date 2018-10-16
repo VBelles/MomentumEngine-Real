@@ -1,0 +1,86 @@
+[
+  {
+    "entity":
+    {
+      "name": "behind_tower",
+      "prefab": "data/prefabs/teleport.prefab",
+      "transform":
+      {
+        "pos": "198.253 77.0684 -207.838",
+        "rotation": "0.0 -0.642788 0.0 -0.766045"
+      }
+    }
+  },
+  {
+    "entity":
+    {
+      "name": "graveyard",
+      "prefab": "data/prefabs/teleport.prefab",
+      "transform":
+      {
+        "pos": "113.839 25.4691 75.4401",
+        "rotation": "0.0 0.608761 0.0 -0.793353"
+      }
+    }
+  },
+  {
+    "entity":
+    {
+      "name": "mushroom_kingdom",
+      "prefab": "data/prefabs/teleport.prefab",
+      "transform":
+      {
+        "pos": "311.942 -20.9574 -114.85",
+        "rotation": "0.0 -0.887011 0.0 -0.461749"
+      }
+    }
+  },
+  {
+    "entity":
+    {
+      "name": "gate_of_doom",
+      "prefab": "data/prefabs/teleport.prefab",
+      "transform":
+      {
+        "pos": "-108.054 -0.599831 -141.183",
+        "rotation": "0.0 0.21644 0.0 -0.976296"
+      }
+    }
+  },
+  {
+    "entity":
+    {
+      "name": "kings_graveyard",
+      "prefab": "data/prefabs/teleport.prefab",
+      "transform":
+      {
+        "pos": "143.049 61.5612 154.791",
+        "rotation": "0.0 0.258819 0.0 -0.965926"
+      }
+    }
+  },
+  {
+    "entity":
+    {
+      "name": "main_entrance",
+      "prefab": "data/prefabs/teleport.prefab",
+      "transform":
+      {
+        "pos": "-73.2549 -7.49955 119.338",
+        "rotation": "0.0 0.642788 0.0 -0.766044"
+      }
+    }
+  },
+  {
+    "entity":
+    {
+      "name": "temple",
+      "prefab": "data/prefabs/teleport.prefab",
+      "transform":
+      {
+        "pos": "-132.27 -27.3389 351.829",
+        "rotation": "0.0 0.173648 0.0 -0.984808"
+      }
+    }
+  }
+]

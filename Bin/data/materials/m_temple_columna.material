@@ -1,0 +1,14 @@
+{
+  "technique": "pbr.tech",
+  "shadows": true,
+  "textures":
+  {
+    "albedo": "data/textures/columna_Base_Color.dds",
+    "normal": "data/textures/columna_Normal_OpenGL.dds",
+    "metallic": "data/textures/columna_Metallic.dds",
+    "roughness": "data/textures/columna_Roughness.dds",
+    "self_illum": "data/textures/columna_Emissive.dds",
+    "height": "data/textures/columna_Height.dds",
+    "detail_normal": "data/textures/null_detail_normal.dds"
+  }
+}

@@ -82,7 +82,7 @@ private:
 	std::set<std::string> attackers;
 
 	bool isInvulnerable = false;
-	CTimer invulnerableTimer;
+	CTimer2 invulnerableTimer;
 	float invulnerableTime = 1.f;
 
 	CTimer damageVisionTimer;
@@ -245,4 +245,5 @@ public:
 	void unlockState(std::string state);
 	void changeState(std::string state);
 	void changeConcurrentState(std::string state);
+	void setDummyState(std::string animation, bool isLoop, float duration, std::string exitAnimation);
 };

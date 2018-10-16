@@ -2,44 +2,72 @@
   "unique_events":
   [
     {
-      "id": "Tutorial",
+      "id": "temple_teleport",
       "done": true,
-      "position": "-72.1 60.7 381.6",
+      "position": "-132.27 -27.3389 351.829",
       "level": "level00",
       "type": "teleport_point"
     },
     {
-      "id": "Origin",
+      "id": "main_entrance_teleport",
       "done": false,
-      "position": "0 0 0",
+      "position": "-73.2549 -7.49955 119.338",
       "level": "level00",
       "type": "teleport_point"
     },
     {
-      "id": "Inicio_cementerio",
+      "id": "central_field_teleport",
       "done": false,
-      "position": "-7 -7 21",
+      "position": "6.22754 0.27057 -8.44519",
       "level": "level00",
       "type": "teleport_point"
     },
     {
-      "id": "Derecha_cementerio",
+      "id": "tower_entrance_teleport",
       "done": false,
-      "position": "172 44 -175.4",
+      "position": "169.787 35.3706 -128.655",
       "level": "level00",
       "type": "teleport_point"
     },
     {
-      "id": "Primer_altar",
+      "id": "behind_statue_teleport",
       "done": false,
-      "position": "5 22 -191.4",
+      "position": "-193.399 60.8976 -16.7005",
       "level": "level00",
       "type": "teleport_point"
     },
     {
-      "id": "Pie_faro",
+      "id": "kings_graveyard_teleport",
       "done": false,
-      "position": "-325 26 -277.4",
+      "position": "143.049 61.5612 154.791",
+      "level": "level00",
+      "type": "teleport_point"
+    },
+    {
+      "id": "gate_of_doom_teleport",
+      "done": false,
+      "position": "-108.054 -0.599831 -141.183",
+      "level": "level00",
+      "type": "teleport_point"
+    },
+    {
+      "id": "mushroom_kingdom_teleport",
+      "done": false,
+      "position": "311.942 -20.9574 -114.85",
+      "level": "level00",
+      "type": "teleport_point"
+    },
+    {
+      "id": "graveyard_teleport",
+      "done": false,
+      "position": "113.839 25.4691 75.4401",
+      "level": "level00",
+      "type": "teleport_point"
+    },
+    {
+      "id": "behind_tower_teleport",
+      "done": false,
+      "position": "198.253 77.0684 -207.838",
       "level": "level00",
       "type": "teleport_point"
     }

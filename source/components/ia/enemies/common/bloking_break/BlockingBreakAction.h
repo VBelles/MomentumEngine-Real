@@ -8,6 +8,7 @@ class BlockingBreakAction : public IBehaviorTreeAction {
 private:
 	Enemy* enemy = nullptr;
 	std::string animation = "";
+	float animationEndPadding = 0.2f;
 public:
 	BlockingBreakAction();
 	BlockingBreakAction(Enemy* enemy, std::string animation);

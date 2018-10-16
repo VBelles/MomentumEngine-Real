@@ -37,7 +37,6 @@ void TCompMechanism::onAllScenesCreated(const TMsgAllScenesCreated & msg) {
 		mechanismSystems.push_back(getEntityByName(systemName));
 	}
 	reactivationTimer.reset();
-	TCompRender *render = get<TCompRender>();
 	onActivated(isActivated, false);
 }
 

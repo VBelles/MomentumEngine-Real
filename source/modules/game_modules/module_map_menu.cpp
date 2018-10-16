@@ -10,12 +10,16 @@ bool CModuleMapMenu::start() {
 	parser.parseFile(menuFile);
 
 	controller = new GUI::CMapMenuController();
-	controller->registerOption("Tutorial");
-	controller->registerOption("Origin");
-	controller->registerOption("Inicio_cementerio");
-	controller->registerOption("Derecha_cementerio");
-	controller->registerOption("Primer_altar");
-	controller->registerOption("Pie_faro");
+	controller->registerOption("temple_teleport");
+	controller->registerOption("main_entrance_teleport");
+	controller->registerOption("central_field_teleport");
+	controller->registerOption("tower_entrance_teleport");
+	controller->registerOption("behind_statue_teleport");
+	controller->registerOption("kings_graveyard_teleport");
+	controller->registerOption("gate_of_doom_teleport");
+	controller->registerOption("mushroom_kingdom_teleport");
+	controller->registerOption("graveyard_teleport");
+	controller->registerOption("behind_tower_teleport");
 
 	return true;
 }

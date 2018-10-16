@@ -19,20 +19,20 @@
 				"position": "100 200",
 				"children": [
 					{
-						"name": "Tutorial",
+						"name": "temple_teleport",
 						"type": "map_marker",
-						"position": "-72.1 60.7 381.6",
+						"position": "-132.27 -27.3389 351.829",
 						"map": "map",
 						"altern_text": "???",
 						"visible": true,
 						"button": {
-							"name" : "Tutorial_button",
+							"name" : "temple_teleport_button",
 							"type" : "button",
 							"position" : "0 0",
 							"size" : "800 50",
 							"texture" : "data/textures/gui/menu_boton.dds",
 							"font_size" : 32.0,
-							"text" : "TUTORIAL",
+							"text" : "TEMPLE",
 							"halign" : "center",
 							"valign" : "center",
 							"color" : "0.5 0.5 0.5 1",
@@ -46,7 +46,7 @@
 							}
 						},
 						"marker": {
-							"name" : "Tutorial_marker",
+							"name" : "temple_teleport_marker",
 							"type" : "button",
 							"position" : "10 10",
 							"size" : "50 50",
@@ -66,20 +66,20 @@
 						}
 					},
 					{
-						"name": "Origin",
+						"name": "main_entrance_teleport",
 						"type": "map_marker",
-						"position": "0 0 0",
+						"position": "-73.2549 -7.49955 119.338",
 						"map": "map",
 						"altern_text": "???",
 						"visible": true,
 						"button": {
-							"name" : "Origin_button",
+							"name" : "main_entrance_teleport_button",
 							"type" : "button",
 							"position" : "0 60",
 							"size" : "800 50",
 							"texture" : "data/textures/gui/menu_boton.dds",
 							"font_size" : 32.0,
-							"text" : "ORIGIN",
+							"text" : "MAIN ENTRANCE",
 							"halign" : "center",
 							"valign" : "center",
 							"color" : "0.5 0.5 0.5 1",
@@ -93,7 +93,54 @@
 							}
 						},
 						"marker": {
-							"name" : "Origin_marker",
+							"name" : "main_entrance_teleport_marker",
+							"type" : "button",
+							"position" : "60 40",
+							"size" : "50 50",
+							"texture" : "data/textures/linux.dds",
+							"font_size" : 32.0,
+							"halign" : "center",
+							"valign" : "center",
+							"color" : "0.5 0.5 0.5 1",
+							"selected" : {
+								"font_size" : 36.0,
+								"color" : "1 1 1 1"
+							},
+							"pressed" : {
+								"font_size" : 36.0,
+								"font_color" : "0.8 0.8 1 1"
+							}
+						}
+					},
+					{
+						"name": "central_field_teleport",
+						"type": "map_marker",
+						"position": "6.22754 0.27057 -8.44519",
+						"map": "map",
+						"altern_text": "???",
+						"visible": true,
+						"button": {
+							"name" : "central_field_teleport_button",
+							"type" : "button",
+							"position" : "0 120",
+							"size" : "800 50",
+							"texture" : "data/textures/gui/menu_boton.dds",
+							"font_size" : 32.0,
+							"text" : "CENTRAL FIELD",
+							"halign" : "center",
+							"valign" : "center",
+							"color" : "0.5 0.5 0.5 1",
+							"selected" : {
+								"font_size" : 36.0,
+								"color" : "1 1 1 1"
+							},
+							"pressed" : {
+								"font_size" : 36.0,
+								"font_color" : "0.8 0.8 1 1"
+							}
+						},
+						"marker": {
+							"name" : "central_field_teleport_marker",
 							"type" : "button",
 							"position" : "60 60",
 							"size" : "50 50",
@@ -113,20 +160,20 @@
 						}
 					},
 					{
-						"name": "Inicio_cementerio",
+						"name": "tower_entrance_teleport",
 						"type": "map_marker",
-						"position": "-7 -7 21",
+						"position": "169.787 35.3706 -128.655",
 						"map": "map",
 						"altern_text": "???",
 						"visible": true,
 						"button": {
-							"name" : "Inicio_cementerio_button",
+							"name" : "tower_entrance_teleport_button",
 							"type" : "button",
-							"position" : "0 120",
+							"position" : "0 180",
 							"size" : "800 50",
 							"texture" : "data/textures/gui/menu_boton.dds",
 							"font_size" : 32.0,
-							"text" : "INICIO CEMENTERIO",
+							"text" : "TOWER ENTRANCE",
 							"halign" : "center",
 							"valign" : "center",
 							"color" : "0.5 0.5 0.5 1",
@@ -140,7 +187,7 @@
 							}
 						},
 						"marker": {
-							"name" : "Inicio_cementerio_marker",
+							"name" : "tower_entrance_teleport_marker",
 							"type" : "button",
 							"position" : "120 120",
 							"size" : "50 50",
@@ -160,20 +207,20 @@
 						}
 					},
 					{
-						"name": "Derecha_cementerio",
+						"name": "behind_statue_teleport",
 						"type": "map_marker",
-						"position": "172 44 -175.4",
+						"position": "-193.399 60.8976 -16.7005",
 						"map": "map",
 						"altern_text": "???",
 						"visible": true,
 						"button": {
-							"name" : "Derecha_cementerio_button",
+							"name" : "behind_statue_teleport_button",
 							"type" : "button",
-							"position" : "0 180",
+							"position" : "0 240",
 							"size" : "800 50",
 							"texture" : "data/textures/gui/menu_boton.dds",
 							"font_size" : 32.0,
-							"text" : "DERECHA CEMENTERIO",
+							"text" : "BEHIND STATUE",
 							"halign" : "center",
 							"valign" : "center",
 							"color" : "0.5 0.5 0.5 1",
@@ -187,7 +234,7 @@
 							}
 						},
 						"marker": {
-							"name" : "Derecha_cementerio_marker",
+							"name" : "behind_statue_teleport_marker",
 							"type" : "button",
 							"position" : "0 120",
 							"size" : "50 50",
@@ -207,20 +254,20 @@
 						}
 					},
 					{
-						"name": "Primer_altar",
+						"name": "kings_graveyard_teleport",
 						"type": "map_marker",
-						"position": "5 22 -191.4",
+						"position": "143.049 61.5612 154.791",
 						"map": "map",
 						"altern_text": "???",
 						"visible": true,
 						"button": {
-							"name" : "Primer_altar_button",
+							"name" : "kings_graveyard_teleport_button",
 							"type" : "button",
-							"position" : "0 240",
+							"position" : "0 300",
 							"size" : "800 50",
 							"texture" : "data/textures/gui/menu_boton.dds",
 							"font_size" : 32.0,
-							"text" : "PRIMER ALTAR",
+							"text" : "KING'S GRAVEYARD",
 							"halign" : "center",
 							"valign" : "center",
 							"color" : "0.5 0.5 0.5 1",
@@ -234,7 +281,7 @@
 							}
 						},
 						"marker": {
-							"name" : "Primer_altar_marker",
+							"name" : "kings_graveyard_teleport_marker",
 							"type" : "button",
 							"position" : "120 0",
 							"size" : "50 50",
@@ -254,20 +301,20 @@
 						}
 					},
 					{
-						"name": "Pie_faro",
+						"name": "gate_of_doom_teleport",
 						"type": "map_marker",
 						"position": "-325 26 -277.4",
 						"map": "map",
 						"altern_text": "???",
 						"visible": true,
 						"button": {
-							"name" : "Pie_faro_button",
+							"name" : "gate_of_doom_teleport_button",
 							"type" : "button",
-							"position" : "0 300",
+							"position" : "0 360",
 							"size" : "800 50",
 							"texture" : "data/textures/gui/menu_boton.dds",
 							"font_size" : 32.0,
-							"text" : "PIE FARO",
+							"text" : "FINAL GATE",
 							"halign" : "center",
 							"valign" : "center",
 							"color" : "0.5 0.5 0.5 1",
@@ -281,7 +328,148 @@
 							}
 						},
 						"marker": {
-							"name" : "Pie_faro_marker",
+							"name" : "gate_of_doom_teleport_marker",
+							"type" : "button",
+							"position" : "400 20",
+							"size" : "50 50",
+							"texture" : "data/textures/linux.dds",
+							"font_size" : 32.0,
+							"halign" : "center",
+							"valign" : "center",
+							"color" : "0.5 0.5 0.5 1",
+							"selected" : {
+								"font_size" : 36.0,
+								"color" : "1 1 1 1"
+							},
+							"pressed" : {
+								"font_size" : 36.0,
+								"font_color" : "0.8 0.8 1 1"
+							}
+						}
+					},
+					{
+						"name": "mushroom_kingdom_teleport",
+						"type": "map_marker",
+						"position": "-325 26 -277.4",
+						"map": "map",
+						"altern_text": "???",
+						"visible": true,
+						"button": {
+							"name" : "mushroom_kingdom_teleport_button",
+							"type" : "button",
+							"position" : "0 420",
+							"size" : "800 50",
+							"texture" : "data/textures/gui/menu_boton.dds",
+							"font_size" : 32.0,
+							"text" : "COLOSSAL FUNGUS",
+							"halign" : "center",
+							"valign" : "center",
+							"color" : "0.5 0.5 0.5 1",
+							"selected" : {
+								"font_size" : 36.0,
+								"color" : "1 1 1 1"
+							},
+							"pressed" : {
+								"font_size" : 36.0,
+								"font_color" : "0.8 0.8 1 1"
+							}
+						},
+						"marker": {
+							"name" : "mushroom_kingdom_teleport_marker",
+							"type" : "button",
+							"position" : "400 20",
+							"size" : "50 50",
+							"texture" : "data/textures/linux.dds",
+							"font_size" : 32.0,
+							"halign" : "center",
+							"valign" : "center",
+							"color" : "0.5 0.5 0.5 1",
+							"selected" : {
+								"font_size" : 36.0,
+								"color" : "1 1 1 1"
+							},
+							"pressed" : {
+								"font_size" : 36.0,
+								"font_color" : "0.8 0.8 1 1"
+							}
+						}
+					},
+					{
+						"name": "graveyard_teleport",
+						"type": "map_marker",
+						"position": "113.839 25.4691 75.4401",
+						"map": "map",
+						"altern_text": "???",
+						"visible": true,
+						"button": {
+							"name" : "graveyard_teleport_button",
+							"type" : "button",
+							"position" : "0 480",
+							"size" : "800 50",
+							"texture" : "data/textures/gui/menu_boton.dds",
+							"font_size" : 32.0,
+							"text" : "GRAVEYARD",
+							"halign" : "center",
+							"valign" : "center",
+							"color" : "0.5 0.5 0.5 1",
+							"selected" : {
+								"font_size" : 36.0,
+								"color" : "1 1 1 1"
+							},
+							"pressed" : {
+								"font_size" : 36.0,
+								"font_color" : "0.8 0.8 1 1"
+							}
+						},
+						"marker": {
+							"name" : "graveyard_teleport_marker",
+							"type" : "button",
+							"position" : "400 20",
+							"size" : "50 50",
+							"texture" : "data/textures/linux.dds",
+							"font_size" : 32.0,
+							"halign" : "center",
+							"valign" : "center",
+							"color" : "0.5 0.5 0.5 1",
+							"selected" : {
+								"font_size" : 36.0,
+								"color" : "1 1 1 1"
+							},
+							"pressed" : {
+								"font_size" : 36.0,
+								"font_color" : "0.8 0.8 1 1"
+							}
+						}
+					},
+					{
+						"name": "behind_tower_teleport",
+						"type": "map_marker",
+						"position": "198.253 77.0684 -207.838",
+						"map": "map",
+						"altern_text": "???",
+						"visible": true,
+						"button": {
+							"name" : "behind_tower_teleport_button",
+							"type" : "button",
+							"position" : "0 540",
+							"size" : "800 50",
+							"texture" : "data/textures/gui/menu_boton.dds",
+							"font_size" : 32.0,
+							"text" : "BEHIND TOWER",
+							"halign" : "center",
+							"valign" : "center",
+							"color" : "0.5 0.5 0.5 1",
+							"selected" : {
+								"font_size" : 36.0,
+								"color" : "1 1 1 1"
+							},
+							"pressed" : {
+								"font_size" : 36.0,
+								"font_color" : "0.8 0.8 1 1"
+							}
+						},
+						"marker": {
+							"name" : "behind_tower_teleport_marker",
 							"type" : "button",
 							"position" : "400 20",
 							"size" : "50 50",

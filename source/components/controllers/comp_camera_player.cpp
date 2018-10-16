@@ -138,12 +138,18 @@ void TCompCameraPlayer::updateInput() {
 		if (padInput.Length() > PAD_DEAD_ZONE) {
 			input.x -= padInput.x * Engine.globalConfig.cameraSpeedPad.x * Engine.globalConfig.cameraAxis.x;
 			input.y += padInput.y * Engine.globalConfig.cameraSpeedPad.y * Engine.globalConfig.cameraAxis.y;
+			centeringCamera = false;
 		}
 		else if (!CApp::get().isDebug()) {
 			auto& mouse = EngineInput[Input::PLAYER_1].mouse();
 			input.x -= mouse.position_delta.x * Engine.globalConfig.cameraSpeed.x * Engine.globalConfig.cameraAxis.x;
 			input.y -= mouse.position_delta.y * Engine.globalConfig.cameraSpeed.y * Engine.globalConfig.cameraAxis.y;
+			if (input.Length() > 4.f) {
+				//dbg("mouse input: %f\n", input.Length());
+				centeringCamera = false;
+			}
 		}
+
 	}
 }
 

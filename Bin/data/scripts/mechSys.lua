@@ -1,3 +1,10 @@
+function onMechanismSystemActivated_Plataformeo_muro016()
+  closeDoor("Plataformeo_muro016", 0)
+end
+function onMechanismSystemDeactivated_Plataformeo_muro016()
+  openDoor("Plataformeo_muro016", 0)
+end
+
 function onMechanismSystemActivated_Plataformeo_hex_mech_000()
   closeDoor("Plataformeo_hex_mech_000", 0)
 end

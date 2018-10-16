@@ -2,6 +2,7 @@
 
 #define STATES \
 	etype(UndefinedState), \
+	etype(Dummy), \
 	etype(Death), \
 	etype(PitFalling), \
 	etype(HardKnockbackGround), \

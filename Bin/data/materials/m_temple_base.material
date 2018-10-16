@@ -1,0 +1,14 @@
+{
+  "technique": "pbr.tech",
+  "shadows": true,
+  "textures":
+  {
+    "albedo": "data/textures/templebase_BaseColor.dds",
+    "normal": "data/textures/templebase_Normal.dds",
+    "metallic": "data/textures/templebase_Metallic.dds",
+    "roughness": "data/textures/templebase_Roughness.dds",
+    "self_illum": "data/textures/null_self_illum.dds",
+    "height": "data/textures/templebase_Height.dds",
+    "detail_normal": "data/textures/null_detail_normal.dds"
+  }
+}

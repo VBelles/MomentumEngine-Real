@@ -20,6 +20,26 @@ void TCompCollectableManager::load(const json & j, TEntityParseContext & ctx) {
 }
 
 void TCompCollectableManager::update(float delta) {
+	if (isCollecting) {
+		if (collectTimer.elapsed() >= collectDuration) {
+			TCompPlayerModel* playerModel = get<TCompPlayerModel>();
+			playerModel->changeState("AirborneNormal");
+			isCollecting = false;
+			CEntity* playerCameraEntity = getEntityByName(PLAYER_CAMERA);
+			TCompCameraPlayer* cameraPlayer = playerCameraEntity->get<TCompCameraPlayer>();
+			cameraPlayer->resetSuggested();
+		}
+	}
+}
+
+void TCompCollectableManager::debugInMenu() {
+	float collectPitchDegrees = rad2deg(collectPitch);
+	if (ImGui::DragFloat("Collect Pitch", &collectPitchDegrees, 1.f, -80.f, -10.f)) {
+		collectPitch = deg2rad(collectPitchDegrees);
+	}
+	ImGui::DragFloat2("Camera Speed", &cameraSpeed.x, 0.1f, 0.1f, 5.f);
+	ImGui::DragFloat("Collect Duration", &collectDuration, 0.1f, 1.f, 20.f);
+	ImGui::DragFloat("Collect Distance", &collectDistance, 0.1f, 0.5f, 20.f);
 }
 
 void TCompCollectableManager::addUniqueCollectable(Type type, std::string id) {
@@ -107,12 +127,31 @@ void TCompCollectableManager::onCollect(const TMsgCollect& msg) {
 	CEntity* entity = msg.collectableHandle.getOwner();
 	TCompPlayerModel* playerModel = get<TCompPlayerModel>();
 	TCompTransform* transform = entity->get<TCompTransform>();
+	TCompTransform* playerTransform = get<TCompTransform>();
+	CEntity* playerCameraEntity = getEntityByName(PLAYER_CAMERA);
+	TCompCameraPlayer* cameraPlayer = playerCameraEntity->get<TCompCameraPlayer>();
+	float yaw, pitch;
+
+	if (msg.type != Type::COIN) {
+		playerModel->setDummyState("get_chrysalis", false, collectDuration, "idle_SS3");
+		playerModel->changeState("Dummy");
+		//situar cámara frente a player
+		playerTransform->getYawPitchRoll(&yaw, &pitch);
+		yaw += M_PI;
+		//if camera is already suggested, remember parameters
+		cameraPlayer->suggestYawPitchDistance(yaw, collectPitch, collectDistance, true, false, true, true, false);
+		cameraPlayer->placeCameraOnSuggestedPosition(cameraSpeed);
+		isCollecting = true;
+		collectTimer.reset();
+	}
+
 	switch (msg.type) {
 	case Type::CHRYSALIS:
 		collectable->collect();
 		addUniqueCollectable(Type::CHRYSALIS, entity->getName());
-		playerModel->setHp(playerModel->getMaxHp());
 		EngineSound.emitEvent(SOUND_COLLECT_CHRYSALIS, transform);
+		//Esto de aquí molaría no hacerlo el mismo frame en que recoges el objeto 
+		playerModel->setHp(playerModel->getMaxHp());
 		EngineGame->showChrysalis(showChrysalisTime);
 		break;
 	case Type::COIN:

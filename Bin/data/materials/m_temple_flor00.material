@@ -1,0 +1,14 @@
+{
+  "technique": "pbr.tech",
+  "shadows": true,
+  "textures":
+  {
+    "albedo": "data/textures/crystalnest_00_Base_Color.dds",
+    "normal": "data/textures/crystalnest_00_Normal_OpenGL.dds",
+    "metallic": "data/textures/crystalnest_00_Metallic.dds",
+    "roughness": "data/textures/crystalnest_00_Roughness.dds",
+    "self_illum": "data/textures/crystalnest_00_Emissive.dds",
+    "height": "data/textures/crystalnest_00_Height.dds",
+    "detail_normal": "data/textures/null_detail_normal.dds"
+  }
+}

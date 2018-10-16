@@ -8,6 +8,7 @@ class TeleportAction : public IBehaviorTreeAction {
 private:
 	Enemy* enemy = nullptr;
 	std::string animation = "";
+	float animationEndPadding = 0.2f;
 public:
 	TeleportAction();
 	TeleportAction(Enemy* enemy, std::string animation);

@@ -8,6 +8,7 @@ class AppearAction : public IBehaviorTreeAction {
 private:
 	Enemy* enemy = nullptr;
 	std::string animation = "";
+	float animationEndPadding = 0.2f;
 public:
 	AppearAction();
 	AppearAction(Enemy* enemy, std::string animation);

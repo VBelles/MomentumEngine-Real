@@ -2,33 +2,16 @@
   {
     "entity":
     {
-      "name": "nes_tapar_agujeros_016",
-      "transform":
-      {
-        "pos": "-118.4 10.6201 77.4805",
-        "rotation": "0.5 -0.5 -0.5 -0.5"
-      },
-      "collider":
-      {
-        "mesh_src": "data/meshes/nes_tapar_agujeros_016.col_mesh",
-        "shape": "convex_mesh",
-        "type": "static"
-      }
-    }
-  },
-  {
-    "entity":
-    {
       "name": "nes_tapar_agujeros_015",
       "transform":
       {
-        "pos": "-176.906 -2.00647 58.4073",
-        "rotation": "0.45452 -0.541675 -0.541675 -0.45452"
+        "pos": "-10.5416 49.3279 215.035",
+        "rotation": "0.0 0.0 0.707107 -0.707107"
       },
       "collider":
       {
         "mesh_src": "data/meshes/nes_tapar_agujeros_015.col_mesh",
-        "shape": "convex_mesh",
+        "shape": "tri_mesh",
         "type": "static"
       }
     }
@@ -164,23 +147,6 @@
       "collider":
       {
         "mesh_src": "data/meshes/nes_tapar_agujeros_007.col_mesh",
-        "shape": "convex_mesh",
-        "type": "static"
-      }
-    }
-  },
-  {
-    "entity":
-    {
-      "name": "nes_tapar_agujeros_006",
-      "transform":
-      {
-        "pos": "109.451 13.0586 -122.897",
-        "rotation": "0.0588816 -0.673019 -0.0642578 -0.734472"
-      },
-      "collider":
-      {
-        "mesh_src": "data/meshes/nes_tapar_agujeros_006.col_mesh",
         "shape": "convex_mesh",
         "type": "static"
       }

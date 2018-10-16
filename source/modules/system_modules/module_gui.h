@@ -44,7 +44,10 @@ public:
 	void hideDialog();
 	bool isDialogActive();
 
+	VEC2 getResolution();
+
 private:
+	VEC2 resolution = { 1920, 1080 };
 	CCameraGui _orthoCamera;
 	const CRenderTechnique* _technique = nullptr;
 	const CRenderTechnique* _technique_clamp = nullptr;

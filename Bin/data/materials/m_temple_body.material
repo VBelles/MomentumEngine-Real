@@ -1,0 +1,14 @@
+{
+  "technique": "pbr.tech",
+  "shadows": true,
+  "textures":
+  {
+    "albedo": "data/textures/templebody_Base_Color.dds",
+    "normal": "data/textures/templebody_Normal.dds",
+    "metallic": "data/textures/templebody_Metallic.dds",
+    "roughness": "data/textures/templebody_Roughness.dds",
+    "self_illum": "data/textures/null_self_illum.dds",
+    "height": "data/textures/templebody_Height.dds",
+    "detail_normal": "data/textures/null_detail_normal.dds"
+  }
+}

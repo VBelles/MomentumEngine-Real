@@ -13,7 +13,7 @@ private:
 	std::set<CHandle> handles;
 
 	float hitAgainTime = 0.f;
-	CTimer timer;
+	CTimer2 timer;
 
 public:
 	DECL_SIBLING_ACCESS();

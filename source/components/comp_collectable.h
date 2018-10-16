@@ -27,7 +27,6 @@ private:
 
 	float rotationSpeed;
 	VEC3 rotationAxis;
-	float rotation = 0.f;
 
 	CHandle transformHandle;
 	TCompTransform* getTransform();

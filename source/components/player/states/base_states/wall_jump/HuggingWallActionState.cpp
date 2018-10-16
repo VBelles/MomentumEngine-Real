@@ -89,15 +89,17 @@ void HuggingWallActionState::onStateExit(IActionState * nextState) {
 }
 
 void HuggingWallActionState::onJumpHighButton() {
-	TurnAround();
-	isClimbing = false;
-	stateManager->changeState(WallJumpSquat);
+	if (stateManager->changeState(WallJumpSquat)) {
+		TurnAround();
+		isClimbing = false;
+	}
 }
 
 void HuggingWallActionState::onJumpLongButton() {
-	TurnAround();
-	isClimbing = false;
-	stateManager->changeState(WallJumpSquatPlummet);
+	if (stateManager->changeState(WallJumpSquatPlummet)) {
+		TurnAround();
+		isClimbing = false;
+	}
 }
 
 void HuggingWallActionState::onMove(MoveState& moveState) {

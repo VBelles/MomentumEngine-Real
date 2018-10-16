@@ -43,18 +43,18 @@ global rotationsData = attributes rotateData (
 		slot 	 type: #intTab ui:slt default:1 tabSize:1 tabSizeVariable:true
 	)
 	rollout params "Rotation Data" (
-		label lab1 "Rotation:"
+		group "Rotation:" (
 		spinner xRot "x axis" 			  type: #integer range:[-1, 1, 0] --min, max, initial value
 		spinner yRot "y axis" 			  type: #integer range:[-1, 1, 0]
 		spinner zRot "z axis" 			  type: #integer range:[-1, 1, 1]
 		spinner rotSpeed "Rotation speed" type: #float   range:[-100, 100, 0]
-
-		label lab2 "Roll:"
+		)
+		group "Roll:" (
 		spinner rolSpeed "Roll speed" 	   type: #float  range:[-100, 100, 0]
 		spinner plDir    "Platf director"  type: #integer range:[0, 100, 0]
 		multiListBox slt "Platf dir slots"  items: #("1","2","3","4","5") \ 
 			height:5 width:70 align:#right
-
+		)
 		on slt selectionEnd do slot = slt.selection as array
 		on params open do slt.selection = (slot as Array) 
 	)

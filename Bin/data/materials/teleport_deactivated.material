@@ -1,0 +1,14 @@
+{
+  "technique": "pbr.tech",
+  "shadows": true,
+  "textures":
+  {
+    "albedo": "data/textures/teleport_BaseColor.dds",
+    "normal": "data/textures/teleport_Normal.dds",
+    "metallic": "data/textures/teleport_Metallic.dds",
+    "roughness": "data/textures/teleport_Roughness.dds",
+    "self_illum": "data/textures/teleport_Emissive.dds",
+    "height": "data/textures/teleport_Height.dds",
+    "detail_normal": "data/textures/null_detail_normal.dds"
+  }
+}

@@ -2,6 +2,68 @@
   {
     "entity":
     {
+      "name": "nes_respawn009plaza",
+      "transform":
+      {
+        "pos": "57.0274 2.44472 19.6491",
+        "rotation": "0.0 -0.975977 0.0 -0.217872"
+      },
+      "collider":
+      {
+        "mesh_src": "data/meshes/nes_respawn009plaza.col_mesh",
+        "shape": "convex_mesh",
+        "is_trigger": true,
+        "type": "static",
+        "group":
+        [
+          "trigger"
+        ],
+        "mask":
+        [
+          "player"
+        ]
+      },
+      "respawn_point":
+      {
+        "respawn_position": "0 0 0",
+        "respawn_rotation": "0 0 0 0"
+      }
+    }
+  },
+  {
+    "entity":
+    {
+      "name": "nes_respawn008anillosAire",
+      "transform":
+      {
+        "pos": "57.7334 36.7052 30.2926",
+        "rotation": "0.0 -0.818309 0.0 -0.574778"
+      },
+      "collider":
+      {
+        "mesh_src": "data/meshes/nes_respawn008anillosAire.col_mesh",
+        "shape": "convex_mesh",
+        "is_trigger": true,
+        "type": "static",
+        "group":
+        [
+          "trigger"
+        ],
+        "mask":
+        [
+          "player"
+        ]
+      },
+      "respawn_point":
+      {
+        "respawn_position": "22.4661 -2.55464 15.7185",
+        "respawn_rotation": "0.0 -0.818309 0.0 -0.574778"
+      }
+    }
+  },
+  {
+    "entity":
+    {
       "name": "nes_respawn007trasEstatua",
       "transform":
       {
@@ -64,15 +126,15 @@
   {
     "entity":
     {
-      "name": "nes_respawn004ruinas",
+      "name": "nes_respawn004ruinasMid",
       "transform":
       {
-        "pos": "-68.261 0.976981 -17.918",
-        "rotation": "0.0 -0.34202 0.0 -0.939693"
+        "pos": "-71.3954 0.976981 -20.0864",
+        "rotation": "0.0 -0.5373 0.0 -0.843391"
       },
       "collider":
       {
-        "mesh_src": "data/meshes/nes_respawn004ruinas.col_mesh",
+        "mesh_src": "data/meshes/nes_respawn004ruinasMid.col_mesh",
         "shape": "convex_mesh",
         "is_trigger": true,
         "type": "static",
@@ -87,8 +149,8 @@
       },
       "respawn_point":
       {
-        "respawn_position": "-50.1417 16.5676 3.33177",
-        "respawn_rotation": "0.0 -0.996195 0.0 -0.0871557"
+        "respawn_position": "-76.953 16.9086 5.76005",
+        "respawn_rotation": "0.0 -0.984808 0.0 -0.173648"
       }
     }
   },
@@ -157,7 +219,7 @@
   {
     "entity":
     {
-      "name": "nes_respawn002ruinas",
+      "name": "nes_respawn002ruinasTorre",
       "transform":
       {
         "pos": "42.3755 -13.3261 -139.27",
@@ -165,7 +227,7 @@
       },
       "collider":
       {
-        "mesh_src": "data/meshes/nes_respawn002ruinas.col_mesh",
+        "mesh_src": "data/meshes/nes_respawn002ruinasTorre.col_mesh",
         "shape": "convex_mesh",
         "is_trigger": true,
         "type": "static",

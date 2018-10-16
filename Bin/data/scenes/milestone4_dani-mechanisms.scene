@@ -2,12 +2,81 @@
   {
     "entity":
     {
+      "name": "tutorial_mech_000",
+      "prefab": "data/prefabs/mech.prefab",
+      "transform":
+      {
+        "pos": "-72.1396 -15.3029 245.875",
+        "rotation": "0.00514074 0.707088 -0.707088 0.00514074"
+      },
+      "mechanism":
+      {
+        "deactivationTime": 5.0,
+        "reactivationTime": 3.0,
+        "isResettable": false,
+        "systems":
+        [
+           "Plataformeo_muro016"
+        ]
+      }
+    }
+  },
+  {
+    "entity":
+    {
+      "name": "Plataformeo_muro016",
+      "transform":
+      {
+        "pos": "-73.0024 -20.113 163.928",
+        "rotation": "0.368688 0.526541 -0.439385 -0.627507"
+      },
+      "mechanism_system":
+      {
+        "number_of_mechanisms": 1
+      },
+      "activate_listener":
+      {
+        "change_render": true,
+        "change_collider": true,
+        "change_platform": false,
+        "change_animation": false,
+        "render_enabled_on_active": true,
+        "collider_enabled_on_active": true,
+        "platform_enabled_on_active": true,
+        "animation_enabled_on_active": true
+      },
+      "render":
+      [
+        {
+          "mesh": "data/meshes/Plataformeo_muro016.mesh",
+          "materials":
+          [
+            "data/materials/m_ms_murovertical.material"
+          ],
+          "enabled": true
+        }
+      ],
+      "collider":
+      {
+        "mesh_src": "data/meshes/Plataformeo_muro001_collider010.col_mesh",
+        "shape": "convex_mesh",
+        "type": "static",
+        "group":
+        [
+          "scenario"
+        ]
+      }
+    }
+  },
+  {
+    "entity":
+    {
       "name": "plataformeo_mech000",
       "prefab": "data/prefabs/mech.prefab",
       "transform":
       {
         "pos": "111.891 59.9533 167.519",
-        "rotation": "0.122788 0.122788 -0.696364 -0.696364"
+        "rotation": "-0.40558 0.579228 -0.579228 -0.40558"
       },
       "mechanism":
       {

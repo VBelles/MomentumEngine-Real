@@ -1,0 +1,14 @@
+{
+  "technique": "pbr.tech",
+  "shadows": true,
+  "textures":
+  {
+    "albedo": "data/textures/nestpodium_Base_Color.dds",
+    "normal": "data/textures/nestpodium_Normal_OpenGL.dds",
+    "metallic": "data/textures/nestpodium_Metallic.dds",
+    "roughness": "data/textures/nestpodium_Roughness.dds",
+    "self_illum": "data/textures/null_self_illum.dds",
+    "height": "data/textures/nestpodium_Height.dds",
+    "detail_normal": "data/textures/null_detail_normal.dds"
+  }
+}

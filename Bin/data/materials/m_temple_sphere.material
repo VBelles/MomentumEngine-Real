@@ -1,0 +1,14 @@
+{
+  "technique": "pbr.tech",
+  "shadows": true,
+  "textures":
+  {
+    "albedo": "data/textures/sphere_Base_Color.dds",
+    "normal": "data/textures/null_normal.dds",
+    "metallic": "data/textures/sphere_Metallic.dds",
+    "roughness": "data/textures/sphere_Roughness.dds",
+    "self_illum": "data/textures/null_self_illum.dds",
+    "height": "data/textures/sphere_Height.dds",
+    "detail_normal": "data/textures/null_detail_normal.dds"
+  }
+}

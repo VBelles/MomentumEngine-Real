@@ -6,6 +6,11 @@ float4 PS_filter(
   , in float2 iTex0 : TEXCOORD0
 ) : SV_Target
 {
+  float zlinear = txGBufferLinearDepth.Sample(samClampPoint, iTex0).x;
+  if (zlinear >= 1) {
+    return float4(0,0,0,1);
+  }
+
   float4 color;
   float threshold_min;
   float threshold_max;

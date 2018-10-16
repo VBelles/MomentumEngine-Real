@@ -5,6 +5,7 @@
 #include "modules/system_modules/slash/comp_slash.h"
 #include "components/player/states/AirborneActionState.h"
 #include "components/player/states/GroundedActionState.h"
+#include "components/player/states/DummyActionState.h"
 #include "components/player/states/base_states/GhostJumpWindowActionState.h"
 #include "components/player/states/base_states/SpendCoinsActionState.h"
 #include "components/player/states/base_states/moving_around/RunActionState.h"
@@ -135,6 +136,7 @@ void StateManager::registerStates() {
 	registerState<AirDodgeActionState>();
 	registerState<SpendCoinsActionState>();
 	registerState<LandingHurtActionState>();
+	registerState<DummyActionState>();
 
 	registerConcurrentState<FreeActionState>();
 	registerConcurrentState<FastAttackActionState>();
@@ -156,7 +158,7 @@ void StateManager::updateStates(float delta) {
 	concurrentState->update(delta);
 }
 
-void StateManager::changeState(State newState) {
+bool StateManager::changeState(State newState) {
 	if (!lockedStates.count(newState)) {
 		if (isChangingBaseState) {
 			if (newState < nextBaseState->state) {
@@ -171,20 +173,23 @@ void StateManager::changeState(State newState) {
 	}
 	else {
 		dbg("this state is locked\n");
+		return false;
 	}
+	return true;
 }
 
-void StateManager::changeState(std::string newStateName) {
+bool StateManager::changeState(std::string newStateName) {
 	State newState = States::getState(newStateName);
 	if (newState != UndefinedState) {
-		changeState(newState);
+		return changeState(newState);
 	}
 	else {
 		dbg("%s: invalid state name\n");
 	}
+	return false;
 }
 
-void StateManager::changeConcurrentState(ConcurrentState newState) {
+bool StateManager::changeConcurrentState(ConcurrentState newState) {
 	if (!lockedConcurrentStates.count(newState)) {
 		if (isChangingConcurrentState) {
 			if (newState < nextConcurrentState->state) {
@@ -199,17 +204,20 @@ void StateManager::changeConcurrentState(ConcurrentState newState) {
 	}
 	else {
 		dbg("this concurrent state is locked\n");
+		return false;
 	}
+	return true;
 }
 
-void StateManager::changeConcurrentState(std::string newStateName) {
+bool StateManager::changeConcurrentState(std::string newStateName) {
 	ConcurrentState newState = States::getConcurrentState(newStateName);
 	if (newState != UndefinedConcurrentState) {
-		changeConcurrentState(newState);
+		return changeConcurrentState(newState);
 	}
 	else {
 		dbg("%s: invalid concurrent state name\n");
 	}
+	return false;
 }
 
 void StateManager::performStateChange() {

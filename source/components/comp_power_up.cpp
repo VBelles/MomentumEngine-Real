@@ -18,6 +18,8 @@ void TCompPowerUp::registerMsgs() {
 
 void TCompPowerUp::load(const json& j, TEntityParseContext& ctx) {
 	stateToUnlock = j.value("state_to_unlock","");
+	message = j.value("message", "You unlocked a new ability!");
+	rotationSpeed = j.value("rotation_speed", rotationSpeed);
 }
 
 void TCompPowerUp::onGroupCreated(const TMsgEntitiesGroupCreated & msg) {
@@ -29,6 +31,27 @@ void TCompPowerUp::onAllScenesCreated(const TMsgAllScenesCreated & msg) {
 	CEntity* player = getEntityByName(PLAYER_NAME);
 	playerModelHandle = player->get<TCompPlayerModel>();
 	assert(playerModelHandle.isValid());
+	playerTransformHandle = player->get<TCompTransform>();
+	assert(playerTransformHandle.isValid());
+}
+
+void TCompPowerUp::update(float delta) {
+	if (abs(rotationSpeed) > 0) {
+		TCompTransform* transform = getTransform();
+		VEC3 rotationAxis = VEC3(0, 1, 0);
+		QUAT quat = QUAT::CreateFromAxisAngle(rotationAxis, rotationSpeed * delta);
+		transform->setRotation(transform->getRotation() * quat);
+	}
+	if (isCollecting) {
+		if (collectTimer.elapsed() >= collectDuration) {
+			getPlayerModel()->changeState("AirborneNormal");
+			isCollecting = false;
+			CEntity* playerCameraEntity = getEntityByName(PLAYER_CAMERA);
+			TCompCameraPlayer* cameraPlayer = playerCameraEntity->get<TCompCameraPlayer>();
+			cameraPlayer->resetSuggested();
+			CHandle(this).getOwner().destroy();
+		}
+	}
 }
 
 void TCompPowerUp::onTriggerEnter(const TMsgTriggerEnter & msg) {
@@ -42,12 +65,32 @@ void TCompPowerUp::onTriggerEnter(const TMsgTriggerEnter & msg) {
 		if (uniquePowerUp && !uniquePowerUp->done) {
 			uniquePowerUp->done = true;
 		}
+		((TCompRender*)get<TCompRender>())->disable();
 		((TCompCollider*)get<TCompCollider>())->destroy();
+
+		//cutscene
+		CEntity* playerCameraEntity = getEntityByName(PLAYER_CAMERA);
+		TCompCameraPlayer* cameraPlayer = playerCameraEntity->get<TCompCameraPlayer>();
+		TCompPlayerModel* playerModel = getPlayerModel();
+		float yaw, pitch;
+		playerModel->setDummyState("get_chrysalis", false, collectDuration, "idle_SS3");
+		playerModel->changeState("Dummy");
+		//situar cámara frente a player
+		getPlayerTransform()->getYawPitchRoll(&yaw, &pitch);
+		yaw += M_PI;
+		//if camera is already suggested, remember parameters
+		cameraPlayer->suggestYawPitchDistance(yaw, collectPitch, collectDistance, true, false, true, true, false);
+		cameraPlayer->placeCameraOnSuggestedPosition(cameraSpeed);
+		isCollecting = true;
+		collectTimer.reset();
+
+		EngineGUI.showDialog(message, 16);
 	}
 }
 
 void TCompPowerUp::onColliderDestroyed(const TMsgColliderDestroyed& msg) {
-	CHandle(this).getOwner().destroy();
+	//hacer esto al final de la secuencia
+	//CHandle(this).getOwner().destroy();
 }
 
 TCompTransform* TCompPowerUp::getTransform() {
@@ -56,4 +99,8 @@ TCompTransform* TCompPowerUp::getTransform() {
 
 TCompPlayerModel* TCompPowerUp::getPlayerModel() {
 	return playerModelHandle;
+}
+
+TCompTransform * TCompPowerUp::getPlayerTransform() {
+	return playerTransformHandle;
 }

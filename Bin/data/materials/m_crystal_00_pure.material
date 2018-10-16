@@ -1,0 +1,14 @@
+{
+  "technique": "pure.tech",
+  "shadows": true,
+  "textures":
+  {
+    "albedo": "data/textures/crystal_00_BaseColor.dds",
+    "normal": "data/textures/crystal_00_Normal.dds",
+    "metallic": "data/textures/crystal_00_Metallic.dds",
+    "roughness": "data/textures/crystal_00_Roughness.dds",
+    "self_illum": "data/textures/crystal_00_Emissive.dds",
+    "height": "data/textures/null_height.dds",
+    "detail_normal": "data/textures/null_detail_normal.dds"
+  }
+}
