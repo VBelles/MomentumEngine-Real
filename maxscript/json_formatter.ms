@@ -78,6 +78,8 @@ struct TJsonFormatter (
 		if addIndent then indent()
 		if classOf val == string then (
 			format " \"%\"" val to:fs
+		) else if classOf val == Point2 then (
+			format " \"% %\"" val.x val.y to:fs
 		) else if classOf val == Point3 then (
 			format " \"% % %\"" val.x val.y val.z to:fs
 		) else if classOf val == quat then (

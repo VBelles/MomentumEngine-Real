@@ -19,7 +19,7 @@ ButtonText: "Momentum"
 
 	local baseHeight = 66
 	local heightPerButton = 26
-	local numberOfButtons = 7
+	local numberOfButtons = 6
 	local height = baseHeight + heightPerButton * numberOfButtons
 
 	/* To get desktop resolution, valid for multiple screens:
@@ -35,11 +35,11 @@ ButtonText: "Momentum"
 
 	rollout exporter "Momentum Exporter" (
 		button btn_scene "Export Scene"
-		button btn_mesh "Export Mesh" tooltip:"Exports selected meshes to files"
+		button btn_mesh "Export Mesh" across:2 tooltip:"Exports selected meshes to files"
 		button btn_col "Export Collider" tooltip:"Exports current selection colliders to file and generates a scene"
 		button btn_skeleton "Export Skeleton & Meshes"
-		button btn_skel_anims "Export Animation" tooltip:"Uses max animation range and frame rate to specify the range to export (name matches max file)"
-		button btn_rigid_anims "Export Rigid Animation"
+		button btn_skel_anims "Export Anim" across:2 tooltip:"Uses max animation range and frame rate to specify the range to export (name matches max file)"
+		button btn_rigid_anims "Export Rigid Anim"
 
 		on btn_scene pressed do (
 			try (
@@ -401,6 +401,10 @@ ButtonText: "Momentum"
 		button btn_addCam "+ camera" across:3 tooltip:"Adds camera attributes to selected objects"
 		button btn_delCam "- camera" tooltip:"Deletes camera attributes from selected objects"
 		button btn_setAttrCam "Set..." tooltip:"Sets camera attributes to selected objects"
+
+		button btn_addTrigCam "+ cam trig" across:3 tooltip:"Adds camera trigger attributes to selected objects"
+		button btn_delTrigCam "- cam trig" tooltip:"Deletes camera trigger attributes from selected objects"
+		button btn_setAttrTrigCam "Set..." tooltip:"Sets camera trigger attributes to selected objects"
 
 		fn addAttribute defName = (
 			try (
@@ -783,6 +787,49 @@ ButtonText: "Momentum"
 					)
 				)
 
+				rollout camTrigParams "Camera trigger parameters" (
+					checkbox sugYaw "Suggest Yaw"		  type: #boolean default:false across:2 align:#right
+					button btnSetsugYaw "Set" width:24 align:#left
+					checkbox opoYaw "Has opposite Yaw"	  type: #boolean default:false across:2 align:#right
+					button btnSetopoYaw "Set" width:24 align:#left
+					checkbox sugPit "Suggest Pitch"		  type: #boolean default:false across:2 align:#right
+					button btnSetsugPit "Set" width:24 align:#left
+					checkbox forDis "Force distance"	  type: #boolean default:false across:2 align:#right
+					button btnSetforDis "Set" width:24 align:#left
+					checkbox cenCam "Change center cam" type: #boolean default:false across:2 align:#right
+					button btnSetcenCam "Set" width:24 align:#left
+					checkbox fPosEn "Force pos on enter"  type: #boolean default:false across:2 align:#right
+					button btnSetfPosEn "Set" width:24 align:#left
+
+					spinner cCamSpX "Center cam spd x" type: #float across:2 align:#right range:[-1000.0, 1000.0, 18.0]
+					button btnSetcCamSpX "Set" width:24 align:#left
+					spinner cCamSpY "Center cam spd y" type: #float across:2 align:#right range:[-1000.0, 1000.0, 9.0]
+					button btnSetcCamSpY "Set" width:24 align:#left
+
+					button btnSetAll "SetAll"
+
+					on btnSetsugYaw pressed do  (setAttribute "camTrigData" #suggYaw sugYaw.state)
+					on btnSetopoYaw pressed do  (setAttribute "camTrigData" #oposYaw opoYaw.state)
+					on btnSetsugPit pressed do  (setAttribute "camTrigData" #suggPit sugPit.state)
+					on btnSetforDis pressed do  (setAttribute "camTrigData" #forcDis forDis.state)
+					on btnSetcenCam pressed do  (setAttribute "camTrigData" #centCam cenCam.state)
+					on btnSetfPosEn pressed do  (setAttribute "camTrigData" #fPosEnt fPosEn.state)
+
+					on btnSetcCamSpX pressed do (setAttribute "camTrigData" #cCamSpdX cCamSpX.value)
+					on btnSetcCamSpY pressed do (setAttribute "camTrigData" #cCamSpdY cCamSpY.value)
+
+					on btnSetAll     pressed do (
+						setAttribute "camTrigData" #suggYaw sugYaw.state
+						setAttribute "camTrigData" #oposYaw opoYaw.state
+						setAttribute "camTrigData" #suggPit sugPit.state
+						setAttribute "camTrigData" #forcDis forDis.state
+						setAttribute "camTrigData" #centCam cenCam.state
+						setAttribute "camTrigData" #fPosEnt fPosEn.state
+						setAttribute "camTrigData" #cCamSpdX cCamSpX.value
+						setAttribute "camTrigData" #cCamSpdY cCamSpY.value
+					)
+				)
+
 				local rollToOpen = undefined
 				local setAttrWinWidth  = 240
 				local setAttrWinHeight = 270
@@ -791,6 +838,8 @@ ButtonText: "Momentum"
 									  setAttrWinHeight = 3 + heightPerButton * 5 )
 					"camData":      ( rollToOpen = camParams      
 									  setAttrWinHeight = 3 + heightPerButton * 7 )
+					"camTrigData":  ( rollToOpen = camTrigParams      
+									  setAttrWinHeight = 3 + heightPerButton * 10 )
 					"collData":     ( rollToOpen = colParams      
 									  setAttrWinHeight = 3 + heightPerButton * 6 )
 					"enemyData":    ( rollToOpen = enemyParams	  
@@ -826,8 +875,8 @@ ButtonText: "Momentum"
 		on btn_delAttrEnemy pressed do ( delAttribute "enemyData" )
 		on btn_setAttrEnemy pressed do ( openSetAttrWindow("enemyData") )
 
-		on btn_addPlatfDir 	   pressed do ( addAttribute "platfDirData" )
-		on btn_delPlatfDir 	   pressed do ( delAttribute "platfDirData" )
+		on btn_addPlatfDir pressed do ( addAttribute "platfDirData" )
+		on btn_delPlatfDir pressed do ( delAttribute "platfDirData" )
 		on btn_setAttrPlatfDir pressed do  ( openSetAttrWindow("platfDirData") )
 
 		on btn_addRotation pressed do ( addAttribute "rotateData" )
@@ -865,6 +914,10 @@ ButtonText: "Momentum"
 		on btn_addCam pressed do ( addAttribute "camData" )
 		on btn_delCam pressed do ( delAttribute "camData" )
 		on btn_setAttrCam pressed do ( openSetAttrWindow("camData") )
+
+		on btn_addTrigCam pressed do ( addAttribute "camTrigData" )
+		on btn_delTrigCam pressed do ( delAttribute "camTrigData" )
+		on btn_setAttrTrigCam pressed do ( openSetAttrWindow("camTrigData") )
 
 		-- Resize window if rollout collapses.
 		on attribute rolledUp state do (
