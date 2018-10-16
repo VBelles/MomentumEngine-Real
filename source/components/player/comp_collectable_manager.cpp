@@ -150,6 +150,7 @@ void TCompCollectableManager::onCollect(const TMsgCollect& msg) {
 		collectable->collect();
 		addUniqueCollectable(Type::CHRYSALIS, entity->getName());
 		EngineSound.emitEvent(SOUND_COLLECT_CHRYSALIS, transform);
+		EngineSound.emitEvent(SOUND_HEAL);
 		//Esto de aquí molaría no hacerlo el mismo frame en que recoges el objeto 
 		playerModel->setHp(playerModel->getMaxHp());
 		EngineGame->showChrysalis(showChrysalisTime);
@@ -170,6 +171,7 @@ void TCompCollectableManager::onCollect(const TMsgCollect& msg) {
 			playerModel->setMaxHp(playerModel->getMaxHp() + 1);
 			playerModel->setHp(playerModel->getMaxHp());
 		}
+		EngineSound.emitEvent(SOUND_HEAL);
 		break;
 	default:
 		dbg("Collected unknown object %d\n", msg.type);

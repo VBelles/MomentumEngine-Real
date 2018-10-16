@@ -412,8 +412,12 @@
 						"path": "event:/PROTA/golpes_movimiento"
 					},
 					{
-						"id": "finisher_ground",
+						"id": "strong_finisher_1",
 						"path": "event:/PROTA/finisher_ground"
+					},
+					{
+						"id": "finisher",
+						"path": "event:/PROTA/golpes_finishers"
 					},
 					{
 						"id": "launcher_horizontal",

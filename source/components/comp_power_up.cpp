@@ -85,6 +85,8 @@ void TCompPowerUp::onTriggerEnter(const TMsgTriggerEnter & msg) {
 		collectTimer.reset();
 
 		EngineGUI.showDialog(message, 16);
+		EngineSound.emitEvent(SOUND_POWER_UP);
+
 	}
 }
 

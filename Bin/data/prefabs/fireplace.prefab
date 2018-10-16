@@ -96,7 +96,7 @@
 				  },
 				  {
 					"id": "fire_off",
-					"path": ""
+					"path": "event:/INTERACTUABLE/apagar_fuego"
 				  }
 				]
 			}

@@ -68,6 +68,7 @@ void FastFinisher1ActionState::update(float delta) {
 		isSlashOut = true;
 		getTrailSlash(SlashType::RIGHT_FOOT)->setEnable(true);
 		getSound()->play("attack");
+		getSound()->play("finisher");
 	}
 	if (isSlashOut && movementTimer.elapsed() > frames2sec(54)) {
 		isSlashOut = false;

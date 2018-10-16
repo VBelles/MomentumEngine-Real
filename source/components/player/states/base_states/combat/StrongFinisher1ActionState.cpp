@@ -67,6 +67,7 @@ void StrongFinisher1ActionState::update(float delta) {
 		getTrailSlash(SlashType::LEFT_HAND)->setEnable(true);
 		getTrailSlash(SlashType::RIGHT_HAND)->setEnable(true);
 		getSound()->play("attack");
+		getSound()->play("strong_finisher_1");
 	}
 	if (isSlashOut && movementTimer.elapsed() > frames2sec(30)) {
 		isSlashOut = false;
