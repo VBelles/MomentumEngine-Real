@@ -1,6 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <objects serializationModel="Studio.01.10.00">
     <object class="Event" id="{e8cc1aea-5437-48c0-965a-3be127e0496b}">
+        <relationship name="selectables">
+            <destination>{74070a60-8943-42b2-8465-dc084c4e1ff1}</destination>
+        </relationship>
         <relationship name="uiLastParameterSelection">
             <destination>{4fe4e2dc-3489-47fd-b58c-519be51f89e6}</destination>
         </relationship>
@@ -13,9 +16,6 @@
     <object class="Timeline" id="{4fe4e2dc-3489-47fd-b58c-519be51f89e6}">
         <property name="uiLastRulerScaleRatio">
             <value>0.0035598553886963592</value>
-        </property>
-        <property name="uiLastHorizontalScrollBarValue">
-            <value>941</value>
         </property>
     </object>
     <object class="EventMixerMaster" id="{26170487-b259-4ef8-9f17-ef8cc3bbcb97}">

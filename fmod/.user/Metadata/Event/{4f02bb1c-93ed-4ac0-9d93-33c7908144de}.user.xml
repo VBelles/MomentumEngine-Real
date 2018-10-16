@@ -14,9 +14,6 @@
         <property name="uiLastRulerScaleRatio">
             <value>0.00088488854661361387</value>
         </property>
-        <property name="uiLastHorizontalScrollBarValue">
-            <value>579</value>
-        </property>
     </object>
     <object class="EventMixerMaster" id="{8fda94f1-6a2d-4d29-957e-8477e4f7f7a6}">
         <relationship name="input">
