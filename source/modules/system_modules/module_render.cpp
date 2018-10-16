@@ -25,6 +25,7 @@
 #include "components/postfx/comp_render_fxaa.h"
 #include "components/postfx/comp_render_hsv.h"
 #include "components/postfx/comp_render_vignette.h"
+#include "components/postfx/comp_screen_transition.h"
 
 CModuleRender::CModuleRender(const std::string& name)
 	: IModule(name) {
@@ -365,6 +366,16 @@ void CModuleRender::generateFrame() {
 		activateRSConfig(RSCFG_DEFAULT);
 		activateZConfig(ZCFG_DEFAULT);
 		activateBlendConfig(BLEND_CFG_DEFAULT);
+	}
+	{
+		// Check if we have a screen_transition component
+		activateMainCamera();
+		if (h_e_camera.isValid()) {
+			CEntity* e_cam = h_e_camera;
+			TCompScreenTransition* c_screen_transition = e_cam->get< TCompScreenTransition >();
+			if (c_screen_transition)
+				c_screen_transition->apply();
+		}
 	}
 	{
 		PROFILE_FUNCTION("ImGui::Render");

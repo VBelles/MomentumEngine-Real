@@ -2,6 +2,8 @@
 
 #include "components/player/states/IActionState.h"
 
+class TCompScreenTransition;
+
 class DeathActionState : public IActionState {
 private:
 	CTimer timer;
@@ -16,6 +18,9 @@ private:
 	std::string animation = "death";
 	std::string animationLoop = "death_loop";
 	std::string animationIdle = "idle";
+
+	bool screenTransitionStarted = false;
+	TCompScreenTransition* getScreenTransition();
 
 public:
 	DeathActionState(StateManager* stateManager);

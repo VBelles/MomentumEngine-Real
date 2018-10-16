@@ -58,6 +58,7 @@
 #include "components/player/states/concurrent_states/GrabHighActionState.h"
 #include "components/player/states/concurrent_states/GrabLongActionState.h"
 #include "components/player/states/concurrent_states/ReleasePowerAirActionState.h"
+#include "components/player/states/base_states/moving_around/TeleportActionState.h"
 
 
 StateManager::StateManager(CHandle playerModelHandle) :
@@ -137,6 +138,7 @@ void StateManager::registerStates() {
 	registerState<SpendCoinsActionState>();
 	registerState<LandingHurtActionState>();
 	registerState<DummyActionState>();
+	registerState<TeleportActionState>();
 
 	registerConcurrentState<FreeActionState>();
 	registerConcurrentState<FastAttackActionState>();

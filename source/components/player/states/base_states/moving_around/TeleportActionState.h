@@ -4,7 +4,7 @@
 
 class TCompScreenTransition;
 
-class PitFallingActionState : public IActionState {
+class TeleportActionState : public IActionState {
 private:
 	bool finish = false;
 	CTimer timer;
@@ -18,7 +18,7 @@ private:
 	TCompScreenTransition* getScreenTransition();
 
 public:
-	PitFallingActionState(StateManager* stateManager);
+	TeleportActionState(StateManager* stateManager);
 
 	void update(float delta) override;
 	void onStateEnter(IActionState* lastState) override;
