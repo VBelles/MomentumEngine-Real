@@ -2,6 +2,37 @@
   {
     "entity":
     {
+      "name": "dani_respawn_007",
+      "transform":
+      {
+        "pos": "-73.8056 -26.5083 122.383",
+        "rotation": "0.0 0.0871557 0.0 -0.996195"
+      },
+      "collider":
+      {
+        "mesh_src": "data/meshes/dani_respawn_007.col_mesh",
+        "shape": "convex_mesh",
+        "is_trigger": true,
+        "type": "static",
+        "group":
+        [
+          "trigger"
+        ],
+        "mask":
+        [
+          "player"
+        ]
+      },
+      "respawn_point":
+      {
+        "respawn_position": "-76.7856 -7.52111 134.114",
+        "respawn_rotation": "0.0 -0.984808 0.0 -0.173648"
+      }
+    }
+  },
+  {
+    "entity":
+    {
       "name": "respawn_tuto_000",
       "transform":
       {

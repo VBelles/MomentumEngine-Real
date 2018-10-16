@@ -2,6 +2,23 @@
   {
     "entity":
     {
+      "name": "dani_tapar_pared_enfrentada_000",
+      "transform":
+      {
+        "pos": "199.076 40.3437 -233.862",
+        "rotation": "-0.353553 0.612372 -0.612372 -0.353553"
+      },
+      "collider":
+      {
+        "mesh_src": "data/meshes/dani_tapar_pared_enfrentada_000.col_mesh",
+        "shape": "tri_mesh",
+        "type": "static"
+      }
+    }
+  },
+  {
+    "entity":
+    {
       "name": "columna_028",
       "transform":
       {
