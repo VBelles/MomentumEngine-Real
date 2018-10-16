@@ -22,7 +22,7 @@
       "collider":
       {
         "mesh_src": "data/meshes/dani_collider_dummy_007.col_mesh",
-        "shape": "convex_mesh",
+        "shape": "tri_mesh",
         "type": "static",
         "group":
         [
@@ -54,7 +54,7 @@
       "collider":
       {
         "mesh_src": "data/meshes/dani_collider_dummy_005.col_mesh",
-        "shape": "convex_mesh",
+        "shape": "tri_mesh",
         "type": "static",
         "group":
         [
@@ -86,7 +86,7 @@
       "collider":
       {
         "mesh_src": "data/meshes/dani_collider_dummy_006.col_mesh",
-        "shape": "convex_mesh",
+        "shape": "tri_mesh",
         "type": "static",
         "group":
         [
@@ -352,7 +352,7 @@
       "collider":
       {
         "mesh_src": "data/meshes/dani_collider_dummy_003.col_mesh",
-        "shape": "convex_mesh",
+        "shape": "tri_mesh",
         "type": "kinematic",
         "group":
         [
@@ -404,7 +404,7 @@
       "collider":
       {
         "mesh_src": "data/meshes/dani_collider_dummy_004.col_mesh",
-        "shape": "convex_mesh",
+        "shape": "tri_mesh",
         "type": "kinematic",
         "group":
         [
@@ -456,7 +456,7 @@
       "collider":
       {
         "mesh_src": "data/meshes/dani_collider_dummy_002.col_mesh",
-        "shape": "convex_mesh",
+        "shape": "tri_mesh",
         "type": "kinematic",
         "group":
         [
@@ -770,7 +770,7 @@
       "collider":
       {
         "mesh_src": "data/meshes/dani_collider_dummy_000.col_mesh",
-        "shape": "convex_mesh",
+        "shape": "tri_mesh",
         "type": "kinematic",
         "group":
         [
