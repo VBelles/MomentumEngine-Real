@@ -5,6 +5,7 @@
 	etype(Dummy), \
 	etype(Death), \
 	etype(PitFalling), \
+	etype(Teleport), \
 	etype(HardKnockbackGround), \
 	etype(HardKnockbackAir), \
 	etype(Slide), \
