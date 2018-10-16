@@ -219,6 +219,7 @@
     <ClCompile Include="components\postfx\comp_render_fxaa.cpp" />
     <ClCompile Include="components\postfx\comp_render_hsv.cpp" />
     <ClCompile Include="components\postfx\comp_render_vignette.cpp" />
+    <ClCompile Include="components\postfx\comp_screen_transition.cpp" />
     <ClCompile Include="gui\controllers\dialog_controller.cpp" />
     <ClCompile Include="gui\controllers\gui_map_menu_controller.cpp" />
     <ClCompile Include="gui\controllers\gui_options_menu_controller.cpp" />
@@ -587,6 +588,7 @@
     <ClInclude Include="components\postfx\comp_render_fxaa.h" />
     <ClInclude Include="components\postfx\comp_render_hsv.h" />
     <ClInclude Include="components\postfx\comp_render_vignette.h" />
+    <ClInclude Include="components\postfx\comp_screen_transition.h" />
     <ClInclude Include="gui\controllers\dialog_controller.h" />
     <ClInclude Include="gui\controllers\gui_map_menu_controller.h" />
     <ClInclude Include="gui\controllers\gui_options_menu_controller.h" />

@@ -25,6 +25,7 @@
 #include "components/postfx/comp_render_fxaa.h"
 #include "components/postfx/comp_render_hsv.h"
 #include "components/postfx/comp_render_vignette.h"
+#include "components/postfx/comp_screen_transition.h"
 
 CModuleRender::CModuleRender(const std::string& name)
 	: IModule(name) {
@@ -345,6 +346,13 @@ void CModuleRender::generateFrame() {
 			TCompRenderVignette* c_render_vignette = e_cam->get< TCompRenderVignette >();
 			if (c_render_vignette)
 				curr_rt = c_render_vignette->apply(curr_rt);
+
+			{
+				// Check if we have a screen_transition component
+				TCompScreenTransition* c_screen_transition = e_cam->get< TCompScreenTransition >();
+				if (c_screen_transition)
+					curr_rt = c_screen_transition->apply(curr_rt);
+			}
 		}
 
 		Render.startRenderInBackbuffer();

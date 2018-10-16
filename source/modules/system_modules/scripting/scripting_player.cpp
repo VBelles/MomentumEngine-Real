@@ -5,6 +5,7 @@
 #include "components/player/comp_power_gauge.h"
 #include "components/controllers/comp_camera_player.h"
 #include "components/player/states/StateManager.h"
+#include "components/postfx/comp_screen_transition.h"
 #include <SLB/SLB.hpp>
 
 void ScriptingPlayer::bind(SLB::Manager* manager) {

@@ -75,6 +75,7 @@
     "render_blur": 512,
     "render_blur_radial": 512,
     "render_focus": 512,
+    "screen_transition": 512,
     "ragdoll": 1
   },
   "init_order" : {
@@ -145,7 +146,8 @@
     "slash",
     "givePower",
     "sound",
-    "fire"
+    "fire",
+    "screen_transition"
   ],
   "render_debug" : [
     "transform",
