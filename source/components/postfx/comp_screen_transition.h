@@ -26,7 +26,7 @@ public:
     void load(const json& j, TEntityParseContext& ctx);
 	void update(float dt);
 
-	CTexture* apply(CTexture* in_texture);
+	void apply();
 
 	void startTransition();
 	void startTransition(float startingRatio, float finalRatio);

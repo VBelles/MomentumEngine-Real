@@ -346,13 +346,6 @@ void CModuleRender::generateFrame() {
 			TCompRenderVignette* c_render_vignette = e_cam->get< TCompRenderVignette >();
 			if (c_render_vignette)
 				curr_rt = c_render_vignette->apply(curr_rt);
-
-			{
-				// Check if we have a screen_transition component
-				TCompScreenTransition* c_screen_transition = e_cam->get< TCompScreenTransition >();
-				if (c_screen_transition)
-					curr_rt = c_screen_transition->apply(curr_rt);
-			}
 		}
 
 		Render.startRenderInBackbuffer();
@@ -373,6 +366,16 @@ void CModuleRender::generateFrame() {
 		activateRSConfig(RSCFG_DEFAULT);
 		activateZConfig(ZCFG_DEFAULT);
 		activateBlendConfig(BLEND_CFG_DEFAULT);
+	}
+	{
+		// Check if we have a screen_transition component
+		activateMainCamera();
+		if (h_e_camera.isValid()) {
+			CEntity* e_cam = h_e_camera;
+			TCompScreenTransition* c_screen_transition = e_cam->get< TCompScreenTransition >();
+			if (c_screen_transition)
+				c_screen_transition->apply();
+		}
 	}
 	{
 		PROFILE_FUNCTION("ImGui::Render");

@@ -17,14 +17,13 @@ float4 PS(
 	, in float2 iTex0 : TEXCOORD0
 ) : SV_Target
 {
-    float4 albedo = txAlbedo.Sample(samClampLinear, iTex0.xy);
-	float4 textureColor = txNormal.Sample(samClampLinear, iTex0.xy);
-	float transition = txMetallic.Sample(samClampLinear, iTex0.xy).r;
+	float4 textureColor = txAlbedo.Sample(samClampLinear, iTex0.xy);
+	float transition = txNormal.Sample(samClampLinear, iTex0.xy).r;
 
 	if (transition <= global_shared_fx_amount) {
 		return textureColor;
 	}
 	else {
-    	return albedo;
+    	return float4(0,0,0,0);
 	}
 }

@@ -320,7 +320,9 @@
     "vs_file": "data/shaders/screen_transition.fx",
     "vertex_type": "PosClr",
     "category" : "fx",
-    "z": "disable_all"
+    "z": "disable_all",
+    "blend" : "combinative",
+    "rs_config" : "cull_none"
   },
 
   "particles" : { 

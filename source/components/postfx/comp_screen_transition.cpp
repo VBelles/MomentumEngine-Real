@@ -43,25 +43,19 @@ void TCompScreenTransition::update(float dt) {
 	}
 }
 
-CTexture* TCompScreenTransition::apply(CTexture * in_texture) {
-	if (!transitioning) {
-		return in_texture;
+void TCompScreenTransition::apply() {
+	if (transitioning) {
+		CTraceScoped scope("CompScreenTransition");
+
+		cb_globals.global_shared_fx_amount = ratio;
+		cb_globals.updateGPU();
+
+		texture->activate(TS_ALBEDO);
+		transitionTexture->activate(TS_NORMAL);
+
+		tech->activate();
+		mesh->activateAndRender();
 	}
-
-	CTraceScoped scope("CompScreenTransition");
-
-	cb_globals.global_shared_fx_amount = ratio;
-	cb_globals.updateGPU();
-
-	rt->activateRT();
-	in_texture->activate(TS_ALBEDO);
-	texture->activate(TS_NORMAL);
-	transitionTexture->activate(TS_METALLIC);
-
-	tech->activate();
-	mesh->activateAndRender();
-
-	return rt;
 }
 
 void TCompScreenTransition::startTransition() {
