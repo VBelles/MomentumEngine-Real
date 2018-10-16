@@ -473,8 +473,8 @@
       "name": "nes_platform_civilization_051",
       "transform":
       {
-        "pos": "153.843 112.329 -150.504",
-        "rotation": "0.0 0.0 0.0 -1.0"
+        "pos": "153.843 111.765 -150.605",
+        "rotation": "0.0 -0.0436194 0.0 -0.999048"
       },
       "render":
       [
