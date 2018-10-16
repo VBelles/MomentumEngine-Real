@@ -464,6 +464,10 @@
 						"path": "event:/PROTA/fallingattack_hardlanding"
 					},
 					{
+						"id": "landing_hurt",
+						"path": "event:/PROTA/fallingattack_hardlanding"
+					},
+					{
 						"id": "death",
 						"path": "event:/PROTA/muerte"
 					},

@@ -151,7 +151,7 @@
     <object class="MixerBusFader" id="{891ee138-ec93-495c-a607-61727bd24d4d}"/>
     <object class="CompressorEffect" id="{5fb6dfd9-cbe1-46a5-83fd-67874ebb66ac}">
         <property name="threshold">
-            <value>-6</value>
+            <value>-11</value>
         </property>
         <property name="ratio">
             <value>10.5</value>
@@ -163,7 +163,7 @@
             <value>88</value>
         </property>
         <property name="gain">
-            <value>6.5</value>
+            <value>7.5</value>
         </property>
     </object>
     <object class="GainEffect" id="{3bebd770-c1a6-4fe2-9c1a-7aa1a0ea92b0}">

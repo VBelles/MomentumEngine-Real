@@ -44,6 +44,7 @@ void HuggingWallActionState::update(float delta) {
 				getPlayerModel()->maxVerticalSpeed = slideMaxSpeed;
 				getSkeleton()->blendCycle(animation, 0.2f, 0.2f);
 				getSound()->play("hugging_wall");
+				getSound()->stop("climbing");
 			}
 		}
 		else {
@@ -75,6 +76,7 @@ void HuggingWallActionState::onStateEnter(IActionState * lastState) {
 		getPlayerModel()->maxVerticalSpeed = climbingMaxSpeed;
 		climbTimer.reset();
 		getSkeleton()->blendCycle(animationClimbing, 0.2f, 0.2f);
+		getSound()->play("climbing");
 	}
 	else {
 		stateManager->changeState(AirborneNormal);
@@ -86,6 +88,7 @@ void HuggingWallActionState::onStateExit(IActionState * nextState) {
 	AirborneActionState::onStateExit(nextState);
 	getPlayerModel()->sameNormalReattachTimer.reset();
 	getSound()->stop("hugging_wall");
+	getSound()->stop("climbing");
 }
 
 void HuggingWallActionState::onJumpHighButton() {
