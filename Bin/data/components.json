@@ -99,6 +99,7 @@
     "slash"
   ],
   "update": [
+    "screen_transition",
     "fwd_msg",
     "enemy",
     "skeleton",
@@ -146,8 +147,7 @@
     "slash",
     "givePower",
     "sound",
-    "fire",
-    "screen_transition"
+    "fire"
   ],
   "render_debug" : [
     "transform",

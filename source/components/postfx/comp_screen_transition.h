@@ -30,4 +30,6 @@ public:
 
 	void startTransition();
 	void startTransition(float startingRatio, float finalRatio);
+
+	bool isTransitioning();
 };

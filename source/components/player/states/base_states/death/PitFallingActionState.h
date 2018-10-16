@@ -2,6 +2,8 @@
 
 #include "components/player/states/IActionState.h"
 
+class TCompScreenTransition;
+
 class PitFallingActionState : public IActionState {
 private:
 	bool finish = false;
@@ -11,6 +13,9 @@ private:
 	int frameCounter = 0;
 	std::string animation = "free_fall";
 	std::string animationIdle = "idle";
+
+	bool screenTransitionStarted = false;
+	TCompScreenTransition* getScreenTransition();
 
 public:
 	PitFallingActionState(StateManager* stateManager);

@@ -1,5 +1,6 @@
 #include "mcv_platform.h"
 #include "PitFallingActionState.h"
+#include "components/postfx/comp_screen_transition.h"
 
 PitFallingActionState::PitFallingActionState(StateManager* stateManager) :
 	IActionState(stateManager, PitFalling) {
@@ -7,26 +8,26 @@ PitFallingActionState::PitFallingActionState(StateManager* stateManager) :
 
 void PitFallingActionState::update(float delta) {
 	if (timer.elapsed() >= respawnTime) {
-		if (finish) {
-			if (frameCounter < 1) {
-				if (frameCounter == 0) {
-					//poner la cámara del player donde toca
-					getSkeleton()->blendCycle(animationIdle, 0.0f, 0.0f);
-					CEntity* playerCameraEntity = getEntityByName(PLAYER_CAMERA);
-					TCompCameraPlayer* playerCamera = playerCameraEntity->get<TCompCameraPlayer>();
-					playerCamera->resetCurrentDistance();
-				}
-				frameCounter++;
-			}
-			else {
-				stateManager->changeConcurrentState(Free);
-				stateManager->changeState(AirborneNormal);
-			}
+		if (!screenTransitionStarted) {
+			getScreenTransition()->startTransition(0.f, 1.f);
+			screenTransitionStarted = true;
 		}
 		else {
-			respawn();
-			frameCounter = 0;
-			finish = true;
+			if (!getScreenTransition()->isTransitioning()) {
+				if (finish) {
+					stateManager->changeConcurrentState(Free);
+					stateManager->changeState(AirborneNormal);
+				}
+				else {
+					respawn();
+					frameCounter = 0;
+					finish = true;
+					getSkeleton()->blendCycle(animationIdle, 0.0f, 0.0f);
+					CEntity* playerCameraEntity = getEntityByName(PLAYER_CAMERA);
+					EngineCameras.blendInCamera(playerCameraEntity, 0.00001f, CModuleCameras::EPriority::GAMEPLAY);
+					getScreenTransition()->startTransition(1.f, 0.f);
+				}
+			}
 		}
 	}
 	else {
@@ -45,6 +46,8 @@ void PitFallingActionState::onStateEnter(IActionState* lastState) {
 	CEntity* teleportCameraEntity = getEntityByName(TELEPORT_CAMERA);
 	EngineCameras.blendInCamera(teleportCameraEntity, 0.001f, CModuleCameras::EPriority::GAMEPLAY);
 	getSound()->play("pit_falling");
+
+	screenTransitionStarted = false;
 }
 
 void PitFallingActionState::onStateExit(IActionState* nextState) {
@@ -84,4 +87,9 @@ void PitFallingActionState::copyCam() {
 	TCompTransform* pasteCamTransform = pasteCamEntity->get<TCompTransform>();
 	pasteCamTransform->setPosition(copyCamTransform->getPosition());
 	pasteCamTransform->setRotation(copyCamTransform->getRotation());
+}
+
+TCompScreenTransition* PitFallingActionState::getScreenTransition() {
+	CEntity* playerCameraEntity = getEntityByName(GAME_CAMERA);
+	return playerCameraEntity->get<TCompScreenTransition>();
 }

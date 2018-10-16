@@ -75,3 +75,7 @@ void TCompScreenTransition::startTransition(float startingRatio, float finalRati
 	targetRatio = clamp(finalRatio, 0.f, 1.f);
 	transitioning = true;
 }
+
+bool TCompScreenTransition::isTransitioning() {
+	return transitioning;
+}
