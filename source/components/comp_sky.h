@@ -3,7 +3,7 @@
 struct TMsgAllScenesCreated;
 
 enum SkyboxType {//poner dependiendo del número de skyboxes que haya en json
-	REGULAR, INVERTED, PINK, RED, TURQUESA
+	DAY, NIGHT, DAWN, RED, TURQUESA
 };
 
 class TCompSky : public TCompBase {

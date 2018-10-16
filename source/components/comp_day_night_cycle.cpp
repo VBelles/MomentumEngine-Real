@@ -64,19 +64,19 @@ void TCompDayNightCycle::update(float dt) {
 
 			switch (dayPeriodIndex) {
 			case 0:
-				sky->setSkybox(SkyboxType::PINK, lerpTime);
+				sky->setSkybox(SkyboxType::DAWN, lerpTime);
 				break;
 			case 1:
-				sky->setSkybox(SkyboxType::REGULAR, lerpTime);
+				sky->setSkybox(SkyboxType::DAY, lerpTime);
 				break;
 			case 2:
-				sky->setSkybox(SkyboxType::PINK, lerpTime);
+				sky->setSkybox(SkyboxType::DAWN, lerpTime);
 				break;
 			case 3:
-				sky->setSkybox(SkyboxType::INVERTED, lerpTime);
+				sky->setSkybox(SkyboxType::NIGHT, lerpTime);
 				break;
 			default:
-				sky->setSkybox(SkyboxType::REGULAR, lerpTime);
+				sky->setSkybox(SkyboxType::DAY, lerpTime);
 				break;
 			}
 		}
