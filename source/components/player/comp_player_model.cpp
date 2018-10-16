@@ -414,8 +414,6 @@ void TCompPlayerModel::setHp(float hp) {
 		stateManager->changeState(Death);
 		stateManager->changeConcurrentState(Free);
 	}
-	//EngineGUI.getVariables().getVariant("hp_progress")->setFloat(hp / maxHp);
-	//EngineGUI.getVariables().getVariant("hp")->setInt(hp);
 }
 
 void TCompPlayerModel::setMaxHp(float hp) {
@@ -474,6 +472,7 @@ void TCompPlayerModel::disableClimbing() {
 void TCompPlayerModel::onPlatform() {
 	getCollider()->controller->setSlopeLimit(cosf(deg2rad(55)));
 	platformChangeSlopeTimer.reset();
+	isOnPlatform = true;
 	//dbg("On platform\n");
 }
 
@@ -481,8 +480,9 @@ void TCompPlayerModel::onPlatform() {
 
 void TCompPlayerModel::damage(float damage) {
 	setHp(hp - damage);
-	/*TCompRender* render = get<TCompRender>();
-	render->TurnRed(0.5f);*/
+	if (damage > 0.f) {
+		getSound()->play("lose_hp");
+	}
 }
 
 void TCompPlayerModel::makeInvulnerable(float time) {

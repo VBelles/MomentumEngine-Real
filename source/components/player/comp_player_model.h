@@ -131,6 +131,8 @@ public:
 	DECL_SIBLING_ACCESS();
 	~TCompPlayerModel();
 
+	bool isOnPlatform = false;
+
 	bool lockWalk = false;
 	bool lockTurning = false;
 	bool lockAttack = false;

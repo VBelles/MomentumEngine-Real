@@ -504,6 +504,10 @@
 						"path": "event:/PROTA/flotar"
 					},
 					{
+						"id": "lose_hp",
+						"path": "event:/PROTA/perder_vida"
+					},
+					{
 						"id": "getting_hit",
 						"path": ""
 					},

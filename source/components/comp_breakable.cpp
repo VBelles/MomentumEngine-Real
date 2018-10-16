@@ -68,6 +68,7 @@ void TCompBreakable::onDie() {
 	}
 	((CEntity*)(CHandle(this).getOwner()))->sendMsg(TMsgDestroy{});
 	getCollider()->destroy();
+	EngineSound.emitEvent(SOUND_BREAKABLE, getTransform());
 }
 
 void TCompBreakable::dropLoot() {
