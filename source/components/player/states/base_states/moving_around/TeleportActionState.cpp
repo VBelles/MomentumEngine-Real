@@ -42,7 +42,7 @@ void TeleportActionState::onStateEnter(IActionState* lastState) {
 	timer.reset();
 	finish = false;
 
-	getSound()->play("pit_falling");
+	//getSound()->play("pit_falling");
 
 	screenTransitionStarted = false;
 }
