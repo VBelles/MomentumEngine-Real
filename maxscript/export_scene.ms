@@ -866,7 +866,7 @@ struct TSceneExporter (
 		local forcDis = false
 		local centCam = false
 		local fPosEnt = false
-		local cCamSpd = Point2 18.0 9.0
+		local cCamSpd = Point2 4.0 3.0
 		--Get from attribute if it exists.
 		if attrManager.hasAttribute obj "camTrigData" then (
 			suggYaw = attrManager.getAttrValue obj "camTrigData" #suggYaw
@@ -882,9 +882,9 @@ struct TSceneExporter (
 			fPosEnt = attrManager.getAttrValue obj "camTrigData" #fPosEnt
 			if fPosEnt == undefined then fPosEnt = false
 			local cCamSpdX = attrManager.getAttrValue obj "camTrigData" #cCamSpdX
-			if cCamSpdX == undefined then cCamSpd.x = 18.0
+			if cCamSpdX == undefined then cCamSpd.x = 4.0
 			local cCamSpdY = attrManager.getAttrValue obj "camTrigData" #cCamSpdY
-			if cCamSpdY == undefined then cCamSpd.y = 9.0
+			if cCamSpdY == undefined then cCamSpd.y = 3.0
 
 			cCamSpd = Point2 cCamSpdX cCamSpdY
 		)
