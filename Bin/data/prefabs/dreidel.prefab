@@ -197,7 +197,8 @@
           },
           {
             "id": "chase",
-            "path": "event:/ENEMIGO BOLA/bola_chase"
+            "path": "event:/ENEMIGO BOLA/bola_chase",
+            "following": true
           },
           {
             "id": "death",
@@ -225,12 +226,14 @@
           },
           {
             "id": "stroll",
-            "path": "event:/ENEMIGO BOLA/bola_walk"
+            "path": "event:/ENEMIGO BOLA/bola_walk",
+            "following": true
           },
           {
             "id": "idle",
             "path": "event:/ENEMIGO BOLA/bola_stroll",
-            "play": true
+            "play": true,
+            "following": true
           }
         ]
       },
