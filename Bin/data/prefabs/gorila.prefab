@@ -52,7 +52,8 @@
             "invulnerabilityTime": 1.5,
             "stun": 1.0,
             "hitbox": "attack",
-            "particles": "attack"
+            "particles": "attack",
+            "sounds": "attack"
           },
           {
             "name": "launched",
@@ -64,7 +65,8 @@
               "duration": 0.6,
               "velocity": "0 10 0"
             },
-            "hitbox": "launched"
+            "hitbox": "launched",
+            "sounds": "hit"
           }
         ],
         "nav_mesh": "dreidel_nav_mesh"
@@ -114,16 +116,63 @@
         "events": [
           {
             "id": "launcher_loop",
-            "path": "event:/PROTA/launcher/launcher_estatica",
+            "path": "event:/PROTA/launcher_estatica",
             "following": true
           },
           {
             "id": "launcher_end",
-            "path": "event:/PROTA/launcher/launcher_final"
+            "path": "event:/PROTA/launcher_final"
+          },
+          {
+            "id": "vertical_launcher_hit",
+            "path": "event:/PROTA/launcherv_lanzar"
+          },
+          {
+            "id": "horizontal_launcher_hit",
+            "path": "event:/PROTA/launcherh_lanzar"
           },
           {
             "id": "hit",
-            "path": "event:/PROTA/golpes/golpe_hit"
+            "path": "event:/PROTA/golpes_hit"
+          },
+          {
+            "id": "stun",
+            "path": ""
+          },
+          {
+            "id": "block",
+            "path": "event:/ENEMIGO GORILA/gorila_block"
+          },
+          {
+            "id": "block_break",
+            "path": "event:/ENEMIGO GORILA/gorila_block_break"
+          },
+          {
+            "id": "attack",
+            "path": "event:/ENEMIGO GORILA/gorila_ataque_flojo"
+          },
+          {
+            "id": "chase",
+            "path": "event:/ENEMIGO GORILA/gorila_pasos",
+            "following": true
+          },
+          {
+            "id": "death",
+            "path": "event:/ENEMIGO GORILA/gorila_dead"
+          },
+          {
+            "id": "appear",
+            "path": "event:/ENEMIGO GORILA/gorila_appear"
+          },
+          {
+            "id": "disappear",
+            "path": "event:/ENEMIGO GORILA/gorila_dissappear"
+          },
+          {
+            "id": "idle",
+            "path": "event:/ENEMIGO GORILA/gorila_ruiditos",
+            "play": true,
+            "following": true
           }
         ]
       },

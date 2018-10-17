@@ -68,6 +68,7 @@ void CModulePause::onPausePressed() {
 		cb_globals.game_paused = 0;
 		TCompMusic* music = static_cast<CEntity*>(getEntityByName(MUSIC_PLAYER))->get<TCompMusic>();
 		music->setPauseMenu(false);
+		EngineSound.emitEvent(SOUND_MENU_BACK);
 	}
 
 	EngineRender.setActive(!pause);

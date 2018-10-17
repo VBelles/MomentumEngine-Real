@@ -69,6 +69,11 @@ auto constexpr SOUND_ROTATE_PLATFORM = "event:/INTERACTUABLE/plataforma_rotatori
 auto constexpr SOUND_HEAL = "event:/PROTA/recuperar_vida";
 auto constexpr SOUND_BREAKABLE = "event:/INTERACTUABLE/breakable";
 auto constexpr SOUND_POWER_UP = "event:/INTERACTUABLE/coger_powerup";
+auto constexpr SOUND_MENU_ROLL = "event:/MENU-PAUSA/menu_roll";
+auto constexpr SOUND_MENU_ACCEPT = "event:/MENU-PAUSA/menu_accept";
+auto constexpr SOUND_MENU_BACK = "event:/MENU-PAUSA/menu_back";
+auto constexpr SOUND_MENU_UNAVAILABLE = "event:/MENU-PAUSA/menu_back";
+auto constexpr SOUND_CLOCK = "event:/INTERACTUABLE/reloj";
 
 
 // Particles

@@ -46,6 +46,9 @@
         </relationship>
     </object>
     <object class="MixerInput" id="{9dacc611-db99-4e65-931d-edfdae49b23f}">
+        <relationship name="masters">
+            <destination>{26a2f42d-30e7-4c1f-805c-54facce5b254}</destination>
+        </relationship>
         <relationship name="effectChain">
             <destination>{d7784d03-bb01-42fa-8c67-e887c341c947}</destination>
         </relationship>
@@ -172,7 +175,7 @@
     </object>
     <object class="GainEffect" id="{34d0d706-1160-444c-afc1-9d09135113eb}">
         <property name="gain">
-            <value>-3</value>
+            <value>-10.5</value>
         </property>
     </object>
     <object class="MixerBusFader" id="{cdeb02f2-18be-4db2-be18-d3c180369879}"/>
