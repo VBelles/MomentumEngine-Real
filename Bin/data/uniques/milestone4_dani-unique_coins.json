@@ -2,6 +2,97 @@
   "unique_coins":
   [
     {
+      "id": "dani_coin_152",
+      "done": false,
+      "position": "-115.702 -29.9105 392.608",
+      "level": "level00",
+      "type": "coins"
+    },
+    {
+      "id": "dani_coin_151",
+      "done": false,
+      "position": "-118.3 -29.9105 392.789",
+      "level": "level00",
+      "type": "coins"
+    },
+    {
+      "id": "dani_coin_150",
+      "done": false,
+      "position": "-121.068 -29.9105 392.983",
+      "level": "level00",
+      "type": "coins"
+    },
+    {
+      "id": "dani_coin_149",
+      "done": false,
+      "position": "-123.577 -29.9105 393.159",
+      "level": "level00",
+      "type": "coins"
+    },
+    {
+      "id": "dani_coin_148",
+      "done": false,
+      "position": "-121.542 -23.9627 381.097",
+      "level": "level00",
+      "type": "coins"
+    },
+    {
+      "id": "dani_coin_147",
+      "done": false,
+      "position": "-109.174 -23.9627 380.242",
+      "level": "level00",
+      "type": "coins"
+    },
+    {
+      "id": "dani_coin_146",
+      "done": false,
+      "position": "-117.002 -23.9627 382.546",
+      "level": "level00",
+      "type": "coins"
+    },
+    {
+      "id": "dani_coin_145",
+      "done": false,
+      "position": "-115.183 -23.9627 382.469",
+      "level": "level00",
+      "type": "coins"
+    },
+    {
+      "id": "dani_coin_144",
+      "done": false,
+      "position": "-113.415 -23.9627 382.26",
+      "level": "level00",
+      "type": "coins"
+    },
+    {
+      "id": "dani_coin_143",
+      "done": false,
+      "position": "-112.619 -23.9627 380.865",
+      "level": "level00",
+      "type": "coins"
+    },
+    {
+      "id": "dani_coin_142",
+      "done": false,
+      "position": "-114.349 -23.9627 380.986",
+      "level": "level00",
+      "type": "coins"
+    },
+    {
+      "id": "dani_coin_141",
+      "done": false,
+      "position": "-116.136 -23.9627 381.111",
+      "level": "level00",
+      "type": "coins"
+    },
+    {
+      "id": "dani_coin_140",
+      "done": false,
+      "position": "-117.999 -23.9627 381.242",
+      "level": "level00",
+      "type": "coins"
+    },
+    {
       "id": "ms3_coin016unique049",
       "done": false,
       "position": "-67.1204 -14.7037 218.914",
