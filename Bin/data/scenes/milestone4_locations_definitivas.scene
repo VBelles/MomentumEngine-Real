@@ -1,0 +1,542 @@
+[
+  {
+    "entity":
+    {
+      "name": "location_temple_exit_001",
+      "transform":
+      {
+        "pos": "-160.136 -17.3359 -21.09",
+        "rotation": "0.0 0.0 0.0 -1.0"
+      },
+      "collider":
+      {
+        "mesh_src": "data/meshes/location_temple_exit_001.col_mesh",
+        "shape": "convex_mesh",
+        "type": "static",
+        "is_trigger": true,
+        "group":
+        [
+          "trigger"
+        ],
+        "mask":
+        [
+          "player"
+        ]
+      },
+      "location":{
+        "location_name" : "temple",
+        "works_on_enter" : false
+      }
+    }
+  },
+  {
+    "entity":
+    {
+      "name": "location_temple_exit_000",
+      "transform":
+      {
+        "pos": "-118.565 -82.1381 366.779",
+        "rotation": "0.0 0.0 0.0 -1.0"
+      },
+      "collider":
+      {
+        "mesh_src": "data/meshes/location_temple_exit_000.col_mesh",
+        "shape": "convex_mesh",
+        "type": "static",
+        "is_trigger": true,
+        "group":
+        [
+          "trigger"
+        ],
+        "mask":
+        [
+          "player"
+        ]
+      },
+      "location":{
+        "location_name" : "temple",
+        "works_on_enter" : false
+      }
+    }
+  },
+  {
+    "entity":
+    {
+      "name": "location_temple_enter_001",
+      "transform":
+      {
+        "pos": "-160.136 -17.3359 -21.09",
+        "rotation": "0.0 0.0 0.0 -1.0"
+      },
+      "collider":
+      {
+        "mesh_src": "data/meshes/location_temple_enter_001.col_mesh",
+        "shape": "convex_mesh",
+        "type": "static",
+        "is_trigger": true,
+        "group":
+        [
+          "trigger"
+        ],
+        "mask":
+        [
+          "player"
+        ]
+      },
+      "location":{
+        "location_name" : "temple",
+        "works_on_enter" : true
+      }
+    }
+  },
+  {
+    "entity":
+    {
+      "name": "location_temple_enter_000",
+      "transform":
+      {
+        "pos": "-118.565 -82.1381 366.779",
+        "rotation": "0.0 0.0 0.0 -1.0"
+      },
+      "collider":
+      {
+        "mesh_src": "data/meshes/location_temple_enter_000.col_mesh",
+        "shape": "convex_mesh",
+        "type": "static",
+        "is_trigger": true,
+        "group":
+        [
+          "trigger"
+        ],
+        "mask":
+        [
+          "player"
+        ]
+      },
+      "location":{
+        "location_name" : "temple",
+        "works_on_enter" : true
+      }
+    }
+  },
+  {
+    "entity":
+    {
+      "name": "location_mushrooms_exit_000",
+      "transform":
+      {
+        "pos": "187.866 -72.1605 -64.2835",
+        "rotation": "0.0 0.0 0.0 -1.0"
+      },
+      "collider":
+      {
+        "mesh_src": "data/meshes/location_mushrooms_exit_000.col_mesh",
+        "shape": "convex_mesh",
+        "type": "static",
+        "is_trigger": true,
+        "group":
+        [
+          "trigger"
+        ],
+        "mask":
+        [
+          "player"
+        ]
+      },
+      "location":{
+        "location_name" : "mushrooms",
+        "works_on_enter" : false
+      }
+    }
+  },
+  {
+    "entity":
+    {
+      "name": "location_mushrooms_enter_000",
+      "transform":
+      {
+        "pos": "187.866 -72.1605 -64.2835",
+        "rotation": "0.0 0.0 0.0 -1.0"
+      },
+      "collider":
+      {
+        "mesh_src": "data/meshes/location_mushrooms_enter_000.col_mesh",
+        "shape": "convex_mesh",
+        "type": "static",
+        "is_trigger": true,
+        "group":
+        [
+          "trigger"
+        ],
+        "mask":
+        [
+          "player"
+        ]
+      },
+      "location":{
+        "location_name" : "mushrooms",
+        "works_on_enter" : true
+      }
+    }
+  },
+  {
+    "entity":
+    {
+      "name": "location_civilization_exit_002",
+      "transform":
+      {
+        "pos": "-76.7736 0.0 -66.9937",
+        "rotation": "0.0 0.130526 0.0 -0.991445"
+      },
+      "collider":
+      {
+        "mesh_src": "data/meshes/location_civilization_exit_002.col_mesh",
+        "shape": "convex_mesh",
+        "type": "static",
+        "is_trigger": true,
+        "group":
+        [
+          "trigger"
+        ],
+        "mask":
+        [
+          "player"
+        ]
+      },
+      "location":{
+        "location_name" : "civilization",
+        "works_on_enter" : false
+      }
+    }
+  },
+  {
+    "entity":
+    {
+      "name": "location_civilization_exit_001",
+      "transform":
+      {
+        "pos": "52.3898 -13.1604 -103.134",
+        "rotation": "0.0 0.0 0.0 -1.0"
+      },
+      "collider":
+      {
+        "mesh_src": "data/meshes/location_civilization_exit_001.col_mesh",
+        "shape": "convex_mesh",
+        "type": "static",
+        "is_trigger": true,
+        "group":
+        [
+          "trigger"
+        ],
+        "mask":
+        [
+          "player"
+        ]
+      },
+      "location":{
+        "location_name" : "civilization",
+        "works_on_enter" : false
+      }
+    }
+  },
+  {
+    "entity":
+    {
+      "name": "location_civilization_exit_000",
+      "transform":
+      {
+        "pos": "152.041 -6.92737 -147.3",
+        "rotation": "0.0 0.0 0.0 -1.0"
+      },
+      "collider":
+      {
+        "mesh_src": "data/meshes/location_civilization_exit_000.col_mesh",
+        "shape": "convex_mesh",
+        "type": "static",
+        "is_trigger": true,
+        "group":
+        [
+          "trigger"
+        ],
+        "mask":
+        [
+          "player"
+        ]
+      },
+      "location":{
+        "location_name" : "civilization",
+        "works_on_enter" : false
+      }
+    }
+  },
+  {
+    "entity":
+    {
+      "name": "location_civilization_enter_002",
+      "transform":
+      {
+        "pos": "-76.7736 0.0 -66.9937",
+        "rotation": "0.0 0.130526 0.0 -0.991445"
+      },
+      "collider":
+      {
+        "mesh_src": "data/meshes/location_civilization_enter_002.col_mesh",
+        "shape": "convex_mesh",
+        "type": "static",
+        "is_trigger": true,
+        "group":
+        [
+          "trigger"
+        ],
+        "mask":
+        [
+          "player"
+        ]
+      },
+      "location":{
+        "location_name" : "civilization",
+        "works_on_enter" : true
+      }
+    }
+  },
+  {
+    "entity":
+    {
+      "name": "location_civilization_enter_001",
+      "transform":
+      {
+        "pos": "52.3898 -13.1604 -103.134",
+        "rotation": "0.0 0.0 0.0 -1.0"
+      },
+      "collider":
+      {
+        "mesh_src": "data/meshes/location_civilization_enter_001.col_mesh",
+        "shape": "convex_mesh",
+        "type": "static",
+        "is_trigger": true,
+        "group":
+        [
+          "trigger"
+        ],
+        "mask":
+        [
+          "player"
+        ]
+      },
+      "location":{
+        "location_name" : "civilization",
+        "works_on_enter" : true
+      }
+    }
+  },
+  {
+    "entity":
+    {
+      "name": "location_civilization_enter_000",
+      "transform":
+      {
+        "pos": "152.041 -6.92737 -147.3",
+        "rotation": "0.0 0.0 0.0 -1.0"
+      },
+      "collider":
+      {
+        "mesh_src": "data/meshes/location_civilization_enter_000.col_mesh",
+        "shape": "convex_mesh",
+        "type": "static",
+        "is_trigger": true,
+        "group":
+        [
+          "trigger"
+        ],
+        "mask":
+        [
+          "player"
+        ]
+      },
+      "location":{
+        "location_name" : "civilization",
+        "works_on_enter" : true
+      }
+    }
+  },
+  {
+    "entity":
+    {
+      "name": "location_chrystals_exit_000",
+      "transform":
+      {
+        "pos": "-188.069 -26.2263 60.1429",
+        "rotation": "0.0 0.34202 0.0 -0.939693"
+      },
+      "collider":
+      {
+        "mesh_src": "data/meshes/location_chrystals_exit_000.col_mesh",
+        "shape": "convex_mesh",
+        "type": "static",
+        "is_trigger": true,
+        "group":
+        [
+          "trigger"
+        ],
+        "mask":
+        [
+          "player"
+        ]
+      },
+      "location":{
+        "location_name" : "chrystals",
+        "works_on_enter" : false
+      }
+    }
+  },
+  {
+    "entity":
+    {
+      "name": "location_chrystals_enter_000",
+      "transform":
+      {
+        "pos": "-184.602 -17.3939 61.6079",
+        "rotation": "0.0 0.351892 0.0 -0.936041"
+      },
+      "collider":
+      {
+        "mesh_src": "data/meshes/location_chrystals_enter_000.col_mesh",
+        "shape": "convex_mesh",
+        "type": "static",
+        "is_trigger": true,
+        "group":
+        [
+          "trigger"
+        ],
+        "mask":
+        [
+          "player"
+        ]
+      },
+      "location":{
+        "location_name" : "chrystals",
+        "works_on_enter" : true
+      }
+    }
+  },
+  {
+    "entity":
+    {
+      "name": "location_cemetery_exit_001",
+      "transform":
+      {
+        "pos": "155.259 42.5811 173.269",
+        "rotation": "0.0 0.130526 0.0 -0.991445"
+      },
+      "collider":
+      {
+        "mesh_src": "data/meshes/location_cemetery_exit_001.col_mesh",
+        "shape": "convex_mesh",
+        "type": "static",
+        "is_trigger": true,
+        "group":
+        [
+          "trigger"
+        ],
+        "mask":
+        [
+          "player"
+        ]
+      },
+      "location":{
+        "location_name" : "cemetery",
+        "works_on_enter" : false
+      }
+    }
+  },
+  {
+    "entity":
+    {
+      "name": "location_cemetery_exit_000",
+      "transform":
+      {
+        "pos": "33.8303 -13.4586 112.267",
+        "rotation": "0.0 0.0 0.0 -1.0"
+      },
+      "collider":
+      {
+        "mesh_src": "data/meshes/location_cemetery_exit_000.col_mesh",
+        "shape": "convex_mesh",
+        "type": "static",
+        "is_trigger": true,
+        "group":
+        [
+          "trigger"
+        ],
+        "mask":
+        [
+          "player"
+        ]
+      },
+      "location":{
+        "location_name" : "cemetery",
+        "works_on_enter" : false
+      }
+    }
+  },
+  {
+    "entity":
+    {
+      "name": "location_cemetery_enter_001",
+      "transform":
+      {
+        "pos": "155.259 50.3389 173.269",
+        "rotation": "0.0 0.130526 0.0 -0.991445"
+      },
+      "collider":
+      {
+        "mesh_src": "data/meshes/location_cemetery_enter_001.col_mesh",
+        "shape": "convex_mesh",
+        "type": "static",
+        "is_trigger": true,
+        "group":
+        [
+          "trigger"
+        ],
+        "mask":
+        [
+          "player"
+        ]
+      },
+      "location":{
+        "location_name" : "cemetery",
+        "works_on_enter" : true
+      }
+    }
+  },
+  {
+    "entity":
+    {
+      "name": "location_cemetery_enter_000",
+      "transform":
+      {
+        "pos": "33.8303 -13.4586 112.267",
+        "rotation": "0.0 0.0 0.0 -1.0"
+      },
+      "collider":
+      {
+        "mesh_src": "data/meshes/location_cemetery_enter_000.col_mesh",
+        "shape": "convex_mesh",
+        "type": "static",
+        "is_trigger": true,
+        "group":
+        [
+          "trigger"
+        ],
+        "mask":
+        [
+          "player"
+        ]
+      },
+      "location":{
+        "location_name" : "cemetery",
+        "works_on_enter" : true
+      }
+    }
+  }
+]

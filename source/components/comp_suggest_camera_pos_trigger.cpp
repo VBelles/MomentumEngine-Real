@@ -1,6 +1,5 @@
 #include "mcv_platform.h"
 #include "comp_suggest_camera_pos_trigger.h"
-#include "game_constants.h"
 #include "components/controllers/comp_camera_player.h"
 #include "entity/common_msgs.h"
 

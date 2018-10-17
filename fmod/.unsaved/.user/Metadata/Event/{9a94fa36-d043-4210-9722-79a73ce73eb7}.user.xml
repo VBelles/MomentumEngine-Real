@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<objects serializationModel="Studio.01.10.00">
+    <object class="Event" id="{9a94fa36-d043-4210-9722-79a73ce73eb7}">
+        <relationship name="selectables">
+            <destination>{70ef539e-a9f2-4378-b9d2-c9ae2ad4f672}</destination>
+        </relationship>
+        <relationship name="uiLastParameterSelection">
+            <destination>{7944e126-81c7-4603-adde-8ea26d783938}</destination>
+        </relationship>
+    </object>
+    <object class="MasterTrack" id="{5a9c56ac-f278-4431-a220-318aa8849bc2}"/>
+    <object class="MixerInput" id="{1b73b85d-0150-4ff9-92d8-836ad727ab80}"/>
+    <object class="EventAutomatableProperties" id="{58169df2-c4c7-47b7-8967-786c4cea07ab}"/>
+    <object class="MarkerTrack" id="{2ac9f9e4-9202-4a29-a397-b701a77a54ba}"/>
+    <object class="GroupTrack" id="{70ef539e-a9f2-4378-b9d2-c9ae2ad4f672}"/>
+    <object class="Timeline" id="{7944e126-81c7-4603-adde-8ea26d783938}">
+        <property name="uiLastRulerScaleRatio">
+            <value>0.0012851580883925897</value>
+        </property>
+    </object>
+    <object class="EventMixerMaster" id="{f6af99f6-c522-48b0-9517-ce89e3c5cc64}">
+        <relationship name="input">
+            <destination>{8effb1a9-aa70-46d1-9efa-67998ae6ffd5}</destination>
+        </relationship>
+    </object>
+    <object class="MixerBusEffectChain" id="{6a8ed33a-0c21-4830-a653-c27a1f108769}"/>
+    <object class="MixerBusPanner" id="{9582f018-9820-441b-bf0f-8b6ace41c41d}"/>
+    <object class="SingleSound" id="{743ec54b-d94f-4bef-8a91-3c2a21670231}"/>
+    <object class="EventMixerGroup" id="{8effb1a9-aa70-46d1-9efa-67998ae6ffd5}"/>
+    <object class="MixerBusEffectChain" id="{c4faf9c4-a2c2-4ed9-840f-9c0e1e2fe5c7}"/>
+    <object class="MixerBusPanner" id="{a554cd77-3195-464d-81bc-8099f225b7d6}"/>
+    <object class="MixerBusFader" id="{d7561fdc-8da6-4792-ae52-4b2a67aa706a}"/>
+    <object class="MixerBusEffectChain" id="{152f046a-8629-42ac-b756-527bea68e491}"/>
+    <object class="MixerBusPanner" id="{3744daa7-1c5e-4980-98bd-8c26bf63f22f}"/>
+    <object class="MixerBusFader" id="{2be484f8-a67f-4a28-8c2b-8a37ea0eab98}"/>
+    <object class="SFXReverbEffect" id="{5521151b-c107-4ea5-afc5-6df2b60eaa7b}"/>
+    <object class="ThreeEQEffect" id="{9624503f-0fe2-4e16-afc8-5796f89c8fbf}"/>
+    <object class="MixerBusFader" id="{6a2c188d-3c57-45a5-8686-d70ec0d294c5}"/>
+</objects>

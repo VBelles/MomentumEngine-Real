@@ -2,39 +2,62 @@
 
 #include "modules/system_modules/sound/module_sound.h"
 
+
+#define EVENT_TYPES \
+	etype(COMBAT), \
+	etype(LEVEL_SSJ2), \
+	etype(LEVEL_SSJ3), \
+	etype(CYCLE_NIGHT), \
+	etype(CYCLE_DAWN), \
+	etype(CYCLE_DAY), \
+	etype(LOCATION_CEMETERY), \
+	etype(LOCATION_CIVILIZATION), \
+	etype(LOCATION_CHRYSTALS), \
+	etype(LOCATION_MUSHROOMS), \
+	etype(LOCATION_TEMPLE), \
+	etype(LAST)
+
+#define etype(x) x
+typedef enum { EVENT_TYPES } EventType;
+#undef etype
+#define etype(x) #x
+static const char *strEventTypes[] = { EVENT_TYPES };
+#undef etype
+
 class TCompMusic : public TCompBase {
 private:
-	FMOD::Studio::EventInstance* momentumThemeInstance = nullptr;
 
 	int tempo = 107;//bpm
 	int timeSignature = 4;//numerador del 4/4
 	int milisecondsPerBeat;
 	int milisecondsPerBar;
 
-	/*struct EventInfo {
-		CTimer timer;
+	FMOD::Studio::EventInstance* currentSongInstance = nullptr;
+	FMOD::Studio::EventInstance* momentumThemeInstance = nullptr;
+	FMOD::Studio::EventInstance* introThemeInstance = nullptr;
+
+	std::string mainTheme = "event:/momentum_theme";
+	std::string introTheme = "event:/momentum_theme_placeholder";
+
+	bool isSongPlaying = false;
+
+	bool isGamePaused = false;
+	float pausedVolumeMultiplier = 0.5f;
+
+	struct EventInfo {
+		CTimer2 timer;
 		int timeMiliseconds;
 		float targetRatio = 0;
 		float startingRatio;
-		float combatRatio = 0;
+		float ratio = 0;
 		bool entersOnBeat = true;
 		bool exitsOnBeat = false;
+		std::string fmodVariable = "";
 	};
 
-	enum EventTypes {
-		COMBAT, LEVEL, DAYNIGHT, PLACE_CEMETERY, PLACE_CIVILIZATION,
-		PLACE_CHRYSTALS, PLACE_MUSHROOMS, PLACE_TEMPLE
-	};
+	std::map<EventType, EventInfo> eventInfos;
 
-	std::map<EventTypes, EventInfo> eventInfos;*/
-
-	CTimer combatTimer;
-	int combatTimeMiliseconds;
-	float combatTargetRatio = 0;
-	float combatStartingRatio;
-	float combatRatio = 0;
-	bool combatEntersOnBeat = true;
-	bool combatExitsOnBeat = false;
+	EventInfo loadEventInfo(const json& j_event_info);
 
 	//Message callbacks
 	void onEntityCreated(const TMsgEntityCreated&);
@@ -46,18 +69,33 @@ public:
 		OFF, DANGER
 	};
 
-	Combat combatState;
+	Combat combatState = OFF;
 
 	enum Level {
 		LEVEL_1, LEVEL_2, LEVEL_3
 	};
+	
+	Level levelState = LEVEL_1;
 
 	enum DayNight {
 		DAWN, DAY, DUSK, NIGHT
 	};
 
-	enum Place {
-		CEMETERY, CIVILIZATION, CHRYSTALS, MUSHROOMS, TEMPLE
+	DayNight dayNightState = DAY;
+
+	enum Location {
+		NONE			= 0,
+		CEMETERY		= 1 << 0,
+		CIVILIZATION	= 1 << 1,
+		CHRYSTALS		= 1 << 2,
+		MUSHROOMS		= 1 << 3,
+		TEMPLE			= 1 << 4
+	};
+
+	Location locationState = NONE;
+
+	enum Song {
+		INTRO, MAIN
 	};
 
 	DECL_SIBLING_ACCESS();
@@ -73,6 +111,10 @@ public:
 	void setCombat(Combat combat);
 	void setLevel(Level level);
 	void setDayNight(DayNight dayNight);
-	void setPlace(Place place);
+	void addLocation(Location location);
+	void removeLocation(Location location);
 
+	void setPauseMenu(bool paused);
+	void setCurrentSong(Song song);
+	void setCurrentSong(std::string song);
 };

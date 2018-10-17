@@ -369,6 +369,7 @@
     <ClCompile Include="components\ia\enemies\common\disappear\OnDisappearCondition.cpp" />
     <ClCompile Include="components\comp_fire.cpp" />
     <ClCompile Include="components\player\states\DummyActionState.cpp" />
+    <ClCompile Include="components\comp_location_delimiter.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="..\Bin\data\shaders\ctes.h" />
@@ -437,10 +438,8 @@
     <ClInclude Include="components\ia\enemies\common\combat\tackle_attack\OnTackleAttackAction.h" />
     <ClInclude Include="components\ia\enemies\common\combat\tackle_attack\TackleAttackAction.h" />
     <ClInclude Include="components\ia\enemies\common\death\DeathAction.h" />
-    <ClInclude Include="components\ia\enemies\common\death\DisappearAction.h" />
     <ClInclude Include="components\ia\enemies\common\death\OnDeathAction.h" />
     <ClInclude Include="components\ia\enemies\common\death\OnDeathCondition.h" />
-    <ClInclude Include="components\ia\enemies\common\death\OnDisappearAction.h" />
     <ClInclude Include="components\ia\enemies\common\getting_hit\grab\GrabAction.h" />
     <ClInclude Include="components\ia\enemies\common\getting_hit\grab\OnGrabAction.h" />
     <ClInclude Include="components\ia\enemies\common\getting_hit\grab\OnGrabCondition.h" />
@@ -906,6 +905,7 @@
     <ClInclude Include="components\ia\enemies\common\disappear\OnDisappearCondition.h" />
     <ClInclude Include="components\comp_fire.h" />
     <ClInclude Include="components\player\states\DummyActionState.h" />
+    <ClInclude Include="components\comp_location_delimiter.h" />
   </ItemGroup>
   <ItemGroup>
     <None Include="geometry\SimpleMath.inl" />
