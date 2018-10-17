@@ -221,9 +221,9 @@
 						"variable": "power_progress_level1",
 						"direction": "vertical_anim",
 						"initial_frame": 0,
-						"frame_size": "1 0.14285",
-						"num_frames": 7,
-						"frame_speed": 12,
+						"frame_size": "0.2 1",
+						"num_frames": 5,
+						"frame_speed": 9,
 						"mask": "data/textures/gui/hud/power_level_mask.dds"
 					},
 					{
@@ -235,9 +235,9 @@
 						"variable": "power_progress_level2",
 						"direction": "vertical_anim",
 						"initial_frame": 0,
-						"frame_size": "0.14285 1",
-						"num_frames": 7,
-						"frame_speed": 12,
+						"frame_size": "0.2 1",
+						"num_frames": 5,
+						"frame_speed": 9,
 						"mask": "data/textures/gui/hud/power_level_mask.dds"
 					},
 					{
@@ -249,9 +249,9 @@
 						"variable": "power_progress_level3",
 						"direction": "vertical_anim",
 						"initial_frame": 0,
-						"frame_size": "0.14285 1",
-						"num_frames": 7,
-						"frame_speed": 12,
+						"frame_size": "0.2 1",
+						"num_frames": 5,
+						"frame_speed": 9,
 						"mask": "data/textures/gui/hud/power_level_mask.dds"
 					},
 					{
