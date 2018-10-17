@@ -29,20 +29,18 @@
 							"name" : "temple_teleport_button",
 							"type" : "button",
 							"position" : "0 0",
-							"size" : "800 50",
-							"texture" : "data/textures/gui/menu_boton.dds",
-							"font_size" : 32.0,
+							"size" : "800 64",
+							"texture" : "data/textures/gui/hud/dialog_box_clean.dds",
+							"font_size" : 64,
 							"text" : "TEMPLE",
 							"halign" : "center",
 							"valign" : "center",
-							"color" : "0.5 0.5 0.5 1",
+							"color" : "1 1 1 1",
 							"selected" : {
-								"font_size" : 36.0,
-								"color" : "1 1 1 1"
+								"color" : "0.5 0.5 0.5 1"
 							},
 							"pressed" : {
-								"font_size" : 36.0,
-								"font_color" : "0.8 0.8 1 1"
+								"color" : "0.5 0.5 0.5 1"
 							}
 						},
 						"marker": {
@@ -51,17 +49,15 @@
 							"position" : "10 10",
 							"size" : "50 50",
 							"texture" : "data/textures/linux.dds",
-							"font_size" : 32.0,
+							"font_size" : 64,
 							"halign" : "center",
 							"valign" : "center",
-							"color" : "0.5 0.5 0.5 1",
+							"color" : "1 1 1 1",
 							"selected" : {
-								"font_size" : 36.0,
-								"color" : "1 1 1 1"
+								"color" : "0.5 0.5 0.5 1"
 							},
 							"pressed" : {
-								"font_size" : 36.0,
-								"font_color" : "0.8 0.8 1 1"
+								"color" : "0.5 0.5 0.5 1"
 							}
 						}
 					},
@@ -75,21 +71,19 @@
 						"button": {
 							"name" : "main_entrance_teleport_button",
 							"type" : "button",
-							"position" : "0 60",
-							"size" : "800 50",
-							"texture" : "data/textures/gui/menu_boton.dds",
-							"font_size" : 32.0,
+							"position" : "0 70",
+							"size" : "800 64",
+							"texture" : "data/textures/gui/hud/dialog_box_clean.dds",
+							"font_size" : 64,
 							"text" : "MAIN ENTRANCE",
 							"halign" : "center",
 							"valign" : "center",
-							"color" : "0.5 0.5 0.5 1",
+							"color" : "1 1 1 1",
 							"selected" : {
-								"font_size" : 36.0,
-								"color" : "1 1 1 1"
+								"color" : "0.5 0.5 0.5 1"
 							},
 							"pressed" : {
-								"font_size" : 36.0,
-								"font_color" : "0.8 0.8 1 1"
+								"color" : "0.5 0.5 0.5 1"
 							}
 						},
 						"marker": {
@@ -98,17 +92,15 @@
 							"position" : "60 40",
 							"size" : "50 50",
 							"texture" : "data/textures/linux.dds",
-							"font_size" : 32.0,
+							"font_size" : 64,
 							"halign" : "center",
 							"valign" : "center",
-							"color" : "0.5 0.5 0.5 1",
+							"color" : "1 1 1 1",
 							"selected" : {
-								"font_size" : 36.0,
-								"color" : "1 1 1 1"
+								"color" : "0.5 0.5 0.5 1"
 							},
 							"pressed" : {
-								"font_size" : 36.0,
-								"font_color" : "0.8 0.8 1 1"
+								"color" : "0.5 0.5 0.5 1"
 							}
 						}
 					},
@@ -122,21 +114,19 @@
 						"button": {
 							"name" : "central_field_teleport_button",
 							"type" : "button",
-							"position" : "0 120",
-							"size" : "800 50",
-							"texture" : "data/textures/gui/menu_boton.dds",
-							"font_size" : 32.0,
+							"position" : "0 140",
+							"size" : "800 64",
+							"texture" : "data/textures/gui/hud/dialog_box_clean.dds",
+							"font_size" : 64,
 							"text" : "CENTRAL FIELD",
 							"halign" : "center",
 							"valign" : "center",
-							"color" : "0.5 0.5 0.5 1",
+							"color" : "1 1 1 1",
 							"selected" : {
-								"font_size" : 36.0,
-								"color" : "1 1 1 1"
+								"color" : "0.5 0.5 0.5 1"
 							},
 							"pressed" : {
-								"font_size" : 36.0,
-								"font_color" : "0.8 0.8 1 1"
+								"color" : "0.5 0.5 0.5 1"
 							}
 						},
 						"marker": {
@@ -145,17 +135,15 @@
 							"position" : "60 60",
 							"size" : "50 50",
 							"texture" : "data/textures/linux.dds",
-							"font_size" : 32.0,
+							"font_size" : 64,
 							"halign" : "center",
 							"valign" : "center",
-							"color" : "0.5 0.5 0.5 1",
+							"color" : "1 1 1 1",
 							"selected" : {
-								"font_size" : 36.0,
-								"color" : "1 1 1 1"
+								"color" : "0.5 0.5 0.5 1"
 							},
 							"pressed" : {
-								"font_size" : 36.0,
-								"font_color" : "0.8 0.8 1 1"
+								"color" : "0.5 0.5 0.5 1"
 							}
 						}
 					},
@@ -169,21 +157,19 @@
 						"button": {
 							"name" : "tower_entrance_teleport_button",
 							"type" : "button",
-							"position" : "0 180",
-							"size" : "800 50",
-							"texture" : "data/textures/gui/menu_boton.dds",
-							"font_size" : 32.0,
+							"position" : "0 210",
+							"size" : "800 64",
+							"texture" : "data/textures/gui/hud/dialog_box_clean.dds",
+							"font_size" : 64,
 							"text" : "TOWER ENTRANCE",
 							"halign" : "center",
 							"valign" : "center",
-							"color" : "0.5 0.5 0.5 1",
+							"color" : "1 1 1 1",
 							"selected" : {
-								"font_size" : 36.0,
-								"color" : "1 1 1 1"
+								"color" : "0.5 0.5 0.5 1"
 							},
 							"pressed" : {
-								"font_size" : 36.0,
-								"font_color" : "0.8 0.8 1 1"
+								"color" : "0.5 0.5 0.5 1"
 							}
 						},
 						"marker": {
@@ -192,17 +178,15 @@
 							"position" : "120 120",
 							"size" : "50 50",
 							"texture" : "data/textures/linux.dds",
-							"font_size" : 32.0,
+							"font_size" : 64,
 							"halign" : "center",
 							"valign" : "center",
-							"color" : "0.5 0.5 0.5 1",
+							"color" : "1 1 1 1",
 							"selected" : {
-								"font_size" : 36.0,
-								"color" : "1 1 1 1"
+								"color" : "0.5 0.5 0.5 1"
 							},
 							"pressed" : {
-								"font_size" : 36.0,
-								"font_color" : "0.8 0.8 1 1"
+								"color" : "0.5 0.5 0.5 1"
 							}
 						}
 					},
@@ -216,21 +200,19 @@
 						"button": {
 							"name" : "behind_statue_teleport_button",
 							"type" : "button",
-							"position" : "0 240",
-							"size" : "800 50",
-							"texture" : "data/textures/gui/menu_boton.dds",
-							"font_size" : 32.0,
+							"position" : "0 280",
+							"size" : "800 64",
+							"texture" : "data/textures/gui/hud/dialog_box_clean.dds",
+							"font_size" : 64,
 							"text" : "BEHIND STATUE",
 							"halign" : "center",
 							"valign" : "center",
-							"color" : "0.5 0.5 0.5 1",
+							"color" : "1 1 1 1",
 							"selected" : {
-								"font_size" : 36.0,
-								"color" : "1 1 1 1"
+								"color" : "0.5 0.5 0.5 1"
 							},
 							"pressed" : {
-								"font_size" : 36.0,
-								"font_color" : "0.8 0.8 1 1"
+								"color" : "0.5 0.5 0.5 1"
 							}
 						},
 						"marker": {
@@ -239,17 +221,15 @@
 							"position" : "0 120",
 							"size" : "50 50",
 							"texture" : "data/textures/linux.dds",
-							"font_size" : 32.0,
+							"font_size" : 64,
 							"halign" : "center",
 							"valign" : "center",
-							"color" : "0.5 0.5 0.5 1",
+							"color" : "1 1 1 1",
 							"selected" : {
-								"font_size" : 36.0,
-								"color" : "1 1 1 1"
+								"color" : "0.5 0.5 0.5 1"
 							},
 							"pressed" : {
-								"font_size" : 36.0,
-								"font_color" : "0.8 0.8 1 1"
+								"color" : "0.5 0.5 0.5 1"
 							}
 						}
 					},
@@ -263,21 +243,19 @@
 						"button": {
 							"name" : "kings_graveyard_teleport_button",
 							"type" : "button",
-							"position" : "0 300",
-							"size" : "800 50",
-							"texture" : "data/textures/gui/menu_boton.dds",
-							"font_size" : 32.0,
+							"position" : "0 350",
+							"size" : "800 64",
+							"texture" : "data/textures/gui/hud/dialog_box_clean.dds",
+							"font_size" : 64,
 							"text" : "KING'S GRAVEYARD",
 							"halign" : "center",
 							"valign" : "center",
-							"color" : "0.5 0.5 0.5 1",
+							"color" : "1 1 1 1",
 							"selected" : {
-								"font_size" : 36.0,
-								"color" : "1 1 1 1"
+								"color" : "0.5 0.5 0.5 1"
 							},
 							"pressed" : {
-								"font_size" : 36.0,
-								"font_color" : "0.8 0.8 1 1"
+								"color" : "0.5 0.5 0.5 1"
 							}
 						},
 						"marker": {
@@ -286,17 +264,15 @@
 							"position" : "120 0",
 							"size" : "50 50",
 							"texture" : "data/textures/linux.dds",
-							"font_size" : 32.0,
+							"font_size" : 64,
 							"halign" : "center",
 							"valign" : "center",
-							"color" : "0.5 0.5 0.5 1",
+							"color" : "1 1 1 1",
 							"selected" : {
-								"font_size" : 36.0,
-								"color" : "1 1 1 1"
+								"color" : "0.5 0.5 0.5 1"
 							},
 							"pressed" : {
-								"font_size" : 36.0,
-								"font_color" : "0.8 0.8 1 1"
+								"color" : "0.5 0.5 0.5 1"
 							}
 						}
 					},
@@ -310,21 +286,19 @@
 						"button": {
 							"name" : "gate_of_doom_teleport_button",
 							"type" : "button",
-							"position" : "0 360",
-							"size" : "800 50",
-							"texture" : "data/textures/gui/menu_boton.dds",
-							"font_size" : 32.0,
+							"position" : "0 420",
+							"size" : "800 64",
+							"texture" : "data/textures/gui/hud/dialog_box_clean.dds",
+							"font_size" : 64,
 							"text" : "FINAL GATE",
 							"halign" : "center",
 							"valign" : "center",
-							"color" : "0.5 0.5 0.5 1",
+							"color" : "1 1 1 1",
 							"selected" : {
-								"font_size" : 36.0,
-								"color" : "1 1 1 1"
+								"color" : "0.5 0.5 0.5 1"
 							},
 							"pressed" : {
-								"font_size" : 36.0,
-								"font_color" : "0.8 0.8 1 1"
+								"color" : "0.5 0.5 0.5 1"
 							}
 						},
 						"marker": {
@@ -333,17 +307,15 @@
 							"position" : "400 20",
 							"size" : "50 50",
 							"texture" : "data/textures/linux.dds",
-							"font_size" : 32.0,
+							"font_size" : 64,
 							"halign" : "center",
 							"valign" : "center",
-							"color" : "0.5 0.5 0.5 1",
+							"color" : "1 1 1 1",
 							"selected" : {
-								"font_size" : 36.0,
-								"color" : "1 1 1 1"
+								"color" : "0.5 0.5 0.5 1"
 							},
 							"pressed" : {
-								"font_size" : 36.0,
-								"font_color" : "0.8 0.8 1 1"
+								"color" : "0.5 0.5 0.5 1"
 							}
 						}
 					},
@@ -357,21 +329,19 @@
 						"button": {
 							"name" : "mushroom_kingdom_teleport_button",
 							"type" : "button",
-							"position" : "0 420",
-							"size" : "800 50",
-							"texture" : "data/textures/gui/menu_boton.dds",
-							"font_size" : 32.0,
+							"position" : "0 490",
+							"size" : "800 64",
+							"texture" : "data/textures/gui/hud/dialog_box_clean.dds",
+							"font_size" : 64,
 							"text" : "COLOSSAL FUNGUS",
 							"halign" : "center",
 							"valign" : "center",
-							"color" : "0.5 0.5 0.5 1",
+							"color" : "1 1 1 1",
 							"selected" : {
-								"font_size" : 36.0,
-								"color" : "1 1 1 1"
+								"color" : "0.5 0.5 0.5 1"
 							},
 							"pressed" : {
-								"font_size" : 36.0,
-								"font_color" : "0.8 0.8 1 1"
+								"color" : "0.5 0.5 0.5 1"
 							}
 						},
 						"marker": {
@@ -380,17 +350,15 @@
 							"position" : "400 20",
 							"size" : "50 50",
 							"texture" : "data/textures/linux.dds",
-							"font_size" : 32.0,
+							"font_size" : 64,
 							"halign" : "center",
 							"valign" : "center",
-							"color" : "0.5 0.5 0.5 1",
+							"color" : "1 1 1 1",
 							"selected" : {
-								"font_size" : 36.0,
-								"color" : "1 1 1 1"
+								"color" : "0.5 0.5 0.5 1"
 							},
 							"pressed" : {
-								"font_size" : 36.0,
-								"font_color" : "0.8 0.8 1 1"
+								"color" : "0.5 0.5 0.5 1"
 							}
 						}
 					},
@@ -404,21 +372,19 @@
 						"button": {
 							"name" : "graveyard_teleport_button",
 							"type" : "button",
-							"position" : "0 480",
-							"size" : "800 50",
-							"texture" : "data/textures/gui/menu_boton.dds",
-							"font_size" : 32.0,
+							"position" : "0 560",
+							"size" : "800 64",
+							"texture" : "data/textures/gui/hud/dialog_box_clean.dds",
+							"font_size" : 64,
 							"text" : "GRAVEYARD",
 							"halign" : "center",
 							"valign" : "center",
-							"color" : "0.5 0.5 0.5 1",
+							"color" : "1 1 1 1",
 							"selected" : {
-								"font_size" : 36.0,
-								"color" : "1 1 1 1"
+								"color" : "0.5 0.5 0.5 1"
 							},
 							"pressed" : {
-								"font_size" : 36.0,
-								"font_color" : "0.8 0.8 1 1"
+								"color" : "0.5 0.5 0.5 1"
 							}
 						},
 						"marker": {
@@ -427,17 +393,15 @@
 							"position" : "400 20",
 							"size" : "50 50",
 							"texture" : "data/textures/linux.dds",
-							"font_size" : 32.0,
+							"font_size" : 64,
 							"halign" : "center",
 							"valign" : "center",
-							"color" : "0.5 0.5 0.5 1",
+							"color" : "1 1 1 1",
 							"selected" : {
-								"font_size" : 36.0,
-								"color" : "1 1 1 1"
+								"color" : "0.5 0.5 0.5 1"
 							},
 							"pressed" : {
-								"font_size" : 36.0,
-								"font_color" : "0.8 0.8 1 1"
+								"color" : "0.5 0.5 0.5 1"
 							}
 						}
 					},
@@ -451,21 +415,19 @@
 						"button": {
 							"name" : "behind_tower_teleport_button",
 							"type" : "button",
-							"position" : "0 540",
-							"size" : "800 50",
-							"texture" : "data/textures/gui/menu_boton.dds",
-							"font_size" : 32.0,
+							"position" : "0 630",
+							"size" : "800 64",
+							"texture" : "data/textures/gui/hud/dialog_box_clean.dds",
+							"font_size" : 64,
 							"text" : "BEHIND TOWER",
 							"halign" : "center",
 							"valign" : "center",
-							"color" : "0.5 0.5 0.5 1",
+							"color" : "1 1 1 1",
 							"selected" : {
-								"font_size" : 36.0,
-								"color" : "1 1 1 1"
+								"color" : "0.5 0.5 0.5 1"
 							},
 							"pressed" : {
-								"font_size" : 36.0,
-								"font_color" : "0.8 0.8 1 1"
+								"color" : "0.5 0.5 0.5 1"
 							}
 						},
 						"marker": {
@@ -474,17 +436,15 @@
 							"position" : "400 20",
 							"size" : "50 50",
 							"texture" : "data/textures/linux.dds",
-							"font_size" : 32.0,
+							"font_size" : 64,
 							"halign" : "center",
 							"valign" : "center",
-							"color" : "0.5 0.5 0.5 1",
+							"color" : "1 1 1 1",
 							"selected" : {
-								"font_size" : 36.0,
-								"color" : "1 1 1 1"
+								"color" : "0.5 0.5 0.5 1"
 							},
 							"pressed" : {
-								"font_size" : 36.0,
-								"font_color" : "0.8 0.8 1 1"
+								"color" : "0.5 0.5 0.5 1"
 							}
 						}
 					}

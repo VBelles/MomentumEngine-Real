@@ -83,6 +83,7 @@ void TCompPowerUp::onTriggerEnter(const TMsgTriggerEnter & msg) {
 		cameraPlayer->placeCameraOnSuggestedPosition(cameraSpeed);
 		isCollecting = true;
 		collectTimer.reset();
+		playerModel->setHp(playerModel->getMaxHp());
 
 		EngineGUI.showDialog(message, 16);
 	}

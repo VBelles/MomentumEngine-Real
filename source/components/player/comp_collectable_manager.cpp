@@ -138,7 +138,7 @@ void TCompCollectableManager::onCollect(const TMsgCollect& msg) {
 		//situar cámara frente a player
 		playerTransform->getYawPitchRoll(&yaw, &pitch);
 		yaw += M_PI;
-		//if camera is already suggested, remember parameters
+		//TODO if camera is already suggested, remember parameters
 		cameraPlayer->suggestYawPitchDistance(yaw, collectPitch, collectDistance, true, false, true, true, false);
 		cameraPlayer->placeCameraOnSuggestedPosition(cameraSpeed);
 		isCollecting = true;

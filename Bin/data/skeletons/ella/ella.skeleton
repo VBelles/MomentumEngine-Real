@@ -1,6 +1,9 @@
 {
   "name": "ella",
   "anims": [
+    { "name": "cinematic_01" },
+    { "name": "cinematic_sleep_loop" },
+    { "name": "cinematic_walk" },
     { "name": "death" },
     { "name": "death_loop" },
     { "name": "dodge" },
