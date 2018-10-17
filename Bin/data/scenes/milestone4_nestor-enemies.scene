@@ -38,18 +38,6 @@
   {
     "entity":
     {
-      "name": "nes_enemyAir054",
-      "prefab": "data/prefabs/kippah.prefab",
-      "transform":
-      {
-        "pos": "-170.681 57.9892 -23.6768",
-        "lookat": "-1.0 57.9892 -1.0"
-      }
-    }
-  },
-  {
-    "entity":
-    {
       "name": "nes_enemyAir053",
       "prefab": "data/prefabs/kippah.prefab",
       "transform":
@@ -66,8 +54,8 @@
       "prefab": "data/prefabs/kippah.prefab",
       "transform":
       {
-        "pos": "1.53661 48.3787 205.49",
-        "lookat": "-1.0 48.3787 -1.0"
+        "pos": "1.53661 48.0623 205.49",
+        "lookat": "-1.0 48.0623 -1.0"
       }
     }
   },

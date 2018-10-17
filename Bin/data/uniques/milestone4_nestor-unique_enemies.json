@@ -23,13 +23,6 @@
       "type": "kippah"
     },
     {
-      "id": "nes_enemyAir054",
-      "done": false,
-      "position": "-170.681 57.9892 -23.6768",
-      "level": "level00",
-      "type": "kippah"
-    },
-    {
       "id": "nes_enemyAir053",
       "done": false,
       "position": "-170.681 45.8019 -23.6768",
@@ -39,7 +32,7 @@
     {
       "id": "nes_enemyAir052",
       "done": false,
-      "position": "1.53661 48.3787 205.49",
+      "position": "1.53661 48.0623 205.49",
       "level": "level00",
       "type": "kippah"
     },

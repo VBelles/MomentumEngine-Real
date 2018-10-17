@@ -6,7 +6,7 @@
       "prefab": "data/prefabs/crisalida.prefab",
       "transform":
       {
-        "pos": "-22.5303 52.808 205.431",
+        "pos": "-22.5303 50.2004 205.431",
         "rotation": "0.0 0.130526 0.0 -0.991445"
       }
     }

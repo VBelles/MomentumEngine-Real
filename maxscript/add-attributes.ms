@@ -269,6 +269,32 @@ global camsData = attributes camData (
 	)
 )
 
+-- def #camTrigData
+global camsTrigData = attributes camTrigData (
+	parameters main rollout:params (
+		suggYaw type: #boolean ui:sugYaw default:false
+		oposYaw type: #boolean ui:opoYaw default:false
+		suggPit type: #boolean ui:sugPit default:true
+		forcDis type: #boolean ui:forDis default:false
+		centCam type: #boolean ui:cenCam default:false
+		fPosEnt type: #boolean ui:fPosEn default:false
+
+		cCamSpdX type: #float   ui:cCamSpX  default:18.0
+		cCamSpdY type: #float   ui:cCamSpY  default:9.0
+	)
+	rollout params "Camera trigger Data" (
+		checkbox sugYaw "Suggest Yaw"			type: #boolean align:#right
+		checkbox opoYaw "Has opposite Yaw"		type: #boolean align:#right
+		checkbox sugPit "Suggest Pitch"			type: #boolean align:#right
+		checkbox forDis "Force distance"		type: #boolean align:#right
+		checkbox cenCam "Change centering cam"	type: #boolean align:#right
+		checkbox fPosEn "Force pos on enter"	type: #boolean align:#right
+
+		spinner cCamSpX "Center cam spd x" type: #float range:[-1000.0, 1000.0, 18.0] --min, max, initial value
+		spinner cCamSpY "Center cam spd y" type: #float range:[-1000.0, 1000.0, 9.0]
+	)
+)
+
 -- -----------------------------------------------------------------------------
 
 struct TAttributeManager (
@@ -326,6 +352,7 @@ struct TAttributeManager (
 			case defName of (
 				"animData":     ( attrDef = animsData     )
 				"camData":      ( attrDef = camsData      )
+				"camTrigData":  ( attrDef = camsTrigData  )
 				"collData":     ( attrDef = colsData      )
 				"enemyData":    ( attrDef = enemiesData	  )
 				"lightData":    ( attrDef = lightsData    )

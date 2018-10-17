@@ -16,7 +16,7 @@ void CDialog::render() {
 	// render text
 	VEC2 scale(Engine.globalConfig.resolution.x / EngineGUI.getResolution().x,
 		Engine.globalConfig.resolution.y / EngineGUI.getResolution().y);
-	CFont font = EngineGUI.getFont(_textParams._size * scale.x);
+	CFont font = EngineGUI.getFont(_textParams._size * scale.y);
 
 	float textWidth = font.getWidth(_textParams._text);
 	float textHeight = font.getHeight(_textParams._text);

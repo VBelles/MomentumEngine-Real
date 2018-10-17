@@ -859,23 +859,53 @@ struct TSceneExporter (
 		fs.writeKey "suggestCameraTrigger"
 		fs.beginObj()
 			fs.writeKeyValue "cameraSuggestion" obj.parent.name
+
+		local suggYaw = false
+		local oposYaw = false
+		local suggPit = true
+		local forcDis = false
+		local centCam = false
+		local fPosEnt = false
+		local cCamSpd = Point2 18.0 9.0
+		--Get from attribute if it exists.
+		if attrManager.hasAttribute obj "camTrigData" then (
+			suggYaw = attrManager.getAttrValue obj "camTrigData" #suggYaw
+			if suggYaw == undefined then suggYaw = false
+			oposYaw = attrManager.getAttrValue obj "camTrigData" #oposYaw
+			if oposYaw == undefined then oposYaw = false
+			suggPit = attrManager.getAttrValue obj "camTrigData" #suggPit
+			if suggPit == undefined then suggPit = true
+			forcDis = attrManager.getAttrValue obj "camTrigData" #forcDis
+			if forcDis == undefined then forcDis = false
+			centCam = attrManager.getAttrValue obj "camTrigData" #centCam
+			if centCam == undefined then centCam = false
+			fPosEnt = attrManager.getAttrValue obj "camTrigData" #fPosEnt
+			if fPosEnt == undefined then fPosEnt = false
+			local cCamSpdX = attrManager.getAttrValue obj "camTrigData" #cCamSpdX
+			if cCamSpdX == undefined then cCamSpd.x = 18.0
+			local cCamSpdY = attrManager.getAttrValue obj "camTrigData" #cCamSpdY
+			if cCamSpdY == undefined then cCamSpd.y = 9.0
+
+			cCamSpd = Point2 cCamSpdX cCamSpdY
+		)
+
 			fs.writeComma()
-			fs.writeKeyValue "suggestYaw" false
+			fs.writeKeyValue "suggestYaw" suggYaw
 			fs.writeComma()
-			fs.writeKeyValue "hasOppositeYaw" false
+			fs.writeKeyValue "hasOppositeYaw" oposYaw
 			fs.writeComma()
-			fs.writeKeyValue "suggestPitch" true
+			fs.writeKeyValue "suggestPitch" suggPit
 			fs.writeComma()
-			fs.writeKeyValue "forceDistance" false
+			fs.writeKeyValue "forceDistance" forcDis
 			fs.writeComma()
 			local distanceToCam = distance obj.pos obj.parent.Target[3].pos
 			fs.writeKeyValue "distanceToCamera" distanceToCam
 			fs.writeComma()
-			fs.writeKeyValue "changeCenteringCamera" true
+			fs.writeKeyValue "changeCenteringCamera" centCam
 			fs.writeComma()
-			fs.writeKeyValue "forcePositionOnEnter" true
+			fs.writeKeyValue "forcePositionOnEnter" fPosEnt
 			fs.writeComma()
-			fs.writeKeyValue "centeringCameraSpeed" "18 9"
+			fs.writeKeyValue "centeringCameraSpeed" cCamSpd
 		fs.endObj()
 	),
 

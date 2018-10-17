@@ -756,3 +756,10 @@ void TCompPlayerModel::changeConcurrentState(std::string state) {
 void TCompPlayerModel::setDummyState(std::string animation, bool isLoop, float duration, std::string exitAnimation) {
 	dynamic_cast<DummyActionState*>(stateManager->getState(Dummy))->setDummyState(animation, isLoop, duration, exitAnimation);
 }
+
+void TCompPlayerModel::teleport(VEC3 targetPos) {
+	float y, p, r;
+	getTransform()->getYawPitchRoll(&y, &p, &r);
+	setRespawnPosition(targetPos, y);
+	getStateManager()->changeState(Teleport);
+}

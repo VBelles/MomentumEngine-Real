@@ -72,7 +72,8 @@ void ScriptingPlayer::enablePlayerOutline() {
 }
 
 void ScriptingPlayer::teleportPlayer(float x, float y, float z) {
-	getCollider()->controller->setFootPosition(physx::PxExtendedVec3(x, y, z));
+	//getCollider()->controller->setFootPosition(physx::PxExtendedVec3(x, y, z));
+	getPlayerModel()->teleport(VEC3(x, y, z));
 }
 
 void ScriptingPlayer::movePlayer(float dX, float dY, float dZ) {

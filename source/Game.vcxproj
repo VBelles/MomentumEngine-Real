@@ -102,6 +102,7 @@
     <ClCompile Include="components\comp_appear.cpp" />
     <ClCompile Include="components\comp_breakable.cpp" />
     <ClCompile Include="components\comp_camera.cpp" />
+    <ClCompile Include="components\comp_change_song.cpp" />
     <ClCompile Include="components\comp_collectable.cpp" />
     <ClCompile Include="components\comp_collider.cpp" />
     <ClCompile Include="components\comp_culling.cpp" />
@@ -215,10 +216,12 @@
     <ClCompile Include="components\platforms\comp_platforms_director.cpp" />
     <ClCompile Include="components\player\states\base_states\AirDodgeActionState.cpp" />
     <ClCompile Include="components\player\states\base_states\LandingHurtActionState.cpp" />
+    <ClCompile Include="components\player\states\base_states\moving_around\TeleportActionState.cpp" />
     <ClCompile Include="components\player\states\DummyActionState.cpp" />
     <ClCompile Include="components\postfx\comp_render_fxaa.cpp" />
     <ClCompile Include="components\postfx\comp_render_hsv.cpp" />
     <ClCompile Include="components\postfx\comp_render_vignette.cpp" />
+    <ClCompile Include="components\postfx\comp_screen_transition.cpp" />
     <ClCompile Include="gui\controllers\dialog_controller.cpp" />
     <ClCompile Include="gui\controllers\gui_map_menu_controller.cpp" />
     <ClCompile Include="gui\controllers\gui_options_menu_controller.cpp" />
@@ -472,6 +475,7 @@
     <ClInclude Include="components\comp_base.h" />
     <ClInclude Include="components\comp_breakable.h" />
     <ClInclude Include="components\comp_camera.h" />
+    <ClInclude Include="components\comp_change_song.h" />
     <ClInclude Include="components\comp_collectable.h" />
     <ClInclude Include="components\comp_collider.h" />
     <ClInclude Include="components\comp_culling.h" />
@@ -585,10 +589,12 @@
     <ClInclude Include="components\platforms\comp_platforms_director.h" />
     <ClInclude Include="components\player\states\base_states\AirDodgeActionState.h" />
     <ClInclude Include="components\player\states\base_states\LandingHurtActionState.h" />
+    <ClInclude Include="components\player\states\base_states\moving_around\TeleportActionState.h" />
     <ClInclude Include="components\player\states\DummyActionState.h" />
     <ClInclude Include="components\postfx\comp_render_fxaa.h" />
     <ClInclude Include="components\postfx\comp_render_hsv.h" />
     <ClInclude Include="components\postfx\comp_render_vignette.h" />
+    <ClInclude Include="components\postfx\comp_screen_transition.h" />
     <ClInclude Include="gui\controllers\dialog_controller.h" />
     <ClInclude Include="gui\controllers\gui_map_menu_controller.h" />
     <ClInclude Include="gui\controllers\gui_options_menu_controller.h" />

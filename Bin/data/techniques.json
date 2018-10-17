@@ -316,6 +316,15 @@
     "z": "disable_all"
   },
 
+  "screen_transition": {
+    "vs_file": "data/shaders/screen_transition.fx",
+    "vertex_type": "PosClr",
+    "category" : "fx",
+    "z": "disable_all",
+    "blend" : "combinative",
+    "rs_config" : "cull_none"
+  },
+
   "particles" : { 
     "vs_file": "data/shaders/particles.fx", 
     "vs_entry_point": "VS_Particles", 

@@ -533,8 +533,8 @@
       "name": "nes_platform_civilization_col_051_spikes",
       "transform":
       {
-        "pos": "153.84 112.343 -150.502",
-        "rotation": "0.0 0.0 0.0 -1.0"
+        "pos": "153.84 111.779 -150.603",
+        "rotation": "0.0 -0.0436194 0.0 -0.999048"
       },
       "hierarchy":
       {
