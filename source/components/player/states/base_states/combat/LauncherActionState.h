@@ -11,7 +11,8 @@ protected:
 	float stunTime = 2.2f;
 	float powerToGet = 2000.f;
 
-	CTimer movementTimer;
+	CTimer2 movementTimer;
+	bool soundLaunched = false;
 
 	std::string animation;
 	std::string constructorHitbox;
