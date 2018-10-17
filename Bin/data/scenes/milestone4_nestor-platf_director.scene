@@ -8,7 +8,29 @@
         "slots":
         [
           {
-            "wait_time": 2.0,
+            "wait_time": 0.7,
+            "platforms":
+            [
+              "nes_platform_civilization_050",
+              "nes_platform_civilization_049",
+              "nes_platform_civilization_048",
+              "nes_platform_civilization_044",
+              "nes_platform_civilization_043"
+            ]
+          },
+          {
+            "wait_time": 1.0,
+            "platforms":
+            [
+              "nes_platform_civilization_050",
+              "nes_platform_civilization_049",
+              "nes_platform_civilization_048",
+              "nes_platform_civilization_044",
+              "nes_platform_civilization_043"
+            ]
+          },
+          {
+            "wait_time": 0.7,
             "platforms":
             [
               "nes_platform_civilization_047",
@@ -20,18 +42,7 @@
             ]
           },
           {
-            "wait_time": 7.0,
-            "platforms":
-            [
-              "nes_platform_civilization_050",
-              "nes_platform_civilization_049",
-              "nes_platform_civilization_048",
-              "nes_platform_civilization_044",
-              "nes_platform_civilization_043"
-            ]
-          },
-          {
-            "wait_time": 2.0,
+            "wait_time": 1.0,
             "platforms":
             [
               "nes_platform_civilization_047",
@@ -40,17 +51,6 @@
               "nes_platform_civilization_042",
               "nes_platform_civilization_041",
               "nes_platform_civilization_040"
-            ]
-          },
-          {
-            "wait_time": 5.0,
-            "platforms":
-            [
-              "nes_platform_civilization_050",
-              "nes_platform_civilization_049",
-              "nes_platform_civilization_048",
-              "nes_platform_civilization_044",
-              "nes_platform_civilization_043"
             ]
           }
         ]
@@ -66,7 +66,25 @@
         "slots":
         [
           {
-            "wait_time": 2.0,
+            "wait_time": 0.7,
+            "platforms":
+            [
+              "nes_platform_civilization_061",
+              "nes_platform_civilization_059",
+              "nes_platform_civilization_057"
+            ]
+          },
+          {
+            "wait_time": 1.0,
+            "platforms":
+            [
+              "nes_platform_civilization_061",
+              "nes_platform_civilization_059",
+              "nes_platform_civilization_057"
+            ]
+          },
+          {
+            "wait_time": 0.7,
             "platforms":
             [
               "nes_platform_civilization_060",
@@ -74,12 +92,11 @@
             ]
           },
           {
-            "wait_time": 5.0,
+            "wait_time": 1.0,
             "platforms":
             [
-              "nes_platform_civilization_061",
-              "nes_platform_civilization_059",
-              "nes_platform_civilization_057"
+              "nes_platform_civilization_060",
+              "nes_platform_civilization_058"
             ]
           }
         ]
@@ -95,17 +112,34 @@
         "slots":
         [
           {
-            "wait_time": 3.0,
+            "wait_time": 0.7,
             "platforms":
             [
-              "nes_platform_civilization_054",
-              "nes_platform_civilization_053",
+              "nes_platform_civilization_066",
+              "nes_platform_civilization_065",
               "nes_platform_civilization_052",
               "nes_platform_civilization_051"
             ]
           },
           {
-            "wait_time": 3.0,
+            "wait_time": 1.0,
+            "platforms":
+            [
+              "nes_platform_civilization_066",
+              "nes_platform_civilization_065",
+              "nes_platform_civilization_052"
+            ]
+          },
+          {
+            "wait_time": 0.7,
+            "platforms":
+            [
+              "nes_platform_civilization_056",
+              "nes_platform_civilization_055"
+            ]
+          },
+          {
+            "wait_time": 1.0,
             "platforms":
             [
               "nes_platform_civilization_056",
@@ -125,28 +159,28 @@
         "slots":
         [
           {
-            "wait_time": 3.0,
+            "wait_time": 0.7,
             "platforms":
             [
               "nes_platform_civilization_062"
             ]
           },
           {
-            "wait_time": 7.0,
+            "wait_time": 0.9,
+            "platforms":
+            [
+              "nes_platform_civilization_062"
+            ]
+          },
+          {
+            "wait_time": 0.7,
             "platforms":
             [
               "nes_platform_civilization_063"
             ]
           },
           {
-            "wait_time": 3.0,
-            "platforms":
-            [
-              "nes_platform_civilization_062"
-            ]
-          },
-          {
-            "wait_time": 7.0,
+            "wait_time": 0.9,
             "platforms":
             [
               "nes_platform_civilization_063"

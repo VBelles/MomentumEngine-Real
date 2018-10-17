@@ -2,28 +2,6 @@
   {
     "entity":
     {
-      "name": "root_025",
-      "transform":
-      {
-        "pos": "-31.5821 -7.08282 -164.683",
-        "rotation": "0.0 0.0 0.0 -1.0"
-      },
-      "render":
-      [
-        {
-          "mesh": "data/meshes/root_025.mesh",
-          "materials":
-          [
-            "data/materials/m_roots.material"
-          ],
-          "enabled": true
-        }
-      ]
-    }
-  },
-  {
-    "entity":
-    {
       "name": "root_gran_028_bombilla_collider",
       "transform":
       {
@@ -2190,6 +2168,28 @@
       [
         {
           "mesh": "data/meshes/root_033.mesh",
+          "materials":
+          [
+            "data/materials/m_roots.material"
+          ],
+          "enabled": true
+        }
+      ]
+    }
+  },
+  {
+    "entity":
+    {
+      "name": "root_025",
+      "transform":
+      {
+        "pos": "-38.3446 -8.67535 -151.777",
+        "rotation": "0.0 0.382683 0.0 -0.92388"
+      },
+      "render":
+      [
+        {
+          "mesh": "data/meshes/root_025.mesh",
           "materials":
           [
             "data/materials/m_roots.material"
