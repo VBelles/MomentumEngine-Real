@@ -135,6 +135,14 @@ void TCompSound::stop() {
 	}
 }
 
+bool TCompSound::isPlaying(std::string event) {
+	auto it = events.find(event);
+	if (it == events.end())
+		return false;
+	auto& sound = it->second;
+	return !sound.eventInstances.empty();
+}
+
 
 
 

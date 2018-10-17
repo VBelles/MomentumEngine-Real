@@ -397,11 +397,13 @@
 				"feet": [
 					{
 						"bone": "Bip001 R Foot",
-						"event": "event:/PROTA/walk_right"
+						"walk_event": "step_walk_right",
+						"run_event": "step_run_right"
 					},
 					{
 						"bone": "Bip001 L Foot",
-						"event": "event:/PROTA/walk_left"
+						"walk_event": "step_walk_left",
+						"run_event": "step_run_left"
 					}
 				]
 			},
@@ -501,7 +503,8 @@
 					},
 					{
 						"id": "float",
-						"path": "event:/PROTA/flotar"
+						"path": "event:/PROTA/flotar",
+						"stop_fade_out": true
 					},
 					{
 						"id": "lose_hp",
@@ -516,11 +519,11 @@
 						"path": "event:/PROTA/recibe_disparo"
 					},
 					{
-						"id": "step_ground_right",
+						"id": "step_run_right",
 						"path": "event:/PROTA/steps_ground_right"
 					},
 					{
-						"id": "step_ground_left",
+						"id": "step_run_left",
 						"path": "event:/PROTA/steps_ground_left"
 					},
 					{

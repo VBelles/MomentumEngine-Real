@@ -16,10 +16,12 @@ void TCompWalkSound::registerMsgs() {
 void TCompWalkSound::load(const json& j, TEntityParseContext& ctx) {
 	for (auto& jFeetConfig : j["feet"]) {
 		std::string boneName = jFeetConfig.value("bone", "");
-		assert(boneName != "");
-		std::string eventName = jFeetConfig.value("event", "");
-		assert(eventName != "");
-		feetConfig.push_back(FootConfig{ boneName, eventName });
+		assert(!boneName.empty());
+		std::string walkEventId = jFeetConfig.value("walk_event", "");
+		assert(!walkEventId.empty());
+		std::string runEventId = jFeetConfig.value("run_event", "");
+		assert(!runEventId.empty());
+		feetConfig.push_back(FootConfig{ boneName, walkEventId, runEventId });
 	}
 }
 
@@ -27,13 +29,15 @@ void TCompWalkSound::onGroupCreated(const TMsgEntitiesGroupCreated& msg) {
 	skeletonHandle = get<TCompSkeleton>();
 	transformHandle = get<TCompTransform>();
 	playerModelHandle = get<TCompPlayerModel>();
+	soundHandle = get<TCompSound>();
 	assert(skeletonHandle.isValid());
 	for (auto& footConfig : feetConfig) {
 		int boneId = getSkeleton()->model->getCoreModel()->getCoreSkeleton()->getCoreBoneId(footConfig.boneName);
 		auto bone = getSkeleton()->model->getSkeleton()->getBone(boneId);
 		FootInfo info;
 		info.boneId = boneId;
-		info.eventName = footConfig.eventName;
+		info.walkEventId = footConfig.walkEventId;
+		info.runEventId = footConfig.runEventId;
 		feetInfo.push_back(info);
 	}
 }
@@ -60,9 +64,15 @@ void TCompWalkSound::update(float delta) {
 			footInfo.canEmitSound = false;
 			emitSound(footInfo);
 		}
-
 		footInfo.prevPos = pos;
+	}
 
+	IActionState* state = getPlayerModel()->getStateManager()->getState();
+	if (getPlayerModel()->getPowerGauge()->getPowerLevel() == 3) {
+		if (!getSound()->isPlaying("float")) getSound()->play("float");
+	}
+	else {
+		getSound()->stop("float");
 	}
 }
 
@@ -71,10 +81,10 @@ void TCompWalkSound::emitSound(const FootInfo& footInfo) {
 	IActionState* state = getPlayerModel()->getStateManager()->getState();
 	if ((state->state == State::Run && getPlayerModel()->getPowerGauge()->getPowerLevel() != 3)
 		&& state->getMovementInput().Length() > 0) {
-		EngineSound.emitEvent(footInfo.eventName.c_str());
+		getSound()->play(footInfo.runEventId);
 	}
 	else if (state->state == State::Walk) {
-		EngineSound.emitEvent(footInfo.eventName.c_str());
+		getSound()->play(footInfo.walkEventId);
 	}
 }
 
@@ -89,5 +99,11 @@ TCompSkeleton* TCompWalkSound::getSkeleton() {
 TCompPlayerModel* TCompWalkSound::getPlayerModel() {
 	return playerModelHandle;
 }
+
+TCompSound* TCompWalkSound::getSound() {
+	return soundHandle;
+}
+
+
 
 

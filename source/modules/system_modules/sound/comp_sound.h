@@ -32,5 +32,6 @@ public:
 	void play(std::string sound);
 	void stop(std::string sound);
 	void stop();
+	bool isPlaying(std::string event);
 
 };
