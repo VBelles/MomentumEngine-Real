@@ -67,6 +67,7 @@ void TCompSound::onEntityCreated(const TMsgEntityCreated&) {
 
 
 void TCompSound::onDestroyed(const TMsgEntityDestroyed&) {
+	//dbg("Component destroyed\n");
 	stop();
 }
 

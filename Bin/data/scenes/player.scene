@@ -439,7 +439,7 @@
 					},
 					{
 						"id": "jump_fly",
-						"path": "event:/PROTA/salto_corto_vuelo"
+						"path": ""
 					},
 					{
 						"id": "jump_long",
@@ -447,7 +447,7 @@
 					},
 					{
 						"id": "jump_long_fly",
-						"path": "event:/PROTA/salto_largo_vuelo"
+						"path": ""
 					},
 					{
 						"id": "dodge",
@@ -503,8 +503,7 @@
 					},
 					{
 						"id": "float",
-						"path": "event:/PROTA/flotar",
-						"stop_fade_out": true
+						"path": "event:/PROTA/flotar"
 					},
 					{
 						"id": "lose_hp",

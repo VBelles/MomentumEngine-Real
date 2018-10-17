@@ -85,6 +85,7 @@ void TCompWalkSound::emitSound(const FootInfo& footInfo) {
 	}
 	else if (state->state == State::Walk) {
 		getSound()->play(footInfo.walkEventId);
+		//dbg("walk: %s\n", footInfo.walkEventId.c_str());
 	}
 }
 

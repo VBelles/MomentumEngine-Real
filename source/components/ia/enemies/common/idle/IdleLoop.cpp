@@ -43,5 +43,5 @@ void IdleLoop::debugInMenu() {
 }
 
 void IdleLoop::onExit() {
-	enemy->getSound()->stop("idle");
+	
 }

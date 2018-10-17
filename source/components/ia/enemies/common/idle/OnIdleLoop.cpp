@@ -24,7 +24,6 @@ int OnIdleLoop::execAction(float delta) {
 
 	enemy->getSkeleton()->blendCycle(animation, 0.1f, 0.1f);
 	enemy->animationTimer.reset();
-	enemy->getSound()->play("idle");
 	return Leave;
 }
 

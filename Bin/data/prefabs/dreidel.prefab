@@ -177,7 +177,7 @@
           },
           {
             "id": "stun",
-            "path": "event:/PROTA/golpes_hit"
+            "path": ""
           },
           {
             "id": "block",
@@ -229,7 +229,8 @@
           },
           {
             "id": "idle",
-            "path": "event:/ENEMIGO BOLA/bola_stroll"
+            "path": "event:/ENEMIGO BOLA/bola_stroll",
+            "play": true
           }
         ]
       },
