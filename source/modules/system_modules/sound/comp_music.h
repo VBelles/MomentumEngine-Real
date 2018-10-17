@@ -36,10 +36,18 @@ private:
 	FMOD::Studio::EventInstance* momentumThemeInstance = nullptr;
 	FMOD::Studio::EventInstance* introThemeInstance = nullptr;
 
+	FMOD::Studio::EventDescription* currentSongDescriptor = nullptr;
+	FMOD::Studio::EventDescription* momentumThemeDescriptor = nullptr;
+	FMOD::Studio::EventDescription* introThemeDescriptor = nullptr;
+
 	std::string mainTheme = "event:/momentum_theme";
 	std::string introTheme = "event:/momentum_theme_placeholder";
 
+	CTimer2 fadeOutTimer;
 	bool isSongPlaying = false;
+	bool fadingOut = false;
+	float fadeOutTime = 1.f;
+	float fadingStartingVolume;
 
 	bool isGamePaused = false;
 	float pausedVolumeMultiplier = 0.5f;
@@ -106,6 +114,7 @@ public:
 	void update(float delta);
 
 	void play();
+	void fadeOut(float time);
 	void stop();
 
 	void setCombat(Combat combat);

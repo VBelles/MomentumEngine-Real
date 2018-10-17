@@ -31,7 +31,7 @@ void ScriptingSound::emitSoundEvent(std::string event) {
 
 void ScriptingSound::stopMusic(float time) {
 	//debería hacerse con un fadeout
-	getMusicPlayer()->stop();
+	getMusicPlayer()->fadeOut(time);
 }
 
 void ScriptingSound::startSong(std::string song) {

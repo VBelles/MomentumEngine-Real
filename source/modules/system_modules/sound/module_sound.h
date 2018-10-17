@@ -40,6 +40,9 @@ public:
 	FMOD::Studio::EventInstance* emitEvent(const std::string& sound, const FMOD_3D_ATTRIBUTES* attributes = nullptr);
 	FMOD::Studio::EventInstance* getEventInstance(const std::string& sound, const CTransform* transform);
 	FMOD::Studio::EventInstance* getEventInstance(const std::string& sound, const FMOD_3D_ATTRIBUTES* attributes = nullptr);
+	FMOD::Studio::EventDescription* getEventDescription(const std::string& sound);
+	FMOD::Studio::EventInstance* emitEventFromDescriptor(FMOD::Studio::EventDescription* descriptor, const CTransform* transform);
+	FMOD::Studio::EventInstance* emitEventFromDescriptor(FMOD::Studio::EventDescription* descriptor, FMOD_3D_ATTRIBUTES* attributes = nullptr);
 	FMOD::Studio::System* getSystem();
 	void stopEvent(FMOD::Studio::EventInstance * instance, bool fadeout = false);
 

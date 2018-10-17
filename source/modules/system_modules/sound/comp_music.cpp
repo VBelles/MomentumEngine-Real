@@ -41,16 +41,21 @@ TCompMusic::EventInfo TCompMusic::loadEventInfo(const json & j_event_info) {
 }
 
 void TCompMusic::onEntityCreated(const TMsgEntityCreated&) {
-	introThemeInstance = EngineSound.emitEvent(introTheme);
+	momentumThemeDescriptor = EngineSound.getEventDescription(mainTheme);
+	introThemeDescriptor = EngineSound.getEventDescription(introTheme);
+	currentSongDescriptor = momentumThemeDescriptor;
+	/*introThemeInstance = EngineSound.emitEvent(introTheme);
 	momentumThemeInstance = EngineSound.emitEvent(mainTheme);
-	currentSongInstance = momentumThemeInstance;
+	currentSongInstance = momentumThemeInstance;*/
+
 	milisecondsPerBeat = 60000 / tempo;//1 min = 60000 ms
 	milisecondsPerBar = milisecondsPerBeat * timeSignature;
 	for (int i = 0; i < LAST; i++) {
 		eventInfos[static_cast<EventType>(i)].timer.setTimeStamp(0);
 	}
-	stop();//si hago getEventInstance en vez de emitEvent las pistas se desincronizan
 	play();
+	//stop();//si hago getEventInstance en vez de emitEvent las pistas se desincronizan
+	//play();
 }
 
 
@@ -60,18 +65,40 @@ void TCompMusic::onDestroyed(const TMsgEntityDestroyed&) {
 
 
 void TCompMusic::play() {
-	currentSongInstance->start();
-	currentSongInstance->release();
+	if (currentSongDescriptor) {
+		currentSongInstance = EngineSound.emitEventFromDescriptor(currentSongDescriptor);
+	}
+	/*currentSongInstance->start();
+	currentSongInstance->release();*/
 	isSongPlaying = true;
 }
 
+void TCompMusic::fadeOut(float time) {
+	fadingOut = true;
+	currentSongInstance->getVolume(&fadingStartingVolume);
+	fadeOutTime = time;
+	fadeOutTimer.reset();
+}
+
 void TCompMusic::stop() {
-	momentumThemeInstance->stop(FMOD_STUDIO_STOP_ALLOWFADEOUT);
-	introThemeInstance->stop(FMOD_STUDIO_STOP_ALLOWFADEOUT);
+	if(currentSongInstance) currentSongInstance->stop(FMOD_STUDIO_STOP_ALLOWFADEOUT);
 	isSongPlaying = false;
+	fadingOut = false;
 }
 
 void TCompMusic::update(float delta) {
+	if (!currentSongInstance) return;
+
+	if (fadingOut) {
+		float volume = lerp(fadingStartingVolume, 0.f, clamp(fadeOutTimer.elapsed() / fadeOutTime, 0.f, 1.f));
+		if (volume <= 0) {
+			stop();
+		}
+		else {
+			currentSongInstance->setVolume(volume);
+		}
+	}
+
 	//controlar timers y ratios
 	for (int i = 0; i < LAST; i++) {
 		EventInfo &eventInfo = eventInfos[static_cast<EventType>(i)];
@@ -81,18 +108,19 @@ void TCompMusic::update(float delta) {
 				clamp(eventInfo.timer.elapsed() * 1000 / eventInfo.timeMiliseconds, 0.f, 1.f));
 
 		if ((!eventInfo.entersOnBeat && eventInfo.targetRatio == 1) || (!eventInfo.exitsOnBeat && eventInfo.targetRatio == 0)) {
-			momentumThemeInstance->setParameterValue(eventInfo.fmodVariable.c_str(), eventInfo.ratio);
+			currentSongInstance->setParameterValue(eventInfo.fmodVariable.c_str(), eventInfo.ratio);
 		}
 		else if (eventInfo.ratio == eventInfo.targetRatio) {
-			momentumThemeInstance->setParameterValue(eventInfo.fmodVariable.c_str(), eventInfo.ratio);
+			currentSongInstance->setParameterValue(eventInfo.fmodVariable.c_str(), eventInfo.ratio);
 		}
 	}
 }
 
 void TCompMusic::setCombat(Combat combat) {
+	if (!currentSongInstance) return;
 	if (combat == combatState) return;
 	int timeMiliseconds;
-	momentumThemeInstance->getTimelinePosition(&timeMiliseconds);
+	currentSongInstance->getTimelinePosition(&timeMiliseconds);
 	eventInfos[COMBAT].timer.reset();
 	eventInfos[COMBAT].startingRatio = eventInfos[COMBAT].ratio;
 	switch (combat) {
@@ -112,9 +140,10 @@ void TCompMusic::setCombat(Combat combat) {
 }
 
 void TCompMusic::setLevel(Level level) {
+	if (!currentSongInstance) return;
 	if (level == levelState) return;
 	int timeMiliseconds;
-	momentumThemeInstance->getTimelinePosition(&timeMiliseconds);
+	currentSongInstance->getTimelinePosition(&timeMiliseconds);
 	eventInfos[LEVEL_SSJ2].timer.reset();
 	eventInfos[LEVEL_SSJ2].startingRatio = eventInfos[LEVEL_SSJ2].ratio;
 	eventInfos[LEVEL_SSJ3].timer.reset();
@@ -147,9 +176,10 @@ void TCompMusic::setLevel(Level level) {
 }
 
 void TCompMusic::setDayNight(DayNight dayNight) {
+	if (!currentSongInstance) return;
 	if (dayNight == dayNightState) return;
 	int timeMiliseconds;
-	momentumThemeInstance->getTimelinePosition(&timeMiliseconds);
+	currentSongInstance->getTimelinePosition(&timeMiliseconds);
 
 	eventInfos[CYCLE_NIGHT].timer.reset();
 	eventInfos[CYCLE_NIGHT].startingRatio = eventInfos[CYCLE_NIGHT].ratio;
@@ -195,10 +225,12 @@ void TCompMusic::setDayNight(DayNight dayNight) {
 }
 
 void TCompMusic::addLocation(Location location) {
+	if (!currentSongInstance) return;
+
 	if (locationState & location == location) return;
 
 	int timeMiliseconds;
-	momentumThemeInstance->getTimelinePosition(&timeMiliseconds);
+	currentSongInstance->getTimelinePosition(&timeMiliseconds);
 
 	int fadeInTime = 2000;
 	switch (location) {
@@ -238,10 +270,11 @@ void TCompMusic::addLocation(Location location) {
 }
 
 void TCompMusic::removeLocation(Location location) {
+	if (!currentSongInstance) return;
 	if (locationState & location != location) return;
 
 	int timeMiliseconds;
-	momentumThemeInstance->getTimelinePosition(&timeMiliseconds);
+	currentSongInstance->getTimelinePosition(&timeMiliseconds);
 
 	int fadeOutTime = 6000;
 	switch (location) {
@@ -281,19 +314,20 @@ void TCompMusic::removeLocation(Location location) {
 }
 
 void TCompMusic::setPauseMenu(bool paused) {
+	if (!currentSongInstance) return;
 	if (paused != this->isGamePaused) {
 		//molaría también bajar el volumen un poco
 		float previousVolume;
-		momentumThemeInstance->getVolume(&previousVolume);
+		currentSongInstance->getVolume(&previousVolume);
 		if (paused) {
-			momentumThemeInstance->setVolume(previousVolume * pausedVolumeMultiplier);
+			currentSongInstance->setVolume(previousVolume * pausedVolumeMultiplier);
 		}
 		else {
-			momentumThemeInstance->setVolume(previousVolume / pausedVolumeMultiplier);
+			currentSongInstance->setVolume(previousVolume / pausedVolumeMultiplier);
 		}
 		//cambiar la ecualización (cutoff: 1.5kHz, ressonance: 5)
 		float activation = paused ? 1.f : 0.f;
-		momentumThemeInstance->setParameterValue("activate_lowpass", activation);
+		currentSongInstance->setParameterValue("activate_lowpass", activation);
 		this->isGamePaused = paused;
 	}
 }
@@ -301,9 +335,9 @@ void TCompMusic::setPauseMenu(bool paused) {
 void TCompMusic::setCurrentSong(Song song) {
 	switch (song) {
 	case MAIN:
-		if (currentSongInstance != momentumThemeInstance) {
+		if (currentSongDescriptor != momentumThemeDescriptor) {
 			stop();
-			currentSongInstance = momentumThemeInstance;
+			currentSongDescriptor = momentumThemeDescriptor;
 			play();
 		}
 		else if(!isSongPlaying){
@@ -311,9 +345,9 @@ void TCompMusic::setCurrentSong(Song song) {
 		}
 		break;
 	case INTRO:
-		if (currentSongInstance != introThemeInstance) {
+		if (currentSongDescriptor != introThemeDescriptor) {
 			stop();
-			currentSongInstance = introThemeInstance;
+			currentSongDescriptor = introThemeDescriptor;
 			play();
 		}
 		else if (!isSongPlaying) {

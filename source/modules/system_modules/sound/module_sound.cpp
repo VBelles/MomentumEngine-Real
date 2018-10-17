@@ -121,6 +121,31 @@ FMOD::Studio::EventInstance * CModuleSound::getEventInstance(const std::string &
 	return eventInstance;
 }
 
+FMOD::Studio::EventDescription * CModuleSound::getEventDescription(const std::string & sound) {
+	if (sound.empty()) return nullptr;
+	Studio::EventDescription* descriptor = nullptr;
+	res = system->getEvent(sound.c_str(), &descriptor);
+	if (!descriptor) {
+		dbg("Event %s not found\n", sound.c_str());
+		return nullptr;
+	}
+	return descriptor;
+}
+
+FMOD::Studio::EventInstance * CModuleSound::emitEventFromDescriptor(FMOD::Studio::EventDescription * descriptor, const CTransform * transform) {
+	FMOD_3D_ATTRIBUTES attributes = toFMODAttributes(*transform);
+	return emitEventFromDescriptor(descriptor, &attributes);
+}
+
+FMOD::Studio::EventInstance* CModuleSound::emitEventFromDescriptor(FMOD::Studio::EventDescription * descriptor, FMOD_3D_ATTRIBUTES* attributes) {
+	Studio::EventInstance* eventInstance = nullptr;
+	res = descriptor->createInstance(&eventInstance);
+	eventInstance->set3DAttributes(attributes);
+	eventInstance->start();
+	eventInstance->release();
+	return eventInstance;
+}
+
 FMOD::Studio::System* CModuleSound::getSystem() {
 	return system;
 }
