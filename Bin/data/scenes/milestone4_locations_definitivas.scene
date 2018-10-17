@@ -2,6 +2,37 @@
   {
     "entity":
     {
+      "name": "enter_main_theme_trigger",
+      "transform":
+      {
+        "pos": "-74.7836 -26.9424 126.99",
+        "rotation": "0.0 0.0871557 0.0 -0.996195"
+      },
+      "collider":
+      {
+        "mesh_src": "data/meshes/enter_main_theme_trigger.col_mesh",
+        "shape": "convex_mesh",
+        "type": "static",
+        "is_trigger": true,
+        "group":
+        [
+          "trigger"
+        ],
+        "mask":
+        [
+          "player"
+        ]
+      },
+      "change_song":
+      {
+        "song" : "main",
+        "fade_out_time" : 6
+      }
+    }
+  },
+  {
+    "entity":
+    {
       "name": "location_temple_exit_001",
       "transform":
       {

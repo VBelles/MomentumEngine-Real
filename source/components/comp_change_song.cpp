@@ -14,7 +14,7 @@ void TCompChangeSong::registerMsgs() {
 }
 
 void TCompChangeSong::load(const json & j, TEntityParseContext & ctx) {
-	std::string song = j.value("song", "");//si se queda sin canción es que quieres parar la que hay
+	song = j.value("song", "");//si se queda sin canción es que quieres parar la que hay
 	fadeOutTime = j.value("fade_out_time", fadeOutTime);
 }
 
