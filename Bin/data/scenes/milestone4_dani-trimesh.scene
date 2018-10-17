@@ -5323,40 +5323,6 @@
   {
     "entity":
     {
-      "name": "mushroom_head_03_collider015",
-      "transform":
-      {
-        "pos": "173.873 19.896 -148.814",
-        "rotation": "-0.532586 -0.231059 0.207986 -0.787214"
-      },
-      "collider":
-      {
-        "mesh_src": "data/meshes/mushroom_head_03_collider015.col_mesh",
-        "shape": "tri_mesh",
-        "type": "static"
-      }
-    }
-  },
-  {
-    "entity":
-    {
-      "name": "mushroom_body_05_collider012",
-      "transform":
-      {
-        "pos": "171.003 17.0281 -152.285",
-        "rotation": "-0.191042 -0.919285 -0.168814 0.299867"
-      },
-      "collider":
-      {
-        "mesh_src": "data/meshes/mushroom_body_05_collider012.col_mesh",
-        "shape": "tri_mesh",
-        "type": "static"
-      }
-    }
-  },
-  {
-    "entity":
-    {
       "name": "mushroom_head_05_collider012",
       "transform":
       {

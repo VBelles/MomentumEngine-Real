@@ -4870,28 +4870,7 @@
           "mesh": "data/meshes/mushroom_head_237.mesh",
           "materials":
           [
-            "data/materials/mushroom_head_06.material"
-          ],
-          "enabled": true
-        }
-      ]
-    }
-  },
-  {
-    "entity":
-    {
-      "name": "mushroom_body_211",
-      "transform":
-      {
-        "pos": "170.921 -1.1975 -114.501",
-        "rotation": "0.166366 0.620885 0.198267 -0.739942"
-      },
-      "render":
-      [
-        {
-          "mesh": "data/meshes/mushroom_body_211.mesh",
-          "materials":
-          [
+            "data/materials/mushroom_head_06.material",
             "data/materials/mushroom_body_06.material"
           ],
           "enabled": true
@@ -4914,51 +4893,8 @@
           "mesh": "data/meshes/mushroom_head_236.mesh",
           "materials":
           [
-            "data/materials/mushroom_head_05.material"
-          ],
-          "enabled": true
-        }
-      ]
-    }
-  },
-  {
-    "entity":
-    {
-      "name": "mushroom_body_210",
-      "transform":
-      {
-        "pos": "169.745 5.85384 -110.937",
-        "rotation": "0.0 -0.34202 0.0 -0.939692"
-      },
-      "render":
-      [
-        {
-          "mesh": "data/meshes/mushroom_body_210.mesh",
-          "materials":
-          [
+            "data/materials/mushroom_head_05.material",
             "data/materials/mushroom_body_05.material"
-          ],
-          "enabled": true
-        }
-      ]
-    }
-  },
-  {
-    "entity":
-    {
-      "name": "mushroom_head_235",
-      "transform":
-      {
-        "pos": "179.62 25.9624 -117.623",
-        "rotation": "0.120402 0.643725 0.317219 -0.685926"
-      },
-      "render":
-      [
-        {
-          "mesh": "data/meshes/mushroom_head_235.mesh",
-          "materials":
-          [
-            "data/materials/mushroom_head_05.material"
           ],
           "enabled": true
         }
@@ -4980,7 +4916,8 @@
           "mesh": "data/meshes/mushroom_body_209.mesh",
           "materials":
           [
-            "data/materials/mushroom_body_05.material"
+            "data/materials/mushroom_body_05.material",
+            "data/materials/mushroom_head_05.material"
           ],
           "enabled": true
         }
@@ -5002,28 +4939,7 @@
           "mesh": "data/meshes/mushroom_head_234.mesh",
           "materials":
           [
-            "data/materials/mushroom_head_06.material"
-          ],
-          "enabled": true
-        }
-      ]
-    }
-  },
-  {
-    "entity":
-    {
-      "name": "mushroom_body_208",
-      "transform":
-      {
-        "pos": "107.699 3.3768 53.5094",
-        "rotation": "0.29046 0.24684 -0.0778284 -0.92122"
-      },
-      "render":
-      [
-        {
-          "mesh": "data/meshes/mushroom_body_208.mesh",
-          "materials":
-          [
+            "data/materials/mushroom_head_06.material",
             "data/materials/mushroom_body_06.material"
           ],
           "enabled": true
@@ -5046,7 +4962,8 @@
           "mesh": "data/meshes/mushroom_head_233.mesh",
           "materials":
           [
-            "data/materials/mushroom_head_03.material"
+            "data/materials/mushroom_head_03.material",
+            "data/materials/mushroom_body_02.material"
           ],
           "enabled": true
         }
@@ -5068,51 +4985,8 @@
           "mesh": "data/meshes/mushroom_head_232.mesh",
           "materials":
           [
-            "data/materials/mushroom_head_04.material"
-          ],
-          "enabled": true
-        }
-      ]
-    }
-  },
-  {
-    "entity":
-    {
-      "name": "mushroom_body_207",
-      "transform":
-      {
-        "pos": "146.583 8.82884 19.7917",
-        "rotation": "-0.0530571 0.606445 0.0691453 -0.790334"
-      },
-      "render":
-      [
-        {
-          "mesh": "data/meshes/mushroom_body_207.mesh",
-          "materials":
-          [
+            "data/materials/mushroom_head_04.material",
             "data/materials/mushroom_body_04.material"
-          ],
-          "enabled": true
-        }
-      ]
-    }
-  },
-  {
-    "entity":
-    {
-      "name": "mushroom_body_206",
-      "transform":
-      {
-        "pos": "146.031 7.8038 19.1211",
-        "rotation": "-0.0530571 0.606445 0.0691453 -0.790334"
-      },
-      "render":
-      [
-        {
-          "mesh": "data/meshes/mushroom_body_206.mesh",
-          "materials":
-          [
-            "data/materials/mushroom_body_02.material"
           ],
           "enabled": true
         }
@@ -5134,7 +5008,8 @@
           "mesh": "data/meshes/mushroom_head_231.mesh",
           "materials":
           [
-            "data/materials/mushroom_head_03.material"
+            "data/materials/mushroom_head_03.material",
+            "data/materials/mushroom_body_02.material"
           ],
           "enabled": true
         }
@@ -5156,7 +5031,8 @@
           "mesh": "data/meshes/mushroom_head_230.mesh",
           "materials":
           [
-            "data/materials/mushroom_head_04.material"
+            "data/materials/mushroom_head_04.material",
+            "data/materials/mushroom_body_04.material"
           ],
           "enabled": true
         }
@@ -5178,73 +5054,8 @@
           "mesh": "data/meshes/mushroom_head_229.mesh",
           "materials":
           [
-            "data/materials/mushroom_head_03.material"
-          ],
-          "enabled": true
-        }
-      ]
-    }
-  },
-  {
-    "entity":
-    {
-      "name": "mushroom_body_205",
-      "transform":
-      {
-        "pos": "123.472 13.404 24.5628",
-        "rotation": "0.0 0.0 0.0 -1.0"
-      },
-      "render":
-      [
-        {
-          "mesh": "data/meshes/mushroom_body_205.mesh",
-          "materials":
-          [
-            "data/materials/mushroom_body_04.material"
-          ],
-          "enabled": true
-        }
-      ]
-    }
-  },
-  {
-    "entity":
-    {
-      "name": "mushroom_body_204",
-      "transform":
-      {
-        "pos": "123.37 12.5149 25.1915",
-        "rotation": "0.0 0.0 0.0 -1.0"
-      },
-      "render":
-      [
-        {
-          "mesh": "data/meshes/mushroom_body_204.mesh",
-          "materials":
-          [
+            "data/materials/mushroom_head_03.material",
             "data/materials/mushroom_body_03.material"
-          ],
-          "enabled": true
-        }
-      ]
-    }
-  },
-  {
-    "entity":
-    {
-      "name": "mushroom_body_203",
-      "transform":
-      {
-        "pos": "122.998 12.5529 23.9976",
-        "rotation": "0.0 0.0 0.0 -1.0"
-      },
-      "render":
-      [
-        {
-          "mesh": "data/meshes/mushroom_body_203.mesh",
-          "materials":
-          [
-            "data/materials/mushroom_body_02.material"
           ],
           "enabled": true
         }
@@ -5266,7 +5077,8 @@
           "mesh": "data/meshes/mushroom_head_228.mesh",
           "materials":
           [
-            "data/materials/mushroom_head_06.material"
+            "data/materials/mushroom_head_06.material",
+            "data/materials/mushroom_body_06.material"
           ],
           "enabled": true
         }
@@ -5288,50 +5100,7 @@
           "mesh": "data/meshes/mushroom_head_227.mesh",
           "materials":
           [
-            "data/materials/mushroom_head_05.material"
-          ],
-          "enabled": true
-        }
-      ]
-    }
-  },
-  {
-    "entity":
-    {
-      "name": "mushroom_body_202",
-      "transform":
-      {
-        "pos": "113.331 2.18118 40.3015",
-        "rotation": "0.130526 -0.256605 0.0 -0.957662"
-      },
-      "render":
-      [
-        {
-          "mesh": "data/meshes/mushroom_body_202.mesh",
-          "materials":
-          [
-            "data/materials/mushroom_body_06.material"
-          ],
-          "enabled": true
-        }
-      ]
-    }
-  },
-  {
-    "entity":
-    {
-      "name": "mushroom_body_201",
-      "transform":
-      {
-        "pos": "113.887 2.36004 40.687",
-        "rotation": "0.130526 -0.256605 0.0 -0.957662"
-      },
-      "render":
-      [
-        {
-          "mesh": "data/meshes/mushroom_body_201.mesh",
-          "materials":
-          [
+            "data/materials/mushroom_head_05.material",
             "data/materials/mushroom_body_05.material"
           ],
           "enabled": true
@@ -5354,28 +5123,7 @@
           "mesh": "data/meshes/mushroom_head_226.mesh",
           "materials":
           [
-            "data/materials/mushroom_head_00.material"
-          ],
-          "enabled": true
-        }
-      ]
-    }
-  },
-  {
-    "entity":
-    {
-      "name": "mushroom_body_200",
-      "transform":
-      {
-        "pos": "109.686 4.47657 52.8026",
-        "rotation": "0.0040816 0.0360828 -0.214434 -0.976063"
-      },
-      "render":
-      [
-        {
-          "mesh": "data/meshes/mushroom_body_200.mesh",
-          "materials":
-          [
+            "data/materials/mushroom_head_00.material",
             "data/materials/mushroom_body_05.material"
           ],
           "enabled": true
@@ -5398,28 +5146,7 @@
           "mesh": "data/meshes/mushroom_head_225.mesh",
           "materials":
           [
-            "data/materials/mushroom_head_00.material"
-          ],
-          "enabled": true
-        }
-      ]
-    }
-  },
-  {
-    "entity":
-    {
-      "name": "mushroom_body_199",
-      "transform":
-      {
-        "pos": "136.606 22.0994 -73.6728",
-        "rotation": "0.0 0.737277 0.0 -0.67559"
-      },
-      "render":
-      [
-        {
-          "mesh": "data/meshes/mushroom_body_199.mesh",
-          "materials":
-          [
+            "data/materials/mushroom_head_00.material",
             "data/materials/mushroom_body_00.material"
           ],
           "enabled": true
@@ -5442,28 +5169,7 @@
           "mesh": "data/meshes/mushroom_head_224.mesh",
           "materials":
           [
-            "data/materials/mushroom_head_00.material"
-          ],
-          "enabled": true
-        }
-      ]
-    }
-  },
-  {
-    "entity":
-    {
-      "name": "mushroom_body_198",
-      "transform":
-      {
-        "pos": "115.754 6.66218 -73.6695",
-        "rotation": "0.0 -0.999048 0.0 -0.0436193"
-      },
-      "render":
-      [
-        {
-          "mesh": "data/meshes/mushroom_body_198.mesh",
-          "materials":
-          [
+            "data/materials/mushroom_head_00.material",
             "data/materials/mushroom_body_00.material"
           ],
           "enabled": true
@@ -5486,28 +5192,7 @@
           "mesh": "data/meshes/mushroom_head_223.mesh",
           "materials":
           [
-            "data/materials/mushroom_head_00.material"
-          ],
-          "enabled": true
-        }
-      ]
-    }
-  },
-  {
-    "entity":
-    {
-      "name": "mushroom_body_197",
-      "transform":
-      {
-        "pos": "123.134 11.8493 0.650189",
-        "rotation": "0.0 -0.999048 0.0 -0.0436193"
-      },
-      "render":
-      [
-        {
-          "mesh": "data/meshes/mushroom_body_197.mesh",
-          "materials":
-          [
+            "data/materials/mushroom_head_00.material",
             "data/materials/mushroom_body_00.material"
           ],
           "enabled": true
@@ -5530,28 +5215,7 @@
           "mesh": "data/meshes/mushroom_head_222.mesh",
           "materials":
           [
-            "data/materials/mushroom_head_06.material"
-          ],
-          "enabled": true
-        }
-      ]
-    }
-  },
-  {
-    "entity":
-    {
-      "name": "mushroom_body_196",
-      "transform":
-      {
-        "pos": "263.616 -22.2057 -13.6241",
-        "rotation": "0.166366 0.620885 0.198267 -0.739942"
-      },
-      "render":
-      [
-        {
-          "mesh": "data/meshes/mushroom_body_196.mesh",
-          "materials":
-          [
+            "data/materials/mushroom_head_06.material",
             "data/materials/mushroom_body_06.material"
           ],
           "enabled": true
@@ -5574,28 +5238,7 @@
           "mesh": "data/meshes/mushroom_head_221.mesh",
           "materials":
           [
-            "data/materials/mushroom_head_06.material"
-          ],
-          "enabled": true
-        }
-      ]
-    }
-  },
-  {
-    "entity":
-    {
-      "name": "mushroom_body_195",
-      "transform":
-      {
-        "pos": "161.257 4.40519 28.025",
-        "rotation": "0.0 0.642788 0.0 -0.766044"
-      },
-      "render":
-      [
-        {
-          "mesh": "data/meshes/mushroom_body_195.mesh",
-          "materials":
-          [
+            "data/materials/mushroom_head_06.material",
             "data/materials/mushroom_body_06.material"
           ],
           "enabled": true
@@ -5618,28 +5261,7 @@
           "mesh": "data/meshes/mushroom_head_220.mesh",
           "materials":
           [
-            "data/materials/mushroom_head_06.material"
-          ],
-          "enabled": true
-        }
-      ]
-    }
-  },
-  {
-    "entity":
-    {
-      "name": "mushroom_body_194",
-      "transform":
-      {
-        "pos": "100.071 2.69866 8.83635",
-        "rotation": "0.0 0.642788 0.0 -0.766044"
-      },
-      "render":
-      [
-        {
-          "mesh": "data/meshes/mushroom_body_194.mesh",
-          "materials":
-          [
+            "data/materials/mushroom_head_06.material",
             "data/materials/mushroom_body_06.material"
           ],
           "enabled": true
@@ -5662,28 +5284,7 @@
           "mesh": "data/meshes/mushroom_head_219.mesh",
           "materials":
           [
-            "data/materials/mushroom_head_06.material"
-          ],
-          "enabled": true
-        }
-      ]
-    }
-  },
-  {
-    "entity":
-    {
-      "name": "mushroom_body_193",
-      "transform":
-      {
-        "pos": "116.528 4.64307 51.9847",
-        "rotation": "0.0 0.642788 0.0 -0.766044"
-      },
-      "render":
-      [
-        {
-          "mesh": "data/meshes/mushroom_body_193.mesh",
-          "materials":
-          [
+            "data/materials/mushroom_head_06.material",
             "data/materials/mushroom_body_06.material"
           ],
           "enabled": true
@@ -5706,28 +5307,7 @@
           "mesh": "data/meshes/mushroom_head_218.mesh",
           "materials":
           [
-            "data/materials/mushroom_head_06.material"
-          ],
-          "enabled": true
-        }
-      ]
-    }
-  },
-  {
-    "entity":
-    {
-      "name": "mushroom_body_192",
-      "transform":
-      {
-        "pos": "127.125 12.3458 7.08928",
-        "rotation": "0.0 0.642788 0.0 -0.766044"
-      },
-      "render":
-      [
-        {
-          "mesh": "data/meshes/mushroom_body_192.mesh",
-          "materials":
-          [
+            "data/materials/mushroom_head_06.material",
             "data/materials/mushroom_body_06.material"
           ],
           "enabled": true
@@ -5750,28 +5330,7 @@
           "mesh": "data/meshes/mushroom_head_217.mesh",
           "materials":
           [
-            "data/materials/mushroom_head_06.material"
-          ],
-          "enabled": true
-        }
-      ]
-    }
-  },
-  {
-    "entity":
-    {
-      "name": "mushroom_body_191",
-      "transform":
-      {
-        "pos": "102.789 9.46649 -28.5616",
-        "rotation": "0.0 0.642788 0.0 -0.766044"
-      },
-      "render":
-      [
-        {
-          "mesh": "data/meshes/mushroom_body_191.mesh",
-          "materials":
-          [
+            "data/materials/mushroom_head_06.material",
             "data/materials/mushroom_body_06.material"
           ],
           "enabled": true
@@ -5794,28 +5353,7 @@
           "mesh": "data/meshes/mushroom_head_216.mesh",
           "materials":
           [
-            "data/materials/mushroom_head_06.material"
-          ],
-          "enabled": true
-        }
-      ]
-    }
-  },
-  {
-    "entity":
-    {
-      "name": "mushroom_body_190",
-      "transform":
-      {
-        "pos": "119.38 7.31446 -70.8156",
-        "rotation": "0.0 0.642788 0.0 -0.766044"
-      },
-      "render":
-      [
-        {
-          "mesh": "data/meshes/mushroom_body_190.mesh",
-          "materials":
-          [
+            "data/materials/mushroom_head_06.material",
             "data/materials/mushroom_body_06.material"
           ],
           "enabled": true
@@ -5838,28 +5376,7 @@
           "mesh": "data/meshes/mushroom_head_215.mesh",
           "materials":
           [
-            "data/materials/mushroom_head_06.material"
-          ],
-          "enabled": true
-        }
-      ]
-    }
-  },
-  {
-    "entity":
-    {
-      "name": "mushroom_body_189",
-      "transform":
-      {
-        "pos": "132.538 24.9092 -103.024",
-        "rotation": "0.0 0.642788 0.0 -0.766044"
-      },
-      "render":
-      [
-        {
-          "mesh": "data/meshes/mushroom_body_189.mesh",
-          "materials":
-          [
+            "data/materials/mushroom_head_06.material",
             "data/materials/mushroom_body_06.material"
           ],
           "enabled": true
@@ -5882,7 +5399,8 @@
           "mesh": "data/meshes/mushroom_head_214.mesh",
           "materials":
           [
-            "data/materials/mushroom_head_05.material"
+            "data/materials/mushroom_head_05.material",
+            "data/materials/mushroom_body_05.material"
           ],
           "enabled": true
         }
@@ -5904,50 +5422,7 @@
           "mesh": "data/meshes/mushroom_head_213.mesh",
           "materials":
           [
-            "data/materials/mushroom_head_09.material"
-          ],
-          "enabled": true
-        }
-      ]
-    }
-  },
-  {
-    "entity":
-    {
-      "name": "mushroom_body_188",
-      "transform":
-      {
-        "pos": "136.939 26.6704 -100.865",
-        "rotation": "0.0 -0.939693 0.0 0.34202"
-      },
-      "render":
-      [
-        {
-          "mesh": "data/meshes/mushroom_body_188.mesh",
-          "materials":
-          [
-            "data/materials/mushroom_body_05.material"
-          ],
-          "enabled": true
-        }
-      ]
-    }
-  },
-  {
-    "entity":
-    {
-      "name": "mushroom_body_187",
-      "transform":
-      {
-        "pos": "133.057 22.019 -107.407",
-        "rotation": "0.0 0.819152 0.0 -0.573576"
-      },
-      "render":
-      [
-        {
-          "mesh": "data/meshes/mushroom_body_187.mesh",
-          "materials":
-          [
+            "data/materials/mushroom_head_09.material",
             "data/materials/mushroom_body_07.material"
           ],
           "enabled": true
@@ -5970,28 +5445,7 @@
           "mesh": "data/meshes/mushroom_head_212.mesh",
           "materials":
           [
-            "data/materials/mushroom_head_05.material"
-          ],
-          "enabled": true
-        }
-      ]
-    }
-  },
-  {
-    "entity":
-    {
-      "name": "mushroom_body_186",
-      "transform":
-      {
-        "pos": "121.262 7.95504 43.0773",
-        "rotation": "0.0 -0.999048 0.0 0.0436195"
-      },
-      "render":
-      [
-        {
-          "mesh": "data/meshes/mushroom_body_186.mesh",
-          "materials":
-          [
+            "data/materials/mushroom_head_05.material",
             "data/materials/mushroom_body_05.material"
           ],
           "enabled": true
@@ -6014,28 +5468,7 @@
           "mesh": "data/meshes/mushroom_head_211.mesh",
           "materials":
           [
-            "data/materials/mushroom_head_00.material"
-          ],
-          "enabled": true
-        }
-      ]
-    }
-  },
-  {
-    "entity":
-    {
-      "name": "mushroom_body_185",
-      "transform":
-      {
-        "pos": "160.347 3.81303 25.7019",
-        "rotation": "0.0 -0.67559 0.0 -0.737277"
-      },
-      "render":
-      [
-        {
-          "mesh": "data/meshes/mushroom_body_185.mesh",
-          "materials":
-          [
+            "data/materials/mushroom_head_00.material",
             "data/materials/mushroom_body_07.material"
           ],
           "enabled": true
@@ -6058,51 +5491,8 @@
           "mesh": "data/meshes/mushroom_head_210.mesh",
           "materials":
           [
-            "data/materials/mushroom_head_05.material"
-          ],
-          "enabled": true
-        }
-      ]
-    }
-  },
-  {
-    "entity":
-    {
-      "name": "mushroom_body_184",
-      "transform":
-      {
-        "pos": "129.532 17.1228 8.0904",
-        "rotation": "0.0 0.0 0.0 -1.0"
-      },
-      "render":
-      [
-        {
-          "mesh": "data/meshes/mushroom_body_184.mesh",
-          "materials":
-          [
+            "data/materials/mushroom_head_05.material",
             "data/materials/mushroom_body_02.material"
-          ],
-          "enabled": true
-        }
-      ]
-    }
-  },
-  {
-    "entity":
-    {
-      "name": "mushroom_head_205",
-      "transform":
-      {
-        "pos": "246.023 -20.484 -14.0141",
-        "rotation": "0.0 0.0 0.0 -1.0"
-      },
-      "render":
-      [
-        {
-          "mesh": "data/meshes/mushroom_head_205.mesh",
-          "materials":
-          [
-            "data/materials/mushroom_head_08.material"
           ],
           "enabled": true
         }
@@ -6124,7 +5514,9 @@
           "mesh": "data/meshes/mushroom_head_204.mesh",
           "materials":
           [
-            "data/materials/mushroom_head_01.material"
+            "data/materials/mushroom_head_01.material",
+            "data/materials/mushroom_body_01.material",
+            "data/materials/mushroom_head_08.material"
           ],
           "enabled": true
         }
@@ -6146,7 +5538,8 @@
           "mesh": "data/meshes/mushroom_head_203.mesh",
           "materials":
           [
-            "data/materials/mushroom_head_06.material"
+            "data/materials/mushroom_head_06.material",
+            "data/materials/mushroom_body_06.material"
           ],
           "enabled": true
         }
@@ -6168,72 +5561,7 @@
           "mesh": "data/meshes/mushroom_head_202.mesh",
           "materials":
           [
-            "data/materials/mushroom_head_05.material"
-          ],
-          "enabled": true
-        }
-      ]
-    }
-  },
-  {
-    "entity":
-    {
-      "name": "mushroom_body_180",
-      "transform":
-      {
-        "pos": "245.726 -20.0672 -14.4558",
-        "rotation": "0.0 0.0 0.0 -1.0"
-      },
-      "render":
-      [
-        {
-          "mesh": "data/meshes/mushroom_body_180.mesh",
-          "materials":
-          [
-            "data/materials/mushroom_body_01.material"
-          ],
-          "enabled": true
-        }
-      ]
-    }
-  },
-  {
-    "entity":
-    {
-      "name": "mushroom_body_179",
-      "transform":
-      {
-        "pos": "247.273 -21.5303 -16.6077",
-        "rotation": "0.0 -0.258819 0.0 -0.965926"
-      },
-      "render":
-      [
-        {
-          "mesh": "data/meshes/mushroom_body_179.mesh",
-          "materials":
-          [
-            "data/materials/mushroom_body_06.material"
-          ],
-          "enabled": true
-        }
-      ]
-    }
-  },
-  {
-    "entity":
-    {
-      "name": "mushroom_body_178",
-      "transform":
-      {
-        "pos": "247.837 -21.4912 -16.1945",
-        "rotation": "0.0 -0.258819 0.0 -0.965926"
-      },
-      "render":
-      [
-        {
-          "mesh": "data/meshes/mushroom_body_178.mesh",
-          "materials":
-          [
+            "data/materials/mushroom_head_05.material",
             "data/materials/mushroom_body_05.material"
           ],
           "enabled": true
@@ -6256,28 +5584,7 @@
           "mesh": "data/meshes/mushroom_head_201.mesh",
           "materials":
           [
-            "data/materials/mushroom_head_06.material"
-          ],
-          "enabled": true
-        }
-      ]
-    }
-  },
-  {
-    "entity":
-    {
-      "name": "mushroom_body_177",
-      "transform":
-      {
-        "pos": "271.864 -21.3708 -58.2445",
-        "rotation": "0.166366 0.620885 0.198267 -0.739942"
-      },
-      "render":
-      [
-        {
-          "mesh": "data/meshes/mushroom_body_177.mesh",
-          "materials":
-          [
+            "data/materials/mushroom_head_06.material",
             "data/materials/mushroom_body_06.material"
           ],
           "enabled": true
@@ -6300,7 +5607,8 @@
           "mesh": "data/meshes/mushroom_head_200.mesh",
           "materials":
           [
-            "data/materials/mushroom_head_03.material"
+            "data/materials/mushroom_head_03.material",
+            "data/materials/mushroom_body_02.material"
           ],
           "enabled": true
         }
@@ -6322,73 +5630,8 @@
           "mesh": "data/meshes/mushroom_head_199.mesh",
           "materials":
           [
-            "data/materials/mushroom_head_04.material"
-          ],
-          "enabled": true
-        }
-      ]
-    }
-  },
-  {
-    "entity":
-    {
-      "name": "mushroom_body_176",
-      "transform":
-      {
-        "pos": "271.208 -20.2484 -50.8567",
-        "rotation": "0.0 -0.461749 0.0 -0.887011"
-      },
-      "render":
-      [
-        {
-          "mesh": "data/meshes/mushroom_body_176.mesh",
-          "materials":
-          [
+            "data/materials/mushroom_head_04.material",
             "data/materials/mushroom_body_04.material"
-          ],
-          "enabled": true
-        }
-      ]
-    }
-  },
-  {
-    "entity":
-    {
-      "name": "mushroom_body_175",
-      "transform":
-      {
-        "pos": "271.158 -21.3952 -50.1581",
-        "rotation": "0.0 -0.461749 0.0 -0.887011"
-      },
-      "render":
-      [
-        {
-          "mesh": "data/meshes/mushroom_body_175.mesh",
-          "materials":
-          [
-            "data/materials/mushroom_body_02.material"
-          ],
-          "enabled": true
-        }
-      ]
-    }
-  },
-  {
-    "entity":
-    {
-      "name": "mushroom_head_198",
-      "transform":
-      {
-        "pos": "266.922 -5.13526 -58.8023",
-        "rotation": "0.0 -0.737278 0.0 -0.67559"
-      },
-      "render":
-      [
-        {
-          "mesh": "data/meshes/mushroom_head_198.mesh",
-          "materials":
-          [
-            "data/materials/mushroom_head_05.material"
           ],
           "enabled": true
         }
@@ -6410,7 +5653,8 @@
           "mesh": "data/meshes/mushroom_body_174.mesh",
           "materials":
           [
-            "data/materials/mushroom_body_05.material"
+            "data/materials/mushroom_body_05.material",
+            "data/materials/mushroom_head_05.material"
           ],
           "enabled": true
         }
@@ -6432,28 +5676,7 @@
           "mesh": "data/meshes/mushroom_head_197.mesh",
           "materials":
           [
-            "data/materials/mushroom_head_05.material"
-          ],
-          "enabled": true
-        }
-      ]
-    }
-  },
-  {
-    "entity":
-    {
-      "name": "mushroom_body_173",
-      "transform":
-      {
-        "pos": "260.21 -18.5594 -13.1627",
-        "rotation": "0.0 -0.887011 0.0 0.461749"
-      },
-      "render":
-      [
-        {
-          "mesh": "data/meshes/mushroom_body_173.mesh",
-          "materials":
-          [
+            "data/materials/mushroom_head_05.material",
             "data/materials/mushroom_body_05.material"
           ],
           "enabled": true
@@ -6476,7 +5699,8 @@
           "mesh": "data/meshes/mushroom_head_196.mesh",
           "materials":
           [
-            "data/materials/mushroom_head_05.material"
+            "data/materials/mushroom_head_05.material",
+            "data/materials/mushroom_body_05.material"
           ],
           "enabled": true
         }
@@ -6498,50 +5722,7 @@
           "mesh": "data/meshes/mushroom_head_195.mesh",
           "materials":
           [
-            "data/materials/mushroom_head_09.material"
-          ],
-          "enabled": true
-        }
-      ]
-    }
-  },
-  {
-    "entity":
-    {
-      "name": "mushroom_body_172",
-      "transform":
-      {
-        "pos": "264.528 -10.1929 -12.6782",
-        "rotation": "0.0 0.819152 0.0 -0.573576"
-      },
-      "render":
-      [
-        {
-          "mesh": "data/meshes/mushroom_body_172.mesh",
-          "materials":
-          [
-            "data/materials/mushroom_body_05.material"
-          ],
-          "enabled": true
-        }
-      ]
-    }
-  },
-  {
-    "entity":
-    {
-      "name": "mushroom_body_171",
-      "transform":
-      {
-        "pos": "261.16 -12.1752 -14.5089",
-        "rotation": "0.0 0.819152 0.0 -0.573576"
-      },
-      "render":
-      [
-        {
-          "mesh": "data/meshes/mushroom_body_171.mesh",
-          "materials":
-          [
+            "data/materials/mushroom_head_09.material",
             "data/materials/mushroom_body_07.material"
           ],
           "enabled": true
@@ -6564,28 +5745,7 @@
           "mesh": "data/meshes/mushroom_head_194.mesh",
           "materials":
           [
-            "data/materials/mushroom_head_00.material"
-          ],
-          "enabled": true
-        }
-      ]
-    }
-  },
-  {
-    "entity":
-    {
-      "name": "mushroom_body_170",
-      "transform":
-      {
-        "pos": "267.146 -11.2209 -56.1746",
-        "rotation": "0.0 0.0 0.0 -1.0"
-      },
-      "render":
-      [
-        {
-          "mesh": "data/meshes/mushroom_body_170.mesh",
-          "materials":
-          [
+            "data/materials/mushroom_head_00.material",
             "data/materials/mushroom_body_07.material"
           ],
           "enabled": true
@@ -6608,28 +5768,7 @@
           "mesh": "data/meshes/mushroom_head_193.mesh",
           "materials":
           [
-            "data/materials/mushroom_head_00.material"
-          ],
-          "enabled": true
-        }
-      ]
-    }
-  },
-  {
-    "entity":
-    {
-      "name": "mushroom_body_169",
-      "transform":
-      {
-        "pos": "103.376 11.1986 -32.1722",
-        "rotation": "0.0 0.0 0.0 -1.0"
-      },
-      "render":
-      [
-        {
-          "mesh": "data/meshes/mushroom_body_169.mesh",
-          "materials":
-          [
+            "data/materials/mushroom_head_00.material",
             "data/materials/mushroom_body_00.material"
           ],
           "enabled": true
@@ -6652,7 +5791,8 @@
           "mesh": "data/meshes/mushroom_head_192.mesh",
           "materials":
           [
-            "data/materials/mushroom_head_06.material"
+            "data/materials/mushroom_head_06.material",
+            "data/materials/mushroom_body_06.material"
           ],
           "enabled": true
         }
@@ -6674,50 +5814,7 @@
           "mesh": "data/meshes/mushroom_head_191.mesh",
           "materials":
           [
-            "data/materials/mushroom_head_09.material"
-          ],
-          "enabled": true
-        }
-      ]
-    }
-  },
-  {
-    "entity":
-    {
-      "name": "mushroom_body_168",
-      "transform":
-      {
-        "pos": "312.425 -16.1303 -132.566",
-        "rotation": "0.166366 0.620885 0.198267 -0.739942"
-      },
-      "render":
-      [
-        {
-          "mesh": "data/meshes/mushroom_body_168.mesh",
-          "materials":
-          [
-            "data/materials/mushroom_body_06.material"
-          ],
-          "enabled": true
-        }
-      ]
-    }
-  },
-  {
-    "entity":
-    {
-      "name": "mushroom_body_167",
-      "transform":
-      {
-        "pos": "311.601 -14.4124 -131.801",
-        "rotation": "0.0 0.0 0.0 -1.0"
-      },
-      "render":
-      [
-        {
-          "mesh": "data/meshes/mushroom_body_167.mesh",
-          "materials":
-          [
+            "data/materials/mushroom_head_09.material",
             "data/materials/mushroom_body_07.material"
           ],
           "enabled": true
@@ -6740,28 +5837,7 @@
           "mesh": "data/meshes/mushroom_head_190.mesh",
           "materials":
           [
-            "data/materials/mushroom_head_05.material"
-          ],
-          "enabled": true
-        }
-      ]
-    }
-  },
-  {
-    "entity":
-    {
-      "name": "mushroom_body_166",
-      "transform":
-      {
-        "pos": "297.833 -16.9167 -162.701",
-        "rotation": "0.0 0.0 0.0 -1.0"
-      },
-      "render":
-      [
-        {
-          "mesh": "data/meshes/mushroom_body_166.mesh",
-          "materials":
-          [
+            "data/materials/mushroom_head_05.material",
             "data/materials/mushroom_body_05.material"
           ],
           "enabled": true
@@ -6784,7 +5860,8 @@
           "mesh": "data/meshes/mushroom_head_189.mesh",
           "materials":
           [
-            "data/materials/mushroom_head_06.material"
+            "data/materials/mushroom_head_06.material",
+            "data/materials/mushroom_body_06.material"
           ],
           "enabled": true
         }
@@ -6806,50 +5883,7 @@
           "mesh": "data/meshes/mushroom_head_188.mesh",
           "materials":
           [
-            "data/materials/mushroom_head_05.material"
-          ],
-          "enabled": true
-        }
-      ]
-    }
-  },
-  {
-    "entity":
-    {
-      "name": "mushroom_body_165",
-      "transform":
-      {
-        "pos": "303.982 -16.3015 -146.958",
-        "rotation": "0.0 -0.906308 0.0 -0.422618"
-      },
-      "render":
-      [
-        {
-          "mesh": "data/meshes/mushroom_body_165.mesh",
-          "materials":
-          [
-            "data/materials/mushroom_body_06.material"
-          ],
-          "enabled": true
-        }
-      ]
-    }
-  },
-  {
-    "entity":
-    {
-      "name": "mushroom_body_164",
-      "transform":
-      {
-        "pos": "304.291 -16.2624 -147.585",
-        "rotation": "0.0 -0.906308 0.0 -0.422618"
-      },
-      "render":
-      [
-        {
-          "mesh": "data/meshes/mushroom_body_164.mesh",
-          "materials":
-          [
+            "data/materials/mushroom_head_05.material",
             "data/materials/mushroom_body_05.material"
           ],
           "enabled": true
@@ -6872,7 +5906,8 @@
           "mesh": "data/meshes/mushroom_head_187.mesh",
           "materials":
           [
-            "data/materials/mushroom_head_06.material"
+            "data/materials/mushroom_head_06.material",
+            "data/materials/mushroom_body_06.material"
           ],
           "enabled": true
         }
@@ -6894,50 +5929,7 @@
           "mesh": "data/meshes/mushroom_head_186.mesh",
           "materials":
           [
-            "data/materials/mushroom_head_05.material"
-          ],
-          "enabled": true
-        }
-      ]
-    }
-  },
-  {
-    "entity":
-    {
-      "name": "mushroom_body_163",
-      "transform":
-      {
-        "pos": "235.095 -24.3248 -16.3237",
-        "rotation": "0.0 -0.906308 0.0 -0.422618"
-      },
-      "render":
-      [
-        {
-          "mesh": "data/meshes/mushroom_body_163.mesh",
-          "materials":
-          [
-            "data/materials/mushroom_body_06.material"
-          ],
-          "enabled": true
-        }
-      ]
-    }
-  },
-  {
-    "entity":
-    {
-      "name": "mushroom_body_162",
-      "transform":
-      {
-        "pos": "235.404 -24.2857 -16.951",
-        "rotation": "0.0 -0.906308 0.0 -0.422618"
-      },
-      "render":
-      [
-        {
-          "mesh": "data/meshes/mushroom_body_162.mesh",
-          "materials":
-          [
+            "data/materials/mushroom_head_05.material",
             "data/materials/mushroom_body_05.material"
           ],
           "enabled": true
@@ -6960,28 +5952,7 @@
           "mesh": "data/meshes/mushroom_head_185.mesh",
           "materials":
           [
-            "data/materials/mushroom_head_00.material"
-          ],
-          "enabled": true
-        }
-      ]
-    }
-  },
-  {
-    "entity":
-    {
-      "name": "mushroom_body_161",
-      "transform":
-      {
-        "pos": "292.656 -19.3947 -143.123",
-        "rotation": "0.0 0.707107 0.0 -0.707107"
-      },
-      "render":
-      [
-        {
-          "mesh": "data/meshes/mushroom_body_161.mesh",
-          "materials":
-          [
+            "data/materials/mushroom_head_00.material",
             "data/materials/mushroom_body_07.material"
           ],
           "enabled": true
@@ -7004,7 +5975,8 @@
           "mesh": "data/meshes/mushroom_head_184.mesh",
           "materials":
           [
-            "data/materials/mushroom_head_03.material"
+            "data/materials/mushroom_head_03.material",
+            "data/materials/mushroom_body_02.material"
           ],
           "enabled": true
         }
@@ -7026,51 +5998,8 @@
           "mesh": "data/meshes/mushroom_head_183.mesh",
           "materials":
           [
-            "data/materials/mushroom_head_04.material"
-          ],
-          "enabled": true
-        }
-      ]
-    }
-  },
-  {
-    "entity":
-    {
-      "name": "mushroom_body_160",
-      "transform":
-      {
-        "pos": "310.849 -15.0533 -148.56",
-        "rotation": "0.0 -0.461749 0.0 -0.887011"
-      },
-      "render":
-      [
-        {
-          "mesh": "data/meshes/mushroom_body_160.mesh",
-          "materials":
-          [
+            "data/materials/mushroom_head_04.material",
             "data/materials/mushroom_body_04.material"
-          ],
-          "enabled": true
-        }
-      ]
-    }
-  },
-  {
-    "entity":
-    {
-      "name": "mushroom_body_159",
-      "transform":
-      {
-        "pos": "310.799 -16.2001 -147.861",
-        "rotation": "0.0 -0.461749 0.0 -0.887011"
-      },
-      "render":
-      [
-        {
-          "mesh": "data/meshes/mushroom_body_159.mesh",
-          "materials":
-          [
-            "data/materials/mushroom_body_02.material"
           ],
           "enabled": true
         }
@@ -7092,51 +6021,8 @@
           "mesh": "data/meshes/mushroom_head_182.mesh",
           "materials":
           [
-            "data/materials/mushroom_head_00.material"
-          ],
-          "enabled": true
-        }
-      ]
-    }
-  },
-  {
-    "entity":
-    {
-      "name": "mushroom_body_158",
-      "transform":
-      {
-        "pos": "280.136 -15.4905 -154.671",
-        "rotation": "0.0 0.0 0.0 -1.0"
-      },
-      "render":
-      [
-        {
-          "mesh": "data/meshes/mushroom_body_158.mesh",
-          "materials":
-          [
+            "data/materials/mushroom_head_00.material",
             "data/materials/mushroom_body_00.material"
-          ],
-          "enabled": true
-        }
-      ]
-    }
-  },
-  {
-    "entity":
-    {
-      "name": "mushroom_head_181",
-      "transform":
-      {
-        "pos": "304.32 -14.7536 -140.147",
-        "rotation": "0.106921 -0.568669 -0.0748667 -0.812144"
-      },
-      "render":
-      [
-        {
-          "mesh": "data/meshes/mushroom_head_181.mesh",
-          "materials":
-          [
-            "data/materials/mushroom_head_08.material"
           ],
           "enabled": true
         }
@@ -7158,7 +6044,9 @@
           "mesh": "data/meshes/mushroom_head_180.mesh",
           "materials":
           [
-            "data/materials/mushroom_head_01.material"
+            "data/materials/mushroom_head_01.material",
+            "data/materials/mushroom_body_01.material",
+            "data/materials/mushroom_head_08.material"
           ],
           "enabled": true
         }
@@ -7180,50 +6068,7 @@
           "mesh": "data/meshes/mushroom_head_179.mesh",
           "materials":
           [
-            "data/materials/mushroom_head_06.material"
-          ],
-          "enabled": true
-        }
-      ]
-    }
-  },
-  {
-    "entity":
-    {
-      "name": "mushroom_body_157",
-      "transform":
-      {
-        "pos": "303.716 -14.4654 -140.05",
-        "rotation": "0.106921 -0.568669 -0.0748667 -0.812144"
-      },
-      "render":
-      [
-        {
-          "mesh": "data/meshes/mushroom_body_157.mesh",
-          "materials":
-          [
-            "data/materials/mushroom_body_01.material"
-          ],
-          "enabled": true
-        }
-      ]
-    }
-  },
-  {
-    "entity":
-    {
-      "name": "mushroom_body_156",
-      "transform":
-      {
-        "pos": "305.509 -16.0578 -135.878",
-        "rotation": "0.0 -0.991445 0.0 -0.130526"
-      },
-      "render":
-      [
-        {
-          "mesh": "data/meshes/mushroom_body_156.mesh",
-          "materials":
-          [
+            "data/materials/mushroom_head_06.material",
             "data/materials/mushroom_body_06.material"
           ],
           "enabled": true
@@ -7246,28 +6091,7 @@
           "mesh": "data/meshes/mushroom_head_178.mesh",
           "materials":
           [
-            "data/materials/mushroom_head_00.material"
-          ],
-          "enabled": true
-        }
-      ]
-    }
-  },
-  {
-    "entity":
-    {
-      "name": "mushroom_body_155",
-      "transform":
-      {
-        "pos": "282.355 -16.806 -138.564",
-        "rotation": "0.0 0.34202 0.0 -0.939693"
-      },
-      "render":
-      [
-        {
-          "mesh": "data/meshes/mushroom_body_155.mesh",
-          "materials":
-          [
+            "data/materials/mushroom_head_00.material",
             "data/materials/mushroom_body_00.material"
           ],
           "enabled": true
@@ -7290,28 +6114,7 @@
           "mesh": "data/meshes/mushroom_head_177.mesh",
           "materials":
           [
-            "data/materials/mushroom_head_05.material"
-          ],
-          "enabled": true
-        }
-      ]
-    }
-  },
-  {
-    "entity":
-    {
-      "name": "mushroom_body_154",
-      "transform":
-      {
-        "pos": "294.504 -15.7087 -127.725",
-        "rotation": "0.0 0.0 0.0 -1.0"
-      },
-      "render":
-      [
-        {
-          "mesh": "data/meshes/mushroom_body_154.mesh",
-          "materials":
-          [
+            "data/materials/mushroom_head_05.material",
             "data/materials/mushroom_body_02.material"
           ],
           "enabled": true
@@ -7488,28 +6291,7 @@
           "mesh": "data/meshes/mushroom_head_171.mesh",
           "materials":
           [
-            "data/materials/mushroom_head_05.material"
-          ],
-          "enabled": true
-        }
-      ]
-    }
-  },
-  {
-    "entity":
-    {
-      "name": "mushroom_body_149",
-      "transform":
-      {
-        "pos": "152.991 28.878 -80.6751",
-        "rotation": "-0.110085 0.836176 -0.0701317 -0.532703"
-      },
-      "render":
-      [
-        {
-          "mesh": "data/meshes/mushroom_body_149.mesh",
-          "materials":
-          [
+            "data/materials/mushroom_head_05.material",
             "data/materials/mushroom_body_02.material"
           ],
           "enabled": true
@@ -7532,51 +6314,8 @@
           "mesh": "data/meshes/mushroom_head_170.mesh",
           "materials":
           [
-            "data/materials/mushroom_head_00.material"
-          ],
-          "enabled": true
-        }
-      ]
-    }
-  },
-  {
-    "entity":
-    {
-      "name": "mushroom_body_148",
-      "transform":
-      {
-        "pos": "-89.2217 -2.41737 37.3003",
-        "rotation": "-0.0432462 -0.990501 -0.00569361 0.130402"
-      },
-      "render":
-      [
-        {
-          "mesh": "data/meshes/mushroom_body_148.mesh",
-          "materials":
-          [
+            "data/materials/mushroom_head_00.material",
             "data/materials/mushroom_body_00.material"
-          ],
-          "enabled": true
-        }
-      ]
-    }
-  },
-  {
-    "entity":
-    {
-      "name": "mushroom_head_169",
-      "transform":
-      {
-        "pos": "-52.7209 -3.80838 33.2806",
-        "rotation": "0.0 0.0 0.0 -1.0"
-      },
-      "render":
-      [
-        {
-          "mesh": "data/meshes/mushroom_head_169.mesh",
-          "materials":
-          [
-            "data/materials/mushroom_head_08.material"
           ],
           "enabled": true
         }
@@ -7598,7 +6337,9 @@
           "mesh": "data/meshes/mushroom_head_168.mesh",
           "materials":
           [
-            "data/materials/mushroom_head_01.material"
+            "data/materials/mushroom_head_01.material",
+            "data/materials/mushroom_body_01.material",
+            "data/materials/mushroom_head_08.material"
           ],
           "enabled": true
         }
@@ -7620,7 +6361,8 @@
           "mesh": "data/meshes/mushroom_head_167.mesh",
           "materials":
           [
-            "data/materials/mushroom_head_06.material"
+            "data/materials/mushroom_head_06.material",
+            "data/materials/mushroom_body_06.material"
           ],
           "enabled": true
         }
@@ -7642,72 +6384,7 @@
           "mesh": "data/meshes/mushroom_head_166.mesh",
           "materials":
           [
-            "data/materials/mushroom_head_05.material"
-          ],
-          "enabled": true
-        }
-      ]
-    }
-  },
-  {
-    "entity":
-    {
-      "name": "mushroom_body_147",
-      "transform":
-      {
-        "pos": "-53.0186 -3.39162 32.8389",
-        "rotation": "0.0 0.0 0.0 -1.0"
-      },
-      "render":
-      [
-        {
-          "mesh": "data/meshes/mushroom_body_147.mesh",
-          "materials":
-          [
-            "data/materials/mushroom_body_01.material"
-          ],
-          "enabled": true
-        }
-      ]
-    }
-  },
-  {
-    "entity":
-    {
-      "name": "mushroom_body_146",
-      "transform":
-      {
-        "pos": "-51.522 -5.42531 30.7527",
-        "rotation": "0.0 -0.34202 0.0 -0.939693"
-      },
-      "render":
-      [
-        {
-          "mesh": "data/meshes/mushroom_body_146.mesh",
-          "materials":
-          [
-            "data/materials/mushroom_body_06.material"
-          ],
-          "enabled": true
-        }
-      ]
-    }
-  },
-  {
-    "entity":
-    {
-      "name": "mushroom_body_145",
-      "transform":
-      {
-        "pos": "-50.8948 -5.38619 31.0616",
-        "rotation": "0.0 -0.34202 0.0 -0.939693"
-      },
-      "render":
-      [
-        {
-          "mesh": "data/meshes/mushroom_body_145.mesh",
-          "materials":
-          [
+            "data/materials/mushroom_head_05.material",
             "data/materials/mushroom_body_05.material"
           ],
           "enabled": true
@@ -7730,7 +6407,8 @@
           "mesh": "data/meshes/mushroom_head_165.mesh",
           "materials":
           [
-            "data/materials/mushroom_head_06.material"
+            "data/materials/mushroom_head_06.material",
+            "data/materials/mushroom_body_06.material"
           ],
           "enabled": true
         }
@@ -7752,50 +6430,7 @@
           "mesh": "data/meshes/mushroom_head_164.mesh",
           "materials":
           [
-            "data/materials/mushroom_head_05.material"
-          ],
-          "enabled": true
-        }
-      ]
-    }
-  },
-  {
-    "entity":
-    {
-      "name": "mushroom_body_144",
-      "transform":
-      {
-        "pos": "-10.4441 -4.68809 75.3477",
-        "rotation": "0.0 -0.34202 0.0 -0.939693"
-      },
-      "render":
-      [
-        {
-          "mesh": "data/meshes/mushroom_body_144.mesh",
-          "materials":
-          [
-            "data/materials/mushroom_body_06.material"
-          ],
-          "enabled": true
-        }
-      ]
-    }
-  },
-  {
-    "entity":
-    {
-      "name": "mushroom_body_143",
-      "transform":
-      {
-        "pos": "-10.5488 -4.66275 74.6629",
-        "rotation": "0.0 -0.34202 0.0 -0.939693"
-      },
-      "render":
-      [
-        {
-          "mesh": "data/meshes/mushroom_body_143.mesh",
-          "materials":
-          [
+            "data/materials/mushroom_head_05.material",
             "data/materials/mushroom_body_05.material"
           ],
           "enabled": true
@@ -7818,7 +6453,8 @@
           "mesh": "data/meshes/mushroom_head_163.mesh",
           "materials":
           [
-            "data/materials/mushroom_head_00.material"
+            "data/materials/mushroom_head_00.material",
+            "data/materials/mushroom_body_00.material"
           ],
           "enabled": true
         }
@@ -7840,7 +6476,8 @@
           "mesh": "data/meshes/mushroom_head_162.mesh",
           "materials":
           [
-            "data/materials/mushroom_head_06.material"
+            "data/materials/mushroom_head_06.material",
+            "data/materials/mushroom_body_06.material"
           ],
           "enabled": true
         }
@@ -7862,7 +6499,8 @@
           "mesh": "data/meshes/mushroom_head_161.mesh",
           "materials":
           [
-            "data/materials/mushroom_head_05.material"
+            "data/materials/mushroom_head_05.material",
+            "data/materials/mushroom_body_05.material"
           ],
           "enabled": true
         }
@@ -7884,7 +6522,8 @@
           "mesh": "data/meshes/mushroom_head_160.mesh",
           "materials":
           [
-            "data/materials/mushroom_head_03.material"
+            "data/materials/mushroom_head_03.material",
+            "data/materials/mushroom_body_02.material"
           ],
           "enabled": true
         }
@@ -7906,29 +6545,8 @@
           "mesh": "data/meshes/mushroom_head_159.mesh",
           "materials":
           [
-            "data/materials/mushroom_head_04.material"
-          ],
-          "enabled": true
-        }
-      ]
-    }
-  },
-  {
-    "entity":
-    {
-      "name": "mushroom_head_158",
-      "transform":
-      {
-        "pos": "-8.35636 -6.02463 104.643",
-        "rotation": "0.0 -0.906308 0.0 -0.422618"
-      },
-      "render":
-      [
-        {
-          "mesh": "data/meshes/mushroom_head_158.mesh",
-          "materials":
-          [
-            "data/materials/mushroom_head_08.material"
+            "data/materials/mushroom_head_04.material",
+            "data/materials/mushroom_body_04.material"
           ],
           "enabled": true
         }
@@ -7950,139 +6568,9 @@
           "mesh": "data/meshes/mushroom_head_157.mesh",
           "materials":
           [
-            "data/materials/mushroom_head_01.material"
-          ],
-          "enabled": true
-        }
-      ]
-    }
-  },
-  {
-    "entity":
-    {
-      "name": "mushroom_body_142",
-      "transform":
-      {
-        "pos": "-11.7666 -6.54749 105.873",
-        "rotation": "0.0 -0.906308 0.0 -0.422618"
-      },
-      "render":
-      [
-        {
-          "mesh": "data/meshes/mushroom_body_142.mesh",
-          "materials":
-          [
-            "data/materials/mushroom_body_00.material"
-          ],
-          "enabled": true
-        }
-      ]
-    }
-  },
-  {
-    "entity":
-    {
-      "name": "mushroom_body_141",
-      "transform":
-      {
-        "pos": "-10.3961 -6.11294 101.327",
-        "rotation": "0.0 -0.906308 0.0 -0.422618"
-      },
-      "render":
-      [
-        {
-          "mesh": "data/meshes/mushroom_body_141.mesh",
-          "materials":
-          [
-            "data/materials/mushroom_body_06.material"
-          ],
-          "enabled": true
-        }
-      ]
-    }
-  },
-  {
-    "entity":
-    {
-      "name": "mushroom_body_140",
-      "transform":
-      {
-        "pos": "-10.0871 -6.07382 100.7",
-        "rotation": "0.0 -0.906308 0.0 -0.422618"
-      },
-      "render":
-      [
-        {
-          "mesh": "data/meshes/mushroom_body_140.mesh",
-          "materials":
-          [
-            "data/materials/mushroom_body_05.material"
-          ],
-          "enabled": true
-        }
-      ]
-    }
-  },
-  {
-    "entity":
-    {
-      "name": "mushroom_body_139",
-      "transform":
-      {
-        "pos": "-12.1107 -4.73775 103.663",
-        "rotation": "0.0 -0.906308 0.0 -0.422618"
-      },
-      "render":
-      [
-        {
-          "mesh": "data/meshes/mushroom_body_139.mesh",
-          "materials":
-          [
-            "data/materials/mushroom_body_04.material"
-          ],
-          "enabled": true
-        }
-      ]
-    }
-  },
-  {
-    "entity":
-    {
-      "name": "mushroom_body_138",
-      "transform":
-      {
-        "pos": "-11.4489 -5.88453 103.892",
-        "rotation": "0.0 -0.906308 0.0 -0.422618"
-      },
-      "render":
-      [
-        {
-          "mesh": "data/meshes/mushroom_body_138.mesh",
-          "materials":
-          [
-            "data/materials/mushroom_body_02.material"
-          ],
-          "enabled": true
-        }
-      ]
-    }
-  },
-  {
-    "entity":
-    {
-      "name": "mushroom_body_137",
-      "transform":
-      {
-        "pos": "-8.50339 -5.60787 105.155",
-        "rotation": "0.0 -0.906308 0.0 -0.422618"
-      },
-      "render":
-      [
-        {
-          "mesh": "data/meshes/mushroom_body_137.mesh",
-          "materials":
-          [
-            "data/materials/mushroom_body_01.material"
+            "data/materials/mushroom_head_01.material",
+            "data/materials/mushroom_body_01.material",
+            "data/materials/mushroom_head_08.material"
           ],
           "enabled": true
         }
@@ -8104,7 +6592,8 @@
           "mesh": "data/meshes/mushroom_head_156.mesh",
           "materials":
           [
-            "data/materials/mushroom_head_06.material"
+            "data/materials/mushroom_head_06.material",
+            "data/materials/mushroom_body_06.material"
           ],
           "enabled": true
         }
@@ -8126,7 +6615,8 @@
           "mesh": "data/meshes/mushroom_head_155.mesh",
           "materials":
           [
-            "data/materials/mushroom_head_05.material"
+            "data/materials/mushroom_head_05.material",
+            "data/materials/mushroom_body_05.material"
           ],
           "enabled": true
         }
@@ -8148,7 +6638,8 @@
           "mesh": "data/meshes/mushroom_head_154.mesh",
           "materials":
           [
-            "data/materials/mushroom_head_09.material"
+            "data/materials/mushroom_head_09.material",
+            "data/materials/mushroom_body_07.material"
           ],
           "enabled": true
         }
@@ -8170,94 +6661,7 @@
           "mesh": "data/meshes/mushroom_head_153.mesh",
           "materials":
           [
-            "data/materials/mushroom_head_00.material"
-          ],
-          "enabled": true
-        }
-      ]
-    }
-  },
-  {
-    "entity":
-    {
-      "name": "mushroom_body_136",
-      "transform":
-      {
-        "pos": "25.0882 -9.018 125.608",
-        "rotation": "0.0 0.382683 0.0 -0.92388"
-      },
-      "render":
-      [
-        {
-          "mesh": "data/meshes/mushroom_body_136.mesh",
-          "materials":
-          [
-            "data/materials/mushroom_body_06.material"
-          ],
-          "enabled": true
-        }
-      ]
-    }
-  },
-  {
-    "entity":
-    {
-      "name": "mushroom_body_135",
-      "transform":
-      {
-        "pos": "25.7612 -8.99266 125.444",
-        "rotation": "0.0 0.382683 0.0 -0.92388"
-      },
-      "render":
-      [
-        {
-          "mesh": "data/meshes/mushroom_body_135.mesh",
-          "materials":
-          [
-            "data/materials/mushroom_body_05.material"
-          ],
-          "enabled": true
-        }
-      ]
-    }
-  },
-  {
-    "entity":
-    {
-      "name": "mushroom_body_134",
-      "transform":
-      {
-        "pos": "23.702 -7.47345 125.858",
-        "rotation": "0.0 0.382683 0.0 -0.92388"
-      },
-      "render":
-      [
-        {
-          "mesh": "data/meshes/mushroom_body_134.mesh",
-          "materials":
-          [
-            "data/materials/mushroom_body_07.material"
-          ],
-          "enabled": true
-        }
-      ]
-    }
-  },
-  {
-    "entity":
-    {
-      "name": "mushroom_body_133",
-      "transform":
-      {
-        "pos": "23.0576 -8.3406 129.18",
-        "rotation": "0.0 0.382683 0.0 -0.92388"
-      },
-      "render":
-      [
-        {
-          "mesh": "data/meshes/mushroom_body_133.mesh",
-          "materials":
-          [
+            "data/materials/mushroom_head_00.material",
             "data/materials/mushroom_body_00.material"
           ],
           "enabled": true
@@ -9789,28 +8193,7 @@
           "mesh": "data/meshes/mushroom_head_152.mesh",
           "materials":
           [
-            "data/materials/mushroom_head_00.material"
-          ],
-          "enabled": true
-        }
-      ]
-    }
-  },
-  {
-    "entity":
-    {
-      "name": "mushroom_body_132",
-      "transform":
-      {
-        "pos": "323.958 -12.58 -53.9358",
-        "rotation": "0.0 0.0 0.0 -1.0"
-      },
-      "render":
-      [
-        {
-          "mesh": "data/meshes/mushroom_body_132.mesh",
-          "materials":
-          [
+            "data/materials/mushroom_head_00.material",
             "data/materials/mushroom_body_00.material"
           ],
           "enabled": true
@@ -10626,7 +9009,8 @@
           "mesh": "data/meshes/mushroom_head_151.mesh",
           "materials":
           [
-            "data/materials/mushroom_head_06.material"
+            "data/materials/mushroom_head_06.material",
+            "data/materials/mushroom_body_06.material"
           ],
           "enabled": true
         }
@@ -10648,50 +9032,7 @@
           "mesh": "data/meshes/mushroom_head_150.mesh",
           "materials":
           [
-            "data/materials/mushroom_head_05.material"
-          ],
-          "enabled": true
-        }
-      ]
-    }
-  },
-  {
-    "entity":
-    {
-      "name": "mushroom_body_131",
-      "transform":
-      {
-        "pos": "116.75 12.3956 -95.5031",
-        "rotation": "0.0 -0.793353 0.0 -0.608761"
-      },
-      "render":
-      [
-        {
-          "mesh": "data/meshes/mushroom_body_131.mesh",
-          "materials":
-          [
-            "data/materials/mushroom_body_06.material"
-          ],
-          "enabled": true
-        }
-      ]
-    }
-  },
-  {
-    "entity":
-    {
-      "name": "mushroom_body_130",
-      "transform":
-      {
-        "pos": "116.085 12.421 -95.6977",
-        "rotation": "0.0 -0.793353 0.0 -0.608761"
-      },
-      "render":
-      [
-        {
-          "mesh": "data/meshes/mushroom_body_130.mesh",
-          "materials":
-          [
+            "data/materials/mushroom_head_05.material",
             "data/materials/mushroom_body_05.material"
           ],
           "enabled": true
@@ -10714,28 +9055,7 @@
           "mesh": "data/meshes/mushroom_head_149.mesh",
           "materials":
           [
-            "data/materials/mushroom_head_06.material"
-          ],
-          "enabled": true
-        }
-      ]
-    }
-  },
-  {
-    "entity":
-    {
-      "name": "mushroom_body_129",
-      "transform":
-      {
-        "pos": "182.192 -1.60323 -72.7763",
-        "rotation": "0.166366 0.620885 0.198267 -0.739942"
-      },
-      "render":
-      [
-        {
-          "mesh": "data/meshes/mushroom_body_129.mesh",
-          "materials":
-          [
+            "data/materials/mushroom_head_06.material",
             "data/materials/mushroom_body_06.material"
           ],
           "enabled": true
@@ -10758,7 +9078,8 @@
           "mesh": "data/meshes/mushroom_head_148.mesh",
           "materials":
           [
-            "data/materials/mushroom_head_03.material"
+            "data/materials/mushroom_head_03.material",
+            "data/materials/mushroom_body_02.material"
           ],
           "enabled": true
         }
@@ -10780,7 +9101,8 @@
           "mesh": "data/meshes/mushroom_head_147.mesh",
           "materials":
           [
-            "data/materials/mushroom_head_04.material"
+            "data/materials/mushroom_head_04.material",
+            "data/materials/mushroom_body_04.material"
           ],
           "enabled": true
         }
@@ -10802,73 +9124,8 @@
           "mesh": "data/meshes/mushroom_head_146.mesh",
           "materials":
           [
-            "data/materials/mushroom_head_03.material"
-          ],
-          "enabled": true
-        }
-      ]
-    }
-  },
-  {
-    "entity":
-    {
-      "name": "mushroom_body_128",
-      "transform":
-      {
-        "pos": "172.665 5.25288 -31.7075",
-        "rotation": "0.0 0.0 0.0 -1.0"
-      },
-      "render":
-      [
-        {
-          "mesh": "data/meshes/mushroom_body_128.mesh",
-          "materials":
-          [
-            "data/materials/mushroom_body_04.material"
-          ],
-          "enabled": true
-        }
-      ]
-    }
-  },
-  {
-    "entity":
-    {
-      "name": "mushroom_body_127",
-      "transform":
-      {
-        "pos": "172.562 4.36383 -31.0787",
-        "rotation": "0.0 0.0 0.0 -1.0"
-      },
-      "render":
-      [
-        {
-          "mesh": "data/meshes/mushroom_body_127.mesh",
-          "materials":
-          [
+            "data/materials/mushroom_head_03.material",
             "data/materials/mushroom_body_03.material"
-          ],
-          "enabled": true
-        }
-      ]
-    }
-  },
-  {
-    "entity":
-    {
-      "name": "mushroom_body_126",
-      "transform":
-      {
-        "pos": "172.191 4.40176 -32.2727",
-        "rotation": "0.0 0.0 0.0 -1.0"
-      },
-      "render":
-      [
-        {
-          "mesh": "data/meshes/mushroom_body_126.mesh",
-          "materials":
-          [
-            "data/materials/mushroom_body_02.material"
           ],
           "enabled": true
         }
@@ -10890,7 +9147,8 @@
           "mesh": "data/meshes/mushroom_head_145.mesh",
           "materials":
           [
-            "data/materials/mushroom_head_06.material"
+            "data/materials/mushroom_head_06.material",
+            "data/materials/mushroom_body_06.material"
           ],
           "enabled": true
         }
@@ -10912,50 +9170,7 @@
           "mesh": "data/meshes/mushroom_head_144.mesh",
           "materials":
           [
-            "data/materials/mushroom_head_05.material"
-          ],
-          "enabled": true
-        }
-      ]
-    }
-  },
-  {
-    "entity":
-    {
-      "name": "mushroom_body_125",
-      "transform":
-      {
-        "pos": "178.324 2.69109 -19.3333",
-        "rotation": "0.0 -0.984808 0.0 0.173648"
-      },
-      "render":
-      [
-        {
-          "mesh": "data/meshes/mushroom_body_125.mesh",
-          "materials":
-          [
-            "data/materials/mushroom_body_06.material"
-          ],
-          "enabled": true
-        }
-      ]
-    }
-  },
-  {
-    "entity":
-    {
-      "name": "mushroom_body_124",
-      "transform":
-      {
-        "pos": "177.841 2.73021 -19.8381",
-        "rotation": "0.0 -0.984808 0.0 0.173648"
-      },
-      "render":
-      [
-        {
-          "mesh": "data/meshes/mushroom_body_124.mesh",
-          "materials":
-          [
+            "data/materials/mushroom_head_05.material",
             "data/materials/mushroom_body_05.material"
           ],
           "enabled": true
@@ -10978,7 +9193,8 @@
           "mesh": "data/meshes/mushroom_head_143.mesh",
           "materials":
           [
-            "data/materials/mushroom_head_06.material"
+            "data/materials/mushroom_head_06.material",
+            "data/materials/mushroom_body_06.material"
           ],
           "enabled": true
         }
@@ -11000,50 +9216,7 @@
           "mesh": "data/meshes/mushroom_head_142.mesh",
           "materials":
           [
-            "data/materials/mushroom_head_05.material"
-          ],
-          "enabled": true
-        }
-      ]
-    }
-  },
-  {
-    "entity":
-    {
-      "name": "mushroom_body_123",
-      "transform":
-      {
-        "pos": "177.833 1.49505 -52.9726",
-        "rotation": "0.0 -0.906308 0.0 -0.422618"
-      },
-      "render":
-      [
-        {
-          "mesh": "data/meshes/mushroom_body_123.mesh",
-          "materials":
-          [
-            "data/materials/mushroom_body_06.material"
-          ],
-          "enabled": true
-        }
-      ]
-    }
-  },
-  {
-    "entity":
-    {
-      "name": "mushroom_body_122",
-      "transform":
-      {
-        "pos": "178.142 1.53417 -53.5998",
-        "rotation": "0.0 -0.906308 0.0 -0.422618"
-      },
-      "render":
-      [
-        {
-          "mesh": "data/meshes/mushroom_body_122.mesh",
-          "materials":
-          [
+            "data/materials/mushroom_head_05.material",
             "data/materials/mushroom_body_05.material"
           ],
           "enabled": true
@@ -11110,28 +9283,7 @@
           "mesh": "data/meshes/mushroom_head_140.mesh",
           "materials":
           [
-            "data/materials/mushroom_head_06.material"
-          ],
-          "enabled": true
-        }
-      ]
-    }
-  },
-  {
-    "entity":
-    {
-      "name": "mushroom_body_120",
-      "transform":
-      {
-        "pos": "182.218 1.33567 -17.0149",
-        "rotation": "0.166366 0.620885 0.198267 -0.739942"
-      },
-      "render":
-      [
-        {
-          "mesh": "data/meshes/mushroom_body_120.mesh",
-          "materials":
-          [
+            "data/materials/mushroom_head_06.material",
             "data/materials/mushroom_body_06.material"
           ],
           "enabled": true
@@ -11154,28 +9306,7 @@
           "mesh": "data/meshes/mushroom_head_139.mesh",
           "materials":
           [
-            "data/materials/mushroom_head_00.material"
-          ],
-          "enabled": true
-        }
-      ]
-    }
-  },
-  {
-    "entity":
-    {
-      "name": "mushroom_body_119",
-      "transform":
-      {
-        "pos": "178.713 2.00248 -42.1111",
-        "rotation": "0.0 -0.991445 0.0 0.130526"
-      },
-      "render":
-      [
-        {
-          "mesh": "data/meshes/mushroom_body_119.mesh",
-          "materials":
-          [
+            "data/materials/mushroom_head_00.material",
             "data/materials/mushroom_body_00.material"
           ],
           "enabled": true
@@ -11198,28 +9329,7 @@
           "mesh": "data/meshes/mushroom_head_138.mesh",
           "materials":
           [
-            "data/materials/mushroom_head_00.material"
-          ],
-          "enabled": true
-        }
-      ]
-    }
-  },
-  {
-    "entity":
-    {
-      "name": "mushroom_body_118",
-      "transform":
-      {
-        "pos": "181.586 -3.52269 -102.712",
-        "rotation": "-0.172163 -0.976383 -0.0226657 0.128543"
-      },
-      "render":
-      [
-        {
-          "mesh": "data/meshes/mushroom_body_118.mesh",
-          "materials":
-          [
+            "data/materials/mushroom_head_00.material",
             "data/materials/mushroom_body_00.material"
           ],
           "enabled": true
@@ -11242,28 +9352,7 @@
           "mesh": "data/meshes/mushroom_head_137.mesh",
           "materials":
           [
-            "data/materials/mushroom_head_00.material"
-          ],
-          "enabled": true
-        }
-      ]
-    }
-  },
-  {
-    "entity":
-    {
-      "name": "mushroom_body_117",
-      "transform":
-      {
-        "pos": "133.565 33.9849 -26.05",
-        "rotation": "0.0 -0.953717 0.0 0.300706"
-      },
-      "render":
-      [
-        {
-          "mesh": "data/meshes/mushroom_body_117.mesh",
-          "materials":
-          [
+            "data/materials/mushroom_head_00.material",
             "data/materials/mushroom_body_00.material"
           ],
           "enabled": true
@@ -11286,28 +9375,7 @@
           "mesh": "data/meshes/mushroom_head_136.mesh",
           "materials":
           [
-            "data/materials/mushroom_head_09.material"
-          ],
-          "enabled": true
-        }
-      ]
-    }
-  },
-  {
-    "entity":
-    {
-      "name": "mushroom_body_116",
-      "transform":
-      {
-        "pos": "181.296 1.60997 -76.3883",
-        "rotation": "0.0 0.5 0.0 -0.866025"
-      },
-      "render":
-      [
-        {
-          "mesh": "data/meshes/mushroom_body_116.mesh",
-          "materials":
-          [
+            "data/materials/mushroom_head_09.material",
             "data/materials/mushroom_body_07.material"
           ],
           "enabled": true
@@ -11330,28 +9398,7 @@
           "mesh": "data/meshes/mushroom_head_135.mesh",
           "materials":
           [
-            "data/materials/mushroom_head_09.material"
-          ],
-          "enabled": true
-        }
-      ]
-    }
-  },
-  {
-    "entity":
-    {
-      "name": "mushroom_body_115",
-      "transform":
-      {
-        "pos": "181.369 0.114632 -72.011",
-        "rotation": "0.0 0.0 0.0 -1.0"
-      },
-      "render":
-      [
-        {
-          "mesh": "data/meshes/mushroom_body_115.mesh",
-          "materials":
-          [
+            "data/materials/mushroom_head_09.material",
             "data/materials/mushroom_body_07.material"
           ],
           "enabled": true
@@ -11374,7 +9421,8 @@
           "mesh": "data/meshes/mushroom_head_134.mesh",
           "materials":
           [
-            "data/materials/mushroom_head_03.material"
+            "data/materials/mushroom_head_03.material",
+            "data/materials/mushroom_body_02.material"
           ],
           "enabled": true
         }
@@ -11396,51 +9444,8 @@
           "mesh": "data/meshes/mushroom_head_133.mesh",
           "materials":
           [
-            "data/materials/mushroom_head_04.material"
-          ],
-          "enabled": true
-        }
-      ]
-    }
-  },
-  {
-    "entity":
-    {
-      "name": "mushroom_body_114",
-      "transform":
-      {
-        "pos": "182.916 -0.753084 -64.5402",
-        "rotation": "0.0 -0.461749 0.0 -0.887011"
-      },
-      "render":
-      [
-        {
-          "mesh": "data/meshes/mushroom_body_114.mesh",
-          "materials":
-          [
+            "data/materials/mushroom_head_04.material",
             "data/materials/mushroom_body_04.material"
-          ],
-          "enabled": true
-        }
-      ]
-    }
-  },
-  {
-    "entity":
-    {
-      "name": "mushroom_body_113",
-      "transform":
-      {
-        "pos": "182.866 -1.89987 -63.8417",
-        "rotation": "0.0 -0.461749 0.0 -0.887011"
-      },
-      "render":
-      [
-        {
-          "mesh": "data/meshes/mushroom_body_113.mesh",
-          "materials":
-          [
-            "data/materials/mushroom_body_02.material"
           ],
           "enabled": true
         }
@@ -11462,28 +9467,7 @@
           "mesh": "data/meshes/mushroom_head_132.mesh",
           "materials":
           [
-            "data/materials/mushroom_head_05.material"
-          ],
-          "enabled": true
-        }
-      ]
-    }
-  },
-  {
-    "entity":
-    {
-      "name": "mushroom_body_112",
-      "transform":
-      {
-        "pos": "172.687 8.72444 -35.766",
-        "rotation": "0.0 0.0 0.0 -1.0"
-      },
-      "render":
-      [
-        {
-          "mesh": "data/meshes/mushroom_body_112.mesh",
-          "materials":
-          [
+            "data/materials/mushroom_head_05.material",
             "data/materials/mushroom_body_02.material"
           ],
           "enabled": true
@@ -11506,51 +9490,8 @@
           "mesh": "data/meshes/mushroom_head_131.mesh",
           "materials":
           [
-            "data/materials/mushroom_head_00.material"
-          ],
-          "enabled": true
-        }
-      ]
-    }
-  },
-  {
-    "entity":
-    {
-      "name": "mushroom_body_111",
-      "transform":
-      {
-        "pos": "179.598 1.53459 -17.2791",
-        "rotation": "0.0 0.0 0.0 -1.0"
-      },
-      "render":
-      [
-        {
-          "mesh": "data/meshes/mushroom_body_111.mesh",
-          "materials":
-          [
+            "data/materials/mushroom_head_00.material",
             "data/materials/mushroom_body_07.material"
-          ],
-          "enabled": true
-        }
-      ]
-    }
-  },
-  {
-    "entity":
-    {
-      "name": "mushroom_head_130",
-      "transform":
-      {
-        "pos": "176.244 23.0376 -74.4996",
-        "rotation": "0.0 0.0 0.0 -1.0"
-      },
-      "render":
-      [
-        {
-          "mesh": "data/meshes/mushroom_head_130.mesh",
-          "materials":
-          [
-            "data/materials/mushroom_head_00.material"
           ],
           "enabled": true
         }
@@ -11572,29 +9513,8 @@
           "mesh": "data/meshes/mushroom_body_110.mesh",
           "materials":
           [
-            "data/materials/mushroom_body_05.material"
-          ],
-          "enabled": true
-        }
-      ]
-    }
-  },
-  {
-    "entity":
-    {
-      "name": "mushroom_head_129",
-      "transform":
-      {
-        "pos": "174.132 4.2978 -48.1505",
-        "rotation": "-0.00569348 -0.990501 -0.130402 0.0432463"
-      },
-      "render":
-      [
-        {
-          "mesh": "data/meshes/mushroom_head_129.mesh",
-          "materials":
-          [
-            "data/materials/mushroom_head_08.material"
+            "data/materials/mushroom_body_05.material",
+            "data/materials/mushroom_head_00.material"
           ],
           "enabled": true
         }
@@ -11616,50 +9536,8 @@
           "mesh": "data/meshes/mushroom_head_128.mesh",
           "materials":
           [
-            "data/materials/mushroom_head_01.material"
-          ],
-          "enabled": true
-        }
-      ]
-    }
-  },
-  {
-    "entity":
-    {
-      "name": "mushroom_body_109",
-      "transform":
-      {
-        "pos": "174.475 4.58603 -47.6439",
-        "rotation": "-0.00569348 -0.990501 -0.130402 0.0432463"
-      },
-      "render":
-      [
-        {
-          "mesh": "data/meshes/mushroom_body_109.mesh",
-          "materials":
-          [
-            "data/materials/mushroom_body_01.material"
-          ],
-          "enabled": true
-        }
-      ]
-    }
-  },
-  {
-    "entity":
-    {
-      "name": "mushroom_head_127",
-      "transform":
-      {
-        "pos": "155.407 24.8151 -72.3053",
-        "rotation": "-0.00569348 -0.990501 -0.130402 0.0432463"
-      },
-      "render":
-      [
-        {
-          "mesh": "data/meshes/mushroom_head_127.mesh",
-          "materials":
-          [
+            "data/materials/mushroom_head_01.material",
+            "data/materials/mushroom_body_01.material",
             "data/materials/mushroom_head_08.material"
           ],
           "enabled": true
@@ -11682,50 +9560,8 @@
           "mesh": "data/meshes/mushroom_head_126.mesh",
           "materials":
           [
-            "data/materials/mushroom_head_01.material"
-          ],
-          "enabled": true
-        }
-      ]
-    }
-  },
-  {
-    "entity":
-    {
-      "name": "mushroom_body_108",
-      "transform":
-      {
-        "pos": "155.75 25.1033 -71.7987",
-        "rotation": "-0.00569348 -0.990501 -0.130402 0.0432463"
-      },
-      "render":
-      [
-        {
-          "mesh": "data/meshes/mushroom_body_108.mesh",
-          "materials":
-          [
-            "data/materials/mushroom_body_01.material"
-          ],
-          "enabled": true
-        }
-      ]
-    }
-  },
-  {
-    "entity":
-    {
-      "name": "mushroom_head_125",
-      "transform":
-      {
-        "pos": "150.39 26.3796 -46.4944",
-        "rotation": "0.0 0.0 0.0 -1.0"
-      },
-      "render":
-      [
-        {
-          "mesh": "data/meshes/mushroom_head_125.mesh",
-          "materials":
-          [
+            "data/materials/mushroom_head_01.material",
+            "data/materials/mushroom_body_01.material",
             "data/materials/mushroom_head_08.material"
           ],
           "enabled": true
@@ -11748,29 +9584,9 @@
           "mesh": "data/meshes/mushroom_head_124.mesh",
           "materials":
           [
-            "data/materials/mushroom_head_01.material"
-          ],
-          "enabled": true
-        }
-      ]
-    }
-  },
-  {
-    "entity":
-    {
-      "name": "mushroom_body_107",
-      "transform":
-      {
-        "pos": "150.092 26.7964 -46.9362",
-        "rotation": "0.0 0.0 0.0 -1.0"
-      },
-      "render":
-      [
-        {
-          "mesh": "data/meshes/mushroom_body_107.mesh",
-          "materials":
-          [
-            "data/materials/mushroom_body_01.material"
+            "data/materials/mushroom_head_01.material",
+            "data/materials/mushroom_body_01.material",
+            "data/materials/mushroom_head_08.material"
           ],
           "enabled": true
         }
@@ -11792,7 +9608,8 @@
           "mesh": "data/meshes/mushroom_head_123.mesh",
           "materials":
           [
-            "data/materials/mushroom_head_06.material"
+            "data/materials/mushroom_head_06.material",
+            "data/materials/mushroom_body_06.material"
           ],
           "enabled": true
         }
@@ -11814,50 +9631,7 @@
           "mesh": "data/meshes/mushroom_head_122.mesh",
           "materials":
           [
-            "data/materials/mushroom_head_05.material"
-          ],
-          "enabled": true
-        }
-      ]
-    }
-  },
-  {
-    "entity":
-    {
-      "name": "mushroom_body_106",
-      "transform":
-      {
-        "pos": "160.767 22.341 -104.883",
-        "rotation": "-0.187442 -0.845497 -0.10822 0.488148"
-      },
-      "render":
-      [
-        {
-          "mesh": "data/meshes/mushroom_body_106.mesh",
-          "materials":
-          [
-            "data/materials/mushroom_body_06.material"
-          ],
-          "enabled": true
-        }
-      ]
-    }
-  },
-  {
-    "entity":
-    {
-      "name": "mushroom_body_105",
-      "transform":
-      {
-        "pos": "160.154 22.6702 -104.959",
-        "rotation": "-0.187442 -0.845497 -0.10822 0.488148"
-      },
-      "render":
-      [
-        {
-          "mesh": "data/meshes/mushroom_body_105.mesh",
-          "materials":
-          [
+            "data/materials/mushroom_head_05.material",
             "data/materials/mushroom_body_05.material"
           ],
           "enabled": true
@@ -11880,7 +9654,8 @@
           "mesh": "data/meshes/mushroom_head_121.mesh",
           "materials":
           [
-            "data/materials/mushroom_head_06.material"
+            "data/materials/mushroom_head_06.material",
+            "data/materials/mushroom_body_06.material"
           ],
           "enabled": true
         }
@@ -11902,50 +9677,7 @@
           "mesh": "data/meshes/mushroom_head_120.mesh",
           "materials":
           [
-            "data/materials/mushroom_head_05.material"
-          ],
-          "enabled": true
-        }
-      ]
-    }
-  },
-  {
-    "entity":
-    {
-      "name": "mushroom_body_104",
-      "transform":
-      {
-        "pos": "161.629 23.321 -79.4272",
-        "rotation": "0.0 -0.173648 0.0 -0.984808"
-      },
-      "render":
-      [
-        {
-          "mesh": "data/meshes/mushroom_body_104.mesh",
-          "materials":
-          [
-            "data/materials/mushroom_body_06.material"
-          ],
-          "enabled": true
-        }
-      ]
-    }
-  },
-  {
-    "entity":
-    {
-      "name": "mushroom_body_103",
-      "transform":
-      {
-        "pos": "162.113 23.3602 -78.9224",
-        "rotation": "0.0 -0.173648 0.0 -0.984808"
-      },
-      "render":
-      [
-        {
-          "mesh": "data/meshes/mushroom_body_103.mesh",
-          "materials":
-          [
+            "data/materials/mushroom_head_05.material",
             "data/materials/mushroom_body_05.material"
           ],
           "enabled": true
@@ -11968,7 +9700,8 @@
           "mesh": "data/meshes/mushroom_head_119.mesh",
           "materials":
           [
-            "data/materials/mushroom_head_06.material"
+            "data/materials/mushroom_head_06.material",
+            "data/materials/mushroom_body_06.material"
           ],
           "enabled": true
         }
@@ -11990,73 +9723,8 @@
           "mesh": "data/meshes/mushroom_head_118.mesh",
           "materials":
           [
-            "data/materials/mushroom_head_05.material"
-          ],
-          "enabled": true
-        }
-      ]
-    }
-  },
-  {
-    "entity":
-    {
-      "name": "mushroom_body_102",
-      "transform":
-      {
-        "pos": "151.589 24.7627 -49.0224",
-        "rotation": "0.0 -0.34202 0.0 -0.939693"
-      },
-      "render":
-      [
-        {
-          "mesh": "data/meshes/mushroom_body_102.mesh",
-          "materials":
-          [
-            "data/materials/mushroom_body_06.material"
-          ],
-          "enabled": true
-        }
-      ]
-    }
-  },
-  {
-    "entity":
-    {
-      "name": "mushroom_body_101",
-      "transform":
-      {
-        "pos": "152.216 24.8018 -48.7135",
-        "rotation": "0.0 -0.34202 0.0 -0.939693"
-      },
-      "render":
-      [
-        {
-          "mesh": "data/meshes/mushroom_body_101.mesh",
-          "materials":
-          [
+            "data/materials/mushroom_head_05.material",
             "data/materials/mushroom_body_05.material"
-          ],
-          "enabled": true
-        }
-      ]
-    }
-  },
-  {
-    "entity":
-    {
-      "name": "mushroom_head_117",
-      "transform":
-      {
-        "pos": "170.072 4.94883 -51.1129",
-        "rotation": "0.0 -0.34202 0.0 -0.939693"
-      },
-      "render":
-      [
-        {
-          "mesh": "data/meshes/mushroom_head_117.mesh",
-          "materials":
-          [
-            "data/materials/mushroom_head_06.material"
           ],
           "enabled": true
         }
@@ -12078,7 +9746,8 @@
           "mesh": "data/meshes/mushroom_head_116.mesh",
           "materials":
           [
-            "data/materials/mushroom_head_05.material"
+            "data/materials/mushroom_head_05.material",
+            "data/materials/mushroom_body_05.material"
           ],
           "enabled": true
         }
@@ -12100,29 +9769,8 @@
           "mesh": "data/meshes/mushroom_body_100.mesh",
           "materials":
           [
-            "data/materials/mushroom_body_06.material"
-          ],
-          "enabled": true
-        }
-      ]
-    }
-  },
-  {
-    "entity":
-    {
-      "name": "mushroom_body_099",
-      "transform":
-      {
-        "pos": "170.87 4.29999 -50.7982",
-        "rotation": "0.0 -0.34202 0.0 -0.939693"
-      },
-      "render":
-      [
-        {
-          "mesh": "data/meshes/mushroom_body_099.mesh",
-          "materials":
-          [
-            "data/materials/mushroom_body_05.material"
+            "data/materials/mushroom_body_06.material",
+            "data/materials/mushroom_head_06.material"
           ],
           "enabled": true
         }
@@ -12144,51 +9792,8 @@
           "mesh": "data/meshes/mushroom_head_115.mesh",
           "materials":
           [
-            "data/materials/mushroom_head_09.material"
-          ],
-          "enabled": true
-        }
-      ]
-    }
-  },
-  {
-    "entity":
-    {
-      "name": "mushroom_body_098",
-      "transform":
-      {
-        "pos": "164.82 23.591 -76.9624",
-        "rotation": "0.0 0.0 0.0 -1.0"
-      },
-      "render":
-      [
-        {
-          "mesh": "data/meshes/mushroom_body_098.mesh",
-          "materials":
-          [
+            "data/materials/mushroom_head_09.material",
             "data/materials/mushroom_body_07.material"
-          ],
-          "enabled": true
-        }
-      ]
-    }
-  },
-  {
-    "entity":
-    {
-      "name": "mushroom_head_114",
-      "transform":
-      {
-        "pos": "137.785 25.4911 -46.936",
-        "rotation": "0.182736 -0.419339 0.240536 -0.856098"
-      },
-      "render":
-      [
-        {
-          "mesh": "data/meshes/mushroom_head_114.mesh",
-          "materials":
-          [
-            "data/materials/mushroom_head_03.material"
           ],
           "enabled": true
         }
@@ -12210,28 +9815,7 @@
           "mesh": "data/meshes/mushroom_head_113.mesh",
           "materials":
           [
-            "data/materials/mushroom_head_04.material"
-          ],
-          "enabled": true
-        }
-      ]
-    }
-  },
-  {
-    "entity":
-    {
-      "name": "mushroom_body_097",
-      "transform":
-      {
-        "pos": "137.489 25.233 -47.9243",
-        "rotation": "0.182736 -0.419339 0.240536 -0.856098"
-      },
-      "render":
-      [
-        {
-          "mesh": "data/meshes/mushroom_body_097.mesh",
-          "materials":
-          [
+            "data/materials/mushroom_head_04.material",
             "data/materials/mushroom_body_04.material"
           ],
           "enabled": true
@@ -12254,7 +9838,8 @@
           "mesh": "data/meshes/mushroom_body_096.mesh",
           "materials":
           [
-            "data/materials/mushroom_body_02.material"
+            "data/materials/mushroom_body_02.material",
+            "data/materials/mushroom_head_03.material"
           ],
           "enabled": true
         }
@@ -12276,29 +9861,8 @@
           "mesh": "data/meshes/mushroom_head_112.mesh",
           "materials":
           [
-            "data/materials/mushroom_head_03.material"
-          ],
-          "enabled": true
-        }
-      ]
-    }
-  },
-  {
-    "entity":
-    {
-      "name": "mushroom_head_111",
-      "transform":
-      {
-        "pos": "178.85 -0.918938 -113.767",
-        "rotation": "0.0 0.0 0.382683 -0.92388"
-      },
-      "render":
-      [
-        {
-          "mesh": "data/meshes/mushroom_head_111.mesh",
-          "materials":
-          [
-            "data/materials/mushroom_head_04.material"
+            "data/materials/mushroom_head_03.material",
+            "data/materials/mushroom_body_02.material"
           ],
           "enabled": true
         }
@@ -12320,29 +9884,8 @@
           "mesh": "data/meshes/mushroom_body_095.mesh",
           "materials":
           [
-            "data/materials/mushroom_body_04.material"
-          ],
-          "enabled": true
-        }
-      ]
-    }
-  },
-  {
-    "entity":
-    {
-      "name": "mushroom_body_094",
-      "transform":
-      {
-        "pos": "175.759 -3.12324 -113.625",
-        "rotation": "0.0 0.0 0.382683 -0.92388"
-      },
-      "render":
-      [
-        {
-          "mesh": "data/meshes/mushroom_body_094.mesh",
-          "materials":
-          [
-            "data/materials/mushroom_body_02.material"
+            "data/materials/mushroom_body_04.material",
+            "data/materials/mushroom_head_04.material"
           ],
           "enabled": true
         }
@@ -12364,28 +9907,7 @@
           "mesh": "data/meshes/mushroom_head_110.mesh",
           "materials":
           [
-            "data/materials/mushroom_head_06.material"
-          ],
-          "enabled": true
-        }
-      ]
-    }
-  },
-  {
-    "entity":
-    {
-      "name": "mushroom_body_093",
-      "transform":
-      {
-        "pos": "171.663 33.072 -113.436",
-        "rotation": "-0.133022 0.633022 0.111619 -0.754406"
-      },
-      "render":
-      [
-        {
-          "mesh": "data/meshes/mushroom_body_093.mesh",
-          "materials":
-          [
+            "data/materials/mushroom_head_06.material",
             "data/materials/mushroom_body_06.material"
           ],
           "enabled": true
@@ -12408,28 +9930,7 @@
           "mesh": "data/meshes/mushroom_head_109.mesh",
           "materials":
           [
-            "data/materials/mushroom_head_06.material"
-          ],
-          "enabled": true
-        }
-      ]
-    }
-  },
-  {
-    "entity":
-    {
-      "name": "mushroom_body_092",
-      "transform":
-      {
-        "pos": "158.773 22.8935 -98.3168",
-        "rotation": "0.0 0.642788 0.0 -0.766044"
-      },
-      "render":
-      [
-        {
-          "mesh": "data/meshes/mushroom_body_092.mesh",
-          "materials":
-          [
+            "data/materials/mushroom_head_06.material",
             "data/materials/mushroom_body_06.material"
           ],
           "enabled": true
@@ -12452,51 +9953,8 @@
           "mesh": "data/meshes/mushroom_head_108.mesh",
           "materials":
           [
-            "data/materials/mushroom_head_06.material"
-          ],
-          "enabled": true
-        }
-      ]
-    }
-  },
-  {
-    "entity":
-    {
-      "name": "mushroom_body_091",
-      "transform":
-      {
-        "pos": "158.773 23.7907 -75.1876",
-        "rotation": "0.0 0.642788 0.0 -0.766044"
-      },
-      "render":
-      [
-        {
-          "mesh": "data/meshes/mushroom_body_091.mesh",
-          "materials":
-          [
+            "data/materials/mushroom_head_06.material",
             "data/materials/mushroom_body_06.material"
-          ],
-          "enabled": true
-        }
-      ]
-    }
-  },
-  {
-    "entity":
-    {
-      "name": "mushroom_head_107",
-      "transform":
-      {
-        "pos": "159.397 35.9382 -80.3515",
-        "rotation": "0.0 -0.766044 0.0 -0.642788"
-      },
-      "render":
-      [
-        {
-          "mesh": "data/meshes/mushroom_head_107.mesh",
-          "materials":
-          [
-            "data/materials/mushroom_head_05.material"
           ],
           "enabled": true
         }
@@ -12518,7 +9976,8 @@
           "mesh": "data/meshes/mushroom_body_090.mesh",
           "materials":
           [
-            "data/materials/mushroom_body_05.material"
+            "data/materials/mushroom_body_05.material",
+            "data/materials/mushroom_head_05.material"
           ],
           "enabled": true
         }
@@ -12540,28 +9999,7 @@
           "mesh": "data/meshes/mushroom_head_106.mesh",
           "materials":
           [
-            "data/materials/mushroom_head_00.material"
-          ],
-          "enabled": true
-        }
-      ]
-    }
-  },
-  {
-    "entity":
-    {
-      "name": "mushroom_body_089",
-      "transform":
-      {
-        "pos": "160.017 34.4098 -77.7587",
-        "rotation": "0.0 0.0 0.0 -1.0"
-      },
-      "render":
-      [
-        {
-          "mesh": "data/meshes/mushroom_body_089.mesh",
-          "materials":
-          [
+            "data/materials/mushroom_head_00.material",
             "data/materials/mushroom_body_07.material"
           ],
           "enabled": true
@@ -12584,28 +10022,7 @@
           "mesh": "data/meshes/mushroom_head_105.mesh",
           "materials":
           [
-            "data/materials/mushroom_head_09.material"
-          ],
-          "enabled": true
-        }
-      ]
-    }
-  },
-  {
-    "entity":
-    {
-      "name": "mushroom_body_088",
-      "transform":
-      {
-        "pos": "151.878 23.591 -99.9382",
-        "rotation": "0.0 0.0 0.0 -1.0"
-      },
-      "render":
-      [
-        {
-          "mesh": "data/meshes/mushroom_body_088.mesh",
-          "materials":
-          [
+            "data/materials/mushroom_head_09.material",
             "data/materials/mushroom_body_07.material"
           ],
           "enabled": true
@@ -12628,28 +10045,7 @@
           "mesh": "data/meshes/mushroom_head_104.mesh",
           "materials":
           [
-            "data/materials/mushroom_head_00.material"
-          ],
-          "enabled": true
-        }
-      ]
-    }
-  },
-  {
-    "entity":
-    {
-      "name": "mushroom_body_087",
-      "transform":
-      {
-        "pos": "153.117 24.1662 -105.966",
-        "rotation": "0.0 0.0 0.0 -1.0"
-      },
-      "render":
-      [
-        {
-          "mesh": "data/meshes/mushroom_body_087.mesh",
-          "materials":
-          [
+            "data/materials/mushroom_head_00.material",
             "data/materials/mushroom_body_00.material"
           ],
           "enabled": true
@@ -12672,28 +10068,7 @@
           "mesh": "data/meshes/mushroom_head_103.mesh",
           "materials":
           [
-            "data/materials/mushroom_head_05.material"
-          ],
-          "enabled": true
-        }
-      ]
-    }
-  },
-  {
-    "entity":
-    {
-      "name": "mushroom_body_086",
-      "transform":
-      {
-        "pos": "162.893 25.4148 -101.523",
-        "rotation": "0.0 0.0 0.0 -1.0"
-      },
-      "render":
-      [
-        {
-          "mesh": "data/meshes/mushroom_body_086.mesh",
-          "materials":
-          [
+            "data/materials/mushroom_head_05.material",
             "data/materials/mushroom_body_02.material"
           ],
           "enabled": true
@@ -12704,29 +10079,7 @@
   {
     "entity":
     {
-      "name": "mushroom_body_085",
-      "transform":
-      {
-        "pos": "217.981 -10.1451 -29.1346",
-        "rotation": "0.0 0.0 0.0 -1.0"
-      },
-      "render":
-      [
-        {
-          "mesh": "data/meshes/mushroom_body_085.mesh",
-          "materials":
-          [
-            "data/materials/mushroom_body_07.material"
-          ],
-          "enabled": true
-        }
-      ]
-    }
-  },
-  {
-    "entity":
-    {
-      "name": "easter_left_egg",
+      "name": "easter_left_egg_col",
       "transform":
       {
         "pos": "169.894 13.3864 -155.522",
@@ -12735,56 +10088,14 @@
       "render":
       [
         {
-          "mesh": "data/meshes/easter_left_egg.mesh",
+          "mesh": "data/meshes/easter_left_egg_col.mesh",
           "materials":
           [
             "data/materials/Material_roca04.material"
           ],
           "enabled": true
         }
-      ],
-      "collider":
-      {
-        "mesh_src": "data/meshes/easter_left_egg_col.col_mesh",
-        "shape": "convex_mesh",
-        "type": "static",
-        "group":
-        [
-          "scenario"
-        ]
-      }
-    }
-  },
-  {
-    "entity":
-    {
-      "name": "easter_right_egg",
-      "transform":
-      {
-        "pos": "168.266 13.3864 -153.828",
-        "rotation": "0.0 0.0 0.0 -1.0"
-      },
-      "render":
-      [
-        {
-          "mesh": "data/meshes/easter_right_egg.mesh",
-          "materials":
-          [
-            "data/materials/Material_roca04.material"
-          ],
-          "enabled": true
-        }
-      ],
-      "collider":
-      {
-        "mesh_src": "data/meshes/easter_right_egg_col.col_mesh",
-        "shape": "convex_mesh",
-        "type": "static",
-        "group":
-        [
-          "scenario"
-        ]
-      }
+      ]
     }
   },
   {
@@ -12802,51 +10113,9 @@
           "mesh": "data/meshes/mushroom_head_102.mesh",
           "materials":
           [
-            "data/materials/mushroom_head_03.material"
-          ],
-          "enabled": true
-        }
-      ]
-    }
-  },
-  {
-    "entity":
-    {
-      "name": "mushroom_body_084",
-      "transform":
-      {
-        "pos": "170.887 16.9146 -152.433",
-        "rotation": "-0.191042 -0.919285 -0.168814 0.299867"
-      },
-      "render":
-      [
-        {
-          "mesh": "data/meshes/mushroom_body_084.mesh",
-          "materials":
-          [
-            "data/materials/mushroom_body_05.material"
-          ],
-          "enabled": true
-        }
-      ]
-    }
-  },
-  {
-    "entity":
-    {
-      "name": "mushroom_head_101",
-      "transform":
-      {
-        "pos": "166.799 27.5834 -45.072",
-        "rotation": "0.0 0.793353 0.0 -0.608761"
-      },
-      "render":
-      [
-        {
-          "mesh": "data/meshes/mushroom_head_101.mesh",
-          "materials":
-          [
-            "data/materials/mushroom_head_05.material"
+            "data/materials/mushroom_head_03.material",
+            "data/materials/mushroom_body_05.material",
+            "data/materials/Material roca04.material"
           ],
           "enabled": true
         }
@@ -12868,7 +10137,8 @@
           "mesh": "data/meshes/mushroom_body_083.mesh",
           "materials":
           [
-            "data/materials/mushroom_body_05.material"
+            "data/materials/mushroom_body_05.material",
+            "data/materials/mushroom_head_05.material"
           ],
           "enabled": true
         }
@@ -12890,28 +10160,7 @@
           "mesh": "data/meshes/mushroom_head_100.mesh",
           "materials":
           [
-            "data/materials/mushroom_head_00.material"
-          ],
-          "enabled": true
-        }
-      ]
-    }
-  },
-  {
-    "entity":
-    {
-      "name": "mushroom_body_082",
-      "transform":
-      {
-        "pos": "229.519 -6.74189 -55.1963",
-        "rotation": "0.0 0.461749 0.0 -0.887011"
-      },
-      "render":
-      [
-        {
-          "mesh": "data/meshes/mushroom_body_082.mesh",
-          "materials":
-          [
+            "data/materials/mushroom_head_00.material",
             "data/materials/mushroom_body_00.material"
           ],
           "enabled": true
@@ -12934,7 +10183,8 @@
           "mesh": "data/meshes/mushroom_head_099.mesh",
           "materials":
           [
-            "data/materials/mushroom_head_05.material"
+            "data/materials/mushroom_head_05.material",
+            "data/materials/mushroom_body_02.material"
           ],
           "enabled": true
         }
@@ -12956,28 +10206,7 @@
           "mesh": "data/meshes/mushroom_head_098.mesh",
           "materials":
           [
-            "data/materials/mushroom_head_06.material"
-          ],
-          "enabled": true
-        }
-      ]
-    }
-  },
-  {
-    "entity":
-    {
-      "name": "mushroom_body_081",
-      "transform":
-      {
-        "pos": "215.267 -14.9634 -63.4875",
-        "rotation": "0.0 0.0 0.0 -1.0"
-      },
-      "render":
-      [
-        {
-          "mesh": "data/meshes/mushroom_body_081.mesh",
-          "materials":
-          [
+            "data/materials/mushroom_head_06.material",
             "data/materials/mushroom_body_06.material"
           ],
           "enabled": true
@@ -13032,28 +10261,6 @@
   {
     "entity":
     {
-      "name": "mushroom_body_079",
-      "transform":
-      {
-        "pos": "212.676 -11.0584 -64.3291",
-        "rotation": "0.0 0.0 0.0 -1.0"
-      },
-      "render":
-      [
-        {
-          "mesh": "data/meshes/mushroom_body_079.mesh",
-          "materials":
-          [
-            "data/materials/mushroom_body_02.material"
-          ],
-          "enabled": true
-        }
-      ]
-    }
-  },
-  {
-    "entity":
-    {
       "name": "mushroom_head_094",
       "transform":
       {
@@ -13066,7 +10273,8 @@
           "mesh": "data/meshes/mushroom_head_094.mesh",
           "materials":
           [
-            "data/materials/mushroom_head_00.material"
+            "data/materials/mushroom_head_00.material",
+            "data/materials/mushroom_body_07.material"
           ],
           "enabled": true
         }
@@ -13088,28 +10296,7 @@
           "mesh": "data/meshes/mushroom_head_093.mesh",
           "materials":
           [
-            "data/materials/mushroom_head_05.material"
-          ],
-          "enabled": true
-        }
-      ]
-    }
-  },
-  {
-    "entity":
-    {
-      "name": "mushroom_body_077",
-      "transform":
-      {
-        "pos": "215.841 -2.11646 -45.4691",
-        "rotation": "0.0 0.0 0.0 -1.0"
-      },
-      "render":
-      [
-        {
-          "mesh": "data/meshes/mushroom_body_077.mesh",
-          "materials":
-          [
+            "data/materials/mushroom_head_05.material",
             "data/materials/mushroom_body_05.material"
           ],
           "enabled": true
@@ -13132,28 +10319,7 @@
           "mesh": "data/meshes/mushroom_head_092.mesh",
           "materials":
           [
-            "data/materials/mushroom_head_00.material"
-          ],
-          "enabled": true
-        }
-      ]
-    }
-  },
-  {
-    "entity":
-    {
-      "name": "mushroom_body_076",
-      "transform":
-      {
-        "pos": "200.878 -5.40799 -33.1398",
-        "rotation": "0.0 0.0 0.0 -1.0"
-      },
-      "render":
-      [
-        {
-          "mesh": "data/meshes/mushroom_body_076.mesh",
-          "materials":
-          [
+            "data/materials/mushroom_head_00.material",
             "data/materials/mushroom_body_00.material"
           ],
           "enabled": true
@@ -13176,28 +10342,7 @@
           "mesh": "data/meshes/mushroom_head_091.mesh",
           "materials":
           [
-            "data/materials/mushroom_head_09.material"
-          ],
-          "enabled": true
-        }
-      ]
-    }
-  },
-  {
-    "entity":
-    {
-      "name": "mushroom_body_075",
-      "transform":
-      {
-        "pos": "215.272 -4.09874 -41.6786",
-        "rotation": "0.0 0.0 0.0 -1.0"
-      },
-      "render":
-      [
-        {
-          "mesh": "data/meshes/mushroom_body_075.mesh",
-          "materials":
-          [
+            "data/materials/mushroom_head_09.material",
             "data/materials/mushroom_body_07.material"
           ],
           "enabled": true
@@ -13220,7 +10365,8 @@
           "mesh": "data/meshes/mushroom_head_090.mesh",
           "materials":
           [
-            "data/materials/mushroom_head_03.material"
+            "data/materials/mushroom_head_03.material",
+            "data/materials/mushroom_body_02.material"
           ],
           "enabled": true
         }
@@ -13242,51 +10388,8 @@
           "mesh": "data/meshes/mushroom_head_089.mesh",
           "materials":
           [
-            "data/materials/mushroom_head_04.material"
-          ],
-          "enabled": true
-        }
-      ]
-    }
-  },
-  {
-    "entity":
-    {
-      "name": "mushroom_body_074",
-      "transform":
-      {
-        "pos": "119.254 15.8347 -101.138",
-        "rotation": "0.0 0.0 0.0 -1.0"
-      },
-      "render":
-      [
-        {
-          "mesh": "data/meshes/mushroom_body_074.mesh",
-          "materials":
-          [
+            "data/materials/mushroom_head_04.material",
             "data/materials/mushroom_body_04.material"
-          ],
-          "enabled": true
-        }
-      ]
-    }
-  },
-  {
-    "entity":
-    {
-      "name": "mushroom_body_073",
-      "transform":
-      {
-        "pos": "119.135 15.3832 -100.86",
-        "rotation": "0.0 0.0 0.0 -1.0"
-      },
-      "render":
-      [
-        {
-          "mesh": "data/meshes/mushroom_body_073.mesh",
-          "materials":
-          [
-            "data/materials/mushroom_body_02.material"
           ],
           "enabled": true
         }
@@ -13308,7 +10411,8 @@
           "mesh": "data/meshes/mushroom_head_086.mesh",
           "materials":
           [
-            "data/materials/mushroom_head_00.material"
+            "data/materials/mushroom_head_00.material",
+            "data/materials/mushroom_body_00.material"
           ],
           "enabled": true
         }
@@ -13330,7 +10434,8 @@
           "mesh": "data/meshes/mushroom_head_085.mesh",
           "materials":
           [
-            "data/materials/mushroom_head_06.material"
+            "data/materials/mushroom_head_06.material",
+            "data/materials/mushroom_body_06.material"
           ],
           "enabled": true
         }
@@ -13352,7 +10457,8 @@
           "mesh": "data/meshes/mushroom_head_084.mesh",
           "materials":
           [
-            "data/materials/mushroom_head_05.material"
+            "data/materials/mushroom_head_05.material",
+            "data/materials/mushroom_body_05.material"
           ],
           "enabled": true
         }
@@ -13374,7 +10480,8 @@
           "mesh": "data/meshes/mushroom_head_083.mesh",
           "materials":
           [
-            "data/materials/mushroom_head_03.material"
+            "data/materials/mushroom_head_03.material",
+            "data/materials/mushroom_body_02.material"
           ],
           "enabled": true
         }
@@ -13396,7 +10503,8 @@
           "mesh": "data/meshes/mushroom_head_082.mesh",
           "materials":
           [
-            "data/materials/mushroom_head_04.material"
+            "data/materials/mushroom_head_04.material",
+            "data/materials/mushroom_body_04.material"
           ],
           "enabled": true
         }
@@ -13418,182 +10526,7 @@
           "mesh": "data/meshes/mushroom_head_081.mesh",
           "materials":
           [
-            "data/materials/mushroom_head_09.material"
-          ],
-          "enabled": true
-        }
-      ]
-    }
-  },
-  {
-    "entity":
-    {
-      "name": "mushroom_head_080",
-      "transform":
-      {
-        "pos": "43.3839 1.345 18.3903",
-        "rotation": "0.0 0.0 0.0 -1.0"
-      },
-      "render":
-      [
-        {
-          "mesh": "data/meshes/mushroom_head_080.mesh",
-          "materials":
-          [
-            "data/materials/mushroom_head_08.material"
-          ],
-          "enabled": true
-        }
-      ]
-    }
-  },
-  {
-    "entity":
-    {
-      "name": "mushroom_head_079",
-      "transform":
-      {
-        "pos": "43.1834 4.72165 18.727",
-        "rotation": "0.0 0.0 0.0 -1.0"
-      },
-      "render":
-      [
-        {
-          "mesh": "data/meshes/mushroom_head_079.mesh",
-          "materials":
-          [
-            "data/materials/mushroom_head_01.material"
-          ],
-          "enabled": true
-        }
-      ]
-    }
-  },
-  {
-    "entity":
-    {
-      "name": "mushroom_body_070",
-      "transform":
-      {
-        "pos": "45.6471 0.822132 13.8948",
-        "rotation": "0.0 0.0 0.0 -1.0"
-      },
-      "render":
-      [
-        {
-          "mesh": "data/meshes/mushroom_body_070.mesh",
-          "materials":
-          [
-            "data/materials/mushroom_body_00.material"
-          ],
-          "enabled": true
-        }
-      ]
-    }
-  },
-  {
-    "entity":
-    {
-      "name": "mushroom_body_069",
-      "transform":
-      {
-        "pos": "48.249 0.225439 17.8671",
-        "rotation": "0.0 0.0 0.0 -1.0"
-      },
-      "render":
-      [
-        {
-          "mesh": "data/meshes/mushroom_body_069.mesh",
-          "materials":
-          [
-            "data/materials/mushroom_body_06.material"
-          ],
-          "enabled": true
-        }
-      ]
-    }
-  },
-  {
-    "entity":
-    {
-      "name": "mushroom_body_068",
-      "transform":
-      {
-        "pos": "48.5309 0.26456 18.5069",
-        "rotation": "0.0 0.0 0.0 -1.0"
-      },
-      "render":
-      [
-        {
-          "mesh": "data/meshes/mushroom_body_068.mesh",
-          "materials":
-          [
-            "data/materials/mushroom_body_05.material"
-          ],
-          "enabled": true
-        }
-      ]
-    }
-  },
-  {
-    "entity":
-    {
-      "name": "mushroom_body_067",
-      "transform":
-      {
-        "pos": "47.5614 2.63187 15.0518",
-        "rotation": "0.0 0.0 0.0 -1.0"
-      },
-      "render":
-      [
-        {
-          "mesh": "data/meshes/mushroom_body_067.mesh",
-          "materials":
-          [
-            "data/materials/mushroom_body_04.material"
-          ],
-          "enabled": true
-        }
-      ]
-    }
-  },
-  {
-    "entity":
-    {
-      "name": "mushroom_body_066",
-      "transform":
-      {
-        "pos": "46.9607 1.48509 15.4118",
-        "rotation": "0.0 0.0 0.0 -1.0"
-      },
-      "render":
-      [
-        {
-          "mesh": "data/meshes/mushroom_body_066.mesh",
-          "materials":
-          [
-            "data/materials/mushroom_body_02.material"
-          ],
-          "enabled": true
-        }
-      ]
-    }
-  },
-  {
-    "entity":
-    {
-      "name": "mushroom_body_065",
-      "transform":
-      {
-        "pos": "44.5919 2.88018 20.5368",
-        "rotation": "0.0 0.0 0.0 -1.0"
-      },
-      "render":
-      [
-        {
-          "mesh": "data/meshes/mushroom_body_065.mesh",
-          "materials":
-          [
+            "data/materials/mushroom_head_09.material",
             "data/materials/mushroom_body_07.material"
           ],
           "enabled": true
@@ -13616,28 +10549,8 @@
           "mesh": "data/meshes/mushroom_body_064.mesh",
           "materials":
           [
-            "data/materials/mushroom_body_01.material"
-          ],
-          "enabled": true
-        }
-      ]
-    }
-  },
-  {
-    "entity":
-    {
-      "name": "mushroom_head_059",
-      "transform":
-      {
-        "pos": "-12.7203 -2.71094 -13.2152",
-        "rotation": "0.0 0.0 0.0 -1.0"
-      },
-      "render":
-      [
-        {
-          "mesh": "data/meshes/mushroom_head_059.mesh",
-          "materials":
-          [
+            "data/materials/mushroom_body_01.material",
+            "data/materials/mushroom_head_01.material",
             "data/materials/mushroom_head_08.material"
           ],
           "enabled": true
@@ -13660,50 +10573,8 @@
           "mesh": "data/meshes/mushroom_head_058.mesh",
           "materials":
           [
-            "data/materials/mushroom_head_01.material"
-          ],
-          "enabled": true
-        }
-      ]
-    }
-  },
-  {
-    "entity":
-    {
-      "name": "mushroom_body_047",
-      "transform":
-      {
-        "pos": "-12.6266 -2.41367 -12.9272",
-        "rotation": "0.0 0.0 0.0 -1.0"
-      },
-      "render":
-      [
-        {
-          "mesh": "data/meshes/mushroom_body_047.mesh",
-          "materials":
-          [
-            "data/materials/mushroom_body_01.material"
-          ],
-          "enabled": true
-        }
-      ]
-    }
-  },
-  {
-    "entity":
-    {
-      "name": "mushroom_head_057",
-      "transform":
-      {
-        "pos": "-12.1495 -2.38821 -10.7736",
-        "rotation": "0.0 0.0 0.0 -1.0"
-      },
-      "render":
-      [
-        {
-          "mesh": "data/meshes/mushroom_head_057.mesh",
-          "materials":
-          [
+            "data/materials/mushroom_head_01.material",
+            "data/materials/mushroom_body_01.material",
             "data/materials/mushroom_head_08.material"
           ],
           "enabled": true
@@ -13726,29 +10597,9 @@
           "mesh": "data/meshes/mushroom_head_056.mesh",
           "materials":
           [
-            "data/materials/mushroom_head_01.material"
-          ],
-          "enabled": true
-        }
-      ]
-    }
-  },
-  {
-    "entity":
-    {
-      "name": "mushroom_body_046",
-      "transform":
-      {
-        "pos": "-12.2232 -2.17495 -11.0197",
-        "rotation": "0.0 0.0 0.0 -1.0"
-      },
-      "render":
-      [
-        {
-          "mesh": "data/meshes/mushroom_body_046.mesh",
-          "materials":
-          [
-            "data/materials/mushroom_body_01.material"
+            "data/materials/mushroom_head_01.material",
+            "data/materials/mushroom_body_01.material",
+            "data/materials/mushroom_head_08.material"
           ],
           "enabled": true
         }
@@ -13770,7 +10621,8 @@
           "mesh": "data/meshes/mushroom_head_055.mesh",
           "materials":
           [
-            "data/materials/mushroom_head_03.material"
+            "data/materials/mushroom_head_03.material",
+            "data/materials/mushroom_body_02.material"
           ],
           "enabled": true
         }
@@ -13792,7 +10644,8 @@
           "mesh": "data/meshes/mushroom_head_054.mesh",
           "materials":
           [
-            "data/materials/mushroom_head_04.material"
+            "data/materials/mushroom_head_04.material",
+            "data/materials/mushroom_body_04.material"
           ],
           "enabled": true
         }
@@ -13814,73 +10667,8 @@
           "mesh": "data/meshes/mushroom_head_053.mesh",
           "materials":
           [
-            "data/materials/mushroom_head_03.material"
-          ],
-          "enabled": true
-        }
-      ]
-    }
-  },
-  {
-    "entity":
-    {
-      "name": "mushroom_body_045",
-      "transform":
-      {
-        "pos": "-10.2728 -1.27679 -19.1788",
-        "rotation": "0.0 0.0 0.0 -1.0"
-      },
-      "render":
-      [
-        {
-          "mesh": "data/meshes/mushroom_body_045.mesh",
-          "materials":
-          [
-            "data/materials/mushroom_body_04.material"
-          ],
-          "enabled": true
-        }
-      ]
-    }
-  },
-  {
-    "entity":
-    {
-      "name": "mushroom_body_044",
-      "transform":
-      {
-        "pos": "-10.3753 -2.16585 -18.55",
-        "rotation": "0.0 0.0 0.0 -1.0"
-      },
-      "render":
-      [
-        {
-          "mesh": "data/meshes/mushroom_body_044.mesh",
-          "materials":
-          [
+            "data/materials/mushroom_head_03.material",
             "data/materials/mushroom_body_03.material"
-          ],
-          "enabled": true
-        }
-      ]
-    }
-  },
-  {
-    "entity":
-    {
-      "name": "mushroom_body_043",
-      "transform":
-      {
-        "pos": "-10.7469 -2.12791 -19.7439",
-        "rotation": "0.0 0.0 0.0 -1.0"
-      },
-      "render":
-      [
-        {
-          "mesh": "data/meshes/mushroom_body_043.mesh",
-          "materials":
-          [
-            "data/materials/mushroom_body_02.material"
           ],
           "enabled": true
         }
@@ -13902,7 +10690,8 @@
           "mesh": "data/meshes/mushroom_head_052.mesh",
           "materials":
           [
-            "data/materials/mushroom_head_06.material"
+            "data/materials/mushroom_head_06.material",
+            "data/materials/mushroom_body_06.material"
           ],
           "enabled": true
         }
@@ -13924,50 +10713,7 @@
           "mesh": "data/meshes/mushroom_head_051.mesh",
           "materials":
           [
-            "data/materials/mushroom_head_05.material"
-          ],
-          "enabled": true
-        }
-      ]
-    }
-  },
-  {
-    "entity":
-    {
-      "name": "mushroom_body_042",
-      "transform":
-      {
-        "pos": "-9.18907 -2.4184 -17.5639",
-        "rotation": "0.0 0.0 0.0 -1.0"
-      },
-      "render":
-      [
-        {
-          "mesh": "data/meshes/mushroom_body_042.mesh",
-          "materials":
-          [
-            "data/materials/mushroom_body_06.material"
-          ],
-          "enabled": true
-        }
-      ]
-    }
-  },
-  {
-    "entity":
-    {
-      "name": "mushroom_body_041",
-      "transform":
-      {
-        "pos": "-8.82909 -2.39306 -18.1557",
-        "rotation": "0.0 0.0 0.0 -1.0"
-      },
-      "render":
-      [
-        {
-          "mesh": "data/meshes/mushroom_body_041.mesh",
-          "materials":
-          [
+            "data/materials/mushroom_head_05.material",
             "data/materials/mushroom_body_05.material"
           ],
           "enabled": true
@@ -13990,28 +10736,7 @@
           "mesh": "data/meshes/mushroom_head_050.mesh",
           "materials":
           [
-            "data/materials/mushroom_head_09.material"
-          ],
-          "enabled": true
-        }
-      ]
-    }
-  },
-  {
-    "entity":
-    {
-      "name": "mushroom_body_040",
-      "transform":
-      {
-        "pos": "-9.99297 -0.873847 -16.4073",
-        "rotation": "0.0 0.0 0.0 -1.0"
-      },
-      "render":
-      [
-        {
-          "mesh": "data/meshes/mushroom_body_040.mesh",
-          "materials":
-          [
+            "data/materials/mushroom_head_09.material",
             "data/materials/mushroom_body_07.material"
           ],
           "enabled": true
@@ -14034,28 +10759,7 @@
           "mesh": "data/meshes/mushroom_head_049.mesh",
           "materials":
           [
-            "data/materials/mushroom_head_00.material"
-          ],
-          "enabled": true
-        }
-      ]
-    }
-  },
-  {
-    "entity":
-    {
-      "name": "mushroom_body_039",
-      "transform":
-      {
-        "pos": "-8.0991 -1.74099 -13.6022",
-        "rotation": "0.0 0.0 0.0 -1.0"
-      },
-      "render":
-      [
-        {
-          "mesh": "data/meshes/mushroom_body_039.mesh",
-          "materials":
-          [
+            "data/materials/mushroom_head_00.material",
             "data/materials/mushroom_body_00.material"
           ],
           "enabled": true
