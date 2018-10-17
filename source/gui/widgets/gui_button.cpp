@@ -51,8 +51,12 @@ TTextParams* CButton::getTextParams() {
 }
 
 void CButton::setCurrentState(EState newState) {
+	if (_currentState != newState) {
+		if (newState == EState::ST_Pressed)	EngineSound.emitEvent(SOUND_MENU_ACCEPT);
+	}
 	_currentState = newState;
 	computeAbsolute();
+	
 }
 
 void CButton::computeLocal() {
