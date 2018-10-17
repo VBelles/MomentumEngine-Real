@@ -76,6 +76,7 @@ void TCompMusic::play() {
 void TCompMusic::fadeOut(float time) {
 	fadingOut = true;
 	currentSongInstance->getVolume(&fadingStartingVolume);
+	time = time < 0 ? 0 : time;
 	fadeOutTime = time;
 	fadeOutTimer.reset();
 }
