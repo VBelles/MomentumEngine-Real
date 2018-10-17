@@ -16,6 +16,7 @@ private:
 	float reactivationTime = 0.f;
 	std::vector<std::string> mechanismSystemsNames;
 	std::vector<CHandle> mechanismSystems;
+	FMOD::Studio::EventInstance* clockEventInstance = nullptr;
 
 public:
     void debugInMenu();
