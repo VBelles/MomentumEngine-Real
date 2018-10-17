@@ -27,6 +27,7 @@
             <destination>{78982ad8-2584-4366-8848-15e1b46f264d}</destination>
         </relationship>
     </object>
+    <object class="AutomationTrack" id="{7c3b394d-5af0-48e9-a6de-2e2af2162e51}"/>
     <object class="MixerBusEffectChain" id="{5553a7d4-cb17-404d-ace2-74961ea98300}"/>
     <object class="MixerBusPanner" id="{7ed869f4-f746-43a8-8666-ecea3272a15d}"/>
     <object class="MultiSound" id="{12430d1f-445d-4104-ab8a-c35d2cc3ca83}"/>
@@ -43,5 +44,9 @@
     <object class="MixerBusFader" id="{891ee138-ec93-495c-a607-61727bd24d4d}"/>
     <object class="CompressorEffect" id="{5fb6dfd9-cbe1-46a5-83fd-67874ebb66ac}"/>
     <object class="GainEffect" id="{3bebd770-c1a6-4fe2-9c1a-7aa1a0ea92b0}"/>
+    <object class="DistortionEffect" id="{9659a17d-4542-4229-8db7-2355b5d29274}"/>
     <object class="MixerBusFader" id="{e931fe0d-8e7e-41fa-bbba-aa158480c083}"/>
+    <object class="PitchShifterEffect" id="{cb95dd23-038d-4da4-9b02-4eea3c255c11}"/>
+    <object class="SFXReverbEffect" id="{572e6031-1b71-4ba9-9ec2-6c9bc4d0f1c1}"/>
+    <object class="ThreeEQEffect" id="{1ac3d53a-e1e9-41c8-a13a-6c8f5ad5d89c}"/>
 </objects>

@@ -46,6 +46,9 @@
         </relationship>
     </object>
     <object class="MixerInput" id="{88d019fe-2217-466a-bf46-61397199d8f0}">
+        <relationship name="masters">
+            <destination>{26a2f42d-30e7-4c1f-805c-54facce5b254}</destination>
+        </relationship>
         <relationship name="effectChain">
             <destination>{d39196c1-2ac3-4ed1-b439-f694e686c350}</destination>
         </relationship>
@@ -100,7 +103,7 @@
     </object>
     <object class="EventMixerGroup" id="{394d54a0-fe2e-46e4-bc30-79635abe8a49}">
         <property name="volume">
-            <value>-7</value>
+            <value>-10</value>
         </property>
         <property name="name">
             <value>Audio 1</value>
