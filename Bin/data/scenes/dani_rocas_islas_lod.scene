@@ -2,168 +2,6 @@
   {
     "entity":
     {
-      "name": "trozo_terreno_7_rocas_lod",
-      "transform":
-      {
-        "pos": "-135.764 -57.0153 363.523",
-        "rotation": "0.0 0.0 0.0 -1.0"
-      },
-      "render":
-      [
-        {
-          "mesh": "data/meshes/trozo_terreno_7_rocas_lod.mesh",
-          "materials":
-          [
-            "data/materials/Material roca07.material",
-            "data/materials/Material roca11.material",
-            "data/materials/Material roca15.material",
-            "data/materials/Material roca09.material",
-            "data/materials/Material roca14.material"
-          ],
-          "enabled": true
-        }
-      ]
-    }
-  },
-  {
-    "entity":
-    {
-      "name": "trozo_terreno_6_rocas_001_lod",
-      "transform":
-      {
-        "pos": "152.869 54.2358 193.208",
-        "rotation": "0.0 -0.984808 0.0 -0.173648"
-      },
-      "render":
-      [
-        {
-          "mesh": "data/meshes/trozo_terreno_6_rocas_001_lod.mesh",
-          "materials":
-          [
-            "data/materials/Material roca07.material",
-            "data/materials/Material roca14.material",
-            "data/materials/Material roca11.material",
-            "data/materials/Material roca08.material",
-            "data/materials/Material roca09.material",
-            "data/materials/Material roca16.material"
-          ],
-          "enabled": true
-        }
-      ]
-    }
-  },
-  {
-    "entity":
-    {
-      "name": "trozo_terreno_4_rocas_001_lod",
-      "transform":
-      {
-        "pos": "283.864 -44.4972 -101.808",
-        "rotation": "0.0 -0.382683 0.0 -0.92388"
-      },
-      "render":
-      [
-        {
-          "mesh": "data/meshes/trozo_terreno_4_rocas_001_lod.mesh",
-          "materials":
-          [
-            "data/materials/Material roca07.material",
-            "data/materials/Material roca08.material",
-            "data/materials/Material roca15.material",
-            "data/materials/Material roca11.material"
-          ],
-          "enabled": true
-        }
-      ]
-    }
-  },
-  {
-    "entity":
-    {
-      "name": "trozo_de_terreno_7_rocas_001_lod",
-      "transform":
-      {
-        "pos": "78.7464 -10.1441 -236.761",
-        "rotation": "0.0 0.0 0.0 -1.0"
-      },
-      "render":
-      [
-        {
-          "mesh": "data/meshes/trozo_de_terreno_7_rocas_001_lod.mesh",
-          "materials":
-          [
-            "data/materials/Material roca07.material",
-            "data/materials/Material roca14.material",
-            "data/materials/Material roca09.material",
-            "data/materials/Material roca15.material",
-            "data/materials/Material roca11.material"
-          ],
-          "enabled": true
-        }
-      ]
-    }
-  },
-  {
-    "entity":
-    {
-      "name": "dani_chacho_de_suelo_2_rocas_002_lod",
-      "transform":
-      {
-        "pos": "169.417 -3.10395 116.902",
-        "rotation": "-0.015025 -0.998078 0.0455648 0.0392143"
-      },
-      "render":
-      [
-        {
-          "mesh": "data/meshes/dani_chacho_de_suelo_2_rocas_002_lod.mesh",
-          "materials":
-          [
-            "data/materials/Material roca09.material",
-            "data/materials/Material roca10.material",
-            "data/materials/Material roca11.material",
-            "data/materials/Material roca12.material",
-            "data/materials/Material roca13.material",
-            "data/materials/Material roca14.material",
-            "data/materials/Material roca15.material",
-            "data/materials/Material roca16.material"
-          ],
-          "enabled": true
-        }
-      ]
-    }
-  },
-  {
-    "entity":
-    {
-      "name": "dani_chacho_de_suelo_2_rocas_000_lod",
-      "transform":
-      {
-        "pos": "-72.8222 -21.0392 234.902",
-        "rotation": "0.0 0.0 0.0 -1.0"
-      },
-      "render":
-      [
-        {
-          "mesh": "data/meshes/dani_chacho_de_suelo_2_rocas_000_lod.mesh",
-          "materials":
-          [
-            "data/materials/Material roca09.material",
-            "data/materials/Material roca10.material",
-            "data/materials/Material roca11.material",
-            "data/materials/Material roca12.material",
-            "data/materials/Material roca13.material",
-            "data/materials/Material roca14.material",
-            "data/materials/Material roca15.material",
-            "data/materials/Material roca16.material"
-          ],
-          "enabled": true
-        }
-      ]
-    }
-  },
-  {
-    "entity":
-    {
       "name": "trozo_terreno_7_rocas",
       "transform":
       {
@@ -184,7 +22,9 @@
           ],
           "enabled": true
         }
-      ]
+      ],
+      "local_aabb": null,
+      "abs_aabb": null
     }
   },
   {
@@ -211,7 +51,9 @@
           ],
           "enabled": true
         }
-      ]
+      ],
+      "local_aabb": null,
+      "abs_aabb": null
     }
   },
   {
@@ -236,7 +78,9 @@
           ],
           "enabled": true
         }
-      ]
+      ],
+      "local_aabb": null,
+      "abs_aabb": null
     }
   },
   {
@@ -262,7 +106,9 @@
           ],
           "enabled": true
         }
-      ]
+      ],
+      "local_aabb": null,
+      "abs_aabb": null
     }
   },
   {
@@ -291,7 +137,9 @@
           ],
           "enabled": true
         }
-      ]
+      ],
+      "local_aabb": null,
+      "abs_aabb": null
     }
   },
   {
@@ -320,7 +168,219 @@
           ],
           "enabled": true
         }
-      ]
+      ],
+      "local_aabb": null,
+      "abs_aabb": null
+    }
+  },
+  {
+    "entity":
+    {
+      "name": "trozo_terreno_7_rocas_lod",
+      "transform":
+      {
+        "pos": "-135.764 -57.0153 363.523",
+        "rotation": "0.0 0.0 0.0 -1.0"
+      },
+      "render":
+      [
+        {
+          "mesh": "data/meshes/trozo_terreno_7_rocas_lod.mesh",
+          "materials":
+          [
+            "data/materials/Material roca07.material",
+            "data/materials/Material roca11.material",
+            "data/materials/Material roca15.material",
+            "data/materials/Material roca09.material",
+            "data/materials/Material roca14.material"
+          ],
+          "enabled": true
+        }
+      ],
+      "local_aabb": null,
+      "abs_aabb": null,
+      "lod" : {
+        "threshold" : 0.2,
+        "children" : [
+          "trozo_terreno_7_rocas"
+        ]
+      }
+    }
+  },
+  {
+    "entity":
+    {
+      "name": "trozo_terreno_6_rocas_001_lod",
+      "transform":
+      {
+        "pos": "152.869 54.2358 193.208",
+        "rotation": "0.0 -0.984808 0.0 -0.173648"
+      },
+      "render":
+      [
+        {
+          "mesh": "data/meshes/trozo_terreno_6_rocas_001_lod.mesh",
+          "materials":
+          [
+            "data/materials/Material roca07.material",
+            "data/materials/Material roca14.material",
+            "data/materials/Material roca11.material",
+            "data/materials/Material roca08.material",
+            "data/materials/Material roca09.material",
+            "data/materials/Material roca16.material"
+          ],
+          "enabled": true
+        }
+      ],
+      "local_aabb": null,
+      "abs_aabb": null,
+      "lod" : {
+        "threshold" : 0.2,
+        "children" : [
+          "trozo_terreno_6_rocas_001"
+        ]
+      }
+    }
+  },
+  {
+    "entity":
+    {
+      "name": "trozo_terreno_4_rocas_001_lod",
+      "transform":
+      {
+        "pos": "283.864 -44.4972 -101.808",
+        "rotation": "0.0 -0.382683 0.0 -0.92388"
+      },
+      "render":
+      [
+        {
+          "mesh": "data/meshes/trozo_terreno_4_rocas_001_lod.mesh",
+          "materials":
+          [
+            "data/materials/Material roca07.material",
+            "data/materials/Material roca08.material",
+            "data/materials/Material roca15.material",
+            "data/materials/Material roca11.material"
+          ],
+          "enabled": true
+        }
+      ],
+      "local_aabb": null,
+      "abs_aabb": null,
+      "lod" : {
+        "threshold" : 0.2,
+        "children" : [
+          "trozo_terreno_4_rocas_001"
+        ]
+      }
+    }
+  },
+  {
+    "entity":
+    {
+      "name": "trozo_de_terreno_7_rocas_001_lod",
+      "transform":
+      {
+        "pos": "78.7464 -10.1441 -236.761",
+        "rotation": "0.0 0.0 0.0 -1.0"
+      },
+      "render":
+      [
+        {
+          "mesh": "data/meshes/trozo_de_terreno_7_rocas_001_lod.mesh",
+          "materials":
+          [
+            "data/materials/Material roca07.material",
+            "data/materials/Material roca14.material",
+            "data/materials/Material roca09.material",
+            "data/materials/Material roca15.material",
+            "data/materials/Material roca11.material"
+          ],
+          "enabled": true
+        }
+      ],
+      "local_aabb": null,
+      "abs_aabb": null,
+      "lod" : {
+        "threshold" : 0.2,
+        "children" : [
+          "trozo_de_terreno_7_rocas_001"
+        ]
+      }
+    }
+  },
+  {
+    "entity":
+    {
+      "name": "dani_chacho_de_suelo_2_rocas_002_lod",
+      "transform":
+      {
+        "pos": "169.417 -3.10395 116.902",
+        "rotation": "-0.015025 -0.998078 0.0455648 0.0392143"
+      },
+      "render":
+      [
+        {
+          "mesh": "data/meshes/dani_chacho_de_suelo_2_rocas_002_lod.mesh",
+          "materials":
+          [
+            "data/materials/Material roca09.material",
+            "data/materials/Material roca10.material",
+            "data/materials/Material roca11.material",
+            "data/materials/Material roca12.material",
+            "data/materials/Material roca13.material",
+            "data/materials/Material roca14.material",
+            "data/materials/Material roca15.material",
+            "data/materials/Material roca16.material"
+          ],
+          "enabled": true
+        }
+      ],
+      "local_aabb": null,
+      "abs_aabb": null,
+      "lod" : {
+        "threshold" : 0.2,
+        "children" : [
+          "dani_chacho_de_suelo_2_rocas_002"
+        ]
+      }
+    }
+  },
+  {
+    "entity":
+    {
+      "name": "dani_chacho_de_suelo_2_rocas_000_lod",
+      "transform":
+      {
+        "pos": "-72.8222 -21.0392 234.902",
+        "rotation": "0.0 0.0 0.0 -1.0"
+      },
+      "render":
+      [
+        {
+          "mesh": "data/meshes/dani_chacho_de_suelo_2_rocas_000_lod.mesh",
+          "materials":
+          [
+            "data/materials/Material roca09.material",
+            "data/materials/Material roca10.material",
+            "data/materials/Material roca11.material",
+            "data/materials/Material roca12.material",
+            "data/materials/Material roca13.material",
+            "data/materials/Material roca14.material",
+            "data/materials/Material roca15.material",
+            "data/materials/Material roca16.material"
+          ],
+          "enabled": true
+        }
+      ],
+      "local_aabb": null,
+      "abs_aabb": null,
+      "lod" : {
+        "threshold" : 0.2,
+        "children" : [
+          "dani_chacho_de_suelo_2_rocas_000"
+        ]
+      }
     }
   }
 ]
