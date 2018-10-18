@@ -2,6 +2,128 @@
   {
     "entity":
     {
+      "name": "dani_chacho_de_suelo_2_rocas_002",
+      "transform":
+      {
+        "pos": "169.417 -3.10395 116.902",
+        "rotation": "-0.015025 -0.998078 0.0455648 0.0392143"
+      },
+      "render":
+      [
+        {
+          "mesh": "data/meshes/dani_chacho_de_suelo_2_rocas_002.mesh",
+          "materials":
+          [
+            "data/materials/Material roca09.material",
+            "data/materials/Material roca10.material",
+            "data/materials/Material roca11.material",
+            "data/materials/Material roca12.material",
+            "data/materials/Material roca13.material",
+            "data/materials/Material roca14.material",
+            "data/materials/Material roca15.material",
+            "data/materials/Material roca16.material"
+          ],
+          "enabled": true
+        }
+      ]
+    }
+  },
+  {
+    "entity":
+    {
+      "name": "dani_cacho_de_suelo_2_002",
+      "transform":
+      {
+        "pos": "169.417 -3.10395 116.902",
+        "rotation": "-0.015025 -0.998078 0.0455648 0.0392145"
+      },
+      "render":
+      [
+        {
+          "mesh": "data/meshes/dani_cacho_de_suelo_2_002.mesh",
+          "materials":
+          [
+            "data/materials/Material_#25.material"
+          ],
+          "enabled": true
+        }
+      ],
+      "collider":
+      {
+        "mesh_src": "data/meshes/dani_cacho_de_suelo_2_col_002.col_mesh",
+        "shape": "tri_mesh",
+        "type": "static",
+        "group":
+        [
+          "scenario"
+        ]
+      }
+    }
+  },
+  {
+    "entity":
+    {
+      "name": "dani_chacho_de_suelo_2_rocas_000",
+      "transform":
+      {
+        "pos": "-72.8222 -21.0392 234.902",
+        "rotation": "0.0 0.0 0.0 -1.0"
+      },
+      "render":
+      [
+        {
+          "mesh": "data/meshes/dani_chacho_de_suelo_2_rocas_000.mesh",
+          "materials":
+          [
+            "data/materials/Material roca09.material",
+            "data/materials/Material roca10.material",
+            "data/materials/Material roca11.material",
+            "data/materials/Material roca12.material",
+            "data/materials/Material roca13.material",
+            "data/materials/Material roca14.material",
+            "data/materials/Material roca15.material",
+            "data/materials/Material roca16.material"
+          ],
+          "enabled": true
+        }
+      ]
+    }
+  },
+  {
+    "entity":
+    {
+      "name": "dani_cacho_de_suelo_2_000",
+      "transform":
+      {
+        "pos": "-72.8222 -21.0392 234.902",
+        "rotation": "0.0 0.0 0.0 -1.0"
+      },
+      "render":
+      [
+        {
+          "mesh": "data/meshes/dani_cacho_de_suelo_2_000.mesh",
+          "materials":
+          [
+            "data/materials/Material_#25.material"
+          ],
+          "enabled": true
+        }
+      ],
+      "collider":
+      {
+        "mesh_src": "data/meshes/dani_cacho_de_suelo_2_col_000.col_mesh",
+        "shape": "tri_mesh",
+        "type": "static",
+        "group":
+        [
+          "scenario"
+        ]
+      }
+    }
+  },
+  {
+    "entity":
+    {
       "name": "easter_left_egg_col",
       "transform":
       {
@@ -557,336 +679,6 @@
           "scenario"
         ]
       }
-    }
-  },
-  {
-    "entity":
-    {
-      "name": "roca_13_001",
-      "transform":
-      {
-        "pos": "-72.7059 -20.9186 234.564",
-        "rotation": "0.0 0.0 0.0 -1.0"
-      },
-      "render":
-      [
-        {
-          "mesh": "data/meshes/roca_13_001.mesh",
-          "materials":
-          [
-            "data/materials/m_roca07.material"
-          ],
-          "enabled": true
-        }
-      ]
-    }
-  },
-  {
-    "entity":
-    {
-      "name": "roca_12_001",
-      "transform":
-      {
-        "pos": "-72.7059 -20.9186 234.564",
-        "rotation": "0.0 0.0 0.0 -1.0"
-      },
-      "render":
-      [
-        {
-          "mesh": "data/meshes/roca_12_001.mesh",
-          "materials":
-          [
-            "data/materials/m_roca07.material"
-          ],
-          "enabled": true
-        }
-      ]
-    }
-  },
-  {
-    "entity":
-    {
-      "name": "roca_11_001",
-      "transform":
-      {
-        "pos": "-72.7059 -20.9186 234.564",
-        "rotation": "0.0 0.0 0.0 -1.0"
-      },
-      "render":
-      [
-        {
-          "mesh": "data/meshes/roca_11_001.mesh",
-          "materials":
-          [
-            "data/materials/m_roca07.material"
-          ],
-          "enabled": true
-        }
-      ]
-    }
-  },
-  {
-    "entity":
-    {
-      "name": "roca_10_001",
-      "transform":
-      {
-        "pos": "-72.7059 -20.9186 234.564",
-        "rotation": "0.0 0.0 0.0 -1.0"
-      },
-      "render":
-      [
-        {
-          "mesh": "data/meshes/roca_10_001.mesh",
-          "materials":
-          [
-            "data/materials/m_roca07.material"
-          ],
-          "enabled": true
-        }
-      ]
-    }
-  },
-  {
-    "entity":
-    {
-      "name": "roca_09_001",
-      "transform":
-      {
-        "pos": "-72.7059 -20.9186 234.564",
-        "rotation": "0.0 0.0 0.0 -1.0"
-      },
-      "render":
-      [
-        {
-          "mesh": "data/meshes/roca_09_001.mesh",
-          "materials":
-          [
-            "data/materials/m_roca07.material"
-          ],
-          "enabled": true
-        }
-      ]
-    }
-  },
-  {
-    "entity":
-    {
-      "name": "roca_08_001",
-      "transform":
-      {
-        "pos": "-72.7059 -20.9186 234.564",
-        "rotation": "0.0 0.0 0.0 -1.0"
-      },
-      "render":
-      [
-        {
-          "mesh": "data/meshes/roca_08_001.mesh",
-          "materials":
-          [
-            "data/materials/m_roca07.material"
-          ],
-          "enabled": true
-        }
-      ]
-    }
-  },
-  {
-    "entity":
-    {
-      "name": "roca_07_001",
-      "transform":
-      {
-        "pos": "-72.7059 -20.9186 234.564",
-        "rotation": "0.0 0.0 0.0 -1.0"
-      },
-      "render":
-      [
-        {
-          "mesh": "data/meshes/roca_07_001.mesh",
-          "materials":
-          [
-            "data/materials/m_roca07.material"
-          ],
-          "enabled": true
-        }
-      ]
-    }
-  },
-  {
-    "entity":
-    {
-      "name": "roca_06_001",
-      "transform":
-      {
-        "pos": "-72.7059 -20.9186 234.564",
-        "rotation": "0.0 0.0 0.0 -1.0"
-      },
-      "render":
-      [
-        {
-          "mesh": "data/meshes/roca_06_001.mesh",
-          "materials":
-          [
-            "data/materials/m_roca07.material"
-          ],
-          "enabled": true
-        }
-      ]
-    }
-  },
-  {
-    "entity":
-    {
-      "name": "roca_05_001",
-      "transform":
-      {
-        "pos": "-72.7059 -20.9186 234.564",
-        "rotation": "0.0 0.0 0.0 -1.0"
-      },
-      "render":
-      [
-        {
-          "mesh": "data/meshes/roca_05_001.mesh",
-          "materials":
-          [
-            "data/materials/m_roca07.material"
-          ],
-          "enabled": true
-        }
-      ]
-    }
-  },
-  {
-    "entity":
-    {
-      "name": "roca_04_001",
-      "transform":
-      {
-        "pos": "-72.7059 -20.9186 234.564",
-        "rotation": "0.0 0.0 0.0 -1.0"
-      },
-      "render":
-      [
-        {
-          "mesh": "data/meshes/roca_04_001.mesh",
-          "materials":
-          [
-            "data/materials/m_roca07.material"
-          ],
-          "enabled": true
-        }
-      ]
-    }
-  },
-  {
-    "entity":
-    {
-      "name": "roca_03_001",
-      "transform":
-      {
-        "pos": "-72.7059 -20.9186 234.564",
-        "rotation": "0.0 0.0 0.0 -1.0"
-      },
-      "render":
-      [
-        {
-          "mesh": "data/meshes/roca_03_001.mesh",
-          "materials":
-          [
-            "data/materials/m_roca07.material"
-          ],
-          "enabled": true
-        }
-      ]
-    }
-  },
-  {
-    "entity":
-    {
-      "name": "roca_02_001",
-      "transform":
-      {
-        "pos": "-72.7059 -20.9186 234.564",
-        "rotation": "0.0 0.0 0.0 -1.0"
-      },
-      "render":
-      [
-        {
-          "mesh": "data/meshes/roca_02_001.mesh",
-          "materials":
-          [
-            "data/materials/m_roca07.material"
-          ],
-          "enabled": true
-        }
-      ]
-    }
-  },
-  {
-    "entity":
-    {
-      "name": "roca_01_001",
-      "transform":
-      {
-        "pos": "-72.7059 -20.9186 234.564",
-        "rotation": "0.0 0.0 0.0 -1.0"
-      },
-      "render":
-      [
-        {
-          "mesh": "data/meshes/roca_01_001.mesh",
-          "materials":
-          [
-            "data/materials/m_roca07.material"
-          ],
-          "enabled": true
-        }
-      ]
-    }
-  },
-  {
-    "entity":
-    {
-      "name": "roca_00_001",
-      "transform":
-      {
-        "pos": "-72.7059 -20.9186 234.564",
-        "rotation": "0.0 0.0 0.0 -1.0"
-      },
-      "render":
-      [
-        {
-          "mesh": "data/meshes/roca_00_001.mesh",
-          "materials":
-          [
-            "data/materials/m_roca07.material"
-          ],
-          "enabled": true
-        }
-      ]
-    }
-  },
-  {
-    "entity":
-    {
-      "name": "cacho_de_suelo_0_001",
-      "transform":
-      {
-        "pos": "-72.7059 -20.9186 234.564",
-        "rotation": "0.0 0.0 0.0 -1.0"
-      },
-      "render":
-      [
-        {
-          "mesh": "data/meshes/cacho_de_suelo_0_001.mesh",
-          "materials":
-          [
-            "data/materials/Material_#25.material"
-          ],
-          "enabled": true
-        }
-      ]
     }
   },
   {
@@ -1778,117 +1570,7 @@
   {
     "entity":
     {
-      "name": "m_roca_15_trozos006",
-      "transform":
-      {
-        "pos": "-126.725 -64.0116 352.933",
-        "rotation": "0.0 0.0 0.0 -1.0"
-      },
-      "render":
-      [
-        {
-          "mesh": "data/meshes/m_roca_15_trozos006.mesh",
-          "materials":
-          [
-            "data/materials/Material_roca15.material"
-          ],
-          "enabled": true
-        }
-      ]
-    }
-  },
-  {
-    "entity":
-    {
-      "name": "m_roca_14_trozos005",
-      "transform":
-      {
-        "pos": "-109.175 -58.7353 351.719",
-        "rotation": "0.0 0.0 0.0 -1.0"
-      },
-      "render":
-      [
-        {
-          "mesh": "data/meshes/m_roca_14_trozos005.mesh",
-          "materials":
-          [
-            "data/materials/Material_roca14.material"
-          ],
-          "enabled": true
-        }
-      ]
-    }
-  },
-  {
-    "entity":
-    {
-      "name": "m_roca_11_trozos008",
-      "transform":
-      {
-        "pos": "-130.352 -56.078 385.003",
-        "rotation": "0.0 0.0 0.0 -1.0"
-      },
-      "render":
-      [
-        {
-          "mesh": "data/meshes/m_roca_11_trozos008.mesh",
-          "materials":
-          [
-            "data/materials/Material_roca11.material"
-          ],
-          "enabled": true
-        }
-      ]
-    }
-  },
-  {
-    "entity":
-    {
-      "name": "m_roca_09_trozos005",
-      "transform":
-      {
-        "pos": "-114.273 -56.1094 385.616",
-        "rotation": "0.0 0.0 0.0 -1.0"
-      },
-      "render":
-      [
-        {
-          "mesh": "data/meshes/m_roca_09_trozos005.mesh",
-          "materials":
-          [
-            "data/materials/Material_roca09.material"
-          ],
-          "enabled": true
-        }
-      ]
-    }
-  },
-  {
-    "entity":
-    {
-      "name": "m_roca_07_trozos016",
-      "transform":
-      {
-        "pos": "-111.489 -63.9738 368.367",
-        "rotation": "0.0 0.0 0.0 -1.0"
-      },
-      "render":
-      [
-        {
-          "mesh": "data/meshes/m_roca_07_trozos016.mesh",
-          "materials":
-          [
-            "data/materials/Material_roca07.material"
-          ],
-          "enabled": true
-        }
-      ]
-    }
-  },
-  {
-    "entity":
-    {
-      "name": "m_roca_07_trozos015",
+      "name": "trozo_terreno_7_rocas",
       "transform":
       {
         "pos": "-135.764 -57.0153 363.523",
@@ -1897,10 +1579,14 @@
       "render":
       [
         {
-          "mesh": "data/meshes/m_roca_07_trozos015.mesh",
+          "mesh": "data/meshes/trozo_terreno_7_rocas.mesh",
           "materials":
           [
-            "data/materials/Material_roca07.material"
+            "data/materials/Material roca07.material",
+            "data/materials/Material roca11.material",
+            "data/materials/Material roca15.material",
+            "data/materials/Material roca09.material",
+            "data/materials/Material roca14.material"
           ],
           "enabled": true
         }
@@ -2859,324 +2545,6 @@
       {
         "mesh_src": "data/meshes/dani_tumba_2_col_013.col_mesh",
         "shape": "convex_mesh",
-        "type": "static",
-        "group":
-        [
-          "scenario"
-        ]
-      }
-    }
-  },
-  {
-    "entity":
-    {
-      "name": "dani_roca_43_001",
-      "transform":
-      {
-        "pos": "169.109 -3.01311 117.289",
-        "rotation": "0.0 -0.984808 0.0 -0.173648"
-      },
-      "render":
-      [
-        {
-          "mesh": "data/meshes/dani_roca_43_001.mesh",
-          "materials":
-          [
-            "data/materials/m_roca16.material"
-          ],
-          "enabled": true
-        }
-      ]
-    }
-  },
-  {
-    "entity":
-    {
-      "name": "dani_roca_42_001",
-      "transform":
-      {
-        "pos": "169.109 -3.01311 117.289",
-        "rotation": "0.0 -0.984808 0.0 -0.173648"
-      },
-      "render":
-      [
-        {
-          "mesh": "data/meshes/dani_roca_42_001.mesh",
-          "materials":
-          [
-            "data/materials/m_roca16.material"
-          ],
-          "enabled": true
-        }
-      ]
-    }
-  },
-  {
-    "entity":
-    {
-      "name": "dani_roca_41_001",
-      "transform":
-      {
-        "pos": "169.109 -3.01311 117.289",
-        "rotation": "0.0 -0.984808 0.0 -0.173648"
-      },
-      "render":
-      [
-        {
-          "mesh": "data/meshes/dani_roca_41_001.mesh",
-          "materials":
-          [
-            "data/materials/m_roca16.material"
-          ],
-          "enabled": true
-        }
-      ]
-    }
-  },
-  {
-    "entity":
-    {
-      "name": "dani_roca_40_001",
-      "transform":
-      {
-        "pos": "169.109 -3.01311 117.289",
-        "rotation": "0.0 -0.984808 0.0 -0.173648"
-      },
-      "render":
-      [
-        {
-          "mesh": "data/meshes/dani_roca_40_001.mesh",
-          "materials":
-          [
-            "data/materials/m_roca16.material"
-          ],
-          "enabled": true
-        }
-      ]
-    }
-  },
-  {
-    "entity":
-    {
-      "name": "dani_roca_39_001",
-      "transform":
-      {
-        "pos": "169.109 -3.01311 117.289",
-        "rotation": "0.0 -0.984808 0.0 -0.173648"
-      },
-      "render":
-      [
-        {
-          "mesh": "data/meshes/dani_roca_39_001.mesh",
-          "materials":
-          [
-            "data/materials/m_roca16.material"
-          ],
-          "enabled": true
-        }
-      ]
-    }
-  },
-  {
-    "entity":
-    {
-      "name": "dani_roca_38_001",
-      "transform":
-      {
-        "pos": "169.109 -3.01311 117.289",
-        "rotation": "0.0 -0.984808 0.0 -0.173648"
-      },
-      "render":
-      [
-        {
-          "mesh": "data/meshes/dani_roca_38_001.mesh",
-          "materials":
-          [
-            "data/materials/m_roca16.material"
-          ],
-          "enabled": true
-        }
-      ]
-    }
-  },
-  {
-    "entity":
-    {
-      "name": "dani_roca_37_001",
-      "transform":
-      {
-        "pos": "169.109 -3.01311 117.289",
-        "rotation": "0.0 -0.984808 0.0 -0.173648"
-      },
-      "render":
-      [
-        {
-          "mesh": "data/meshes/dani_roca_37_001.mesh",
-          "materials":
-          [
-            "data/materials/m_roca16.material"
-          ],
-          "enabled": true
-        }
-      ]
-    }
-  },
-  {
-    "entity":
-    {
-      "name": "dani_roca_36_001",
-      "transform":
-      {
-        "pos": "169.109 -3.01311 117.289",
-        "rotation": "0.0 -0.984808 0.0 -0.173648"
-      },
-      "render":
-      [
-        {
-          "mesh": "data/meshes/dani_roca_36_001.mesh",
-          "materials":
-          [
-            "data/materials/m_roca16.material"
-          ],
-          "enabled": true
-        }
-      ]
-    }
-  },
-  {
-    "entity":
-    {
-      "name": "dani_roca_35_001",
-      "transform":
-      {
-        "pos": "169.109 -3.01311 117.289",
-        "rotation": "0.0 -0.984808 0.0 -0.173648"
-      },
-      "render":
-      [
-        {
-          "mesh": "data/meshes/dani_roca_35_001.mesh",
-          "materials":
-          [
-            "data/materials/m_roca16.material"
-          ],
-          "enabled": true
-        }
-      ]
-    }
-  },
-  {
-    "entity":
-    {
-      "name": "dani_roca_34_001",
-      "transform":
-      {
-        "pos": "169.109 -3.01311 117.289",
-        "rotation": "0.0 -0.984808 0.0 -0.173648"
-      },
-      "render":
-      [
-        {
-          "mesh": "data/meshes/dani_roca_34_001.mesh",
-          "materials":
-          [
-            "data/materials/m_roca16.material"
-          ],
-          "enabled": true
-        }
-      ]
-    }
-  },
-  {
-    "entity":
-    {
-      "name": "dani_roca_33_001",
-      "transform":
-      {
-        "pos": "169.109 -3.01311 117.289",
-        "rotation": "0.0 -0.984808 0.0 -0.173648"
-      },
-      "render":
-      [
-        {
-          "mesh": "data/meshes/dani_roca_33_001.mesh",
-          "materials":
-          [
-            "data/materials/m_roca16.material"
-          ],
-          "enabled": true
-        }
-      ]
-    }
-  },
-  {
-    "entity":
-    {
-      "name": "dani_roca_32_001",
-      "transform":
-      {
-        "pos": "169.109 -3.01311 117.289",
-        "rotation": "0.0 -0.984808 0.0 -0.173648"
-      },
-      "render":
-      [
-        {
-          "mesh": "data/meshes/dani_roca_32_001.mesh",
-          "materials":
-          [
-            "data/materials/m_roca16.material"
-          ],
-          "enabled": true
-        }
-      ]
-    }
-  },
-  {
-    "entity":
-    {
-      "name": "dani_roca_31_001",
-      "transform":
-      {
-        "pos": "169.109 -3.01311 117.289",
-        "rotation": "0.0 -0.984808 0.0 -0.173648"
-      },
-      "render":
-      [
-        {
-          "mesh": "data/meshes/dani_roca_31_001.mesh",
-          "materials":
-          [
-            "data/materials/m_roca16.material"
-          ],
-          "enabled": true
-        }
-      ]
-    }
-  },
-  {
-    "entity":
-    {
-      "name": "dani_cacho_de_suelo_2_001",
-      "transform":
-      {
-        "pos": "168.665 1.70053 118.51",
-        "rotation": "0.0 -0.984808 0.0 -0.173648"
-      },
-      "render":
-      [
-        {
-          "mesh": "data/meshes/dani_cacho_de_suelo_2_001.mesh",
-          "materials":
-          [
-            "data/materials/Material_#25.material"
-          ],
-          "enabled": true
-        }
-      ],
-      "collider":
-      {
-        "mesh_src": "data/meshes/dani_cacho_de_suelo_2_col_001.col_mesh",
-        "shape": "tri_mesh",
         "type": "static",
         "group":
         [
