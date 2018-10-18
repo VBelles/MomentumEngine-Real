@@ -265,7 +265,7 @@
 			{
 				"name": "chrysalis",
 				"type": "widget",
-				"position": "1700 920",
+				"position": "1790 950",
 				"children": [
 					{
 						"name": "chrysalis_icon",
@@ -276,11 +276,10 @@
 					{
 						"name": "chrysalis_text",
 						"type": "text",
-						"size": "128 116",
-						"position": "70 10",
-						"font_size": 115,
-						"template_text": "{{chrysalis}}",
-						"valign": "center"
+						"size": "128 64",
+						"position": "75 44",
+						"font_size": 64,
+						"template_text": "{{chrysalis}}"
 					}
 				]
 			}
