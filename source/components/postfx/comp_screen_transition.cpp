@@ -34,7 +34,7 @@ void TCompScreenTransition::load(const json& j, TEntityParseContext& ctx) {
 }
 
 void TCompScreenTransition::update(float dt) {
-	if (transitioning) {
+	if (transitioning && timer.elapsed() >= waitTime) {
 		if (alpha < targetAlpha) {
 			alpha = clamp(alpha + alphaSpeed * dt, 0.f, targetAlpha);
 		}
@@ -72,7 +72,9 @@ void TCompScreenTransition::apply() {
 	}
 }
 
-void TCompScreenTransition::startTransition() {
+void TCompScreenTransition::startTransition(float delay) {
+	waitTime = delay;
+	timer.reset();
 	ratio = 0.f;
 	targetRatio = 1.f;
 	alpha = 0.f;
@@ -80,7 +82,9 @@ void TCompScreenTransition::startTransition() {
 	transitioning = true;
 }
 
-void TCompScreenTransition::startTransition(float startingRatio, float finalRatio) {
+void TCompScreenTransition::startTransition(float startingRatio, float finalRatio, float delay) {
+	waitTime = delay;
+	timer.reset();
 	ratio = clamp(startingRatio, 0.f, 1.f);
 	targetRatio = clamp(finalRatio, 0.f, 1.f);
 	alpha = clamp(startingRatio, 0.f, 1.f);
@@ -88,7 +92,9 @@ void TCompScreenTransition::startTransition(float startingRatio, float finalRati
 	transitioning = true;
 }
 
-void TCompScreenTransition::startTransition(float startingRatio, float finalRatio, float startingAlpha, float finalAlpha) {
+void TCompScreenTransition::startTransition(float startingRatio, float finalRatio, float startingAlpha, float finalAlpha, float delay) {
+	waitTime = delay;
+	timer.reset();
 	ratio = clamp(startingRatio, 0.f, 1.f);
 	targetRatio = clamp(finalRatio, 0.f, 1.f);
 	alpha = clamp(startingAlpha, 0.f, 1.f);
