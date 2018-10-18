@@ -2,6 +2,7 @@
 #include "entity.h"
 #include "entity_parser.h"
 #include "components/comp_name.h"
+#include "components/comp_aabb.h"
 #include "common_msgs.h"
 
 DECL_OBJ_MANAGER("entity", CEntity);
@@ -111,6 +112,13 @@ void CEntity::load(const json& j, TEntityParseContext& ctx) {
 			set(comp_type, h_comp);
 		}
 
+	}
+
+	if (get<TCompRender>().isValid() && !get<TCompAbsAABB>().isValid()) {
+		auto absAABBHandleManager = CHandleManager::getByName("abs_aabb");
+		int compType = absAABBHandleManager->getType();
+		CHandle absAABBHandle = absAABBHandleManager->createHandle();
+		set(compType, absAABBHandle);
 	}
 
 	// Send a msg to the entity components to let them know
