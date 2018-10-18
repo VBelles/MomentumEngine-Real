@@ -171,6 +171,11 @@
 				"freezeDropTime": 1.5
 			},
 			"collectable_manager": {},
+			"dummy_collectable": {
+				"chrysalis" : "dummy_chrysalis",
+				"powerup": "dummy_powerup",
+				"life_piece": "dummy_life_piece"
+			},
 			"hitboxes": {
 				"hitboxes": [
 					{
@@ -567,6 +572,57 @@
 				"yaw": 225,
 				"pitch": -20
 			}
+		}
+	},
+	{
+		"entity":{
+			"name": "dummy_chrysalis",
+			"transform":{
+				"pos" : "0 0 0"
+			},
+			"render": [
+				{
+					"mesh": "data/meshes/chrysalis.mesh",
+					"materials": [
+						"data/materials/chrysalis.material"
+					],
+					"enabled": false
+				}
+			]
+		}
+	},
+	{
+		"entity":{
+			"name": "dummy_powerup",
+			"transform":{
+				"pos" : "0 0 0"
+			},
+			"render": [
+				{
+					"mesh": "data/meshes/powerup_00.mesh",
+					"materials": [
+						"data/materials/m_powerup.material"
+					],
+					"enabled": false
+				}
+			]
+		}
+	},
+	{
+		"entity":{
+			"name": "dummy_life_piece",
+			"transform":{
+				"pos" : "0 0 0"
+			},
+			"render": [
+				{
+					"mesh": "data/meshes/life.mesh",
+					"materials": [
+						"data/materials/life_01_material.material"
+					],
+					"enabled": false
+				}
+			]
 		}
 	}
 ]

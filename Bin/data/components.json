@@ -111,6 +111,7 @@
     "collectable",
     "collectable_manager",
     "power_up",
+    "dummy_collectable",
     "breakable",
     "mechanism",
     "mechanism_system",
