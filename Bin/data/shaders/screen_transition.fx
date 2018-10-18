@@ -21,7 +21,7 @@ float4 PS(
 	float transition = txNormal.Sample(samClampLinear, iTex0.xy).r;
 
 	if (transition <= global_shared_fx_amount) {
-		return textureColor;
+		return float4(textureColor.rgb, global_shared_fx_val1);
 	}
 	else {
     	return float4(0,0,0,0);
