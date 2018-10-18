@@ -13,19 +13,24 @@ private:
 	std::string powerupName;
 	std::string lifePieceName;
 
-	float chrysalisStartingScale = 1.f;
-	float powerupStartingScale = 1.f;
-	float lifePieceStartingScale = 1.f;
+	float chrysalisStartingScale = 0.6f;
+	float powerupStartingScale = 0.6f;
+	float lifePieceStartingScale = 0.6f;
+	VEC3 chrysalisPositionOffset = VEC3(0.2f, 1.5f, 1.2f);
+	VEC3 powerupPositionOffset = VEC3(0.3f, 1.5f, 1.f);
+	VEC3 lifePiecePositionOffset = VEC3(0.3f, 1.5f, 1.1f);
+	float chrysalisYawOffset = deg2rad(90);
+	float powerupYawOffset = deg2rad(90);
+	float lifePieceYawOffset = deg2rad(180);
 
 	bool isActive = false;
 
 	CTimer2 timer;
 	float timeToStartRotation = 0.5f;
-	float timeToStartScaling = 1.f;
+	float timeToStartScaling = 2.f;
+	float timeToScaleZero = 1.f;//los dos tiempos de escalado tiene que sumar 3 aprox
 	float rotationAcceleration = 3.f;
 	float maxRotationSpeed = 8.f;
-	float timeToScaleZero = 1.f;
-	VEC3 positionOffset = VEC3(0, 1.2f, 0.5f);
 
 	CHandle currentCollectableHandle;
 
@@ -38,7 +43,7 @@ private:
 	//Messages
 	void onGroupCreated(const TMsgEntitiesGroupCreated& msg);
 
-	TCompTransform* getTransform() { return playerTransformHandle; }
+	TCompTransform* getPlayerTransform() { return playerTransformHandle; }
 
 public:
 	DECL_SIBLING_ACCESS();

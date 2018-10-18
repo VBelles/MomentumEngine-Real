@@ -2,10 +2,6 @@
 #include "comp_dummy_collectable.h"
 #include "entity/entity_parser.h"
 #include "entity/common_msgs.h"
-#include "components/comp_collectable.h"
-#include "components/controllers/comp_rigid_anims_director.h"
-#include "components/player/attack_info.h"
-
 
 DECL_OBJ_MANAGER("dummy_collectable", TCompDummyCollectable);
 
@@ -18,7 +14,12 @@ void TCompDummyCollectable::debugInMenu() {
 	ImGui::DragFloat("rotation acceleration", &rotationAcceleration, 0.05f, 0.1f, 20.f);
 	ImGui::DragFloat("max rotation speed", &maxRotationSpeed, 0.05f, 0.1f, 20.f);
 	ImGui::DragFloat("time to get to scale zero", &timeToScaleZero, 0.05f, 0.1f, 2.f);
-	ImGui::DragFloat3("position offset", &positionOffset.x, 0.05f, 0.f, 2.f);
+	ImGui::DragFloat3("chrysalis position offset", &chrysalisPositionOffset.x, 0.05f, 0.f, 2.f);
+	ImGui::DragFloat3("powerup position offset", &powerupPositionOffset.x, 0.05f, 0.f, 2.f);
+	ImGui::DragFloat3("lifePiece position offset", &lifePiecePositionOffset.x, 0.05f, 0.f, 2.f);
+	ImGui::DragFloat("chrysalis yaw offset", &chrysalisYawOffset, 0.001f, -3.14f, 3.14f);
+	ImGui::DragFloat("powerup yaw offset", &powerupYawOffset, 0.001f, -3.14f, 3.14f);
+	ImGui::DragFloat("life piece yaw offset", &lifePieceYawOffset, 0.001f, -3.14f, 3.14f);
 }
 
 void TCompDummyCollectable::registerMsgs() {
@@ -46,21 +47,54 @@ void TCompDummyCollectable::onGroupCreated(const TMsgEntitiesGroupCreated & msg)
 
 void TCompDummyCollectable::update(float delta) {
 	if (!isActive) return;
+	if (timer.elapsed() >= timeToStartRotation) {
 
+	}
+	if (timer.elapsed() >= timeToStartScaling + timeToScaleZero) {
+		CEntity* entity = currentCollectableHandle;
+		//desactivar render
+		TCompRender* render = entity->get<TCompRender>();
+		render->disable();
+		isActive = false;
+	}
 }
 
 void TCompDummyCollectable::activateSequence(DummyCollectableType type) {
+	float scale = chrysalisStartingScale;
+	VEC3 positionOffset = chrysalisPositionOffset;
+	float yawOffset = chrysalisYawOffset;
 	switch (type) {
 	case CHRYSALIS:
 		currentCollectableHandle = chrysalisHandle;
 		break;
 	case POWERUP:
 		currentCollectableHandle = powerupHandle;
+		scale = powerupStartingScale;
+		positionOffset = powerupPositionOffset;
+		yawOffset = powerupYawOffset;
 		break;
 	case LIFEPIECE:
 		currentCollectableHandle = lifePieceHandle;
+		scale = lifePieceStartingScale;
+		positionOffset = lifePiecePositionOffset;
+		yawOffset = lifePieceYawOffset;
 		break;
 	}
+	CEntity* entity = currentCollectableHandle;
+	//activar render
+	TCompRender* render = entity->get<TCompRender>();
+	render->enable();
+	//situar delante de player
+	TCompTransform* transform = entity->get<TCompTransform>();
+	VEC3 position = getPlayerTransform()->getPosition() +
+		getPlayerTransform()->getFront() * positionOffset.z +
+		VEC3::Up * positionOffset.y +
+		getPlayerTransform()->getLeft() * positionOffset.x;
+	transform->setPosition(position);
+	float yaw, pitch;
+	getPlayerTransform()->getYawPitchRoll(&yaw, &pitch);
+	transform->setYawPitchRoll(yaw + yawOffset, pitch);
+	transform->setScale(scale);
 	timer.reset();
 	isActive = true;
 }

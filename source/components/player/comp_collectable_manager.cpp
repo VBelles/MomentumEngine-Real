@@ -3,6 +3,7 @@
 #include "utils/utils.h"
 #include "entity/common_msgs.h"
 #include "comp_player_model.h"
+#include "components/comp_dummy_collectable.h"
 #include "modules/game_modules/game/respawner.h"
 #include "modules/game_modules/game/module_game.h"
 #include <algorithm>
@@ -150,6 +151,7 @@ void TCompCollectableManager::onCollect(const TMsgCollect& msg) {
 		collectable->collect();
 		addUniqueCollectable(Type::CHRYSALIS, entity->getName());
 		EngineSound.emitEvent(SOUND_COLLECT_CHRYSALIS, transform);
+		(static_cast<TCompDummyCollectable*>(get<TCompDummyCollectable>()))->activateSequence(DummyCollectableType::CHRYSALIS);
 		//Esto de aquí molaría no hacerlo el mismo frame en que recoges el objeto 
 		playerModel->setHp(playerModel->getMaxHp());
 		EngineGame->showChrysalis(showChrysalisTime);
@@ -166,6 +168,7 @@ void TCompCollectableManager::onCollect(const TMsgCollect& msg) {
 	case Type::LIFEPIECE:
 		collectable->collect();
 		addUniqueCollectable(Type::LIFEPIECE, entity->getName());
+		(static_cast<TCompDummyCollectable*>(get<TCompDummyCollectable>()))->activateSequence(DummyCollectableType::LIFEPIECE);
 		if (getNumberOfLifePieces() % lifePiecesPerHeart == 0) {
 			playerModel->setMaxHp(playerModel->getMaxHp() + 1);
 			playerModel->setHp(playerModel->getMaxHp());
