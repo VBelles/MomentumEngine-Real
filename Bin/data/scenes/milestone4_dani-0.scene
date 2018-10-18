@@ -2,44 +2,6 @@
   {
     "entity":
     {
-      "name": "all_dani_mushrooms",
-      "transform":
-      {
-        "pos": "43.0862 1.76176 17.9485",
-        "rotation": "0.0 0.0 0.0 -1.0"
-      },
-      "render":
-      [
-        {
-          "mesh": "data/meshes/all_dani_mushrooms.mesh",
-          "materials":
-          [
-            "data/materials/mushroom_body_01.material",
-            "data/materials/mushroom_head_01.material",
-            "data/materials/mushroom_head_08.material",
-            "data/materials/mushroom_body_05.material",
-            "data/materials/mushroom_head_05.material",
-            "data/materials/mushroom_body_04.material",
-            "data/materials/mushroom_head_04.material",
-            "data/materials/mushroom_body_02.material",
-            "data/materials/mushroom_head_03.material",
-            "data/materials/mushroom_body_06.material",
-            "data/materials/mushroom_head_06.material",
-            "data/materials/mushroom_head_00.material",
-            "data/materials/mushroom_body_00.material",
-            "data/materials/mushroom_head_09.material",
-            "data/materials/mushroom_body_07.material",
-            "data/materials/mushroom_body_03.material",
-            "data/materials/Material roca04.material"
-          ],
-          "enabled": true
-        }
-      ]
-    }
-  },
-  {
-    "entity":
-    {
       "name": "easter_left_egg_col",
       "transform":
       {
