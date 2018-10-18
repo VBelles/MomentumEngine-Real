@@ -1,0 +1,14 @@
+{
+  "technique": "pbr.tech",
+  "shadows": true,
+  "textures":
+  {
+    "albedo": "data/textures/grabado_09_BaseColor.dds",
+    "normal": "data/textures/grabado_09_Normal.dds",
+    "metallic": "data/textures/grabado_general_Metallic.dds",
+    "roughness": "data/textures/grabado_general_Roughness.dds",
+    "self_illum": "data/textures/grabado_03_Emissive.dds",
+    "height": "data/textures/grabado_general_Height.dds",
+    "detail_normal": "data/textures/null_detail_normal.dds"
+  }
+}
