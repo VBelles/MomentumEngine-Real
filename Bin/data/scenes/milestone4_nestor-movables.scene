@@ -2,6 +2,84 @@
   {
     "entity":
     {
+      "name": "nes_platform_civilization_066",
+      "transform":
+      {
+        "pos": "156.412 89.7007 -142.869",
+        "rotation": "-0.0871557 0.0 -0.996195 0.0"
+      },
+      "render":
+      [
+        {
+          "mesh": "data/meshes/nes_platform_civilization_066.mesh",
+          "materials":
+          [
+            "data/materials/platform_v2.material"
+          ],
+          "enabled": true
+        }
+      ],
+      "collider":
+      {
+        "mesh_src": "data/meshes/nes_platform_civilization_col_066.col_mesh",
+        "shape": "convex_mesh",
+        "type": "kinematic",
+        "group":
+        [
+          "scenario"
+        ]
+      },
+      "platform_simple":
+      {
+        "roll":
+        {
+          "speed": 7.0
+        }
+      }
+    }
+  },
+  {
+    "entity":
+    {
+      "name": "nes_platform_civilization_065",
+      "transform":
+      {
+        "pos": "155.472 89.7007 -148.19",
+        "rotation": "-0.0871557 0.0 -0.996195 0.0"
+      },
+      "render":
+      [
+        {
+          "mesh": "data/meshes/nes_platform_civilization_065.mesh",
+          "materials":
+          [
+            "data/materials/platform_v2.material"
+          ],
+          "enabled": true
+        }
+      ],
+      "collider":
+      {
+        "mesh_src": "data/meshes/nes_platform_civilization_col_065.col_mesh",
+        "shape": "convex_mesh",
+        "type": "kinematic",
+        "group":
+        [
+          "scenario"
+        ]
+      },
+      "platform_simple":
+      {
+        "roll":
+        {
+          "speed": 7.0
+        }
+      }
+    }
+  },
+  {
+    "entity":
+    {
       "name": "nes_platform_civilization_063",
       "transform":
       {
@@ -44,8 +122,8 @@
       "name": "nes_platform_civilization_062",
       "transform":
       {
-        "pos": "-79.9736 41.9976 -2.74663",
-        "rotation": "0.0 0.0 0.0 -1.0"
+        "pos": "-79.9736 41.9976 -2.74664",
+        "rotation": "-1.0 0.0 0.0 0.0"
       },
       "render":
       [
@@ -84,7 +162,7 @@
       "transform":
       {
         "pos": "-220.153 46.6975 54.8383",
-        "rotation": "0.0 0.0 0.0 -1.0"
+        "rotation": "-1.0 0.0 0.0 0.0"
       },
       "render":
       [
@@ -162,7 +240,7 @@
       "transform":
       {
         "pos": "-209.126 39.3619 52.9336",
-        "rotation": "0.0 0.0 0.0 -1.0"
+        "rotation": "-1.0 0.0 0.0 0.0"
       },
       "render":
       [
@@ -240,7 +318,7 @@
       "transform":
       {
         "pos": "-214.178 34.0696 39.8585",
-        "rotation": "0.0 0.0 0.0 -1.0"
+        "rotation": "-1.0 0.0 0.0 0.0"
       },
       "render":
       [
@@ -317,7 +395,7 @@
       "name": "nes_platform_civilization_055",
       "transform":
       {
-        "pos": "151.339 89.7007 -144.724",
+        "pos": "151.339 89.7007 -144.725",
         "rotation": "0.0 -0.0871557 0.0 -0.996195"
       },
       "render":
@@ -353,89 +431,11 @@
   {
     "entity":
     {
-      "name": "nes_platform_civilization_054",
-      "transform":
-      {
-        "pos": "155.474 89.7007 -148.184",
-        "rotation": "0.0 -0.0871557 0.0 -0.996195"
-      },
-      "render":
-      [
-        {
-          "mesh": "data/meshes/nes_platform_civilization_054.mesh",
-          "materials":
-          [
-            "data/materials/platform_v2.material"
-          ],
-          "enabled": true
-        }
-      ],
-      "collider":
-      {
-        "mesh_src": "data/meshes/nes_platform_civilization_col_054.col_mesh",
-        "shape": "convex_mesh",
-        "type": "kinematic",
-        "group":
-        [
-          "scenario"
-        ]
-      },
-      "platform_simple":
-      {
-        "roll":
-        {
-          "speed": 7.0
-        }
-      }
-    }
-  },
-  {
-    "entity":
-    {
-      "name": "nes_platform_civilization_053",
-      "transform":
-      {
-        "pos": "156.397 89.7007 -142.874",
-        "rotation": "0.0 -0.0871557 0.0 -0.996195"
-      },
-      "render":
-      [
-        {
-          "mesh": "data/meshes/nes_platform_civilization_053.mesh",
-          "materials":
-          [
-            "data/materials/platform_v2.material"
-          ],
-          "enabled": true
-        }
-      ],
-      "collider":
-      {
-        "mesh_src": "data/meshes/nes_platform_civilization_col_053.col_mesh",
-        "shape": "convex_mesh",
-        "type": "kinematic",
-        "group":
-        [
-          "scenario"
-        ]
-      },
-      "platform_simple":
-      {
-        "roll":
-        {
-          "speed": 7.0
-        }
-      }
-    }
-  },
-  {
-    "entity":
-    {
       "name": "nes_platform_civilization_052",
       "transform":
       {
         "pos": "146.284 89.7007 -146.578",
-        "rotation": "0.0 -0.0871557 0.0 -0.996195"
+        "rotation": "-0.0871557 0.0 -0.996195 0.0"
       },
       "render":
       [
@@ -473,8 +473,8 @@
       "name": "nes_platform_civilization_051",
       "transform":
       {
-        "pos": "153.843 112.329 -150.504",
-        "rotation": "0.0 0.0 0.0 -1.0"
+        "pos": "153.843 111.765 -150.605",
+        "rotation": "0.0 -0.0436194 0.0 -0.999048"
       },
       "render":
       [
@@ -513,7 +513,7 @@
       "transform":
       {
         "pos": "27.6818 17.4503 -244.001",
-        "rotation": "0.0 0.0 0.0 -1.0"
+        "rotation": "-1.0 0.0 0.0 0.0"
       },
       "render":
       [
@@ -552,7 +552,7 @@
       "transform":
       {
         "pos": "16.7123 5.84438 -232.023",
-        "rotation": "0.0 0.0 0.0 -1.0"
+        "rotation": "-1.0 0.0 0.0 0.0"
       },
       "render":
       [
@@ -591,7 +591,7 @@
       "transform":
       {
         "pos": "12.6651 12.36 -244.603",
-        "rotation": "0.0 0.0 0.0 -1.0"
+        "rotation": "-1.0 0.0 0.0 0.0"
       },
       "render":
       [
@@ -629,7 +629,7 @@
       "name": "nes_platform_civilization_047",
       "transform":
       {
-        "pos": "24.0829 1.79677 -231.039",
+        "pos": "23.9316 3.09096 -230.892",
         "rotation": "0.0 0.0 0.0 -1.0"
       },
       "render":
@@ -747,7 +747,7 @@
       "transform":
       {
         "pos": "18.1789 26.7135 -227.752",
-        "rotation": "0.0 0.0 0.0 -1.0"
+        "rotation": "-1.0 0.0 0.0 0.0"
       },
       "render":
       [
@@ -786,7 +786,7 @@
       "transform":
       {
         "pos": "9.66216 31.7077 -240.335",
-        "rotation": "0.0 0.0 0.0 -1.0"
+        "rotation": "-1.0 0.0 0.0 0.0"
       },
       "render":
       [

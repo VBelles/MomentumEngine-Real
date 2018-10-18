@@ -49,14 +49,75 @@
       "suggestCameraTrigger":
       {
         "cameraSuggestion": "nes_camera_008",
-        "suggestYaw": false,
+        "suggestYaw": true,
         "hasOppositeYaw": false,
         "suggestPitch": true,
-        "forceDistance": false,
+        "forceDistance": true,
         "distanceToCamera": 12.127,
         "changeCenteringCamera": true,
         "forcePositionOnEnter": true,
-        "centeringCameraSpeed": "18 9"
+        "centeringCameraSpeed": "2.0 2.0"
+      }
+    }
+  },
+  {
+    "entity":
+    {
+      "name": "nes_camera_007_movablesLife",
+      "transform":
+      {
+        "pos": "-2.16559 65.2728 -236.581",
+        "lookat": "-4.53073 13.308 -276.211"
+      },
+      "camera":
+      {
+        "fov": 45.0
+      },
+      "fixed_camera":
+      {
+        "returnToPlayerCameraWithInput": false,
+        "modifyPlayerCameraRotation": true,
+        "timeToMixOut": 1.0,
+        "panningSpeed": 0.0,
+        "panningRadius": 3.0
+      }
+    }
+  },
+  {
+    "entity":
+    {
+      "name": "nes_camera_trigger_007",
+      "transform":
+      {
+        "pos": "-1.28238 11.7684 -281.364",
+        "rotation": "0.0 -0.461749 0.0 -0.887011"
+      },
+      "collider":
+      {
+        "mesh_src": "data/meshes/nes_camera_trigger_007.col_mesh",
+        "shape": "convex_mesh",
+        "is_trigger": true,
+        "type": "static",
+        "group":
+        [
+          "trigger"
+        ],
+        "mask":
+        [
+          "player"
+        ]
+      },
+      "suggestCameraTrigger":
+      {
+        "cameraSuggestion": "nes_camera_007_movablesLife",
+        "suggestYaw": true,
+        "hasOppositeYaw": false,
+        "suggestPitch": true,
+        "forceDistance": true,
+        "distanceToCamera": 6.28311,
+        "changeCenteringCamera": true,
+        "forcePositionOnEnter": true,
+        "centeringCameraSpeed": "3.0 2.0"
       }
     }
   },
@@ -110,14 +171,75 @@
       "suggestCameraTrigger":
       {
         "cameraSuggestion": "nes_camera_006",
-        "suggestYaw": false,
+        "suggestYaw": true,
         "hasOppositeYaw": false,
         "suggestPitch": true,
-        "forceDistance": false,
+        "forceDistance": true,
         "distanceToCamera": 10.3252,
         "changeCenteringCamera": true,
         "forcePositionOnEnter": true,
-        "centeringCameraSpeed": "18 9"
+        "centeringCameraSpeed": "2.0 2.0"
+      }
+    }
+  },
+  {
+    "entity":
+    {
+      "name": "nes_camera_005_anillos",
+      "transform":
+      {
+        "pos": "130.011 42.6529 32.8532",
+        "lookat": "131.554 38.4683 5.10706"
+      },
+      "camera":
+      {
+        "fov": 45.0
+      },
+      "fixed_camera":
+      {
+        "returnToPlayerCameraWithInput": false,
+        "modifyPlayerCameraRotation": true,
+        "timeToMixOut": 1.0,
+        "panningSpeed": 0.0,
+        "panningRadius": 3.0
+      }
+    }
+  },
+  {
+    "entity":
+    {
+      "name": "nes_camera_trigger_005",
+      "transform":
+      {
+        "pos": "132.188 34.0703 3.73684",
+        "rotation": "0.0 -0.999048 0.0 -0.043619"
+      },
+      "collider":
+      {
+        "mesh_src": "data/meshes/nes_camera_trigger_005.col_mesh",
+        "shape": "convex_mesh",
+        "is_trigger": true,
+        "type": "static",
+        "group":
+        [
+          "trigger"
+        ],
+        "mask":
+        [
+          "player"
+        ]
+      },
+      "suggestCameraTrigger":
+      {
+        "cameraSuggestion": "nes_camera_005_anillos",
+        "suggestYaw": true,
+        "hasOppositeYaw": true,
+        "suggestPitch": true,
+        "forceDistance": true,
+        "distanceToCamera": 4.64988,
+        "changeCenteringCamera": false,
+        "forcePositionOnEnter": true,
+        "centeringCameraSpeed": "1.0 1.0"
       }
     }
   },
@@ -150,7 +272,7 @@
       "name": "nes_camera_trigger_004",
       "transform":
       {
-        "pos": "1.85874 20.9457 191.452",
+        "pos": "1.85873 19.0899 191.452",
         "rotation": "0.0 0.707107 0.0 -0.707106"
       },
       "collider":
@@ -171,14 +293,75 @@
       "suggestCameraTrigger":
       {
         "cameraSuggestion": "nes_camera_004_temploPuro",
-        "suggestYaw": false,
+        "suggestYaw": true,
         "hasOppositeYaw": false,
         "suggestPitch": true,
-        "forceDistance": false,
-        "distanceToCamera": 13.0846,
+        "forceDistance": true,
+        "distanceToCamera": 14.9354,
         "changeCenteringCamera": true,
         "forcePositionOnEnter": true,
-        "centeringCameraSpeed": "18 9"
+        "centeringCameraSpeed": "2.0 2.0"
+      }
+    }
+  },
+  {
+    "entity":
+    {
+      "name": "nes_camera_003_temploPuroSky",
+      "transform":
+      {
+        "pos": "23.5807 87.46 179.081",
+        "lookat": "-11.4581 44.2136 208.862"
+      },
+      "camera":
+      {
+        "fov": 45.0
+      },
+      "fixed_camera":
+      {
+        "returnToPlayerCameraWithInput": false,
+        "modifyPlayerCameraRotation": true,
+        "timeToMixOut": 1.0,
+        "panningSpeed": 0.0,
+        "panningRadius": 3.0
+      }
+    }
+  },
+  {
+    "entity":
+    {
+      "name": "nes_camera_trigger_003",
+      "transform":
+      {
+        "pos": "-13.7938 42.6739 208.957",
+        "rotation": "0.0 -0.707107 0.0 -0.707106"
+      },
+      "collider":
+      {
+        "mesh_src": "data/meshes/nes_camera_trigger_003.col_mesh",
+        "shape": "convex_mesh",
+        "is_trigger": true,
+        "type": "static",
+        "group":
+        [
+          "trigger"
+        ],
+        "mask":
+        [
+          "player"
+        ]
+      },
+      "suggestCameraTrigger":
+      {
+        "cameraSuggestion": "nes_camera_003_temploPuroSky",
+        "suggestYaw": true,
+        "hasOppositeYaw": true,
+        "suggestPitch": true,
+        "forceDistance": true,
+        "distanceToCamera": 2.79911,
+        "changeCenteringCamera": false,
+        "forcePositionOnEnter": true,
+        "centeringCameraSpeed": "2.0 2.0"
       }
     }
   },
@@ -188,7 +371,7 @@
       "name": "nes_camera_002",
       "transform":
       {
-        "pos": "96.9433 35.8289 -39.6686",
+        "pos": "76.3688 35.8289 -4.44473",
         "lookat": "86.5764 27.8071 -21.7465"
       },
       "camera":
@@ -211,8 +394,8 @@
       "name": "nes_camera_trigger_002",
       "transform":
       {
-        "pos": "86.7823 15.7887 -21.843",
-        "rotation": "0.0 -0.887011 0.0 0.461748"
+        "pos": "85.8576 15.7887 -21.843",
+        "rotation": "0.0 0.707107 0.0 -0.707106"
       },
       "collider":
       {
@@ -232,14 +415,14 @@
       "suggestCameraTrigger":
       {
         "cameraSuggestion": "nes_camera_002",
-        "suggestYaw": false,
+        "suggestYaw": true,
         "hasOppositeYaw": false,
         "suggestPitch": true,
-        "forceDistance": false,
-        "distanceToCamera": 12.0205,
+        "forceDistance": true,
+        "distanceToCamera": 12.0402,
         "changeCenteringCamera": true,
         "forcePositionOnEnter": true,
-        "centeringCameraSpeed": "18 9"
+        "centeringCameraSpeed": "3.0 2.0"
       }
     }
   },
@@ -293,159 +476,14 @@
       "suggestCameraTrigger":
       {
         "cameraSuggestion": "nes_camera_001_estatua",
-        "suggestYaw": false,
+        "suggestYaw": true,
         "hasOppositeYaw": false,
         "suggestPitch": true,
-        "forceDistance": false,
+        "forceDistance": true,
         "distanceToCamera": 10.8436,
         "changeCenteringCamera": true,
         "forcePositionOnEnter": true,
-        "centeringCameraSpeed": "18 9"
-      }
-    }
-  },
-  {
-    "entity":
-    {
-      "name": "nes_camera_007_movablesLife",
-      "transform":
-      {
-        "pos": "-2.16559 56.5544 -226.268",
-        "lookat": "-4.53073 13.308 -276.211"
-      },
-      "camera":
-      {
-        "fov": 45.0
-      },
-      "fixed_camera":
-      {
-        "returnToPlayerCameraWithInput": false,
-        "modifyPlayerCameraRotation": true,
-        "timeToMixOut": 1.0,
-        "panningSpeed": 0.0,
-        "panningRadius": 3.0
-      }
-    }
-  },
-  {
-    "entity":
-    {
-      "name": "nes_camera_trigger_007",
-      "transform":
-      {
-        "pos": "-1.28238 11.7684 -281.364",
-        "rotation": "0.0 -0.461749 0.0 -0.887011"
-      },
-      "collider":
-      {
-        "mesh_src": "data/meshes/nes_camera_trigger_007.col_mesh",
-        "shape": "convex_mesh",
-        "is_trigger": true,
-        "type": "static",
-        "group":
-        [
-          "trigger"
-        ],
-        "mask":
-        [
-          "player"
-        ]
-      },
-      "suggestCameraTrigger":
-      {
-        "cameraSuggestion": "nes_camera_007_movablesLife",
-        "suggestYaw": false,
-        "hasOppositeYaw": false,
-        "suggestPitch": true,
-        "forceDistance": false,
-        "distanceToCamera": 6.28311,
-        "changeCenteringCamera": true,
-        "forcePositionOnEnter": true,
-        "centeringCameraSpeed": "18 9"
-      }
-    }
-  },
-  {
-    "entity":
-    {
-      "name": "nes_camera_005_anillos",
-      "transform":
-      {
-        "pos": "130.011 42.6529 32.8532",
-        "lookat": "131.554 38.4683 5.10706"
-      },
-      "camera":
-      {
-        "fov": 45.0
-      },
-      "fixed_camera":
-      {
-        "returnToPlayerCameraWithInput": false,
-        "modifyPlayerCameraRotation": true,
-        "timeToMixOut": 1.0,
-        "panningSpeed": 0.0,
-        "panningRadius": 3.0
-      }
-    }
-  },
-  {
-    "entity":
-    {
-      "name": "nes_camera_003_temploPuroSky",
-      "transform":
-      {
-        "pos": "-11.2267 87.46 248.265",
-        "lookat": "-11.4581 44.2136 208.862"
-      },
-      "camera":
-      {
-        "fov": 45.0
-      },
-      "fixed_camera":
-      {
-        "returnToPlayerCameraWithInput": false,
-        "modifyPlayerCameraRotation": true,
-        "timeToMixOut": 1.0,
-        "panningSpeed": 0.0,
-        "panningRadius": 3.0
-      }
-    }
-  },
-  {
-    "entity":
-    {
-      "name": "nes_camera_trigger_003",
-      "transform":
-      {
-        "pos": "-13.7938 42.6739 208.957",
-        "rotation": "0.0 -0.707107 0.0 -0.707107"
-      },
-      "collider":
-      {
-        "mesh_src": "data/meshes/nes_camera_trigger_003.col_mesh",
-        "shape": "convex_mesh",
-        "is_trigger": true,
-        "type": "static",
-        "group":
-        [
-          "trigger"
-        ],
-        "mask":
-        [
-          "player"
-        ]
-      },
-      "suggestCameraTrigger":
-      {
-        "cameraSuggestion": "nes_camera_003_temploPuroSky",
-        "suggestYaw": false,
-        "hasOppositeYaw": false,
-        "suggestPitch": true,
-        "forceDistance": false,
-        "distanceToCamera": 2.79907,
-        "changeCenteringCamera": true,
-        "forcePositionOnEnter": true,
-        "centeringCameraSpeed": "18 9"
+        "centeringCameraSpeed": "3.0 2.0"
       }
     }
   }

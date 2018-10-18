@@ -53,6 +53,11 @@
 			},
 			"render_vignette":{
 				"enabled": true
+			},
+			"screen_transition":{
+				"texture": "data/textures/black.dds",
+				"transition_texture": "data/textures/screen_transitions/transition_02.dds",
+				"speed": 1.5
 			}
 		}
 	},

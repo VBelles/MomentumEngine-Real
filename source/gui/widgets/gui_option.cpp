@@ -29,7 +29,7 @@ void COption::render() {
 	// render text
 	VEC2 scale(Engine.globalConfig.resolution.x / EngineGUI.getResolution().x,
 		Engine.globalConfig.resolution.y / EngineGUI.getResolution().y);
-	CFont font = EngineGUI.getFont(optionParams._textParams._size * scale.x);
+	CFont font = EngineGUI.getFont(optionParams._textParams._size * scale.y);
 
 	float textWidth = font.getWidth(optionParams._textParams._text);
 	float textHeight = font.getHeight(optionParams._textParams._text);

@@ -2,6 +2,37 @@
   {
     "entity":
     {
+      "name": "nes_respawn010temploPuro",
+      "transform":
+      {
+        "pos": "-13.7938 42.6739 208.957",
+        "rotation": "0.0 -0.707107 0.0 -0.707106"
+      },
+      "collider":
+      {
+        "mesh_src": "data/meshes/nes_respawn010temploPuro.col_mesh",
+        "shape": "convex_mesh",
+        "is_trigger": true,
+        "type": "static",
+        "group":
+        [
+          "trigger"
+        ],
+        "mask":
+        [
+          "player"
+        ]
+      },
+      "respawn_point":
+      {
+        "respawn_position": "4.87414 43.988 196.168",
+        "respawn_rotation": "0.0 0.384039 0.0 -0.923317"
+      }
+    }
+  },
+  {
+    "entity":
+    {
       "name": "nes_respawn009plaza",
       "transform":
       {
@@ -25,8 +56,8 @@
       },
       "respawn_point":
       {
-        "respawn_position": "0 0 0",
-        "respawn_rotation": "0 0 0 0"
+        "respawn_position": "22.4661 -2.55464 15.7185",
+        "respawn_rotation": "0.0 -0.818309 0.0 -0.574778"
       }
     }
   },
@@ -56,8 +87,8 @@
       },
       "respawn_point":
       {
-        "respawn_position": "22.4661 -2.55464 15.7185",
-        "respawn_rotation": "0.0 -0.818309 0.0 -0.574778"
+        "respawn_position": "47.3128 38.5391 55.2046",
+        "respawn_rotation": "0.0 -0.984552 0.0 -0.175093"
       }
     }
   },

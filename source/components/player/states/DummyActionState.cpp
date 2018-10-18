@@ -18,6 +18,7 @@ void DummyActionState::onStateEnter(IActionState * lastState) {
 	//se debería quitar collider, pero hay muchas cosas que lo usan
 	stateManager->changeConcurrentState(Free);
 	getPlayerModel()->setGravityMultiplier(0);
+	*velocityVector = VEC3::Zero;
 	timer.reset();
 	if (isLoop) {
 		getSkeleton()->clear(0.2f);

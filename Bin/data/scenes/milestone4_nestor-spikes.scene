@@ -2,10 +2,47 @@
   {
     "entity":
     {
+      "name": "nes_spikes057_spikes",
+      "transform":
+      {
+        "pos": "-95.1882 41.645 -71.0373",
+        "rotation": "-0.702475 -0.676207 -0.195601 -0.104941"
+      },
+      "render":
+      [
+        {
+          "mesh": "data/meshes/spikes.mesh",
+          "materials":
+          [
+            "data/materials/spikes.material"
+          ]
+        }
+      ],
+      "collider":
+      {
+        "mesh_src": "data/meshes/spikes_col.col_mesh",
+        "shape": "convex_mesh",
+        "type": "kinematic",
+        "is_trigger": true,
+        "group":
+        [
+          "trigger"
+        ],
+        "mask":
+        [
+          "player"
+        ]
+      },
+      "prefab": "data/prefabs/spikes.prefab"
+    }
+  },
+  {
+    "entity":
+    {
       "name": "nes_spikes056_spikes",
       "transform":
       {
-        "pos": "-96.1485 44.69 -68.2271",
+        "pos": "-96.6419 45.9368 -66.8659",
         "rotation": "-0.455272 -0.709484 -0.466366 0.268072"
       },
       "render":
