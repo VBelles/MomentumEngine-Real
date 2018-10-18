@@ -697,47 +697,6 @@
   {
     "entity":
     {
-      "name": "nes_columna_piezas_capitel_011",
-      "transform":
-      {
-        "pos": "-33.3208 13.464 157.922",
-        "rotation": "0.0 0.0 -1.0 0.0"
-      },
-      "render":
-      [
-        {
-          "mesh": "data/meshes/nes_columna_piezas_capitel_011.mesh",
-          "materials":
-          [
-            "data/materials/m_columna_piezas_pureON.material"
-          ],
-          "enabled": false
-        },
-        {
-          "mesh": "data/meshes/nes_columna_piezas_capitel_011.mesh",
-          "materials":
-          [
-            "data/materials/m_columna_piezas_pure.material"
-          ],
-          "enabled": true
-        }
-      ],
-      "purity": {},
-      "collider":
-      {
-        "mesh_src": "data/meshes/nes_columna_piezas_capitel_011.col_mesh",
-        "shape": "convex_mesh",
-        "type": "static",
-        "group":
-        [
-          "scenario"
-        ]
-      }
-    }
-  },
-  {
-    "entity":
-    {
       "name": "nes_columna_piezas_fuste_3_005",
       "transform":
       {
@@ -2518,7 +2477,7 @@
         "closed": false,
         "move_offset": 0,
         "travel_wait_time": 3.0,
-        "speed": 0.13,
+        "speed": 0.2,
         "knots":
         [
            "-101.422 17.0662 -24.8573",
@@ -2577,7 +2536,7 @@
         "closed": false,
         "move_offset": 0,
         "travel_wait_time": 1.0,
-        "speed": 0.15,
+        "speed": 0.31,
         "knots":
         [
            "-86.3486 20.0066 -13.9818",
