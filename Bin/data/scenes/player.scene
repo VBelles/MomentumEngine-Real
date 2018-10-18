@@ -532,6 +532,20 @@
 						"id": "lvl_up_3",
 						"core": "data/particles/player/player_power_3.particles",
 						"offset": "0 0.4 0"
+					},
+					{
+						"id": "teleport_1",
+						"core": "data/particles/player/teleport_1.particles",
+						"offset": "0 1 0"
+					},
+					{
+						"id": "teleport_2",
+						"core": "data/particles/player/teleport_2.particles",
+						"offset": "0 1 0"
+					},
+					{
+						"id": "teleport_3",
+						"core": "data/particles/player/teleport_3.particles"
 					}
 				]
 			}

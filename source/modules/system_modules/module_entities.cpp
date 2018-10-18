@@ -113,41 +113,6 @@ void CModuleEntities::reset() {
 }
 
 void CModuleEntities::render() {
-	if (CApp::get().isDebug()) {
-		Resources.debugInMenu();
-
-        ImGui::DragFloat("Time Factor", &Engine.globalConfig.time_scale_factor, 0.01f, 0.f, 1.0f);
-
-		if (ImGui::TreeNode("All Entities...")) {
-			ImGui::SameLine();
-			static bool flat = true;
-			ImGui::Checkbox("Flat", &flat);
-
-			static ImGuiTextFilter Filter;
-			ImGui::SameLine();
-			Filter.Draw("Filter");
-
-			auto om = getObjectManager<CEntity>();
-			om->forEach([](CEntity* e) {
-				CHandle h_e(e);
-				if (!flat && h_e.getOwner().isValid())
-					return;
-				if (Filter.IsActive() && !Filter.PassFilter(e->getName()))
-					return;
-				ImGui::PushID(e);
-				e->debugInMenu();
-				ImGui::PopID();
-			});
-			ImGui::TreePop();
-		}
-
-		if (ImGui::TreeNode("All Components...")) {
-			for (uint32_t i = 1; i < CHandleManager::getNumDefinedTypes(); ++i)
-				CHandleManager::getByType(i)->debugInMenuAll();
-			ImGui::TreePop();
-		}
-		CTagsManager::get().debugInMenu();
-	}
 
 	// I just need to activate one light... but at this moment...
 	getObjectManager<TCompLightDir>()->forEach([](TCompLightDir* c) {
@@ -207,6 +172,44 @@ void CModuleEntities::render() {
 	//CRenderManager::get().renderCategory("default"); // Ya no hace falta.
 	CRenderManager::get().debugInMenu();
 	//renderDebugOfComponents();
+}
+
+void CModuleEntities::renderAfterBloom() {
+	if (CApp::get().isDebug()) {
+		Resources.debugInMenu();
+
+		ImGui::DragFloat("Time Factor", &Engine.globalConfig.time_scale_factor, 0.01f, 0.f, 1.0f);
+
+		if (ImGui::TreeNode("All Entities...")) {
+			ImGui::SameLine();
+			static bool flat = true;
+			ImGui::Checkbox("Flat", &flat);
+
+			static ImGuiTextFilter Filter;
+			ImGui::SameLine();
+			Filter.Draw("Filter");
+
+			auto om = getObjectManager<CEntity>();
+			om->forEach([](CEntity* e) {
+				CHandle h_e(e);
+				if (!flat && h_e.getOwner().isValid())
+					return;
+				if (Filter.IsActive() && !Filter.PassFilter(e->getName()))
+					return;
+				ImGui::PushID(e);
+				e->debugInMenu();
+				ImGui::PopID();
+			});
+			ImGui::TreePop();
+		}
+
+		if (ImGui::TreeNode("All Components...")) {
+			for (uint32_t i = 1; i < CHandleManager::getNumDefinedTypes(); ++i)
+				CHandleManager::getByType(i)->debugInMenuAll();
+			ImGui::TreePop();
+		}
+		CTagsManager::get().debugInMenu();
+	}
 }
 
 // Shows render debug of all components (axis and so on).

@@ -133,5 +133,10 @@
 		"name" : "map",
 		"all" : false,
 		"buttons" : ["m", "pad_options"]
+	},
+	{
+		"name" : "test_particles",
+		"all" : false,
+		"buttons" : ["1"]
 	}
 ]
