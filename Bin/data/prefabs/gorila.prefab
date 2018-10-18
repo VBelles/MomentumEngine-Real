@@ -137,8 +137,8 @@
           },
           {
             "id": "attack",
-            "core": "data/particles/dreidel/spin_attack.particles",
-            "offset": "0 1.0 1.5"
+            "core": "data/particles/golem_attack.particles",
+            "offset": "0 0 1.8"
           }
         ]
       }
