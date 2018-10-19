@@ -480,6 +480,11 @@
 					{
 						"id": "landing",
 						"core": "data/particles/player/landing.particles",
+						"offset": "0 -0.1 0"
+					},
+					{
+						"id": "hard_landing",
+						"core": "data/particles/player/hard_landing.particles",
 						"offset": "0 0 0"
 					},
 					{

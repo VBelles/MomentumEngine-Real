@@ -1,0 +1,47 @@
+{
+  "life" : {
+      "duration" : 0.6,
+      "duration_variation" : 0.2,
+      "max_particles" : 100,
+      "time_factor" : 1.0
+  },
+  "emission" : {
+      "type" : "cylinder",
+      "size" : 0.1,
+      "half_length": 0.00000001,
+      "count" : 30,
+      "cyclic" : false,
+      "delay" : 0.41,
+      "fade_out": 0.5,
+      "angle": 0,
+      "radial": true
+  },
+  "movement" : {
+      "velocity" : 5,
+      "acceleration" : 0.0,
+      "spin" : 0.0,
+      "wind" : 0.0,
+      "gravity" : -0.05,
+      "ground" : false
+  }, 
+  "render" : {
+      "texture" : "data/textures/particles/glow.dds",
+      "additive": false
+  },
+  "size" : {
+    "scale" : 1,
+    "scale_variation" : 0.1,
+    "sizes" : [
+      [0.0, 1.0],
+      [1.0, 2]
+    ]
+  },
+  "color" : {
+    "opacity" : 0.6,
+    "colors" : [
+      [0.0, "0.9 0.9 0.9 1"],
+      [0.5, "0.9 0.9 0.9 0.6"],
+      [1.0, "0.9 0.9 0.9 0.6"]
+    ] 
+  }
+}

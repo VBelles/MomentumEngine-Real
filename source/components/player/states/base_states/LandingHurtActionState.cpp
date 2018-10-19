@@ -19,6 +19,7 @@ void LandingHurtActionState::update (float delta) {
 void LandingHurtActionState::onStateEnter(IActionState * lastState) {
 	LandingActionState::onStateEnter(lastState);
 	getSkeleton()->executeAction(animation, 0.05f, 0.05f);
+	getParticles()->launch("hard_landing");
 }
 
 void LandingHurtActionState::onStateExit(IActionState * nextState) {

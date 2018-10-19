@@ -137,7 +137,7 @@
           },
           {
             "id": "attack",
-            "core": "data/particles/golem_attack.particles",
+            "core": "data/particles/golem_attack_2.particles",
             "offset": "0 0 1.8"
           }
         ]
