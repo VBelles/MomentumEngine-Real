@@ -61,11 +61,11 @@
   },
   {
     "entity": {
-      "name": "chrysalis_fire_puzzle",
+      "name": "fire_puzzle",
       "fire_puzzle": {
-        "goal": 6
+        "goal": 6,
+        "chrysalis": "chrysalis_fire_puzzle"
       },
-      "prefab": "data/prefabs/crisalida.prefab",
       "transform": {
         "pos": "153.519 65.0865 177.482",
         "rotation": "0.0 0.766044 0.0 -0.642788"

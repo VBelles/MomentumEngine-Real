@@ -101,7 +101,7 @@
 					"fire_sparks"
 				],
 				"smoke": "smoke",
-				"turn_off_listener": "chrysalis_fire_puzzle"
+				"turn_off_listener": "fire_puzzle"
 			},
 			"light_point": {
 				"intensity": 5,

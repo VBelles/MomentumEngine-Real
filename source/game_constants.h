@@ -88,6 +88,7 @@ auto constexpr SOUND_AMBIENT = "event:/AMBIENTACION/ambientacion";
 auto constexpr SOUND_LVL_UP_1 = "event:/PROTA/cambio de estado/cambio_1";
 auto constexpr SOUND_LVL_UP_2 = "event:/PROTA/cambio de estado/cambio_2";
 auto constexpr SOUND_LVL_UP_3 = "event:/PROTA/cambio de estado/cambio_3";
+auto constexpr SOUND_CHRYSALIS_PUZZLE = "";
 
 // Particles
 auto constexpr SLASH_CLOCKWISE = "data/particles/player/slash_clockwise.particles";
