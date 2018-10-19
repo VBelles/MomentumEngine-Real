@@ -9,6 +9,6 @@
     "roughness": "data/textures/chrysalis/crisalida_low_default_Roughness.dds",
     "self_illum": "data/textures/chrysalis/crisalida_low_default_Emissive.dds",
     "height": "data/textures/chrysalis/crisalida_low_default_Height.dds",
-    "detail_normal": "data/textures/chrysalis/null_detail_normal.dds"
+    "detail_normal": "data/textures/null_detail_normal.dds"
   }
 }

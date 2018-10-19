@@ -446,6 +446,11 @@ struct TSceneExporter (
 		)
 	),
 
+	fn hasOnlyRot obj = (
+		local movable = hasChildLine obj or attrManager.hasAttribute obj "moveData"
+		return (not movable and attrManager.hasAttribute obj "rotateData")
+	),
+
 	-- --COMP: ROTATE (platform_simple)-----------------------------------------
 	fn exportPlatfRotation obj = (
 		local rotAxis = Point3 0 0 1
@@ -473,6 +478,10 @@ struct TSceneExporter (
 			fs.writeKeyValue "rotation_axis" rotAxis
 			fs.writeComma()
 			fs.writeKeyValue "rotation_speed" rotSpeed
+			if hasOnlyRot obj then (
+				fs.writeComma()
+				fs.writeKeyValue "enabled" true
+			)
 			if rolSpeed > 0 then fs.writeComma()
 		)
 
@@ -528,11 +537,14 @@ struct TSceneExporter (
 				local followSpeed = 0.3
 				if closed then followSpeed = 0.04
 
+				local enab = true
 				local auto = true
 				local loop = true
 				local wait = 0.0
 				--Get from attribute if it exists.
 				if attrManager.hasAttribute obj "moveData" then (
+					enab 	= attrManager.getAttrValue obj "moveData" #enab
+					if enab == undefined then enab = true
 					auto 	= attrManager.getAttrValue obj "moveData" #auto
 					if auto == undefined then auto = true
 					loop 	= attrManager.getAttrValue obj "moveData" #loop
@@ -548,6 +560,8 @@ struct TSceneExporter (
 				fs.beginObj()
 					if exportPlatfRotation obj then fs.writeComma()
 					fs.writeKeyValue "curve_type" curveType
+					fs.writeComma()
+					fs.writeKeyValue "enabled" enab
 					fs.writeComma()
 					fs.writeKeyValue "automove" auto
 					fs.writeComma()
@@ -978,7 +992,7 @@ struct TSceneExporter (
 					colliderCount += 1
 					local isFirst = colliderCount == 1
 					if isFirst then fs.writeComma()
-					local onlyRot = not movable and attrManager.hasAttribute obj "rotateData"
+					local onlyRot = hasOnlyRot obj
 					local groups = #("scenario")
 					if breakable then append groups "enemy"
 
@@ -1169,7 +1183,8 @@ struct TSceneExporter (
 				fs.endObj()
 
 				-- Add child spline if it exists.
-				if hasChildLine obj then exportSpline obj type:"camera_move"
+				if hasChildLine obj then exportSpline obj
+				if hasOnlyRot obj then exportPlatfRotationOnly obj
 
 			--format "Camera % target distance: %\n" obj.name obj.targetDistance
 			endEntity() -- - - - - - - - - - - - - - - - - - - - - - - - - -

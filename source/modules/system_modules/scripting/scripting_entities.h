@@ -28,6 +28,8 @@ public:
 	static std::string spawnMedusaAt(float x, float y, float z);
 	static std::string spawnMedusa();
 
+	static void setPlatformEnabled(std::string entityName, bool how);
+
 	static void stopEntities();
 	static void stopEntitiesCutscene();
 	static void resumeEntities();

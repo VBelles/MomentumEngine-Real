@@ -53,16 +53,18 @@ void CModuleInstancing::update(float delta) {
 	if (!culling) return;
 	CEntity* cameraEntity = getEntityByName(GAME_CAMERA);
 	TCompCulling* culling = cameraEntity->get<TCompCulling>();
-	for (auto& p : instancesDataMap) {
-		auto& instancesDataAABB = p.second;
-		std::vector<TInstance> data;
-		for (auto& instanceDataAABB : instancesDataAABB) {
-			if (culling->planes.isVisible(&instanceDataAABB.aabb)) {
-				data.push_back(instanceDataAABB.data);
+	if (culling) {
+		for (auto& p : instancesDataMap) {
+			auto& instancesDataAABB = p.second;
+			std::vector<TInstance> data;
+			for (auto& instanceDataAABB : instancesDataAABB) {
+				if (culling->planes.isVisible(&instanceDataAABB.aabb)) {
+					data.push_back(instanceDataAABB.data);
+				}
 			}
+			auto instanceMesh = (CRenderMeshInstanced*)Resources.get(p.first)->as<CRenderMesh>();
+			instanceMesh->setInstancesData(data.data(), data.size(), sizeof(TInstance));
 		}
-		auto instanceMesh = (CRenderMeshInstanced*)Resources.get(p.first)->as<CRenderMesh>();
-		instanceMesh->setInstancesData(data.data(), data.size(), sizeof(TInstance));
 	}
 }
 

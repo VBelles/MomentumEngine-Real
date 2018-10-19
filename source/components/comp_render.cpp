@@ -44,11 +44,12 @@ void TCompRender::registerMsgs() {
 }
 
 void TCompRender::debugInMenu() {
+	bool changed = false;
+	changed |= ImGui::Checkbox("Global enabled", &global_enabled);
 	ImGui::ColorEdit4("Color", &color.x);
 	ImGui::ColorEdit3("Self illum tint", &selfIllumTint.x);
 	ImGui::DragFloat("Self illum ratio", &selfIllumRatio, 0.01f, 0.f, 10.f);
 
-	bool changed = false;
 	for (auto& mwm : meshes) {
 		ImGui::PushID(&mwm);
 		// If the users changed the 'enabled' flag, save it

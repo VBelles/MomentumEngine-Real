@@ -15,4 +15,6 @@ public:
 	static void hideDialog();
 	static bool isDialogActive();
 	static bool isDialogHidden();
+
+	static void showHUD(bool how);
 };
