@@ -1,6 +1,6 @@
 {
   "life" : {
-      "duration" : 0.6,
+      "duration" : 0.5,
       "duration_variation" : 0.2,
       "max_particles" : 100,
       "time_factor" : 1.0
@@ -9,7 +9,7 @@
       "type" : "cylinder",
       "size" : 0.1,
       "half_length": 0.00000001,
-      "count" : 30,
+      "count" : 50,
       "cyclic" : false,
       "delay" : 0.41,
       "fade_out": 0.5,
@@ -17,7 +17,7 @@
       "radial": true
   },
   "movement" : {
-      "velocity" : 5,
+      "velocity" : 4,
       "acceleration" : 0.0,
       "spin" : 0.0,
       "wind" : 0.0,
@@ -39,9 +39,9 @@
   "color" : {
     "opacity" : 0.6,
     "colors" : [
-      [0.0, "0.9 0.9 0.9 1"],
-      [0.5, "0.9 0.9 0.9 0.6"],
-      [1.0, "0.9 0.9 0.9 0.6"]
+      [0.0, "0.8 0.8 0.8 1"],
+      [0.5, "0.8 0.8 0.8 0.6"],
+      [1.0, "0.8 0.8 0.8 0.6"]
     ] 
   }
 }

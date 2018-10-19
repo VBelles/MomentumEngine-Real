@@ -113,7 +113,7 @@ void TCompParticles::launch() {
 }
 
 void TCompParticles::launch(std::string id) {
-	dbg("Launching: %s\n", id.c_str());
+	//dbg("Launching: %s\n", id.c_str());
 	CHandle entityHandle = CHandle(this).getOwner();
 	auto it = systems.find(id);
 	if (it != systems.end()) {
