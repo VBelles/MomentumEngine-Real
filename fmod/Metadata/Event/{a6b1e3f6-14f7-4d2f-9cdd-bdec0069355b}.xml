@@ -104,7 +104,7 @@
     </object>
     <object class="EventMixerGroup" id="{5c314231-50ef-4312-8ac6-00559094cc8c}">
         <property name="volume">
-            <value>-3.5</value>
+            <value>-10.5</value>
         </property>
         <property name="name">
             <value>Audio 1</value>
@@ -139,6 +139,7 @@
         <relationship name="effects">
             <destination>{c38fffcc-00ec-4b25-9bda-63252092b5ac}</destination>
             <destination>{23db2b67-b6ed-4eb7-813b-308255905811}</destination>
+            <destination>{a1d0cce7-5965-4497-b64c-8a0113aca76b}</destination>
             <destination>{53249534-8d3b-4a22-b414-086100dbce79}</destination>
         </relationship>
     </object>
@@ -151,6 +152,14 @@
         </property>
     </object>
     <object class="MixerBusFader" id="{23db2b67-b6ed-4eb7-813b-308255905811}"/>
+    <object class="PitchShifterEffect" id="{a1d0cce7-5965-4497-b64c-8a0113aca76b}">
+        <property name="pitch">
+            <value>1</value>
+        </property>
+        <relationship name="modulators">
+            <destination>{0b840596-fa7e-4904-bd9d-56b1527b21ae}</destination>
+        </relationship>
+    </object>
     <object class="SFXReverbEffect" id="{53249534-8d3b-4a22-b414-086100dbce79}">
         <property name="earlyDelay">
             <value>162</value>
@@ -171,7 +180,15 @@
             <value>94</value>
         </property>
         <property name="wetLevel">
-            <value>-19.5</value>
+            <value>-14</value>
+        </property>
+    </object>
+    <object class="RandomizerModulator" id="{0b840596-fa7e-4904-bd9d-56b1527b21ae}">
+        <property name="nameOfPropertyBeingModulated">
+            <value>pitch</value>
+        </property>
+        <property name="amount">
+            <value>13</value>
         </property>
     </object>
 </objects>

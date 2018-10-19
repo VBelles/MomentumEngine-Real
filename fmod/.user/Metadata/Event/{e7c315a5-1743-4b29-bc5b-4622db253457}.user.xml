@@ -1,6 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <objects serializationModel="Studio.01.10.00">
     <object class="Event" id="{e7c315a5-1743-4b29-bc5b-4622db253457}">
+        <relationship name="selectables">
+            <destination>{279bb660-e82c-4f5e-a651-2529698ab13b}</destination>
+        </relationship>
         <relationship name="uiLastParameterSelection">
             <destination>{1a7392f2-4c6e-450b-9ce6-813a4cfbf7b2}</destination>
         </relationship>
@@ -12,7 +15,7 @@
     <object class="GroupTrack" id="{279bb660-e82c-4f5e-a651-2529698ab13b}"/>
     <object class="Timeline" id="{1a7392f2-4c6e-450b-9ce6-813a4cfbf7b2}">
         <property name="uiLastRulerScaleRatio">
-            <value>0.02461033634126333</value>
+            <value>0.00082265862319770675</value>
         </property>
     </object>
     <object class="EventMixerMaster" id="{b704b474-211c-4104-bb9e-cc9382f2bba1}">
@@ -35,5 +38,6 @@
     <object class="SpatialiserEffect" id="{904b3b60-6ff7-43ac-8583-7a3031ef3f00}"/>
     <object class="MixerBusFader" id="{9ea7785a-feca-4972-9aa1-a271dfdde99a}"/>
     <object class="PitchShifterEffect" id="{4b12c17d-e110-4e3e-b50d-402f2d108a17}"/>
+    <object class="SFXReverbEffect" id="{ff85c65f-0d98-4d65-8e8e-fb937d5e441a}"/>
     <object class="RandomizerModulator" id="{f91d71b1-e009-40a0-9226-ec2fa551730f}"/>
 </objects>

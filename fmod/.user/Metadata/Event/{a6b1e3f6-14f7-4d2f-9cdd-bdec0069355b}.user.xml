@@ -1,6 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <objects serializationModel="Studio.01.10.00">
     <object class="Event" id="{a6b1e3f6-14f7-4d2f-9cdd-bdec0069355b}">
+        <relationship name="selectables">
+            <destination>{70326384-8808-4b81-98c6-02d17f57ec6c}</destination>
+        </relationship>
         <relationship name="uiLastParameterSelection">
             <destination>{e8064ddd-4f9e-4d8e-8188-2ba95690c565}</destination>
         </relationship>
@@ -34,5 +37,7 @@
     <object class="SpatialiserEffect" id="{fd8c4567-8296-43ce-b946-206dac3f562f}"/>
     <object class="ChorusEffect" id="{c38fffcc-00ec-4b25-9bda-63252092b5ac}"/>
     <object class="MixerBusFader" id="{23db2b67-b6ed-4eb7-813b-308255905811}"/>
+    <object class="PitchShifterEffect" id="{a1d0cce7-5965-4497-b64c-8a0113aca76b}"/>
     <object class="SFXReverbEffect" id="{53249534-8d3b-4a22-b414-086100dbce79}"/>
+    <object class="RandomizerModulator" id="{0b840596-fa7e-4904-bd9d-56b1527b21ae}"/>
 </objects>

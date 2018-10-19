@@ -475,7 +475,7 @@
 					},
 					{
 						"id": "death",
-						"path": "event:/PROTA/muerte"
+						"path": ""
 					},
 					{
 						"id": "pit_falling",
@@ -503,7 +503,7 @@
 					},
 					{
 						"id": "float",
-						"path": ""
+						"path": "event:/PROTA/flotar"
 					},
 					{
 						"id": "lose_hp",
