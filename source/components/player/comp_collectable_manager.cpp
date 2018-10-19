@@ -38,6 +38,13 @@ void TCompCollectableManager::debugInMenu() {
 	if (ImGui::DragFloat("Collect Pitch", &collectPitchDegrees, 1.f, -80.f, -10.f)) {
 		collectPitch = deg2rad(collectPitchDegrees);
 	}
+
+	float collectYawDegrees = rad2deg(collectYaw);
+	if (ImGui::DragFloat("Collect Yaw", &collectYawDegrees, 1.f, -90.f, 90.f)) {
+		collectYaw = deg2rad(collectYawDegrees);
+	}
+
+	//collectYaw
 	ImGui::DragFloat2("Camera Speed", &cameraSpeed.x, 0.1f, 0.1f, 5.f);
 	ImGui::DragFloat("Collect Duration", &collectDuration, 0.1f, 1.f, 20.f);
 	ImGui::DragFloat("Collect Distance", &collectDistance, 0.1f, 0.5f, 20.f);
@@ -138,7 +145,7 @@ void TCompCollectableManager::onCollect(const TMsgCollect& msg) {
 		playerModel->changeState("Dummy");
 		//situar cámara frente a player
 		playerTransform->getYawPitchRoll(&yaw, &pitch);
-		yaw += M_PI;
+		yaw += M_PI + deg2rad(collectYaw);
 		//TODO if camera is already suggested, remember parameters
 		cameraPlayer->suggestYawPitchDistance(yaw, collectPitch, collectDistance, true, false, true, true, false);
 		cameraPlayer->placeCameraOnSuggestedPosition(cameraSpeed);

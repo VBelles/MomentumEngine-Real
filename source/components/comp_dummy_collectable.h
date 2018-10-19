@@ -13,12 +13,12 @@ private:
 	std::string powerupName;
 	std::string lifePieceName;
 
-	float chrysalisStartingScale = 0.6f;
-	float powerupStartingScale = 0.6f;
-	float lifePieceStartingScale = 0.6f;
-	VEC3 chrysalisPositionOffset = VEC3(0.2f, 1.5f, 1.2f);
-	VEC3 powerupPositionOffset = VEC3(0.3f, 1.5f, 1.f);
-	VEC3 lifePiecePositionOffset = VEC3(0.3f, 1.5f, 1.1f);
+	float chrysalisStartingScale = 0.45f;
+	float powerupStartingScale = 0.4f;
+	float lifePieceStartingScale = 0.45f;
+	VEC3 chrysalisPositionOffset = VEC3(0.2f, 1.65f, 0.85f);
+	VEC3 powerupPositionOffset = VEC3(0.2f, 1.65f, 0.9f);
+	VEC3 lifePiecePositionOffset = VEC3(0.2f, 1.65f, 0.75f);
 	float chrysalisYawOffset = deg2rad(90);
 	float powerupYawOffset = deg2rad(90);
 	float lifePieceYawOffset = deg2rad(180);

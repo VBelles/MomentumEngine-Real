@@ -78,7 +78,7 @@ void TCompPowerUp::onTriggerEnter(const TMsgTriggerEnter & msg) {
 		playerModel->changeState("Dummy");
 		//situar cámara frente a player
 		getPlayerTransform()->getYawPitchRoll(&yaw, &pitch);
-		yaw += M_PI;
+		yaw += M_PI + deg2rad(collectYaw);;
 		//if camera is already suggested, remember parameters
 		cameraPlayer->suggestYawPitchDistance(yaw, collectPitch, collectDistance, true, false, true, true, false);
 		cameraPlayer->placeCameraOnSuggestedPosition(cameraSpeed);

@@ -1,5 +1,5 @@
 {
-  "technique": "pbr.tech",
+  "technique": "pbr_clear_stencil.tech",
   "shadows": true,
   "textures":
   {
