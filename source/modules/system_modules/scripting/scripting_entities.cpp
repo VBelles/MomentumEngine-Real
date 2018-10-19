@@ -5,6 +5,7 @@
 #include <SLB/SLB.hpp>
 #include "components/platforms/comp_platforms_director.h"
 #include "components/comp_day_night_cycle.h"
+#include "components/platforms/comp_platform_simple.h"
 
 ScriptingEntities* ScriptingEntities::instance = nullptr;
 
@@ -21,6 +22,9 @@ void ScriptingEntities::bind(SLB::Manager* manager) {
 	manager->set("spawnBall", SLB::FuncCall::create(ScriptingEntities::spawnBall));
 	manager->set("spawnMedusaAt", SLB::FuncCall::create(ScriptingEntities::spawnMedusaAt));
 	manager->set("spawnMedusa", SLB::FuncCall::create(ScriptingEntities::spawnMedusa));
+
+	manager->set("setPlatformEnabled", SLB::FuncCall::create(ScriptingEntities::setPlatformEnabled));
+
 	manager->set("stopEntities", SLB::FuncCall::create(ScriptingEntities::stopEntities));
 	manager->set("stopEntitiesCutscene", SLB::FuncCall::create(ScriptingEntities::stopEntitiesCutscene));
 	manager->set("resumeEntities", SLB::FuncCall::create(ScriptingEntities::resumeEntities));
@@ -93,6 +97,16 @@ std::string ScriptingEntities::spawnMedusa() {
 	VEC3 spawnPosition = get()->getPlayerTransform()->getPosition() + (get()->getPlayerTransform()->getFront() * 2);
 	spawnPosition.y += 4.f;
 	return spawnMedusaAt(spawnPosition.x, spawnPosition.y, spawnPosition.z);
+}
+
+void ScriptingEntities::setPlatformEnabled(std::string entityName, bool how) {
+	CEntity* entity = getEntityByName(entityName);
+	if (entity) {
+		TCompPlatformSimple* platfSimple = entity->get<TCompPlatformSimple>();
+		if (platfSimple) {
+			platfSimple->setEnabled(how);
+		}
+	}
 }
 
 TCompTransform* ScriptingEntities::getPlayerTransform() {
