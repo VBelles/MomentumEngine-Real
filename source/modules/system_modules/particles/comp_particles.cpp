@@ -21,6 +21,7 @@ void TCompParticles::debugInMenu() {
 	int sIndex = 0;
 	for (auto& p : systems) {
 		auto& system = p.second;
+		ImGui::PushID(sIndex);
 		ImGui::Text("System %d", sIndex);
 		ImGui::Text("Resource: %s", system.core->getName().c_str());
 		ImGui::Text("Particle handles (%d):", system.particleHandles.size());
@@ -34,6 +35,7 @@ void TCompParticles::debugInMenu() {
 			kill(system.id);
 		}
 		//ImGui::Text("Particles count: %d", system->getNbParticles());
+		ImGui::PopID();
 		sIndex++;
 	}
 }
@@ -111,6 +113,7 @@ void TCompParticles::launch() {
 }
 
 void TCompParticles::launch(std::string id) {
+	//dbg("Launching: %s\n", id.c_str());
 	CHandle entityHandle = CHandle(this).getOwner();
 	auto it = systems.find(id);
 	if (it != systems.end()) {

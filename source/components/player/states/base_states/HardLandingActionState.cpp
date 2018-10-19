@@ -27,6 +27,8 @@ void HardLandingActionState::onStateEnter(IActionState * lastState) {
 	springJumpTimer.reset();
 	fallingAttackHitboxTimer.reset();
 	getSkeleton()->executeAction(animation, 0.05f, 0.05f);
+	getParticles()->launch("hard_landing");
+	getParticles()->launch("hard_landing_fire");
 }
 
 void HardLandingActionState::onStateExit(IActionState * nextState) {

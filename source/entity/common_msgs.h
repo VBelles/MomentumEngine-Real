@@ -131,3 +131,8 @@ struct TMsgOnContact {
 	physx::PxContactPair pair;
 	DECL_MSG_ID();
 };
+
+struct TMsgFireTurnOff {
+	CHandle fireEntity;
+	DECL_MSG_ID();
+};

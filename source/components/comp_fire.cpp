@@ -5,6 +5,7 @@
 #include "modules/system_modules/particles/comp_particles.h"
 #include "components/comp_light_point.h"
 #include "components/lights/comp_light_flicker.h"
+#include "components/player/attack_info.h"
 
 
 DECL_OBJ_MANAGER("fire", TCompFire);
@@ -16,6 +17,7 @@ void TCompFire::registerMsgs() {
 	DECL_MSG(TCompFire, TMsgEntityCreated, onEntityCreated);
 	DECL_MSG(TCompFire, TMsgTriggerEnter, onPlayerEnter);
 	DECL_MSG(TCompFire, TMsgTriggerExit, onPlayerExit);
+	DECL_MSG(TCompFire, TMsgAttackHit, onAttackHit);
 
 }
 
@@ -31,6 +33,7 @@ void TCompFire::load(const json& j, TEntityParseContext& ctx) {
 		}
 	}
 	time = j.value("time", time);
+	turnOffListenerName = j.value("turn_off_listener", turnOffListenerName);
 }
 
 void TCompFire::onEntityCreated(const TMsgEntityCreated& msg) {
@@ -46,23 +49,11 @@ void TCompFire::onEntityCreated(const TMsgEntityCreated& msg) {
 
 void TCompFire::onPlayerEnter(const TMsgTriggerEnter& msg) {
 	if (static_cast<CEntity*>(msg.h_other_entity)->getName() != PLAYER_NAME) return;
-	//dbg("Player enter\n");
+	dbg("Player enter\n");
 	// Kill fire
 	//dbg("kill fire\n");
-	getLight()->setIntensity(0.f);
-	getLightFlicker()->setActive(false);
-	for (auto& particleId : fireParticles) {
-		getParticles()->kill(particleId);
-	}
-	// Launch smoke
-	if (hasFire) {
-		//dbg("launch smoke\n");
-		for (auto& particleId : smokeParticles) {
-			getParticles()->launch(particleId);
-		}
-	}
-	hasFire = false;
 	playerOnFire = true;
+	killFire();
 }
 
 void TCompFire::onPlayerExit(const TMsgTriggerExit& msg) {
@@ -70,6 +61,33 @@ void TCompFire::onPlayerExit(const TMsgTriggerExit& msg) {
 	//dbg("Player exit\n");
 	timer.reset();
 	playerOnFire = false;
+}
+
+void TCompFire::onAttackHit(const TMsgAttackHit& msg) {
+	CEntity* attackerEntity = msg.attacker;
+	killFire();
+	timer.reset();
+}
+
+void TCompFire::killFire() {
+	getLight()->setIntensity(0.f);
+	getLightFlicker()->setActive(false);
+	/*for (auto& particleId : fireParticles) {
+		getParticles()->kill(particleId);
+	}*/
+	getParticles()->kill();
+	// Launch smoke
+	if (hasFire) {
+		//dbg("launch smoke\n");
+		for (auto& particleId : smokeParticles) {
+			getParticles()->launch(particleId);
+		}
+		hasFire = false;
+		CEntity* listenerEntity = getEntityByName(turnOffListenerName);
+		if (listenerEntity) {
+			listenerEntity->sendMsg(TMsgFireTurnOff{ CHandle(this) });
+		}
+	}
 }
 
 void TCompFire::update(float delta) {

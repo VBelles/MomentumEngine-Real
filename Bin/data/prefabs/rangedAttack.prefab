@@ -3,9 +3,9 @@
 		"entity": {
 			"name": "rangedAttack",
 			"transform": {},
-			"render" : {
+			"render": {
 				"mesh": "data/meshes/rangedAttack.mesh",
-				"materials" : [
+				"materials": [
 					"data/materials/rangedAttack.material"
 				]
 			},
@@ -20,6 +20,15 @@
 			"ranged_attack": {
 				"speed": 15,
 				"lifetime": 15
+			},
+			"particles": {
+				"launch": false,
+				"systems": [
+					{
+						"id": "ranged_attack",
+						"core": "data/particles/ranged_attack.particles"
+					}
+				]
 			}
 		}
 	}

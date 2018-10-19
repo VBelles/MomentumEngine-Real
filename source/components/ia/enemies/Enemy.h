@@ -25,6 +25,7 @@ struct EnemyAttack {
 	VEC3 attackTargetOffset = VEC3::Zero;
 	std::string attackPrefab = "";
 	std::vector<std::string> particles;
+	std::vector<std::string> onExitParticles;
 };
 
 class Enemy : public IBehaviorTree {

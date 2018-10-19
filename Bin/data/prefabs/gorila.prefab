@@ -52,7 +52,7 @@
             "invulnerabilityTime": 1.5,
             "stun": 1.0,
             "hitbox": "attack",
-            "particles": "attack"
+            "particles": ["attack_ring", "attack_smoke"]
           },
           {
             "name": "launched",
@@ -136,9 +136,19 @@
             "offset": "0 0.5 0"
           },
           {
-            "id": "attack",
-            "core": "data/particles/dreidel/spin_attack.particles",
-            "offset": "0 1.0 1.5"
+            "id": "attack_smoke",
+            "core": "data/particles/golem/attack_smoke.particles",
+            "offset": "0 0 1.8"
+          },
+          {
+            "id": "attack_ring",
+            "core": "data/particles/golem/attack_ring.particles",
+            "offset": "0 0 1.8"
+          },
+          {
+            "id": "attack_fire",
+            "core": "data/particles/golem/attack_fire.particles",
+            "offset": "0 0 1.8"
           }
         ]
       }

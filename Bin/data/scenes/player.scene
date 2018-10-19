@@ -171,6 +171,11 @@
 				"freezeDropTime": 1.5
 			},
 			"collectable_manager": {},
+			"dummy_collectable": {
+				"chrysalis" : "dummy_chrysalis",
+				"powerup": "dummy_powerup",
+				"life_piece": "dummy_life_piece"
+			},
 			"hitboxes": {
 				"hitboxes": [
 					{
@@ -480,7 +485,17 @@
 					{
 						"id": "landing",
 						"core": "data/particles/player/landing.particles",
-						"offset": "0 0 0"
+						"offset": "0 -0.1 0"
+					},
+					{
+						"id": "hard_landing",
+						"core": "data/particles/player/hard_landing.particles",
+						"offset": "0 -0.1 0"
+					},
+					{
+						"id": "hard_landing_fire",
+						"core": "data/particles/player/hard_landing_fire.particles",
+						"offset": "0 -0.2 0"
 					},
 					{
 						"id": "release_power",
@@ -532,6 +547,20 @@
 						"id": "lvl_up_3",
 						"core": "data/particles/player/player_power_3.particles",
 						"offset": "0 0.4 0"
+					},
+					{
+						"id": "teleport_1",
+						"core": "data/particles/player/teleport_1.particles",
+						"offset": "0 1 0"
+					},
+					{
+						"id": "teleport_2",
+						"core": "data/particles/player/teleport_2.particles",
+						"offset": "0 1 0"
+					},
+					{
+						"id": "teleport_3",
+						"core": "data/particles/player/teleport_3.particles"
 					}
 				]
 			}
@@ -567,6 +596,57 @@
 				"yaw": 225,
 				"pitch": -20
 			}
+		}
+	},
+	{
+		"entity":{
+			"name": "dummy_chrysalis",
+			"transform":{
+				"pos" : "0 0 0"
+			},
+			"render": [
+				{
+					"mesh": "data/meshes/chrysalis.mesh",
+					"materials": [
+						"data/materials/chrysalis.material"
+					],
+					"enabled": false
+				}
+			]
+		}
+	},
+	{
+		"entity":{
+			"name": "dummy_powerup",
+			"transform":{
+				"pos" : "0 0 0"
+			},
+			"render": [
+				{
+					"mesh": "data/meshes/powerup_00.mesh",
+					"materials": [
+						"data/materials/m_powerup.material"
+					],
+					"enabled": false
+				}
+			]
+		}
+	},
+	{
+		"entity":{
+			"name": "dummy_life_piece",
+			"transform":{
+				"pos" : "0 0 0"
+			},
+			"render": [
+				{
+					"mesh": "data/meshes/life.mesh",
+					"materials": [
+						"data/materials/life_01_material.material"
+					],
+					"enabled": false
+				}
+			]
 		}
 	}
 ]

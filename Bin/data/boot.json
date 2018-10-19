@@ -53,7 +53,11 @@
     "data/scenes/milestone4_andrea-0.scene",
     "data/scenes/milestone4_nestor-coins.scene",
 
+    "data/scenes/fireplace_puzzle.scene",
+
     "data/scenes/power_ups.scene",
+    "data/scenes/setichuelas_lod.scene",
+    "data/scenes/dani_rocas_islas_lod.scene",
     
     "data/scenes/ambiental_particles.scene"
   ],

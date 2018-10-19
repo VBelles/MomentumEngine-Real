@@ -1,0 +1,16 @@
+[
+	{
+		"entity": {
+			"name": "fire",
+			"transform":{
+				"pos": "1 0 2"
+			},
+			"particles": {
+				"launch": false,
+				"systems":[
+				]
+			}
+		}
+	}
+
+]

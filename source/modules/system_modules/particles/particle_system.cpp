@@ -146,6 +146,13 @@ namespace Particles {
 
 	bool CSystem::update(float delta) {
 		updateWorld();
+
+		/*if (_globalTime < _core->emission.delay) {
+			_globalTime += delta;
+			dbg("Delaying\n");
+			return true;
+		}*/
+
 		const VEC3& kWindVelocity = EngineParticles.getWindVelocity();
 
 		float fadeRatio = 1.f;
