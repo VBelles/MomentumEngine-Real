@@ -366,6 +366,7 @@
     <ClCompile Include="components\player\states\DummyActionState.cpp" />
     <ClCompile Include="components\postfx\comp_screen_transition.cpp" />
     <ClCompile Include="components\player\states\base_states\moving_around\TeleportActionState.cpp" />
+    <ClCompile Include="components\comp_fire_puzzle.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="..\Bin\data\shaders\ctes.h" />
@@ -765,6 +766,7 @@
     <ClInclude Include="components\player\states\DummyActionState.h" />
     <ClInclude Include="components\postfx\comp_screen_transition.h" />
     <ClInclude Include="components\player\states\base_states\moving_around\TeleportActionState.h" />
+    <ClInclude Include="components\comp_fire_puzzle.h" />
   </ItemGroup>
   <ItemGroup>
     <None Include="geometry\SimpleMath.inl" />

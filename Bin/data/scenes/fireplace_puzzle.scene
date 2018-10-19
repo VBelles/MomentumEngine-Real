@@ -1,0 +1,75 @@
+[
+  {
+    "entity": {
+      "name": "puzzle_fireplace_01",
+      "prefab": "data/prefabs/fireplace_special.prefab",
+      "transform": {
+        "pos": "160.6 61.8746 166.022",
+        "rotation": "0.0 0.173648 0.0 -0.984808"
+      }
+    }
+  },
+  {
+    "entity": {
+      "name": "puzzle_fireplace_02",
+      "prefab": "data/prefabs/fireplace_special.prefab",
+      "transform": {
+        "pos": "155.425 62.0266 164.281",
+        "rotation": "0.0 0.173648 0.0 -0.984808"
+      }
+    }
+  },
+  {
+    "entity": {
+      "name": "puzzle_fireplace_03",
+      "prefab": "data/prefabs/fireplace_special.prefab",
+      "transform": {
+        "pos": "158.795 61.4476 170.981",
+        "rotation": "0.0 0.173648 0.0 -0.984808"
+      }
+    }
+  },
+  {
+    "entity": {
+      "name": "puzzle_fireplace_04",
+      "prefab": "data/prefabs/fireplace_special.prefab",
+      "transform": {
+        "pos": "157.083 61.486 175.684",
+        "rotation": "0.0 0.173648 0.0 -0.984808"
+      }
+    }
+  },
+  {
+    "entity": {
+      "name": "puzzle_fireplace_05",
+      "prefab": "data/prefabs/fireplace_special.prefab",
+      "transform": {
+        "pos": "153.791 61.5284 169.15",
+        "rotation": "0.0 0.173648 0.0 -0.984808"
+      }
+    }
+  },
+  {
+    "entity": {
+      "name": "puzzle_fireplace_06",
+      "prefab": "data/prefabs/fireplace_special.prefab",
+      "transform": {
+        "pos": "152.074 61.5117 173.869",
+        "rotation": "0.0 0.173648 0.0 -0.984808"
+      }
+    }
+  },
+  {
+    "entity": {
+      "name": "chrysalis_fire_puzzle",
+      "fire_puzzle": {
+        "goal": 6
+      },
+      "prefab": "data/prefabs/crisalida.prefab",
+      "transform": {
+        "pos": "153.519 65.0865 177.482",
+        "rotation": "0.0 0.766044 0.0 -0.642788"
+      }
+    }
+  }
+]

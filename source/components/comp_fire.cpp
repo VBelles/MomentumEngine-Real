@@ -33,6 +33,7 @@ void TCompFire::load(const json& j, TEntityParseContext& ctx) {
 		}
 	}
 	time = j.value("time", time);
+	turnOffListenerName = j.value("turn_off_listener", turnOffListenerName);
 }
 
 void TCompFire::onEntityCreated(const TMsgEntityCreated& msg) {
@@ -71,9 +72,10 @@ void TCompFire::onAttackHit(const TMsgAttackHit& msg) {
 void TCompFire::killFire() {
 	getLight()->setIntensity(0.f);
 	getLightFlicker()->setActive(false);
-	for (auto& particleId : fireParticles) {
+	/*for (auto& particleId : fireParticles) {
 		getParticles()->kill(particleId);
-	}
+	}*/
+	getParticles()->kill();
 	// Launch smoke
 	if (hasFire) {
 		//dbg("launch smoke\n");
@@ -81,6 +83,10 @@ void TCompFire::killFire() {
 			getParticles()->launch(particleId);
 		}
 		hasFire = false;
+		CEntity* listenerEntity = getEntityByName(turnOffListenerName);
+		if (listenerEntity) {
+			listenerEntity->sendMsg(TMsgFireTurnOff{ CHandle(this) });
+		}
 	}
 }
 

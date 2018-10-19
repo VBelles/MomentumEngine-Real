@@ -6,6 +6,7 @@ class TCompLightFlicker;
 
 struct TMsgAttackHit;
 
+
 class TCompFire : public TCompBase {
 private:
 
@@ -16,6 +17,8 @@ private:
 	CHandle lightFlicker;
 	bool hasFire = true;
 	bool playerOnFire = false;
+
+	std::string turnOffListenerName;
 
 	CTimer2 timer;
 	float time = 2.f;
