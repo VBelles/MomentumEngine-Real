@@ -9,6 +9,6 @@
     "roughness": "data/textures/teleport/activated/teleport_act_Roughness.dds",
     "self_illum": "data/textures/teleport/activated/teleport_act_Emissive.dds",
     "height": "data/textures/teleport/activated/teleport_act_Height.dds",
-    "detail_normal": "data/textures/teleport/activated/null_detail_normal.dds"
+    "detail_normal": "data/textures/null_detail_normal.dds"
   }
 }
