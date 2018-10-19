@@ -96,13 +96,19 @@
     <object class="MixerBusPanner" id="{0428ed88-0165-4e10-ae25-c42df90ef319}"/>
     <object class="SingleSound" id="{db5291a4-00c6-4c91-b84e-a2a5ecd73239}">
         <property name="length">
-            <value>4.1636507936507936</value>
+            <value>3.942157766579423</value>
+        </property>
+        <property name="timelockedOffset">
+            <value>0.098441345365053307</value>
         </property>
         <relationship name="audioFile">
             <destination>{31fc5e02-9109-4a8b-950a-9e5bb7bd4422}</destination>
         </relationship>
     </object>
     <object class="EventMixerGroup" id="{d07cd30e-520e-4bc8-9c52-ebb9357de40a}">
+        <property name="volume">
+            <value>10</value>
+        </property>
         <property name="name">
             <value>Audio 1</value>
         </property>
@@ -118,7 +124,7 @@
     </object>
     <object class="LoopRegion" id="{8045a4ea-4217-4b6a-880c-6c727a048cb3}">
         <property name="position">
-            <value>0.098441345365053307</value>
+            <value>0</value>
         </property>
         <property name="length">
             <value>3.942157766579423</value>
@@ -133,7 +139,7 @@
     <object class="MixerBusEffectChain" id="{f041acca-a1e1-4edb-8d86-9084b5cdb157}">
         <relationship name="effects">
             <destination>{507c1393-491e-47fc-a563-b6cc843a24e7}</destination>
-            <destination>{988505bb-2135-45e2-8009-e4fb353fd20c}</destination>
+            <destination>{9adee4c2-e0d8-4eec-b6ee-a3ee8e8163fc}</destination>
         </relationship>
     </object>
     <object class="MixerBusPanner" id="{1288b4a6-9bea-451d-b233-d66b4daa2dee}"/>
@@ -148,18 +154,15 @@
     </object>
     <object class="MixerBusPanner" id="{ffd8e066-34e7-44a3-9d1a-263f90b8eea1}"/>
     <object class="MixerBusFader" id="{507c1393-491e-47fc-a563-b6cc843a24e7}"/>
-    <object class="SpatialiserEffect" id="{988505bb-2135-45e2-8009-e4fb353fd20c}">
-        <property name="distanceRolloffType">
+    <object class="SpatialiserEffect" id="{9adee4c2-e0d8-4eec-b6ee-a3ee8e8163fc}">
+        <property name="maximumDistance">
+            <value>250</value>
+        </property>
+        <property name="extentMode">
             <value>1</value>
         </property>
-        <property name="minimumDistance">
-            <value>0</value>
-        </property>
-        <property name="maximumDistance">
-            <value>30</value>
-        </property>
         <property name="soundSize">
-            <value>26</value>
+            <value>10000</value>
         </property>
     </object>
     <object class="MixerBusFader" id="{40324f18-85f4-42fe-9393-5136bd8338f7}"/>

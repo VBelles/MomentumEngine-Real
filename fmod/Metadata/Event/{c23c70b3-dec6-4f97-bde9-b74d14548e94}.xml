@@ -175,6 +175,9 @@
         <property name="distanceRolloffType">
             <value>1</value>
         </property>
+        <property name="minimumDistance">
+            <value>0</value>
+        </property>
         <property name="maximumDistance">
             <value>50</value>
         </property>

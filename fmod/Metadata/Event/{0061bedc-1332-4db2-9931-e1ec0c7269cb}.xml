@@ -261,6 +261,9 @@
     <object class="MixerBusPanner" id="{f3794f1d-0e01-48b1-80c4-abeef58ccff0}"/>
     <object class="MixerBusFader" id="{d34c6bae-a687-4ad1-9413-dffc4ec1d547}"/>
     <object class="PitchShifterEffect" id="{c308b755-3798-4446-bf10-5c242edbcff7}">
+        <property name="bypass">
+            <value>true</value>
+        </property>
         <property name="pitch">
             <value>1</value>
         </property>
@@ -299,7 +302,14 @@
             <value>-0.99999994</value>
         </property>
     </object>
-    <object class="SpatialiserEffect" id="{ed1a6002-0c43-4d49-8514-7ffbc01f6449}"/>
+    <object class="SpatialiserEffect" id="{ed1a6002-0c43-4d49-8514-7ffbc01f6449}">
+        <property name="minimumDistance">
+            <value>0</value>
+        </property>
+        <property name="maximumDistance">
+            <value>75</value>
+        </property>
+    </object>
     <object class="MixerBusFader" id="{78145ebc-12ad-4604-bd88-960570d76d9c}"/>
     <object class="MixerBusFader" id="{39975185-e5f9-4933-ad81-d1cd114d448d}"/>
     <object class="RandomizerModulator" id="{90cc5a5f-6ecd-472e-b267-6a9545207b5e}">
