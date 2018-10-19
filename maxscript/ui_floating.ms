@@ -619,23 +619,27 @@ ButtonText: "Momentum"
 				)
 
 				rollout moveParams "Move parameters" (
-					checkbox autoMove "Automove" 	   type: #boolean default:true across:2 align:#right
+					checkbox enabled "Enabled" 	    type: #boolean default:true across:2 align:#right
+					button btnSetEnabled "Set" width:24 align:#left
+					checkbox autoMove "Automove" 	type: #boolean default:true across:2 align:#right
 					button btnSetAutoM "Set" width:24 align:#left
-					checkbox loops 	  "Loops" 		   type: #boolean default:true across:2 align:#right
+					checkbox loops 	  "Loops" 		type: #boolean default:true across:2 align:#right
 					button btnSetLoop "Set" width:24 align:#left
-					spinner  waitTime "Wait time" 	   type: #float   across:2 align:#right range:[0, 100.0, 1.0] --min, max, initial value
+					spinner  waitTime "Wait time" 	type: #float   across:2 align:#right range:[0, 100.0, 1.0] --min, max, initial value
 					button btnSetWtime "Set" width:24 align:#left
 					spinner  movSpeed "Move speed" type: #float   across:2 align:#right range:[-100.0, 100.0, 0.1]
 					button btnSetMovSpd "Set" width:24 align:#left
 
 					button btnSetAll "SetAll"
 
-					on btnSetAutoM 	pressed do (setAttribute "moveData" #auto autoMove.state)
-					on btnSetLoop 	pressed do (setAttribute "moveData" #loop loops.state)
-					on btnSetWtime 	pressed do (setAttribute "moveData" #wait waitTime.value)
-					on btnSetMovSpd	pressed do (setAttribute "moveData" #spd  movSpeed.value)
+					on btnSetEnabled pressed do (setAttribute "moveData" #enab enabled.state)
+					on btnSetAutoM 	 pressed do (setAttribute "moveData" #auto autoMove.state)
+					on btnSetLoop 	 pressed do (setAttribute "moveData" #loop loops.state)
+					on btnSetWtime 	 pressed do (setAttribute "moveData" #wait waitTime.value)
+					on btnSetMovSpd	 pressed do (setAttribute "moveData" #spd  movSpeed.value)
 
 					on btnSetAll	pressed do (
+						setAttribute "moveData" #enab enabled.state
 						setAttribute "moveData" #auto autoMove.state
 						setAttribute "moveData" #loop loops.state
 						setAttribute "moveData" #wait waitTime.value
@@ -851,7 +855,7 @@ ButtonText: "Momentum"
 					"mechTrigData": ( rollToOpen = mechTrigParams 
 									  setAttrWinHeight = 3 + heightPerButton * 5 )
 					"moveData":     ( rollToOpen = moveParams	  
-									  setAttrWinHeight = 3 + heightPerButton * 6 )
+									  setAttrWinHeight = 3 + heightPerButton * 7 )
 					"rotateData":   ( rollToOpen = rotationParams
 									  setAttrWinHeight = 15 + heightPerButton * 14 )
 					"platfDirData": ( rollToOpen = platfDirParams
