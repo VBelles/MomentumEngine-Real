@@ -24,6 +24,7 @@ private:
 	bool isCollecting = false;
 
 	float collectPitch = deg2rad(-20.f);
+	float collectYaw = deg2rad(-20.f);
 	float collectDistance = 2.f;
 	VEC2 cameraSpeed = VEC2(1.5f, 1.5f);
 	float collectDuration = 3.f;

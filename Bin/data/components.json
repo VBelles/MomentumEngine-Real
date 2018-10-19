@@ -94,7 +94,6 @@
     "collectable",
     "respawner",
     "local_aabb",
-    "lod",
     "self_illum_variation",
     "slash"
   ],
@@ -111,6 +110,7 @@
     "collectable",
     "collectable_manager",
     "power_up",
+    "dummy_collectable",
     "breakable",
     "mechanism",
     "mechanism_system",

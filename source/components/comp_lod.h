@@ -21,6 +21,9 @@ struct TCompLOD : public TCompBase {
     std::string camera_name;
     CHandle     h_camera;
 
+	static void registerMsgs();
+	void onGroupCreated(const TMsgEntitiesGroupCreated & msg);
+
     void debugInMenu();
     void update(float delta);
     void load(const json& j, TEntityParseContext& ctx);

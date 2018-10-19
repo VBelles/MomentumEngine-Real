@@ -2,6 +2,55 @@
   {
     "entity":
     {
+      "name": "nes_platform_civilization_emissive_089",
+      "transform":
+      {
+        "pos": "-61.69 40.5897 -5.93103",
+        "rotation": "0.0 0.0 0.0 -1.0"
+      },
+      "render":
+      [
+        {
+          "mesh": "data/meshes/nes_platform_civilization_emissive_089.mesh",
+          "materials":
+          [
+            "data/materials/platform_v1.material"
+          ],
+          "enabled": true
+        }
+      ],
+      "collider":
+      {
+        "mesh_src": "data/meshes/nes_platform_civilization_emissive_col_089.col_mesh",
+        "shape": "convex_mesh",
+        "type": "kinematic",
+        "group":
+        [
+          "scenario"
+        ]
+      },
+      "platform_simple":
+      {
+        "curve_type": "catmull-rom",
+        "automove": true,
+        "loop": true,
+        "closed": false,
+        "move_offset": 0,
+        "travel_wait_time": 1.0,
+        "speed": 0.4,
+        "knots":
+        [
+           "-61.6119 40.3649 -5.64174",
+           "-61.6119 40.3649 -5.64174",
+           "-91.5702 40.3649 -17.3842",
+           "-91.5702 40.3649 -17.3842"
+        ]
+      }
+    }
+  },
+  {
+    "entity":
+    {
       "name": "nes_platform_civilization_066",
       "transform":
       {
@@ -972,15 +1021,15 @@
         "loop": true,
         "closed": false,
         "move_offset": 0,
-        "travel_wait_time": 1.0,
-        "speed": 0.08,
+        "travel_wait_time": 2.0,
+        "speed": 0.12,
         "knots":
         [
            "-108.218 20.2972 -58.1108",
            "-108.218 20.2972 -58.1108",
            "-111.517 20.2972 -63.5779",
-           "-107.606 20.2972 -68.4705",
-           "-107.606 20.2972 -68.4705"
+           "-105.541 20.2972 -71.1172",
+           "-105.541 20.2972 -71.1172"
         ]
       }
     }
@@ -1022,12 +1071,12 @@
         "loop": true,
         "closed": false,
         "move_offset": 0,
-        "travel_wait_time": 1.0,
-        "speed": 0.08,
+        "travel_wait_time": 2.0,
+        "speed": 0.12,
         "knots":
         [
-           "-100.151 20.2972 -68.6428",
-           "-100.151 20.2972 -68.6428",
+           "-101.422 20.2972 -71.1337",
+           "-101.422 20.2972 -71.1337",
            "-96.8517 20.2972 -63.1757",
            "-100.762 20.2972 -58.2831",
            "-100.762 20.2972 -58.2831"
@@ -1072,8 +1121,8 @@
         "loop": true,
         "closed": false,
         "move_offset": 0,
-        "travel_wait_time": 1.0,
-        "speed": 0.08,
+        "travel_wait_time": 2.0,
+        "speed": 0.12,
         "knots":
         [
            "-112.928 18.191 -41.3654",
@@ -1122,8 +1171,8 @@
         "loop": true,
         "closed": false,
         "move_offset": 0,
-        "travel_wait_time": 1.0,
-        "speed": 0.08,
+        "travel_wait_time": 2.0,
+        "speed": 0.12,
         "knots":
         [
            "-104.861 18.191 -51.8975",

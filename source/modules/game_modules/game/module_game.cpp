@@ -190,3 +190,12 @@ void CModuleGame::showChrysalis(float time) {
 void CModuleGame::hideChrysalis() {
 	hudController->hideChrysalis();
 }
+
+void CModuleGame::showHUD(bool how) {
+	if (how) {
+		EngineGUI.activateWidget("hud");
+	}
+	else {
+		EngineGUI.deactivateWidget("hud");
+	}
+}

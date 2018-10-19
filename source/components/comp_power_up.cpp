@@ -1,6 +1,7 @@
 #include "mcv_platform.h"
 #include "comp_power_up.h"
 #include "components/player/comp_player_model.h"
+#include "components/comp_dummy_collectable.h"
 #include "entity/common_msgs.h"
 
 DECL_OBJ_MANAGER("power_up", TCompPowerUp);
@@ -77,10 +78,12 @@ void TCompPowerUp::onTriggerEnter(const TMsgTriggerEnter & msg) {
 		playerModel->changeState("Dummy");
 		//situar cámara frente a player
 		getPlayerTransform()->getYawPitchRoll(&yaw, &pitch);
-		yaw += M_PI;
+		yaw += M_PI + deg2rad(collectYaw);;
 		//if camera is already suggested, remember parameters
 		cameraPlayer->suggestYawPitchDistance(yaw, collectPitch, collectDistance, true, false, true, true, false);
 		cameraPlayer->placeCameraOnSuggestedPosition(cameraSpeed);
+		(static_cast<TCompDummyCollectable*>(entity->get<TCompDummyCollectable>()))->activateSequence(DummyCollectableType::POWERUP);
+
 		isCollecting = true;
 		collectTimer.reset();
 		playerModel->setHp(playerModel->getMaxHp());

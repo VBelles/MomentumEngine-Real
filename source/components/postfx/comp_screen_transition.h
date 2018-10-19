@@ -22,6 +22,9 @@ private:
 	float targetAlpha = 0.f;
 	float alphaSpeed = 1.f;
 
+	float waitTime = 0.f;
+	CTimer2 timer;
+
 public:
 	DECL_SIBLING_ACCESS();
 
@@ -31,9 +34,9 @@ public:
 
 	void apply();
 
-	void startTransition();
-	void startTransition(float startingRatio, float finalRatio);
-	void startTransition(float startingRatio, float finalRatio, float startingAlpha, float finalAlpha);
+	void startTransition(float delay = 0.f);
+	void startTransition(float startingRatio, float finalRatio, float delay = 0.f);
+	void startTransition(float startingRatio, float finalRatio, float startingAlpha, float finalAlpha, float delay = 0.f);
 
 	bool isTransitioning();
 };

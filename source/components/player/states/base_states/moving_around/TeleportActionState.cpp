@@ -22,10 +22,9 @@ void TeleportActionState::update(float delta) {
 					respawn();
 					frameCounter = 0;
 					finish = true;
-					getSkeleton()->blendCycle(animationIdle, 0.0f, 0.0f);
 					CEntity* playerCameraEntity = getEntityByName(PLAYER_CAMERA);
 					EngineCameras.blendInCamera(playerCameraEntity, 0.00001f, CModuleCameras::EPriority::GAMEPLAY);
-					getScreenTransition()->startTransition(1.f, 0.f);
+					getScreenTransition()->startTransition(1.f, 0.f, 0.25f);
 				}
 			}
 		}
@@ -38,7 +37,7 @@ void TeleportActionState::update(float delta) {
 
 void TeleportActionState::onStateEnter(IActionState* lastState) {
 	IActionState::onStateEnter(lastState);
-	//getSkeleton()->blendCycle(animation);
+	getSkeleton()->blendCycle(animation, 0.2, 0.2);
 	timer.reset();
 	finish = false;
 
