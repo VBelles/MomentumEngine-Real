@@ -52,7 +52,7 @@
             "invulnerabilityTime": 1.5,
             "stun": 1.0,
             "hitbox": "attack",
-            "particles": ["attack_fire", "attack_ring", "attack_smoke"]
+            "particles": ["attack_ring", "attack_smoke"]
           },
           {
             "name": "launched",

@@ -485,7 +485,12 @@
 					{
 						"id": "hard_landing",
 						"core": "data/particles/player/hard_landing.particles",
-						"offset": "0 0 0"
+						"offset": "0 -0.1 0"
+					},
+					{
+						"id": "hard_landing_fire",
+						"core": "data/particles/player/hard_landing_fire.particles",
+						"offset": "0 -0.2 0"
 					},
 					{
 						"id": "release_power",
