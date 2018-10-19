@@ -17,4 +17,5 @@ public:
 	static bool isDialogHidden();
 
 	static void showHUD(bool how);
+	static bool skipCinematics();
 };
