@@ -135,7 +135,6 @@
     "free_camera",
     "camera_curve_interpolation",
     "culling",
-    "camera",
     "curve_controller",
     "sun",
     "light_dir",
@@ -147,6 +146,7 @@
     "slash",
     "givePower",
     "sound",
+    "camera",
     "fire"
   ],
   "render_debug" : [
