@@ -20,6 +20,7 @@ void TCompDummyCollectable::debugInMenu() {
 	ImGui::DragFloat("chrysalis yaw offset", &chrysalisYawOffset, 0.001f, -3.14f, 3.14f);
 	ImGui::DragFloat("powerup yaw offset", &powerupYawOffset, 0.001f, -3.14f, 3.14f);
 	ImGui::DragFloat("life piece yaw offset", &lifePieceYawOffset, 0.001f, -3.14f, 3.14f);
+	ImGui::DragFloat("elevation speed", &elevationSpeed, 0.001f, -10.f, 10.f);
 }
 
 void TCompDummyCollectable::registerMsgs() {
@@ -47,8 +48,26 @@ void TCompDummyCollectable::onGroupCreated(const TMsgEntitiesGroupCreated & msg)
 
 void TCompDummyCollectable::update(float delta) {
 	if (!isActive) return;
+	CEntity* entity = currentCollectableHandle;
+	TCompTransform* transform = entity->get<TCompTransform>();
 	if (timer.elapsed() >= timeToStartRotation) {
-
+		float yaw, pitch;
+		transform->getYawPitchRoll(&yaw, &pitch);
+		float deltaYaw = currentRotationSpeed * delta + 0.5f * rotationAcceleration * delta * delta;
+		deltaYaw = clamp(deltaYaw, -maxRotationSpeed * delta, maxRotationSpeed * delta);
+		yaw += deltaYaw;
+		currentRotationSpeed = clamp(currentRotationSpeed + rotationAcceleration * delta, -maxRotationSpeed, maxRotationSpeed);
+		transform->setYawPitchRoll(yaw, pitch);
+	}
+	if (timer.elapsed() >= timeToStartScaling) {
+		//subir collectable
+		transform->setPosition(transform->getPosition() + VEC3::Up * elevationSpeed * delta);
+		//lerp entre startingScale y 0
+		//ratio es elapsed - timeToStartScaling
+		float scale = lerp(startingScale, 0.f, (timer.elapsed() - timeToStartScaling) / timeToScaleZero);
+		if (scale != 0) {
+			transform->setScale(scale);
+		}
 	}
 	if (timer.elapsed() >= timeToStartScaling + timeToScaleZero) {
 		CEntity* entity = currentCollectableHandle;
@@ -60,7 +79,7 @@ void TCompDummyCollectable::update(float delta) {
 }
 
 void TCompDummyCollectable::activateSequence(DummyCollectableType type) {
-	float scale = chrysalisStartingScale;
+	startingScale = chrysalisStartingScale;
 	VEC3 positionOffset = chrysalisPositionOffset;
 	float yawOffset = chrysalisYawOffset;
 	switch (type) {
@@ -69,13 +88,13 @@ void TCompDummyCollectable::activateSequence(DummyCollectableType type) {
 		break;
 	case POWERUP:
 		currentCollectableHandle = powerupHandle;
-		scale = powerupStartingScale;
+		startingScale = powerupStartingScale;
 		positionOffset = powerupPositionOffset;
 		yawOffset = powerupYawOffset;
 		break;
 	case LIFEPIECE:
 		currentCollectableHandle = lifePieceHandle;
-		scale = lifePieceStartingScale;
+		startingScale = lifePieceStartingScale;
 		positionOffset = lifePiecePositionOffset;
 		yawOffset = lifePieceYawOffset;
 		break;
@@ -94,7 +113,8 @@ void TCompDummyCollectable::activateSequence(DummyCollectableType type) {
 	float yaw, pitch;
 	getPlayerTransform()->getYawPitchRoll(&yaw, &pitch);
 	transform->setYawPitchRoll(yaw + yawOffset, pitch);
-	transform->setScale(scale);
+	transform->setScale(startingScale);
 	timer.reset();
 	isActive = true;
+	currentRotationSpeed = 0;
 }

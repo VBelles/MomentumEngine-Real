@@ -26,11 +26,16 @@ private:
 	bool isActive = false;
 
 	CTimer2 timer;
-	float timeToStartRotation = 0.5f;
+	float timeToStartRotation = 0.3f;
 	float timeToStartScaling = 2.f;
 	float timeToScaleZero = 1.f;//los dos tiempos de escalado tiene que sumar 3 aprox
-	float rotationAcceleration = 3.f;
-	float maxRotationSpeed = 8.f;
+	float rotationAcceleration = 13.5f;
+	float maxRotationSpeed = 50.f;
+
+	float elevationSpeed = -0.05f;
+
+	float currentRotationSpeed = 0;
+	float startingScale;
 
 	CHandle currentCollectableHandle;
 
