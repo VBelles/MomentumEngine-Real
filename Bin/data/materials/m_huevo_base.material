@@ -1,0 +1,14 @@
+{
+  "technique": "pbr.tech",
+  "shadows": true,
+  "textures":
+  {
+    "albedo": "data/textures/huevo_base/breakable_base_BaseColor.dds",
+    "normal": "data/textures/huevo_base/powerup_base_Normal.dds",
+    "metallic": "data/textures/huevo_base/breakable_base_Metallic.dds",
+    "roughness": "data/textures/huevo_base/powerup_base_Roughness.dds",
+    "self_illum": "data/textures/huevo_base/null_self_illum.dds",
+    "height": "data/textures/huevo_base/breakable_base_Height.dds",
+    "detail_normal": "data/textures/t_grietasmicro_normal.dds"
+  }
+}

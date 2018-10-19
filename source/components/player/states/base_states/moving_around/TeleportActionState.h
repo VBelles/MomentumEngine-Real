@@ -11,8 +11,7 @@ private:
 	float respawnTime = 0.7f;
 	float fallingDamage = 1;
 	int frameCounter = 0;
-	std::string animation = "free_fall";
-	std::string animationIdle = "idle";
+	std::string animation = "cinematic_sleep_loop";
 
 	bool screenTransitionStarted = false;
 	TCompScreenTransition* getScreenTransition();

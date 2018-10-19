@@ -84,15 +84,17 @@ global platfDirsData = attributes platfDirData (
 -- def #moveData
 global movesData = attributes moveData (
 	parameters main rollout:params (
+		enab type: #boolean ui:enabled  default:true
 		auto type: #boolean ui:autoMove default:true
 		loop type: #boolean ui:loops    default:true
 		wait type: #float   ui:waitTime default:1.0 
 		spd  type: #float   ui:movSpeed default:0.1
 	)
 	rollout params "Movement Data" (
-		checkbox autoMove "Automove" 	   type: #boolean align:#right
-		checkbox loops 	  "Loops" 		   type: #boolean align:#right
-		spinner  waitTime "Wait time" 	   type: #float   range:[0, 100.0, 1.0] --min, max, initial value
+		checkbox enabled  "Enabled"	   type: #boolean align:#right
+		checkbox autoMove "Automove"   type: #boolean align:#right
+		checkbox loops 	  "Loops" 	   type: #boolean align:#right
+		spinner  waitTime "Wait time"  type: #float   range:[0, 100.0, 1.0] --min, max, initial value
 		spinner  movSpeed "Move speed" type: #float   range:[-100.0, 100.0, 0.1]
 	)
 )

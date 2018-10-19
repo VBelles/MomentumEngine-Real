@@ -1,6 +1,5 @@
 #pragma once
 
-
 class CTexture;
 class CRenderToTexture;
 class CRenderMesh;
@@ -19,6 +18,13 @@ private:
 	float targetRatio = 0.f;
 	float speed = 1.f;
 
+	float alpha = 1.f;
+	float targetAlpha = 0.f;
+	float alphaSpeed = 1.f;
+
+	float waitTime = 0.f;
+	CTimer2 timer;
+
 public:
 	DECL_SIBLING_ACCESS();
 
@@ -28,8 +34,9 @@ public:
 
 	void apply();
 
-	void startTransition();
-	void startTransition(float startingRatio, float finalRatio);
+	void startTransition(float delay = 0.f);
+	void startTransition(float startingRatio, float finalRatio, float delay = 0.f);
+	void startTransition(float startingRatio, float finalRatio, float startingAlpha, float finalAlpha, float delay = 0.f);
 
 	bool isTransitioning();
 };
