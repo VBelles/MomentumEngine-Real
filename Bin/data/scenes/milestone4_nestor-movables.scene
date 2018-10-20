@@ -1215,8 +1215,8 @@
         "loop": true,
         "closed": false,
         "move_offset": 0,
-        "travel_wait_time": 1.0,
-        "speed": 0.4,
+        "travel_wait_time": 2.0,
+        "speed": 0.3,
         "knots":
         [
            "-61.6119 40.3649 -5.64174",
@@ -1387,59 +1387,6 @@
            "36.5326 36.288 -129.384",
            "35.6266 36.288 -107.879",
            "35.6266 36.288 -107.879"
-        ]
-      }
-    }
-  },
-  {
-    "entity":
-    {
-      "name": "nes_platform_civilization_emissive_082",
-      "transform":
-      {
-        "pos": "-20.703 13.5076 -2.7691",
-        "rotation": "0.0 0.0 0.0 -1.0"
-      },
-      "render":
-      [
-        {
-          "mesh": "data/meshes/nes_platform_civilization_emissive_082.mesh",
-          "materials":
-          [
-            "data/materials/platform_v1.material"
-          ],
-          "enabled": true
-        }
-      ],
-      "collider":
-      {
-        "mesh_src": "data/meshes/nes_platform_civilization_emissive_col_082.col_mesh",
-        "shape": "convex_mesh",
-        "type": "kinematic",
-        "group":
-        [
-          "scenario"
-        ]
-      },
-      "platform_simple":
-      {
-        "curve_type": "catmull-rom",
-        "enabled": true,
-        "automove": true,
-        "loop": true,
-        "closed": false,
-        "move_offset": 0,
-        "travel_wait_time": 1.0,
-        "speed": 0.1,
-        "knots":
-        [
-           "-20.6505 13.0498 -2.77963",
-           "-20.6505 13.0498 -2.77963",
-           "7.55147 13.0498 -27.2124",
-           "43.7351 13.0498 -40.5152",
-           "87.723 13.0498 -39.6284",
-           "114.192 13.0498 -52.6028",
-           "114.192 13.0498 -52.6028"
         ]
       }
     }

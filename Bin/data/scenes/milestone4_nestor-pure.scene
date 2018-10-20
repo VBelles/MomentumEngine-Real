@@ -2,6 +2,66 @@
   {
     "entity":
     {
+      "name": "nes_platform_civilization_emissive_101",
+      "transform":
+      {
+        "pos": "-101.967 17.1031 -35.5727",
+        "rotation": "0.0 -0.984808 0.0 -0.173648"
+      },
+      "render":
+      [
+        {
+          "mesh": "data/meshes/nes_platform_civilization_emissive_101.mesh",
+          "materials":
+          [
+            "data/materials/platform_v1_pureON.material"
+          ],
+          "enabled": false
+        },
+        {
+          "mesh": "data/meshes/nes_platform_civilization_emissive_101.mesh",
+          "materials":
+          [
+            "data/materials/platform_v1_pure.material"
+          ],
+          "enabled": true
+        }
+      ],
+      "purity": {},
+      "collider":
+      {
+        "mesh_src": "data/meshes/nes_platform_civilization_emissive_101.col_mesh",
+        "shape": "convex_mesh",
+        "type": "kinematic",
+        "group":
+        [
+          "scenario"
+        ]
+      },
+      "platform_simple":
+      {
+        "curve_type": "catmull-rom",
+        "enabled": true,
+        "automove": true,
+        "loop": true,
+        "closed": false,
+        "move_offset": 0,
+        "travel_wait_time": 3.0,
+        "speed": 0.2,
+        "knots":
+        [
+           "-101.923 17.0662 -35.652",
+           "-101.923 17.0662 -35.652",
+           "-92.2001 17.0662 -31.002",
+           "-95.3748 17.0662 -25.0946",
+           "-95.3748 17.0662 -25.0946"
+        ]
+      }
+    }
+  },
+  {
+    "entity":
+    {
       "name": "nes_big_rocky_island_004",
       "transform":
       {
@@ -432,6 +492,7 @@
       "platform_simple":
       {
         "curve_type": "catmull-rom",
+        "enabled": true,
         "automove": true,
         "loop": true,
         "closed": false,
@@ -2472,6 +2533,7 @@
       "platform_simple":
       {
         "curve_type": "catmull-rom",
+        "enabled": true,
         "automove": true,
         "loop": true,
         "closed": false,
@@ -2531,11 +2593,12 @@
       "platform_simple":
       {
         "curve_type": "catmull-rom",
+        "enabled": true,
         "automove": true,
         "loop": true,
         "closed": false,
         "move_offset": 0,
-        "travel_wait_time": 1.0,
+        "travel_wait_time": 2.0,
         "speed": 0.31,
         "knots":
         [
