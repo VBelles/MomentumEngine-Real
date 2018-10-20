@@ -277,49 +277,6 @@
 						}
 					},
 					{
-						"name": "gate_of_doom_teleport",
-						"type": "map_marker",
-						"position": "-325 26 -277.4",
-						"map": "map",
-						"altern_text": "???",
-						"visible": true,
-						"button": {
-							"name" : "gate_of_doom_teleport_button",
-							"type" : "button",
-							"position" : "0 420",
-							"size" : "800 64",
-							"texture" : "data/textures/gui/hud/dialog_box_clean.dds",
-							"font_size" : 64,
-							"text" : "FINAL GATE",
-							"halign" : "center",
-							"valign" : "center",
-							"color" : "1 1 1 1",
-							"selected" : {
-								"color" : "0.5 0.5 0.5 1"
-							},
-							"pressed" : {
-								"color" : "0.5 0.5 0.5 1"
-							}
-						},
-						"marker": {
-							"name" : "gate_of_doom_teleport_marker",
-							"type" : "button",
-							"position" : "585 228",
-							"size" : "50 50",
-							"texture" : "data/textures/gui/map/Teleport_brillante.dds",
-							"font_size" : 64,
-							"halign" : "center",
-							"valign" : "center",
-							"color" : "1 1 1 1",
-							"selected" : {
-								"color" : "0.5 0.5 0.5 1"
-							},
-							"pressed" : {
-								"color" : "0.5 0.5 0.5 1"
-							}
-						}
-					},
-					{
 						"name": "mushroom_kingdom_teleport",
 						"type": "map_marker",
 						"position": "-325 26 -277.4",
@@ -329,7 +286,7 @@
 						"button": {
 							"name" : "mushroom_kingdom_teleport_button",
 							"type" : "button",
-							"position" : "0 490",
+							"position" : "0 420",
 							"size" : "800 64",
 							"texture" : "data/textures/gui/hud/dialog_box_clean.dds",
 							"font_size" : 64,
@@ -372,7 +329,7 @@
 						"button": {
 							"name" : "graveyard_teleport_button",
 							"type" : "button",
-							"position" : "0 560",
+							"position" : "0 490",
 							"size" : "800 64",
 							"texture" : "data/textures/gui/hud/dialog_box_clean.dds",
 							"font_size" : 64,
@@ -415,7 +372,7 @@
 						"button": {
 							"name" : "behind_tower_teleport_button",
 							"type" : "button",
-							"position" : "0 630",
+							"position" : "0 560",
 							"size" : "800 64",
 							"texture" : "data/textures/gui/hud/dialog_box_clean.dds",
 							"font_size" : 64,
@@ -434,6 +391,49 @@
 							"name" : "behind_tower_teleport_marker",
 							"type" : "button",
 							"position" : "660 560",
+							"size" : "50 50",
+							"texture" : "data/textures/gui/map/Teleport_brillante.dds",
+							"font_size" : 64,
+							"halign" : "center",
+							"valign" : "center",
+							"color" : "1 1 1 1",
+							"selected" : {
+								"color" : "0.5 0.5 0.5 1"
+							},
+							"pressed" : {
+								"color" : "0.5 0.5 0.5 1"
+							}
+						}
+					},
+					{
+						"name": "gate_of_doom_teleport",
+						"type": "map_marker",
+						"position": "-325 26 -277.4",
+						"map": "map",
+						"altern_text": "???",
+						"visible": true,
+						"button": {
+							"name" : "gate_of_doom_teleport_button",
+							"type" : "button",
+							"position" : "0 630",
+							"size" : "800 64",
+							"texture" : "data/textures/gui/hud/dialog_box_clean.dds",
+							"font_size" : 64,
+							"text" : "FINAL GATE",
+							"halign" : "center",
+							"valign" : "center",
+							"color" : "1 1 1 1",
+							"selected" : {
+								"color" : "0.5 0.5 0.5 1"
+							},
+							"pressed" : {
+								"color" : "0.5 0.5 0.5 1"
+							}
+						},
+						"marker": {
+							"name" : "gate_of_doom_teleport_marker",
+							"type" : "button",
+							"position" : "585 228",
 							"size" : "50 50",
 							"texture" : "data/textures/gui/map/Teleport_brillante.dds",
 							"font_size" : 64,

@@ -17,10 +17,10 @@ bool CModuleMapMenu::start() {
 	controller->registerOption("tower_entrance_teleport");
 	controller->registerOption("behind_statue_teleport");
 	controller->registerOption("kings_graveyard_teleport");
-	controller->registerOption("gate_of_doom_teleport");
 	controller->registerOption("mushroom_kingdom_teleport");
 	controller->registerOption("graveyard_teleport");
 	controller->registerOption("behind_tower_teleport");
+	controller->registerOption("gate_of_doom_teleport");
 
 	return true;
 }

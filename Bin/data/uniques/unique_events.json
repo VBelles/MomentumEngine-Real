@@ -50,13 +50,6 @@
       "type": "teleport_point"
     },
     {
-      "id": "gate_of_doom_teleport",
-      "done": true,
-      "position": "-108.054 -0.599831 -141.183",
-      "level": "level00",
-      "type": "teleport_point"
-    },
-    {
       "id": "mushroom_kingdom_teleport",
       "done": true,
       "position": "311.942 -20.9574 -114.85",
@@ -74,6 +67,13 @@
       "id": "behind_tower_teleport",
       "done": true,
       "position": "198.253 77.0684 -207.838",
+      "level": "level00",
+      "type": "teleport_point"
+    },
+    {
+      "id": "gate_of_doom_teleport",
+      "done": true,
+      "position": "-108.054 -0.599831 -141.183",
       "level": "level00",
       "type": "teleport_point"
     }
