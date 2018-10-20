@@ -2,6 +2,61 @@
   {
     "entity":
     {
+      "name": "dani_crystals_2_001",
+      "transform":
+      {
+        "pos": "-517.955 -97.9839 259.912",
+        "rotation": "0.0 0.0 0.0 -1.0"
+      },
+      "render":
+      [
+        {
+          "mesh": "data/meshes/dani_crystals_2_001.mesh",
+          "materials":
+          [
+            "data/materials/m_crystal_02.material",
+            "data/materials/m_crystal_03.material",
+            "data/materials/m_crystal_04.material",
+            "data/materials/m_crystal_00.material",
+            "data/materials/m_roots.material",
+            "data/materials/m_aro_00.material",
+            "data/materials/m_crystal_01.material",
+            "data/materials/m_crystal_05.material",
+            "data/materials/m_crystal_06.material"
+          ],
+          "enabled": true
+        }
+      ]
+    }
+  },
+  {
+    "entity":
+    {
+      "name": "dani_tumba_especial_1_001",
+      "transform":
+      {
+        "pos": "446.455 33.8954 544.986",
+        "rotation": "0.0 0.0871557 0.0 -0.996195"
+      },
+      "render":
+      [
+        {
+          "mesh": "data/meshes/dani_tumba_especial_1_001.mesh",
+          "materials":
+          [
+            "data/materials/m_tumba_02.material",
+            "data/materials/m_roots.material",
+            "data/materials/m_arcos_01.material",
+            "data/materials/m_tumba_03.material"
+          ],
+          "enabled": true
+        }
+      ]
+    }
+  },
+  {
+    "entity":
+    {
       "name": "mushrooms_islas_lejanas_000",
       "transform":
       {
@@ -20,7 +75,8 @@
             "data/materials/mushroom_body_06.material",
             "data/materials/mushroom_head_00.material",
             "data/materials/mushroom_body_07.material",
-            "data/materials/mushroom_body_00.material"
+            "data/materials/mushroom_body_00.material",
+            "data/materials/m_roots.material"
           ],
           "enabled": true
         }
