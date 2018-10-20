@@ -415,6 +415,7 @@
     <ClCompile Include="modules\system_modules\scripting\scripting_player.cpp" />
     <ClCompile Include="modules\system_modules\module_multithread.cpp" />
     <ClCompile Include="modules\system_modules\scripting\scripting_sound.cpp" />
+    <ClCompile Include="modules\system_modules\sound\music_player.cpp" />
     <ClCompile Include="modules\test\module_test_instancing.cpp" />
     <ClCompile Include="modules\game_modules\physics\ragdoll.cpp" />
     <ClCompile Include="modules\game_modules\physics\ragdoll_core.cpp" />
@@ -805,6 +806,7 @@
     <ClInclude Include="modules\system_modules\scripting\scripting_player.h" />
     <ClInclude Include="modules\system_modules\module_multithread.h" />
     <ClInclude Include="modules\system_modules\scripting\scripting_sound.h" />
+    <ClInclude Include="modules\system_modules\sound\music_player.h" />
     <ClInclude Include="modules\test\module_test_instancing.h" />
     <ClInclude Include="modules\game_modules\physics\ragdoll.h" />
     <ClInclude Include="modules\game_modules\physics\ragdoll_core.h" />

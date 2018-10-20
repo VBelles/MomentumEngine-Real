@@ -4,13 +4,13 @@ namespace SLB {
 	class Manager;
 }
 
-class TCompMusic;
+class CMusicPlayer;
 
 class ScriptingSound {
 private:
 	static void bindConstants(SLB::Manager* manager);
 
-	static TCompMusic* getMusicPlayer();
+	static CMusicPlayer* getMusicPlayer();
 
 public:
 	static void bind(SLB::Manager* manager);

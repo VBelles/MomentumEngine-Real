@@ -172,7 +172,7 @@ void TCompPlayerModel::onLevelChange(const TMsgPowerLvlChange& msg) {
 		getSound()->play("lvl_down");
 	}
 
-	getMusicPlayer()->setLevel(static_cast<TCompMusic::Level>(msg.powerLvl - 1));
+	getMusicPlayer()->setLevel(static_cast<CMusicPlayer::Level>(msg.powerLvl - 1));
 }
 
 void TCompPlayerModel::onAllScenesCreated(const TMsgAllScenesCreated& msg) {
@@ -190,7 +190,6 @@ void TCompPlayerModel::onAllScenesCreated(const TMsgAllScenesCreated& msg) {
 	cameraRenderHandle = static_cast<CEntity*>(getEntityByName(GAME_CAMERA))->get<TCompCamera>();
 	cameraPlayerHandle = static_cast<CEntity*>(getEntityByName(PLAYER_CAMERA))->get<TCompCameraPlayer>();
 	hitboxesHandle = get<TCompHitboxes>();
-	musicPlayerHandle = static_cast<CEntity*>(getEntityByName(MUSIC_PLAYER))->get<TCompMusic>();
 
 	float pitch;
 	respawnPosition = getTransform()->getPosition();
@@ -674,8 +673,8 @@ TCompCollectableManager* TCompPlayerModel::getCollectableManager() {
 	return collectableManagerHandle;
 }
 
-TCompMusic * TCompPlayerModel::getMusicPlayer() {
-	return musicPlayerHandle;
+CMusicPlayer * TCompPlayerModel::getMusicPlayer() {
+	return EngineSound.getMusicPlayer();
 }
 
 TCompPlayerModel::~TCompPlayerModel() {
@@ -712,7 +711,7 @@ float TCompPlayerModel::getPowerPerCoin() {
 
 bool TCompPlayerModel::addAttacker(std::string attacker, float slots) {
 	if (attackSlotsTaken == 0) {
-		getMusicPlayer()->setCombat(TCompMusic::DANGER);
+		getMusicPlayer()->setCombat(CMusicPlayer::DANGER);
 	}
 	if (attackSlotsTaken + slots <= maxAttackSlots) {
 		if (attackers.insert(attacker).second) {
@@ -729,7 +728,7 @@ void TCompPlayerModel::removeAttacker(std::string attacker, float slots) {
 		attackers.erase(attacker);
 	}
 	if (attackSlotsTaken == 0) {
-		getMusicPlayer()->setCombat(TCompMusic::OFF);
+		getMusicPlayer()->setCombat(CMusicPlayer::OFF);
 	}
 }
 
