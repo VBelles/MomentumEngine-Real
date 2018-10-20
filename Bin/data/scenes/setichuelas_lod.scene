@@ -465,7 +465,7 @@
       "local_aabb": null,
       "abs_aabb": null,
       "lod" : {
-        "threshold" : 0.5,
+        "threshold" : 0.33,
         "children" : [
           "mushrooms_united_3"
         ]
@@ -510,7 +510,7 @@
       "local_aabb": null,
       "abs_aabb": null,
       "lod" : {
-        "threshold" : 0.5,
+        "threshold" : 0.41,
         "children" : [
           "mushrooms_united_2"
         ]
