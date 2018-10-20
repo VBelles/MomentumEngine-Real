@@ -2,6 +2,13 @@
   "unique_enemies":
   [
     {
+      "id": "dani_air_021",
+      "done": false,
+      "position": "288.58 -8.86743 -117.576",
+      "level": "level00",
+      "type": "kippah"
+    },
+    {
       "id": "tutorialEnemyMelee",
       "done": false,
       "position": "-98.8553 -39.612 200.162",

@@ -2,6 +2,18 @@
   {
     "entity":
     {
+      "name": "dani_air_021",
+      "prefab": "data/prefabs/kippah.prefab",
+      "transform":
+      {
+        "pos": "288.58 -8.86743 -117.576",
+        "lookat": "-1.0 -8.86743 -1.0"
+      }
+    }
+  },
+  {
+    "entity":
+    {
       "name": "tutorialEnemyMelee",
       "prefab": "data/prefabs/dreidel.prefab",
       "transform":
