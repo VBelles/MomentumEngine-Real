@@ -27,7 +27,7 @@ void CMusicPlayer::load(const json& j) {
 
 	momentumThemeDescriptor = EngineSound.getEventDescription(mainTheme);
 	introThemeDescriptor = EngineSound.getEventDescription(introTheme);
-	currentSongDescriptor = momentumThemeDescriptor;
+	currentSongDescriptor = introThemeDescriptor;
 	/*introThemeInstance = EngineSound.emitEvent(introTheme);
 	momentumThemeInstance = EngineSound.emitEvent(mainTheme);
 	currentSongInstance = momentumThemeInstance;*/

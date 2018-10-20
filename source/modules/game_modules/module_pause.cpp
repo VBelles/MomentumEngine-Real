@@ -20,6 +20,7 @@ bool CModulePause::start() {
 		onPausePressed();
 		EngineGUI.hideDialog();
 		EngineModules.changeGameState("main_menu", true);
+		EngineSound.getMusicPlayer()->setCurrentSong(CMusicPlayer::Song::INTRO);
 	};
 	auto exitCB = []() {
 		CApp::get().stopMainLoop = true;
