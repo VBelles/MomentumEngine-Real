@@ -2,6 +2,12 @@
   "unique_events":
   [
     {
+      "id": "enter_main_theme_trigger",
+      "done": false,
+      "position": "-74.7836 -26.9424 126.99",
+      "level": "level00"
+    },
+    {
       "id": "temple_teleport",
       "done": true,
       "position": "-132.27 -27.3389 351.829",

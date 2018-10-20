@@ -33,15 +33,19 @@ void TCompSound::debugInMenu() {
 
 void TCompSound::load(const json& j, TEntityParseContext& ctx) {
 	assert(j.count("events"));
+	bool is3D = j.value("3D", true);
+	bool playOnStart = j.value("play", false);
 	for (auto& jEvent : j["events"]) {
 		Sound sound;
-		std::string id = jEvent.value("id", "");
+		sound.id = jEvent.value("id", "");
 		assert(!id.empty());
 		sound.path = jEvent.value("path", sound.path);
 		sound.following = jEvent.value("following", sound.following);
 		sound.multiInstancing = jEvent.value("multi_instancing", sound.multiInstancing);
 		sound.stopFadeOut = jEvent.value("stop_fade_out", sound.stopFadeOut);
-		events[id] = sound;
+		sound.is3D = jEvent.value("3D", is3D);
+		sound.playOnStart = jEvent.value("play", playOnStart);
+		events[sound.id] = sound;
 	}
 }
 
@@ -49,11 +53,21 @@ void TCompSound::onEntityCreated(const TMsgEntityCreated&) {
 	for (auto& p : events) {
 		auto& sound = p.second;
 		EngineSound.getSystem()->getEvent(sound.path.c_str(), &sound.eventDescription);
+		bool is3D = false;
+		sound.eventDescription->is3D(&is3D);
+		if (sound.is3D != is3D) {
+			dbg("Warning: %s declared as %s but the component declares it as %s\n",
+				sound.path.c_str(), is3D ? "3D" : "not 3D", sound.is3D ? "3D" : "not 3D");
+		}
+		if (sound.playOnStart) {
+			play(sound.id);
+		}
 	}
 }
 
 
 void TCompSound::onDestroyed(const TMsgEntityDestroyed&) {
+	//dbg("Component destroyed\n");
 	stop();
 }
 
@@ -90,9 +104,9 @@ void TCompSound::play(std::string event) {
 	}
 	Studio::EventInstance* eventInstance = nullptr;
 	sound.eventDescription->createInstance(&eventInstance);
-	
+
 	TCompTransform* transform = get<TCompTransform>();
-	if (transform) {
+	if (sound.is3D && transform) {
 		FMOD_3D_ATTRIBUTES attributes = toFMODAttributes(*transform);
 		eventInstance->set3DAttributes(&attributes);
 	}
@@ -120,6 +134,14 @@ void TCompSound::stop() {
 		}
 		sound.eventInstances.clear();
 	}
+}
+
+bool TCompSound::isPlaying(std::string event) {
+	auto it = events.find(event);
+	if (it == events.end())
+		return false;
+	auto& sound = it->second;
+	return !sound.eventInstances.empty();
 }
 
 

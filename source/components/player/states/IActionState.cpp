@@ -48,6 +48,12 @@ void IActionState::onDamage(const TMsgAttackHit& msg) {
 		getPlayerModel()->makeInvulnerable(msg.info.invulnerabilityTime);
 	}
 	getPlayerModel()->startDamageVision(damageVisionTime);
+	if (msg.info.isRanged) {
+		getSound()->play("getting_shot");
+	}
+	else {
+		getSound()->play("getting_hit");
+	}
 	//Lo que venga luego ya lo procesa el estado en concreto
 }
 

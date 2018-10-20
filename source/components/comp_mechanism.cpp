@@ -2,6 +2,7 @@
 #include "comp_mechanism.h"
 #include "entity/common_msgs.h"
 #include "components/player/attack_info.h"
+#include "modules/system_modules/sound/comp_sound.h"
 
 DECL_OBJ_MANAGER("mechanism", TCompMechanism);
 
@@ -9,16 +10,16 @@ void TCompMechanism::debugInMenu() {
 }
 
 void TCompMechanism::registerMsgs() {
-    DECL_MSG(TCompMechanism, TMsgAllScenesCreated, onAllScenesCreated);
+	DECL_MSG(TCompMechanism, TMsgAllScenesCreated, onAllScenesCreated);
 	DECL_MSG(TCompMechanism, TMsgAttackHit, onHit);
 }
 
 void TCompMechanism::load(const json& j, TEntityParseContext& ctx) {
-    deactivationTime = j.value("deactivationTime", 0.f);
+	deactivationTime = j.value("deactivationTime", 0.f);
 	isResettable = j.value("isResettable", true);
 	reactivationTime = j.value("reactivationTime", 0.f);
 	mechanismSystemsNames.clear();
-	if(j.count("systems")) {
+	if (j.count("systems")) {
 		auto& systems = j["systems"];
 		assert(systems.is_array());
 		for (auto& system : systems) {
@@ -50,12 +51,17 @@ void TCompMechanism::update(float dt) {
 			dbg("Sending deactivating msg.\n");
 			entity->sendMsg(TMsgMechanismDeactivated{});
 		}
+
+		if (clockEventInstance && clockEventInstance->isValid()) {
+			// TODO change speed
+			// clockEventInstance->setParameterValue("speed", 1.f);
+		}
 	}
 }
 
 void TCompMechanism::onHit(const TMsgAttackHit & msg) {
 	if (msg.info.activatesMechanism) {
-        dbg("Mechanism activated\n");
+		dbg("Mechanism activated\n");
 
 		if (!isActivated) {
 			if (reactivationTimer.elapsed() >= reactivationTime) {
@@ -83,7 +89,16 @@ void TCompMechanism::onActivated(bool isActive, bool sound) {
 	render->setMeshEnabled(1, isActive);
 	render->refreshMeshesInRenderManager();
 	if (sound) {
-		TCompTransform* transform = get<TCompTransform>();
-		EngineSound.emitEvent(isActive ? SOUND_MECHANISM_ON : SOUND_MECHANISM_OFF, transform);
+		TCompSound* sound = get<TCompSound>();
+		if (isActivated) {
+			sound->play("activate");
+			if (isResettable) {
+				clockEventInstance = EngineSound.emitEvent(SOUND_CLOCK);
+			}
+		}
+		else {
+			sound->stop("clock");
+			EngineSound.stopEvent(clockEventInstance);
+		}
 	}
 }

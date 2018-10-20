@@ -24,6 +24,7 @@ int OnPropelAction::execAction(float delta) {
 	enemy->getHitboxes()->enable(enemy->attacks[attack].hitboxName);
 	enemy->isBlocking = false;
 	enemy->blockingBroken = false;
+	enemy->getSound()->play("hit");
 	return Leave;
 }
 

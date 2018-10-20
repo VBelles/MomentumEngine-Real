@@ -148,7 +148,6 @@ PowerStats * TCompPlayerModel::loadPowerStats(const json & j) {
 }
 
 void TCompPlayerModel::onLevelChange(const TMsgPowerLvlChange& msg) {
-
 	currentPowerStats = powerStats[msg.powerLvl - 1];
 
 	TCompRender *render = get<TCompRender>();
@@ -169,7 +168,11 @@ void TCompPlayerModel::onLevelChange(const TMsgPowerLvlChange& msg) {
 		getParticles()->launch(msg.powerLvl == 2 ? "lvl_up_2" : "lvl_up_3");
 		getSound()->play(msg.powerLvl == 2 ? "lvl_up_2" : "lvl_up_3");
 	}
-		
+	else {
+		getSound()->play("lvl_down");
+	}
+
+	getMusicPlayer()->setLevel(static_cast<TCompMusic::Level>(msg.powerLvl - 1));
 }
 
 void TCompPlayerModel::onAllScenesCreated(const TMsgAllScenesCreated& msg) {
@@ -187,6 +190,7 @@ void TCompPlayerModel::onAllScenesCreated(const TMsgAllScenesCreated& msg) {
 	cameraRenderHandle = static_cast<CEntity*>(getEntityByName(GAME_CAMERA))->get<TCompCamera>();
 	cameraPlayerHandle = static_cast<CEntity*>(getEntityByName(PLAYER_CAMERA))->get<TCompCameraPlayer>();
 	hitboxesHandle = get<TCompHitboxes>();
+	musicPlayerHandle = static_cast<CEntity*>(getEntityByName(MUSIC_PLAYER))->get<TCompMusic>();
 
 	float pitch;
 	respawnPosition = getTransform()->getPosition();
@@ -412,8 +416,6 @@ void TCompPlayerModel::setHp(float hp) {
 		stateManager->changeState(Death);
 		stateManager->changeConcurrentState(Free);
 	}
-	//EngineGUI.getVariables().getVariant("hp_progress")->setFloat(hp / maxHp);
-	//EngineGUI.getVariables().getVariant("hp")->setInt(hp);
 }
 
 void TCompPlayerModel::setMaxHp(float hp) {
@@ -472,6 +474,7 @@ void TCompPlayerModel::disableClimbing() {
 void TCompPlayerModel::onPlatform() {
 	getCollider()->controller->setSlopeLimit(cosf(deg2rad(55)));
 	platformChangeSlopeTimer.reset();
+	isOnPlatform = true;
 	//dbg("On platform\n");
 }
 
@@ -479,8 +482,9 @@ void TCompPlayerModel::onPlatform() {
 
 void TCompPlayerModel::damage(float damage) {
 	setHp(hp - damage);
-	/*TCompRender* render = get<TCompRender>();
-	render->TurnRed(0.5f);*/
+	if (damage > 0.f) {
+		getSound()->play("lose_hp");
+	}
 }
 
 void TCompPlayerModel::makeInvulnerable(float time) {
@@ -586,6 +590,7 @@ void TCompPlayerModel::gainPowerButtonPressed() {//Debug Only
 
 void TCompPlayerModel::onAttackHit(const TMsgAttackHit& msg) {
 	if (!isInvulnerable) {
+		CEntity* attacker = msg.attacker;
 		receivedAttack = msg.info;
 		stateManager->getState()->onDamage(msg);
 		//lo que diferencia hard de soft es el stun
@@ -669,6 +674,10 @@ TCompCollectableManager* TCompPlayerModel::getCollectableManager() {
 	return collectableManagerHandle;
 }
 
+TCompMusic * TCompPlayerModel::getMusicPlayer() {
+	return musicPlayerHandle;
+}
+
 TCompPlayerModel::~TCompPlayerModel() {
 	damageVisionTime = 0.f;
 	cb_globals.global_saturation_adjustment = damageVisionOriginalSaturationLevel;
@@ -702,6 +711,9 @@ float TCompPlayerModel::getPowerPerCoin() {
 }
 
 bool TCompPlayerModel::addAttacker(std::string attacker, float slots) {
+	if (attackSlotsTaken == 0) {
+		getMusicPlayer()->setCombat(TCompMusic::DANGER);
+	}
 	if (attackSlotsTaken + slots <= maxAttackSlots) {
 		if (attackers.insert(attacker).second) {
 			attackSlotsTaken += slots;
@@ -715,6 +727,9 @@ void TCompPlayerModel::removeAttacker(std::string attacker, float slots) {
 	if (attackers.find(attacker) != attackers.end()) {
 		attackSlotsTaken = clamp(attackSlotsTaken - slots, 0.f, maxAttackSlots);
 		attackers.erase(attacker);
+	}
+	if (attackSlotsTaken == 0) {
+		getMusicPlayer()->setCombat(TCompMusic::OFF);
 	}
 }
 

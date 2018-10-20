@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<objects serializationModel="Studio.01.10.00">
+    <object class="AudioFile" id="{c710a7f2-beaf-4af6-83ff-392d2748902a}">
+        <property name="assetPath">
+            <value>Dawn - Fagot (melodia).wav</value>
+        </property>
+        <property name="isStreaming">
+            <value>true</value>
+        </property>
+        <property name="frequencyInKHz">
+            <value>48</value>
+        </property>
+        <property name="channelCount">
+            <value>2</value>
+        </property>
+        <property name="length">
+            <value>66</value>
+        </property>
+        <relationship name="masterAssetFolder">
+            <destination>{0bb3bd78-43c6-403a-a6e2-7cb3cb37be71}</destination>
+        </relationship>
+    </object>
+</objects>

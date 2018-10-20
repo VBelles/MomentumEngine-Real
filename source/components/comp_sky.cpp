@@ -4,15 +4,16 @@
 #include "entity/entity_parser.h"
 #include "entity/common_msgs.h"
 #include "components/comp_light_dir.h"
+#include "modules/system_modules/sound/comp_music.h"
 
 DECL_OBJ_MANAGER("sky", TCompSky);
 
 void TCompSky::debugInMenu() {
 	int skyboxToChange = static_cast<int>(skyboxIndex);
 	static const char* skyboxToChange_str =
-		"REGULAR\0"
-		"INVERTED\0"
-		"PINK\0"
+		"DAY\0"
+		"NIGHT\0"
+		"DAWN\0"
 		"RED\0"
 		"TURQUESA\0"
 		"\0";
@@ -185,6 +186,21 @@ void TCompSky::setSkybox(SkyboxType type, float lerpTime) {
 	nextSkybox = type;
 	nextLerpTime = lerpTime;
 	waitingToEnter = true;
+	TCompMusic* music = static_cast<CEntity*>(getEntityByName(MUSIC_PLAYER))->get<TCompMusic>();
+	switch (type) {
+	case DAY:
+		music->setDayNight(TCompMusic::DAY);
+		break;
+	case NIGHT:
+		music->setDayNight(TCompMusic::NIGHT);
+		break;
+	case DAWN:
+		music->setDayNight(TCompMusic::DAWN);
+		break;
+	default:
+		music->setDayNight(TCompMusic::DAY);
+		break;
+	}
 }
 
 void TCompSky::setToSequential() {

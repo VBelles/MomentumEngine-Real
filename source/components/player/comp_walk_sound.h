@@ -2,11 +2,12 @@
 
 
 class TCompPlayerModel;
-
+class TCompSound;
 
 struct FootConfig {
 	std::string boneName;
-	std::string eventName;
+	std::string walkEventId;
+	std::string runEventId;
 };
 struct FootInfo {
 	int boneId = -1;
@@ -15,7 +16,8 @@ struct FootInfo {
 	bool canEmitSound = false;
 	bool goingUp = false;
 	float yTravel = 0.f;
-	std::string eventName;
+	std::string walkEventId;
+	std::string runEventId;
 };
 class TCompWalkSound : public TCompBase {
 private:
@@ -26,6 +28,7 @@ private:
 	CHandle skeletonHandle;
 	CHandle transformHandle;
 	CHandle playerModelHandle;
+	CHandle soundHandle;
 	void onGroupCreated(const TMsgEntitiesGroupCreated& msg);
 
 public:
@@ -38,5 +41,6 @@ public:
 	TCompTransform* getTransform();
 	TCompSkeleton* getSkeleton();
 	TCompPlayerModel* getPlayerModel();
+	TCompSound* getSound();
 };
 

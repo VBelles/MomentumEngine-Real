@@ -65,9 +65,9 @@
 				}
 			],
 			"transform": {
-				"pos": "0 0 0",
+				"pos": "-116.526 -22.974 366.835",
 				"axis": "0 1 0",
-				"angle": 150
+				"angle": 180
 			},
 			"skeleton": {
 				"skeleton": "data/skeletons/ella/ella.skeleton"
@@ -402,11 +402,13 @@
 				"feet": [
 					{
 						"bone": "Bip001 R Foot",
-						"event": "event:/PROTA/correr terreno/run_ground_r"
+						"walk_event": "step_walk_right",
+						"run_event": "step_run_right"
 					},
 					{
 						"bone": "Bip001 L Foot",
-						"event": "event:/PROTA/correr terreno/run_ground_l"
+						"walk_event": "step_walk_left",
+						"run_event": "step_run_left"
 					}
 				]
 			},
@@ -414,15 +416,23 @@
 				"events": [
 					{
 						"id": "attack",
-						"path": "event:/PROTA/golpes/golpe_movimiento"
+						"path": "event:/PROTA/golpes_movimiento"
+					},
+					{
+						"id": "strong_finisher_1",
+						"path": "event:/PROTA/finisher_ground"
+					},
+					{
+						"id": "finisher",
+						"path": "event:/PROTA/golpes_finishers"
 					},
 					{
 						"id": "launcher_horizontal",
-						"path": "event:/PROTA/launcher/launcher_horizontal_lanzar"
+						"path": "event:/PROTA/launcherh_lanzar"
 					},
 					{
 						"id": "launcher_vertical",
-						"path": "event:/PROTA/launcher/launcher_vertical_lanzar"
+						"path": "event:/PROTA/launcherv_lanzar"
 					},
 					{
 						"id": "release_power",
@@ -430,11 +440,19 @@
 					},
 					{
 						"id": "jump",
-						"path": "event:/PROTA/saltar/salto corto/salto_corto_saltar"
+						"path": "event:/PROTA/salto_corto_salto"
+					},
+					{
+						"id": "jump_fly",
+						"path": ""
 					},
 					{
 						"id": "jump_long",
-						"path": "event:/PROTA/saltar/salto largo/salto_largo_saltar"
+						"path": "event:/PROTA/salto_largo_salto"
+					},
+					{
+						"id": "jump_long_fly",
+						"path": ""
 					},
 					{
 						"id": "dodge",
@@ -446,7 +464,7 @@
 					},
 					{
 						"id": "climbing",
-						"path": ""
+						"path": "event:/PROTA/trepar"
 					},
 					{
 						"id": "landing",
@@ -454,11 +472,15 @@
 					},
 					{
 						"id": "hard_landing",
-						"path": "event:/PROTA/caida"
+						"path": "event:/PROTA/fallingattack_hardlanding"
+					},
+					{
+						"id": "landing_hurt",
+						"path": "event:/PROTA/fallingattack_hardlanding"
 					},
 					{
 						"id": "death",
-						"path": "event:/PROTA/muerte"
+						"path": ""
 					},
 					{
 						"id": "pit_falling",
@@ -466,11 +488,63 @@
 					},
 					{
 						"id": "lvl_up_2",
-						"path": "event:/PROTA/cambio de estado/cambio_2"
+						"path": "event:/PROTA/cambio_estado1"
 					},
 					{
 						"id": "lvl_up_3",
-						"path": "event:/PROTA/cambio de estado/cambio_3"
+						"path": "event:/PROTA/cambio_estado2"
+					},
+					{
+						"id": "lvl_down",
+						"path": "event:/PROTA/level_down"
+					},
+					{
+						"id": "lvl_down_pre",
+						"path": "event:/PROTA/level_down_pre"
+					},
+					{
+						"id": "spend_coins",
+						"path": "event:/PROTA/gastar_moneda"
+					},
+					{
+						"id": "float",
+						"path": "event:/PROTA/flotar"
+					},
+					{
+						"id": "lose_hp",
+						"path": "event:/PROTA/perder_vida"
+					},
+					{
+						"id": "getting_hit",
+						"path": ""
+					},
+					{
+						"id": "getting_shot",
+						"path": "event:/PROTA/recibe_disparo"
+					},
+					{
+						"id": "step_run_right",
+						"path": "event:/PROTA/steps_ground_right"
+					},
+					{
+						"id": "step_run_left",
+						"path": "event:/PROTA/steps_ground_left"
+					},
+					{
+						"id": "step_platform_right",
+						"path": "event:/PROTA/steps_platform_right"
+					},
+					{
+						"id": "step_platform_left",
+						"path": "event:/PROTA/steps_platform_left"
+					},
+					{
+						"id": "step_walk_right",
+						"path": "event:/PROTA/walk_left"
+					},
+					{
+						"id": "step_walk_left",
+						"path": "event:/PROTA/walk_right"
 					}
 				]
 			},
@@ -485,7 +559,17 @@
 					{
 						"id": "landing",
 						"core": "data/particles/player/landing.particles",
-						"offset": "0 0 0"
+						"offset": "0 -0.1 0"
+					},
+					{
+						"id": "hard_landing",
+						"core": "data/particles/player/hard_landing.particles",
+						"offset": "0 -0.1 0"
+					},
+					{
+						"id": "hard_landing_fire",
+						"core": "data/particles/player/hard_landing_fire.particles",
+						"offset": "0 -0.2 0"
 					},
 					{
 						"id": "release_power",
@@ -537,6 +621,20 @@
 						"id": "lvl_up_3",
 						"core": "data/particles/player/player_power_3.particles",
 						"offset": "0 0.4 0"
+					},
+					{
+						"id": "teleport_1",
+						"core": "data/particles/player/teleport_1.particles",
+						"offset": "0 1 0"
+					},
+					{
+						"id": "teleport_2",
+						"core": "data/particles/player/teleport_2.particles",
+						"offset": "0 1 0"
+					},
+					{
+						"id": "teleport_3",
+						"core": "data/particles/player/teleport_3.particles"
 					}
 				]
 			}

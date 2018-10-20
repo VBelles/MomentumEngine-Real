@@ -43,7 +43,7 @@ int OnStrollAction::execAction(float delta) {
 	}
 
 	enemy->getSkeleton()->blendCycle(animation, 0.1f, 0.1f);
-
+	enemy->getSound()->play("stroll");
 	return Leave;
 }
 

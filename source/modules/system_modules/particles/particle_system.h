@@ -28,6 +28,8 @@ namespace Particles {
 			bool radial = false;			// ignores angle and emits from the center
 			bool randomDirection = false;   // direction generated randomly
 			float duration = 0.f;			// system emitting time
+			float delay = 0.f;				// system delay time
+			float fadeOut = 0.f;			// forced fadeout time
 		};
 
 		struct TMovement {
@@ -113,6 +115,10 @@ namespace Particles {
 		void updateWorld();
 
 	public:
+
+		bool isDelayed = false;
+		CTimer2 delayTimer;
+
 		CSystem(TParticleHandle handle, const TCoreSystem* core, CHandle particleHandle, LaunchConfig config);
 		bool update(float delta);
 		void render();

@@ -6,9 +6,11 @@
 struct TMsgTriggerEnter;
 struct TMsgTriggerEnter;
 struct TMsgColliderDestroyed;
+class TCompParticles;
 
 class TCompRangedAttack : public TCompBase {
 private:
+	CHandle particlesHandle;
 	CHandle ownerHandle;
 	float initialSpeed = 10.f;
 	float speed = initialSpeed;
@@ -22,11 +24,15 @@ private:
 	CTimer grabTimer;
 	CTimer warmUpTimer;
 
+	bool particlesLaunched = false;
+
 	void onGroupCreated(const TMsgEntitiesGroupCreated& msg);
 	void onAssignRangedAttackOwner(const TMsgAssignRangedAttackOwner& msg);
 	void onTriggerEnter(const TMsgTriggerEnter& msg);
 	void onColliderDestroyed(const TMsgColliderDestroyed& msg);
 	void onAttackHit(const TMsgAttackHit& msg);
+
+	TCompParticles* getParticles();
 
 public:
 	DECL_SIBLING_ACCESS();

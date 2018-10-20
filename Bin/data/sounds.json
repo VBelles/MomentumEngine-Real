@@ -1,6 +1,7 @@
 {
     "banks":[
         "data/sound/Master Bank.bank",
+        "data/sound/Music Bank.bank",
         "data/sound/Master Bank.strings.bank"
     ]
 }

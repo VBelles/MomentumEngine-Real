@@ -46,12 +46,14 @@
             "invulnerabilityTime": 1.5,
             "stun": 1.0,
             "hitbox": "spinAttack",
-            "particles": "spin_attack"
+            "particles": "spin_attack",
+            "sounds": "spin_attack"
           },
           {
             "name": "rangedAttack",
             "frame_data": "0 120 140",
             "damage": 1.0,
+            "is_ranged": true,
             "invulnerabilityTime": 1.0,
             "hitbox": "attack",
             "type": "ranged",
@@ -118,20 +120,50 @@
         "events": [
           {
             "id": "launcher_loop",
-            "path": "event:/PROTA/launcher/launcher_estatica",
+            "path": "event:/PROTA/launcher_estatica",
             "following": true
           },
           {
             "id": "launcher_end",
-            "path": "event:/PROTA/launcher/launcher_final"
+            "path": "event:/PROTA/launcher_final"
+          },
+          {
+            "id": "vertical_launcher_hit",
+            "path": "event:/PROTA/launcherv_lanzar"
+          },
+          {
+            "id": "horizontal_launcher_hit",
+            "path": "event:/PROTA/launcherh_lanzar"
           },
           {
             "id": "hit",
-            "path": "event:/PROTA/golpes/golpe_hit"
+            "path": "event:/PROTA/golpes_hit"
           },
           {
-            "id": "block",
-            "path": "event:/PROTA/golpes/golpe_hit"
+            "id": "stun",
+            "path": ""
+          },
+          {
+            "id": "spin_attack",
+            "path": "event:/ENEMIGO MEDUSA/medusa_revolverse"
+          },
+          {
+            "id": "death",
+            "path": "event:/ENEMIGO BOLA/bola_death"
+          },
+          {
+            "id": "appear",
+            "path": "event:/ENEMIGO MEDUSA/medusa_appear"
+          },
+          {
+            "id": "disappear",
+            "path": "event:/ENEMIGO MEDUSA/medusa_dissappear"
+          },
+          {
+            "id": "idle",
+            "path": "event:/ENEMIGO MEDUSA/medusa_idletodo",
+            "play": true,
+            "following": true
           }
         ]
       },

@@ -102,6 +102,7 @@
     <ClCompile Include="components\comp_appear.cpp" />
     <ClCompile Include="components\comp_breakable.cpp" />
     <ClCompile Include="components\comp_camera.cpp" />
+    <ClCompile Include="components\comp_change_song.cpp" />
     <ClCompile Include="components\comp_collectable.cpp" />
     <ClCompile Include="components\comp_collider.cpp" />
     <ClCompile Include="components\comp_culling.cpp" />
@@ -109,6 +110,7 @@
     <ClCompile Include="components\comp_door.cpp" />
     <ClCompile Include="components\comp_dummy_collectable.cpp" />
     <ClCompile Include="components\comp_fire.cpp" />
+    <ClCompile Include="components\comp_fire_puzzle.cpp" />
     <ClCompile Include="components\comp_follow_transform.cpp" />
     <ClCompile Include="components\comp_forward_msg.cpp" />
     <ClCompile Include="components\comp_give_power.cpp" />
@@ -388,6 +390,7 @@
     <ClCompile Include="modules\game_modules\physics\basic_controller_filter_callback.cpp" />
     <ClCompile Include="modules\system_modules\module_entities.cpp" />
     <ClCompile Include="modules\system_modules\particles\module_particles.cpp" />
+    <ClCompile Include="modules\system_modules\sound\comp_music.cpp" />
     <ClCompile Include="modules\system_modules\sound\comp_sound.cpp" />
     <ClCompile Include="modules\system_modules\sound\comp_sound_emmiter.cpp" />
     <ClCompile Include="modules\system_modules\sound\module_sound.cpp" />
@@ -452,6 +455,7 @@
     <ClCompile Include="skeleton\comp_skel_lookat.cpp" />
     <ClCompile Include="skeleton\game_core_skeleton.cpp" />
     <ClCompile Include="components\player\states\StateManager.cpp" />
+    <ClCompile Include="components\comp_location_delimiter.cpp" />
     <ClCompile Include="utils\physx_utils.cpp" />
     <ClCompile Include="utils\murmur3\murmur3.cpp" />
     <ClCompile Include="utils\template_engine.cpp" />
@@ -473,6 +477,7 @@
     <ClInclude Include="components\comp_base.h" />
     <ClInclude Include="components\comp_breakable.h" />
     <ClInclude Include="components\comp_camera.h" />
+    <ClInclude Include="components\comp_change_song.h" />
     <ClInclude Include="components\comp_collectable.h" />
     <ClInclude Include="components\comp_collider.h" />
     <ClInclude Include="components\comp_culling.h" />
@@ -480,6 +485,7 @@
     <ClInclude Include="components\comp_door.h" />
     <ClInclude Include="components\comp_dummy_collectable.h" />
     <ClInclude Include="components\comp_fire.h" />
+    <ClInclude Include="components\comp_fire_puzzle.h" />
     <ClInclude Include="components\comp_follow_transform.h" />
     <ClInclude Include="components\comp_forward_msg.h" />
     <ClInclude Include="components\comp_give_power.h" />
@@ -771,6 +777,7 @@
     <ClInclude Include="modules\game_modules\game\module_game.h" />
     <ClInclude Include="modules\game_modules\physics\basic_controller_filter_callback.h" />
     <ClInclude Include="modules\system_modules\particles\module_particles.h" />
+    <ClInclude Include="modules\system_modules\sound\comp_music.h" />
     <ClInclude Include="modules\system_modules\sound\comp_sound.h" />
     <ClInclude Include="modules\system_modules\sound\comp_sound_emmiter.h" />
     <ClInclude Include="modules\system_modules\sound\module_sound.h" />
@@ -842,6 +849,7 @@
     <ClInclude Include="skeleton\comp_skel_lookat.h" />
     <ClInclude Include="skeleton\game_core_skeleton.h" />
     <ClInclude Include="components\player\states\StateManager.h" />
+    <ClInclude Include="components\comp_location_delimiter.h" />
     <ClInclude Include="utils\data_provider.h" />
     <ClInclude Include="utils\data_saver.h" />
     <ClInclude Include="utils\directory_watcher.h" />

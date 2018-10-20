@@ -3,9 +3,9 @@
 		"entity": {
 			"name": "rangedAttack",
 			"transform": {},
-			"render" : {
+			"render": {
 				"mesh": "data/meshes/rangedAttack.mesh",
-				"materials" : [
+				"materials": [
 					"data/materials/rangedAttack.material"
 				]
 			},
@@ -14,12 +14,39 @@
 				"type": "kinematic",
 				"is_trigger": true,
 				"radius": 0.1,
-				"group": ["enemy"],
-				"mask": ["all"]
+				"group": [
+					"enemy"
+				],
+				"mask": [
+					"all"
+				]
 			},
 			"ranged_attack": {
 				"speed": 15,
 				"lifetime": 15
+			},
+			"sound": {
+				"events": [
+					{
+						"id": "shot",
+						"path": "event:/ENEMIGO MEDUSA/medusa_shot",
+						"play": true
+					},
+					{
+						"id": "shot_air",
+						"path": "event:/ENEMIGO MEDUSA/medusa_shot_energy",
+						"following": true
+					}
+				]
+			},
+			"particles": {
+				"launch": false,
+				"systems": [
+					{
+						"id": "ranged_attack",
+						"core": "data/particles/ranged_attack.particles"
+					}
+				]
 			}
 		}
 	}

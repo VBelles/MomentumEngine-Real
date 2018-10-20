@@ -27,12 +27,14 @@ void SpendCoinsActionState::onStateEnter(IActionState * lastState) {
 	*velocityVector = VEC3::Zero;
 	getSkeleton()->blendCycle(animationLoop, 0.2f, 0.2f);
 	getSkeleton()->executeAction(animation, 0.2f, 0.2f);
+	getSound()->play("spend_coins");
 	dbg("spend coins\n");
 
 }
 
 void SpendCoinsActionState::onStateExit(IActionState * nextState) {
 	GroundedActionState::onStateExit(nextState);
+	getSound()->stop("spend_coins");
 	dbg("exit spend coins\n");
 }
 

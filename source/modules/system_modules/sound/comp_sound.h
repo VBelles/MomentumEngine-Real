@@ -5,12 +5,15 @@
 class TCompSound : public TCompBase {
 private:
 	struct Sound {
+		std::string id;
 		std::string path;
 		FMOD::Studio::EventDescription* eventDescription = nullptr;
 		std::vector<FMOD::Studio::EventInstance*> eventInstances;
 		bool stopFadeOut = false;
 		bool following = false;
 		bool multiInstancing = true;
+		bool is3D = true;
+		bool playOnStart = false;
 	};
 	
 	std::map<std::string, Sound> events;
@@ -29,5 +32,6 @@ public:
 	void play(std::string sound);
 	void stop(std::string sound);
 	void stop();
+	bool isPlaying(std::string event);
 
 };

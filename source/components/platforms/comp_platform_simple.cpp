@@ -116,6 +116,7 @@ void TCompPlatformSimple::onCreated(const TMsgEntityCreated& msg) {
 
 void TCompPlatformSimple::turnAround() {
 	doRoll = true;
+	EngineSound.emitEvent(SOUND_ROTATE_PLATFORM, getTransform());
 }
 
 void TCompPlatformSimple::update(float delta) {

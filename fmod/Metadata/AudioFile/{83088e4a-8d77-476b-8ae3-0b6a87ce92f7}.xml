@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<objects serializationModel="Studio.01.10.00">
+    <object class="AudioFile" id="{83088e4a-8d77-476b-8ae3-0b6a87ce92f7}">
+        <property name="assetPath">
+            <value>bola_walk.wav</value>
+        </property>
+        <property name="frequencyInKHz">
+            <value>44.0999985</value>
+        </property>
+        <property name="channelCount">
+            <value>2</value>
+        </property>
+        <property name="length">
+            <value>1.4515419501133786</value>
+        </property>
+        <relationship name="masterAssetFolder">
+            <destination>{0bb3bd78-43c6-403a-a6e2-7cb3cb37be71}</destination>
+        </relationship>
+    </object>
+</objects>

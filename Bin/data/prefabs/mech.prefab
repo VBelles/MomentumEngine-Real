@@ -28,6 +28,20 @@
 					"mechanism"
 				],
 				"mask": ["all"]
+			},
+			"sound": {
+				"events":[
+					{
+						"id": "activate",
+						"path": "event:/INTERACTUABLE/mecanismo",
+						"3D": false
+					},
+					{
+						"id": "clock",
+						"path": "event:/INTERACTUABLE/reloj",
+						"3D": false
+					}
+				]
 			}
 		}
 	}

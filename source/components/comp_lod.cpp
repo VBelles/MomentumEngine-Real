@@ -19,7 +19,7 @@ void TCompLOD::registerMsgs() {
 
 void TCompLOD::onGroupCreated(const TMsgEntitiesGroupCreated & msg) {
 	updateAABBFromChildren();
-	h_camera = EngineCameras.getCurrentBlendedCamera();
+	h_camera = EngineRender.getCurrentCameraHandle();
 	updateLevel();
 	applyLODStatus();
 }
@@ -105,7 +105,7 @@ void TCompLOD::update(float delta) {
 	if (children_dynamic || aabb_update_required)
 		updateAABBFromChildren();
 
-	h_camera = EngineCameras.getCurrentBlendedCamera();
+	h_camera = EngineRender.getCurrentCameraHandle();
 
 	bool was_using_lod = using_lod;
 	updateLevel();

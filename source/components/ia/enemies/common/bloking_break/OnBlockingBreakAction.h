@@ -8,7 +8,6 @@ class OnBlockingBreakAction : public IBehaviorTreeAction {
 private:
 	Enemy* enemy = nullptr;
 	std::string animation = "";
-	std::string sound = "";
 public:
 	OnBlockingBreakAction();
 	OnBlockingBreakAction(Enemy* enemy, std::string animation);

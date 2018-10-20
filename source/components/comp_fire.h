@@ -3,6 +3,10 @@
 class TCompParticles;
 class TCompLightPoint;
 class TCompLightFlicker;
+class TCompSound;
+
+struct TMsgAttackHit;
+
 
 class TCompFire : public TCompBase {
 private:
@@ -10,20 +14,26 @@ private:
 	std::vector<std::string> fireParticles;
 	std::vector<std::string> smokeParticles;
 	CHandle particlesHandle;
+	CHandle soundHandle;
 	CHandle lightHandle;
 	CHandle lightFlicker;
 	bool hasFire = true;
 	bool playerOnFire = false;
 
+	std::string turnOffListenerName;
+
 	CTimer2 timer;
 	float time = 2.f;
 
 	TCompParticles* getParticles();
+	TCompSound* getSound();
 	TCompLightPoint* getLight();
 	TCompLightFlicker* getLightFlicker();
 	void onEntityCreated(const TMsgEntityCreated& msg);
 	void onPlayerEnter(const TMsgTriggerEnter& msg);
 	void onPlayerExit(const TMsgTriggerExit & msg);
+	void onAttackHit(const TMsgAttackHit & msg);
+	void killFire();
 public:
 	DECL_SIBLING_ACCESS();
 	static void registerMsgs();

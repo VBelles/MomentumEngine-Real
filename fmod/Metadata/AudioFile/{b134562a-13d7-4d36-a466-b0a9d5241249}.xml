@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<objects serializationModel="Studio.01.10.00">
+    <object class="AudioFile" id="{b134562a-13d7-4d36-a466-b0a9d5241249}">
+        <property name="assetPath">
+            <value>deslizar_pared.wav</value>
+        </property>
+        <property name="frequencyInKHz">
+            <value>44.0999985</value>
+        </property>
+        <property name="channelCount">
+            <value>2</value>
+        </property>
+        <property name="length">
+            <value>3.5098866213151929</value>
+        </property>
+        <relationship name="masterAssetFolder">
+            <destination>{0bb3bd78-43c6-403a-a6e2-7cb3cb37be71}</destination>
+        </relationship>
+    </object>
+</objects>

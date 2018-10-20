@@ -1,29 +1,29 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <objects serializationModel="Studio.01.10.00">
-    <object class="Workspace" id="{40ea6de1-1375-46fb-97df-53ac3873071c}">
+    <object class="Workspace" id="{14f0f632-aa41-4071-bc1c-063f4a7b13d4}">
         <relationship name="masterEventFolder">
-            <destination>{3a75f769-eddc-4d55-ab6c-e624f3cfd9b1}</destination>
+            <destination>{5393190a-b723-47db-91c9-346e5137eb60}</destination>
         </relationship>
         <relationship name="masterTagFolder">
-            <destination>{99649104-f77c-432e-8ee9-11121e073a93}</destination>
+            <destination>{933a6fbc-3fe3-441a-8592-0c3ba0c7df00}</destination>
         </relationship>
         <relationship name="masterEffectPresetFolder">
-            <destination>{00eeab41-9bff-05fc-207c-9016caf8c4bd}</destination>
+            <destination>{0888fccd-d45c-44f0-96d1-975a7b487c23}</destination>
         </relationship>
         <relationship name="masterParameterPresetFolder">
-            <destination>{0851b688-1516-0cd0-203a-51fd7ab25bd7}</destination>
+            <destination>{c946cd3c-8ab5-4bcf-889d-a734d6d23b2f}</destination>
         </relationship>
         <relationship name="masterBankFolder">
-            <destination>{f208a4e5-0f90-4d04-9675-cae8250d9c1f}</destination>
+            <destination>{c3994a83-4d23-41de-8c96-8a07bed5e118}</destination>
         </relationship>
         <relationship name="masterAssetFolder">
-            <destination>{36905f10-66a8-4c8e-8e61-b834e0293f37}</destination>
+            <destination>{0bb3bd78-43c6-403a-a6e2-7cb3cb37be71}</destination>
         </relationship>
         <relationship name="mixer">
-            <destination>{cf57fadb-6216-4b37-813d-2a66005357ec}</destination>
+            <destination>{ac234995-d93c-4577-b7e7-e7629d9fabb7}</destination>
         </relationship>
         <relationship name="platforms">
-            <destination>{5ef3b3a1-b5a9-4bb4-95ef-559cc31803ab}</destination>
+            <destination>{64d05fdf-4e20-475e-b1db-5de17038574b}</destination>
         </relationship>
     </object>
 </objects>

@@ -2,6 +2,7 @@
 #include "module_map_menu.h"
 #include "gui/gui_parser.h"
 #include "modules/system_modules/scripting/scripting_player.h"
+#include "modules/system_modules/sound/comp_music.h"
 
 bool CModuleMapMenu::start() {
 	pause = false;
@@ -51,11 +52,16 @@ void CModuleMapMenu::onMapButtonPressed() {
 		ScriptingPlayer::givePlayerControl(); //Necesario ya que se fuerza salir del debug y puede no tener el control
 		CApp::get().setDebugMode(false);
 		cb_globals.game_paused = 1;
+		TCompMusic* music = static_cast<CEntity*>(getEntityByName(MUSIC_PLAYER))->get<TCompMusic>();
+		music->setPauseMenu(true);
 	}
 	else {
 		Engine.getGUI().deactivateWidget("map_menu");
 		Engine.getGUI().unregisterController(controller);
 		cb_globals.game_paused = 0;
+		TCompMusic* music = static_cast<CEntity*>(getEntityByName(MUSIC_PLAYER))->get<TCompMusic>();
+		music->setPauseMenu(false);
+		EngineSound.emitEvent(SOUND_MENU_BACK);
 	}
 
 	EngineRender.setActive(!pause);

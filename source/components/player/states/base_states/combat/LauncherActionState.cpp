@@ -20,6 +20,10 @@ void LauncherActionState::update(float delta) {
 	deltaMovement = VEC3::Zero;
 	deltaMovement.y = velocityVector->y * delta;
 	AttackState::update(delta);
+	if (!soundLaunched && movementTimer.elapsed() >= hitboxOutTime) {
+		soundLaunched = true;
+		getSound()->play("attack");
+	}
 }
 
 void LauncherActionState::onStateEnter(IActionState * lastState) {
@@ -27,6 +31,7 @@ void LauncherActionState::onStateEnter(IActionState * lastState) {
 	AttackState::onStateEnter(lastState);
 	getSkeleton()->executeAction(animation, 0.2f, 0.2f);
 	movementTimer.reset();
+	soundLaunched = false;
 }
 
 void LauncherActionState::onStateExit(IActionState * nextState) {

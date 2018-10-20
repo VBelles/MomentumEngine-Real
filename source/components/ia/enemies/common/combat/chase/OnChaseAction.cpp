@@ -18,6 +18,7 @@ int OnChaseAction::execAction(float delta) {
 	VEC3 playerPosition = enemy->getPlayerTransform()->getPosition();
 	enemy->rotateTowards(delta, playerPosition, enemy->rotationSpeed);
 	enemy->getSkeleton()->blendCycle(animation, 0.1f, 0.1f);
+	enemy->getSound()->play("chase");
 	return Leave;
 }
 

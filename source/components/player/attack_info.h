@@ -27,6 +27,7 @@ struct AttackInfo {
 	bool ignoresBlock = false;
 	int superArmorDamage = 0;
 	float gravityMultiplier = 1.f;
+	bool isRanged = false;
 
 	Stun* stun = nullptr;
 	VerticalLauncher* verticalLauncher = nullptr;

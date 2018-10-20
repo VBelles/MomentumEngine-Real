@@ -16,17 +16,19 @@ public:
 
 	std::map<std::string, Type> typeByName = {
 		{ "undefined", UNDEFINED },
-	    { "chrysalis", CHRYSALIS },
-	    { "coin", COIN },
+		{ "chrysalis", CHRYSALIS },
+		{ "coin", COIN },
 		{ "life_piece", LIFEPIECE}
 	};
-	
+
 private:
 	bool collected = false;
 	Type type;
 
 	float rotationSpeed;
 	VEC3 rotationAxis;
+
+	bool active = true;
 
 	CHandle transformHandle;
 	TCompTransform* getTransform();
@@ -44,6 +46,8 @@ public:
 
 	void collect();
 	Type getTypeByName(std::string name);
+	void setActive(bool active);
+	bool isActive();
 };
 
 struct TMsgCollect {

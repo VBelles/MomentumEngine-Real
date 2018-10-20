@@ -21,7 +21,7 @@ int OnBlockingBreakAction::execAction(float delta) {
 	enemy->blockingBroken = false;
 	enemy->isBlocking = false;
 	enemy->getPower()->setStateMultiplier(1.f);
-	enemy->getSound()->play("block");
+	enemy->getSound()->play("block_break");
 	return Leave;
 }
 
@@ -30,7 +30,6 @@ void OnBlockingBreakAction::load(IBehaviorTree* bt, const json& j) {
 	assert(enemy);
 
 	animation = j.value("animation", animation);
-	sound = j.value("sound", sound);
 }
 
 void OnBlockingBreakAction::debugInMenu() {

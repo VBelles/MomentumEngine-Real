@@ -89,6 +89,8 @@ void TCompPowerUp::onTriggerEnter(const TMsgTriggerEnter & msg) {
 		playerModel->setHp(playerModel->getMaxHp());
 
 		EngineGUI.showDialog(message, 16);
+		EngineSound.emitEvent(SOUND_POWER_UP);
+
 	}
 }
 

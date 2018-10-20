@@ -16,6 +16,7 @@ AttackInfo& AttackInfo::operator=(const AttackInfo& other) {
 	ignoresBlock = other.ignoresBlock;
 	superArmorDamage = other.superArmorDamage;
 	gravityMultiplier = other.gravityMultiplier;
+	isRanged = other.isRanged;
 
 	safeDelete(stun);
 	if (other.stun) stun = new Stun(*other.stun);
@@ -52,6 +53,7 @@ void AttackInfo::load(const json& j) {
 	ignoresBlock = j.value("ignores_block", false);
 	superArmorDamage = j.value("super_armor_damage", 0);
 	gravityMultiplier = j.value("gravity_multiplier", 1.f);
+	isRanged = j.value("is_ranged", false);
 
 	if (j.count("stun")) {
 		stun = new AttackInfo::Stun{ j.value("stun", 1.0f) };

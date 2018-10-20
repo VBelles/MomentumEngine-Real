@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<objects serializationModel="Studio.01.10.00">
+    <object class="AudioFile" id="{60fe11e6-e582-47ce-92d7-7d258b14447d}">
+        <property name="assetPath">
+            <value>breakable.wav</value>
+        </property>
+        <property name="frequencyInKHz">
+            <value>44.0999985</value>
+        </property>
+        <property name="channelCount">
+            <value>2</value>
+        </property>
+        <property name="length">
+            <value>3.3453741496598641</value>
+        </property>
+        <relationship name="masterAssetFolder">
+            <destination>{0bb3bd78-43c6-403a-a6e2-7cb3cb37be71}</destination>
+        </relationship>
+    </object>
+</objects>

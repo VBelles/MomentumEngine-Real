@@ -21,7 +21,7 @@
 				"group": [
 					"scenario"
 				],
-				"mask": "characters"
+				"mask": "all"
 			}
 		}
 	},
@@ -58,11 +58,12 @@
 				]
 			},
 			"collider": {
-				"type": "box",
+
+				"shape": "box",
 				"halfExtent": "0.25 0.25 0.25",
 				"is_trigger": true,
-				"group": "scenario",
-				"mask": "player"
+				"group": ["enemy"],
+				"mask": ["all"]
 			},
 			"fire": {
 				"time": 5,
@@ -82,6 +83,23 @@
 			"light_flicker": {
 				"intensityVariation": 0.1,
 				"variationSpeed": 0.5
+			},
+			"sound": {
+				"events": [
+				  {
+					"id": "fire",
+					"path": "event:/INTERACTUABLE/fuego",
+					"play": true
+				  },
+				  {
+					"id": "fire_on",
+					"path": ""
+				  },
+				  {
+					"id": "fire_off",
+					"path": "event:/INTERACTUABLE/apagar_fuego"
+				  }
+				]
 			}
 		}
 	}

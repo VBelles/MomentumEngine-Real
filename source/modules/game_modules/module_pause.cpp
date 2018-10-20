@@ -4,6 +4,7 @@
 #include "modules/system_modules/scripting/scripting_player.h"
 #include "modules/system_modules/module_gui.h"
 #include "modules/game_modules/game/module_game.h"
+#include "modules/system_modules/sound/comp_music.h"
 
 bool CModulePause::start() {
 	pause = false;
@@ -58,11 +59,16 @@ void CModulePause::onPausePressed() {
 		ScriptingPlayer::givePlayerControl(); //Necesario ya que se fuerza salir del debug y puede no tener el control
 		CApp::get().setDebugMode(false);
 		cb_globals.game_paused = 1;
+		TCompMusic* music = static_cast<CEntity*>(getEntityByName(MUSIC_PLAYER))->get<TCompMusic>();
+		music->setPauseMenu(true);
 	}
 	else {
 		Engine.getGUI().deactivateWidget("test_pause_menu");
 		Engine.getGUI().unregisterController(controller);
 		cb_globals.game_paused = 0;
+		TCompMusic* music = static_cast<CEntity*>(getEntityByName(MUSIC_PLAYER))->get<TCompMusic>();
+		music->setPauseMenu(false);
+		EngineSound.emitEvent(SOUND_MENU_BACK);
 	}
 
 	EngineRender.setActive(!pause);

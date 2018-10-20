@@ -22,6 +22,7 @@ int OnStunAction::execAction(float delta) {
 	}
 	enemy->getSkeleton()->blendCycle(animationLoop, 0.1f, 0.1f);
 	enemy->getSkeleton()->executeAction(animationStart, 0.1f, 0.1f);
+	enemy->getSound()->play("stun");
 	return Leave;
 }
 

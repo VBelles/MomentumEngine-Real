@@ -84,6 +84,7 @@ void FastFinisher2ActionState::update(float delta) {
 		getParticles()->launch("fast_finisher_2_right");
 		getParticles()->launch("fast_finisher_2_left");
 		getSound()->play("attack");
+		//getSound()->play("finisher");
 	}
 }
 

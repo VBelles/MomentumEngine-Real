@@ -18,7 +18,7 @@ AttackAction::AttackAction(Enemy* enemy, std::string animation, std::string atta
 
 int AttackAction::execAction(float delta) {
 	enemy->updateGravity(delta);
-	EnemyAttack enemyAttack = enemy->attacks[attack];
+	EnemyAttack& enemyAttack = enemy->attacks[attack];
 	if (enemy->animationTimer.elapsed() >= enemy->getSkeleton()->getAnimationDuration(animation)
 		|| enemy->animationTimer.elapsed() >= frames2sec(enemyAttack.attackEnd)) {
 		enemy->getHitboxes()->disable(enemyAttack.hitboxName);
@@ -32,7 +32,6 @@ int AttackAction::execAction(float delta) {
 	else if (enemy->animationTimer.elapsed() >= frames2sec(enemyAttack.hitboxStart)) {
 		enemy->getHitboxes()->enable(enemyAttack.hitboxName);
 	}
-
 	return Stay;
 }
 
@@ -50,5 +49,8 @@ void AttackAction::debugInMenu() {
 }
 
 void AttackAction::onExit() {
-	enemy->killParticles(enemy->attacks[attack].particles);
+	auto& enemyAttack = enemy->attacks[attack];
+	enemy->killParticles(enemyAttack.particles);
+	enemy->launchParticles(enemyAttack.onExitParticles);
+	enemy->stopSounds(enemyAttack.sounds);
 }

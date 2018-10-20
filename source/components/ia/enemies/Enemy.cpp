@@ -80,6 +80,16 @@ void Enemy::load(const json& j) {
 				attack.particles.push_back(particleId);
 			}
 		}
+		if (jAttack.count("on_exit_particles")) {
+			for (std::string particleId : jAttack["on_exit_particles"]) {
+				attack.onExitParticles.push_back(particleId);
+			}
+		}
+		if (jAttack.count("sounds")) {
+			for (std::string soundId : jAttack["sounds"]) {
+				attack.sounds.push_back(soundId);
+			}
+		}
 		attacks[attackName] = attack;
 	}
 
@@ -233,5 +243,17 @@ void Enemy::launchParticles(const std::vector<std::string>& particles) {
 void Enemy::killParticles(const std::vector<std::string>& particles) {
 	for (auto& particleId : particles) {
 		getParticles()->kill(particleId);
+	}
+}
+
+void Enemy::playSounds(const std::vector<std::string>& sounds) {
+	for (auto& soundId : sounds) {
+		getSound()->play(soundId);
+	}
+}
+
+void Enemy::stopSounds(const std::vector<std::string>& sounds) {
+	for (auto& soundId : sounds) {
+		getSound()->stop(soundId);
 	}
 }

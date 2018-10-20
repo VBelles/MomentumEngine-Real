@@ -35,9 +35,11 @@ void AirborneLongActionState::onStateEnter(IActionState * lastState) {
 	getPlayerModel()->setGravityMultiplier(enteringPowerStats->longGravityMultiplier);
 	//dbg("Entrando en airborne long\n");
 	getSkeleton()->blendCycle(animation, 0.2f, 0.2f);
+	getSound()->play("jump_long_fly");
 }
 
 void AirborneLongActionState::onStateExit(IActionState * nextState) {
 	AirborneActionState::onStateExit(nextState);
 	//dbg("Saliendo de airborne long\n");
+	getSound()->stop("jump_long_fly");
 }

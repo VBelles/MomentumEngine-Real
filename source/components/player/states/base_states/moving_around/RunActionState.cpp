@@ -87,6 +87,7 @@ void RunActionState::onStateExit(IActionState * nextState) {
 	GroundedActionState::onStateExit(nextState);
 	getTrailSlash(SlashType::LEFT_TENTACLE)->stopEmitting();
 	getTrailSlash(SlashType::RIGHT_TENTACLE)->stopEmitting();
+
 }
 
 void RunActionState::onSpendCoinsButton() {

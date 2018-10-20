@@ -143,7 +143,7 @@ void TCompCollectableManager::onCollect(const TMsgCollect& msg) {
 	if (msg.type != Type::COIN) {
 		playerModel->setDummyState("get_chrysalis", false, collectDuration, "idle_SS3");
 		playerModel->changeState("Dummy");
-		//situar cámara frente a player
+		//situar cï¿½mara frente a player
 		playerTransform->getYawPitchRoll(&yaw, &pitch);
 		yaw += M_PI + deg2rad(collectYaw);
 		//TODO if camera is already suggested, remember parameters
@@ -158,8 +158,9 @@ void TCompCollectableManager::onCollect(const TMsgCollect& msg) {
 		collectable->collect();
 		addUniqueCollectable(Type::CHRYSALIS, entity->getName());
 		EngineSound.emitEvent(SOUND_COLLECT_CHRYSALIS, transform);
+		EngineSound.emitEvent(SOUND_HEAL);
 		(static_cast<TCompDummyCollectable*>(get<TCompDummyCollectable>()))->activateSequence(DummyCollectableType::CHRYSALIS);
-		//Esto de aquí molaría no hacerlo el mismo frame en que recoges el objeto 
+		//Esto de aquï¿½ molarï¿½a no hacerlo el mismo frame en que recoges el objeto 
 		playerModel->setHp(playerModel->getMaxHp());
 		EngineGame->showChrysalis(showChrysalisTime);
 		break;
@@ -170,7 +171,7 @@ void TCompCollectableManager::onCollect(const TMsgCollect& msg) {
 			spendCoins(getNumberOfCoins() - maxCoins);
 		}
 		EngineParticles.launchSystem(PARTICLES_COIN, { entity });
-		EngineSound.emitEvent(SOUND_COLLECT_CHRYSALIS, transform);
+		EngineSound.emitEvent(SOUND_COLLECT_COIN, transform);
 		break;
 	case Type::LIFEPIECE:
 		collectable->collect();
@@ -180,6 +181,7 @@ void TCompCollectableManager::onCollect(const TMsgCollect& msg) {
 			playerModel->setMaxHp(playerModel->getMaxHp() + 1);
 			playerModel->setHp(playerModel->getMaxHp());
 		}
+		EngineSound.emitEvent(SOUND_HEAL);
 		break;
 	default:
 		dbg("Collected unknown object %d\n", msg.type);

@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<objects serializationModel="Studio.01.10.00">
+    <object class="AudioFile" id="{52c57df6-c2ae-40f6-8d02-db5aee8f9111}">
+        <property name="assetPath">
+            <value>salto_corto_salto_04.wav</value>
+        </property>
+        <property name="frequencyInKHz">
+            <value>44.0999985</value>
+        </property>
+        <property name="channelCount">
+            <value>2</value>
+        </property>
+        <property name="length">
+            <value>2.1120408163265307</value>
+        </property>
+        <relationship name="masterAssetFolder">
+            <destination>{0bb3bd78-43c6-403a-a6e2-7cb3cb37be71}</destination>
+        </relationship>
+    </object>
+</objects>

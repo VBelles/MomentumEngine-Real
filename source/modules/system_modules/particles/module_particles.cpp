@@ -41,7 +41,14 @@ void CModuleParticles::update(float delta) {
 		for (auto it = systems.begin(); it != systems.end();) {
 			Particles::CSystem* ps = *it;
 
-			bool active = ps->update(scaled_time);
+			if (ps->isDelayed) {
+				if (ps->delayTimer.elapsed() >= ps->getCore()->emission.delay) {
+					ps->isDelayed = false;
+					ps->launch();
+				}
+			}
+
+			bool active = ps->isDelayed || ps->update(scaled_time);
 			if (!active) {
 				if (ps->getParticleEntityHandle().isValid()) {
 					static_cast<CEntity*>(ps->getParticleEntityHandle())->sendMsg(TMsgParticleSystemDestroyed{ ps->getHandle() });
@@ -100,7 +107,13 @@ Particles::TParticleHandle CModuleParticles::launchSystem(const std::string& nam
 Particles::CSystem* CModuleParticles::launchSystem(const Particles::TCoreSystem* cps, CHandle entity, Particles::LaunchConfig config) {
 	assert(cps);
 	auto ps = new Particles::CSystem(++_lastHandle, cps, entity, config);
-	ps->launch();
+	if (ps->getCore()->emission.delay > 0.f) {
+		ps->isDelayed = true;
+		ps->delayTimer.reset();
+	}
+	else {
+		ps->launch();
+	}
 	particleSystemsMap[cps->render.technique->getName()].push_back(ps);
 	return ps;
 }
@@ -113,8 +126,8 @@ void CModuleParticles::kill(Particles::TParticleHandle ph, float fadeOutTime) {
 		});
 		if (it != systems.end()) {
 			Particles::CSystem* ps = *it;
-			if (fadeOutTime > 0.f) {
-				ps->fadeOut(fadeOutTime);
+			if (fadeOutTime > 0.f || ps->getCore()->emission.fadeOut > 0.f) {
+				ps->fadeOut(std::max(fadeOutTime, ps->getCore()->emission.fadeOut));
 			}
 			else {
 				if (ps->getParticleEntityHandle().isValid()) { // Send message to entity

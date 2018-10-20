@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<objects serializationModel="Studio.01.10.00">
+    <object class="ParameterPreset" id="{7f19cfd0-5287-4fff-9b8d-b6b856f72fa4}">
+        <property name="name">
+            <value>ssj2_ratio</value>
+        </property>
+        <relationship name="folder">
+            <destination>{c946cd3c-8ab5-4bcf-889d-a734d6d23b2f}</destination>
+        </relationship>
+        <relationship name="parameter">
+            <destination>{074afb91-09af-4063-ba49-79202eed6953}</destination>
+        </relationship>
+    </object>
+    <object class="GameParameter" id="{074afb91-09af-4063-ba49-79202eed6953}">
+        <property name="initialValue">
+            <value>0</value>
+        </property>
+    </object>
+</objects>

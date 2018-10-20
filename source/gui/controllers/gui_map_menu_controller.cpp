@@ -76,6 +76,7 @@ namespace GUI {
 			}
 			else {
 				//TODO
+				EngineSound.emitEvent(SOUND_MENU_UNAVAILABLE);
 			}
 			_options[_currentOption]->setCurrentState(CButton::EState::ST_Selected);
 		}
