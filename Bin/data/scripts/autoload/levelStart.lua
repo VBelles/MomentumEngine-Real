@@ -33,55 +33,58 @@ function onLevelStart_game_state()
         setPlatformEnabled("cine_cam_001", true)
         blendInCamera("cine_cam_001", blendTimeMural, CAMERA_PRIORITY_GAMEPLAY, INTERPOLATOR_CUBIC_OUT)
         wait(tiempoMuralVertical)
-        showDialog("Historia 01", fontSize)
+        showDialog("There was a time when in some place peace and magic reigned.", fontSize)
         waitCondition(isDialogHidden)
 
         setPlatformEnabled("cine_cam_002", true)
         blendInCamera("cine_cam_002", blendTimeMural, CAMERA_PRIORITY_GAMEPLAY, INTERPOLATOR_CUBIC_OUT)
         wait(tiempoMuralVertical)
-        showDialog("Historia 02", fontSize)
+        showDialog("One day a seed fell from the sky and with it The Tree grew.", fontSize)
         waitCondition(isDialogHidden)
 
         setPlatformEnabled("cine_cam_003", true)
         blendInCamera("cine_cam_003", blendTimeMural, CAMERA_PRIORITY_GAMEPLAY, INTERPOLATOR_CUBIC_OUT)
         wait(tiempoMuralVertical)
-        showDialog("Historia 03", fontSize)
+        showDialog("As the almighty entity appeared, they prayed for a prosper future.", fontSize)
         waitCondition(isDialogHidden)
 
         setPlatformEnabled("cine_cam_004", true)
         blendInCamera("cine_cam_004", blendTimeMural, CAMERA_PRIORITY_GAMEPLAY, INTERPOLATOR_CUBIC_OUT)
         wait(tiempoMuralVertical)
-        showDialog("Historia 04", fontSize)
+        showDialog("With him other creatures appeared, and new knowledge blossomed.", fontSize)
         waitCondition(isDialogHidden)
 
         setPlatformEnabled("cine_cam_005", true)
         blendInCamera("cine_cam_005", blendTimeMural, CAMERA_PRIORITY_GAMEPLAY, INTERPOLATOR_CUBIC_OUT)
         wait(tiempoMuralVertical)
-        showDialog("Historia 05", fontSize)
+        showDialog("But it was known that their nature was full of envy and greed, and soon the friendship with the new companions turned into abuse and war.", fontSize)
         waitCondition(isDialogHidden)
 
         setPlatformEnabled("cine_cam_006", true)
         blendInCamera("cine_cam_006", blendTimeMural, CAMERA_PRIORITY_GAMEPLAY, INTERPOLATOR_CUBIC_OUT)
         wait(tiempoMuralVertical)
-        showDialog("Historia 06", fontSize)
+        showDialog("The battle lasted for hundreds of bloody moons, and the citizens lost.", fontSize)
         waitCondition(isDialogHidden)
 
         setPlatformEnabled("cine_cam_007", true)
         blendInCamera("cine_cam_007", blendTimeMural, CAMERA_PRIORITY_GAMEPLAY, INTERPOLATOR_CUBIC_OUT)
         wait(tiempoMuralVertical)
-        showDialog("Historia 07", fontSize)
+        showDialog("Massacred and defeated they fell, only the Tree and its dear children remained.", fontSize)
         waitCondition(isDialogHidden)
 
         setPlatformEnabled("cine_cam_008", true)
         blendInCamera("cine_cam_008", blendTimeMural, CAMERA_PRIORITY_GAMEPLAY, INTERPOLATOR_CUBIC_OUT)
         wait(tiempoMuralVertical)
-        showDialog("Historia 08", fontSize)
+        showDialog("But with a final gesture for surviving, a new being was created.", fontSize)
         waitCondition(isDialogHidden)
 
         setPlatformEnabled("cine_cam_009", true)
         blendInCamera("cine_cam_009", blendTimeMural, CAMERA_PRIORITY_GAMEPLAY, INTERPOLATOR_CUBIC_OUT)
         wait(tiempoMuralVertical)
-        showDialog("Historia 09", fontSize)
+        showDialog("The prophecy explains:
+        “A flower will rise with the dawn of the new Momentum and it will bring revenge to our species.
+       From our ashes she’ll be born.”
+       We pray for you now.", fontSize)
         waitCondition(isDialogHidden)
     -- -- End murales -- --
     

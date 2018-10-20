@@ -4,13 +4,14 @@
 #include "gui/widgets/gui_text.h"
 #include "gui/widgets/gui_bar.h"
 #include "gui/widgets/gui_button.h"
-#include "gui/effects/gui_animate_uv.h"
 #include "utils/template_engine.h"
 #include "gui/widgets/gui_option.h"
 #include "gui/widgets/gui_map_marker.h"
 #include "gui/widgets/gui_points_bar.h"
 #include "gui/widgets/gui_point.h"
 #include "gui/widgets/gui_dialog.h"
+#include "gui/effects/gui_animate_uv.h"
+#include "gui/effects/gui_ellipsis.h"
 #include "modules/system_modules/module_uniques.h"
 
 namespace {
@@ -147,6 +148,7 @@ CEffect* CParser::parseEffect(const json& data, CWidget* wdgt) {
 
 	// create and parse the widget
 	if (type == "animate_uv")   fx = parseAnimateUVEffect(data);
+	else if (type == "ellipsis")   fx = parseEllipsisEffect(data);
 
 	// add to parent
 	if (wdgt && fx) {
@@ -160,6 +162,14 @@ CEffect* CParser::parseAnimateUVEffect(const json& data) {
 	CAnimateUV* fx = new CAnimateUV();
 
 	fx->_speed = loadVEC2(data.value("speed", "0 0"));
+
+	return fx;
+}
+
+CEffect* CParser::parseEllipsisEffect(const json& data) {
+	CEllipsis* fx = new CEllipsis();
+
+	fx->waitTime = data.value("wait_time", fx->waitTime);
 
 	return fx;
 }
