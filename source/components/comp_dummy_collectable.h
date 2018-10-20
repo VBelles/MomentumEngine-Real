@@ -34,6 +34,7 @@ private:
 
 	float elevationSpeed = -0.05f;
 
+	VEC3 positionOffset;
 	float currentRotationSpeed = 0;
 	float startingScale;
 
