@@ -1,4 +1,7 @@
 function onLevelStart_game_state()
+    startSong("intro")
+    --aquí en medio debería estar toda la cinemática
+    stopMusic(6)
     [[
     --teleportPlayer(-116.526, -22.974, 366.835) --Initial egg position.
     --Start player animation.
