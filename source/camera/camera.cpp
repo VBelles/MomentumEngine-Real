@@ -5,11 +5,15 @@ void CCamera::debugInMenu() {
 	float fov_deg = rad2deg(getFov());
 	float new_znear = getZNear();
 	float new_zfar = getZFar();
-	bool changed = ImGui::DragFloat("Fov", &fov_deg, 0.1f, 30.f, 175.f);
+	bool changed = false;
+	changed |= ImGui::DragFloat3("Pos", &pos.x, 0.025f, -2000.f, 2000.f);
+	changed |= ImGui::DragFloat3("Target", &target.x, 0.025f, -2000.f, 2000.f);
+	changed |= ImGui::DragFloat("Fov", &fov_deg, 0.1f, 30.f, 175.f);
 	changed |= ImGui::DragFloat("Z Near", &new_znear, 0.001f, 0.01f, 5.0f);
 	changed |= ImGui::DragFloat("Z Far", &new_zfar, 0.001f, 0.01f, 300.0f);
 	if (changed) {
 		setPerspective(deg2rad(fov_deg), new_znear, new_zfar);
+		lookAt(pos, target, up_aux);
 	}
 	ImGui::LabelText("AspectRatio", "%f", getAspectRatio());
 }

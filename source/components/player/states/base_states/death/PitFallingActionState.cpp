@@ -25,7 +25,7 @@ void PitFallingActionState::update(float delta) {
 					getSkeleton()->blendCycle(animationIdle, 0.0f, 0.0f);
 					CEntity* playerCameraEntity = getEntityByName(PLAYER_CAMERA);
 					EngineCameras.blendInCamera(playerCameraEntity, 0.00001f, CModuleCameras::EPriority::GAMEPLAY);
-					getScreenTransition()->startTransition(1.f, 0.f);
+					getScreenTransition()->startTransition(1.f, 0.f, 0.25f);
 				}
 			}
 		}

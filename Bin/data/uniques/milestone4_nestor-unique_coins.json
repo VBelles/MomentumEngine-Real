@@ -2,6 +2,55 @@
   "unique_coins":
   [
     {
+      "id": "nes_coin395",
+      "done": false,
+      "position": "45.374 27.948 -148.756",
+      "level": "level00",
+      "type": "coins"
+    },
+    {
+      "id": "nes_coin394",
+      "done": false,
+      "position": "45.374 33.0665 -148.756",
+      "level": "level00",
+      "type": "coins"
+    },
+    {
+      "id": "nes_coin393",
+      "done": false,
+      "position": "45.374 22.0969 -148.756",
+      "level": "level00",
+      "type": "coins"
+    },
+    {
+      "id": "nes_coin392",
+      "done": false,
+      "position": "10.7547 4.01434 -154.626",
+      "level": "level00",
+      "type": "coins"
+    },
+    {
+      "id": "nes_coin391",
+      "done": false,
+      "position": "16.3925 5.22381 -153.897",
+      "level": "level00",
+      "type": "coins"
+    },
+    {
+      "id": "nes_coin390",
+      "done": false,
+      "position": "13.4273 4.48346 -154.321",
+      "level": "level00",
+      "type": "coins"
+    },
+    {
+      "id": "nes_coin389",
+      "done": false,
+      "position": "-2.77258 15.8323 -110.083",
+      "level": "level00",
+      "type": "coins"
+    },
+    {
       "id": "nes_coin388",
       "done": false,
       "position": "3.14034 39.2568 191.312",

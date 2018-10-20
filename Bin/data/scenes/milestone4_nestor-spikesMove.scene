@@ -2,6 +2,94 @@
   {
     "entity":
     {
+      "name": "nes_platform_civilization_col_066_spikes",
+      "transform":
+      {
+        "pos": "156.41 89.7145 -142.867",
+        "rotation": "0.0871554 0.0 -0.996195 0.0"
+      },
+      "hierarchy":
+      {
+        "parent": "nes_platform_civilization_066",
+        "pos": "0 0 0",
+        "axis": "0 0 1",
+        "angle": 180
+      },
+      "render":
+      [
+        {
+          "mesh": "data/meshes/spikes_plat_hex_small.mesh",
+          "materials":
+          [
+            "data/materials/spikes_plat_hex_small.material"
+          ]
+        }
+      ],
+      "collider":
+      {
+        "mesh_src": "data/meshes/spikes_plat_hex_small_col.col_mesh",
+        "shape": "convex_mesh",
+        "type": "kinematic",
+        "is_trigger": true,
+        "group":
+        [
+          "trigger"
+        ],
+        "mask":
+        [
+          "player"
+        ]
+      },
+      "prefab": "data/prefabs/spikes.prefab"
+    }
+  },
+  {
+    "entity":
+    {
+      "name": "nes_platform_civilization_col_065_spikes",
+      "transform":
+      {
+        "pos": "155.47 89.7145 -148.188",
+        "rotation": "0.0871557 0.0 -0.996195 0.0"
+      },
+      "hierarchy":
+      {
+        "parent": "nes_platform_civilization_065",
+        "pos": "0 0 0",
+        "axis": "0 0 1",
+        "angle": 180
+      },
+      "render":
+      [
+        {
+          "mesh": "data/meshes/spikes_plat_hex_small.mesh",
+          "materials":
+          [
+            "data/materials/spikes_plat_hex_small.material"
+          ]
+        }
+      ],
+      "collider":
+      {
+        "mesh_src": "data/meshes/spikes_plat_hex_small_col.col_mesh",
+        "shape": "convex_mesh",
+        "type": "kinematic",
+        "is_trigger": true,
+        "group":
+        [
+          "trigger"
+        ],
+        "mask":
+        [
+          "player"
+        ]
+      },
+      "prefab": "data/prefabs/spikes.prefab"
+    }
+  },
+  {
+    "entity":
+    {
       "name": "nes_platform_civilization_col_063_spikes",
       "transform":
       {
@@ -49,8 +137,8 @@
       "name": "nes_platform_civilization_col_062_spikes",
       "transform":
       {
-        "pos": "-79.9762 42.0114 -2.74502",
-        "rotation": "0.0 0.0 0.0 -1.0"
+        "pos": "-79.9762 41.9838 -2.74824",
+        "rotation": "-1.0 0.0 0.0 0.0"
       },
       "hierarchy":
       {
@@ -93,8 +181,8 @@
       "name": "nes_platform_civilization_col_061_spikes",
       "transform":
       {
-        "pos": "-220.156 46.7114 54.8399",
-        "rotation": "0.0 0.0 0.0 -1.0"
+        "pos": "-220.156 46.6837 54.8367",
+        "rotation": "-1.0 0.0 0.0 0.0"
       },
       "hierarchy":
       {
@@ -181,8 +269,8 @@
       "name": "nes_platform_civilization_col_059_spikes",
       "transform":
       {
-        "pos": "-209.129 39.3757 52.9352",
-        "rotation": "0.0 0.0 0.0 -1.0"
+        "pos": "-209.129 39.348 52.932",
+        "rotation": "-1.0 0.0 0.0 0.0"
       },
       "hierarchy":
       {
@@ -269,8 +357,8 @@
       "name": "nes_platform_civilization_col_057_spikes",
       "transform":
       {
-        "pos": "-214.181 34.0834 39.8601",
-        "rotation": "0.0 0.0 0.0 -1.0"
+        "pos": "-214.181 34.0558 39.8569",
+        "rotation": "-1.0 0.0 0.0 0.0"
       },
       "hierarchy":
       {
@@ -358,7 +446,7 @@
       "transform":
       {
         "pos": "151.337 89.7145 -144.722",
-        "rotation": "0.0 -0.0871557 0.0 -0.996195"
+        "rotation": "0.0 -0.0871558 0.0 -0.996195"
       },
       "hierarchy":
       {
@@ -398,99 +486,11 @@
   {
     "entity":
     {
-      "name": "nes_platform_civilization_col_054_spikes",
-      "transform":
-      {
-        "pos": "155.471 89.7145 -148.182",
-        "rotation": "0.0 -0.0871557 0.0 -0.996195"
-      },
-      "hierarchy":
-      {
-        "parent": "nes_platform_civilization_054",
-        "pos": "0 0 0",
-        "axis": "0 0 1",
-        "angle": 180
-      },
-      "render":
-      [
-        {
-          "mesh": "data/meshes/spikes_plat_hex_small.mesh",
-          "materials":
-          [
-            "data/materials/spikes_plat_hex_small.material"
-          ]
-        }
-      ],
-      "collider":
-      {
-        "mesh_src": "data/meshes/spikes_plat_hex_small_col.col_mesh",
-        "shape": "convex_mesh",
-        "type": "kinematic",
-        "is_trigger": true,
-        "group":
-        [
-          "trigger"
-        ],
-        "mask":
-        [
-          "player"
-        ]
-      },
-      "prefab": "data/prefabs/spikes.prefab"
-    }
-  },
-  {
-    "entity":
-    {
-      "name": "nes_platform_civilization_col_053_spikes",
-      "transform":
-      {
-        "pos": "156.395 89.7145 -142.872",
-        "rotation": "0.0 -0.0871557 0.0 -0.996195"
-      },
-      "hierarchy":
-      {
-        "parent": "nes_platform_civilization_053",
-        "pos": "0 0 0",
-        "axis": "0 0 1",
-        "angle": 180
-      },
-      "render":
-      [
-        {
-          "mesh": "data/meshes/spikes_plat_hex_small.mesh",
-          "materials":
-          [
-            "data/materials/spikes_plat_hex_small.material"
-          ]
-        }
-      ],
-      "collider":
-      {
-        "mesh_src": "data/meshes/spikes_plat_hex_small_col.col_mesh",
-        "shape": "convex_mesh",
-        "type": "kinematic",
-        "is_trigger": true,
-        "group":
-        [
-          "trigger"
-        ],
-        "mask":
-        [
-          "player"
-        ]
-      },
-      "prefab": "data/prefabs/spikes.prefab"
-    }
-  },
-  {
-    "entity":
-    {
       "name": "nes_platform_civilization_col_052_spikes",
       "transform":
       {
         "pos": "146.282 89.7145 -146.576",
-        "rotation": "0.0 -0.0871557 0.0 -0.996195"
+        "rotation": "0.0871557 0.0 -0.996195 0.0"
       },
       "hierarchy":
       {
@@ -577,8 +577,8 @@
       "name": "nes_platform_civilization_col_050_spikes",
       "transform":
       {
-        "pos": "27.6792 17.4642 -243.999",
-        "rotation": "0.0 0.0 0.0 -1.0"
+        "pos": "27.6792 17.4365 -244.003",
+        "rotation": "-1.0 0.0 0.0 0.0"
       },
       "hierarchy":
       {
@@ -621,8 +621,8 @@
       "name": "nes_platform_civilization_col_049_spikes",
       "transform":
       {
-        "pos": "16.7097 5.85821 -232.021",
-        "rotation": "0.0 0.0 0.0 -1.0"
+        "pos": "16.7097 5.83055 -232.025",
+        "rotation": "-1.0 0.0 0.0 0.0"
       },
       "hierarchy":
       {
@@ -665,8 +665,8 @@
       "name": "nes_platform_civilization_col_048_spikes",
       "transform":
       {
-        "pos": "12.6625 12.3738 -244.602",
-        "rotation": "0.0 0.0 0.0 -1.0"
+        "pos": "12.6625 12.3462 -244.605",
+        "rotation": "-1.0 0.0 0.0 0.0"
       },
       "hierarchy":
       {
@@ -709,7 +709,7 @@
       "name": "nes_platform_civilization_col_047_spikes",
       "transform":
       {
-        "pos": "24.0803 1.8106 -231.037",
+        "pos": "23.929 3.10479 -230.891",
         "rotation": "0.0 0.0 0.0 -1.0"
       },
       "hierarchy":
@@ -841,8 +841,8 @@
       "name": "nes_platform_civilization_col_044_spikes",
       "transform":
       {
-        "pos": "18.1763 26.7274 -227.75",
-        "rotation": "0.0 0.0 0.0 -1.0"
+        "pos": "18.1763 26.6997 -227.753",
+        "rotation": "-1.0 0.0 0.0 0.0"
       },
       "hierarchy":
       {
@@ -885,8 +885,8 @@
       "name": "nes_platform_civilization_col_043_spikes",
       "transform":
       {
-        "pos": "9.65955 31.7215 -240.333",
-        "rotation": "0.0 0.0 0.0 -1.0"
+        "pos": "9.65955 31.6938 -240.337",
+        "rotation": "-1.0 0.0 0.0 0.0"
       },
       "hierarchy":
       {

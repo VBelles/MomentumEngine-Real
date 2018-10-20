@@ -1,0 +1,117 @@
+[
+	{
+		"entity": {
+			"name": "fireplace",
+			"transform": {
+				"pos": "0 0 0"
+			},
+			"render": [
+				{
+					"mesh": "data/meshes/fireplace_prefab.mesh",
+					"materials": [
+						"data/materials/m_fireplace_00.material"
+					],
+					"enabled": true
+				}
+			],
+			"collider": {
+				"mesh_src": "data/meshes/fireplace_prefab.col_mesh",
+				"shape": "convex_mesh",
+				"type": "static",
+				"group": [
+					"scenario"
+				],
+				"mask": "all"
+			}
+		}
+	},
+	{
+		"entity": {
+			"name": "fire_effect",
+			"transform": {
+				"pos": "0 3.2 0"
+			},
+			"particles": {
+				"fade_out": 1.5,
+				"systems": [
+					{
+						"id": "fire_add",
+						"core": "data/particles/fire/fire_add.particles",
+						"launch": false
+					},
+					{
+						"id": "fire_alpha",
+						"core": "data/particles/fire/fire_alpha.particles",
+						"launch": false
+					},
+					{
+						"id": "fire_glow",
+						"core": "data/particles/fire/fire_glow.particles",
+						"launch": false
+					},
+					{
+						"id": "fire_sparks",
+						"core": "data/particles/fire/fire_sparks.particles",
+						"launch": false
+					},
+					{
+						"id": "smoke",
+						"core": "data/particles/fire/fire_smoke.particles",
+						"launch": false
+					},
+					{
+						"id": "fire_add_blue",
+						"core": "data/particles/fire_blue/fire_add.particles",
+						"launch": true
+					},
+					{
+						"id": "fire_alpha_blue",
+						"core": "data/particles/fire_blue/fire_alpha.particles",
+						"launch": true
+					},
+					{
+						"id": "fire_glow_blue",
+						"core": "data/particles/fire_blue/fire_glow.particles",
+						"launch": true
+					},
+					{
+						"id": "fire_sparks_blue",
+						"core": "data/particles/fire_blue/fire_sparks.particles",
+						"launch": true
+					}
+				]
+			},
+			"collider": {
+				"shape": "box",
+				"halfExtent": "0.25 0.25 0.25",
+				"is_trigger": true,
+				"group": [
+					"enemy"
+				],
+				"mask": [
+					"all"
+				]
+			},
+			"fire": {
+				"time": 5,
+				"fire": [
+					"fire_add",
+					"fire_alpha",
+					"fire_glow",
+					"fire_sparks"
+				],
+				"smoke": "smoke",
+				"turn_off_listener": "fire_puzzle"
+			},
+			"light_point": {
+				"intensity": 5,
+				"radius": 10,
+				"color": "0.8125 0.52 0.055 1"
+			},
+			"light_flicker": {
+				"intensityVariation": 0.1,
+				"variationSpeed": 0.5
+			}
+		}
+	}
+]

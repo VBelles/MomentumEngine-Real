@@ -74,7 +74,7 @@ auto constexpr SOUND_MENU_ACCEPT = "event:/MENU-PAUSA/menu_accept";
 auto constexpr SOUND_MENU_BACK = "event:/MENU-PAUSA/menu_back";
 auto constexpr SOUND_MENU_UNAVAILABLE = "event:/MENU-PAUSA/menu_back";
 auto constexpr SOUND_CLOCK = "event:/INTERACTUABLE/reloj";
-
+auto constexpr SOUND_CHRYSALIS_PUZZLE = "";
 
 // Particles
 auto constexpr SLASH_CLOCKWISE = "data/particles/player/slash_clockwise.particles";

@@ -223,7 +223,8 @@ bool StateManager::changeConcurrentState(std::string newStateName) {
 }
 
 void StateManager::performStateChange() {
-	if (baseState != nextBaseState) {
+	if (baseState != nextBaseState ||
+		(isChangingBaseState && dynamic_cast<DummyActionState*>(nextBaseState)) ) {
 		IActionState* exitingState = baseState;
 		baseState = nextBaseState;
 		if (exitingState) {

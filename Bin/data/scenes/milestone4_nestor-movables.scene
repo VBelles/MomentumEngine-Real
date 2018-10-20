@@ -2,6 +2,133 @@
   {
     "entity":
     {
+      "name": "nes_platform_civilization_emissive_089",
+      "transform":
+      {
+        "pos": "-61.69 40.5897 -5.93103",
+        "rotation": "0.0 0.0 0.0 -1.0"
+      },
+      "render":
+      [
+        {
+          "mesh": "data/meshes/nes_platform_civilization_emissive_089.mesh",
+          "materials":
+          [
+            "data/materials/platform_v1.material"
+          ],
+          "enabled": true
+        }
+      ],
+      "collider":
+      {
+        "mesh_src": "data/meshes/nes_platform_civilization_emissive_col_089.col_mesh",
+        "shape": "convex_mesh",
+        "type": "kinematic",
+        "group":
+        [
+          "scenario"
+        ]
+      },
+      "platform_simple":
+      {
+        "curve_type": "catmull-rom",
+        "automove": true,
+        "loop": true,
+        "closed": false,
+        "move_offset": 0,
+        "travel_wait_time": 1.0,
+        "speed": 0.4,
+        "knots":
+        [
+           "-61.6119 40.3649 -5.64174",
+           "-61.6119 40.3649 -5.64174",
+           "-91.5702 40.3649 -17.3842",
+           "-91.5702 40.3649 -17.3842"
+        ]
+      }
+    }
+  },
+  {
+    "entity":
+    {
+      "name": "nes_platform_civilization_066",
+      "transform":
+      {
+        "pos": "156.412 89.7007 -142.869",
+        "rotation": "-0.0871557 0.0 -0.996195 0.0"
+      },
+      "render":
+      [
+        {
+          "mesh": "data/meshes/nes_platform_civilization_066.mesh",
+          "materials":
+          [
+            "data/materials/platform_v2.material"
+          ],
+          "enabled": true
+        }
+      ],
+      "collider":
+      {
+        "mesh_src": "data/meshes/nes_platform_civilization_col_066.col_mesh",
+        "shape": "convex_mesh",
+        "type": "kinematic",
+        "group":
+        [
+          "scenario"
+        ]
+      },
+      "platform_simple":
+      {
+        "roll":
+        {
+          "speed": 7.0
+        }
+      }
+    }
+  },
+  {
+    "entity":
+    {
+      "name": "nes_platform_civilization_065",
+      "transform":
+      {
+        "pos": "155.472 89.7007 -148.19",
+        "rotation": "-0.0871557 0.0 -0.996195 0.0"
+      },
+      "render":
+      [
+        {
+          "mesh": "data/meshes/nes_platform_civilization_065.mesh",
+          "materials":
+          [
+            "data/materials/platform_v2.material"
+          ],
+          "enabled": true
+        }
+      ],
+      "collider":
+      {
+        "mesh_src": "data/meshes/nes_platform_civilization_col_065.col_mesh",
+        "shape": "convex_mesh",
+        "type": "kinematic",
+        "group":
+        [
+          "scenario"
+        ]
+      },
+      "platform_simple":
+      {
+        "roll":
+        {
+          "speed": 7.0
+        }
+      }
+    }
+  },
+  {
+    "entity":
+    {
       "name": "nes_platform_civilization_063",
       "transform":
       {
@@ -44,8 +171,8 @@
       "name": "nes_platform_civilization_062",
       "transform":
       {
-        "pos": "-79.9736 41.9976 -2.74663",
-        "rotation": "0.0 0.0 0.0 -1.0"
+        "pos": "-79.9736 41.9976 -2.74664",
+        "rotation": "-1.0 0.0 0.0 0.0"
       },
       "render":
       [
@@ -84,7 +211,7 @@
       "transform":
       {
         "pos": "-220.153 46.6975 54.8383",
-        "rotation": "0.0 0.0 0.0 -1.0"
+        "rotation": "-1.0 0.0 0.0 0.0"
       },
       "render":
       [
@@ -162,7 +289,7 @@
       "transform":
       {
         "pos": "-209.126 39.3619 52.9336",
-        "rotation": "0.0 0.0 0.0 -1.0"
+        "rotation": "-1.0 0.0 0.0 0.0"
       },
       "render":
       [
@@ -240,7 +367,7 @@
       "transform":
       {
         "pos": "-214.178 34.0696 39.8585",
-        "rotation": "0.0 0.0 0.0 -1.0"
+        "rotation": "-1.0 0.0 0.0 0.0"
       },
       "render":
       [
@@ -317,7 +444,7 @@
       "name": "nes_platform_civilization_055",
       "transform":
       {
-        "pos": "151.339 89.7007 -144.724",
+        "pos": "151.339 89.7007 -144.725",
         "rotation": "0.0 -0.0871557 0.0 -0.996195"
       },
       "render":
@@ -353,89 +480,11 @@
   {
     "entity":
     {
-      "name": "nes_platform_civilization_054",
-      "transform":
-      {
-        "pos": "155.474 89.7007 -148.184",
-        "rotation": "0.0 -0.0871557 0.0 -0.996195"
-      },
-      "render":
-      [
-        {
-          "mesh": "data/meshes/nes_platform_civilization_054.mesh",
-          "materials":
-          [
-            "data/materials/platform_v2.material"
-          ],
-          "enabled": true
-        }
-      ],
-      "collider":
-      {
-        "mesh_src": "data/meshes/nes_platform_civilization_col_054.col_mesh",
-        "shape": "convex_mesh",
-        "type": "kinematic",
-        "group":
-        [
-          "scenario"
-        ]
-      },
-      "platform_simple":
-      {
-        "roll":
-        {
-          "speed": 7.0
-        }
-      }
-    }
-  },
-  {
-    "entity":
-    {
-      "name": "nes_platform_civilization_053",
-      "transform":
-      {
-        "pos": "156.397 89.7007 -142.874",
-        "rotation": "0.0 -0.0871557 0.0 -0.996195"
-      },
-      "render":
-      [
-        {
-          "mesh": "data/meshes/nes_platform_civilization_053.mesh",
-          "materials":
-          [
-            "data/materials/platform_v2.material"
-          ],
-          "enabled": true
-        }
-      ],
-      "collider":
-      {
-        "mesh_src": "data/meshes/nes_platform_civilization_col_053.col_mesh",
-        "shape": "convex_mesh",
-        "type": "kinematic",
-        "group":
-        [
-          "scenario"
-        ]
-      },
-      "platform_simple":
-      {
-        "roll":
-        {
-          "speed": 7.0
-        }
-      }
-    }
-  },
-  {
-    "entity":
-    {
       "name": "nes_platform_civilization_052",
       "transform":
       {
         "pos": "146.284 89.7007 -146.578",
-        "rotation": "0.0 -0.0871557 0.0 -0.996195"
+        "rotation": "-0.0871557 0.0 -0.996195 0.0"
       },
       "render":
       [
@@ -513,7 +562,7 @@
       "transform":
       {
         "pos": "27.6818 17.4503 -244.001",
-        "rotation": "0.0 0.0 0.0 -1.0"
+        "rotation": "-1.0 0.0 0.0 0.0"
       },
       "render":
       [
@@ -552,7 +601,7 @@
       "transform":
       {
         "pos": "16.7123 5.84438 -232.023",
-        "rotation": "0.0 0.0 0.0 -1.0"
+        "rotation": "-1.0 0.0 0.0 0.0"
       },
       "render":
       [
@@ -591,7 +640,7 @@
       "transform":
       {
         "pos": "12.6651 12.36 -244.603",
-        "rotation": "0.0 0.0 0.0 -1.0"
+        "rotation": "-1.0 0.0 0.0 0.0"
       },
       "render":
       [
@@ -629,7 +678,7 @@
       "name": "nes_platform_civilization_047",
       "transform":
       {
-        "pos": "24.0829 1.79677 -231.039",
+        "pos": "23.9316 3.09096 -230.892",
         "rotation": "0.0 0.0 0.0 -1.0"
       },
       "render":
@@ -747,7 +796,7 @@
       "transform":
       {
         "pos": "18.1789 26.7135 -227.752",
-        "rotation": "0.0 0.0 0.0 -1.0"
+        "rotation": "-1.0 0.0 0.0 0.0"
       },
       "render":
       [
@@ -786,7 +835,7 @@
       "transform":
       {
         "pos": "9.66216 31.7077 -240.335",
-        "rotation": "0.0 0.0 0.0 -1.0"
+        "rotation": "-1.0 0.0 0.0 0.0"
       },
       "render":
       [
@@ -972,15 +1021,15 @@
         "loop": true,
         "closed": false,
         "move_offset": 0,
-        "travel_wait_time": 1.0,
-        "speed": 0.08,
+        "travel_wait_time": 2.0,
+        "speed": 0.12,
         "knots":
         [
            "-108.218 20.2972 -58.1108",
            "-108.218 20.2972 -58.1108",
            "-111.517 20.2972 -63.5779",
-           "-107.606 20.2972 -68.4705",
-           "-107.606 20.2972 -68.4705"
+           "-105.541 20.2972 -71.1172",
+           "-105.541 20.2972 -71.1172"
         ]
       }
     }
@@ -1022,12 +1071,12 @@
         "loop": true,
         "closed": false,
         "move_offset": 0,
-        "travel_wait_time": 1.0,
-        "speed": 0.08,
+        "travel_wait_time": 2.0,
+        "speed": 0.12,
         "knots":
         [
-           "-100.151 20.2972 -68.6428",
-           "-100.151 20.2972 -68.6428",
+           "-101.422 20.2972 -71.1337",
+           "-101.422 20.2972 -71.1337",
            "-96.8517 20.2972 -63.1757",
            "-100.762 20.2972 -58.2831",
            "-100.762 20.2972 -58.2831"
@@ -1072,8 +1121,8 @@
         "loop": true,
         "closed": false,
         "move_offset": 0,
-        "travel_wait_time": 1.0,
-        "speed": 0.08,
+        "travel_wait_time": 2.0,
+        "speed": 0.12,
         "knots":
         [
            "-112.928 18.191 -41.3654",
@@ -1122,8 +1171,8 @@
         "loop": true,
         "closed": false,
         "move_offset": 0,
-        "travel_wait_time": 1.0,
-        "speed": 0.08,
+        "travel_wait_time": 2.0,
+        "speed": 0.12,
         "knots":
         [
            "-104.861 18.191 -51.8975",

@@ -1,0 +1,47 @@
+{
+  "life": {
+    "duration": 0.6,
+    "duration_variation": 0.05,
+    "max_particles": 4000,
+    "time_factor": 1.0
+  },
+  "emission": {
+    "type": "circle",
+    "size": 1.9,
+    "angle": 30.0,
+    "interval": 0.1,
+    "count": 200,
+    "cyclic": false,
+    "duration": 1
+  },
+  "movement": {
+    "velocity": 5,
+    "velocity_variation": 0.2,
+    "acceleration": 0.0,
+    "spin": 0.0,
+    "wind": 0.0,
+    "gravity": 0.0,
+    "ground": false,
+    "following": false
+  },
+  "render": {
+    "texture": "data/textures/particles/glow.dds",
+    "additive": true,
+    "glow": true
+  },
+  "size": {
+    "scale": 0.1,
+    "scale_variation": 0,
+    "sizes": [
+      [0.0, 1]
+    ]
+  },
+  "color": {
+    "opacity": 1,
+    "colors": [
+      [0.0, "0.6 0.9 1 1"],
+      [0.7, "0.6 0.9 1 1"],
+      [1.0, "0.6 0.9 1 0"]
+    ]
+  }
+}

@@ -44,7 +44,7 @@
     },
     {
       "id": "kings_graveyard_teleport",
-      "done": false,
+      "done": true,
       "position": "143.049 61.5612 154.791",
       "level": "level00",
       "type": "teleport_point"

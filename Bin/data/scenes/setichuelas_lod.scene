@@ -1,0 +1,564 @@
+[
+  {
+    "entity":
+    {
+      "name": "mushrooms_united_7",
+      "transform":
+      {
+        "pos": "43.0862 1.76176 17.9485",
+        "rotation": "0.0 0.0 0.0 -1.0"
+      },
+      "render":
+      [
+        {
+          "mesh": "data/meshes/mushrooms_united_7.mesh",
+          "materials":
+          [
+            "data/materials/mushroom_body_01.material",
+            "data/materials/mushroom_head_01.material",
+            "data/materials/mushroom_head_08.material",
+            "data/materials/mushroom_body_05.material",
+            "data/materials/mushroom_head_05.material",
+            "data/materials/mushroom_body_06.material",
+            "data/materials/mushroom_head_06.material",
+            "data/materials/mushroom_head_00.material",
+            "data/materials/mushroom_body_00.material"
+          ],
+          "enabled": true
+        }
+      ],
+      "local_aabb": null,
+      "abs_aabb": null
+    }
+  },
+  {
+    "entity":
+    {
+      "name": "mushrooms_united_6",
+      "transform":
+      {
+        "pos": "43.0862 1.76176 17.9485",
+        "rotation": "0.0 0.0 0.0 -1.0"
+      },
+      "render":
+      [
+        {
+          "mesh": "data/meshes/mushrooms_united_6.mesh",
+          "materials":
+          [
+            "data/materials/mushroom_body_01.material",
+            "data/materials/mushroom_head_01.material",
+            "data/materials/mushroom_head_08.material",
+            "data/materials/mushroom_body_05.material",
+            "data/materials/mushroom_head_05.material",
+            "data/materials/mushroom_body_04.material",
+            "data/materials/mushroom_head_04.material",
+            "data/materials/mushroom_body_02.material",
+            "data/materials/mushroom_head_03.material",
+            "data/materials/mushroom_body_06.material",
+            "data/materials/mushroom_head_06.material",
+            "data/materials/mushroom_head_00.material",
+            "data/materials/mushroom_body_00.material",
+            "data/materials/mushroom_head_09.material",
+            "data/materials/mushroom_body_07.material"
+          ],
+          "enabled": true
+        }
+      ],
+      "local_aabb": null,
+      "abs_aabb": null
+    }
+  },
+  {
+    "entity":
+    {
+      "name": "mushrooms_united_5",
+      "transform":
+      {
+        "pos": "43.0862 1.76176 17.9485",
+        "rotation": "0.0 0.0 0.0 -1.0"
+      },
+      "render":
+      [
+        {
+          "mesh": "data/meshes/mushrooms_united_5.mesh",
+          "materials":
+          [
+            "data/materials/mushroom_body_01.material",
+            "data/materials/mushroom_head_01.material",
+            "data/materials/mushroom_head_08.material",
+            "data/materials/mushroom_body_05.material",
+            "data/materials/mushroom_head_05.material",
+            "data/materials/mushroom_body_04.material",
+            "data/materials/mushroom_head_04.material",
+            "data/materials/mushroom_body_02.material",
+            "data/materials/mushroom_head_03.material",
+            "data/materials/mushroom_body_06.material",
+            "data/materials/mushroom_head_06.material",
+            "data/materials/mushroom_head_00.material",
+            "data/materials/mushroom_body_00.material",
+            "data/materials/mushroom_head_09.material",
+            "data/materials/mushroom_body_07.material",
+            "data/materials/mushroom_body_03.material"
+          ],
+          "enabled": true
+        }
+      ],
+      "local_aabb": null,
+      "abs_aabb": null
+    }
+  },
+  {
+    "entity":
+    {
+      "name": "mushrooms_united_4",
+      "transform":
+      {
+        "pos": "43.0862 1.76176 17.9485",
+        "rotation": "0.0 0.0 0.0 -1.0"
+      },
+      "render":
+      [
+        {
+          "mesh": "data/meshes/mushrooms_united_4.mesh",
+          "materials":
+          [
+            "data/materials/mushroom_body_01.material",
+            "data/materials/mushroom_head_01.material",
+            "data/materials/mushroom_head_08.material",
+            "data/materials/mushroom_body_05.material",
+            "data/materials/mushroom_head_05.material",
+            "data/materials/mushroom_body_04.material",
+            "data/materials/mushroom_head_04.material",
+            "data/materials/mushroom_body_02.material",
+            "data/materials/mushroom_head_03.material",
+            "data/materials/mushroom_body_06.material",
+            "data/materials/mushroom_head_06.material",
+            "data/materials/mushroom_head_00.material",
+            "data/materials/mushroom_body_00.material",
+            "data/materials/mushroom_head_09.material",
+            "data/materials/mushroom_body_07.material"
+          ],
+          "enabled": true
+        }
+      ],
+      "local_aabb": null,
+      "abs_aabb": null
+    }
+  },
+  {
+    "entity":
+    {
+      "name": "mushrooms_united_3",
+      "transform":
+      {
+        "pos": "43.0862 1.76176 17.9485",
+        "rotation": "0.0 0.0 0.0 -1.0"
+      },
+      "render":
+      [
+        {
+          "mesh": "data/meshes/mushrooms_united_3.mesh",
+          "materials":
+          [
+            "data/materials/mushroom_head_08.material",
+            "data/materials/mushroom_body_05.material",
+            "data/materials/mushroom_head_05.material",
+            "data/materials/mushroom_body_04.material",
+            "data/materials/mushroom_head_04.material",
+            "data/materials/mushroom_body_02.material",
+            "data/materials/mushroom_head_03.material",
+            "data/materials/mushroom_body_06.material",
+            "data/materials/mushroom_head_06.material",
+            "data/materials/mushroom_head_00.material",
+            "data/materials/mushroom_body_00.material",
+            "data/materials/mushroom_body_07.material",
+            "data/materials/mushroom_body_03.material"
+          ],
+          "enabled": true
+        }
+      ],
+      "local_aabb": null,
+      "abs_aabb": null
+    }
+  },
+  {
+    "entity":
+    {
+      "name": "mushrooms_united_2",
+      "transform":
+      {
+        "pos": "43.0862 1.76176 17.9485",
+        "rotation": "0.0 0.0 0.0 -1.0"
+      },
+      "render":
+      [
+        {
+          "mesh": "data/meshes/mushrooms_united_2.mesh",
+          "materials":
+          [
+            "data/materials/mushroom_body_01.material",
+            "data/materials/mushroom_head_01.material",
+            "data/materials/mushroom_head_08.material",
+            "data/materials/mushroom_body_05.material",
+            "data/materials/mushroom_head_05.material",
+            "data/materials/mushroom_body_04.material",
+            "data/materials/mushroom_head_04.material",
+            "data/materials/mushroom_body_02.material",
+            "data/materials/mushroom_head_03.material",
+            "data/materials/mushroom_body_06.material",
+            "data/materials/mushroom_head_06.material",
+            "data/materials/mushroom_head_00.material",
+            "data/materials/mushroom_body_00.material",
+            "data/materials/mushroom_head_09.material",
+            "data/materials/mushroom_body_07.material",
+            "data/materials/Material roca04.material"
+          ],
+          "enabled": true
+        }
+      ],
+      "local_aabb": null,
+      "abs_aabb": null
+    }
+  },
+  {
+    "entity":
+    {
+      "name": "mushrooms_united_1",
+      "transform":
+      {
+        "pos": "43.0862 1.76176 17.9485",
+        "rotation": "0.0 0.0 0.0 -1.0"
+      },
+      "render":
+      [
+        {
+          "mesh": "data/meshes/mushrooms_united_1.mesh",
+          "materials":
+          [
+            "data/materials/mushroom_body_01.material",
+            "data/materials/mushroom_head_01.material",
+            "data/materials/mushroom_head_08.material",
+            "data/materials/mushroom_body_05.material",
+            "data/materials/mushroom_head_05.material",
+            "data/materials/mushroom_body_04.material",
+            "data/materials/mushroom_head_04.material",
+            "data/materials/mushroom_body_02.material",
+            "data/materials/mushroom_head_03.material",
+            "data/materials/mushroom_body_06.material",
+            "data/materials/mushroom_head_06.material",
+            "data/materials/mushroom_head_00.material",
+            "data/materials/mushroom_body_00.material",
+            "data/materials/mushroom_head_09.material",
+            "data/materials/mushroom_body_07.material"
+          ],
+          "enabled": true
+        }
+      ],
+      "local_aabb": null,
+      "abs_aabb": null
+    }
+  },
+  {
+    "entity":
+    {
+      "name": "mushrooms_united_7_lod",
+      "transform":
+      {
+        "pos": "43.0862 1.76176 17.9485",
+        "rotation": "0.0 0.0 0.0 -1.0"
+      },
+      "render":
+      [
+        {
+          "mesh": "data/meshes/mushrooms_united_7_lod.mesh",
+          "materials":
+          [
+            "data/materials/mushroom_body_01.material",
+            "data/materials/mushroom_head_01.material",
+            "data/materials/mushroom_head_08.material",
+            "data/materials/mushroom_body_05.material",
+            "data/materials/mushroom_head_05.material",
+            "data/materials/mushroom_body_06.material",
+            "data/materials/mushroom_head_06.material",
+            "data/materials/mushroom_head_00.material",
+            "data/materials/mushroom_body_00.material"
+          ],
+          "enabled": true
+        }
+      ],
+      "local_aabb": null,
+      "abs_aabb": null,
+      "lod" : {
+        "threshold" : 0.08,
+        "children" : [
+          "mushrooms_united_7"
+        ]
+      }
+    }
+  },
+  {
+    "entity":
+    {
+      "name": "mushrooms_united_6_lod",
+      "transform":
+      {
+        "pos": "43.0862 1.76176 17.9485",
+        "rotation": "0.0 0.0 0.0 -1.0"
+      },
+      "render":
+      [
+        {
+          "mesh": "data/meshes/mushrooms_united_6_lod.mesh",
+          "materials":
+          [
+            "data/materials/mushroom_body_01.material",
+            "data/materials/mushroom_head_01.material",
+            "data/materials/mushroom_head_08.material",
+            "data/materials/mushroom_body_05.material",
+            "data/materials/mushroom_head_05.material",
+            "data/materials/mushroom_body_04.material",
+            "data/materials/mushroom_head_04.material",
+            "data/materials/mushroom_body_02.material",
+            "data/materials/mushroom_head_03.material",
+            "data/materials/mushroom_body_06.material",
+            "data/materials/mushroom_head_06.material",
+            "data/materials/mushroom_head_00.material",
+            "data/materials/mushroom_body_00.material",
+            "data/materials/mushroom_head_09.material",
+            "data/materials/mushroom_body_07.material"
+          ],
+          "enabled": true
+        }
+      ],
+      "local_aabb": null,
+      "abs_aabb": null,
+      "lod" : {
+        "threshold" : 0.08,
+        "children" : [
+          "mushrooms_united_6"
+        ]
+      }
+    }
+  },
+  {
+    "entity":
+    {
+      "name": "mushrooms_united_5_lod",
+      "transform":
+      {
+        "pos": "43.0862 1.76176 17.9485",
+        "rotation": "0.0 0.0 0.0 -1.0"
+      },
+      "render":
+      [
+        {
+          "mesh": "data/meshes/mushrooms_united_5_lod.mesh",
+          "materials":
+          [
+            "data/materials/mushroom_body_01.material",
+            "data/materials/mushroom_head_01.material",
+            "data/materials/mushroom_head_08.material",
+            "data/materials/mushroom_body_05.material",
+            "data/materials/mushroom_head_05.material",
+            "data/materials/mushroom_body_04.material",
+            "data/materials/mushroom_head_04.material",
+            "data/materials/mushroom_body_02.material",
+            "data/materials/mushroom_head_03.material",
+            "data/materials/mushroom_body_06.material",
+            "data/materials/mushroom_head_06.material",
+            "data/materials/mushroom_head_00.material",
+            "data/materials/mushroom_body_00.material",
+            "data/materials/mushroom_head_09.material",
+            "data/materials/mushroom_body_07.material",
+            "data/materials/mushroom_body_03.material"
+          ],
+          "enabled": true
+        }
+      ],
+      "local_aabb": null,
+      "abs_aabb": null,
+      "lod" : {
+        "threshold" : 0.08,
+        "children" : [
+          "mushrooms_united_5"
+        ]
+      }
+    }
+  },
+  {
+    "entity":
+    {
+      "name": "mushrooms_united_4_lod",
+      "transform":
+      {
+        "pos": "43.0862 1.76176 17.9485",
+        "rotation": "0.0 0.0 0.0 -1.0"
+      },
+      "render":
+      [
+        {
+          "mesh": "data/meshes/mushrooms_united_4_lod.mesh",
+          "materials":
+          [
+            "data/materials/mushroom_body_01.material",
+            "data/materials/mushroom_head_01.material",
+            "data/materials/mushroom_head_08.material",
+            "data/materials/mushroom_body_05.material",
+            "data/materials/mushroom_head_05.material",
+            "data/materials/mushroom_body_04.material",
+            "data/materials/mushroom_head_04.material",
+            "data/materials/mushroom_body_02.material",
+            "data/materials/mushroom_head_03.material",
+            "data/materials/mushroom_body_06.material",
+            "data/materials/mushroom_head_06.material",
+            "data/materials/mushroom_head_00.material",
+            "data/materials/mushroom_body_00.material",
+            "data/materials/mushroom_head_09.material",
+            "data/materials/mushroom_body_07.material"
+          ],
+          "enabled": true
+        }
+      ],
+      "local_aabb": null,
+      "abs_aabb": null,
+      "lod" : {
+        "threshold" : 0.08,
+        "children" : [
+          "mushrooms_united_4"
+        ]
+      }
+    }
+  },
+  {
+    "entity":
+    {
+      "name": "mushrooms_united_3_lod",
+      "transform":
+      {
+        "pos": "43.0862 1.76176 17.9485",
+        "rotation": "0.0 0.0 0.0 -1.0"
+      },
+      "render":
+      [
+        {
+          "mesh": "data/meshes/mushrooms_united_3_lod.mesh",
+          "materials":
+          [
+            "data/materials/mushroom_head_08.material",
+            "data/materials/mushroom_body_05.material",
+            "data/materials/mushroom_head_05.material",
+            "data/materials/mushroom_body_04.material",
+            "data/materials/mushroom_head_04.material",
+            "data/materials/mushroom_body_02.material",
+            "data/materials/mushroom_head_03.material",
+            "data/materials/mushroom_body_06.material",
+            "data/materials/mushroom_head_06.material",
+            "data/materials/mushroom_head_00.material",
+            "data/materials/mushroom_body_00.material",
+            "data/materials/mushroom_body_07.material",
+            "data/materials/mushroom_body_03.material"
+          ],
+          "enabled": true
+        }
+      ],
+      "local_aabb": null,
+      "abs_aabb": null,
+      "lod" : {
+        "threshold" : 0.5,
+        "children" : [
+          "mushrooms_united_3"
+        ]
+      }
+    }
+  },
+  {
+    "entity":
+    {
+      "name": "mushrooms_united_2_lod",
+      "transform":
+      {
+        "pos": "43.0862 1.76176 17.9485",
+        "rotation": "0.0 0.0 0.0 -1.0"
+      },
+      "render":
+      [
+        {
+          "mesh": "data/meshes/mushrooms_united_2_lod.mesh",
+          "materials":
+          [
+            "data/materials/mushroom_body_01.material",
+            "data/materials/mushroom_head_01.material",
+            "data/materials/mushroom_head_08.material",
+            "data/materials/mushroom_body_05.material",
+            "data/materials/mushroom_head_05.material",
+            "data/materials/mushroom_body_04.material",
+            "data/materials/mushroom_head_04.material",
+            "data/materials/mushroom_body_02.material",
+            "data/materials/mushroom_head_03.material",
+            "data/materials/mushroom_body_06.material",
+            "data/materials/mushroom_head_06.material",
+            "data/materials/mushroom_head_00.material",
+            "data/materials/mushroom_body_00.material",
+            "data/materials/mushroom_head_09.material",
+            "data/materials/mushroom_body_07.material",
+            "data/materials/Material roca04.material"
+          ],
+          "enabled": true
+        }
+      ],
+      "local_aabb": null,
+      "abs_aabb": null,
+      "lod" : {
+        "threshold" : 0.5,
+        "children" : [
+          "mushrooms_united_2"
+        ]
+      }
+    }
+  },
+  {
+    "entity":
+    {
+      "name": "mushrooms_united_1_lod",
+      "transform":
+      {
+        "pos": "43.0862 1.76176 17.9485",
+        "rotation": "0.0 0.0 0.0 -1.0"
+      },
+      "render":
+      [
+        {
+          "mesh": "data/meshes/mushrooms_united_1_lod.mesh",
+          "materials":
+          [
+            "data/materials/mushroom_body_01.material",
+            "data/materials/mushroom_head_01.material",
+            "data/materials/mushroom_head_08.material",
+            "data/materials/mushroom_body_05.material",
+            "data/materials/mushroom_head_05.material",
+            "data/materials/mushroom_body_04.material",
+            "data/materials/mushroom_head_04.material",
+            "data/materials/mushroom_body_02.material",
+            "data/materials/mushroom_head_03.material",
+            "data/materials/mushroom_body_06.material",
+            "data/materials/mushroom_head_06.material",
+            "data/materials/mushroom_head_00.material",
+            "data/materials/mushroom_body_00.material",
+            "data/materials/mushroom_head_09.material",
+            "data/materials/mushroom_body_07.material"
+          ],
+          "enabled": true
+        }
+      ],
+      "local_aabb": null,
+      "abs_aabb": null,
+      "lod" : {
+        "threshold" : 0.5,
+        "children" : [
+          "mushrooms_united_1"
+        ]
+      }
+    }
+  }
+]

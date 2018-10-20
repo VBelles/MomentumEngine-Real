@@ -5,6 +5,7 @@
 DECL_OBJ_MANAGER("collectable", TCompCollectable);
 
 void TCompCollectable::debugInMenu() {
+	ImGui::Checkbox("Active", &active);
 }
 
 void TCompCollectable::registerMsgs() {
@@ -20,6 +21,7 @@ void TCompCollectable::load(const json& j, TEntityParseContext& ctx) {
 	if (j.count("rotation_axis")) {
 		rotationAxis = loadVEC3(j["rotation_axis"]);
 	}
+	active = j.value("active", active);
 }
 
 void TCompCollectable::onGroupCreated(const TMsgEntitiesGroupCreated & msg) {
@@ -30,13 +32,13 @@ void TCompCollectable::onGroupCreated(const TMsgEntitiesGroupCreated & msg) {
 void TCompCollectable::update(float delta) {
 	if (abs(rotationSpeed) > 0) {
 		TCompTransform* transform = getTransform();
-		QUAT quat = QUAT::CreateFromAxisAngle(rotationAxis, rotationSpeed * delta);	
+		QUAT quat = QUAT::CreateFromAxisAngle(rotationAxis, rotationSpeed * delta);
 		transform->setRotation(transform->getRotation() * quat);
 	}
 }
 
 void TCompCollectable::onTriggerEnter(const TMsgTriggerEnter & msg) {
-	if (!collected) {
+	if (!collected && active) {
 		CEntity* collector = msg.h_other_entity;
 		TMsgCollect msg{ CHandle(this), type };
 		collector->sendMsg(msg);
@@ -44,7 +46,7 @@ void TCompCollectable::onTriggerEnter(const TMsgTriggerEnter & msg) {
 }
 
 void TCompCollectable::collect() {
-	if (!collected) {
+	if (!collected && active) {
 		collected = true;
 		((TCompCollider*)get<TCompCollider>())->destroy();
 	}
@@ -60,6 +62,14 @@ TCompCollectable::Type TCompCollectable::getTypeByName(std::string name) {
 		return typeByName[name];
 	}
 	return Type::UNDEFINED;
+}
+
+void TCompCollectable::setActive(bool active) {
+	this->active = active;
+}
+
+bool TCompCollectable::isActive() {
+	return active;
 }
 
 TCompTransform * TCompCollectable::getTransform() {

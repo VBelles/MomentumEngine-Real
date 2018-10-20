@@ -38,6 +38,15 @@
 						"following": true
 					}
 				]
+			},
+			"particles": {
+				"launch": false,
+				"systems": [
+					{
+						"id": "ranged_attack",
+						"core": "data/particles/ranged_attack.particles"
+					}
+				]
 			}
 		}
 	}

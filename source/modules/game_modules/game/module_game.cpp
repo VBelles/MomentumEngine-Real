@@ -21,6 +21,7 @@
 #include "modules/system_modules/scripting/scripting_player.h"
 #include "modules/system_modules/particles/comp_particles.h"
 
+
 CCamera camera;
 //extern void registerMesh(CRenderMesh* new_mesh, const char* name);
 
@@ -128,6 +129,17 @@ void CModuleGame::update(float delta) {
 			Engine.setInputType(InputType::Menu);
 		}
 	}
+
+	if (EngineInput["test_particles"].getsPressed()) {
+		CEntity* playerEntity = getEntityByName(PLAYER_NAME);
+		TCompParticles* particles = playerEntity->get<TCompParticles>();
+		particles->launch("teleport_1");
+		particles->launch("teleport_2");
+		particles->launch("teleport_3");
+		particles->launch("teleport_4");
+		particles->launch("teleport_5");
+	}
+
 }
 
 void CModuleGame::render() {
@@ -177,4 +189,13 @@ void CModuleGame::showChrysalis(float time) {
 
 void CModuleGame::hideChrysalis() {
 	hudController->hideChrysalis();
+}
+
+void CModuleGame::showHUD(bool how) {
+	if (how) {
+		EngineGUI.activateWidget("hud");
+	}
+	else {
+		EngineGUI.deactivateWidget("hud");
+	}
 }

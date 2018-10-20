@@ -16,6 +16,7 @@ public:
 	bool stop() override;
 	void update(float delta) override;
 	void render() override;
+	void renderAfterBloom() override;
 
 	void reset();
 	void setManagerUpdate(std::string managerName, bool update);

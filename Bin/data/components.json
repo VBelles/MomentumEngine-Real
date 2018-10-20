@@ -94,7 +94,6 @@
     "collectable",
     "respawner",
     "local_aabb",
-    "lod",
     "self_illum_variation",
     "slash"
   ],
@@ -111,6 +110,7 @@
     "collectable",
     "collectable_manager",
     "power_up",
+    "dummy_collectable",
     "breakable",
     "mechanism",
     "mechanism_system",
@@ -135,7 +135,6 @@
     "free_camera",
     "camera_curve_interpolation",
     "culling",
-    "camera",
     "curve_controller",
     "sun",
     "light_dir",
@@ -148,6 +147,7 @@
     "givePower",
     "sound",
     "music",
+    "camera",
     "fire"
   ],
   "render_debug" : [

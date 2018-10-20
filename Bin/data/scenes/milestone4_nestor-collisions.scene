@@ -2,6 +2,23 @@
   {
     "entity":
     {
+      "name": "nes_tapar_agujeros_016",
+      "transform":
+      {
+        "pos": "-12.5053 49.3279 215.035",
+        "rotation": "0.707107 -0.707107 0.0 0.0"
+      },
+      "collider":
+      {
+        "mesh_src": "data/meshes/nes_tapar_agujeros_016.col_mesh",
+        "shape": "tri_mesh",
+        "type": "static"
+      }
+    }
+  },
+  {
+    "entity":
+    {
       "name": "nes_tapar_agujeros_015",
       "transform":
       {

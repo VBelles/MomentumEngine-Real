@@ -27,4 +27,5 @@ public:
 	void showChrysalis();
 	void showChrysalis(float time);
 	void hideChrysalis();
+	void showHUD(bool how);
 };

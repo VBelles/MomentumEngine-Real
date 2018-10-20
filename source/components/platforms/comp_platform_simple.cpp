@@ -95,7 +95,7 @@ void TCompPlatformSimple::onCreated(const TMsgEntityCreated& msg) {
 	transformHandle = get<TCompTransform>();
 	assert(transformHandle.isValid());
 	colliderHandle = get<TCompCollider>();
-	assert(colliderHandle.isValid());
+	//assert(colliderHandle.isValid());
 
 	TCompTransform* transform = getTransform();
 
@@ -219,7 +219,13 @@ bool TCompPlatformSimple::isRolling() {
 	return doRoll;
 }
 
-
 TCompTransform* TCompPlatformSimple::getTransform() { return transformHandle; }
 TCompCollider* TCompPlatformSimple::getCollider() { return colliderHandle; }
-PxRigidDynamic* TCompPlatformSimple::getRigidDynamic() { return static_cast<PxRigidDynamic*>(getCollider()->actor); }
+
+PxRigidDynamic* TCompPlatformSimple::getRigidDynamic() {
+	TCompCollider* col = getCollider();
+	if (col) {
+		return static_cast<PxRigidDynamic*>(col->actor); 
+	}
+	else return nullptr;
+}

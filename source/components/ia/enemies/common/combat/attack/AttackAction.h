@@ -9,6 +9,7 @@ private:
 	Enemy* enemy = nullptr;
 	std::string animation = "";
 	std::string attack = "";
+	bool particlesLaunched = false;
 public:
 	AttackAction();
 	AttackAction(Enemy* enemy, std::string animation, std::string attack);

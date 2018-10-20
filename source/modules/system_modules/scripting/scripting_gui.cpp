@@ -2,12 +2,17 @@
 #include "scripting_gui.h"
 #include <SLB/SLB.hpp>
 
+#include "modules/game_modules/game/module_game.h"
+
 void ScriptingGUI::bind(SLB::Manager* manager) {
 	bindConstants(manager);
-	manager->set("showDialog", SLB::FuncCall::create(ScriptingGUI::showDialog));
-	manager->set("hideDialog", SLB::FuncCall::create(ScriptingGUI::hideDialog));
+	manager->set("showDialog",     SLB::FuncCall::create(ScriptingGUI::showDialog));
+	manager->set("hideDialog",     SLB::FuncCall::create(ScriptingGUI::hideDialog));
 	manager->set("isDialogActive", SLB::FuncCall::create(ScriptingGUI::isDialogActive));
 	manager->set("isDialogHidden", SLB::FuncCall::create(ScriptingGUI::isDialogHidden));
+
+	manager->set("showHUD",		   SLB::FuncCall::create(ScriptingGUI::showHUD));
+	manager->set("skipCinematics", SLB::FuncCall::create(ScriptingGUI::skipCinematics));
 }
 
 void ScriptingGUI::bindConstants(SLB::Manager* manager) {
@@ -27,4 +32,12 @@ bool ScriptingGUI::isDialogActive() {
 
 bool ScriptingGUI::isDialogHidden() {
 	return !EngineGUI.isDialogActive();
+}
+
+void ScriptingGUI::showHUD(bool how) {
+	EngineGame->showHUD(how);
+}
+
+bool ScriptingGUI::skipCinematics() {
+	return EngineInput["menu_accept"].getsPressed();
 }

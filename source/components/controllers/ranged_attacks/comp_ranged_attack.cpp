@@ -1,6 +1,7 @@
 #include "mcv_platform.h"
 #include "comp_ranged_attack.h"
 #include "entity/entity_parser.h"
+#include "modules/system_modules/particles/comp_particles.h"
 
 
 DECL_OBJ_MANAGER("ranged_attack", TCompRangedAttack);
@@ -47,12 +48,17 @@ void TCompRangedAttack::update(float delta) {
 		if (speed == 0.f && grabTimer.elapsed() >= grabTime) {
 			speed = initialSpeed;
 		}
+
+		if (!particlesLaunched) {
+			getParticles()->launch();
+			particlesLaunched = true;
+		}
 	}
 
 }
 
 void TCompRangedAttack::onGroupCreated(const TMsgEntitiesGroupCreated& msg) {
-	
+	particlesHandle = get<TCompParticles>();
 }
 
 void TCompRangedAttack::onAssignRangedAttackOwner(const TMsgAssignRangedAttackOwner& msg) {
@@ -66,6 +72,7 @@ void TCompRangedAttack::onAssignRangedAttackOwner(const TMsgAssignRangedAttackOw
 		transform->setScale(0.f);
 	}
 	timer.reset();
+	particlesLaunched = false;
 
 }
 
@@ -83,6 +90,7 @@ void TCompRangedAttack::onTriggerEnter(const TMsgTriggerEnter& msg) {
 
 void TCompRangedAttack::onColliderDestroyed(const TMsgColliderDestroyed& msg) {
 	if (hit) {
+		getParticles()->kill();
 		CHandle(this).getOwner().destroy();
 	}
 }
@@ -112,4 +120,8 @@ void TCompRangedAttack::onAttackHit(const TMsgAttackHit& msg) {
 	myCollider->setupFiltering(ownerCollider->config.group, ownerCollider->config.mask);
 	//Reduce attack damage
 	attackInfo.damage = attackInfo.damage / 3.f;
+}
+
+TCompParticles* TCompRangedAttack::getParticles() {
+	return particlesHandle;
 }

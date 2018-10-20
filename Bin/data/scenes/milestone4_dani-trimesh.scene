@@ -2,6 +2,23 @@
   {
     "entity":
     {
+      "name": "collider_trampa_coral_templo",
+      "transform":
+      {
+        "pos": "-116.504 -22.77 367.457",
+        "rotation": "0.0 0.67559 0.0 -0.737277"
+      },
+      "collider":
+      {
+        "mesh_src": "data/meshes/collider_trampa_coral_templo.col_mesh",
+        "shape": "tri_mesh",
+        "type": "static"
+      }
+    }
+  },
+  {
+    "entity":
+    {
       "name": "collider_trampa_grabados_012",
       "transform":
       {
@@ -597,57 +614,6 @@
   {
     "entity":
     {
-      "name": "crystalnest_005",
-      "transform":
-      {
-        "pos": "-116.541 -23.0604 367.037",
-        "rotation": "0.0 0.67559 0.0 -0.737277"
-      },
-      "collider":
-      {
-        "mesh_src": "data/meshes/crystalnest_005.col_mesh",
-        "shape": "tri_mesh",
-        "type": "static"
-      }
-    }
-  },
-  {
-    "entity":
-    {
-      "name": "crystalnest_004",
-      "transform":
-      {
-        "pos": "-116.504 -22.77 367.457",
-        "rotation": "0.0 0.67559 0.0 -0.737277"
-      },
-      "collider":
-      {
-        "mesh_src": "data/meshes/crystalnest_004.col_mesh",
-        "shape": "tri_mesh",
-        "type": "static"
-      }
-    }
-  },
-  {
-    "entity":
-    {
-      "name": "crystalnest_003",
-      "transform":
-      {
-        "pos": "-116.504 -22.77 367.457",
-        "rotation": "0.0 0.67559 0.0 -0.737277"
-      },
-      "collider":
-      {
-        "mesh_src": "data/meshes/crystalnest_003.col_mesh",
-        "shape": "tri_mesh",
-        "type": "static"
-      }
-    }
-  },
-  {
-    "entity":
-    {
       "name": "nestpodium_001",
       "transform":
       {
@@ -742,23 +708,6 @@
       "collider":
       {
         "mesh_src": "data/meshes/columna_015.col_mesh",
-        "shape": "tri_mesh",
-        "type": "static"
-      }
-    }
-  },
-  {
-    "entity":
-    {
-      "name": "cacho_de_suelo_0_col_001",
-      "transform":
-      {
-        "pos": "-72.7059 -20.9186 234.564",
-        "rotation": "0.0313892 0.0021623 0.00209704 -0.999503"
-      },
-      "collider":
-      {
-        "mesh_src": "data/meshes/cacho_de_suelo_0_col_001.col_mesh",
         "shape": "tri_mesh",
         "type": "static"
       }
@@ -5349,40 +5298,6 @@
       "collider":
       {
         "mesh_src": "data/meshes/mushroom_body_07_collider010.col_mesh",
-        "shape": "tri_mesh",
-        "type": "static"
-      }
-    }
-  },
-  {
-    "entity":
-    {
-      "name": "mushroom_head_03_collider015",
-      "transform":
-      {
-        "pos": "173.873 19.896 -148.814",
-        "rotation": "-0.532586 -0.231059 0.207986 -0.787214"
-      },
-      "collider":
-      {
-        "mesh_src": "data/meshes/mushroom_head_03_collider015.col_mesh",
-        "shape": "tri_mesh",
-        "type": "static"
-      }
-    }
-  },
-  {
-    "entity":
-    {
-      "name": "mushroom_body_05_collider012",
-      "transform":
-      {
-        "pos": "171.003 17.0281 -152.285",
-        "rotation": "-0.191042 -0.919285 -0.168814 0.299867"
-      },
-      "collider":
-      {
-        "mesh_src": "data/meshes/mushroom_body_05_collider012.col_mesh",
         "shape": "tri_mesh",
         "type": "static"
       }

@@ -1,0 +1,646 @@
+[
+  {
+    "entity":
+    {
+      "name": "cine_cam_009",
+      "transform":
+      {
+        "pos": "-119.727 -17.3086 361.768",
+        "rotation": "-0.965003 0.0 0.262238 0.0"
+      },
+      "camera":
+      {
+        "fov": 45.0
+      },
+      "fixed_camera":
+      {
+        "returnToPlayerCameraWithInput": false,
+        "modifyPlayerCameraRotation": true,
+        "timeToMixOut": 1.0,
+        "panningSpeed": 0.0,
+        "panningRadius": 3.0
+      },
+      "platform_simple":
+      {
+        "curve_type": "catmull-rom",
+        "enabled": false,
+        "automove": true,
+        "loop": false,
+        "closed": false,
+        "move_offset": 0,
+        "travel_wait_time": 1.0,
+        "speed": 0.1,
+        "knots":
+        [
+           "-119.666 -17.2951 361.707",
+           "-119.666 -17.2951 361.707",
+           "-119.666 -20.8852 361.707",
+           "-119.666 -20.8852 361.707"
+        ]
+      }
+    }
+  },
+  {
+    "entity":
+    {
+      "name": "cine_cam_008",
+      "transform":
+      {
+        "pos": "-121.433 -17.3086 363.884",
+        "rotation": "-0.879228 0.0 0.476402 0.0"
+      },
+      "camera":
+      {
+        "fov": 45.0
+      },
+      "fixed_camera":
+      {
+        "returnToPlayerCameraWithInput": false,
+        "modifyPlayerCameraRotation": true,
+        "timeToMixOut": 1.0,
+        "panningSpeed": 0.0,
+        "panningRadius": 3.0
+      },
+      "platform_simple":
+      {
+        "curve_type": "catmull-rom",
+        "enabled": false,
+        "automove": true,
+        "loop": false,
+        "closed": false,
+        "move_offset": 0,
+        "travel_wait_time": 1.0,
+        "speed": 0.1,
+        "knots":
+        [
+           "-121.407 -17.2951 363.803",
+           "-121.407 -17.2951 363.803",
+           "-121.407 -20.8852 363.803",
+           "-121.407 -20.8852 363.803"
+        ]
+      }
+    }
+  },
+  {
+    "entity":
+    {
+      "name": "cine_cam_007",
+      "transform":
+      {
+        "pos": "-122.066 -17.3086 368.91",
+        "rotation": "0.585763 0.0 -0.810482 0.0"
+      },
+      "camera":
+      {
+        "fov": 45.0
+      },
+      "fixed_camera":
+      {
+        "returnToPlayerCameraWithInput": false,
+        "modifyPlayerCameraRotation": true,
+        "timeToMixOut": 1.0,
+        "panningSpeed": 0.0,
+        "panningRadius": 3.0
+      },
+      "platform_simple":
+      {
+        "curve_type": "catmull-rom",
+        "enabled": false,
+        "automove": true,
+        "loop": false,
+        "closed": false,
+        "move_offset": 0,
+        "travel_wait_time": 1.0,
+        "speed": 0.1,
+        "knots":
+        [
+           "-122.113 -17.2951 368.838",
+           "-122.113 -17.2951 368.838",
+           "-122.113 -20.8852 368.838",
+           "-122.113 -20.8852 368.838"
+        ]
+      }
+    }
+  },
+  {
+    "entity":
+    {
+      "name": "cine_cam_006",
+      "transform":
+      {
+        "pos": "-120.846 -17.3086 371.428",
+        "rotation": "0.40105 0.0 -0.916056 0.0"
+      },
+      "camera":
+      {
+        "fov": 45.0
+      },
+      "fixed_camera":
+      {
+        "returnToPlayerCameraWithInput": false,
+        "modifyPlayerCameraRotation": true,
+        "timeToMixOut": 1.0,
+        "panningSpeed": 0.0,
+        "panningRadius": 3.0
+      },
+      "platform_simple":
+      {
+        "curve_type": "catmull-rom",
+        "enabled": false,
+        "automove": true,
+        "loop": false,
+        "closed": false,
+        "move_offset": 0,
+        "travel_wait_time": 1.0,
+        "speed": 0.1,
+        "knots":
+        [
+           "-120.846 -17.2951 371.427",
+           "-120.846 -17.2951 371.427",
+           "-120.846 -20.8852 371.427",
+           "-120.846 -20.8852 371.427"
+        ]
+      }
+    }
+  },
+  {
+    "entity":
+    {
+      "name": "cine_cam_005",
+      "transform":
+      {
+        "pos": "-115.976 -17.3086 373.432",
+        "rotation": "-0.0393635 0.0 -0.999225 0.0"
+      },
+      "camera":
+      {
+        "fov": 45.0
+      },
+      "fixed_camera":
+      {
+        "returnToPlayerCameraWithInput": false,
+        "modifyPlayerCameraRotation": true,
+        "timeToMixOut": 1.0,
+        "panningSpeed": 0.0,
+        "panningRadius": 3.0
+      },
+      "platform_simple":
+      {
+        "curve_type": "catmull-rom",
+        "enabled": false,
+        "automove": true,
+        "loop": false,
+        "closed": false,
+        "move_offset": 0,
+        "travel_wait_time": 1.0,
+        "speed": 0.1,
+        "knots":
+        [
+           "-115.976 -17.2951 373.431",
+           "-115.976 -17.2951 373.431",
+           "-115.976 -20.8852 373.431",
+           "-115.976 -20.8852 373.431"
+        ]
+      }
+    }
+  },
+  {
+    "entity":
+    {
+      "name": "cine_cam_004",
+      "transform":
+      {
+        "pos": "-111.81 -17.3086 370.787",
+        "rotation": "-0.474771 0.0 -0.88011 0.0"
+      },
+      "camera":
+      {
+        "fov": 45.0
+      },
+      "fixed_camera":
+      {
+        "returnToPlayerCameraWithInput": false,
+        "modifyPlayerCameraRotation": true,
+        "timeToMixOut": 1.0,
+        "panningSpeed": 0.0,
+        "panningRadius": 3.0
+      },
+      "platform_simple":
+      {
+        "curve_type": "catmull-rom",
+        "enabled": false,
+        "automove": true,
+        "loop": false,
+        "closed": false,
+        "move_offset": 0,
+        "travel_wait_time": 1.0,
+        "speed": 0.1,
+        "knots":
+        [
+           "-111.811 -17.2951 370.787",
+           "-111.811 -17.2951 370.787",
+           "-111.811 -20.8852 370.787",
+           "-111.811 -20.8852 370.787"
+        ]
+      }
+    }
+  },
+  {
+    "entity":
+    {
+      "name": "cine_cam_003",
+      "transform":
+      {
+        "pos": "-110.674 -17.3086 368.086",
+        "rotation": "-0.645834 0.0 -0.763478 0.0"
+      },
+      "camera":
+      {
+        "fov": 45.0
+      },
+      "fixed_camera":
+      {
+        "returnToPlayerCameraWithInput": false,
+        "modifyPlayerCameraRotation": true,
+        "timeToMixOut": 1.0,
+        "panningSpeed": 0.0,
+        "panningRadius": 3.0
+      },
+      "platform_simple":
+      {
+        "curve_type": "catmull-rom",
+        "enabled": false,
+        "automove": true,
+        "loop": false,
+        "closed": false,
+        "move_offset": 0,
+        "travel_wait_time": 1.0,
+        "speed": 0.1,
+        "knots":
+        [
+           "-110.674 -17.2951 368.086",
+           "-110.674 -17.2951 368.086",
+           "-110.674 -20.8852 368.086",
+           "-110.674 -20.8852 368.086"
+        ]
+      }
+    }
+  },
+  {
+    "entity":
+    {
+      "name": "cine_cam_002",
+      "transform":
+      {
+        "pos": "-112.046 -17.3086 363.031",
+        "rotation": "-0.915763 0.0 -0.40172 0.0"
+      },
+      "camera":
+      {
+        "fov": 45.0
+      },
+      "fixed_camera":
+      {
+        "returnToPlayerCameraWithInput": false,
+        "modifyPlayerCameraRotation": true,
+        "timeToMixOut": 1.0,
+        "panningSpeed": 0.0,
+        "panningRadius": 3.0
+      },
+      "platform_simple":
+      {
+        "curve_type": "catmull-rom",
+        "enabled": false,
+        "automove": true,
+        "loop": false,
+        "closed": false,
+        "move_offset": 0,
+        "travel_wait_time": 1.0,
+        "speed": 0.1,
+        "knots":
+        [
+           "-112.046 -17.2951 363.031",
+           "-112.046 -17.2951 363.031",
+           "-112.046 -20.8852 363.031",
+           "-112.046 -20.8852 363.031"
+        ]
+      }
+    }
+  },
+  {
+    "entity":
+    {
+      "name": "cine_cam_001",
+      "transform":
+      {
+        "pos": "-114.253 -17.3086 361.431",
+        "rotation": "-0.980613 0.0 -0.195955 0.0"
+      },
+      "camera":
+      {
+        "fov": 45.0
+      },
+      "fixed_camera":
+      {
+        "returnToPlayerCameraWithInput": false,
+        "modifyPlayerCameraRotation": true,
+        "timeToMixOut": 1.0,
+        "panningSpeed": 0.0,
+        "panningRadius": 3.0
+      },
+      "platform_simple":
+      {
+        "curve_type": "catmull-rom",
+        "enabled": false,
+        "automove": true,
+        "loop": false,
+        "closed": false,
+        "move_offset": 0,
+        "travel_wait_time": 1.0,
+        "speed": 0.1,
+        "knots":
+        [
+           "-114.253 -17.2951 361.431",
+           "-114.253 -17.2951 361.431",
+           "-114.253 -20.8852 361.431",
+           "-114.253 -20.8852 361.431"
+        ]
+      }
+    }
+  },
+  {
+    "entity":
+    {
+      "name": "cine_cam_016",
+      "transform":
+      {
+        "pos": "-117.024 -22.8523 359.301",
+        "rotation": "-0.0370585 -0.0960883 -0.994676 0.00357999"
+      },
+      "camera":
+      {
+        "fov": 75.0
+      },
+      "fixed_camera":
+      {
+        "returnToPlayerCameraWithInput": false,
+        "modifyPlayerCameraRotation": true,
+        "timeToMixOut": 1.0,
+        "panningSpeed": 0.0,
+        "panningRadius": 3.0
+      },
+      "platform_simple":
+      {
+        "curve_type": "catmull-rom",
+        "enabled": false,
+        "automove": true,
+        "loop": false,
+        "closed": false,
+        "move_offset": 0,
+        "travel_wait_time": 1.0,
+        "speed": 0.1,
+        "knots":
+        [
+           "-117.024 -24.0056 357.086",
+           "-117.024 -24.0056 357.086",
+           "-117.024 -22.8526 359.301",
+           "-117.024 -22.8526 359.301"
+        ]
+      }
+    }
+  },
+  {
+    "entity":
+    {
+      "name": "cine_cam_015",
+      "transform":
+      {
+        "pos": "-117.039 -18.3829 360.022",
+        "rotation": "-0.043578 0.0435778 -0.998097 -0.00190261"
+      },
+      "camera":
+      {
+        "fov": 75.0
+      },
+      "fixed_camera":
+      {
+        "returnToPlayerCameraWithInput": false,
+        "modifyPlayerCameraRotation": true,
+        "timeToMixOut": 1.0,
+        "panningSpeed": 0.0,
+        "panningRadius": 3.0
+      },
+      "platform_simple":
+      {
+        "curve_type": "catmull-rom",
+        "enabled": false,
+        "automove": true,
+        "loop": false,
+        "closed": false,
+        "move_offset": 0,
+        "travel_wait_time": 1.0,
+        "speed": 0.1,
+        "knots":
+        [
+           "-117.043 -18.383 360.022",
+           "-117.043 -18.383 360.022",
+           "-117.043 -15.045 360.022",
+           "-117.043 -15.045 360.022"
+        ]
+      }
+    }
+  },
+  {
+    "entity":
+    {
+      "name": "cine_cam_014",
+      "transform":
+      {
+        "pos": "-117.043 -22.0683 355.375",
+        "rotation": "0.0 0.0436193 -0.999048 0.0"
+      },
+      "camera":
+      {
+        "fov": 75.0
+      },
+      "fixed_camera":
+      {
+        "returnToPlayerCameraWithInput": false,
+        "modifyPlayerCameraRotation": true,
+        "timeToMixOut": 1.0,
+        "panningSpeed": 0.0,
+        "panningRadius": 3.0
+      },
+      "platform_simple":
+      {
+        "curve_type": "catmull-rom",
+        "enabled": false,
+        "automove": true,
+        "loop": false,
+        "closed": false,
+        "move_offset": 0,
+        "travel_wait_time": 1.0,
+        "speed": 0.1,
+        "knots":
+        [
+           "-117.043 -22.068 355.375",
+           "-117.043 -22.068 355.375",
+           "-117.043 -18.153 355.961",
+           "-117.043 -18.153 355.961"
+        ]
+      }
+    }
+  },
+  {
+    "entity":
+    {
+      "name": "cine_cam_013",
+      "transform":
+      {
+        "pos": "-116.672 -17.2565 367.007",
+        "rotation": "0.0772808 -0.713238 0.695944 0.0313233"
+      },
+      "camera":
+      {
+        "fov": 75.0
+      },
+      "fixed_camera":
+      {
+        "returnToPlayerCameraWithInput": false,
+        "modifyPlayerCameraRotation": true,
+        "timeToMixOut": 1.0,
+        "panningSpeed": 0.0,
+        "panningRadius": 3.0
+      },
+      "platform_simple":
+      {
+        "curve_type": "catmull-rom",
+        "enabled": false,
+        "automove": true,
+        "loop": false,
+        "closed": false,
+        "move_offset": 0,
+        "travel_wait_time": 1.0,
+        "speed": 0.1,
+        "knots":
+        [
+           "-116.672 -17.257 367.007",
+           "-116.672 -17.257 367.007",
+           "-116.672 -11.022 367.007",
+           "-116.672 -11.022 367.007"
+        ]
+      }
+    }
+  },
+  {
+    "entity":
+    {
+      "name": "cine_cam_012",
+      "transform":
+      {
+        "pos": "-112.753 -22.2817 358.843",
+        "rotation": "0.0 0.0436193 -0.999048 0.0"
+      },
+      "camera":
+      {
+        "fov": 75.0
+      },
+      "fixed_camera":
+      {
+        "returnToPlayerCameraWithInput": false,
+        "modifyPlayerCameraRotation": true,
+        "timeToMixOut": 1.0,
+        "panningSpeed": 0.0,
+        "panningRadius": 3.0
+      },
+      "platform_simple":
+      {
+        "curve_type": "catmull-rom",
+        "enabled": false,
+        "automove": true,
+        "loop": false,
+        "closed": false,
+        "move_offset": 0,
+        "travel_wait_time": 1.0,
+        "speed": 0.1,
+        "knots":
+        [
+           "-112.753 -22.282 358.843",
+           "-112.753 -22.282 358.843",
+           "-116.909 -22.282 358.843",
+           "-116.909 -22.282 358.843"
+        ]
+      }
+    }
+  },
+  {
+    "entity":
+    {
+      "name": "cine_cam_011",
+      "transform":
+      {
+        "pos": "-116.329 -17.7341 365.301",
+        "rotation": "-0.938798 0.0149187 -0.341695 -0.0409888"
+      },
+      "camera":
+      {
+        "fov": 65.0
+      },
+      "fixed_camera":
+      {
+        "returnToPlayerCameraWithInput": false,
+        "modifyPlayerCameraRotation": true,
+        "timeToMixOut": 1.0,
+        "panningSpeed": 0.0,
+        "panningRadius": 3.0
+      },
+      "platform_simple":
+      {
+        "rotation_axis": "0.0 1.0 0.0",
+        "rotation_speed": 0.25,
+        "enabled": false
+      }
+    }
+  },
+  {
+    "entity":
+    {
+      "name": "cine_cam_010",
+      "transform":
+      {
+        "pos": "-116.554 -22.915 364.56",
+        "rotation": "-0.0238416 0.00968104 -0.999669 0.000415244"
+      },
+      "camera":
+      {
+        "fov": 55.0
+      },
+      "fixed_camera":
+      {
+        "returnToPlayerCameraWithInput": false,
+        "modifyPlayerCameraRotation": true,
+        "timeToMixOut": 1.0,
+        "panningSpeed": 0.0,
+        "panningRadius": 3.0
+      },
+      "platform_simple":
+      {
+        "curve_type": "catmull-rom",
+        "enabled": false,
+        "automove": true,
+        "loop": false,
+        "closed": false,
+        "move_offset": 0,
+        "travel_wait_time": 1.0,
+        "speed": 0.1,
+        "knots":
+        [
+           "-116.554 -22.9151 364.56",
+           "-116.554 -22.9151 364.56",
+           "-123.006 -7.63516 208.795",
+           "-123.006 -7.63516 208.795"
+        ]
+      }
+    }
+  }
+]

@@ -21,7 +21,7 @@
 				"group": [
 					"scenario"
 				],
-				"mask": "characters"
+				"mask": "all"
 			}
 		}
 	},
@@ -58,11 +58,12 @@
 				]
 			},
 			"collider": {
-				"type": "box",
+
+				"shape": "box",
 				"halfExtent": "0.25 0.25 0.25",
 				"is_trigger": true,
-				"group": "scenario",
-				"mask": "player"
+				"group": ["enemy"],
+				"mask": ["all"]
 			},
 			"fire": {
 				"time": 5,

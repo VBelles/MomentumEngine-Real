@@ -47,6 +47,9 @@ Funciones:
 	string spawnBall()
 	string spawnMedusaAt(float x, float y, float z)
 	string spawnMedusa()
+
+	void setPlatformEnabled(std::string entityName, bool how)
+
 	void stopEntities()
 	void resumeEntities()
 
@@ -68,6 +71,7 @@ Funciones:
 	void hideDialog()
 	bool isDialogActive()
 	bool isDialogHidden()
+	void showHUD(bool how)
 
 Constantes:
 	PLAYER_NAME

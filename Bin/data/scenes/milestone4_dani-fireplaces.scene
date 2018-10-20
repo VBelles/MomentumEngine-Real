@@ -2,6 +2,174 @@
   {
     "entity":
     {
+      "name": "dani_fireplace_056",
+      "prefab": "data/prefabs/fireplace.prefab",
+      "transform":
+      {
+        "pos": "-114.874 -24.8797 357.128",
+        "rotation": "0.0 -0.0348995 0.0 -0.999391"
+      }
+    }
+  },
+  {
+    "entity":
+    {
+      "name": "dani_fireplace_057",
+      "prefab": "data/prefabs/fireplace.prefab",
+      "transform":
+      {
+        "pos": "-119.687 -24.8797 357.562",
+        "rotation": "0.0 -0.0348995 0.0 -0.999391"
+      }
+    }
+  },
+  {
+    "entity":
+    {
+      "name": "dani_fireplace_058",
+      "prefab": "data/prefabs/fireplace.prefab",
+      "transform":
+      {
+        "pos": "-110.61 -24.8797 358.889",
+        "rotation": "0.0 -0.0348995 0.0 -0.999391"
+      }
+    }
+  },
+  {
+    "entity":
+    {
+      "name": "dani_fireplace_059",
+      "prefab": "data/prefabs/fireplace.prefab",
+      "transform":
+      {
+        "pos": "-107.561 -24.8797 362.282",
+        "rotation": "0.0 -0.0348995 0.0 -0.999391"
+      }
+    }
+  },
+  {
+    "entity":
+    {
+      "name": "dani_fireplace_060",
+      "prefab": "data/prefabs/fireplace.prefab",
+      "transform":
+      {
+        "pos": "-106.238 -24.8797 366.621",
+        "rotation": "0.0 -0.0348995 0.0 -0.999391"
+      }
+    }
+  },
+  {
+    "entity":
+    {
+      "name": "dani_fireplace_061",
+      "prefab": "data/prefabs/fireplace.prefab",
+      "transform":
+      {
+        "pos": "-107.037 -24.8797 371.069",
+        "rotation": "0.0 -0.0348995 0.0 -0.999391"
+      }
+    }
+  },
+  {
+    "entity":
+    {
+      "name": "dani_fireplace_062",
+      "prefab": "data/prefabs/fireplace.prefab",
+      "transform":
+      {
+        "pos": "-109.604 -24.8797 374.802",
+        "rotation": "0.0 -0.0348995 0.0 -0.999391"
+      }
+    }
+  },
+  {
+    "entity":
+    {
+      "name": "dani_fireplace_063",
+      "prefab": "data/prefabs/fireplace.prefab",
+      "transform":
+      {
+        "pos": "-113.53 -24.8797 377.128",
+        "rotation": "0.0 -0.0348995 0.0 -0.999391"
+      }
+    }
+  },
+  {
+    "entity":
+    {
+      "name": "dani_fireplace_064",
+      "prefab": "data/prefabs/fireplace.prefab",
+      "transform":
+      {
+        "pos": "-118.138 -24.8797 377.535",
+        "rotation": "0.0 -0.0348995 0.0 -0.999391"
+      }
+    }
+  },
+  {
+    "entity":
+    {
+      "name": "dani_fireplace_065",
+      "prefab": "data/prefabs/fireplace.prefab",
+      "transform":
+      {
+        "pos": "-122.397 -24.8797 376.07",
+        "rotation": "0.0 -0.0348995 0.0 -0.999391"
+      }
+    }
+  },
+  {
+    "entity":
+    {
+      "name": "dani_fireplace_066",
+      "prefab": "data/prefabs/fireplace.prefab",
+      "transform":
+      {
+        "pos": "-125.526 -24.8797 372.463",
+        "rotation": "0.0 -0.0348995 0.0 -0.999391"
+      }
+    }
+  },
+  {
+    "entity":
+    {
+      "name": "dani_fireplace_067",
+      "prefab": "data/prefabs/fireplace.prefab",
+      "transform":
+      {
+        "pos": "-126.819 -24.8797 368.041",
+        "rotation": "0.0 -0.0348995 0.0 -0.999391"
+      }
+    }
+  },
+  {
+    "entity":
+    {
+      "name": "dani_fireplace_068",
+      "prefab": "data/prefabs/fireplace.prefab",
+      "transform":
+      {
+        "pos": "-126.106 -24.8797 363.514",
+        "rotation": "0.0 -0.0348995 0.0 -0.999391"
+      }
+    }
+  },
+  {
+    "entity":
+    {
+      "name": "dani_fireplace_069",
+      "prefab": "data/prefabs/fireplace.prefab",
+      "transform":
+      {
+        "pos": "-123.497 -24.8797 359.715",
+        "rotation": "0.0 -0.0348995 0.0 -0.999391"
+      }
+    }
+  },
+  {
+    "entity":
+    {
       "name": "dani_fireplace_055",
       "prefab": "data/prefabs/fireplace.prefab",
       "transform":
@@ -571,78 +739,6 @@
       "transform":
       {
         "pos": "22.7298 14.5273 69.1947",
-        "rotation": "0.0 0.173648 0.0 -0.984808"
-      }
-    }
-  },
-  {
-    "entity":
-    {
-      "name": "dani_fireplace_007",
-      "prefab": "data/prefabs/fireplace.prefab",
-      "transform":
-      {
-        "pos": "160.6 61.8746 166.022",
-        "rotation": "0.0 0.173648 0.0 -0.984808"
-      }
-    }
-  },
-  {
-    "entity":
-    {
-      "name": "dani_fireplace_006",
-      "prefab": "data/prefabs/fireplace.prefab",
-      "transform":
-      {
-        "pos": "155.425 62.0266 164.281",
-        "rotation": "0.0 0.173648 0.0 -0.984808"
-      }
-    }
-  },
-  {
-    "entity":
-    {
-      "name": "dani_fireplace_005",
-      "prefab": "data/prefabs/fireplace.prefab",
-      "transform":
-      {
-        "pos": "158.795 61.4476 170.981",
-        "rotation": "0.0 0.173648 0.0 -0.984808"
-      }
-    }
-  },
-  {
-    "entity":
-    {
-      "name": "dani_fireplace_004",
-      "prefab": "data/prefabs/fireplace.prefab",
-      "transform":
-      {
-        "pos": "157.083 61.486 175.684",
-        "rotation": "0.0 0.173648 0.0 -0.984808"
-      }
-    }
-  },
-  {
-    "entity":
-    {
-      "name": "dani_fireplace_003",
-      "prefab": "data/prefabs/fireplace.prefab",
-      "transform":
-      {
-        "pos": "153.791 61.5284 169.15",
-        "rotation": "0.0 0.173648 0.0 -0.984808"
-      }
-    }
-  },
-  {
-    "entity":
-    {
-      "name": "dani_fireplace_002",
-      "prefab": "data/prefabs/fireplace.prefab",
-      "transform":
-      {
-        "pos": "152.074 61.5117 173.869",
         "rotation": "0.0 0.173648 0.0 -0.984808"
       }
     }

@@ -49,6 +49,8 @@ namespace Particles {
 		cps->emission.radial = emission.value("radial", cps->emission.radial);
 		cps->emission.randomDirection = emission.value("random_direction", cps->emission.randomDirection);
 		cps->emission.duration = emission.value("duration", cps->emission.duration);
+		cps->emission.delay = emission.value("delay", cps->emission.delay);
+		cps->emission.fadeOut = emission.value("fade_out", cps->emission.fadeOut);
 
 		// movement
 		const json& movement = data["movement"];
