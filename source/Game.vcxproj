@@ -227,6 +227,7 @@
     <ClCompile Include="gui\controllers\dialog_controller.cpp" />
     <ClCompile Include="gui\controllers\gui_map_menu_controller.cpp" />
     <ClCompile Include="gui\controllers\gui_options_menu_controller.cpp" />
+    <ClCompile Include="gui\effects\gui_ellipsis.cpp" />
     <ClCompile Include="gui\widgets\gui_dialog.cpp" />
     <ClCompile Include="gui\widgets\gui_point.cpp" />
     <ClCompile Include="gui\widgets\gui_points_bar.cpp" />
@@ -602,6 +603,7 @@
     <ClInclude Include="gui\controllers\dialog_controller.h" />
     <ClInclude Include="gui\controllers\gui_map_menu_controller.h" />
     <ClInclude Include="gui\controllers\gui_options_menu_controller.h" />
+    <ClInclude Include="gui\effects\gui_ellipsis.h" />
     <ClInclude Include="gui\widgets\gui_dialog.h" />
     <ClInclude Include="gui\widgets\gui_point.h" />
     <ClInclude Include="gui\widgets\gui_points_bar.h" />

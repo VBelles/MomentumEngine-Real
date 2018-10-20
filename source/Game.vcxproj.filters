@@ -394,6 +394,7 @@
     <ClCompile Include="components\player\states\base_states\moving_around\TeleportActionState.cpp" />
     <ClCompile Include="components\comp_fire_puzzle.cpp" />
     <ClCompile Include="components\comp_dummy_collectable.cpp" />
+    <ClCompile Include="gui\effects\gui_ellipsis.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="..\Bin\data\shaders\ctes.h" />
@@ -820,6 +821,7 @@
     <ClInclude Include="components\player\states\base_states\moving_around\TeleportActionState.h" />
     <ClInclude Include="components\comp_fire_puzzle.h" />
     <ClInclude Include="components\comp_dummy_collectable.h" />
+    <ClInclude Include="gui\effects\gui_ellipsis.h" />
   </ItemGroup>
   <ItemGroup>
     <None Include="geometry\SimpleMath.inl" />
