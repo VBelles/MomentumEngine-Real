@@ -89,7 +89,7 @@
 						"marker": {
 							"name" : "main_entrance_teleport_marker",
 							"type" : "button",
-							"position" : "300 250",
+							"position" : "305 270",
 							"size" : "50 50",
 							"texture" : "data/textures/gui/map/Teleport_brillante.dds",
 							"font_size" : 64,
@@ -132,7 +132,7 @@
 						"marker": {
 							"name" : "central_field_teleport_marker",
 							"type" : "button",
-							"position" : "500 500",
+							"position" : "460 355",
 							"size" : "50 50",
 							"texture" : "data/textures/gui/map/Teleport_brillante.dds",
 							"font_size" : 64,
@@ -175,7 +175,7 @@
 						"marker": {
 							"name" : "tower_entrance_teleport_marker",
 							"type" : "button",
-							"position" : "600 600",
+							"position" : "575 527",
 							"size" : "50 50",
 							"texture" : "data/textures/gui/map/Teleport_brillante.dds",
 							"font_size" : 64,
@@ -218,7 +218,7 @@
 						"marker": {
 							"name" : "behind_statue_teleport_marker",
 							"type" : "button",
-							"position" : "600 150",
+							"position" : "475 128",
 							"size" : "50 50",
 							"texture" : "data/textures/gui/map/Teleport_brillante.dds",
 							"font_size" : 64,
@@ -261,7 +261,7 @@
 						"marker": {
 							"name" : "kings_graveyard_teleport_marker",
 							"type" : "button",
-							"position" : "300 600",
+							"position" : "285 495",
 							"size" : "50 50",
 							"texture" : "data/textures/gui/map/Teleport_brillante.dds",
 							"font_size" : 64,
@@ -304,7 +304,7 @@
 						"marker": {
 							"name" : "gate_of_doom_teleport_marker",
 							"type" : "button",
-							"position" : "700 300",
+							"position" : "585 228",
 							"size" : "50 50",
 							"texture" : "data/textures/gui/map/Teleport_brillante.dds",
 							"font_size" : 64,
@@ -347,7 +347,7 @@
 						"marker": {
 							"name" : "mushroom_kingdom_teleport_marker",
 							"type" : "button",
-							"position" : "500 600",
+							"position" : "543 675",
 							"size" : "50 50",
 							"texture" : "data/textures/gui/map/Teleport_brillante.dds",
 							"font_size" : 64,
@@ -390,7 +390,7 @@
 						"marker": {
 							"name" : "graveyard_teleport_marker",
 							"type" : "button",
-							"position" : "350 600",
+							"position" : "379 470",
 							"size" : "50 50",
 							"texture" : "data/textures/gui/map/Teleport_brillante.dds",
 							"font_size" : 64,
@@ -433,7 +433,7 @@
 						"marker": {
 							"name" : "behind_tower_teleport_marker",
 							"type" : "button",
-							"position" : "700 650",
+							"position" : "660 560",
 							"size" : "50 50",
 							"texture" : "data/textures/gui/map/Teleport_brillante.dds",
 							"font_size" : 64,
