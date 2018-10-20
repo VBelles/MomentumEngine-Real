@@ -59,12 +59,12 @@
     "data/scenes/setichuelas_lod.scene",
     "data/scenes/dani_rocas_islas_lod.scene",
     
-    "data/scenes/_test_music.scene",
     "data/scenes/milestone4_locations_definitivas.scene",
     
     "data/scenes/ambiental_particles.scene"
   ],
   "unused_scenes": [
+    "data/scenes/_test_music.scene",
     
     "data/scenes/test_gorila.scene",
     "data/scenes/platf_director.scene",

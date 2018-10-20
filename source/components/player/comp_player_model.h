@@ -6,7 +6,7 @@
 #include "components/comp_collectable.h"
 #include "components/comp_hitboxes.h"
 #include "modules/system_modules/sound/comp_sound.h"
-#include "modules/system_modules/sound/comp_music.h"
+#include "modules/system_modules/sound/music_player.h"
 #include "skeleton/comp_skeleton.h"
 #include "components/player/comp_power_gauge.h"
 #include "components/player/comp_collectable_manager.h"
@@ -54,7 +54,6 @@ private:
 	CHandle cameraPlayerHandle;
 	CHandle hitboxesHandle;
 	CHandle particlesHandle;
-	CHandle musicPlayerHandle;
 
 	VEC3 respawnPosition;
 	float respawnYaw;
@@ -200,7 +199,7 @@ public:
 	TCompSound* getSound();
 	TCompParticles* getParticles();
 	TCompCollectableManager* getCollectableManager();
-	TCompMusic* getMusicPlayer();
+	CMusicPlayer* getMusicPlayer();
 
 	VEC3* getAccelerationVector() { return &accelerationVector; }
 	VEC3* getVelocityVector() { return &velocityVector; }

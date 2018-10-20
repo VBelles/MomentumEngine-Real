@@ -1,6 +1,6 @@
 #pragma once
 
-#include "modules/system_modules/sound/comp_music.h"
+#include "modules/system_modules/sound/music_player.h"
 
 struct TMsgAllScenesCreated;
 struct TMsgTriggerEnter;
@@ -10,8 +10,7 @@ class TCompLocationDelimiter : public TCompBase {
 private:
 	bool worksOnEnter = true;
 
-	TCompMusic::Location location;
-	CHandle musicPlayerHandle;
+	CMusicPlayer::Location location;
 
 public:
 	DECL_SIBLING_ACCESS();
@@ -19,10 +18,9 @@ public:
 	void debugInMenu();
 	static void registerMsgs();
 	void load(const json& j, TEntityParseContext& ctx);
-	void onAllScenesCreated(const TMsgAllScenesCreated& msg);
 	void onTriggerEnter(const TMsgTriggerEnter& msg);
 	void onTriggerExit(const TMsgTriggerExit& msg);
 
-	TCompMusic* getMusicPlayer();
+	CMusicPlayer* getMusicPlayer();
 };
 

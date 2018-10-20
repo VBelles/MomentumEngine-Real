@@ -1,6 +1,6 @@
 #pragma once
 
-#include "modules/system_modules/sound/comp_music.h"
+#include "modules/system_modules/sound/music_player.h"
 
 struct TMsgAllScenesCreated;
 struct TMsgTriggerEnter;
@@ -11,8 +11,6 @@ class TCompChangeSong : public TCompBase {
 private:
 	std::string song;
 	float fadeOutTime = 3.f;
-
-	CHandle musicPlayerHandle;
 
 public:
 	DECL_SIBLING_ACCESS();
@@ -25,6 +23,6 @@ public:
 	void onColliderDestroyed(const TMsgColliderDestroyed & msg);
 	void onTriggerExit(const TMsgTriggerExit& msg);
 
-	TCompMusic* getMusicPlayer();
+	CMusicPlayer* getMusicPlayer();
 };
 

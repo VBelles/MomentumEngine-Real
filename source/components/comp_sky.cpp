@@ -4,7 +4,7 @@
 #include "entity/entity_parser.h"
 #include "entity/common_msgs.h"
 #include "components/comp_light_dir.h"
-#include "modules/system_modules/sound/comp_music.h"
+#include "modules/system_modules/sound/music_player.h"
 
 DECL_OBJ_MANAGER("sky", TCompSky);
 
@@ -186,19 +186,19 @@ void TCompSky::setSkybox(SkyboxType type, float lerpTime) {
 	nextSkybox = type;
 	nextLerpTime = lerpTime;
 	waitingToEnter = true;
-	TCompMusic* music = static_cast<CEntity*>(getEntityByName(MUSIC_PLAYER))->get<TCompMusic>();
+	CMusicPlayer* music = EngineSound.getMusicPlayer();
 	switch (type) {
 	case DAY:
-		music->setDayNight(TCompMusic::DAY);
+		music->setDayNight(CMusicPlayer::DAY);
 		break;
 	case NIGHT:
-		music->setDayNight(TCompMusic::NIGHT);
+		music->setDayNight(CMusicPlayer::NIGHT);
 		break;
 	case DAWN:
-		music->setDayNight(TCompMusic::DAWN);
+		music->setDayNight(CMusicPlayer::DAWN);
 		break;
 	default:
-		music->setDayNight(TCompMusic::DAY);
+		music->setDayNight(CMusicPlayer::DAY);
 		break;
 	}
 }

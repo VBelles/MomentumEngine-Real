@@ -1,7 +1,7 @@
 #include "mcv_platform.h"
 #include "scripting_sound.h"
 #include <SLB/SLB.hpp>
-#include "modules/system_modules/sound/comp_music.h"
+#include "modules/system_modules/sound/music_player.h"
 
 void ScriptingSound::bind(SLB::Manager* manager) {
 	bindConstants(manager);
@@ -39,6 +39,6 @@ void ScriptingSound::startSong(std::string song) {
 	getMusicPlayer()->setCurrentSong(song);
 }
 
-TCompMusic * ScriptingSound::getMusicPlayer() {
-	return static_cast<TCompMusic*>(static_cast<CEntity*>(getEntityByName(MUSIC_PLAYER))->get<TCompMusic>());
+CMusicPlayer * ScriptingSound::getMusicPlayer() {
+	return EngineSound.getMusicPlayer();
 }
