@@ -1,0 +1,26 @@
+[
+  {
+    "entity":
+    {
+      "name": "tutorialEnemyMelee",
+      "prefab": "data/prefabs/dreidel_dummy.prefab",
+      "transform":
+      {
+        "pos": "-98.8553 -39.612 200.162",
+        "lookat": "-1.0 -39.612 -1.0"
+      }
+    }
+  },
+  {
+    "entity":
+    {
+      "name": "tutorialEnemyAir",
+      "prefab": "data/prefabs/kippah_dummy.prefab",
+      "transform":
+      {
+        "pos": "-110.116 -42.6276 225.273",
+        "lookat": "-1.0 -42.6276 -1.0"
+      }
+    }
+  }
+]
