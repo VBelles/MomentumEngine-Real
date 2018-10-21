@@ -89,6 +89,7 @@ namespace GUI {
 
 		if (EngineInput["menu_back"].getsReleased()) {
 			EngineModules.changeGameState("main_menu");
+			EngineSound.emitEvent(SOUND_MENU_BACK);
 		}
 	}
 
