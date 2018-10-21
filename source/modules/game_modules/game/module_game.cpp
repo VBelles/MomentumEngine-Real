@@ -20,6 +20,7 @@
 #include "gui/gui_parser.h"
 #include "modules/system_modules/scripting/scripting_player.h"
 #include "modules/system_modules/particles/comp_particles.h"
+#include "modules/system_modules/sound/comp_sound.h"
 
 
 CCamera camera;
@@ -93,11 +94,17 @@ bool CModuleGame::start() {
 		pointsOfInterest.push_back(PointOfInterest{ name, CTransform(pos, rot) });
 	}
 
-	//EngineSound.startEvent(SOUND_AMBIENT);
+	CEntity* soundEntity = getEntityByName(SOUND_PLAYER);
+	TCompSound* sound = soundEntity->get<TCompSound>();
+	sound->play("ambient_day");
 	return true;
 }
 
 bool CModuleGame::stop() {
+	CEntity* soundEntity = getEntityByName(SOUND_PLAYER);
+	TCompSound* sound = soundEntity->get<TCompSound>();
+	sound->stop();
+
 	EngineGUI.deactivateWidget("hud");
 	//EngineGUI.unregisterController(hudController);
 	safeDelete(hudController);
@@ -107,7 +114,7 @@ bool CModuleGame::stop() {
 	EngineParticles.reset();
 	safeDelete(respawner);
 	safeDelete(enemyManager);
-	//EngineSound.releaseEvent(SOUND_AMBIENT);
+	
 	return true;
 }
 

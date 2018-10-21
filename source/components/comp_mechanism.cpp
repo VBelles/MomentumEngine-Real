@@ -91,12 +91,13 @@ void TCompMechanism::onActivated(bool isActive, bool sound) {
 	if (sound) {
 		TCompSound* sound = get<TCompSound>();
 		if (isActivated) {
-			sound->play("activate");
+			sound->play("mechanism_on");
 			if (isResettable) {
 				clockEventInstance = EngineSound.emitEvent(SOUND_CLOCK);
 			}
 		}
 		else {
+			sound->play("mechanism_off");
 			sound->stop("clock");
 			EngineSound.stopEvent(clockEventInstance);
 		}

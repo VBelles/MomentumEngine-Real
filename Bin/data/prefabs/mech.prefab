@@ -32,8 +32,13 @@
 			"sound": {
 				"events":[
 					{
-						"id": "activate",
+						"id": "mechanism_on",
 						"path": "event:/INTERACTUABLE/mecanismo",
+						"3D": false
+					},
+					{
+						"id": "mechanism_off",
+						"path": "event:/INTERACTUABLE/mecanismo_off",
 						"3D": false
 					},
 					{
