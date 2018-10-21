@@ -66,6 +66,7 @@ Funciones:
 	void hideDialog()
 	bool isDialogActive()
 	bool isDialogHidden()
+	void setCancelableWithButton(bool cancelable)
 	void showHUD(bool how)
 
 Constantes:

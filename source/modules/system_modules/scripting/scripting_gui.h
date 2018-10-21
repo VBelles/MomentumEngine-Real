@@ -15,6 +15,7 @@ public:
 	static void hideDialog();
 	static bool isDialogActive();
 	static bool isDialogHidden();
+	static void setCancelableWithButton(bool cancelable);
 
 	static void showHUD(bool how);
 	static bool skipCinematics();

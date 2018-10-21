@@ -1,0 +1,13 @@
+function onTriggerEnter_dani_chrysalis_002("The Player")
+	wait(3)
+	stopEntities()
+	blendInCamera("final_door_camera", 0.001, CAMERA_PRIORITY_GAMEPLAY, INTERPOLATOR_CUBIC_OUT)
+	wait(1)
+	showDialog("There was a time when peace and magic reigned.", 1, true)
+	wait(2)
+	setCancelableWithButton(true)
+    waitCondition(isDialogHidden)
+	wait(0.2)
+	blendInCamera("player_camera", 0.001, CAMERA_PRIORITY_GAMEPLAY, INTERPOLATOR_CUBIC_OUT)
+	resumeEntities()
+end

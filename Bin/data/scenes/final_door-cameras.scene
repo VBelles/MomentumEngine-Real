@@ -1,0 +1,25 @@
+[
+  {
+    "entity":
+    {
+      "name": "final_door_camera",
+      "transform":
+      {
+        "pos": "-107.441 10.4835 -141.099",
+        "rotation": "-0.92388 0.0 0.382683 0.0"
+      },
+      "camera":
+      {
+        "fov": 80.0
+      },
+      "fixed_camera":
+      {
+        "returnToPlayerCameraWithInput": false,
+        "modifyPlayerCameraRotation": true,
+        "timeToMixOut": 1.0,
+        "panningSpeed": 0.0,
+        "panningRadius": 3.0
+      }
+    }
+  }
+]
