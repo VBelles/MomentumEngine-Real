@@ -37,6 +37,12 @@ void TCompCollectableManager::onAllScenesCreated(const TMsgAllScenesCreated & ms
 }
 
 void TCompCollectableManager::update(float delta) {
+	if (spawnDoorChrysalis) {
+		if (doorChrysalidesTimer.elapsed() >= doorChrysalidesTime) {
+			((TCompRender*)finalDoorChrysalides[numberOfChrysalisTaken - 1])->enable();
+			spawnDoorChrysalis = false;
+		}
+	}
 	if (isCollecting) {
 		if (collectTimer.elapsed() >= collectDuration) {
 			TCompPlayerModel* playerModel = get<TCompPlayerModel>();
@@ -59,6 +65,8 @@ void TCompCollectableManager::debugInMenu() {
 	if (ImGui::DragFloat("Collect Yaw", &collectYawDegrees, 1.f, -90.f, 90.f)) {
 		collectYaw = deg2rad(collectYawDegrees);
 	}
+
+	ImGui::DragFloat("spawn door chrysalis time", &doorChrysalidesTime, 0.05f, 0.f, 10.f);
 
 	//collectYaw
 	ImGui::DragFloat2("Camera Speed", &cameraSpeed.x, 0.1f, 0.1f, 5.f);
@@ -180,7 +188,8 @@ void TCompCollectableManager::onCollect(const TMsgCollect& msg) {
 		}
 		if (numberOfChrysalisTaken <= CHRYSALIS_TARGET_NUMBER) {
 			//esperar 4 segundos y hacer aparecer chrysalis (final_door_chrysalis_X)
-			((TCompRender*)finalDoorChrysalides[numberOfChrysalisTaken - 1])->enable();
+			spawnDoorChrysalis = true;
+			doorChrysalidesTimer.reset();
 		}
 
 		collectable->collect();

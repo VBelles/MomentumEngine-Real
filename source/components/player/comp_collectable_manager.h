@@ -24,8 +24,10 @@ private:
 
 	int numberOfChrysalisTaken = 0;
 	std::vector<std::string> finalDoorChrysalidesNames;
-
 	std::vector<CHandle> finalDoorChrysalides;
+	CTimer2 doorChrysalidesTimer;
+	float doorChrysalidesTime = 4.3f;
+	bool spawnDoorChrysalis = false;
 
 	float showChrysalisTime = 5.f;
 
