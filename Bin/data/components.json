@@ -116,6 +116,7 @@
     "mechanism_system",
     "teleport_point",
     "door",
+    "show_dialog",
     "day_night_cycle",
     "sky",
     "ranged_attack",

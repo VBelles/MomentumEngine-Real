@@ -228,8 +228,8 @@ CFont& CModuleGUI::getFont(int size) {
 	}
 }
 
-void CModuleGUI::showDialog(const std::string& text, const int& fontSize) {
-	dialogController->showDialog(text, fontSize);
+void CModuleGUI::showDialog(const std::string& text, const int& fontSize, bool cancelable) {
+	dialogController->showDialog(text, fontSize, cancelable);
 }
 
 void CModuleGUI::hideDialog() {
@@ -238,6 +238,10 @@ void CModuleGUI::hideDialog() {
 
 bool CModuleGUI::isDialogActive() {
 	return dialogController->isActive();
+}
+
+void CModuleGUI::setCancelableWithButton(bool cancelable) {
+	dialogController->setCancelableWithButton(cancelable);
 }
 
 VEC2 CModuleGUI::getResolution() {

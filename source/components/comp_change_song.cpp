@@ -45,7 +45,6 @@ void TCompChangeSong::onTriggerEnter(const TMsgTriggerEnter & msg) {
 }
 
 void TCompChangeSong::onColliderDestroyed(const TMsgColliderDestroyed& msg) {
-	//hacer esto al final de la secuencia
 	CHandle(this).getOwner().destroy();
 }
 

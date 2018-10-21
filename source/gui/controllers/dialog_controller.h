@@ -8,13 +8,16 @@ namespace GUI {
 		std::string widgetName = "dialog_box";
 		CDialog* dialogWidget = nullptr;
 		bool dialogActive = false;
+		bool isCancelableWithButton = true;
 	public:
 		CDialogController();
 		~CDialogController();
 
 		virtual void update(float delta) override;
-		void showDialog(const std::string& text, const int& fontSize = 16);
+		void showDialog(const std::string& text, const int& fontSize = 16, bool cancelable = true);
 		void hideDialog();
 		bool isActive();
+
+		void setCancelableWithButton(bool cancelable);
 	};
 }
