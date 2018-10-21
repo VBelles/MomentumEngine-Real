@@ -34,7 +34,7 @@
 			"name" : "power_up_spring_jump",
 			"power_up":{
 				"state_to_unlock" : "JumpSquatSpring",
-				"message" : "You can now jump higher after a hard landing.\nTime your jump correctly."
+				"message" : "You can now jump higher after a hard landing by pressing the regular jump button.\nTime your jump correctly."
 			},
 			"transform": {
 				"pos": "179.352 53.951 124.619"
@@ -63,7 +63,7 @@
 			"name" : "power_up_plummet",
 			"power_up":{
 				"state_to_unlock" : "WallJumpSquatPlummet",
-				"message" : "Plummet towards the ground from a wall."
+				"message" : "Plummet towards the ground from a wall by pressing the long jump button."
 			},
 			"transform": {
 				"pos": "221.027 25.807 -215.852"

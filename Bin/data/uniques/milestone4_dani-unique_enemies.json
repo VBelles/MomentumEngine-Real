@@ -9,20 +9,6 @@
       "type": "kippah"
     },
     {
-      "id": "tutorialEnemyMelee",
-      "done": false,
-      "position": "-98.8553 -39.612 200.162",
-      "level": "level00",
-      "type": "dreidel_dummy"
-    },
-    {
-      "id": "tutorialEnemyAir",
-      "done": false,
-      "position": "-110.116 -42.6276 225.273",
-      "level": "level00",
-      "type": "kippah_dummy"
-    },
-    {
       "id": "dani_air_020",
       "done": false,
       "position": "62.2932 -4.34164 -205.431",

@@ -1,3 +1,11 @@
 [
-"data/meshes/trigger_message_test.col_mesh"
+"data/meshes/trigger_message_test.col_mesh",
+"data/meshes/trigger_message_teleport.col_mesh",
+"data/meshes/trigger_message_mechanism.col_mesh",
+"data/meshes/trigger_message_launcher.col_mesh",
+"data/meshes/trigger_message_propel.col_mesh",
+"data/meshes/trigger_message_pure.col_mesh",
+"data/meshes/trigger_message_coins.col_mesh",
+"data/meshes/trigger_message_long_jump.col_mesh",
+"data/meshes/trigger_message_jump.col_mesh"
 ]

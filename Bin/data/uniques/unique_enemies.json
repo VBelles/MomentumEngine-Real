@@ -2,6 +2,27 @@
   "unique_enemies":
   [
     {
+      "id": "tutorialEnemyMelee",
+      "done": false,
+      "position": "-98.8553 -39.612 200.162",
+      "level": "level00",
+      "type": "dreidel_dummy"
+    },
+    {
+      "id": "tutorialEnemyMelee2",
+      "done": false,
+      "position": "-136.49 -34.55 308.6",
+      "level": "level00",
+      "type": "dreidel_dummy"
+    },
+    {
+      "id": "tutorialEnemyAir",
+      "done": false,
+      "position": "-110.116 -42.6276 225.273",
+      "level": "level00",
+      "type": "kippah_dummy"
+    },
+    {
       "id": "nes_enemyAir17",
       "done": false,
       "position": "-82.7258 32.6393 -57.7503",

@@ -14,6 +14,18 @@
   {
     "entity":
     {
+      "name": "tutorialEnemyMelee2",
+      "prefab": "data/prefabs/dreidel_dummy.prefab",
+      "transform":
+      {
+        "pos": "-136.49 -34.55 308.6",
+        "lookat": "-1.0 -39.612 -1.0"
+      }
+    }
+  },
+  {
+    "entity":
+    {
       "name": "tutorialEnemyAir",
       "prefab": "data/prefabs/kippah_dummy.prefab",
       "transform":
