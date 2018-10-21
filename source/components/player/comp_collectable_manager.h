@@ -3,6 +3,9 @@
 
 struct TMsgCollect;
 struct TMsgEntityCreated;
+struct TMsgAllScenesCreated;
+
+//class TCompRender;
 //class TCompCollectable;
 
 class TCompCollectableManager : public TCompBase {
@@ -13,12 +16,16 @@ private:
 
 	void onEntityCreated(const TMsgEntityCreated& msg);
 	void onCollect(const TMsgCollect& msg);
+	void onAllScenesCreated(const TMsgAllScenesCreated& msg);
 
 	float timeToRespawnCoin = 30.f;
 	int maxCoins = 144;
 	int lifePiecesPerHeart = 1;
 
 	int numberOfChrysalisTaken = 0;
+	std::vector<std::string> finalDoorChrysalidesNames;
+
+	std::vector<CHandle> finalDoorChrysalides;
 
 	float showChrysalisTime = 5.f;
 
@@ -46,6 +53,7 @@ public:
 	int getMaxCoins();
 	int getNumberOfLifePieces();
 	bool spendCoins(int number);
+
 
 	void clear();
 };

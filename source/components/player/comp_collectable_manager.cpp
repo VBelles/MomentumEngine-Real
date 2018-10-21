@@ -15,9 +15,25 @@ using Type = TCompCollectable::Type;
 void TCompCollectableManager::registerMsgs() {
 	DECL_MSG(TCompCollectableManager, TMsgCollect, onCollect);
 	DECL_MSG(TCompCollectableManager, TMsgEntityCreated, onEntityCreated);
+	DECL_MSG(TCompCollectableManager, TMsgAllScenesCreated, onAllScenesCreated);
 }
 
 void TCompCollectableManager::load(const json & j, TEntityParseContext & ctx) {
+	if (j.count("final_door_chrysalides")) {
+		auto& chrysalides = j["final_door_chrysalides"];
+		assert(chrysalides.is_array());
+		for (std::string chrysalis : chrysalides) {
+			finalDoorChrysalidesNames.push_back(chrysalis);
+		}
+	}
+}
+
+void TCompCollectableManager::onAllScenesCreated(const TMsgAllScenesCreated & msg) {
+	for (auto& name : finalDoorChrysalidesNames) {
+		CEntity* entity = getEntityByName(name);
+		CHandle handle = entity->get<TCompRender>();
+		finalDoorChrysalides.push_back(handle);
+	}
 }
 
 void TCompCollectableManager::update(float delta) {
@@ -161,6 +177,10 @@ void TCompCollectableManager::onCollect(const TMsgCollect& msg) {
 		}
 		else if(numberOfChrysalisTaken == CHRYSALIS_TARGET_NUMBER){
 			EngineScripting.throwEvent(lastChrysalisTaken, "");
+		}
+		if (numberOfChrysalisTaken <= CHRYSALIS_TARGET_NUMBER) {
+			//esperar 4 segundos y hacer aparecer chrysalis (final_door_chrysalis_X)
+			((TCompRender*)finalDoorChrysalides[numberOfChrysalisTaken - 1])->enable();
 		}
 
 		collectable->collect();
