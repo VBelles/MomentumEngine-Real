@@ -117,8 +117,9 @@ void TCompEnemy::onHitboxEnter(const TMsgHitboxEnter& msg) {
 		if (msg.h_other_entity != CHandle(this).getOwner()) {
 			if (enemy->attacks[enemy->currentAttack].hitboxName == msg.hitbox) {
 				TMsgAttackHit attackHit = {};
+				auto& enemyAttack = enemy->attacks[enemy->currentAttack];
 				attackHit.attacker = CHandle(this).getOwner();
-				attackHit.info = enemy->attacks[enemy->currentAttack].attackInfo;
+				attackHit.info = enemyAttack.attackInfo;
 				//check if attack info is propel, if it is override velocity (radial)
 				if (attackHit.info.propel) {
 					CEntity* otherEntity = msg.h_other_entity;
@@ -134,6 +135,7 @@ void TCompEnemy::onHitboxEnter(const TMsgHitboxEnter& msg) {
 					}
 				}
 				((CEntity*)msg.h_other_entity)->sendMsg(attackHit);
+				enemy->playSounds(enemyAttack.hitSounds);
 			}
 		}
 	}

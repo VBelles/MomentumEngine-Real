@@ -90,6 +90,11 @@ void Enemy::load(const json& j) {
 				attack.sounds.push_back(soundId);
 			}
 		}
+		if (jAttack.count("hit_sounds")) {
+			for (std::string soundId : jAttack["hit_sounds"]) {
+				attack.hitSounds.push_back(soundId);
+			}
+		}
 		attacks[attackName] = attack;
 	}
 

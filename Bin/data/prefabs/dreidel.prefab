@@ -70,7 +70,11 @@
             "invulnerabilityTime": 1.5,
             "stun": 1.0,
             "hitbox": "tackle",
-            "particles": "tackle"
+            "particles": "tackle",
+            "hit_sounds": [
+              "tackle_hit",
+              "tackle_braking"
+            ]
           },
           {
             "name": "launched",

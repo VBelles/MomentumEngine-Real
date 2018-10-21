@@ -26,6 +26,7 @@ struct EnemyAttack {
 	std::string attackPrefab = "";
 	std::vector<std::string> particles;
 	std::vector<std::string> sounds;
+	std::vector<std::string> hitSounds;
 	std::vector<std::string> onExitParticles;
 };
 
