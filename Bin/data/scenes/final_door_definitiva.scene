@@ -26,8 +26,9 @@
         "type": "static",
         "group":
         [
-          "floor"
-        ]
+          "scenario"
+        ],
+        "mask": "characters"
       }
     }
   },
@@ -58,8 +59,9 @@
         "type": "static",
         "group":
         [
-          "floor"
-        ]
+          "scenario"
+        ],
+        "mask": "characters"
       }
     }
   }

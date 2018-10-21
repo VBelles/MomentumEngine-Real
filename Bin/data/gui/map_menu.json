@@ -408,7 +408,7 @@
 					{
 						"name": "gate_of_doom_teleport",
 						"type": "map_marker",
-						"position": "-325 26 -277.4",
+						"position": "-110.287 5.62795 -112.539",
 						"map": "map",
 						"altern_text": "???",
 						"visible": true,
@@ -433,7 +433,7 @@
 						"marker": {
 							"name" : "gate_of_doom_teleport_marker",
 							"type" : "button",
-							"position" : "585 228",
+							"position" : "580 224",
 							"size" : "50 50",
 							"texture" : "data/textures/gui/map/Teleport_brillante.dds",
 							"font_size" : 64,
