@@ -166,6 +166,12 @@ void CModuleGame::render() {
 	solid->activate();
 
 	if (CApp::get().isDebug()) {
+		if (ImGui::Button("Copy pos")) {
+			CEntity* cameraEntity = EngineRender.getCurrentCameraHandle();
+			TCompCamera* camera = cameraEntity->get<TCompCamera>();
+			VEC3 cameraPos = camera->getCamera()->getPosition();
+			WindowsUtils::toClipboard(string_format("%f %f %f", cameraPos.x, cameraPos.y, cameraPos.z));
+		}
 		if (ImGui::TreeNode("Points of interest")) {
 			for (auto& point : pointsOfInterest) {
 				if (ImGui::Button(point.name.c_str())) {

@@ -39,4 +39,5 @@ public:
 
 	CHandle getCurrentCameraHandle();
 	bool toggleFreeCamera();
+	bool isFreeCamera();
 };

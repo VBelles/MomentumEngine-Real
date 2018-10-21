@@ -405,3 +405,7 @@ bool CModuleRender::toggleFreeCamera() {
 	freeCamera = !freeCamera;
 	return freeCamera;
 }
+
+bool CModuleRender::isFreeCamera() {
+	return freeCamera;
+}

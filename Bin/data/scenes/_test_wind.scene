@@ -1,0 +1,155 @@
+[
+    {
+        "entity": {
+            "name": "wind_start_1",
+            "transform": {
+                "pos": "-76.972054 -2.450871 380.86587"
+            },
+            "sound": {
+                "events": [
+                    {
+                        "id": "wind",
+                        "path": "event:/AMBIENCE/wind",
+                        "play": true
+                    }
+                ]
+            }
+        }
+    },
+    {
+        "entity": {
+            "name": "wind_start_2",
+            "transform": {
+                "pos": "-91.245422 -3.573956 405.18463"
+            },
+            "sound": {
+                "events": [
+                    {
+                        "id": "wind",
+                        "path": "event:/AMBIENCE/wind",
+                        "play": true
+                    }
+                ]
+            }
+        }
+    },
+    {
+        "entity": {
+            "name": "wind_start_3",
+            "transform": {
+                "pos": "-125.815140 -3.203969 410.33493"
+            },
+            "sound": {
+                "events": [
+                    {
+                        "id": "wind",
+                        "path": "event:/AMBIENCE/wind",
+                        "play": true
+                    }
+                ]
+            }
+        }
+    },
+    {
+        "entity": {
+            "name": "wind_start_4",
+            "transform": {
+                "pos": "-153.326950 -3.797629 384.22250"
+            },
+            "sound": {
+                "events": [
+                    {
+                        "id": "wind",
+                        "path": "event:/AMBIENCE/wind",
+                        "play": true
+                    }
+                ]
+            }
+        }
+    },
+    {
+        "entity": {
+            "name": "wind_start_5",
+            "transform": {
+                "pos": "-155.939041 -3.797629 360.70797"
+            },
+            "sound": {
+                "events": [
+                    {
+                        "id": "wind",
+                        "path": "event:/AMBIENCE/wind",
+                        "play": true
+                    }
+                ]
+            }
+        }
+    },
+    {
+        "entity": {
+            "name": "wind_start_6",
+            "transform": {
+                "pos": "-147.149734 -9.644763 335.95236"
+            },
+            "sound": {
+                "events": [
+                    {
+                        "id": "wind",
+                        "path": "event:/AMBIENCE/wind",
+                        "play": true
+                    }
+                ]
+            }
+        }
+    },
+    {
+        "entity": {
+            "name": "wind_start_7",
+            "transform": {
+                "pos": "-166.600464 -17.910055 313.64602"
+            },
+            "sound": {
+                "events": [
+                    {
+                        "id": "wind",
+                        "path": "event:/AMBIENCE/wind",
+                        "play": true
+                    }
+                ]
+            }
+        }
+    },
+    {
+        "entity": {
+            "name": "wind_start_8",
+            "transform": {
+                "pos": "-101.917007 -25.936012 326.93035"
+            }
+        },
+        "sound": {
+            "events": [
+                {
+                    "id": "wind",
+                    "path": "event:/AMBIENCE/wind",
+                    "play": true
+                }
+            ]
+        }
+    },
+    {
+        "entity": {
+            "name": "wind_start_9",
+            "transform": {
+                "pos": "-100.516701 -26.522596 309.51007"
+            },
+            "sound": {
+                "events": [
+                    {
+                        "id": "wind",
+                        "path": "event:/AMBIENCE/wind",
+                        "play": true
+                    }
+                ]
+            }
+        }
+    }
+]

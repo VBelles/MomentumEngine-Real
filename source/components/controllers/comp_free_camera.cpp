@@ -12,7 +12,7 @@ void TCompFreeCamera::registerMsgs() {
 void TCompFreeCamera::debugInMenu() {
 	ImGui::DragFloat("Movement speed", &movementSpeed, 1.f, 0.f, 100.f);
 	ImGui::DragFloat2("Rotation speed", &rotationSpeed.x, 0.01f, 0.f, 5.f);
-	ImGui::DragFloat("Speed multiplier", &rotationSpeed.x, 0.5f, 0.f, 20.f);
+	ImGui::DragFloat("Speed multiplier", &speedMultiplier, 0.5f, 0.f, 20.f);
 }
 
 void TCompFreeCamera::load(const json& j, TEntityParseContext& ctx) {
