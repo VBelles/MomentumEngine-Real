@@ -1,0 +1,14 @@
+{
+  "technique": "pbr.tech",
+  "shadows": true,
+  "textures":
+  {
+    "albedo": "data/textures/puente_BaseColor.dds",
+    "normal": "data/textures/puente_Normal.dds",
+    "metallic": "data/textures/puente_Metallic.dds",
+    "roughness": "data/textures/puente_Roughness.dds",
+    "self_illum": "data/textures/null_self_illum.dds",
+    "height": "data/textures/puente_Height.dds",
+    "detail_normal": "data/textures/null_detail_normal.dds"
+  }
+}
