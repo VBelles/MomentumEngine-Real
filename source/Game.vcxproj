@@ -128,6 +128,7 @@
     <ClCompile Include="components\comp_power_source.cpp" />
     <ClCompile Include="components\comp_power_up.cpp" />
     <ClCompile Include="components\comp_self_illum_variation.cpp" />
+    <ClCompile Include="components\comp_show_dialog.cpp" />
     <ClCompile Include="components\comp_sky.cpp" />
     <ClCompile Include="components\comp_teleport_point.cpp" />
     <ClCompile Include="components\controllers\comp_rigid_anims_director.cpp" />
@@ -505,6 +506,7 @@
     <ClInclude Include="components\comp_power_source.h" />
     <ClInclude Include="components\comp_power_up.h" />
     <ClInclude Include="components\comp_self_illum_variation.h" />
+    <ClInclude Include="components\comp_show_dialog.h" />
     <ClInclude Include="components\comp_sky.h" />
     <ClInclude Include="components\comp_teleport_point.h" />
     <ClInclude Include="components\controllers\comp_rigid_anims_director.h" />

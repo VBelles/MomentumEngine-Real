@@ -36,6 +36,9 @@ void TCompShowDialog::update(float delta){
 			firstMessageShown = true;
 			dialogIndex = (dialogIndex + 1) % dialogsToShow.size();
 			cancelTimer.reset();
+			if (dialogIndex == 0) {
+				refreshMessageTimer.reset();
+			}
 		}
 	}
 	else {
@@ -51,6 +54,9 @@ void TCompShowDialog::update(float delta){
 					EngineGUI.showDialog(dialogsToShow[dialogIndex], fontSize, isCancelable);
 					dialogIndex = (dialogIndex + 1) % dialogsToShow.size();
 					cancelTimer.reset();
+					if (dialogIndex == 0) {
+						refreshMessageTimer.reset();
+					}
 				}
 			}
 			else {
@@ -59,6 +65,9 @@ void TCompShowDialog::update(float delta){
 				EngineGUI.showDialog(dialogsToShow[dialogIndex], fontSize, isCancelable);
 				dialogIndex = (dialogIndex + 1) % dialogsToShow.size();
 				cancelTimer.reset();
+				if (dialogIndex == 0) {
+					refreshMessageTimer.reset();
+				}
 			}
 		}
 	}

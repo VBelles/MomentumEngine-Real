@@ -12,6 +12,7 @@ private:
 	float timeToShowMessage = 3.f;
 	float timeToRefreshMessage = 10.f;
 	float timeToAllowCancel = 0.5f;
+	int fontSize = 1;
 
 	int dialogIndex = 0;
 
@@ -20,7 +21,7 @@ private:
 	CTimer2 showMessageTimer;
 	bool firstMessageShown = false;
 	CTimer2 refreshMessageTimer;
-	bool allMessagesShown = false;
+	//bool allMessagesShown = false;
 
 	bool isPlayerInside = false;
 

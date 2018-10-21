@@ -1,0 +1,39 @@
+[
+  {
+    "entity":
+    {
+      "name": "trigger_message_test",
+      "transform":
+      {
+        "pos": "-118.436 -30.1472 342.92",
+        "rotation": "0.0 -0.0436194 0.0 -0.999048"
+      },
+      "collider":
+      {
+        "mesh_src": "data/meshes/trigger_message_test.col_mesh",
+        "shape": "convex_mesh",
+        "type": "static",
+        "is_trigger": true,
+        "group":
+        [
+          "trigger"
+        ],
+        "mask":
+        [
+          "player"
+        ]
+      },
+      "show_dialog":{
+        "dialogs":[
+          "dialog 1",
+          "dialog 2",
+          "dialog 3 this is very looong ofjndflfcghfghcvbcvbcvbcvbcvbcvbcvbcvbcfgfgfdfgkng jnl hblh kgv hkhvk jhkh hvl v khvk hvk vkh vkhvkhvkh jhhvkhv khv kv khvkhvkhv kjhvkjhvk vkjhv khvkjhv khvkjhvkjvkjhvjhvkhv khvkhvkjhvkhvkhvkhvkhv khvkjhvkhv khjvkjhv khvkj vkj kjhvk vhkj jhvj vkjhv jhv kjhv kjhv jhv kjvh h"
+        ],
+        "show_time": 0,
+        "refresh_time": 5,
+        "cancel_time": 0.5,
+        "font_size": 1
+      }
+    }
+  }
+]

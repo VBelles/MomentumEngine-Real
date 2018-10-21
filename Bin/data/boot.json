@@ -56,6 +56,7 @@
 
     "data/scenes/fireplace_puzzle.scene",
     "data/scenes/final_door_definitiva.scene",
+    "data/scenes/tutorial_triggers_definitivos.scene",
 
     "data/scenes/power_ups.scene",
     "data/scenes/setichuelas_lod.scene",
