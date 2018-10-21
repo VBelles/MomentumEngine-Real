@@ -2,6 +2,7 @@
 #include "comp_ranged_attack.h"
 #include "entity/entity_parser.h"
 #include "modules/system_modules/particles/comp_particles.h"
+#include "modules/system_modules/sound/comp_sound.h"
 
 
 DECL_OBJ_MANAGER("ranged_attack", TCompRangedAttack);
@@ -49,9 +50,10 @@ void TCompRangedAttack::update(float delta) {
 			speed = initialSpeed;
 		}
 
-		if (!particlesLaunched) {
+		if (!effectsLaunched) {
 			getParticles()->launch();
-			particlesLaunched = true;
+			getSound()->play("shot_air");
+			effectsLaunched = true;
 		}
 	}
 
@@ -59,6 +61,7 @@ void TCompRangedAttack::update(float delta) {
 
 void TCompRangedAttack::onGroupCreated(const TMsgEntitiesGroupCreated& msg) {
 	particlesHandle = get<TCompParticles>();
+	soundHandle = get<TCompSound>();
 }
 
 void TCompRangedAttack::onAssignRangedAttackOwner(const TMsgAssignRangedAttackOwner& msg) {
@@ -72,7 +75,7 @@ void TCompRangedAttack::onAssignRangedAttackOwner(const TMsgAssignRangedAttackOw
 		transform->setScale(0.f);
 	}
 	timer.reset();
-	particlesLaunched = false;
+	effectsLaunched = false;
 
 }
 
@@ -85,12 +88,16 @@ void TCompRangedAttack::onTriggerEnter(const TMsgTriggerEnter& msg) {
 		otherEntity->sendMsg(TMsgAttackHit{ ownerHandle, attackInfo });
 
 		hit = true;
+
+		getSound()->play("shot_hit");
+
 	}
 }
 
 void TCompRangedAttack::onColliderDestroyed(const TMsgColliderDestroyed& msg) {
 	if (hit) {
 		getParticles()->kill();
+		getSound()->stop();
 		CHandle(this).getOwner().destroy();
 	}
 }
@@ -124,4 +131,8 @@ void TCompRangedAttack::onAttackHit(const TMsgAttackHit& msg) {
 
 TCompParticles* TCompRangedAttack::getParticles() {
 	return particlesHandle;
+}
+
+TCompSound* TCompRangedAttack::getSound() {
+	return soundHandle;
 }

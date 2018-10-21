@@ -36,6 +36,10 @@
 						"id": "shot_air",
 						"path": "event:/ENEMIGO MEDUSA/medusa_shot_energy",
 						"following": true
+					},
+					{
+						"id": "shot_hit",
+						"path": "event:/PROTA/recibe_disparo"
 					}
 				]
 			},

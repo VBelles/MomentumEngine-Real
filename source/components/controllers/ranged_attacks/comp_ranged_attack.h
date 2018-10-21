@@ -7,10 +7,12 @@ struct TMsgTriggerEnter;
 struct TMsgTriggerEnter;
 struct TMsgColliderDestroyed;
 class TCompParticles;
+class TCompSound;
 
 class TCompRangedAttack : public TCompBase {
 private:
 	CHandle particlesHandle;
+	CHandle soundHandle;
 	CHandle ownerHandle;
 	float initialSpeed = 10.f;
 	float speed = initialSpeed;
@@ -24,7 +26,7 @@ private:
 	CTimer grabTimer;
 	CTimer warmUpTimer;
 
-	bool particlesLaunched = false;
+	bool effectsLaunched = false;
 
 	void onGroupCreated(const TMsgEntitiesGroupCreated& msg);
 	void onAssignRangedAttackOwner(const TMsgAssignRangedAttackOwner& msg);
@@ -33,6 +35,7 @@ private:
 	void onAttackHit(const TMsgAttackHit& msg);
 
 	TCompParticles* getParticles();
+	TCompSound* getSound();
 
 public:
 	DECL_SIBLING_ACCESS();

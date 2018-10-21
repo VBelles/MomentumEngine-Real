@@ -49,7 +49,7 @@ void IActionState::onDamage(const TMsgAttackHit& msg) {
 	}
 	getPlayerModel()->startDamageVision(damageVisionTime);
 	if (msg.info.isRanged) {
-		getSound()->play("getting_shot");
+		//getSound()->play("getting_shot");
 	}
 	else {
 		getSound()->play("getting_hit");
