@@ -19,8 +19,8 @@ void ScriptingGUI::bind(SLB::Manager* manager) {
 void ScriptingGUI::bindConstants(SLB::Manager* manager) {
 }
 
-void ScriptingGUI::showDialog(std::string text, int fontSize) {
-	EngineGUI.showDialog(text, fontSize);
+void ScriptingGUI::showDialog(std::string text, int fontSize, bool cancelable) {
+	EngineGUI.showDialog(text, fontSize, cancelable);
 }
 
 void ScriptingGUI::hideDialog() {
