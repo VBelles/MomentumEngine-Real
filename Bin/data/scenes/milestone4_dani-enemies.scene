@@ -15,7 +15,7 @@
     "entity":
     {
       "name": "tutorialEnemyMelee",
-      "prefab": "data/prefabs/dreidel.prefab",
+      "prefab": "data/prefabs/dreidel_dummy.prefab",
       "transform":
       {
         "pos": "-98.8553 -39.612 200.162",
@@ -27,7 +27,7 @@
     "entity":
     {
       "name": "tutorialEnemyAir",
-      "prefab": "data/prefabs/kippah.prefab",
+      "prefab": "data/prefabs/kippah_dummy.prefab",
       "transform":
       {
         "pos": "-110.116 -42.6276 225.273",

@@ -1,13 +1,13 @@
 [
   {
     "entity": {
-      "name": "kippah",
+      "name": "gorila",
       "transform": {},
       "render": [
         {
-          "mesh": "data/skeletons/medusa_new/bolas medusa002.mesh",
+          "mesh": "data/skeletons/gorila/gorila_baja.mesh",
           "materials": [
-            "data/skeletons/medusa_new/medusa_new.material"
+            "data/skeletons/gorila/gorila.material"
           ]
         }
       ],
@@ -15,51 +15,45 @@
         "enemy"
       ],
       "skeleton": {
-        "skeleton": "data/skeletons/medusa_new/medusa_new.skeleton"
+        "skeleton": "data/skeletons/gorila/gorila.skeleton"
       },
       "givePower": {
-        "maxPowerToGive": 10000.0,
-        "baseMultiplier": 3.5
+        "maxPowerToGive": 12000.0,
+        "baseMultiplier": 1.0,
+        "particles": "data/particles/energy.particles",
+        "particlesOffset": "0 0.2 0"
       },
       "enemy": {
-        "behavior_tree": "data/behavior_trees/kippah_dummy_behavior_tree.json",
-        "max_hp": 1,
-        "max_distance_from_spawn": 25,
-        "max_hp_on_perfect_dodged": 1,
+        "behavior_tree": "data/behavior_trees/gorila_dummy_behavior_tree.json",
+        "max_hp": 5,
+        "max_distance_from_spawn": 20,
+        "max_hp_on_perfect_dodged": 2,
         "movement_speed": 3,
-        "rotation_speed": 90,
+        "rotation_speed": 25,
         "gravity": -55,
         "max_velocity": 30,
-        "chase_fov": 180,
-        "fov_chase_distance": 30,
-        "small_chase_radius": 1.5,
-        "attack_fov": 180,
-        "short_combat_distance": 1.5,
-        "long_combat_distance": 30,
-        "attack_cool_down": 0.5,
+        "stroll_radius": 3,
+        "chase_fov": 90,
+        "fov_chase_distance": 3,
+        "small_chase_radius": 3,
+        "attack_fov": 90,
+        "short_combat_distance": 3,
+        "medium_combat_distance": 0,
+        "long_combat_distance": 0,
+        "step_back_distance": 0.6,
+        "attack_cool_down": 2.0,
+        "block_time": 1.5,
         "attack_slots": 1.0,
         "attacks": [
           {
-            "name": "spinAttack",
-            "frame_data": "15 40 50",
+            "name": "attack",
+            "frame_data": "30 45 60",
             "damage": 1.0,
             "invulnerabilityTime": 1.5,
             "stun": 1.0,
-            "hitbox": "spinAttack",
-            "particles": "spin_attack",
-            "sounds": "spin_attack"
-          },
-          {
-            "name": "rangedAttack",
-            "frame_data": "0 120 140",
-            "damage": 1.0,
-            "is_ranged": true,
-            "invulnerabilityTime": 1.0,
             "hitbox": "attack",
-            "type": "ranged",
-            "attack_spawn_offset": "0 1.75 0",
-            "attack_target_offset": "0 0.76 0",
-            "attack_prefab": "data/prefabs/rangedAttack.prefab"
+            "sounds": "attack",
+            "particles": ["attack_ring", "attack_smoke"]
           },
           {
             "name": "launched",
@@ -69,17 +63,19 @@
             "stun": 1.2,
             "propel": {
               "duration": 0.6,
-              "velocity": "0 20 0"
+              "velocity": "0 10 0"
             },
-            "hitbox": "launched"
+            "hitbox": "launched",
+            "sounds": "hit"
           }
-        ]
+        ],
+        "nav_mesh": "dreidel_nav_mesh"
       },
       "collider": {
         "shape": "capsule",
         "type": "cct",
         "radius": 0.5,
-        "height": 0.1,
+        "height":1.0,
         "step": 0.3,
         "group": [
           "enemy"
@@ -91,28 +87,28 @@
       "hitboxes": {
         "hitboxes": [
           {
-            "name": "spinAttack",
+            "name": "attack",
             "shape": "sphere",
-            "radius": 2,
-            "bone": "Bone015",
+            "radius": 1.5,
             "group": [
               "enemy"
             ],
             "mask": [
               "player"
-            ]
+            ],
+            "offset": "0 1.0 1.5"
           },
           {
             "name": "launched",
             "shape": "sphere",
-            "radius": 1.2,
+            "radius": 1.5,
             "group": [
               "enemy"
             ],
             "mask": [
               "enemy"
             ],
-            "bone": "Bone015"
+            "bone": "Bip001 Pelvis"
           }
         ]
       },
@@ -144,24 +140,37 @@
             "path": ""
           },
           {
-            "id": "spin_attack",
-            "path": "event:/ENEMIGO MEDUSA/medusa_revolverse"
+            "id": "block",
+            "path": "event:/ENEMIGO GORILA/gorila_block"
+          },
+          {
+            "id": "block_break",
+            "path": "event:/ENEMIGO GORILA/gorila_block_break"
+          },
+          {
+            "id": "attack",
+            "path": "event:/ENEMIGO GORILA/gorila_ataque_flojo"
+          },
+          {
+            "id": "chase",
+            "path": "event:/ENEMIGO GORILA/gorila_pasos",
+            "following": true
           },
           {
             "id": "death",
-            "path": "event:/ENEMIGO BOLA/bola_death"
+            "path": "event:/ENEMIGO GORILA/gorila_dead"
           },
           {
             "id": "appear",
-            "path": "event:/ENEMIGO MEDUSA/medusa_appear"
+            "path": "event:/ENEMIGO GORILA/gorila_appear"
           },
           {
             "id": "disappear",
-            "path": "event:/ENEMIGO MEDUSA/medusa_dissappear"
+            "path": "event:/ENEMIGO GORILA/gorila_dissappear"
           },
           {
             "id": "idle",
-            "path": "event:/ENEMIGO MEDUSA/medusa_idletodo",
+            "path": "event:/ENEMIGO GORILA/gorila_ruiditos",
             "play": true,
             "following": true
           }
@@ -176,14 +185,19 @@
             "offset": "0 0.5 0"
           },
           {
-            "id": "spin_attack",
-            "core": "data/particles/dreidel/spin_attack.particles",
-            "offset": "0 1 0"
+            "id": "attack_smoke",
+            "core": "data/particles/golem/attack_smoke.particles",
+            "offset": "0 0 1.8"
           },
           {
-            "id": "lose_power",
-            "core": "data/particles/energy.particles",
-            "offset": "0 0.2 0"
+            "id": "attack_ring",
+            "core": "data/particles/golem/attack_ring.particles",
+            "offset": "0 0 1.8"
+          },
+          {
+            "id": "attack_fire",
+            "core": "data/particles/golem/attack_fire.particles",
+            "offset": "0 0 1.8"
           }
         ]
       }

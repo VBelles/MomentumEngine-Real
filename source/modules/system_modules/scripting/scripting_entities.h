@@ -23,10 +23,6 @@ public:
 	static std::string spawnEntity(std::string prefabFilename);
 	static std::string spawnGolemAt(float x, float y, float z);
 	static std::string spawnGolem();
-	static std::string spawnBallAt(float x, float y, float z);
-	static std::string spawnBall();
-	static std::string spawnMedusaAt(float x, float y, float z);
-	static std::string spawnMedusa();
 
 	static void setPlatformEnabled(std::string entityName, bool how);
 
