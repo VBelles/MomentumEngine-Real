@@ -76,7 +76,9 @@ bool CModuleScripting::start() {
 		{ onPlayerKilled, "onPlayerKilled" },
 		{ onAltarDestroyed, "onAltarDestroyed" },
 		{ onMechanismSystemActivated, "onMechanismSystemActivated" },
-		{ onMechanismSystemDeactivated, "onMechanismSystemDeactivated" }
+		{ onMechanismSystemDeactivated, "onMechanismSystemDeactivated" },
+		{ lastChrysalisTaken, "lastChrysalisTaken" },
+		{ firstChrysalisTaken, "firstChrysalisTaken" }
 	};
 
 	callsFirstParamOnFunction = {

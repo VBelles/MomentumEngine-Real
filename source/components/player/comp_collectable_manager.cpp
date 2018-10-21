@@ -155,6 +155,14 @@ void TCompCollectableManager::onCollect(const TMsgCollect& msg) {
 
 	switch (msg.type) {
 	case Type::CHRYSALIS:
+		numberOfChrysalisTaken++;
+		if (numberOfChrysalisTaken == 1) {
+			EngineScripting.throwEvent(firstChrysalisTaken, "");
+		}
+		else if(numberOfChrysalisTaken == CHRYSALIS_TARGET_NUMBER){
+			EngineScripting.throwEvent(lastChrysalisTaken, "");
+		}
+
 		collectable->collect();
 		addUniqueCollectable(Type::CHRYSALIS, entity->getName());
 		EngineSound.emitEvent(SOUND_COLLECT_CHRYSALIS, transform);

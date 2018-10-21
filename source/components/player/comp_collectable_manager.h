@@ -18,6 +18,8 @@ private:
 	int maxCoins = 144;
 	int lifePiecesPerHeart = 1;
 
+	int numberOfChrysalisTaken = 0;
+
 	float showChrysalisTime = 5.f;
 
 	CTimer2 collectTimer;

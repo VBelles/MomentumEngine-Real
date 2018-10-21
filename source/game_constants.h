@@ -12,6 +12,7 @@ static const std::string TELEPORT_CAMERA = "teleport_camera";
 static const int NUMBER_OF_POWER_LEVELS = 3;
 static const float PAD_DEAD_ZONE = 0.1f;
 static const float PAD_RUN_THRESHOLD = 0.8f;
+static const int CHRYSALIS_TARGET_NUMBER = 12;
 
 static const std::string PREFAB_CHRYSALIS = "data/prefabs/crisalida.prefab";
 static const std::string PREFAB_COIN = "data/prefabs/coin.prefab";

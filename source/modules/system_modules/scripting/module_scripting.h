@@ -10,7 +10,9 @@ enum LuaCall {
 	onTriggerExit, //param triggerName, entityName; la call sera onTriggerExit_triggerName(entityName)
 	onAltarDestroyed, //param altarName; la call sera onAltarDestroyed_altarName()
 	onMechanismSystemActivated, //param mechanismSystemName; la call sera onMechanismSystemActivated_mechanismSystemName()
-	onMechanismSystemDeactivated //param mechanismSystemName; la call sera onMechanismSystemDeactivated_mechanisSystemmName()
+	onMechanismSystemDeactivated, //param mechanismSystemName; la call sera onMechanismSystemDeactivated_mechanisSystemmName()
+	lastChrysalisTaken,
+	firstChrysalisTaken
 };
 
 namespace SLB {
