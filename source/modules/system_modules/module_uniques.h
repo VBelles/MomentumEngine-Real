@@ -1,7 +1,7 @@
 #pragma once
 
 enum EnemyType {
-	DREIDEL, KIPPAH
+	DREIDEL, KIPPAH, GOLEM, DREIDEL_DUMMY, KIPPAH_DUMMY, GOLEM_DUMMY
 };
 
 struct UniqueElement {
