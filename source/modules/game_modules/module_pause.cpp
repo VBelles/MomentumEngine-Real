@@ -5,6 +5,7 @@
 #include "modules/system_modules/module_gui.h"
 #include "modules/game_modules/game/module_game.h"
 #include "modules/system_modules/sound/comp_music.h"
+#include "modules/system_modules/sound/comp_sound.h"
 
 bool CModulePause::start() {
 	pause = false;
@@ -50,6 +51,8 @@ void CModulePause::update(float delta) {
 
 void CModulePause::onPausePressed() {
 	pause = !pause;
+	TCompMusic* music = static_cast<CEntity*>(getEntityByName(MUSIC_PLAYER))->get<TCompMusic>();
+	TCompSound* sound = static_cast<CEntity*>(getEntityByName(SOUND_PLAYER))->get<TCompSound>();
 
 	if (pause) {
 		EngineGame->showChrysalis(0.f);
@@ -59,8 +62,8 @@ void CModulePause::onPausePressed() {
 		ScriptingPlayer::givePlayerControl(); //Necesario ya que se fuerza salir del debug y puede no tener el control
 		CApp::get().setDebugMode(false);
 		cb_globals.game_paused = 1;
-		TCompMusic* music = static_cast<CEntity*>(getEntityByName(MUSIC_PLAYER))->get<TCompMusic>();
 		music->setPauseMenu(true);
+		sound->stop();
 	}
 	else {
 		Engine.getGUI().deactivateWidget("test_pause_menu");
@@ -69,6 +72,7 @@ void CModulePause::onPausePressed() {
 		TCompMusic* music = static_cast<CEntity*>(getEntityByName(MUSIC_PLAYER))->get<TCompMusic>();
 		music->setPauseMenu(false);
 		EngineSound.emitEvent(SOUND_MENU_BACK);
+		sound->play("ambient_day");
 	}
 
 	EngineRender.setActive(!pause);

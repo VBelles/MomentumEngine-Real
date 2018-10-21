@@ -137,7 +137,7 @@ void CModuleGame::update(float delta) {
 		}
 	}
 
-	if (EngineInput["test_particles"].getsPressed()) {
+	/*if (EngineInput["test_particles"].getsPressed()) {
 		CEntity* playerEntity = getEntityByName(PLAYER_NAME);
 		TCompParticles* particles = playerEntity->get<TCompParticles>();
 		particles->launch("teleport_1");
@@ -145,7 +145,7 @@ void CModuleGame::update(float delta) {
 		particles->launch("teleport_3");
 		particles->launch("teleport_4");
 		particles->launch("teleport_5");
-	}
+	}*/
 
 }
 
