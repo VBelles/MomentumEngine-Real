@@ -6,6 +6,7 @@ class CModulePause : public IModule {
 private:
 	bool pause = false;
 	GUI::CMainMenuController* controller;
+	bool blocked = false;
 
 public:
 	CModulePause(const std::string& aname) : IModule(aname) {}
@@ -14,4 +15,6 @@ public:
     void update(float delta) override;
     void render() override;
 	void onPausePressed();
+	void setBlocked(bool blocked);
+	bool isBlocked();
 };

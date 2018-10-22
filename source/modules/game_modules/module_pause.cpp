@@ -32,6 +32,7 @@ bool CModulePause::start() {
 	controller->registerOption("resume_game", resumeGameCB);
 	controller->registerOption("main_menu", mainMenuCB);
 	controller->registerOption("exit_game", exitCB);
+	blocked = false;
 
 	return true;
 }
@@ -40,11 +41,12 @@ bool CModulePause::stop() {
 	Engine.getGUI().unregisterController(controller);
 	safeDelete(controller);
 	Engine.getGUI().unregisterWidget("test_pause_menu", true);
+	blocked = false;
 	return true;
 }
 
 void CModulePause::update(float delta) {
-	if (EngineInput["pause"].getsPressed()
+	if (!blocked && EngineInput["pause"].getsPressed()
 		|| pause && EngineInput["menu_back"].getsPressed()) {
 		onPausePressed();
 		CApp::get().setResetMouse(!pause);
@@ -88,6 +90,14 @@ void CModulePause::onPausePressed() {
 			module->setActive(!pause);
 		}
 	}
+}
+
+void CModulePause::setBlocked(bool blocked) {
+	this->blocked = blocked;
+}
+
+bool CModulePause::isBlocked() {
+	return blocked;
 }
 
 void CModulePause::render() {}
