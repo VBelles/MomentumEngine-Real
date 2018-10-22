@@ -27,6 +27,7 @@ void ScriptingEntities::bind(SLB::Manager* manager) {
 	manager->set("stopEnemies", SLB::FuncCall::create(ScriptingEntities::stopEnemies));
 	manager->set("resumeEnemies", SLB::FuncCall::create(ScriptingEntities::resumeEnemies));
 	manager->set("rotateFinalDoor", SLB::FuncCall::create(ScriptingEntities::rotateFinalDoor));
+	manager->set("enableRender", SLB::FuncCall::create(ScriptingEntities::enableRender));
 }
 
 void ScriptingEntities::bindConstants(SLB::Manager* manager) {
@@ -174,6 +175,21 @@ void ScriptingEntities::rotateFinalDoor() {
 		TCompFinalDoorController* controller = entity->get<TCompFinalDoorController>();
 		if (controller) {
 			controller->rotateFinalDoor();
+		}
+	}
+}
+
+void ScriptingEntities::enableRender(std::string entityName, bool enabled) {
+	CEntity* entity = getEntityByName(entityName);
+	if (entity) {
+		TCompRender* render = entity->get<TCompRender>();
+		if (render) {
+			if (enabled) {
+				render->enable();
+			}
+			else {
+				render->disable();
+			}
 		}
 	}
 }
