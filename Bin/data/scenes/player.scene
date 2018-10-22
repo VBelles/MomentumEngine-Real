@@ -560,6 +560,10 @@
 					{
 						"id": "step_walk_left",
 						"path": "event:/PROTA/walk_right"
+					},
+					{
+						"id": "walk",
+						"path": "event:/PROTA/walk"
 					}
 				]
 			},
