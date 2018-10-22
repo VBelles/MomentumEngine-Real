@@ -76,7 +76,7 @@
         "type": "cct",
         "radius": 0.5,
         "height":1.0,
-        "step": 0.3,
+        "step": 0.9,
         "group": [
           "enemy"
         ],
