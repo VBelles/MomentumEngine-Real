@@ -37,7 +37,7 @@ void TCompShowDialog::update(float delta){
 			dialogIndex = (dialogIndex + 1) % dialogsToShow.size();
 			cancelTimer.reset();
 			if (dialogIndex == 0) {
-				refreshMessageTimer.reset();
+				lastMessageReached = true;
 			}
 		}
 	}
@@ -47,6 +47,10 @@ void TCompShowDialog::update(float delta){
 			EngineGUI.setCancelableWithButton(isCancelable);
 		}
 		if (!EngineGUI.isDialogActive()) {
+			if (lastMessageReached) {
+				refreshMessageTimer.reset();
+				lastMessageReached = false;
+			}
 			if(dialogIndex == 0){
 				//time to refresh
 				if (refreshMessageTimer.elapsed() >= timeToRefreshMessage) {
@@ -55,7 +59,7 @@ void TCompShowDialog::update(float delta){
 					dialogIndex = (dialogIndex + 1) % dialogsToShow.size();
 					cancelTimer.reset();
 					if (dialogIndex == 0) {
-						refreshMessageTimer.reset();
+						lastMessageReached = true;
 					}
 				}
 			}
@@ -66,7 +70,7 @@ void TCompShowDialog::update(float delta){
 				dialogIndex = (dialogIndex + 1) % dialogsToShow.size();
 				cancelTimer.reset();
 				if (dialogIndex == 0) {
-					refreshMessageTimer.reset();
+					lastMessageReached = true;
 				}
 			}
 		}

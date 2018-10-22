@@ -16,6 +16,8 @@ private:
 
 	int dialogIndex = 0;
 
+	bool lastMessageReached = false;
+
 	CTimer2 cancelTimer;
 	bool isCancelable = false;
 	CTimer2 showMessageTimer;
