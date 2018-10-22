@@ -1,11 +1,13 @@
 #include "mcv_platform.h"
 #include "scripting_cameras.h"
 #include <SLB/SLB.hpp>
+#include "components/postfx/comp_screen_transition.h"
 
 void ScriptingCameras::bind(SLB::Manager* manager) {
 	bindConstants(manager);
     manager->set("blendInCamera", SLB::FuncCall::create(ScriptingCameras::blendInCamera));
     manager->set("copyRotationFromCamToCam", SLB::FuncCall::create(ScriptingCameras::copyRotationFromCamToCam));
+    manager->set("startScreenTransition", SLB::FuncCall::create(ScriptingCameras::startScreenTransition));
 }
 
 void ScriptingCameras::bindConstants(SLB::Manager* manager) {
@@ -63,4 +65,10 @@ void ScriptingCameras::copyRotationFromCamToCam(std::string copyCamName, std::st
     float yCopy, pCopy, rCopy;
     copyCamTransform->getYawPitchRoll(&yCopy, &pCopy, &rCopy);
     pasteCamTransform->setYawPitchRoll(yCopy, pCopy, rCopy);
+}
+
+void ScriptingCameras::startScreenTransition(float startingRatio, float finalRatio, float startingAlpha, float finalAlpha, float delay) {
+	CEntity* playerCameraEntity = getEntityByName(GAME_CAMERA);
+	TCompScreenTransition* comp = playerCameraEntity->get<TCompScreenTransition>();
+	comp->startTransition(startingRatio, finalRatio, startingAlpha, finalAlpha, delay);
 }

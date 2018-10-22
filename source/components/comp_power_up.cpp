@@ -51,6 +51,7 @@ void TCompPowerUp::update(float delta) {
 			CEntity* playerCameraEntity = getEntityByName(PLAYER_CAMERA);
 			TCompCameraPlayer* cameraPlayer = playerCameraEntity->get<TCompCameraPlayer>();
 			cameraPlayer->resetSuggested();
+			getPlayerModel()->setHp(getPlayerModel()->getMaxHp());
 			CHandle(this).getOwner().destroy();
 		}
 	}
@@ -87,7 +88,6 @@ void TCompPowerUp::onTriggerEnter(const TMsgTriggerEnter & msg) {
 
 		isCollecting = true;
 		collectTimer.reset();
-		playerModel->setHp(playerModel->getMaxHp());
 
 		EngineGUI.showDialog(message, fontSize);
 		EngineSound.emitEvent(SOUND_POWER_UP);

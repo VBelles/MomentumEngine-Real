@@ -32,4 +32,7 @@ public:
 	static void resumeEntitiesCutscene();
 	static void ScriptingEntities::stopEnemies();
 	static void ScriptingEntities::resumeEnemies();
+
+	static void rotateFinalDoor();
+	static void enableRender(std::string entityName, bool enabled);
 };

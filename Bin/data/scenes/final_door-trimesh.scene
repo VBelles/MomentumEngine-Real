@@ -1,0 +1,19 @@
+[
+  {
+    "entity":
+    {
+      "name": "final_door_controller_trigger",
+      "transform":
+      {
+        "pos": "-143.495 -6.37629 -177.713",
+        "rotation": "0.0 -0.382683 0.0 -0.92388"
+      },
+      "collider":
+      {
+        "mesh_src": "data/meshes/final_door_controller_trigger.col_mesh",
+        "shape": "convex_mesh",
+        "type": "static"
+      }
+    }
+  }
+]

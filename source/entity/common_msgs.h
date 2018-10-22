@@ -136,3 +136,8 @@ struct TMsgFireTurnOff {
 	CHandle fireEntity;
 	DECL_MSG_ID();
 };
+
+struct TMsgChrysalisCollected {
+	int numberOfChrysalidesCollected;
+	DECL_MSG_ID();
+};

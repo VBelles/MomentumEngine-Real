@@ -22,7 +22,7 @@ function onLevelStart_game_state()
     local tiempoAterrizajeAndar  = 6
     local tiempoTravellingSalir  = 4
 
-    local tiempoParaCancelarDialogo = 0.01 --1
+    local tiempoParaCancelarDialogo = 0.6 --1
 
     local fontSize = 46
 

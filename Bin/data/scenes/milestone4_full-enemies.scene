@@ -1,0 +1,1910 @@
+[
+  {
+    "entity":
+    {
+      "name": "nes_enemyMelee053",
+      "prefab": "data/prefabs/dreidel.prefab",
+      "transform":
+      {
+        "pos": "120.623 10.6196 10.9301",
+        "lookat": "-1.0 10.6196 -1.0"
+      }
+    }
+  },
+  {
+    "entity":
+    {
+      "name": "nes_enemyMelee052",
+      "prefab": "data/prefabs/dreidel.prefab",
+      "transform":
+      {
+        "pos": "84.2455 -3.36844 30.8483",
+        "lookat": "-1.0 -3.36844 -1.0"
+      }
+    }
+  },
+  {
+    "entity":
+    {
+      "name": "nes_enemyMelee051",
+      "prefab": "data/prefabs/dreidel.prefab",
+      "transform":
+      {
+        "pos": "264.695 -21.4754 -84.0678",
+        "lookat": "-1.0 -21.4754 -1.0"
+      }
+    }
+  },
+  {
+    "entity":
+    {
+      "name": "nes_enemyMelee050",
+      "prefab": "data/prefabs/dreidel.prefab",
+      "transform":
+      {
+        "pos": "298.178 -23.4228 -103.349",
+        "lookat": "-1.0 -23.4228 -1.0"
+      }
+    }
+  },
+  {
+    "entity":
+    {
+      "name": "nes_enemyMelee049",
+      "prefab": "data/prefabs/dreidel.prefab",
+      "transform":
+      {
+        "pos": "282.81 -21.3287 -71.04",
+        "lookat": "-1.0 -21.3287 -1.0"
+      }
+    }
+  },
+  {
+    "entity":
+    {
+      "name": "nes_enemyMelee048",
+      "prefab": "data/prefabs/dreidel.prefab",
+      "transform":
+      {
+        "pos": "264.697 -21.1905 -33.347",
+        "lookat": "-1.0 -21.1905 -1.0"
+      }
+    }
+  },
+  {
+    "entity":
+    {
+      "name": "nes_enemyMelee047",
+      "prefab": "data/prefabs/dreidel.prefab",
+      "transform":
+      {
+        "pos": "166.95 5.34713 -4.0881",
+        "lookat": "-1.0 5.34713 -1.0"
+      }
+    }
+  },
+  {
+    "entity":
+    {
+      "name": "nes_enemyMelee046",
+      "prefab": "data/prefabs/dreidel.prefab",
+      "transform":
+      {
+        "pos": "133.767 6.78952 51.653",
+        "lookat": "-1.0 6.78952 -1.0"
+      }
+    }
+  },
+  {
+    "entity":
+    {
+      "name": "dani_melee_000",
+      "prefab": "data/prefabs/dreidel.prefab",
+      "transform":
+      {
+        "pos": "112.962 24.9782 91.4404",
+        "lookat": "-1.0 24.9782 -1.0"
+      }
+    }
+  },
+  {
+    "entity":
+    {
+      "name": "dani_air_000",
+      "prefab": "data/prefabs/kippah.prefab",
+      "transform":
+      {
+        "pos": "247.519 -7.10687 -30.0982",
+        "lookat": "-1.0 -7.10687 -1.0"
+      }
+    }
+  },
+  {
+    "entity":
+    {
+      "name": "dani_air_001",
+      "prefab": "data/prefabs/kippah.prefab",
+      "transform":
+      {
+        "pos": "258.1 -7.10687 -34.9723",
+        "lookat": "-1.0 -7.10687 -1.0"
+      }
+    }
+  },
+  {
+    "entity":
+    {
+      "name": "dani_air_002",
+      "prefab": "data/prefabs/kippah.prefab",
+      "transform":
+      {
+        "pos": "264.517 -7.10687 -23.1162",
+        "lookat": "-1.0 -7.10687 -1.0"
+      }
+    }
+  },
+  {
+    "entity":
+    {
+      "name": "dani_air_003",
+      "prefab": "data/prefabs/kippah.prefab",
+      "transform":
+      {
+        "pos": "280.56 -7.10687 -33.0142",
+        "lookat": "-1.0 -7.10687 -1.0"
+      }
+    }
+  },
+  {
+    "entity":
+    {
+      "name": "dani_air_004",
+      "prefab": "data/prefabs/kippah.prefab",
+      "transform":
+      {
+        "pos": "288.624 2.46676 -36.6583",
+        "lookat": "-1.0 2.46676 -1.0"
+      }
+    }
+  },
+  {
+    "entity":
+    {
+      "name": "dani_air_005",
+      "prefab": "data/prefabs/kippah.prefab",
+      "transform":
+      {
+        "pos": "297.972 10.7034 -42.2378",
+        "lookat": "-1.0 10.7034 -1.0"
+      }
+    }
+  },
+  {
+    "entity":
+    {
+      "name": "dani_melee_001",
+      "prefab": "data/prefabs/dreidel.prefab",
+      "transform":
+      {
+        "pos": "101.88 22.332 105.56",
+        "lookat": "-1.0 22.332 -1.0"
+      }
+    }
+  },
+  {
+    "entity":
+    {
+      "name": "dani_melee_002",
+      "prefab": "data/prefabs/dreidel.prefab",
+      "transform":
+      {
+        "pos": "103.336 17.8046 125.273",
+        "lookat": "-1.0 17.8046 -1.0"
+      }
+    }
+  },
+  {
+    "entity":
+    {
+      "name": "dani_melee_003",
+      "prefab": "data/prefabs/dreidel.prefab",
+      "transform":
+      {
+        "pos": "27.3358 -3.76361 21.5119",
+        "lookat": "-1.0 -3.76361 -1.0"
+      }
+    }
+  },
+  {
+    "entity":
+    {
+      "name": "dani_melee_004",
+      "prefab": "data/prefabs/dreidel.prefab",
+      "transform":
+      {
+        "pos": "35.2472 -1.7038 16.1772",
+        "lookat": "-1.0 -1.7038 -1.0"
+      }
+    }
+  },
+  {
+    "entity":
+    {
+      "name": "dani_melee_005",
+      "prefab": "data/prefabs/dreidel.prefab",
+      "transform":
+      {
+        "pos": "-8.45032 -9.43646 130.645",
+        "lookat": "-1.0 -9.43646 -1.0"
+      }
+    }
+  },
+  {
+    "entity":
+    {
+      "name": "dani_air_006",
+      "prefab": "data/prefabs/kippah.prefab",
+      "transform":
+      {
+        "pos": "5.84519 -3.07274 132.418",
+        "lookat": "-1.0 -3.07274 -1.0"
+      }
+    }
+  },
+  {
+    "entity":
+    {
+      "name": "dani_melee_006",
+      "prefab": "data/prefabs/dreidel.prefab",
+      "transform":
+      {
+        "pos": "145.719 24.3837 -106.388",
+        "lookat": "-1.0 24.3837 -1.0"
+      }
+    }
+  },
+  {
+    "entity":
+    {
+      "name": "dani_melee_007",
+      "prefab": "data/prefabs/dreidel.prefab",
+      "transform":
+      {
+        "pos": "133.184 30.5057 -30.3919",
+        "lookat": "-1.0 30.5057 -1.0"
+      }
+    }
+  },
+  {
+    "entity":
+    {
+      "name": "dani_air_007",
+      "prefab": "data/prefabs/kippah.prefab",
+      "transform":
+      {
+        "pos": "161.124 38.5701 -90.2444",
+        "lookat": "-1.0 38.5701 -1.0"
+      }
+    }
+  },
+  {
+    "entity":
+    {
+      "name": "dani_air_008",
+      "prefab": "data/prefabs/kippah.prefab",
+      "transform":
+      {
+        "pos": "273.933 -3.00244 -103.587",
+        "lookat": "-1.0 -3.00244 -1.0"
+      }
+    }
+  },
+  {
+    "entity":
+    {
+      "name": "Plataformeo_kippah000",
+      "prefab": "data/prefabs/kippah.prefab",
+      "transform":
+      {
+        "pos": "166.836 19.8909 107.958",
+        "lookat": "-1.0 19.8909 -1.0"
+      }
+    }
+  },
+  {
+    "entity":
+    {
+      "name": "Plataformeo_kippah001",
+      "prefab": "data/prefabs/kippah.prefab",
+      "transform":
+      {
+        "pos": "174.692 37.8909 115.343",
+        "lookat": "-1.0 37.8909 -1.0"
+      }
+    }
+  },
+  {
+    "entity":
+    {
+      "name": "Plataformeo_kippah002",
+      "prefab": "data/prefabs/kippah.prefab",
+      "transform":
+      {
+        "pos": "171.311 43.8909 114.437",
+        "lookat": "-1.0 43.8909 -1.0"
+      }
+    }
+  },
+  {
+    "entity":
+    {
+      "name": "Plataformeo_kippah003",
+      "prefab": "data/prefabs/kippah.prefab",
+      "transform":
+      {
+        "pos": "167.931 48.8909 113.531",
+        "lookat": "-1.0 48.8909 -1.0"
+      }
+    }
+  },
+  {
+    "entity":
+    {
+      "name": "Plataformeo_kippah004",
+      "prefab": "data/prefabs/kippah.prefab",
+      "transform":
+      {
+        "pos": "133.74 13.4637 -232.252",
+        "lookat": "-1.0 13.4637 -1.0"
+      }
+    }
+  },
+  {
+    "entity":
+    {
+      "name": "Plataformeo_kippah005",
+      "prefab": "data/prefabs/kippah.prefab",
+      "transform":
+      {
+        "pos": "141.618 16.4637 -230.863",
+        "lookat": "-1.0 16.4637 -1.0"
+      }
+    }
+  },
+  {
+    "entity":
+    {
+      "name": "Plataformeo_kippah006",
+      "prefab": "data/prefabs/kippah.prefab",
+      "transform":
+      {
+        "pos": "146.542 19.4637 -229.995",
+        "lookat": "-1.0 19.4637 -1.0"
+      }
+    }
+  },
+  {
+    "entity":
+    {
+      "name": "Plataformeo_kippah007",
+      "prefab": "data/prefabs/kippah.prefab",
+      "transform":
+      {
+        "pos": "145.558 28.4637 -230.169",
+        "lookat": "-1.0 28.4637 -1.0"
+      }
+    }
+  },
+  {
+    "entity":
+    {
+      "name": "Plataformeo_kippah008",
+      "prefab": "data/prefabs/kippah.prefab",
+      "transform":
+      {
+        "pos": "135.71 31.4637 -231.905",
+        "lookat": "-1.0 31.4637 -1.0"
+      }
+    }
+  },
+  {
+    "entity":
+    {
+      "name": "Plataformeo_kippah009",
+      "prefab": "data/prefabs/kippah.prefab",
+      "transform":
+      {
+        "pos": "185.927 77.047 -220.942",
+        "lookat": "-1.0 77.047 -1.0"
+      }
+    }
+  },
+  {
+    "entity":
+    {
+      "name": "Plataformeo_kippah010",
+      "prefab": "data/prefabs/kippah.prefab",
+      "transform":
+      {
+        "pos": "173.64 77.047 -229.546",
+        "lookat": "-1.0 77.047 -1.0"
+      }
+    }
+  },
+  {
+    "entity":
+    {
+      "name": "Plataformeo_kippah011",
+      "prefab": "data/prefabs/kippah.prefab",
+      "transform":
+      {
+        "pos": "161.353 77.047 -238.15",
+        "lookat": "-1.0 77.047 -1.0"
+      }
+    }
+  },
+  {
+    "entity":
+    {
+      "name": "Plataformeo_kippah012",
+      "prefab": "data/prefabs/kippah.prefab",
+      "transform":
+      {
+        "pos": "106.253 52.9533 165.467",
+        "lookat": "-1.0 52.9533 -1.0"
+      }
+    }
+  },
+  {
+    "entity":
+    {
+      "name": "Plataformeo_kippah013",
+      "prefab": "data/prefabs/kippah.prefab",
+      "transform":
+      {
+        "pos": "91.8134 64.9533 167.129",
+        "lookat": "-1.0 64.9533 -1.0"
+      }
+    }
+  },
+  {
+    "entity":
+    {
+      "name": "Plataformeo_kippah014",
+      "prefab": "data/prefabs/kippah.prefab",
+      "transform":
+      {
+        "pos": "85.6657 68.9533 154.781",
+        "lookat": "-1.0 68.9533 -1.0"
+      }
+    }
+  },
+  {
+    "entity":
+    {
+      "name": "Plataformeo_kippah015",
+      "prefab": "data/prefabs/kippah.prefab",
+      "transform":
+      {
+        "pos": "76.2688 68.9533 151.361",
+        "lookat": "-1.0 68.9533 -1.0"
+      }
+    }
+  },
+  {
+    "entity":
+    {
+      "name": "Plataformeo_kippah016",
+      "prefab": "data/prefabs/kippah.prefab",
+      "transform":
+      {
+        "pos": "73.1923 73.4533 153.966",
+        "lookat": "-1.0 73.4533 -1.0"
+      }
+    }
+  },
+  {
+    "entity":
+    {
+      "name": "dani_air_009",
+      "prefab": "data/prefabs/kippah.prefab",
+      "transform":
+      {
+        "pos": "256.244 -1.20329 -195.243",
+        "lookat": "-1.0 -1.20329 -1.0"
+      }
+    }
+  },
+  {
+    "entity":
+    {
+      "name": "dani_air_010",
+      "prefab": "data/prefabs/kippah.prefab",
+      "transform":
+      {
+        "pos": "273.336 -7.97237 -177.782",
+        "lookat": "-1.0 -7.97237 -1.0"
+      }
+    }
+  },
+  {
+    "entity":
+    {
+      "name": "dani_air_011",
+      "prefab": "data/prefabs/kippah.prefab",
+      "transform":
+      {
+        "pos": "187.509 23.2661 -174.439",
+        "lookat": "-1.0 23.2661 -1.0"
+      }
+    }
+  },
+  {
+    "entity":
+    {
+      "name": "dani_air_012",
+      "prefab": "data/prefabs/kippah.prefab",
+      "transform":
+      {
+        "pos": "168.247 23.2661 -193.476",
+        "lookat": "-1.0 23.2661 -1.0"
+      }
+    }
+  },
+  {
+    "entity":
+    {
+      "name": "dani_air_013",
+      "prefab": "data/prefabs/kippah.prefab",
+      "transform":
+      {
+        "pos": "177.714 15.3147 -202.744",
+        "lookat": "-1.0 15.3147 -1.0"
+      }
+    }
+  },
+  {
+    "entity":
+    {
+      "name": "dani_air_014",
+      "prefab": "data/prefabs/kippah.prefab",
+      "transform":
+      {
+        "pos": "197.54 15.3147 -181.806",
+        "lookat": "-1.0 15.3147 -1.0"
+      }
+    }
+  },
+  {
+    "entity":
+    {
+      "name": "dani_melee_008",
+      "prefab": "data/prefabs/dreidel.prefab",
+      "transform":
+      {
+        "pos": "198.514 13.7297 -220.575",
+        "lookat": "-1.0 13.7297 -1.0"
+      }
+    }
+  },
+  {
+    "entity":
+    {
+      "name": "dani_melee_009",
+      "prefab": "data/prefabs/dreidel.prefab",
+      "transform":
+      {
+        "pos": "168.023 30.359 -162.779",
+        "lookat": "-1.0 30.359 -1.0"
+      }
+    }
+  },
+  {
+    "entity":
+    {
+      "name": "dani_melee_010",
+      "prefab": "data/prefabs/dreidel.prefab",
+      "transform":
+      {
+        "pos": "202.548 76.6433 -230.719",
+        "lookat": "-1.0 76.6433 -1.0"
+      }
+    }
+  },
+  {
+    "entity":
+    {
+      "name": "dani_melee_011",
+      "prefab": "data/prefabs/dreidel.prefab",
+      "transform":
+      {
+        "pos": "212.206 76.6433 -216.857",
+        "lookat": "-1.0 76.6433 -1.0"
+      }
+    }
+  },
+  {
+    "entity":
+    {
+      "name": "dani_air_015",
+      "prefab": "data/prefabs/kippah.prefab",
+      "transform":
+      {
+        "pos": "182.876 27.1191 -172.216",
+        "lookat": "-1.0 27.1191 -1.0"
+      }
+    }
+  },
+  {
+    "entity":
+    {
+      "name": "dani_air_016",
+      "prefab": "data/prefabs/kippah.prefab",
+      "transform":
+      {
+        "pos": "196.655 23.4936 -233.822",
+        "lookat": "-1.0 23.4936 -1.0"
+      }
+    }
+  },
+  {
+    "entity":
+    {
+      "name": "dani_air_017",
+      "prefab": "data/prefabs/kippah.prefab",
+      "transform":
+      {
+        "pos": "196.655 35.3988 -233.822",
+        "lookat": "-1.0 35.3988 -1.0"
+      }
+    }
+  },
+  {
+    "entity":
+    {
+      "name": "dani_air_018",
+      "prefab": "data/prefabs/kippah.prefab",
+      "transform":
+      {
+        "pos": "196.655 45.8621 -233.822",
+        "lookat": "-1.0 45.8621 -1.0"
+      }
+    }
+  },
+  {
+    "entity":
+    {
+      "name": "dani_air_019",
+      "prefab": "data/prefabs/kippah.prefab",
+      "transform":
+      {
+        "pos": "196.655 57.8215 -233.822",
+        "lookat": "-1.0 57.8215 -1.0"
+      }
+    }
+  },
+  {
+    "entity":
+    {
+      "name": "dani_melee_012",
+      "prefab": "data/prefabs/dreidel.prefab",
+      "transform":
+      {
+        "pos": "207.888 13.4368 -214.622",
+        "lookat": "-1.0 13.4368 -1.0"
+      }
+    }
+  },
+  {
+    "entity":
+    {
+      "name": "dani_air_020",
+      "prefab": "data/prefabs/kippah.prefab",
+      "transform":
+      {
+        "pos": "62.2932 -4.34164 -205.431",
+        "lookat": "-1.0 -4.34164 -1.0"
+      }
+    }
+  },
+  {
+    "entity":
+    {
+      "name": "dani_air_021",
+      "prefab": "data/prefabs/kippah.prefab",
+      "transform":
+      {
+        "pos": "288.58 -8.86743 -117.576",
+        "lookat": "-1.0 -8.86743 -1.0"
+      }
+    }
+  },
+  {
+    "entity":
+    {
+      "name": "nes_enemyAir058",
+      "prefab": "data/prefabs/kippah.prefab",
+      "transform":
+      {
+        "pos": "-11.6051 66.9579 206.632",
+        "lookat": "-1.0 66.9579 -1.0"
+      }
+    }
+  },
+  {
+    "entity":
+    {
+      "name": "nes_enemyAir057",
+      "prefab": "data/prefabs/kippah.prefab",
+      "transform":
+      {
+        "pos": "-154.925 49.0728 5.90272",
+        "lookat": "-1.0 49.0728 -1.0"
+      }
+    }
+  },
+  {
+    "entity":
+    {
+      "name": "nes_enemyAir056",
+      "prefab": "data/prefabs/kippah.prefab",
+      "transform":
+      {
+        "pos": "-152.504 46.3157 -44.7609",
+        "lookat": "-1.0 46.3157 -1.0"
+      }
+    }
+  },
+  {
+    "entity":
+    {
+      "name": "nes_enemyAir055",
+      "prefab": "data/prefabs/kippah.prefab",
+      "transform":
+      {
+        "pos": "-153.65 44.9642 -66.0936",
+        "lookat": "-1.0 44.9642 -1.0"
+      }
+    }
+  },
+  {
+    "entity":
+    {
+      "name": "nes_enemyAir053",
+      "prefab": "data/prefabs/kippah.prefab",
+      "transform":
+      {
+        "pos": "-170.681 45.8019 -23.6768",
+        "lookat": "-1.0 45.8019 -1.0"
+      }
+    }
+  },
+  {
+    "entity":
+    {
+      "name": "nes_enemyAir052",
+      "prefab": "data/prefabs/kippah.prefab",
+      "transform":
+      {
+        "pos": "1.53661 48.0623 205.49",
+        "lookat": "-1.0 48.0623 -1.0"
+      }
+    }
+  },
+  {
+    "entity":
+    {
+      "name": "nes_enemyMelee045",
+      "prefab": "data/prefabs/dreidel.prefab",
+      "transform":
+      {
+        "pos": "-27.2783 10.7426 176.582",
+        "lookat": "-1.0 10.7426 -1.0"
+      }
+    }
+  },
+  {
+    "entity":
+    {
+      "name": "nes_enemyMelee044",
+      "prefab": "data/prefabs/dreidel.prefab",
+      "transform":
+      {
+        "pos": "-16.4972 10.7426 176.45",
+        "lookat": "-1.0 10.7426 -1.0"
+      }
+    }
+  },
+  {
+    "entity":
+    {
+      "name": "nes_enemyMelee043",
+      "prefab": "data/prefabs/dreidel.prefab",
+      "transform":
+      {
+        "pos": "-21.8785 10.7426 167.12",
+        "lookat": "-1.0 10.7426 -1.0"
+      }
+    }
+  },
+  {
+    "entity":
+    {
+      "name": "nes_enemyMelee042",
+      "prefab": "data/prefabs/dreidel.prefab",
+      "transform":
+      {
+        "pos": "52.0069 1.91982 10.4252",
+        "lookat": "-1.0 1.91982 -1.0"
+      }
+    }
+  },
+  {
+    "entity":
+    {
+      "name": "nes_enemyAir051",
+      "prefab": "data/prefabs/kippah.prefab",
+      "transform":
+      {
+        "pos": "-95.4257 45.1441 17.8368",
+        "lookat": "-1.0 45.1441 -1.0"
+      }
+    }
+  },
+  {
+    "entity":
+    {
+      "name": "nes_enemyAir050",
+      "prefab": "data/prefabs/kippah.prefab",
+      "transform":
+      {
+        "pos": "-104.469 36.0226 70.5702",
+        "lookat": "-1.0 36.0226 -1.0"
+      }
+    }
+  },
+  {
+    "entity":
+    {
+      "name": "nes_enemyAir049",
+      "prefab": "data/prefabs/kippah.prefab",
+      "transform":
+      {
+        "pos": "-96.6797 30.9617 60.2271",
+        "lookat": "-1.0 30.9617 -1.0"
+      }
+    }
+  },
+  {
+    "entity":
+    {
+      "name": "nes_enemyAir048",
+      "prefab": "data/prefabs/kippah.prefab",
+      "transform":
+      {
+        "pos": "132.927 38.4859 -9.10413",
+        "lookat": "-1.0 38.4859 -1.0"
+      }
+    }
+  },
+  {
+    "entity":
+    {
+      "name": "nes_enemyAir047",
+      "prefab": "data/prefabs/kippah.prefab",
+      "transform":
+      {
+        "pos": "131.489 38.4859 5.3472",
+        "lookat": "-1.0 38.4859 -1.0"
+      }
+    }
+  },
+  {
+    "entity":
+    {
+      "name": "nes_enemyMelee041",
+      "prefab": "data/prefabs/dreidel.prefab",
+      "transform":
+      {
+        "pos": "-102.421 60.4921 -78.5705",
+        "lookat": "-1.0 60.4921 -1.0"
+      }
+    }
+  },
+  {
+    "entity":
+    {
+      "name": "nes_enemyAir046",
+      "prefab": "data/prefabs/kippah.prefab",
+      "transform":
+      {
+        "pos": "-102.367 49.3244 -73.6545",
+        "lookat": "-1.0 49.3244 -1.0"
+      }
+    }
+  },
+  {
+    "entity":
+    {
+      "name": "nes_enemyAir045",
+      "prefab": "data/prefabs/kippah.prefab",
+      "transform":
+      {
+        "pos": "-104.295 21.5551 -63.1011",
+        "lookat": "-1.0 21.5551 -1.0"
+      }
+    }
+  },
+  {
+    "entity":
+    {
+      "name": "nes_enemyMelee040",
+      "prefab": "data/prefabs/dreidel.prefab",
+      "transform":
+      {
+        "pos": "-187.158 59.0999 -6.15091",
+        "lookat": "-1.0 59.0999 -1.0"
+      }
+    }
+  },
+  {
+    "entity":
+    {
+      "name": "nes_enemyMelee039",
+      "prefab": "data/prefabs/dreidel.prefab",
+      "transform":
+      {
+        "pos": "-203.6 59.0999 -35.0154",
+        "lookat": "-1.0 59.0999 -1.0"
+      }
+    }
+  },
+  {
+    "entity":
+    {
+      "name": "nes_enemyMelee038",
+      "prefab": "data/prefabs/dreidel.prefab",
+      "transform":
+      {
+        "pos": "-128.224 12.5716 57.5871",
+        "lookat": "-1.0 12.5716 -1.0"
+      }
+    }
+  },
+  {
+    "entity":
+    {
+      "name": "nes_enemyMelee037",
+      "prefab": "data/prefabs/dreidel.prefab",
+      "transform":
+      {
+        "pos": "-127.473 13.2257 51.0505",
+        "lookat": "-1.0 13.2257 -1.0"
+      }
+    }
+  },
+  {
+    "entity":
+    {
+      "name": "nes_enemyMelee036",
+      "prefab": "data/prefabs/dreidel.prefab",
+      "transform":
+      {
+        "pos": "-51.9108 -5.22276 -150.949",
+        "lookat": "-1.0 -5.22276 -1.0"
+      }
+    }
+  },
+  {
+    "entity":
+    {
+      "name": "nes_enemyMelee035",
+      "prefab": "data/prefabs/dreidel.prefab",
+      "transform":
+      {
+        "pos": "-65.7153 8.11806 -100.299",
+        "lookat": "-1.0 8.11806 -1.0"
+      }
+    }
+  },
+  {
+    "entity":
+    {
+      "name": "nes_enemyMelee034",
+      "prefab": "data/prefabs/dreidel.prefab",
+      "transform":
+      {
+        "pos": "-9.33875 2.53334 -79.7656",
+        "lookat": "-1.0 2.53334 -1.0"
+      }
+    }
+  },
+  {
+    "entity":
+    {
+      "name": "nes_enemyMelee033",
+      "prefab": "data/prefabs/dreidel.prefab",
+      "transform":
+      {
+        "pos": "-12.3988 -4.58262 -118.946",
+        "lookat": "-1.0 -4.58262 -1.0"
+      }
+    }
+  },
+  {
+    "entity":
+    {
+      "name": "nes_enemyMelee032",
+      "prefab": "data/prefabs/dreidel.prefab",
+      "transform":
+      {
+        "pos": "-13.1053 33.8612 -54.5401",
+        "lookat": "-1.0 33.8612 -1.0"
+      }
+    }
+  },
+  {
+    "entity":
+    {
+      "name": "nes_enemyMelee031",
+      "prefab": "data/prefabs/dreidel.prefab",
+      "transform":
+      {
+        "pos": "-82.874 27.7551 43.6665",
+        "lookat": "-1.0 27.7551 -1.0"
+      }
+    }
+  },
+  {
+    "entity":
+    {
+      "name": "nes_enemyMelee030",
+      "prefab": "data/prefabs/dreidel.prefab",
+      "transform":
+      {
+        "pos": "-193.213 38.2337 -25.706",
+        "lookat": "-1.0 38.2337 -1.0"
+      }
+    }
+  },
+  {
+    "entity":
+    {
+      "name": "nes_enemyMelee029",
+      "prefab": "data/prefabs/dreidel.prefab",
+      "transform":
+      {
+        "pos": "-99.0985 7.03896 -9.28096",
+        "lookat": "-1.0 7.03896 -1.0"
+      }
+    }
+  },
+  {
+    "entity":
+    {
+      "name": "nes_enemyMelee028",
+      "prefab": "data/prefabs/dreidel.prefab",
+      "transform":
+      {
+        "pos": "-145.04 18.5556 -61.2326",
+        "lookat": "-1.0 18.5556 -1.0"
+      }
+    }
+  },
+  {
+    "entity":
+    {
+      "name": "nes_enemyMelee027",
+      "prefab": "data/prefabs/dreidel.prefab",
+      "transform":
+      {
+        "pos": "-130.319 6.74038 -3.72224",
+        "lookat": "-1.0 6.74038 -1.0"
+      }
+    }
+  },
+  {
+    "entity":
+    {
+      "name": "nes_enemyAir040",
+      "prefab": "data/prefabs/kippah.prefab",
+      "transform":
+      {
+        "pos": "-109.479 19.4483 -46.0379",
+        "lookat": "-1.0 19.4483 -1.0"
+      }
+    }
+  },
+  {
+    "entity":
+    {
+      "name": "nes_enemyMelee026",
+      "prefab": "data/prefabs/dreidel.prefab",
+      "transform":
+      {
+        "pos": "-219.676 60.4953 36.2732",
+        "lookat": "-1.0 60.4953 -1.0"
+      }
+    }
+  },
+  {
+    "entity":
+    {
+      "name": "nes_enemyMelee025",
+      "prefab": "data/prefabs/dreidel.prefab",
+      "transform":
+      {
+        "pos": "-225.495 60.4953 41.2513",
+        "lookat": "-1.0 60.4953 -1.0"
+      }
+    }
+  },
+  {
+    "entity":
+    {
+      "name": "nes_enemyAir039",
+      "prefab": "data/prefabs/kippah.prefab",
+      "transform":
+      {
+        "pos": "-156.066 68.0329 -14.8163",
+        "lookat": "-1.0 68.0329 -1.0"
+      }
+    }
+  },
+  {
+    "entity":
+    {
+      "name": "nes_enemyAir038",
+      "prefab": "data/prefabs/kippah.prefab",
+      "transform":
+      {
+        "pos": "-217.123 54.61 52.2237",
+        "lookat": "-1.0 54.61 -1.0"
+      }
+    }
+  },
+  {
+    "entity":
+    {
+      "name": "nes_enemyAir037",
+      "prefab": "data/prefabs/kippah.prefab",
+      "transform":
+      {
+        "pos": "-194.798 62.8652 47.9847",
+        "lookat": "-1.0 62.8652 -1.0"
+      }
+    }
+  },
+  {
+    "entity":
+    {
+      "name": "nes_enemyAir036",
+      "prefab": "data/prefabs/kippah.prefab",
+      "transform":
+      {
+        "pos": "-202.274 62.8652 45.7784",
+        "lookat": "-1.0 62.8652 -1.0"
+      }
+    }
+  },
+  {
+    "entity":
+    {
+      "name": "nes_enemyAir035",
+      "prefab": "data/prefabs/kippah.prefab",
+      "transform":
+      {
+        "pos": "-188.118 62.8652 50.3858",
+        "lookat": "-1.0 62.8652 -1.0"
+      }
+    }
+  },
+  {
+    "entity":
+    {
+      "name": "nes_enemyMelee024",
+      "prefab": "data/prefabs/dreidel.prefab",
+      "transform":
+      {
+        "pos": "-90.1018 -2.09116 69.5132",
+        "lookat": "-1.0 -2.09116 -1.0"
+      }
+    }
+  },
+  {
+    "entity":
+    {
+      "name": "nes_enemyMelee023",
+      "prefab": "data/prefabs/dreidel.prefab",
+      "transform":
+      {
+        "pos": "14.1779 -0.533061 -59.9404",
+        "lookat": "-1.0 -0.533061 -1.0"
+      }
+    }
+  },
+  {
+    "entity":
+    {
+      "name": "nes_enemyMelee022",
+      "prefab": "data/prefabs/dreidel.prefab",
+      "transform":
+      {
+        "pos": "64.466 5.65591 -18.84",
+        "lookat": "-1.0 5.65591 -1.0"
+      }
+    }
+  },
+  {
+    "entity":
+    {
+      "name": "nes_enemyMelee021",
+      "prefab": "data/prefabs/dreidel.prefab",
+      "transform":
+      {
+        "pos": "-105.453 7.44497 -90.7611",
+        "lookat": "-1.0 7.44497 -1.0"
+      }
+    }
+  },
+  {
+    "entity":
+    {
+      "name": "nes_enemyMelee020",
+      "prefab": "data/prefabs/dreidel.prefab",
+      "transform":
+      {
+        "pos": "-190.475 37.7987 -20.9563",
+        "lookat": "-1.0 37.7987 -1.0"
+      }
+    }
+  },
+  {
+    "entity":
+    {
+      "name": "nes_enemyMelee019",
+      "prefab": "data/prefabs/dreidel.prefab",
+      "transform":
+      {
+        "pos": "-98.3479 7.03896 -15.8176",
+        "lookat": "-1.0 7.03896 -1.0"
+      }
+    }
+  },
+  {
+    "entity":
+    {
+      "name": "nes_enemyMelee018",
+      "prefab": "data/prefabs/dreidel.prefab",
+      "transform":
+      {
+        "pos": "-152.393 14.5321 27.4307",
+        "lookat": "-1.0 14.5321 -1.0"
+      }
+    }
+  },
+  {
+    "entity":
+    {
+      "name": "nes_enemyMelee017",
+      "prefab": "data/prefabs/dreidel.prefab",
+      "transform":
+      {
+        "pos": "-130.33 14.1435 39.7676",
+        "lookat": "-1.0 14.1435 -1.0"
+      }
+    }
+  },
+  {
+    "entity":
+    {
+      "name": "nes_enemyAir034",
+      "prefab": "data/prefabs/kippah.prefab",
+      "transform":
+      {
+        "pos": "-34.2782 -0.273387 101.587",
+        "lookat": "-1.0 -0.273387 -1.0"
+      }
+    }
+  },
+  {
+    "entity":
+    {
+      "name": "nes_enemyAir033",
+      "prefab": "data/prefabs/kippah.prefab",
+      "transform":
+      {
+        "pos": "75.1046 37.2842 -3.82716",
+        "lookat": "-1.0 37.2842 -1.0"
+      }
+    }
+  },
+  {
+    "entity":
+    {
+      "name": "nes_enemyAir032",
+      "prefab": "data/prefabs/kippah.prefab",
+      "transform":
+      {
+        "pos": "56.0098 35.5463 28.981",
+        "lookat": "-1.0 35.5463 -1.0"
+      }
+    }
+  },
+  {
+    "entity":
+    {
+      "name": "nes_enemyAir031",
+      "prefab": "data/prefabs/kippah.prefab",
+      "transform":
+      {
+        "pos": "52.8985 35.5463 17.1758",
+        "lookat": "-1.0 35.5463 -1.0"
+      }
+    }
+  },
+  {
+    "entity":
+    {
+      "name": "nes_enemyAir030",
+      "prefab": "data/prefabs/kippah.prefab",
+      "transform":
+      {
+        "pos": "73.9075 37.2516 17.8408",
+        "lookat": "-1.0 37.2516 -1.0"
+      }
+    }
+  },
+  {
+    "entity":
+    {
+      "name": "nes_enemyAir029",
+      "prefab": "data/prefabs/kippah.prefab",
+      "transform":
+      {
+        "pos": "35.6325 37.2516 28.059",
+        "lookat": "-1.0 37.2516 -1.0"
+      }
+    }
+  },
+  {
+    "entity":
+    {
+      "name": "nes_enemyAir028",
+      "prefab": "data/prefabs/kippah.prefab",
+      "transform":
+      {
+        "pos": "-136.773 1.41387 99.5031",
+        "lookat": "-1.0 1.41387 -1.0"
+      }
+    }
+  },
+  {
+    "entity":
+    {
+      "name": "nes_enemyMelee016",
+      "prefab": "data/prefabs/dreidel.prefab",
+      "transform":
+      {
+        "pos": "-37.0226 -4.63877 44.928",
+        "lookat": "-1.0 -4.63877 -1.0"
+      }
+    }
+  },
+  {
+    "entity":
+    {
+      "name": "nes_enemyMelee015",
+      "prefab": "data/prefabs/dreidel.prefab",
+      "transform":
+      {
+        "pos": "-56.4561 -4.62241 102.284",
+        "lookat": "-1.0 -4.62241 -1.0"
+      }
+    }
+  },
+  {
+    "entity":
+    {
+      "name": "nes_enemyAir18",
+      "prefab": "data/prefabs/kippah.prefab",
+      "transform":
+      {
+        "pos": "-62.9084 32.6393 -37.8833",
+        "lookat": "-1.0 32.6393 -1.0"
+      }
+    }
+  },
+  {
+    "entity":
+    {
+      "name": "nes_enemyAir19",
+      "prefab": "data/prefabs/kippah.prefab",
+      "transform":
+      {
+        "pos": "-55.5835 32.6393 -41.5275",
+        "lookat": "-1.0 32.6393 -1.0"
+      }
+    }
+  },
+  {
+    "entity":
+    {
+      "name": "nes_enemyAir20",
+      "prefab": "data/prefabs/kippah.prefab",
+      "transform":
+      {
+        "pos": "-60.4663 32.6393 -47.5871",
+        "lookat": "-1.0 32.6393 -1.0"
+      }
+    }
+  },
+  {
+    "entity":
+    {
+      "name": "nes_enemyAir21",
+      "prefab": "data/prefabs/kippah.prefab",
+      "transform":
+      {
+        "pos": "-52.7906 32.7017 -52.1968",
+        "lookat": "-1.0 32.7017 -1.0"
+      }
+    }
+  },
+  {
+    "entity":
+    {
+      "name": "nes_enemyMelee14",
+      "prefab": "data/prefabs/dreidel.prefab",
+      "transform":
+      {
+        "pos": "-12.5554 34.3485 -46.4593",
+        "lookat": "-1.0 34.3485 -1.0"
+      }
+    }
+  },
+  {
+    "entity":
+    {
+      "name": "nes_enemyAir22",
+      "prefab": "data/prefabs/kippah.prefab",
+      "transform":
+      {
+        "pos": "22.4469 40.2872 -26.1006",
+        "lookat": "-1.0 40.2872 -1.0"
+      }
+    }
+  },
+  {
+    "entity":
+    {
+      "name": "nes_enemyAir23",
+      "prefab": "data/prefabs/kippah.prefab",
+      "transform":
+      {
+        "pos": "31.4648 41.4658 -33.2431",
+        "lookat": "-1.0 41.4658 -1.0"
+      }
+    }
+  },
+  {
+    "entity":
+    {
+      "name": "nes_enemyAir24",
+      "prefab": "data/prefabs/kippah.prefab",
+      "transform":
+      {
+        "pos": "41.3694 42.9753 -40.5359",
+        "lookat": "-1.0 42.9753 -1.0"
+      }
+    }
+  },
+  {
+    "entity":
+    {
+      "name": "nes_enemyMelee13",
+      "prefab": "data/prefabs/dreidel.prefab",
+      "transform":
+      {
+        "pos": "59.4719 35.4081 -56.1523",
+        "lookat": "-1.0 35.4081 -1.0"
+      }
+    }
+  },
+  {
+    "entity":
+    {
+      "name": "nes_enemyAir15",
+      "prefab": "data/prefabs/kippah.prefab",
+      "transform":
+      {
+        "pos": "77.1277 36.6544 -72.328",
+        "lookat": "-1.0 36.6544 -1.0"
+      }
+    }
+  },
+  {
+    "entity":
+    {
+      "name": "nes_enemyAir16",
+      "prefab": "data/prefabs/kippah.prefab",
+      "transform":
+      {
+        "pos": "77.1143 36.6544 -40.7271",
+        "lookat": "-1.0 36.6544 -1.0"
+      }
+    }
+  },
+  {
+    "entity":
+    {
+      "name": "nes_enemyAir25",
+      "prefab": "data/prefabs/kippah.prefab",
+      "transform":
+      {
+        "pos": "122.69 34.3877 -55.3458",
+        "lookat": "-1.0 34.3877 -1.0"
+      }
+    }
+  },
+  {
+    "entity":
+    {
+      "name": "nes_enemyAir26",
+      "prefab": "data/prefabs/kippah.prefab",
+      "transform":
+      {
+        "pos": "137.568 34.3877 -55.8578",
+        "lookat": "-1.0 34.3877 -1.0"
+      }
+    }
+  },
+  {
+    "entity":
+    {
+      "name": "nes_enemyAir27",
+      "prefab": "data/prefabs/kippah.prefab",
+      "transform":
+      {
+        "pos": "129.788 34.3877 -55.3742",
+        "lookat": "-1.0 34.3877 -1.0"
+      }
+    }
+  },
+  {
+    "entity":
+    {
+      "name": "nes_enemyAir00",
+      "prefab": "data/prefabs/kippah.prefab",
+      "transform":
+      {
+        "pos": "-49.8952 13.6185 51.8707",
+        "lookat": "-1.0 13.6185 -1.0"
+      }
+    }
+  },
+  {
+    "entity":
+    {
+      "name": "nes_enemyAir01",
+      "prefab": "data/prefabs/kippah.prefab",
+      "transform":
+      {
+        "pos": "-46.3646 -2.11627 37.7782",
+        "lookat": "-1.0 -2.11627 -1.0"
+      }
+    }
+  },
+  {
+    "entity":
+    {
+      "name": "nes_enemyMelee12",
+      "prefab": "data/prefabs/dreidel.prefab",
+      "transform":
+      {
+        "pos": "-88.1782 27.7551 48.8483",
+        "lookat": "-1.0 27.7551 -1.0"
+      }
+    }
+  },
+  {
+    "entity":
+    {
+      "name": "nes_enemyAir02",
+      "prefab": "data/prefabs/kippah.prefab",
+      "transform":
+      {
+        "pos": "159.345 77.1507 -141.178",
+        "lookat": "-1.0 77.1507 -1.0"
+      }
+    }
+  },
+  {
+    "entity":
+    {
+      "name": "nes_enemyMelee11",
+      "prefab": "data/prefabs/dreidel.prefab",
+      "transform":
+      {
+        "pos": "161.908 122.563 -141.089",
+        "lookat": "-1.0 122.563 -1.0"
+      }
+    }
+  },
+  {
+    "entity":
+    {
+      "name": "nes_enemyAir03",
+      "prefab": "data/prefabs/kippah.prefab",
+      "transform":
+      {
+        "pos": "166.3 101.649 -148.944",
+        "lookat": "-1.0 101.649 -1.0"
+      }
+    }
+  },
+  {
+    "entity":
+    {
+      "name": "nes_enemyAir04",
+      "prefab": "data/prefabs/kippah.prefab",
+      "transform":
+      {
+        "pos": "154.228 94.9233 -154.067",
+        "lookat": "-1.0 94.9233 -1.0"
+      }
+    }
+  },
+  {
+    "entity":
+    {
+      "name": "nes_enemyMelee10",
+      "prefab": "data/prefabs/dreidel.prefab",
+      "transform":
+      {
+        "pos": "152.198 82.455 -147.29",
+        "lookat": "-1.0 82.455 -1.0"
+      }
+    }
+  },
+  {
+    "entity":
+    {
+      "name": "nes_enemyAir05",
+      "prefab": "data/prefabs/kippah.prefab",
+      "transform":
+      {
+        "pos": "159.867 71.2159 -140.442",
+        "lookat": "-1.0 71.2159 -1.0"
+      }
+    }
+  },
+  {
+    "entity":
+    {
+      "name": "nes_enemyAir06",
+      "prefab": "data/prefabs/kippah.prefab",
+      "transform":
+      {
+        "pos": "155.416 46.3993 -151.412",
+        "lookat": "-1.0 46.3993 -1.0"
+      }
+    }
+  },
+  {
+    "entity":
+    {
+      "name": "nes_enemyAir07",
+      "prefab": "data/prefabs/kippah.prefab",
+      "transform":
+      {
+        "pos": "46.8137 44.8133 -122.042",
+        "lookat": "-1.0 44.8133 -1.0"
+      }
+    }
+  },
+  {
+    "entity":
+    {
+      "name": "nes_enemyAir08",
+      "prefab": "data/prefabs/kippah.prefab",
+      "transform":
+      {
+        "pos": "33.4149 40.6799 -125.6",
+        "lookat": "-1.0 40.6799 -1.0"
+      }
+    }
+  },
+  {
+    "entity":
+    {
+      "name": "nes_enemyAir09",
+      "prefab": "data/prefabs/kippah.prefab",
+      "transform":
+      {
+        "pos": "37.1025 42.8976 -110.815",
+        "lookat": "-1.0 42.8976 -1.0"
+      }
+    }
+  },
+  {
+    "entity":
+    {
+      "name": "nes_enemyAir10",
+      "prefab": "data/prefabs/kippah.prefab",
+      "transform":
+      {
+        "pos": "-95.6723 53.5131 -22.0929",
+        "lookat": "-1.0 53.5131 -1.0"
+      }
+    }
+  },
+  {
+    "entity":
+    {
+      "name": "nes_enemyMelee09",
+      "prefab": "data/prefabs/dreidel.prefab",
+      "transform":
+      {
+        "pos": "-65.1748 18.3993 -30.4245",
+        "lookat": "-1.0 18.3993 -1.0"
+      }
+    }
+  },
+  {
+    "entity":
+    {
+      "name": "nes_enemyMelee08",
+      "prefab": "data/prefabs/dreidel.prefab",
+      "transform":
+      {
+        "pos": "-42.3996 16.754 -32.2702",
+        "lookat": "-1.0 16.754 -1.0"
+      }
+    }
+  },
+  {
+    "entity":
+    {
+      "name": "nes_enemyMelee07",
+      "prefab": "data/prefabs/dreidel.prefab",
+      "transform":
+      {
+        "pos": "149.45 23.9797 -93.8112",
+        "lookat": "-1.0 23.9797 -1.0"
+      }
+    }
+  },
+  {
+    "entity":
+    {
+      "name": "nes_enemyMelee06",
+      "prefab": "data/prefabs/dreidel.prefab",
+      "transform":
+      {
+        "pos": "153.089 34.3059 -126.267",
+        "lookat": "-1.0 34.3059 -1.0"
+      }
+    }
+  },
+  {
+    "entity":
+    {
+      "name": "nes_enemyMelee05",
+      "prefab": "data/prefabs/dreidel.prefab",
+      "transform":
+      {
+        "pos": "152.365 33.2885 -144.635",
+        "lookat": "-1.0 33.2885 -1.0"
+      }
+    }
+  },
+  {
+    "entity":
+    {
+      "name": "nes_enemyAir11",
+      "prefab": "data/prefabs/kippah.prefab",
+      "transform":
+      {
+        "pos": "82.9319 25.8063 -124.642",
+        "lookat": "-1.0 25.8063 -1.0"
+      }
+    }
+  },
+  {
+    "entity":
+    {
+      "name": "nes_enemyMelee04",
+      "prefab": "data/prefabs/dreidel.prefab",
+      "transform":
+      {
+        "pos": "37.5572 2.46091 -157.622",
+        "lookat": "-1.0 2.46091 -1.0"
+      }
+    }
+  },
+  {
+    "entity":
+    {
+      "name": "nes_enemyAir12",
+      "prefab": "data/prefabs/kippah.prefab",
+      "transform":
+      {
+        "pos": "5.35392 9.46727 -155.421",
+        "lookat": "-1.0 9.46727 -1.0"
+      }
+    }
+  },
+  {
+    "entity":
+    {
+      "name": "nes_enemyMelee03",
+      "prefab": "data/prefabs/dreidel.prefab",
+      "transform":
+      {
+        "pos": "23.8182 52.1893 -237.001",
+        "lookat": "-1.0 52.1893 -1.0"
+      }
+    }
+  },
+  {
+    "entity":
+    {
+      "name": "nes_enemyMelee02",
+      "prefab": "data/prefabs/dreidel.prefab",
+      "transform":
+      {
+        "pos": "34.0749 20.4801 -235.207",
+        "lookat": "-1.0 20.4801 -1.0"
+      }
+    }
+  },
+  {
+    "entity":
+    {
+      "name": "nes_enemyMelee01",
+      "prefab": "data/prefabs/dreidel.prefab",
+      "transform":
+      {
+        "pos": "-17.9147 -8.71036 -155.88",
+        "lookat": "-1.0 -8.71036 -1.0"
+      }
+    }
+  },
+  {
+    "entity":
+    {
+      "name": "nes_enemyAir13",
+      "prefab": "data/prefabs/kippah.prefab",
+      "transform":
+      {
+        "pos": "86.6198 22.7915 -124.491",
+        "lookat": "-1.0 22.7915 -1.0"
+      }
+    }
+  },
+  {
+    "entity":
+    {
+      "name": "nes_enemyMelee00",
+      "prefab": "data/prefabs/dreidel.prefab",
+      "transform":
+      {
+        "pos": "61.6472 6.64035 -123.329",
+        "lookat": "-1.0 6.64035 -1.0"
+      }
+    }
+  },
+  {
+    "entity":
+    {
+      "name": "nes_enemyAir14",
+      "prefab": "data/prefabs/kippah.prefab",
+      "transform":
+      {
+        "pos": "36.5089 16.4582 -173.015",
+        "lookat": "-1.0 16.4582 -1.0"
+      }
+    }
+  }
+]
