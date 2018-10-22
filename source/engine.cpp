@@ -9,6 +9,7 @@
 #include "modules/test/module_test_instancing.h"
 #include "modules/game_modules/module_options_menu.h"
 #include "modules/game_modules/module_map_menu.h"
+#include "modules/game_modules/module_options_ingame.h"
 #include "utils/timer_frames.h"
 
 std::recursive_mutex mtx;
@@ -42,7 +43,8 @@ bool CEngine::start() {
 	static CModulePause module_pause("pause");
 	static CModuleInstancing module_instancing("instancing");
 	static CModuleTestInstancing module_test_instancing("test_instancing");
-	static CModuleOptionsMenu module_options_menu("options_menu");
+	static CModuleOptionsMenu module_options_ingame("options_menu");
+	static CModuleOptionsIngame module_options_menu("options_ingame");
 	static CModuleMapMenu module_map_menu("map_menu");
 
 	_modules.registerSystemModule(&_module_entities);
@@ -67,6 +69,7 @@ bool CEngine::start() {
 	_modules.registerGameModule(&module_instancing);
 	_modules.registerGameModule(&module_test_instancing);
 	_modules.registerGameModule(&module_options_menu);
+	_modules.registerGameModule(&module_options_ingame);
 	_modules.registerGameModule(&module_map_menu);
 
 	_modules.loadModules("data/modules.json");

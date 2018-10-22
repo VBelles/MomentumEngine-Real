@@ -86,11 +86,6 @@ namespace GUI {
 				_options[_currentOption]->setCurrentOption(_options[_currentOption]->getCurrentOption() + 1);
 			}
 		}
-
-		if (EngineInput["menu_back"].getsReleased()) {
-			EngineModules.changeGameState("main_menu");
-			EngineSound.emitEvent(SOUND_MENU_BACK);
-		}
 	}
 
 	void COptionsMenuController::registerOption(const std::string& name, const json& value) {

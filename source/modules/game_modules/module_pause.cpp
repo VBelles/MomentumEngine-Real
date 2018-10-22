@@ -7,6 +7,7 @@
 #include "modules/system_modules/sound/comp_music.h"
 #include "modules/system_modules/sound/comp_sound.h"
 #include "modules/system_modules/sound/music_player.h"
+#include "modules/game_modules/module_options_ingame.h"
 
 bool CModulePause::start() {
 	pause = false;
@@ -17,6 +18,10 @@ bool CModulePause::start() {
 	auto resumeGameCB = [&] {
 		onPausePressed();
 		CApp::get().setResetMouse(!pause);
+	};
+	auto optionsCB = [&] {
+		onPausePressed();
+		((CModuleOptionsIngame*)EngineModules.getModule("options_ingame"))->activate();
 	};
 	auto mainMenuCB = [&]() {
 		onPausePressed();
@@ -30,6 +35,7 @@ bool CModulePause::start() {
 
 	controller = new GUI::CMainMenuController();
 	controller->registerOption("resume_game", resumeGameCB);
+	controller->registerOption("options", optionsCB);
 	controller->registerOption("main_menu", mainMenuCB);
 	controller->registerOption("exit_game", exitCB);
 	blocked = false;

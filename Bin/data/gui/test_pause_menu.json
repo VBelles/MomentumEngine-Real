@@ -26,17 +26,33 @@
 						}
 					},
 					{
-						"name" : "main_menu",
+						"name" : "options",
 						"type" : "button",
 						"position" : "0 80",
 						"size" : "360 104",
-						"texture" : "data/textures/gui/bt_main_menu.dds",
+						"texture" : "data/textures/gui/options.dds",
 						"selected" : {
 							"position" : "-30 80",
-							"texture" : "data/textures/gui/bt_main_menu_selected.dds"
+							"texture" : "data/textures/gui/options_selected.dds"
 						},
 						"pressed" : {
 							"position" : "-30 80",
+							"color" : "0.8 0.8 0.8 1",
+							"texture" : "data/textures/gui/options_selected.dds"
+						}
+					},
+					{
+						"name" : "main_menu",
+						"type" : "button",
+						"position" : "0 160",
+						"size" : "360 104",
+						"texture" : "data/textures/gui/bt_main_menu.dds",
+						"selected" : {
+							"position" : "-30 160",
+							"texture" : "data/textures/gui/bt_main_menu_selected.dds"
+						},
+						"pressed" : {
+							"position" : "-30 160",
 							"color" : "0.8 0.8 0.8 1",
 							"texture" : "data/textures/gui/bt_main_menu_selected.dds"
 						}
@@ -44,15 +60,15 @@
 					{
 						"name" : "exit_game",
 						"type" : "button",
-						"position" : "0 160",
+						"position" : "0 240",
 						"size" :"360 104",
 						"texture" : "data/textures/gui/bt_exit_game.dds",
 						"selected" : {
-							"position" : "-30 160",
+							"position" : "-30 240",
 							"texture" : "data/textures/gui/bt_exit_game_selected.dds"
 						},
 						"pressed" : {
-							"position" : "-30 160",
+							"position" : "-30 240",
 							"color" : "0.8 0.8 0.8 1",
 							"texture" : "data/textures/gui/bt_exit_game_selected.dds"
 						}
