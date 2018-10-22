@@ -53,7 +53,7 @@ void CModulePause::update(float delta) {
 
 void CModulePause::onPausePressed() {
 	pause = !pause;
-	TCompMusic* music = static_cast<CEntity*>(getEntityByName(MUSIC_PLAYER))->get<TCompMusic>();
+	//TCompMusic* music = static_cast<CEntity*>(getEntityByName(MUSIC_PLAYER))->get<TCompMusic>();
 	TCompSound* sound = static_cast<CEntity*>(getEntityByName(SOUND_PLAYER))->get<TCompSound>();
 
 	if (pause) {
