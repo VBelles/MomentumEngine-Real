@@ -7,6 +7,7 @@
 #include "components/comp_day_night_cycle.h"
 #include "components/platforms/comp_platform_simple.h"
 #include "components/comp_final_door_controller.h"
+#include "modules/game_modules/module_pause.h"
 
 ScriptingEntities* ScriptingEntities::instance = nullptr;
 
@@ -232,6 +233,7 @@ void ScriptingEntities::destroyCollider(std::string entityName) {
 }
 
 void ScriptingEntities::blockMenu(bool blocked) {
-
+	auto modulePause = (CModulePause*)EngineModules.getModule("pause");
+	modulePause->setBlocked(blocked);
 }
 
