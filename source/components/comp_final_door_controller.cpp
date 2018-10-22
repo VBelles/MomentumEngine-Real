@@ -19,6 +19,18 @@ void TCompFinalDoorController::load(const json & j, TEntityParseContext & ctx) {
 }
 
 void TCompFinalDoorController::update(float delta){
+	if (isRotating) {
+		TCompCollider* collider = finalDoorCollider;
+		TCompTransform* transform = finalDoorTransform;
+		float yaw, pitch, roll;
+		transform->getYawPitchRoll(&yaw, &pitch, &roll);
+		transform->setYawPitchRoll(yaw, pitch + M_PI, roll);
+		auto kinematicActor = static_cast<PxRigidDynamic*>(collider->actor);
+		kinematicActor->setKinematicTarget(toPxTransform(transform));
+		//si ha acabado
+		isRotating = false;
+		dbg("Rotating\n");
+	}
 }
 
 void TCompFinalDoorController::onAllScenesCreated(const TMsgAllScenesCreated & msg) {
@@ -27,6 +39,9 @@ void TCompFinalDoorController::onAllScenesCreated(const TMsgAllScenesCreated & m
 	if (uniqueEvent && uniqueEvent->done) {
 		((TCompCollider*)get<TCompCollider>())->create();
 	}
+	CEntity* entity = getEntityByName(finalDoorName);
+	finalDoorCollider = entity->get<TCompCollider>();
+	finalDoorTransform = entity->get<TCompTransform>();
 }
 
 void TCompFinalDoorController::onTriggerEnter(const TMsgTriggerEnter & msg) {
@@ -34,6 +49,10 @@ void TCompFinalDoorController::onTriggerEnter(const TMsgTriggerEnter & msg) {
 	if (PLAYER_NAME == entity->getName()) {
 		//lanzar lo que sea
 		dbg("Final door trigger entered\n");
+		//llamar evento de lua
+
+		//quitar, esto se tiene que llamar desde lua
+		rotateFinalDoor();
 	}
 }
 
@@ -49,6 +68,10 @@ void TCompFinalDoorController::onChrysalisCollected(const TMsgChrysalisCollected
 			EngineUniques.setEventTriggered(name, true);
 		}
 	}
+}
+
+void TCompFinalDoorController::rotateFinalDoor() {
+	isRotating = true;
 }
 
 void TCompFinalDoorController::onColliderDestroyed(const TMsgColliderDestroyed& msg) {

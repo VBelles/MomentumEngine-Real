@@ -11,7 +11,10 @@ private:
 	//json
 	std::string finalDoorName;
 
+	CHandle finalDoorCollider;
 	CHandle finalDoorTransform;
+
+	bool isRotating = false;
 
 public:
 	DECL_SIBLING_ACCESS();
@@ -26,5 +29,8 @@ public:
 	void onColliderDestroyed(const TMsgColliderDestroyed & msg);
 	void onTriggerExit(const TMsgTriggerExit& msg);
 	void onChrysalisCollected(const TMsgChrysalisCollected& msg);
+
+	//exponer a lua
+	void rotateFinalDoor();
 };
 

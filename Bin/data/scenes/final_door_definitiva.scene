@@ -337,7 +337,7 @@
       {
         "mesh_src": "data/meshes/puerta_cuerpo_col.col_mesh",
         "shape": "tri_mesh",
-        "type": "static",
+        "type": "kinematic",
         "group":
         [
           "scenario"
