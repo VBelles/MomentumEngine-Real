@@ -22,6 +22,9 @@ private:
 
 	std::set<std::string> unpausableEvents;
 
+	std::string soundsVCA;
+	std::string musicVCA;
+
 
 	float masterVolume = 1.f;
 	float soundVolume = 1.f;
@@ -50,18 +53,14 @@ public:
 	FMOD::Studio::System* getSystem();
 	void stopEvent(FMOD::Studio::EventInstance * instance, bool fadeout = false);
 
-	void setVolume(float volume);
-
-	std::vector<FMOD::Studio::Bank*> getBanks();
-	std::vector<FMOD::Studio::EventDescription*> getEventDescriptions(FMOD::Studio::Bank* bank);
-	std::vector<FMOD::Studio::EventInstance*> getEventInstances(FMOD::Studio::EventDescription* eventDescription);
+	void setMasterVolume(float volume);
+	void setSoundVolume(float volume);
+	void setMusicVolume(float volume);
 
 	void setPaused(bool paused);
 
 	void forEachEventInstance(std::function<void(FMOD::Studio::Bank*, FMOD::Studio::EventDescription*, FMOD::Studio::EventInstance*)> callback);
-
-
-
+	void forEachEventInstance(FMOD::Studio::Bank * bank, std::function<void(FMOD::Studio::EventDescription*, FMOD::Studio::EventInstance*)> callback);
 };
 
 

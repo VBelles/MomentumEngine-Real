@@ -10,5 +10,7 @@
         "event:/MENU-PAUSA/menu_accept",
         "event:/MENU-PAUSA/menu_back",
         "event:/MENU-PAUSA/menu_roll"
-    ]
+    ],
+    "sounds_VCA": "vca:/SOUNDS",
+    "music_VCA": "vca:/MUSICA"
 }

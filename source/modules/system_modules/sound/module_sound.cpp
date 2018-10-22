@@ -1,10 +1,12 @@
 #include "mcv_platform.h"
 #include "module_sound.h"
+#include "fmod_utils.h"
 
 #pragma comment(lib, "fmod64_vc.lib")
 #pragma comment(lib, "fmodstudio64_vc.lib")
 
 using namespace FMOD;
+using namespace FMOD_UTILS;
 
 CModuleSound::CModuleSound(const std::string& name) : IModule(name) {
 }
@@ -31,6 +33,9 @@ bool CModuleSound::start() {
 		std::transform(event.begin(), event.end(), event.begin(), ::tolower);
 		unpausableEvents.insert(event);
 	}
+
+	soundsVCA = j.value("sounds_VCA", soundsVCA);
+	musicVCA = j.value("music_VCA", musicVCA);
 
 	return true;
 }
@@ -148,6 +153,7 @@ FMOD::Studio::EventInstance* CModuleSound::emitEventFromDescriptor(FMOD::Studio:
 	eventInstance->set3DAttributes(attributes);
 	eventInstance->start();
 	eventInstance->release();
+
 	return eventInstance;
 }
 
@@ -161,47 +167,25 @@ void CModuleSound::stopEvent(Studio::EventInstance* instance, bool fadeout) {
 	}
 }
 
-void CModuleSound::setVolume(float volume) {
+void CModuleSound::setMasterVolume(float volume) {
 	masterVolume = volume;
 	FMOD::ChannelGroup* masterChannelGroup = nullptr;
 	lowLevelSystem->getMasterChannelGroup(&masterChannelGroup);
 	masterChannelGroup->setVolume(masterVolume);
-	/*for (auto bank : getBanks()) {
-		for (auto description : getEventDescriptions(bank)) {
-			for (auto eventInstance : getEventInstances(description)) {
-				eventInstance->setVolume(10);
-			}
-		}
-	}*/
-
 }
 
-std::vector<Studio::Bank*> CModuleSound::getBanks() {
-	int bankCount = 0;
-	system->getBankCount(&bankCount);
-	std::vector<Studio::Bank*> banks;
-	banks.resize(bankCount);
-	system->getBankList(&banks[0], bankCount, &bankCount);
-	return banks;
+void CModuleSound::setSoundVolume(float volume) {
+	soundVolume = volume;
+	Studio::VCA* vca = nullptr;
+	system->getVCA(soundsVCA.c_str(), &vca);
+	vca->setVolume(volume);
 }
 
-
-std::vector<Studio::EventDescription*> CModuleSound::getEventDescriptions(Studio::Bank* bank) {
-	int descriptionsCount = 0;
-	bank->getEventCount(&descriptionsCount);
-	std::vector<Studio::EventDescription*> descriptions;
-	descriptions.resize(descriptionsCount);
-	bank->getEventList(&descriptions[0], descriptionsCount, &descriptionsCount);
-	return descriptions;
-}
-
-std::vector<FMOD::Studio::EventInstance*> CModuleSound::getEventInstances(Studio::EventDescription * eventDescription) {
-	int eventsCount = 0;
-	eventDescription->getInstanceCount(&eventsCount);
-	std::vector<Studio::EventInstance*> events;
-	events.resize(eventsCount);
-	eventDescription->getInstanceList(&events[0], eventsCount, &eventsCount);
-	return events;
+void CModuleSound::setMusicVolume(float volume) {
+	musicVolume = volume;
+	Studio::VCA* vca = nullptr;
+	system->getVCA(musicVCA.c_str(), &vca);
+	vca->setVolume(volume);
 }
 
 void CModuleSound::setPaused(bool paused) {
@@ -214,16 +198,11 @@ void CModuleSound::setPaused(bool paused) {
 		if (unpausableEvents.find(path) == unpausableEvents.end()) {
 			event->setPaused(this->paused);
 		}
-		dbg("path: %s\n", path.c_str());
-
 	});
-	for (auto& e : unpausableEvents) {
-		dbg("%s\n", e.c_str());
-	}
 }
 
 void CModuleSound::forEachEventInstance(std::function<void(FMOD::Studio::Bank*, FMOD::Studio::EventDescription*, FMOD::Studio::EventInstance*)> callback) {
-	for (auto bank : getBanks()) {
+	for (auto bank : getBanks(getSystem())) {
 		for (auto description : getEventDescriptions(bank)) {
 			for (auto event : getEventInstances(description)) {
 				callback(bank, description, event);
@@ -232,23 +211,37 @@ void CModuleSound::forEachEventInstance(std::function<void(FMOD::Studio::Bank*, 
 	}
 }
 
+void CModuleSound::forEachEventInstance(FMOD::Studio::Bank* bank, std::function<void(FMOD::Studio::EventDescription*, FMOD::Studio::EventInstance*)> callback) {
+	for (auto description : getEventDescriptions(bank)) {
+		for (auto event : getEventInstances(description)) {
+			callback(description, event);
+		}
+	}
+
+}
+
 void CModuleSound::render() {
 	if (CApp::get().isDebug()) {
 		if (ImGui::TreeNode("Sound")) {
 			if (ImGui::DragFloat("Master volume", &masterVolume, 0.01f, 0.f, 1.f)) {
-				setVolume(masterVolume);
+				setMasterVolume(masterVolume);
 			}
-			int bankCount = 0;
-			system->getBankCount(&bankCount);
-			std::vector<Studio::Bank*> banks;
-			banks.resize(bankCount);
-			system->getBankList(&banks[0], bankCount, &bankCount);
-			ImGui::Text("Banks: %d", bankCount);
+			if (ImGui::DragFloat("Sound volume", &soundVolume, 0.01f, 0.f, 1.f)) {
+				setSoundVolume(soundVolume);
+			}
+			if (ImGui::DragFloat("Music volume", &musicVolume, 0.01f, 0.f, 1.f)) {
+				setMusicVolume(musicVolume);
+			}
+
+
+			auto banks = getBanks(getSystem());
+			ImGui::Text("Banks: %d", banks.size());
 
 			static ImGuiTextFilter Filter;
 			Filter.Draw("Filter");
 
 			ImGui::Text("Following events: %d", followingEvents.size());
+
 			for (auto& followingEvent : followingEvents) {
 				Studio::EventDescription* eventDescription = nullptr;
 				followingEvent.eventInstance->getDescription(&eventDescription);
@@ -268,30 +261,45 @@ void CModuleSound::render() {
 				}
 			}
 
+			int i = 0;
 			for (auto bank : banks) {
-				char bankPath[256];
-				bank->getPath(bankPath, 256, nullptr);
-				if (ImGui::TreeNode("Bank: %s", bankPath)) {
-					int eventCount = 0;
-					bank->getEventCount(&eventCount);
-					//if (eventCount == 0) continue;
-					std::vector<Studio::EventDescription*> events;
-					events.resize(eventCount);
-					bank->getEventList(&events[0], eventCount, &eventCount);
-					//if (eventCount == 0) continue;
-					ImGui::Text("Events: %d", eventCount);
-					for (auto event : events) {
-						char path[256];
-						event->getPath(path, 256, nullptr);
-						if (!Filter.IsActive() || Filter.PassFilter(path)) {
-							int instancesCount = 0;
-							event->getInstanceCount(&instancesCount);
-							ImGui::Text("(%d) %s", instancesCount, path);
+
+				int eventCount = 0;
+				bank->getEventCount(&eventCount);
+				ImGui::PushID(i);
+				if (ImGui::TreeNode("Bank: %s (%d)", getPath(bank).c_str(), eventCount)) {
+
+					// Debug buses
+					auto buses = getBuses(bank);
+					if (ImGui::TreeNode("Buses")) {
+						ImGui::Text("Count: %d", buses.size());
+						for (auto bus : buses) {
+							ImGui::Text("Bus: %s", getPath(bus).c_str());
 						}
+						ImGui::TreePop();
+					}
+
+
+					auto descriptions = getEventDescriptions(bank);
+					if (ImGui::TreeNode("Events")) {
+						ImGui::Text("Count: %d", descriptions.size());
+						for (auto description : descriptions) {
+							std::string path = getPath(description);
+							if (!Filter.IsActive() || Filter.PassFilter(path.c_str())) {
+								int instancesCount = 0;
+								description->getInstanceCount(&instancesCount);
+								ImGui::Text("(%d) %s", instancesCount, path.c_str());
+							}
+						}
+						ImGui::TreePop();
 					}
 					ImGui::TreePop();
 				}
+				ImGui::PopID();
+				i++;
 			}
+
+
 			ImGui::TreePop();
 		}
 	}
