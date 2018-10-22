@@ -3,7 +3,6 @@
     <object class="Event" id="{d46a7651-be3c-46e6-8a4d-b9e32dfce97b}">
         <relationship name="selectables">
             <destination>{05a8c90f-5034-4b73-9d07-46db77e768ef}</destination>
-            <destination>{97842e2f-6cf2-4952-b80d-3f8ebfb7f158}</destination>
         </relationship>
         <relationship name="uiLastParameterSelection">
             <destination>{2237b665-87ef-4590-ba72-0fd8d087c6f8}</destination>
@@ -26,6 +25,7 @@
     </object>
     <object class="MixerBusEffectChain" id="{a151b94b-d6ce-4c04-a309-b2a7ca4e51f0}"/>
     <object class="MixerBusPanner" id="{708acb0f-ed3e-4926-9c8c-dc58cb1f416b}"/>
+    <object class="AutomationTrack" id="{f4e7b0c3-ab8f-4e8b-98b4-c645481ddd55}"/>
     <object class="SingleSound" id="{05a8c90f-5034-4b73-9d07-46db77e768ef}"/>
     <object class="EventMixerGroup" id="{d60d136a-17bc-4ee7-bad7-7f920b3a6e99}"/>
     <object class="LoopRegion" id="{97842e2f-6cf2-4952-b80d-3f8ebfb7f158}"/>
@@ -37,4 +37,5 @@
     <object class="MixerBusFader" id="{e2bcb759-050b-44d3-8afa-c628d53f87d6}"/>
     <object class="SFXReverbEffect" id="{53fb4d40-3933-4602-8150-f48767860a4d}"/>
     <object class="MixerBusFader" id="{7ff39700-b07d-49f5-885a-1bc584aba93f}"/>
+    <object class="PitchShifterEffect" id="{95b0f1a1-ee5d-482b-89e8-88ccbf91cf7d}"/>
 </objects>

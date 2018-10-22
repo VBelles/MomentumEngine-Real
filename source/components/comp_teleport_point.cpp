@@ -43,11 +43,23 @@ void TCompTeleportPoint::onGroupCreated(const TMsgEntitiesGroupCreated & msg) {
 	std::string name = ((CEntity*)CHandle(this).getOwner())->getName();
 	UniqueElement* uniqueEvent = EngineUniques.getUniqueEvent(name);
 	if (uniqueEvent && uniqueEvent->done) {
-		setActive();
+		setAlreadyActive();
 	}
 }
 
 void TCompTeleportPoint::setActive() {
+	std::string name = ((CEntity*)CHandle(this).getOwner())->getName();
+	GUI::CMapMarker* marker = (GUI::CMapMarker*)EngineGUI.getWidget(name, true);
+	if (marker) marker->setVisible(true);
+	((TCompCollider*)get<TCompCollider>())->destroy();
+	EngineSound.emitEvent("event:/INTERACTUABLE/teleporter");
+
+	//activar emisivo paulatinamente
+	isActivated = true;
+	activationTimer.reset();
+}
+
+void TCompTeleportPoint::setAlreadyActive() {
 	std::string name = ((CEntity*)CHandle(this).getOwner())->getName();
 	GUI::CMapMarker* marker = (GUI::CMapMarker*)EngineGUI.getWidget(name, true);
 	if (marker) marker->setVisible(true);

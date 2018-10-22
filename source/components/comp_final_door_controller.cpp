@@ -56,6 +56,7 @@ void TCompFinalDoorController::onTriggerEnter(const TMsgTriggerEnter & msg) {
 	if (PLAYER_NAME == entity->getName()) {
 		//llamar evento de lua
 		EngineSound.getMusicPlayer()->fadeOut(6);
+		//EngineSound.emitEvent("event:/INTERACTUABLE/abrir_puerta");
 		EngineScripting.throwEvent(finalDoorCutscene, "");
 	}
 }
