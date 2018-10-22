@@ -22,9 +22,9 @@ function onLevelStart_game_state()
     local tiempoAterrizajeAndar  = 6
     local tiempoTravellingSalir  = 4
 
-    local tiempoParaCancelarDialogo = 0.01 --1
+    local tiempoParaCancelarDialogo = 0.6 --1
 
-    local fontSize = 1
+    local fontSize = 46
 
     -- setPlatformEnabled("cine_cam_011", true)
 	-- blendInCamera("cine_cam_011", 0.001, CAMERA_PRIORITY_GAMEPLAY, INTERPOLATOR_CUBIC_OUT)

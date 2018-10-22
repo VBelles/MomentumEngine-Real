@@ -141,8 +141,9 @@ void TCompRender::load(const json& j, TEntityParseContext& ctx) {
 		if (!j.value("enabled", true)) {
 			disable();
 		}
+		selfIllumRatio = j.value("self_illum", selfIllumRatio);
 	}
-
+	
 	refreshMeshesInRenderManager();
 }
 

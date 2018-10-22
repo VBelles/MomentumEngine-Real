@@ -11,7 +11,21 @@
 						"name": "background01",
 						"type": "image",
 						"size": "1920 1080",
-						"texture": "data/textures/gui/loading/fondo_loading.dds"
+						"texture": "data/textures/gui/loading/mando_xbox.dds",
+						"effects": [
+							{
+								"type": "ellipsis",
+								"wait_time": 5.0
+							}
+						],
+						"children": [
+							{
+								"name": "background02",
+								"type": "image",
+								"size": "1920 1080",
+								"texture": "data/textures/gui/loading/teclado.dds"
+							}
+						]
 					},
 					{
 						"name": "text",

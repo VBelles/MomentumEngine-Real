@@ -13,10 +13,6 @@
     "data/scenes/milestone4_plantas_00-instancing.scene",
     
     "data/scenes/milestone4_dani-0.scene",
-    "data/scenes/milestone4_dani-chrysalis.scene",
-    "data/scenes/milestone4_dani-coins.scene",
-    "data/scenes/milestone4_dani-enemies.scene",
-    "data/scenes/milestone4_dani-life_pieces.scene",
     "data/scenes/milestone4_dani-movables.scene",
     "data/scenes/milestone4_dani-triggers.scene",
     "data/scenes/milestone4_dani-trimesh.scene",
@@ -32,11 +28,8 @@
     
     "data/scenes/milestone4_nestor-0.scene",
     "data/scenes/milestone4_nestor-cameras_definitivas.scene",
-    "data/scenes/milestone4_nestor-chrysalis.scene",
     "data/scenes/milestone4_nestor-collisions.scene",
-    "data/scenes/milestone4_nestor-enemies.scene",
     "data/scenes/milestone4_nestor-fireplaces.scene",
-    "data/scenes/milestone4_nestor-life_pieces.scene",
     "data/scenes/milestone4_nestor-mechanisms.scene",
     "data/scenes/milestone4_nestor-movables.scene",
     "data/scenes/milestone4_nestor-platf_director.scene",
@@ -47,12 +40,17 @@
     "data/scenes/milestone4_nestor-triggers.scene",
     "data/scenes/milestone4_nestor-trimesh.scene",
     
+    "data/scenes/milestone4_full-chrysalis.scene",
+    "data/scenes/milestone4_full-coins.scene",
+    "data/scenes/milestone4_full-enemies.scene",
+    "data/scenes/milestone4_full-life_pieces.scene",
+    
     "data/scenes/milestone4_miguel_raices-0.scene",
     "data/scenes/milestone4_miguel_raices-trimesh.scene",
     "data/scenes/milestone4_miguel_raices-lights.scene",
+    "data/scenes/raices_templo-0.scene",
     
     "data/scenes/milestone4_andrea-0.scene",
-    "data/scenes/milestone4_nestor-coins.scene",
 
     "data/scenes/fireplace_puzzle.scene",
     "data/scenes/final_door_definitiva.scene",
