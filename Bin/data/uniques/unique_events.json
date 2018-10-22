@@ -16,63 +16,63 @@
     },
     {
       "id": "main_entrance_teleport",
-      "done": true,
+      "done": false,
       "position": "-73.2549 -7.49955 119.338",
       "level": "level00",
       "type": "teleport_point"
     },
     {
       "id": "central_field_teleport",
-      "done": true,
+      "done": false,
       "position": "6.22754 0.27057 -8.44519",
       "level": "level00",
       "type": "teleport_point"
     },
     {
       "id": "tower_entrance_teleport",
-      "done": true,
+      "done": false,
       "position": "169.787 35.3706 -128.655",
       "level": "level00",
       "type": "teleport_point"
     },
     {
       "id": "behind_statue_teleport",
-      "done": true,
+      "done": false,
       "position": "-193.399 60.8976 -16.7005",
       "level": "level00",
       "type": "teleport_point"
     },
     {
       "id": "kings_graveyard_teleport",
-      "done": true,
+      "done": false,
       "position": "143.049 61.5612 154.791",
       "level": "level00",
       "type": "teleport_point"
     },
     {
       "id": "mushroom_kingdom_teleport",
-      "done": true,
+      "done": false,
       "position": "311.942 -20.9574 -114.85",
       "level": "level00",
       "type": "teleport_point"
     },
     {
       "id": "graveyard_teleport",
-      "done": true,
+      "done": false,
       "position": "113.839 25.4691 75.4401",
       "level": "level00",
       "type": "teleport_point"
     },
     {
       "id": "behind_tower_teleport",
-      "done": true,
+      "done": false,
       "position": "198.253 77.0684 -207.838",
       "level": "level00",
       "type": "teleport_point"
     },
     {
       "id": "gate_of_doom_teleport",
-      "done": true,
+      "done": false,
       "position": "-110.287 5.62795 -112.539",
       "level": "level00",
       "type": "teleport_point"
