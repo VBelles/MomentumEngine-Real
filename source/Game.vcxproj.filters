@@ -395,6 +395,9 @@
     <ClCompile Include="components\comp_fire_puzzle.cpp" />
     <ClCompile Include="components\comp_dummy_collectable.cpp" />
     <ClCompile Include="modules\system_modules\sound\fmod_utils.cpp" />
+    <ClCompile Include="gui\effects\gui_ellipsis.cpp" />
+    <ClCompile Include="modules\system_modules\sound\music_player.cpp" />
+    <ClCompile Include="components\comp_show_dialog.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="..\Bin\data\shaders\ctes.h" />
@@ -822,6 +825,9 @@
     <ClInclude Include="components\comp_fire_puzzle.h" />
     <ClInclude Include="components\comp_dummy_collectable.h" />
     <ClInclude Include="modules\system_modules\sound\fmod_utils.h" />
+    <ClInclude Include="gui\effects\gui_ellipsis.h" />
+    <ClInclude Include="modules\system_modules\sound\music_player.h" />
+    <ClInclude Include="components\comp_show_dialog.h" />
   </ItemGroup>
   <ItemGroup>
     <None Include="geometry\SimpleMath.inl" />

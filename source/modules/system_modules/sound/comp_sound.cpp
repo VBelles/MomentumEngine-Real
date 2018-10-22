@@ -38,7 +38,7 @@ void TCompSound::load(const json& j, TEntityParseContext& ctx) {
 	for (auto& jEvent : j["events"]) {
 		Sound sound;
 		sound.id = jEvent.value("id", "");
-		assert(!id.empty());
+		assert(!sound.id.empty());
 		sound.path = jEvent.value("path", sound.path);
 		sound.following = jEvent.value("following", sound.following);
 		sound.multiInstancing = jEvent.value("multi_instancing", sound.multiInstancing);

@@ -6,8 +6,8 @@
 		"invert_y_axis": false
 	},
 	"screen": {
-		"fullscreen": false,
-		"resolution": "1280 720",
+		"fullscreen": true,
+		"resolution": "1920 1080",
 		"vsync": false
 	},
 	"sound": {

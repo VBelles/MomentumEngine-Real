@@ -2,6 +2,8 @@
 
 #include "modules/module.h"
 
+class CMusicPlayer;
+
 class CModuleSound : public IModule {
 private:
 	struct FollowingEvent {
@@ -35,6 +37,8 @@ private:
 	void updateListenerAttributes();
 	void updateFollowingEvents();
 
+	CMusicPlayer* musicPlayer = nullptr;
+
 public:
 	CModuleSound(const std::string& name);
 	bool start() override;
@@ -61,6 +65,8 @@ public:
 
 	void forEachEventInstance(std::function<void(FMOD::Studio::Bank*, FMOD::Studio::EventDescription*, FMOD::Studio::EventInstance*)> callback);
 	void forEachEventInstance(FMOD::Studio::Bank * bank, std::function<void(FMOD::Studio::EventDescription*, FMOD::Studio::EventInstance*)> callback);
+
+	CMusicPlayer* getMusicPlayer();
 };
 
 

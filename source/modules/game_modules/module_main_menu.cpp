@@ -1,6 +1,7 @@
 #include "mcv_platform.h"
 #include "module_main_menu.h"
 #include "gui/gui_parser.h"
+#include "modules/system_modules/sound/music_player.h"
 
 bool CModuleMainMenu::start() {
 	CApp& app = CApp::get();
@@ -34,6 +35,8 @@ bool CModuleMainMenu::start() {
 	Engine.getGUI().registerController(controller);
 
 	Engine.setInputType(InputType::Menu);
+
+	EngineSound.getMusicPlayer()->setCurrentSong(CMusicPlayer::Song::INTRO);
 
 	return true;
 }

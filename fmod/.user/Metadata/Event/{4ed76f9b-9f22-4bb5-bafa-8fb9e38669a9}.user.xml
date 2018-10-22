@@ -8,11 +8,7 @@
             <destination>{537be1c3-e058-44bb-938c-429433169fe4}</destination>
         </relationship>
     </object>
-    <object class="MasterTrack" id="{3d85a129-f75c-4434-b403-f959c9300715}">
-        <property name="uiAutomationTracksVisible">
-            <value>false</value>
-        </property>
-    </object>
+    <object class="MasterTrack" id="{3d85a129-f75c-4434-b403-f959c9300715}"/>
     <object class="MixerInput" id="{d160fdf0-53f4-4eb4-885e-8b845798b31d}"/>
     <object class="EventAutomatableProperties" id="{c9160f87-ccda-4f2b-894b-75459d692a2d}"/>
     <object class="MarkerTrack" id="{2a8d5bf6-ad57-48cc-a891-e0485972fdd5}"/>

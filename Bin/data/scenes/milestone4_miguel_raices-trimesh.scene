@@ -954,23 +954,6 @@
   {
     "entity":
     {
-      "name": "root_149_collider",
-      "transform":
-      {
-        "pos": "-76.5659 -2.82216 39.3205",
-        "rotation": "-0.39256 0.200931 0.652927 -0.615801"
-      },
-      "collider":
-      {
-        "mesh_src": "data/meshes/root_149_collider.col_mesh",
-        "shape": "tri_mesh",
-        "type": "static"
-      }
-    }
-  },
-  {
-    "entity":
-    {
       "name": "root_150_collider",
       "transform":
       {
@@ -1694,23 +1677,6 @@
       "collider":
       {
         "mesh_src": "data/meshes/root_med_007_collider.col_mesh",
-        "shape": "tri_mesh",
-        "type": "static"
-      }
-    }
-  },
-  {
-    "entity":
-    {
-      "name": "root_148_collider",
-      "transform":
-      {
-        "pos": "-69.5997 -4.03466 36.7805",
-        "rotation": "0.0 -0.866025 0.0 -0.5"
-      },
-      "collider":
-      {
-        "mesh_src": "data/meshes/root_148_collider.col_mesh",
         "shape": "tri_mesh",
         "type": "static"
       }

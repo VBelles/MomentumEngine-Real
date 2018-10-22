@@ -2,6 +2,37 @@
   {
     "entity":
     {
+      "name": "nes_respawn002",
+      "transform":
+      {
+        "pos": "15.3507 -48.9434 -246.133",
+        "rotation": "0.0 -0.0871557 0.0 -0.996195"
+      },
+      "collider":
+      {
+        "mesh_src": "data/meshes/nes_respawn002.col_mesh",
+        "shape": "convex_mesh",
+        "is_trigger": true,
+        "type": "static",
+        "group":
+        [
+          "trigger"
+        ],
+        "mask":
+        [
+          "player"
+        ]
+      },
+      "respawn_point":
+      {
+        "respawn_position": "-1.58796 11.8588 -253.014",
+        "respawn_rotation": "0.0 -0.0871557 0.0 -0.996195"
+      }
+    }
+  },
+  {
+    "entity":
+    {
       "name": "nes_respawn010temploPuro",
       "transform":
       {
@@ -25,7 +56,7 @@
       },
       "respawn_point":
       {
-        "respawn_position": "4.87414 43.988 196.168",
+        "respawn_position": "2.97534 46.2187 199.039",
         "respawn_rotation": "0.0 0.384039 0.0 -0.923317"
       }
     }
@@ -253,7 +284,7 @@
       "name": "nes_respawn002ruinasTorre",
       "transform":
       {
-        "pos": "42.3755 -13.3261 -139.27",
+        "pos": "56.925 -13.3261 -123.066",
         "rotation": "0.0 -0.0871557 0.0 -0.996195"
       },
       "collider":
@@ -273,7 +304,7 @@
       },
       "respawn_point":
       {
-        "respawn_position": "57.589 4.72485 -90.0427",
+        "respawn_position": "58.7424 4.60766 -91.2775",
         "respawn_rotation": "0.0 -0.939693 0.0 -0.34202"
       }
     }
@@ -284,7 +315,7 @@
       "name": "nes_respawn001",
       "transform":
       {
-        "pos": "-9.36543 -48.9434 -280.36",
+        "pos": "-16.4021 -48.9434 -179.377",
         "rotation": "0.0 -0.0871557 0.0 -0.996195"
       },
       "collider":

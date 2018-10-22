@@ -1,0 +1,175 @@
+[
+  {
+    "entity":
+    {
+      "name": "trigger_message_test",
+      "transform":
+      {
+        "pos": "-118.436 -30.1472 342.92",
+        "rotation": "0.0 -0.0436194 0.0 -0.999048"
+      },
+      "collider":
+      {
+        "mesh_src": "data/meshes/trigger_message_test.col_mesh",
+        "shape": "convex_mesh",
+        "type": "static",
+        "is_trigger": true,
+        "group":
+        [
+          "trigger"
+        ],
+        "mask":
+        [
+          "player"
+        ]
+      },
+      "show_dialog":{
+        "dialogs":[
+          "dialog 1",
+          "dialog 2",
+          "dialog 3\nblabla"
+        ],
+        "show_time": 2,
+        "refresh_time": 5,
+        "cancel_time": 2,
+        "font_size": 1
+      }
+    }
+  },
+  {
+    "entity":
+    {
+      "name": "trigger_message_teleport",
+      "transform":
+      {
+        "pos": "-131.246 -29.5679 353.017",
+        "rotation": "0.0 -0.0871557 0.0 -0.996195"
+      },
+      "collider":
+      {
+        "mesh_src": "data/meshes/trigger_message_teleport.col_mesh",
+        "shape": "convex_mesh",
+        "type": "static"
+      }
+    }
+  },
+  {
+    "entity":
+    {
+      "name": "trigger_message_mechanism",
+      "transform":
+      {
+        "pos": "-73.586 -21.7014 242.65",
+        "rotation": "0.0 -1.0 0.0 0.0"
+      },
+      "collider":
+      {
+        "mesh_src": "data/meshes/trigger_message_mechanism.col_mesh",
+        "shape": "convex_mesh",
+        "type": "static"
+      }
+    }
+  },
+  {
+    "entity":
+    {
+      "name": "trigger_message_launcher",
+      "transform":
+      {
+        "pos": "-107.55 -43.7272 198.75",
+        "rotation": "0.0 -1.0 0.0 0.0"
+      },
+      "collider":
+      {
+        "mesh_src": "data/meshes/trigger_message_launcher.col_mesh",
+        "shape": "convex_mesh",
+        "type": "static"
+      }
+    }
+  },
+  {
+    "entity":
+    {
+      "name": "trigger_message_propel",
+      "transform":
+      {
+        "pos": "-113.068 -50.0904 234.908",
+        "rotation": "0.0 -0.819152 0.0 -0.573577"
+      },
+      "collider":
+      {
+        "mesh_src": "data/meshes/trigger_message_propel.col_mesh",
+        "shape": "convex_mesh",
+        "type": "static"
+      }
+    }
+  },
+  {
+    "entity":
+    {
+      "name": "trigger_message_pure",
+      "transform":
+      {
+        "pos": "-134.079 -36.4849 283.294",
+        "rotation": "0.0 -0.67559 0.0 -0.737277"
+      },
+      "collider":
+      {
+        "mesh_src": "data/meshes/trigger_message_pure.col_mesh",
+        "shape": "convex_mesh",
+        "type": "static"
+      }
+    }
+  },
+  {
+    "entity":
+    {
+      "name": "trigger_message_coins",
+      "transform":
+      {
+        "pos": "-135.726 -36.6857 310.63",
+        "rotation": "0.0 -0.0871557 0.0 -0.996195"
+      },
+      "collider":
+      {
+        "mesh_src": "data/meshes/trigger_message_coins.col_mesh",
+        "shape": "convex_mesh",
+        "type": "static"
+      }
+    }
+  },
+  {
+    "entity":
+    {
+      "name": "trigger_message_long_jump",
+      "transform":
+      {
+        "pos": "-117.974 -34.5611 324.128",
+        "rotation": "0.0 -0.0871557 0.0 -0.996195"
+      },
+      "collider":
+      {
+        "mesh_src": "data/meshes/trigger_message_long_jump.col_mesh",
+        "shape": "convex_mesh",
+        "type": "static"
+      }
+    }
+  },
+  {
+    "entity":
+    {
+      "name": "trigger_message_jump",
+      "transform":
+      {
+        "pos": "-117.619 -36.8052 332.936",
+        "rotation": "0.0 -0.0871557 0.0 -0.996195"
+      },
+      "collider":
+      {
+        "mesh_src": "data/meshes/trigger_message_jump.col_mesh",
+        "shape": "convex_mesh",
+        "type": "static"
+      }
+    }
+  }
+]

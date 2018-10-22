@@ -1,0 +1,50 @@
+[
+  {
+    "entity":
+    {
+      "name": "bombilla_light_020",
+      "transform":
+      {
+        "pos": "316.21 -14.2893 -139.661"
+      },
+      "light_point":
+      {
+        "intensity": 6.0,
+        "radius": 20.0,
+        "color": "0.639216 0.894118 0.0862745 1.0"
+      }
+    }
+  },
+  {
+    "entity":
+    {
+      "name": "bombilla_light_019",
+      "transform":
+      {
+        "pos": "116.892 55.039 187.357"
+      },
+      "light_point":
+      {
+        "intensity": 6.0,
+        "radius": 20.0,
+        "color": "0.639216 0.894118 0.0862745 1.0"
+      }
+    }
+  },
+  {
+    "entity":
+    {
+      "name": "bombilla_light_018",
+      "transform":
+      {
+        "pos": "275.925 -16.6912 -18.6055"
+      },
+      "light_point":
+      {
+        "intensity": 6.0,
+        "radius": 20.0,
+        "color": "0.639216 0.894118 0.0862745 1.0"
+      }
+    }
+  }
+]

@@ -882,50 +882,6 @@
   {
     "entity":
     {
-      "name": "root_149",
-      "transform":
-      {
-        "pos": "-76.5659 -2.82216 39.3205",
-        "rotation": "-0.39256 0.200931 0.652927 -0.615801"
-      },
-      "render":
-      [
-        {
-          "mesh": "data/meshes/root_149.mesh",
-          "materials":
-          [
-            "data/materials/m_roots.material"
-          ],
-          "enabled": true
-        }
-      ]
-    }
-  },
-  {
-    "entity":
-    {
-      "name": "root_148",
-      "transform":
-      {
-        "pos": "-69.597 -4.02515 36.7953",
-        "rotation": "0.0 -0.866025 0.0 -0.5"
-      },
-      "render":
-      [
-        {
-          "mesh": "data/meshes/root_148.mesh",
-          "materials":
-          [
-            "data/materials/m_roots.material"
-          ],
-          "enabled": true
-        }
-      ]
-    }
-  },
-  {
-    "entity":
-    {
       "name": "root_145",
       "transform":
       {

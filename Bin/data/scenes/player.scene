@@ -170,7 +170,22 @@
 				],
 				"freezeDropTime": 1.5
 			},
-			"collectable_manager": {},
+			"collectable_manager": {
+				"final_door_chrysalides":[
+					"final_door_chrysalis_1",
+					"final_door_chrysalis_2",
+					"final_door_chrysalis_3",
+					"final_door_chrysalis_4",
+					"final_door_chrysalis_5",
+					"final_door_chrysalis_6",
+					"final_door_chrysalis_7",
+					"final_door_chrysalis_8",
+					"final_door_chrysalis_9",
+					"final_door_chrysalis_10",
+					"final_door_chrysalis_11",
+					"final_door_chrysalis_12"
+				]
+			},
 			"dummy_collectable": {
 				"chrysalis" : "dummy_chrysalis",
 				"powerup": "dummy_powerup",

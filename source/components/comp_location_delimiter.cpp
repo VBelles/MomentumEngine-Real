@@ -7,7 +7,6 @@ void TCompLocationDelimiter::debugInMenu() {
 }
 
 void TCompLocationDelimiter::registerMsgs() {
-	DECL_MSG(TCompLocationDelimiter, TMsgAllScenesCreated, onAllScenesCreated);
 	DECL_MSG(TCompLocationDelimiter, TMsgTriggerEnter, onTriggerEnter);
 	DECL_MSG(TCompLocationDelimiter, TMsgTriggerExit, onTriggerExit);
 }
@@ -17,28 +16,24 @@ void TCompLocationDelimiter::load(const json & j, TEntityParseContext & ctx) {
 	worksOnEnter = j.value("works_on_enter", worksOnEnter);
 
 	if (locationName == "cemetery") {
-		location = TCompMusic::Location::CEMETERY;
+		location = CMusicPlayer::Location::CEMETERY;
 	}
 	else if (locationName == "civilization") {
-		location = TCompMusic::Location::CIVILIZATION;
+		location = CMusicPlayer::Location::CIVILIZATION;
 	}
 	else if (locationName == "chrystals") {
-		location = TCompMusic::Location::CHRYSTALS;
+		location = CMusicPlayer::Location::CHRYSTALS;
 	}
 	else if (locationName == "mushrooms") {
-		location = TCompMusic::Location::MUSHROOMS;
+		location = CMusicPlayer::Location::MUSHROOMS;
 	}
 	else if (locationName == "temple") {
-		location = TCompMusic::Location::TEMPLE;
+		location = CMusicPlayer::Location::TEMPLE;
 	}
 	else {
 		dbg("location no reconocida: %s\n", locationName.c_str());
-		location = TCompMusic::Location::CEMETERY;
+		location = CMusicPlayer::Location::CEMETERY;
 	}
-}
-
-void TCompLocationDelimiter::onAllScenesCreated(const TMsgAllScenesCreated & msg) {
-	musicPlayerHandle = static_cast<CEntity*>(getEntityByName(MUSIC_PLAYER))->get<TCompMusic>();
 }
 
 void TCompLocationDelimiter::onTriggerEnter(const TMsgTriggerEnter & msg) {
@@ -55,6 +50,6 @@ void TCompLocationDelimiter::onTriggerExit(const TMsgTriggerExit & msg) {
 	}
 }
 
-TCompMusic * TCompLocationDelimiter::getMusicPlayer() {
-	return musicPlayerHandle;
+CMusicPlayer * TCompLocationDelimiter::getMusicPlayer() {
+	return EngineSound.getMusicPlayer();
 }

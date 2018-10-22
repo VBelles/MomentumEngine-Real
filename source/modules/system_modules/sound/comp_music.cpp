@@ -44,17 +44,12 @@ void TCompMusic::onEntityCreated(const TMsgEntityCreated&) {
 	momentumThemeDescriptor = EngineSound.getEventDescription(mainTheme);
 	introThemeDescriptor = EngineSound.getEventDescription(introTheme);
 	currentSongDescriptor = momentumThemeDescriptor;
-	/*introThemeInstance = EngineSound.emitEvent(introTheme);
-	momentumThemeInstance = EngineSound.emitEvent(mainTheme);
-	currentSongInstance = momentumThemeInstance;*/
 
 	milisecondsPerBeat = 60000 / tempo;//1 min = 60000 ms
 	milisecondsPerBar = milisecondsPerBeat * timeSignature;
 	for (int i = 0; i < LAST; i++) {
 		eventInfos[static_cast<EventType>(i)].timer.setTimeStamp(0);
 	}
-	play();
-	//stop();//si hago getEventInstance en vez de emitEvent las pistas se desincronizan
 	//play();
 }
 
@@ -68,8 +63,6 @@ void TCompMusic::play() {
 	if (currentSongDescriptor) {
 		currentSongInstance = EngineSound.emitEventFromDescriptor(currentSongDescriptor);
 	}
-	/*currentSongInstance->start();
-	currentSongInstance->release();*/
 	isSongPlaying = true;
 }
 
@@ -317,7 +310,7 @@ void TCompMusic::removeLocation(Location location) {
 void TCompMusic::setPauseMenu(bool paused) {
 	if (!currentSongInstance) return;
 	if (paused != this->isGamePaused) {
-		//molaría también bajar el volumen un poco
+		//bajar volumen un poco
 		float previousVolume;
 		currentSongInstance->getVolume(&previousVolume);
 		if (paused) {

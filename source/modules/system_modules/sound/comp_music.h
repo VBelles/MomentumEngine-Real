@@ -1,7 +1,7 @@
 #pragma once
 
-#include "modules/system_modules/sound/module_sound.h"
 
+#ifndef EVENT_TYPES
 
 #define EVENT_TYPES \
 	etype(COMBAT), \
@@ -17,12 +17,15 @@
 	etype(LOCATION_TEMPLE), \
 	etype(LAST)
 
+
 #define etype(x) x
 typedef enum { EVENT_TYPES } EventType;
 #undef etype
 #define etype(x) #x
 static const char *strEventTypes[] = { EVENT_TYPES };
 #undef etype
+
+#endif // EVENT_TYPES
 
 class TCompMusic : public TCompBase {
 private:
@@ -82,7 +85,7 @@ public:
 	enum Level {
 		LEVEL_1, LEVEL_2, LEVEL_3
 	};
-	
+
 	Level levelState = LEVEL_1;
 
 	enum DayNight {
@@ -92,12 +95,12 @@ public:
 	DayNight dayNightState = DAY;
 
 	enum Location {
-		NONE			= 0,
-		CEMETERY		= 1 << 0,
-		CIVILIZATION	= 1 << 1,
-		CHRYSTALS		= 1 << 2,
-		MUSHROOMS		= 1 << 3,
-		TEMPLE			= 1 << 4
+		NONE = 0,
+		CEMETERY = 1 << 0,
+		CIVILIZATION = 1 << 1,
+		CHRYSTALS = 1 << 2,
+		MUSHROOMS = 1 << 3,
+		TEMPLE = 1 << 4
 	};
 
 	Location locationState = NONE;

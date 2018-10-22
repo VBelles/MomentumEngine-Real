@@ -22,6 +22,7 @@
 #include "modules/system_modules/particles/comp_particles.h"
 #include "modules/system_modules/sound/comp_sound.h"
 
+#include "modules/system_modules/sound/music_player.h"
 
 CCamera camera;
 //extern void registerMesh(CRenderMesh* new_mesh, const char* name);
@@ -97,6 +98,9 @@ bool CModuleGame::start() {
 	CEntity* soundEntity = getEntityByName(SOUND_PLAYER);
 	TCompSound* sound = soundEntity->get<TCompSound>();
 	sound->play("ambient_day");
+	//EngineSound.startEvent(SOUND_AMBIENT);
+	EngineSound.getMusicPlayer()->setCurrentSong(CMusicPlayer::Song::MAIN);
+
 	return true;
 }
 

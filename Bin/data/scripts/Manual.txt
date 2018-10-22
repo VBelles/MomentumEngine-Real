@@ -43,11 +43,6 @@ Funciones:
 	string spawnEntity(PREFAB)
 	string spawnGolemAt(float x, float y, float z)
 	string spawnGolem()
-	string spawnBallAt(float x, float y, float z)
-	string spawnBall()
-	string spawnMedusaAt(float x, float y, float z)
-	string spawnMedusa()
-
 	void setPlatformEnabled(std::string entityName, bool how)
 
 	void stopEntities()
@@ -71,6 +66,7 @@ Funciones:
 	void hideDialog()
 	bool isDialogActive()
 	bool isDialogHidden()
+	void setCancelableWithButton(bool cancelable)
 	void showHUD(bool how)
 
 Constantes:
@@ -78,12 +74,13 @@ Constantes:
 	PLAYER_CAMERA
 	GAME_CAMERA
 
-	PREFAB_GOLEM
-	PREFAB_BALL
-	PREFAB_MEDUSA
 	PREFAB_CHRYSALIS
+	PREFAB_GOLEM
 	PREFAB_DREIDEL
-	PREFAB_GORILA
+	PREFAB_KIPPAH
+	PREFAB_GOLEM_DUMMY
+	PREFAB_DREIDEL_DUMMY
+	PREFAB_KIPPAH_DUMMY
 	PREFAB_MURO
 	PREFAB_PLATAFORMA_HEX 
 	PREFAB_PLATAFORMA_RECT

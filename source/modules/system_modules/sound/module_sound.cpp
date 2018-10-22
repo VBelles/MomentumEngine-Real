@@ -1,6 +1,7 @@
 #include "mcv_platform.h"
 #include "module_sound.h"
 #include "fmod_utils.h"
+#include "music_player.h"
 
 #pragma comment(lib, "fmod64_vc.lib")
 #pragma comment(lib, "fmodstudio64_vc.lib")
@@ -41,10 +42,14 @@ bool CModuleSound::start() {
 	setMusicVolume(Engine.globalConfig.musicVolume);
 	setSoundVolume(Engine.globalConfig.soundVolume);
 
+	musicPlayer = new CMusicPlayer(loadJson("data/sound/_test_music.json"));
+	
 	return true;
 }
 
 bool CModuleSound::stop() {
+	musicPlayer->stop();
+	safeDelete(musicPlayer);
 	for (auto& p : banks) {
 		p.second->unload();
 	}
@@ -58,6 +63,7 @@ void CModuleSound::update(float delta) {
 	updateListenerAttributes();
 	updateFollowingEvents();
 	system->update();
+	musicPlayer->update(delta);
 }
 
 void CModuleSound::updateListenerAttributes() {
@@ -306,5 +312,7 @@ void CModuleSound::render() {
 	}
 }
 
-
+CMusicPlayer* CModuleSound::getMusicPlayer() {
+	return musicPlayer;
+}
 

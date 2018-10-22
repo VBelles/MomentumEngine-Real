@@ -1,0 +1,14 @@
+{
+  "technique": "pbr.tech",
+  "shadows": true,
+  "textures":
+  {
+    "albedo": "data/textures/puerta_soporte_BaseColor.dds",
+    "normal": "data/textures/puerta_soporte_Normal.dds",
+    "metallic": "data/textures/puerta_soporte_Metallic.dds",
+    "roughness": "data/textures/puerta_soporte_Roughness.dds",
+    "self_illum": "data/textures/null_self_illum.dds",
+    "height": "data/textures/puerta_soporte_Height.dds",
+    "detail_normal": "data/textures/null_detail_normal.dds"
+  }
+}

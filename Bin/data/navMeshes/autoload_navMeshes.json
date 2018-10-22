@@ -2,7 +2,7 @@
   "nav_meshes": [
     {
       "id": "dreidel_nav_mesh",
-      "file": "data/navMeshes/solo_navmesh_MS4.bin"
+      "file": "data/navMeshes/solo_navmesh_21-10-2018.bin"
     }
   ]
 }

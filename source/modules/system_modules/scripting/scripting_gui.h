@@ -11,10 +11,11 @@ private:
 public:
 	static void bind(SLB::Manager* manager);
 
-	static void showDialog(std::string text, int fontSize);
+	static void showDialog(std::string text, int fontSize, bool cancelable);
 	static void hideDialog();
 	static bool isDialogActive();
 	static bool isDialogHidden();
+	static void setCancelableWithButton(bool cancelable);
 
 	static void showHUD(bool how);
 	static bool skipCinematics();

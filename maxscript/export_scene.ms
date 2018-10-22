@@ -1224,6 +1224,34 @@ struct TSceneExporter (
 		return true
 	),
 
+	-- --ENTITY: SOUND----------------------------------------------------------
+	fn exportEntitySound obj nValidObjs = (
+		if nValidObjs > 0 then fs.writeComma()
+
+		beginEntity() -- - - - - - - - - - - - - - - - - - - - -
+			exportName obj
+			fs.writeComma()
+			exportTransform obj noRot:true
+			fs.writeComma()
+
+			fs.writeKey "sound"
+			fs.beginObj()
+				fs.writeKey "events"
+				fs.beginArray()
+					fs.beginObj()
+					fs.writeKeyValue "id" "wind"
+					fs.writeComma()
+					fs.writeKeyValue "path" "event:/AMBIENCE/wind"
+					fs.writeComma()
+					fs.writeKeyValue "play" true
+					fs.endObj()
+				fs.endArray()
+			fs.endObj()
+		endEntity() -- - - - - - - - - - - - - - - - - - - - - -
+		
+		return true
+	),
+
 	-- --ENTITY: TELEPORT (also exports child line)-----------------------------
 	fn exportEntityTeleport obj nValidObjs = (
 		if nValidObjs > 0 then fs.writeComma()
@@ -2182,7 +2210,6 @@ struct TSceneExporter (
 							"breakables":	( wasValid = exportEntityDefault   obj nValidObjs )
 							"cameras":      ( wasValid = exportEntityCamera    obj nValidObjs )
 							"chrysalis":    ( wasValid = exportEntityChrysalis obj nValidObjs )
-							"teleports":    ( wasValid = exportEntityTeleport  obj nValidObjs )
 							"coins": 	    ( wasValid = exportEntityCoin      obj nValidObjs )
 							"collisions":   ( wasValid = exportEntityCollision obj nValidObjs )
 							"enemies":      ( wasValid = exportEntityEnemy	   obj nValidObjs )
@@ -2197,8 +2224,10 @@ struct TSceneExporter (
 							"prefabFlying": ( wasValid = exportEnemyPrefab 	   obj nValidObjs )
 							"prefabMelee":  ( wasValid = exportEnemyPrefab	   obj nValidObjs )
 							"pure":		    ( wasValid = exportEntityDefault   obj nValidObjs )
+							"sound":		( wasValid = exportEntitySound	   obj nValidObjs )
 							"spikes":	    ( wasValid = exportEntitySpikes	   obj nValidObjs )
 							"spikesMove":   ( wasValid = exportEntityDefault   obj nValidObjs )
+							"teleports":    ( wasValid = exportEntityTeleport  obj nValidObjs )
 							"triggers":     ( wasValid = exportEntityTrigger   obj nValidObjs )
 							"trimesh":		( wasValid = exportEntityCollision obj nValidObjs )
 							default: ( format "WARNING: Unknown layer %, not exported.\n" layerName )

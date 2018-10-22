@@ -18,13 +18,7 @@ void ScriptingEntities::bind(SLB::Manager* manager) {
 	manager->set("spawnEntity", SLB::FuncCall::create(ScriptingEntities::spawnEntity));
 	manager->set("spawnGolemAt", SLB::FuncCall::create(ScriptingEntities::spawnGolemAt));
 	manager->set("spawnGolem", SLB::FuncCall::create(ScriptingEntities::spawnGolem));
-	manager->set("spawnBallAt", SLB::FuncCall::create(ScriptingEntities::spawnBallAt));
-	manager->set("spawnBall", SLB::FuncCall::create(ScriptingEntities::spawnBall));
-	manager->set("spawnMedusaAt", SLB::FuncCall::create(ScriptingEntities::spawnMedusaAt));
-	manager->set("spawnMedusa", SLB::FuncCall::create(ScriptingEntities::spawnMedusa));
-
 	manager->set("setPlatformEnabled", SLB::FuncCall::create(ScriptingEntities::setPlatformEnabled));
-
 	manager->set("stopEntities", SLB::FuncCall::create(ScriptingEntities::stopEntities));
 	manager->set("stopEntitiesCutscene", SLB::FuncCall::create(ScriptingEntities::stopEntitiesCutscene));
 	manager->set("resumeEntities", SLB::FuncCall::create(ScriptingEntities::resumeEntities));
@@ -34,14 +28,14 @@ void ScriptingEntities::bind(SLB::Manager* manager) {
 }
 
 void ScriptingEntities::bindConstants(SLB::Manager* manager) {
-	manager->set("PREFAB_GOLEM", SLB::Value::copy(PREFAB_GOLEM));
-	manager->set("PREFAB_BALL", SLB::Value::copy(PREFAB_BALL));
-	manager->set("PREFAB_MEDUSA", SLB::Value::copy(PREFAB_MEDUSA));
 	manager->set("PREFAB_CHRYSALIS", SLB::Value::copy(PREFAB_CHRYSALIS));
 	manager->set("PREFAB_COIN", SLB::Value::copy(PREFAB_COIN));
 	manager->set("PREFAB_DREIDEL", SLB::Value::copy(PREFAB_DREIDEL));
-	manager->set("PREFAB_GORILA", SLB::Value::copy(PREFAB_GORILA));
+	manager->set("PREFAB_GOLEM", SLB::Value::copy(PREFAB_GOLEM));
 	manager->set("PREFAB_KIPPAH", SLB::Value::copy(PREFAB_KIPPAH));
+	manager->set("PREFAB_DREIDEL_DUMMY", SLB::Value::copy(PREFAB_DREIDEL_DUMMY));
+	manager->set("PREFAB_GOLEM_DUMMY", SLB::Value::copy(PREFAB_GOLEM_DUMMY));
+	manager->set("PREFAB_KIPPAH_DUMMY", SLB::Value::copy(PREFAB_KIPPAH_DUMMY));
 	manager->set("PREFAB_KIPPAH_DUMMY", SLB::Value::copy(PREFAB_KIPPAH_DUMMY));
 	manager->set("PREFAB_MURO", SLB::Value::copy(PREFAB_MURO));
 	manager->set("PREFAB_PLATAFORMA_HEX", SLB::Value::copy(PREFAB_PLATAFORMA_HEX));
@@ -78,25 +72,6 @@ std::string ScriptingEntities::spawnGolemAt(float x, float y, float z) {
 std::string ScriptingEntities::spawnGolem() {
 	VEC3 spawnPosition = get()->getPlayerTransform()->getPosition() + (get()->getPlayerTransform()->getFront() * 2);
 	return spawnGolemAt(spawnPosition.x, spawnPosition.y, spawnPosition.z);
-}
-
-std::string ScriptingEntities::spawnBallAt(float x, float y, float z) {
-	return spawnEntityAt(PREFAB_BALL, x, y, z);
-}
-
-std::string ScriptingEntities::spawnBall() {
-	VEC3 spawnPosition = get()->getPlayerTransform()->getPosition() + (get()->getPlayerTransform()->getFront() * 2);
-	return spawnBallAt(spawnPosition.x, spawnPosition.y, spawnPosition.z);
-}
-
-std::string ScriptingEntities::spawnMedusaAt(float x, float y, float z) {
-	return spawnEntityAt(PREFAB_MEDUSA, x, y, z);
-}
-
-std::string ScriptingEntities::spawnMedusa() {
-	VEC3 spawnPosition = get()->getPlayerTransform()->getPosition() + (get()->getPlayerTransform()->getFront() * 2);
-	spawnPosition.y += 4.f;
-	return spawnMedusaAt(spawnPosition.x, spawnPosition.y, spawnPosition.z);
 }
 
 void ScriptingEntities::setPlatformEnabled(std::string entityName, bool how) {

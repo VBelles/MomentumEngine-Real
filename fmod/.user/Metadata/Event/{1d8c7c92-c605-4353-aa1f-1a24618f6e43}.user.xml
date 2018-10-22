@@ -149,9 +149,6 @@
         <property name="uiLastRulerScaleRatio">
             <value>0.015564480633802816</value>
         </property>
-        <property name="uiLastHorizontalScrollBarValue">
-            <value>3801</value>
-        </property>
     </object>
     <object class="ParameterProxy" id="{2fb1f4df-565c-45e3-a957-8681a3d42e33}">
         <property name="uiLastRulerScaleRatio">
@@ -172,9 +169,6 @@
         <property name="uiLastRulerScaleRatio">
             <value>0.000942507068803016</value>
         </property>
-        <property name="uiLastHorizontalScrollBarValue">
-            <value>421</value>
-        </property>
     </object>
     <object class="ParameterProxy" id="{5080a73f-dd0b-46b4-a130-0ebb6b55686f}">
         <property name="uiLastRulerScaleRatio">
@@ -184,6 +178,9 @@
     <object class="ParameterProxy" id="{7b0578a8-308e-4b78-9ca7-ead29189eeb7}">
         <property name="uiLastRulerScaleRatio">
             <value>0.000942507068803016</value>
+        </property>
+        <property name="uiLastHorizontalScrollBarValue">
+            <value>421</value>
         </property>
     </object>
     <object class="ParameterProxy" id="{ac981ee0-9430-4414-9b28-33106dd1e089}">

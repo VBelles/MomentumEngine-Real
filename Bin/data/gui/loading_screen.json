@@ -11,99 +11,65 @@
 						"name": "background01",
 						"type": "image",
 						"size": "1920 1080",
-						"texture": "data/textures/gui/menuinicio_background_01.dds",
-						"minUV": "0.3333 0",
-						"maxUV": "0.6666 1",
+						"texture": "data/textures/gui/loading/mando_xbox.dds",
 						"effects": [
 							{
-								"type": "animate_uv",
-								"speed": "-0.002 0"
+								"type": "ellipsis",
+								"wait_time": 5.0
+							}
+						],
+						"children": [
+							{
+								"name": "background02",
+								"type": "image",
+								"size": "1920 1080",
+								"texture": "data/textures/gui/loading/teclado.dds"
 							}
 						]
 					},
 					{
-						"name": "background02",
+						"name": "text",
 						"type": "image",
-						"size": "1920 1080",
-						"texture": "data/textures/gui/menuinicio_background_02.dds",
-						"minUV": "0.3333 0",
-						"maxUV": "0.6666 1",
-						"effects": [
+						"size": "250 77",
+						"position": "1550 950",
+						"texture": "data/textures/gui/loading/loading.dds",
+						"children": [
 							{
-								"type": "animate_uv",
-								"speed": "-0.0015 0"
+								"name": "ellipsis",
+								"type": "widget",
+								"size": "54 15",
+								"position": "252 62",
+								"effects": [
+									{
+										"type": "ellipsis",
+										"wait_time": 0.5
+									}
+								],
+								"children": [
+									{
+										"name": "dot1",
+										"type": "image",
+										"size": "16 15",
+										"position": "0 0",
+										"texture": "data/textures/gui/loading/punto.dds"
+									},
+									{
+										"name": "dot2",
+										"type": "image",
+										"size": "16 15",
+										"position": "18 0",
+										"texture": "data/textures/gui/loading/punto.dds"
+									},
+									{
+										"name": "dot3",
+										"type": "image",
+										"size": "16 15",
+										"position": "36 0",
+										"texture": "data/textures/gui/loading/punto.dds"
+									}
+								]
 							}
 						]
-					},
-					{
-						"name": "background03",
-						"type": "image",
-						"size": "1920 1080",
-						"texture": "data/textures/gui/menuinicio_background_03.dds",
-						"minUV": "0.3333 0",
-						"maxUV": "0.6666 1",
-						"effects": [
-							{
-								"type": "animate_uv",
-								"speed": "0.0025 0"
-							}
-						]
-					},
-					{
-						"name": "background04",
-						"type": "image",
-						"size": "1920 1080",
-						"texture": "data/textures/gui/menuinicio_background_04.dds",
-						"minUV": "0.3333 0",
-						"maxUV": "0.6666 1",
-						"effects": [
-							{
-								"type": "animate_uv",
-								"speed": "-0.0037 0"
-							}
-						]
-					},
-					{
-						"name": "background05",
-						"type": "image",
-						"size": "1920 1080",
-						"texture": "data/textures/gui/menuinicio_background_05.dds",
-						"minUV": "0.3333 0",
-						"maxUV": "0.6666 1",
-						"effects": [
-							{
-								"type": "animate_uv",
-								"speed": "0.005 0"
-							}
-						]
-					},
-					{
-						"name": "background06",
-						"type": "image",
-						"size": "1920 1080",
-						"texture": "data/textures/gui/menuinicio_background_06.dds",
-						"minUV": "0.3333 0",
-						"maxUV": "0.6666 1",
-						"effects": [
-							{
-								"type": "animate_uv",
-								"speed": "0.0075 0"
-							}
-						]
-					},
-					{
-						"name": "foreground",
-						"type": "image",
-						"size": "1920 1080",
-						"texture": "data/textures/gui/menuinicio_foreground.dds",
-						"minUV": "0.25 0",
-						"maxUV": "0.58 1"
-					},
-					{
-						"name": "title",
-						"type": "image",
-						"size": "1920 1080",
-						"texture": "data/textures/gui/menuinicio_title.dds"
 					}
 				]
 			}

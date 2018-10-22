@@ -19,8 +19,6 @@ void TCompChangeSong::load(const json & j, TEntityParseContext & ctx) {
 }
 
 void TCompChangeSong::onAllScenesCreated(const TMsgAllScenesCreated & msg) {
-	musicPlayerHandle = static_cast<CEntity*>(getEntityByName(MUSIC_PLAYER))->get<TCompMusic>();
-
 	std::string name = ((CEntity*)CHandle(this).getOwner())->getName();
 	UniqueElement* uniqueEvent = EngineUniques.getUniqueEvent(name);
 	if (uniqueEvent && uniqueEvent->done) {
@@ -47,13 +45,12 @@ void TCompChangeSong::onTriggerEnter(const TMsgTriggerEnter & msg) {
 }
 
 void TCompChangeSong::onColliderDestroyed(const TMsgColliderDestroyed& msg) {
-	//hacer esto al final de la secuencia
 	CHandle(this).getOwner().destroy();
 }
 
 void TCompChangeSong::onTriggerExit(const TMsgTriggerExit & msg) {
 }
 
-TCompMusic* TCompChangeSong::getMusicPlayer() {
-	return musicPlayerHandle;
+CMusicPlayer* TCompChangeSong::getMusicPlayer() {
+	return EngineSound.getMusicPlayer();
 }

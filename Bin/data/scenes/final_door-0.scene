@@ -1,0 +1,66 @@
+[
+  {
+    "entity":
+    {
+      "name": "puerta_base",
+      "transform":
+      {
+        "pos": "-152.064 5.22969 -185.285",
+        "rotation": "0.0 -0.92388 0.0 -0.382683"
+      },
+      "render":
+      [
+        {
+          "mesh": "data/meshes/puerta_base.mesh",
+          "materials":
+          [
+            "data/materials/m_soporte_puerta.material"
+          ],
+          "enabled": true
+        }
+      ],
+      "collider":
+      {
+        "mesh_src": "data/meshes/puerta_base_col.col_mesh",
+        "shape": "tri_mesh",
+        "type": "static",
+        "group":
+        [
+          "scenario"
+        ]
+      }
+    }
+  },
+  {
+    "entity":
+    {
+      "name": "puerta_cuerpo",
+      "transform":
+      {
+        "pos": "-150.359 17.4228 -183.642",
+        "rotation": "0.0 -0.92388 0.0 -0.382683"
+      },
+      "render":
+      [
+        {
+          "mesh": "data/meshes/puerta_cuerpo.mesh",
+          "materials":
+          [
+            "data/materials/m_puerta.material"
+          ],
+          "enabled": true
+        }
+      ],
+      "collider":
+      {
+        "mesh_src": "data/meshes/puerta_cuerpo_col.col_mesh",
+        "shape": "tri_mesh",
+        "type": "static",
+        "group":
+        [
+          "scenario"
+        ]
+      }
+    }
+  }
+]

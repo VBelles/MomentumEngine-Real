@@ -1,0 +1,453 @@
+{
+  "root": {
+    "name": "dreidel",
+    "type": "priority",
+    "children": [
+      {
+        "name": "disappear",
+        "type": "sequence",
+        "condition": {
+          "type": "OnDisappearCondition"
+        },
+        "children": [
+          {
+            "name": "onDisappearAction",
+            "type": "action",
+            "action": {
+              "type": "OnDisappearAction",
+              "animation": "enemigo_bola_desaparecer"
+            }
+          },
+          {
+            "name": "disappearAction",
+            "type": "action",
+            "action": {
+              "type": "DisappearAction",
+              "animation": "enemigo_bola_desaparecer"
+            }
+          }
+        ]
+      },
+      {
+        "name": "spawn",
+        "type": "sequence",
+        "condition": {
+          "type": "OnSpawnCondition"
+        },
+        "children": [
+          {
+            "name": "onAppearActionSpawn",
+            "type": "action",
+            "action": {
+              "type": "OnAppearAction",
+              "animation": "enemigo_bola_aparecer"
+            }
+          },
+          {
+            "name": "appearActionSpawn",
+            "type": "action",
+            "action": {
+              "type": "AppearAction",
+              "animation": "enemigo_bola_aparecer",
+              "sound": ""
+            }
+          }
+        ]
+      },
+      {
+        "name": "outOfBounds",
+        "type": "sequence",
+        "condition": {
+          "type": "OnOutOfBoundsCondition"
+        },
+        "children": [
+          {
+            "name": "onDisappearActionOutOfBounds",
+            "type": "action",
+            "action": {
+              "type": "OnDisappearAction",
+              "animation": "enemigo_bola_desaparecer"
+            }
+          },
+          {
+            "name": "disappearActionOutOfBounds",
+            "type": "action",
+            "action": {
+              "type": "DisappearAction",
+              "animation": "enemigo_bola_desaparecer"
+            }
+          }
+        ]
+      },
+      {
+        "name": "hit",
+        "type": "sequence",
+        "condition": {
+          "type": "OnHitCondition"
+        },
+        "children": [
+          {
+            "name": "onHit",
+            "type": "action",
+            "action": {
+              "type": "OnHit",
+              "animation": "enemigo_bola_recibirdanio",
+              "particles": "data/particles/hit_sparks.particles",
+              "particles_offset": "0 0.4 0",
+              "on_blocking_hit_sound": "",
+              "on_hit_sound": "event:/PROTA/golpes/golpe_hit"
+            }
+          },
+          {
+            "name": "attackProperties",
+            "type": "priority",
+            "children": [
+              {
+                "name": "horizontalLaunch",
+                "type": "sequence",
+                "condition": {
+                  "type": "OnHorizontalLaunchCondition"
+                },
+                "children": [
+                  {
+                    "name": "onHorizontalLaunchAction",
+                    "type": "action",
+                    "action": {
+                      "type": "OnHorizontalLaunchAction",
+                      "animation": "enemigo_bola_recibirdanio",
+                      "attack": "launched"
+                    }
+                  },
+                  {
+                    "name": "horizontalLaunchedAction",
+                    "type": "action",
+                    "action": {
+                      "type": "HorizontalLaunchedAction",
+                      "attack": "launched",
+                      "on_launched_sound": ""
+                    }
+                  }
+                ]
+              },
+              {
+                "name": "verticalLaunch",
+                "type": "sequence",
+                "condition": {
+                  "type": "OnVerticalLaunchCondition"
+                },
+                "children": [
+                  {
+                    "name": "onVerticalLaunchAction",
+                    "type": "action",
+                    "action": {
+                      "type": "OnVerticalLaunchAction",
+                      "animation": "enemigo_bola_recibirdanio",
+                      "attack": "launched"
+                    }
+                  },
+                  {
+                    "name": "verticalLaunchedAction",
+                    "type": "action",
+                    "action": {
+                      "type": "VerticalLaunchedAction",
+                      "attack": "launched",
+                      "on_launched_sound": ""
+                    }
+                  }
+                ]
+              },
+              {
+                "name": "grab",
+                "type": "sequence",
+                "condition": {
+                  "type": "OnGrabCondition"
+                },
+                "children": [
+                  {
+                    "name": "onGrabAction",
+                    "type": "action",
+                    "action": {
+                      "type": "OnGrabAction"
+                    }
+                  },
+                  {
+                    "name": "grabAction",
+                    "type": "action",
+                    "action": {
+                      "type": "GrabAction"
+                    }
+                  }
+                ]
+              },
+              {
+                "name": "propel",
+                "type": "sequence",
+                "condition": {
+                  "type": "OnPropelCondition"
+                },
+                "children": [
+                  {
+                    "name": "onPropelAction",
+                    "type": "action",
+                    "action": {
+                      "type": "OnPropelAction",
+                      "attack": "launched"
+                    }
+                  },
+                  {
+                    "name": "propelAction",
+                    "type": "action",
+                    "action": {
+                      "type": "PropelAction",
+                      "attack": "launched"
+                    }
+                  }
+                ]
+              },
+              {
+                "name": "hitStun",
+                "type": "action",
+                "action": {
+                  "type": "HitStun",
+                  "animation": "enemigo_bola_recibirdanio"
+                }
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "name": "suspension",
+        "type": "sequence",
+        "condition": {
+          "type": "OnSuspensionCondition"
+        },
+        "children": [
+          {
+            "name": "onSuspensionAction",
+            "type": "action",
+            "action": {
+              "type": "OnSuspensionAction",
+              "animation_start": "enemigo_bola_stun",
+              "animation_loop": "enemigo_bola_stun_loop"
+            }
+          },
+          {
+            "name": "suspensionAction",
+            "type": "action",
+            "action": {
+              "type": "SuspensionAction",
+              "sound_loop": "",
+              "sound_end": "event:/PROTA/launcher/launcher_final"
+            }
+          }
+        ]
+      },
+      {
+        "name": "onAirborneAction",
+        "type": "action",
+        "condition": {
+          "type": "OnAirborneCondition"
+        },
+        "action": {
+          "type": "OnAirborneAction",
+          "animation": "enemigo_bola_idle"
+        }
+      },
+      {
+        "name": "airborneAction",
+        "type": "action",
+        "condition": {
+          "type": "AirborneCondition"
+        },
+        "action": {
+          "type": "AirborneAction"
+        }
+      },
+      {
+        "name": "stun",
+        "type": "sequence",
+        "condition": {
+          "type": "OnStunCondition"
+        },
+        "children": [
+          {
+            "name": "onStunAction",
+            "type": "action",
+            "action": {
+              "type": "OnStunAction",
+              "animation_start": "enemigo_bola_stun",
+              "animation_loop": "enemigo_bola_stun_loop"
+            }
+          },
+          {
+            "name": "stunAction",
+            "type": "action",
+            "action": {
+              "type": "StunAction"
+            }
+          }
+        ]
+      },
+      {
+        "name": "death",
+        "type": "sequence",
+        "condition": {
+          "type": "OnDeathCondition"
+        },
+        "children": [
+          {
+            "name": "onDeathAction",
+            "type": "action",
+            "action": {
+              "type": "OnDeathAction",
+              "animation": "enemigo_bola_muerte"
+            }
+          },
+          {
+            "name": "deathAction",
+            "type": "action",
+            "action": {
+              "type": "DeathAction",
+              "animation": "enemigo_bola_muerte"
+            }
+          }
+        ]
+      },
+      {
+        "name": "blockingBreak",
+        "type": "sequence",
+        "condition": {
+          "type": "OnBlockingBreakCondition"
+        },
+        "children": [
+          {
+            "name": "onBlockingBreakAction",
+            "type": "action",
+            "action": {
+              "type": "OnBlockingBreakAction",
+              "animation": "enemigo_bola_recibirdanio"
+            }
+          },
+          {
+            "name": "blockingBreakAction",
+            "type": "action",
+            "action": {
+              "type": "BlockingBreakAction",
+              "animation": "enemigo_bola_recibirdanio"
+            }
+          }
+        ]
+      },
+      {
+        "name": "blockAction",
+        "type": "action",
+        "condition": {
+          "type": "BlockCondition"
+        },
+        "action": {
+          "type": "BlockAction"
+        }
+      },
+      {
+        "name": "teleport",
+        "type": "sequence",
+        "condition": {
+          "type": "OnTeleportCondition"
+        },
+        "children": [
+          {
+            "name": "onTeleportAction",
+            "type": "action",
+            "action": {
+              "type": "OnTeleportAction",
+              "animation": "enemigo_bola_desaparecer"
+            }
+          },
+          {
+            "name": "teleportAction",
+            "type": "action",
+            "action": {
+              "type": "TeleportAction",
+              "animation": "enemigo_bola_desaparecer"
+            }
+          },
+          {
+            "name": "appear",
+            "type": "sequence",
+            "children": [
+              {
+                "name": "onAppearAction",
+                "type": "action",
+                "action": {
+                  "type": "OnAppearAction",
+                  "animation": "enemigo_bola_aparecer"
+                }
+              },
+              {
+                "name": "appearAction",
+                "type": "action",
+                "action": {
+                  "type": "AppearAction",
+                  "animation": "enemigo_bola_aparecer"
+                }
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "name": "returnToSpawn",
+        "type": "sequence",
+        "condition": {
+          "type": "OnReturnToSpawnCondition"
+        },
+        "children": [
+          {
+            "name": "onReturnToSpawnAction",
+            "type": "action",
+            "action": {
+              "type": "OnReturnToSpawnAction",
+              "animation": "enemigo_bola_run"
+            }
+          },
+          {
+            "name": "returnToSpawnAction",
+            "type": "action",
+            "action": {
+              "type": "ReturnToSpawnAction"
+            }
+          }
+        ]
+      },
+      {
+        "name": "idle",
+        "type": "random",
+        "children": [
+          {
+            "name": "idleLoopSeq",
+            "type": "sequence",
+            "children": [
+              {
+                "name": "onIdleLoop",
+                "type": "action",
+                "action": {
+                  "type": "OnIdleLoop",
+                  "animation": "enemigo_bola_idle"
+                }
+              },
+              {
+                "name": "idleLoop",
+                "type": "action",
+                "action": {
+                  "type": "IdleLoop",
+                  "animation": "enemigo_bola_idle"
+                }
+              }
+            ]
+          }
+        ]
+      }
+    ]
+  }
+}

@@ -72,6 +72,7 @@
       "platform_simple":
       {
         "curve_type": "catmull-rom",
+        "enabled": true,
         "automove": true,
         "loop": false,
         "closed": false,
@@ -136,6 +137,7 @@
       "platform_simple":
       {
         "curve_type": "catmull-rom",
+        "enabled": true,
         "automove": true,
         "loop": false,
         "closed": false,
@@ -200,6 +202,7 @@
       "platform_simple":
       {
         "curve_type": "catmull-rom",
+        "enabled": true,
         "automove": true,
         "loop": false,
         "closed": false,
@@ -264,6 +267,7 @@
       "platform_simple":
       {
         "curve_type": "catmull-rom",
+        "enabled": true,
         "automove": true,
         "loop": false,
         "closed": false,
@@ -312,7 +316,7 @@
       "name": "nes_platform_civilization_emissive_083",
       "transform":
       {
-        "pos": "-186.39 50.4105 -4.06535",
+        "pos": "-186.224 50.4105 -3.778",
         "rotation": "0.0 0.258819 0.0 -0.965926"
       },
       "mechanism_system":
@@ -359,7 +363,7 @@
       "name": "nes_platform_civilization_emissive_084",
       "transform":
       {
-        "pos": "-192.656 50.4105 -15.2058",
+        "pos": "-192.357 50.4105 -14.6892",
         "rotation": "0.0 0.258819 0.0 -0.965926"
       },
       "mechanism_system":
@@ -406,7 +410,7 @@
       "name": "nes_platform_civilization_emissive_085",
       "transform":
       {
-        "pos": "-199.214 50.4105 -26.0618",
+        "pos": "-198.724 50.4105 -25.2131",
         "rotation": "0.0 0.258819 0.0 -0.965926"
       },
       "mechanism_system":
@@ -453,7 +457,7 @@
       "name": "nes_platform_civilization_emissive_086",
       "transform":
       {
-        "pos": "-205.647 50.4106 -36.8486",
+        "pos": "-205.249 50.4106 -36.1598",
         "rotation": "0.0 0.258819 0.0 -0.965926"
       },
       "mechanism_system":
@@ -500,7 +504,7 @@
       "name": "nes_platform_civilization_emissive_087",
       "transform":
       {
-        "pos": "-212.116 50.4105 -48.5064",
+        "pos": "-211.261 50.4105 -47.0264",
         "rotation": "0.0 0.258819 0.0 -0.965926"
       },
       "mechanism_system":
@@ -619,6 +623,7 @@
       "platform_simple":
       {
         "curve_type": "circular",
+        "enabled": true,
         "automove": true,
         "loop": true,
         "closed": true,
@@ -686,6 +691,7 @@
       "platform_simple":
       {
         "curve_type": "circular",
+        "enabled": true,
         "automove": true,
         "loop": true,
         "closed": true,
@@ -753,6 +759,7 @@
       "platform_simple":
       {
         "curve_type": "circular",
+        "enabled": true,
         "automove": true,
         "loop": true,
         "closed": true,
@@ -820,6 +827,7 @@
       "platform_simple":
       {
         "curve_type": "circular",
+        "enabled": true,
         "automove": true,
         "loop": true,
         "closed": true,
@@ -887,6 +895,7 @@
       "platform_simple":
       {
         "curve_type": "catmull-rom",
+        "enabled": true,
         "automove": true,
         "loop": true,
         "closed": false,
@@ -951,6 +960,7 @@
       "platform_simple":
       {
         "curve_type": "catmull-rom",
+        "enabled": true,
         "automove": true,
         "loop": true,
         "closed": false,
@@ -1015,6 +1025,7 @@
       "platform_simple":
       {
         "curve_type": "catmull-rom",
+        "enabled": true,
         "automove": true,
         "loop": true,
         "closed": false,
@@ -1079,6 +1090,7 @@
       "platform_simple":
       {
         "curve_type": "catmull-rom",
+        "enabled": true,
         "automove": true,
         "loop": true,
         "closed": false,
@@ -1143,6 +1155,7 @@
       "platform_simple":
       {
         "curve_type": "catmull-rom",
+        "enabled": true,
         "automove": true,
         "loop": true,
         "closed": false,

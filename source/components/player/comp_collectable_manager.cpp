@@ -15,12 +15,34 @@ using Type = TCompCollectable::Type;
 void TCompCollectableManager::registerMsgs() {
 	DECL_MSG(TCompCollectableManager, TMsgCollect, onCollect);
 	DECL_MSG(TCompCollectableManager, TMsgEntityCreated, onEntityCreated);
+	DECL_MSG(TCompCollectableManager, TMsgAllScenesCreated, onAllScenesCreated);
 }
 
 void TCompCollectableManager::load(const json & j, TEntityParseContext & ctx) {
+	if (j.count("final_door_chrysalides")) {
+		auto& chrysalides = j["final_door_chrysalides"];
+		assert(chrysalides.is_array());
+		for (std::string chrysalis : chrysalides) {
+			finalDoorChrysalidesNames.push_back(chrysalis);
+		}
+	}
+}
+
+void TCompCollectableManager::onAllScenesCreated(const TMsgAllScenesCreated & msg) {
+	for (auto& name : finalDoorChrysalidesNames) {
+		CEntity* entity = getEntityByName(name);
+		CHandle handle = entity->get<TCompRender>();
+		finalDoorChrysalides.push_back(handle);
+	}
 }
 
 void TCompCollectableManager::update(float delta) {
+	if (spawnDoorChrysalis) {
+		if (doorChrysalidesTimer.elapsed() >= doorChrysalidesTime) {
+			((TCompRender*)finalDoorChrysalides[numberOfChrysalisTaken - 1])->enable();
+			spawnDoorChrysalis = false;
+		}
+	}
 	if (isCollecting) {
 		if (collectTimer.elapsed() >= collectDuration) {
 			TCompPlayerModel* playerModel = get<TCompPlayerModel>();
@@ -43,6 +65,8 @@ void TCompCollectableManager::debugInMenu() {
 	if (ImGui::DragFloat("Collect Yaw", &collectYawDegrees, 1.f, -90.f, 90.f)) {
 		collectYaw = deg2rad(collectYawDegrees);
 	}
+
+	ImGui::DragFloat("spawn door chrysalis time", &doorChrysalidesTime, 0.05f, 0.f, 10.f);
 
 	//collectYaw
 	ImGui::DragFloat2("Camera Speed", &cameraSpeed.x, 0.1f, 0.1f, 5.f);
@@ -155,6 +179,19 @@ void TCompCollectableManager::onCollect(const TMsgCollect& msg) {
 
 	switch (msg.type) {
 	case Type::CHRYSALIS:
+		numberOfChrysalisTaken++;
+		if (numberOfChrysalisTaken == 1) {
+			EngineScripting.throwEvent(firstChrysalisTaken, "");
+		}
+		else if(numberOfChrysalisTaken == CHRYSALIS_TARGET_NUMBER){
+			EngineScripting.throwEvent(lastChrysalisTaken, "");
+		}
+		if (numberOfChrysalisTaken <= CHRYSALIS_TARGET_NUMBER) {
+			//esperar 4 segundos y hacer aparecer chrysalis (final_door_chrysalis_X)
+			spawnDoorChrysalis = true;
+			doorChrysalidesTimer.reset();
+		}
+
 		collectable->collect();
 		addUniqueCollectable(Type::CHRYSALIS, entity->getName());
 		EngineSound.emitEvent(SOUND_COLLECT_CHRYSALIS, transform);

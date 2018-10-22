@@ -40,9 +40,10 @@ public:
 
 	GUI::CFont& getFont(int size);
 
-	void showDialog(const std::string& text, const int& fontSize = 16);
+	void showDialog(const std::string& text, const int& fontSize = 16, bool cancelable = true);
 	void hideDialog();
 	bool isDialogActive();
+	void setCancelableWithButton(bool cancelable);
 
 	VEC2 getResolution();
 

@@ -67,8 +67,12 @@ void CDialog::setText(const std::string& text, const int& size) {
 	_textParams._size = size;
 	_textParams._text = "";
 
-	CFont font = EngineGUI.getFont(_textParams._size);
-	VEC2 textSpace = VEC2(_params._size.x - padding.z - padding.w, _params._size.y - padding.x - padding.y);
+	VEC2 scale(Engine.globalConfig.resolution.x / EngineGUI.getResolution().x,
+		Engine.globalConfig.resolution.y / EngineGUI.getResolution().y);
+
+	CFont font = EngineGUI.getFont(_textParams._size * scale.y);
+	VEC2 textSpace = VEC2((_params._size.x - padding.z - padding.w) * scale.x,
+		(_params._size.y - padding.x - padding.y) * scale.y);
 
 	if (font.getWidth(text) > textSpace.x || font.getHeight(text) > textSpace.y) {
 		std::string textFragment = "";
@@ -77,18 +81,18 @@ void CDialog::setText(const std::string& text, const int& size) {
 		for (int i = 0; i < words.size(); i++) {
 			std::string word = words[i];
 			if (font.getWidth(line + word) > textSpace.x) {
-				line += "\n";
+				if (line == "\n") line = "";
 				if (font.getHeight(textFragment + line) > textSpace.y) {
 					textFragments.push_back(textFragment);
-					textFragment = line;
+					textFragment = line + "\n";
 				}
-				else {
-					textFragment += line;
+				else if (!line.empty()) {
+					textFragment += line + "\n";
 				}
 				line = "";
 			}
 
-			if (i > 0) line += " ";
+			if (i > 0 && !line.empty()) line += " ";
 			line += word;
 
 			if (font.getHeight(textFragment + line) > textSpace.y) {
@@ -118,6 +122,15 @@ void CDialog::setText(const std::string& text, const int& size) {
 	}
 	else {
 		textFragments.push_back(text);
+	}
+
+	for (auto it = textFragments.begin(); it != textFragments.end();) {
+		if ((*it).empty() || (*it) == "\n") {
+			it = textFragments.erase(it);
+		}
+		else {
+			++it;
+		}
 	}
 
 	_textParams._text = textFragments[currentFragment];

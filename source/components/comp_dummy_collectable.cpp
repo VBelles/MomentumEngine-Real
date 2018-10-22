@@ -59,6 +59,14 @@ void TCompDummyCollectable::update(float delta) {
 		currentRotationSpeed = clamp(currentRotationSpeed + rotationAcceleration * delta, -maxRotationSpeed, maxRotationSpeed);
 		transform->setYawPitchRoll(yaw, pitch);
 	}
+	else {
+		//situar delante de player
+		VEC3 position = getPlayerTransform()->getPosition() +
+			getPlayerTransform()->getFront() * positionOffset.z +
+			VEC3::Up * positionOffset.y +
+			getPlayerTransform()->getLeft() * positionOffset.x;
+		transform->setPosition(position);
+	}
 	if (timer.elapsed() >= timeToStartScaling) {
 		//subir collectable
 		transform->setPosition(transform->getPosition() + VEC3::Up * elevationSpeed * delta);
@@ -80,7 +88,7 @@ void TCompDummyCollectable::update(float delta) {
 
 void TCompDummyCollectable::activateSequence(DummyCollectableType type) {
 	startingScale = chrysalisStartingScale;
-	VEC3 positionOffset = chrysalisPositionOffset;
+	positionOffset = chrysalisPositionOffset;
 	float yawOffset = chrysalisYawOffset;
 	switch (type) {
 	case CHRYSALIS:

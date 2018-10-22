@@ -78,4 +78,6 @@ using json = nlohmann::json;
 #include "components/comp_camera.h"
 #include "skeleton/comp_skeleton.h"
 
+#include "modules/system_modules/sound/music_player.h"
+
 #endif

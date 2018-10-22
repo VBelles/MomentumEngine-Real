@@ -95,18 +95,18 @@ void CModuleUniques::parseChunk(const json & j, ElementType type) {
 		element.position = loadVEC3(j["position"]);
 		element.level = j.value("level", "");
 		switch (type) {
-			case ElementType::COIN:
-				coins.emplace(id, element);
-				break;
-			case ElementType::CHRYSALIS:
-				chrysalides.emplace(id, element);
-				break;
-			case ElementType::ALTAR:
-				altars.emplace(id, element);
-				break;
-			case ElementType::EVENT:
-				events.emplace(id, element);
-				break;
+		case ElementType::COIN:
+			coins.emplace(id, element);
+			break;
+		case ElementType::CHRYSALIS:
+			chrysalides.emplace(id, element);
+			break;
+		case ElementType::ALTAR:
+			altars.emplace(id, element);
+			break;
+		case ElementType::EVENT:
+			events.emplace(id, element);
+			break;
 		}
 	}
 }
@@ -122,6 +122,18 @@ void CModuleUniques::parseEnemy(const json & j, std::string id) {
 	}
 	else if (type == "kippah") {
 		element.type = KIPPAH;
+	}
+	else if (type == "golem") {
+		element.type = GOLEM;
+	}
+	else if (type == "dreidel_dummy") {
+		element.type = DREIDEL_DUMMY;
+	}
+	else if (type == "kippah_dummy") {
+		element.type = KIPPAH_DUMMY;
+	}
+	else if (type == "golem_dummy") {
+		element.type = GOLEM_DUMMY;
 	}
 	else {
 		element.type = DREIDEL;

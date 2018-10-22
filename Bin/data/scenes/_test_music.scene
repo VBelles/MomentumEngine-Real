@@ -78,26 +78,5 @@
         }
       }
     }
-  },
-  {
-    "entity": {
-      "name": "sound_player",
-      "sound": {
-        "events": [
-          {
-            "id": "ambient_day",
-            "path": "event:/AMBIENCE/ambience_day"
-          },
-          {
-            "id": "ambient_night",
-            "path": "event:/AMBIENCE/ambience_night"
-          },
-          {
-            "id": "ambient_tower",
-            "path": "event:/AMBIENCE/ambience_tower"
-          }
-        ]
-      }
-    }
   }
 ]

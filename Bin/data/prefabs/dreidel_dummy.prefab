@@ -1,0 +1,272 @@
+[
+  {
+    "entity": {
+      "name": "dreidel",
+      "transform": {},
+      "render": [
+        {
+          "mesh": "data/skeletons/bola_new/Object001.mesh",
+          "materials": [
+            "data/skeletons/bola_new/bola_new.material"
+          ]
+        }
+      ],
+      "tags": [
+        "enemy"
+      ],
+      "skeleton": {
+        "skeleton": "data/skeletons/bola_new/bola_new.skeleton"
+      },
+      "givePower": {
+        "maxPowerToGive": 12000.0,
+        "baseMultiplier": 1.0
+      },
+      "enemy": {
+        "behavior_tree": "data/behavior_trees/dreidel_dummy_behavior_tree.json",
+        "max_hp": 5,
+        "max_distance_from_spawn": 20,
+        "max_hp_on_perfect_dodged": 2,
+        "movement_speed": 3,
+        "rotation_speed": 90,
+        "gravity": -55,
+        "max_velocity": 30,
+        "stroll_radius": 2,
+        "chase_fov": 90,
+        "fov_chase_distance": 15,
+        "small_chase_radius": 2,
+        "attack_fov": 90,
+        "short_combat_distance": 2,
+        "medium_combat_distance": 5,
+        "long_combat_distance": 10,
+        "step_back_distance": 0.6,
+        "attack_cool_down": 1.0,
+        "block_time": 1.5,
+        "attack_slots": 1.0,
+        "attacks": [
+          {
+            "name": "spin_attack",
+            "frame_data": "25 60 68",
+            "damage": 1.0,
+            "invulnerabilityTime": 1.5,
+            "stun": 1.0,
+            "hitbox": "spin_attack",
+            "particles": "spin_attack",
+            "sounds": "spin_attack"
+          },
+          {
+            "name": "area_attack",
+            "frame_data": "38 46 62",
+            "damage": 1.0,
+            "invulnerabilityTime": 1.5,
+            "stun": 1.0,
+            "hitbox": "area_attack",
+            "particles": "area_attack",
+            "sounds": "area_attack"
+          },
+          {
+            "name": "tackle",
+            "frame_data": "15 10000 10000",
+            "damage": 1.0,
+            "invulnerabilityTime": 1.5,
+            "stun": 1.0,
+            "hitbox": "tackle",
+            "particles": "tackle"
+          },
+          {
+            "name": "launched",
+            "frame_data": "2 10000 10000",
+            "damage": 0.0,
+            "invulnerabilityTime": 0.0,
+            "stun": 1.2,
+            "propel": {
+              "duration": 0.6,
+              "velocity": "0 10 0"
+            },
+            "hitbox": "launched"
+          }
+        ],
+        "nav_mesh": "dreidel_nav_mesh"
+      },
+      "collider": {
+        "shape": "capsule",
+        "type": "cct",
+        "radius": 0.5,
+        "height": 0.1,
+        "step": 0.9,
+        "group": [
+          "enemy"
+        ],
+        "mask": [
+          "all"
+        ]
+      },
+      "hitboxes": {
+        "hitboxes": [
+          {
+            "name": "spin_attack",
+            "shape": "sphere",
+            "radius": 1.5,
+            "group": [
+              "enemy"
+            ],
+            "mask": [
+              "player"
+            ],
+            "bone": "Bone034"
+          },
+          {
+            "name": "area_attack",
+            "shape": "sphere",
+            "radius": 5.0,
+            "group": [
+              "enemy"
+            ],
+            "mask": [
+              "player"
+            ],
+            "bone": "Bone034"
+          },
+          {
+            "name": "tackle",
+            "shape": "sphere",
+            "radius": 1.2,
+            "group": [
+              "enemy"
+            ],
+            "mask": [
+              "player"
+            ],
+            "bone": "Bone034"
+          },
+          {
+            "name": "launched",
+            "shape": "sphere",
+            "radius": 1.2,
+            "group": [
+              "enemy"
+            ],
+            "mask": [
+              "enemy"
+            ],
+            "bone": "Bone034"
+          }
+        ]
+      },
+      "sound": {
+        "events": [
+          {
+            "id": "launcher_loop",
+            "path": "event:/PROTA/launcher_estatica",
+            "following": true
+          },
+          {
+            "id": "launcher_end",
+            "path": "event:/PROTA/launcher_final"
+          },
+          {
+            "id": "vertical_launcher_hit",
+            "path": "event:/PROTA/launcherv_lanzar"
+          },
+          {
+            "id": "horizontal_launcher_hit",
+            "path": "event:/PROTA/launcherh_lanzar"
+          },
+          {
+            "id": "hit",
+            "path": "event:/PROTA/golpes_hit"
+          },
+          {
+            "id": "stun",
+            "path": ""
+          },
+          {
+            "id": "block",
+            "path": "event:/ENEMIGO BOLA/bola_block"
+          },
+          {
+            "id": "block_break",
+            "path": "event:/ENEMIGO BOLA/bola_block_break"
+          },
+          {
+            "id": "spin_attack",
+            "path": "event:/ENEMIGO BOLA/bola_ataque_corto"
+          },
+          {
+            "id": "area_attack",
+            "path": "event:/ENEMIGO BOLA/bola_ataque_lento"
+          },
+          {
+            "id": "chase",
+            "path": "event:/ENEMIGO BOLA/bola_chase",
+            "following": true
+          },
+          {
+            "id": "death",
+            "path": "event:/ENEMIGO BOLA/bola_death"
+          },
+          {
+            "id": "appear",
+            "path": "event:/ENEMIGO BOLA/bola_appear"
+          },
+          {
+            "id": "disappear",
+            "path": "event:/ENEMIGO BOLA/bola_dissappear"
+          },
+          {
+            "id": "idle_war",
+            "path": "event:/ENEMIGO BOLA/bola_idlewar"
+          },
+          {
+            "id": "tackle_braking",
+            "path": "event:/ENEMIGO BOLA/bola_placaje_frenazo"
+          },
+          {
+            "id": "tackle_hit",
+            "path": "event:/ENEMIGO BOLA/bola_placaje_hit"
+          },
+          {
+            "id": "stroll",
+            "path": "event:/ENEMIGO BOLA/bola_walk",
+            "following": true
+          },
+          {
+            "id": "idle",
+            "path": "event:/ENEMIGO BOLA/bola_stroll",
+            "play": true,
+            "following": true
+          }
+        ]
+      },
+      "particles": {
+        "launch": false,
+        "systems": [
+          {
+            "id": "hit",
+            "core": "data/particles/hit_sparks.particles",
+            "offset": "0 0.5 0"
+          },
+          {
+            "id": "area_attack",
+            "core": "data/particles/dreidel/area_attack.particles",
+            "offset": "0 1.45 0"
+          },
+          {
+            "id": "spin_attack",
+            "core": "data/particles/dreidel/spin_attack.particles",
+            "offset": "0 0.7 0"
+          },
+          {
+            "id": "tackle",
+            "core": "data/particles/dreidel/tackle.particles",
+            "offset": "0 0.7 0"
+          },
+          {
+            "id": "lose_power",
+            "core": "data/particles/energy.particles",
+            "offset": "0 0.2 0"
+          }
+        ]
+      }
+    }
+  }
+]

@@ -42,7 +42,7 @@
       "prefab": "data/prefabs/teleport.prefab",
       "transform":
       {
-        "pos": "-108.054 -0.599831 -141.183",
+        "pos": "-110.287 5.62795 -112.539",
         "rotation": "0.0 0.21644 0.0 -0.976296"
       }
     }

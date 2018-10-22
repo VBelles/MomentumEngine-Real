@@ -14,6 +14,7 @@ class TCompPowerUp : public TCompBase {
 private:
 	std::string stateToUnlock;
 	std::string message;
+	int fontSize = 46;
 
 	CHandle transformHandle;
 	CHandle playerModelHandle;

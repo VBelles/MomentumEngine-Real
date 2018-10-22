@@ -2,38 +2,6 @@
   {
     "entity":
     {
-      "name": "dani_trozo_terreno_5_000",
-      "transform":
-      {
-        "pos": "476.864 -74.1433 -400.444",
-        "rotation": "0.0 -0.965926 0.0 0.258819"
-      },
-      "render":
-      [
-        {
-          "mesh": "data/meshes/dani_trozo_terreno_5_000.mesh",
-          "materials":
-          [
-            "data/materials/trozo_5_baja.material"
-          ],
-          "enabled": true
-        }
-      ],
-      "collider":
-      {
-        "mesh_src": "data/meshes/dani_collider_dummy_007.col_mesh",
-        "shape": "tri_mesh",
-        "type": "static",
-        "group":
-        [
-          "scenario"
-        ]
-      }
-    }
-  },
-  {
-    "entity":
-    {
       "name": "dani_trozo_terreno_1_001",
       "transform":
       {
@@ -54,7 +22,39 @@
       "collider":
       {
         "mesh_src": "data/meshes/dani_collider_dummy_005.col_mesh",
-        "shape": "tri_mesh",
+        "shape": "convex_mesh",
+        "type": "static",
+        "group":
+        [
+          "scenario"
+        ]
+      }
+    }
+  },
+  {
+    "entity":
+    {
+      "name": "dani_trozo_terreno_5_000",
+      "transform":
+      {
+        "pos": "476.864 -74.1433 -400.444",
+        "rotation": "0.0 -0.965926 0.0 0.258819"
+      },
+      "render":
+      [
+        {
+          "mesh": "data/meshes/dani_trozo_terreno_5_000.mesh",
+          "materials":
+          [
+            "data/materials/trozo_5_baja.material"
+          ],
+          "enabled": true
+        }
+      ],
+      "collider":
+      {
+        "mesh_src": "data/meshes/dani_collider_dummy_007.col_mesh",
+        "shape": "convex_mesh",
         "type": "static",
         "group":
         [
@@ -86,7 +86,7 @@
       "collider":
       {
         "mesh_src": "data/meshes/dani_collider_dummy_006.col_mesh",
-        "shape": "tri_mesh",
+        "shape": "convex_mesh",
         "type": "static",
         "group":
         [
@@ -352,7 +352,7 @@
       "collider":
       {
         "mesh_src": "data/meshes/dani_collider_dummy_003.col_mesh",
-        "shape": "tri_mesh",
+        "shape": "convex_mesh",
         "type": "kinematic",
         "group":
         [
@@ -362,6 +362,7 @@
       "platform_simple":
       {
         "curve_type": "circular",
+        "enabled": true,
         "automove": true,
         "loop": true,
         "closed": true,
@@ -404,7 +405,7 @@
       "collider":
       {
         "mesh_src": "data/meshes/dani_collider_dummy_004.col_mesh",
-        "shape": "tri_mesh",
+        "shape": "convex_mesh",
         "type": "kinematic",
         "group":
         [
@@ -414,6 +415,7 @@
       "platform_simple":
       {
         "curve_type": "circular",
+        "enabled": true,
         "automove": true,
         "loop": true,
         "closed": true,
@@ -456,7 +458,7 @@
       "collider":
       {
         "mesh_src": "data/meshes/dani_collider_dummy_002.col_mesh",
-        "shape": "tri_mesh",
+        "shape": "convex_mesh",
         "type": "kinematic",
         "group":
         [
@@ -468,6 +470,7 @@
         "rotation_axis": "0.0 1.0 1.0",
         "rotation_speed": 0.1,
         "curve_type": "circular",
+        "enabled": true,
         "automove": true,
         "loop": true,
         "closed": true,
@@ -520,6 +523,7 @@
       "platform_simple":
       {
         "curve_type": "circular",
+        "enabled": true,
         "automove": true,
         "loop": true,
         "closed": true,
@@ -572,6 +576,7 @@
       "platform_simple":
       {
         "curve_type": "circular",
+        "enabled": true,
         "automove": true,
         "loop": true,
         "closed": true,
@@ -624,6 +629,7 @@
       "platform_simple":
       {
         "curve_type": "circular",
+        "enabled": true,
         "automove": true,
         "loop": true,
         "closed": true,
@@ -676,6 +682,7 @@
       "platform_simple":
       {
         "curve_type": "circular",
+        "enabled": true,
         "automove": true,
         "loop": true,
         "closed": true,
@@ -728,6 +735,7 @@
       "platform_simple":
       {
         "curve_type": "circular",
+        "enabled": true,
         "automove": true,
         "loop": true,
         "closed": true,
@@ -770,7 +778,7 @@
       "collider":
       {
         "mesh_src": "data/meshes/dani_collider_dummy_000.col_mesh",
-        "shape": "tri_mesh",
+        "shape": "convex_mesh",
         "type": "kinematic",
         "group":
         [
@@ -780,6 +788,7 @@
       "platform_simple":
       {
         "curve_type": "circular",
+        "enabled": true,
         "automove": true,
         "loop": true,
         "closed": true,

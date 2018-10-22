@@ -15,6 +15,7 @@ private:
 	std::vector<PointOfInterest> pointsOfInterest;
 	Respawner* respawner;
 	EnemyManager* enemyManager;
+	bool ambientSoundLaunched = false;
 public:
 	CModuleGame(const std::string& aname) : IModule(aname) {}
 	bool start() override;

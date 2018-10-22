@@ -2,6 +2,70 @@
   {
     "entity":
     {
+      "name": "nes_muro_vertical033",
+      "transform":
+      {
+        "pos": "-170.727 60.4741 -22.719",
+        "rotation": "0.0 0.0 0.0 -1.0"
+      },
+      "render":
+      [
+        {
+          "mesh": "data/meshes/nes_muro_vertical033.mesh",
+          "materials":
+          [
+            "data/materials/m_ms_murovertical.material"
+          ],
+          "enabled": true
+        }
+      ],
+      "collider":
+      {
+        "mesh_src": "data/meshes/nes_muro_vertical_collider033.col_mesh",
+        "shape": "convex_mesh",
+        "type": "static",
+        "group":
+        [
+          "scenario"
+        ]
+      }
+    }
+  },
+  {
+    "entity":
+    {
+      "name": "nes_columna_piezas_capitel_013",
+      "transform":
+      {
+        "pos": "2.98155 44.2316 198.99",
+        "rotation": "-0.965926 0.0 0.258819 0.0"
+      },
+      "render":
+      [
+        {
+          "mesh": "data/meshes/nes_columna_piezas_capitel_013.mesh",
+          "materials":
+          [
+            "data/materials/m_columna_piezas.material"
+          ],
+          "enabled": true
+        }
+      ],
+      "collider":
+      {
+        "mesh_src": "data/meshes/nes_columna_piezas_capitel_col_013.col_mesh",
+        "shape": "tri_mesh",
+        "type": "static",
+        "group":
+        [
+          "scenario"
+        ]
+      }
+    }
+  },
+  {
+    "entity":
+    {
       "name": "nes_pasarela014",
       "transform":
       {
@@ -198,7 +262,7 @@
       "name": "nes_muro_vertical032",
       "transform":
       {
-        "pos": "-170.727 60.4741 -23.688",
+        "pos": "-170.727 60.4741 -24.6099",
         "rotation": "0.0 0.0 0.0 -1.0"
       },
       "render":
@@ -10884,7 +10948,8 @@
       "platform_simple":
       {
         "rotation_axis": "1.0 0.0 0.0",
-        "rotation_speed": 0.5
+        "rotation_speed": 0.5,
+        "enabled": true
       }
     }
   },
@@ -10921,7 +10986,8 @@
       "platform_simple":
       {
         "rotation_axis": "0.0 1.0 0.0",
-        "rotation_speed": 0.5
+        "rotation_speed": 0.5,
+        "enabled": true
       }
     }
   },
@@ -10958,7 +11024,8 @@
       "platform_simple":
       {
         "rotation_axis": "0.0 1.0 0.0",
-        "rotation_speed": 0.5
+        "rotation_speed": 0.5,
+        "enabled": true
       }
     }
   },

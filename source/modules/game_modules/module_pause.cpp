@@ -6,6 +6,7 @@
 #include "modules/game_modules/game/module_game.h"
 #include "modules/system_modules/sound/comp_music.h"
 #include "modules/system_modules/sound/comp_sound.h"
+#include "modules/system_modules/sound/music_player.h"
 
 bool CModulePause::start() {
 	pause = false;
@@ -21,6 +22,7 @@ bool CModulePause::start() {
 		onPausePressed();
 		EngineGUI.hideDialog();
 		EngineModules.changeGameState("main_menu", true);
+		EngineSound.getMusicPlayer()->setCurrentSong(CMusicPlayer::Song::INTRO);
 	};
 	auto exitCB = []() {
 		CApp::get().stopMainLoop = true;
@@ -62,15 +64,14 @@ void CModulePause::onPausePressed() {
 		ScriptingPlayer::givePlayerControl(); //Necesario ya que se fuerza salir del debug y puede no tener el control
 		CApp::get().setDebugMode(false);
 		cb_globals.game_paused = 1;
-		music->setPauseMenu(true);
 		sound->stop();
+		EngineSound.getMusicPlayer()->setPauseMenu(true);
 	}
 	else {
 		Engine.getGUI().deactivateWidget("test_pause_menu");
 		Engine.getGUI().unregisterController(controller);
 		cb_globals.game_paused = 0;
-		TCompMusic* music = static_cast<CEntity*>(getEntityByName(MUSIC_PLAYER))->get<TCompMusic>();
-		music->setPauseMenu(false);
+		EngineSound.getMusicPlayer()->setPauseMenu(false);
 		EngineSound.emitEvent(SOUND_MENU_BACK);
 		sound->play("ambient_day");
 	}

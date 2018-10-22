@@ -128,6 +128,7 @@
     <ClCompile Include="components\comp_power_source.cpp" />
     <ClCompile Include="components\comp_power_up.cpp" />
     <ClCompile Include="components\comp_self_illum_variation.cpp" />
+    <ClCompile Include="components\comp_show_dialog.cpp" />
     <ClCompile Include="components\comp_sky.cpp" />
     <ClCompile Include="components\comp_teleport_point.cpp" />
     <ClCompile Include="components\controllers\comp_rigid_anims_director.cpp" />
@@ -227,6 +228,7 @@
     <ClCompile Include="gui\controllers\dialog_controller.cpp" />
     <ClCompile Include="gui\controllers\gui_map_menu_controller.cpp" />
     <ClCompile Include="gui\controllers\gui_options_menu_controller.cpp" />
+    <ClCompile Include="gui\effects\gui_ellipsis.cpp" />
     <ClCompile Include="gui\widgets\gui_dialog.cpp" />
     <ClCompile Include="gui\widgets\gui_point.cpp" />
     <ClCompile Include="gui\widgets\gui_points_bar.cpp" />
@@ -415,6 +417,7 @@
     <ClCompile Include="modules\system_modules\scripting\scripting_player.cpp" />
     <ClCompile Include="modules\system_modules\module_multithread.cpp" />
     <ClCompile Include="modules\system_modules\scripting\scripting_sound.cpp" />
+    <ClCompile Include="modules\system_modules\sound\music_player.cpp" />
     <ClCompile Include="modules\test\module_test_instancing.cpp" />
     <ClCompile Include="modules\game_modules\physics\ragdoll.cpp" />
     <ClCompile Include="modules\game_modules\physics\ragdoll_core.cpp" />
@@ -504,6 +507,7 @@
     <ClInclude Include="components\comp_power_source.h" />
     <ClInclude Include="components\comp_power_up.h" />
     <ClInclude Include="components\comp_self_illum_variation.h" />
+    <ClInclude Include="components\comp_show_dialog.h" />
     <ClInclude Include="components\comp_sky.h" />
     <ClInclude Include="components\comp_teleport_point.h" />
     <ClInclude Include="components\controllers\comp_rigid_anims_director.h" />
@@ -603,6 +607,7 @@
     <ClInclude Include="gui\controllers\dialog_controller.h" />
     <ClInclude Include="gui\controllers\gui_map_menu_controller.h" />
     <ClInclude Include="gui\controllers\gui_options_menu_controller.h" />
+    <ClInclude Include="gui\effects\gui_ellipsis.h" />
     <ClInclude Include="gui\widgets\gui_dialog.h" />
     <ClInclude Include="gui\widgets\gui_point.h" />
     <ClInclude Include="gui\widgets\gui_points_bar.h" />
@@ -805,6 +810,7 @@
     <ClInclude Include="modules\system_modules\scripting\scripting_player.h" />
     <ClInclude Include="modules\system_modules\module_multithread.h" />
     <ClInclude Include="modules\system_modules\scripting\scripting_sound.h" />
+    <ClInclude Include="modules\system_modules\sound\music_player.h" />
     <ClInclude Include="modules\test\module_test_instancing.h" />
     <ClInclude Include="modules\game_modules\physics\ragdoll.h" />
     <ClInclude Include="modules\game_modules\physics\ragdoll_core.h" />

@@ -2,11 +2,12 @@
   {
     "entity":
     {
-      "name": "gorila",
-      "prefab": "data/prefabs/gorila.prefab",
+      "name": "nes_enemyAir058",
+      "prefab": "data/prefabs/kippah.prefab",
       "transform":
       {
-        "pos": "2 2 2"
+        "pos": "-11.6051 66.9579 206.632",
+        "lookat": "-1.0 66.9579 -1.0"
       }
     }
   },
