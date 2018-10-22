@@ -1,0 +1,198 @@
+[
+  {
+    "entity":
+    {
+      "name": "root_grany_057",
+      "transform":
+      {
+        "pos": "-113.235 -22.605 133.431",
+        "rotation": "0.0 0.0 0.0 -1.0"
+      },
+      "render":
+      [
+        {
+          "mesh": "data/meshes/root_grany_057.mesh",
+          "materials":
+          [
+            "data/materials/m_roots.material"
+          ],
+          "enabled": true
+        }
+      ]
+    }
+  },
+  {
+    "entity":
+    {
+      "name": "root_grany_054",
+      "transform":
+      {
+        "pos": "-75.6583 -28.2445 133.793",
+        "rotation": "0.0 0.0 0.0 -1.0"
+      },
+      "render":
+      [
+        {
+          "mesh": "data/meshes/root_grany_054.mesh",
+          "materials":
+          [
+            "data/materials/m_roots.material"
+          ],
+          "enabled": true
+        }
+      ]
+    }
+  },
+  {
+    "entity":
+    {
+      "name": "root_grany_055",
+      "transform":
+      {
+        "pos": "-58.8983 -28.4997 139.322",
+        "rotation": "0.0 0.0 0.0 -1.0"
+      },
+      "render":
+      [
+        {
+          "mesh": "data/meshes/root_grany_055.mesh",
+          "materials":
+          [
+            "data/materials/m_roots.material"
+          ],
+          "enabled": true
+        }
+      ]
+    }
+  },
+  {
+    "entity":
+    {
+      "name": "root_grany_056",
+      "transform":
+      {
+        "pos": "-97.7574 -39.537 121.309",
+        "rotation": "0.0 0.0 0.0 -1.0"
+      },
+      "render":
+      [
+        {
+          "mesh": "data/meshes/root_grany_056.mesh",
+          "materials":
+          [
+            "data/materials/m_roots.material"
+          ],
+          "enabled": true
+        }
+      ]
+    }
+  },
+  {
+    "entity":
+    {
+      "name": "mushroom_head_2389",
+      "transform":
+      {
+        "pos": "-67.9928 -13.1854 235.293",
+        "rotation": "-0.0898418 -0.886657 -0.00973958 -0.453512"
+      },
+      "render":
+      [
+        {
+          "mesh": "data/meshes/mushroom_head_2389.mesh",
+          "materials":
+          [
+            "data/materials/mushroom_head_01.material"
+          ],
+          "enabled": true
+        }
+      ],
+      "collider":
+      {
+        "mesh_src": "data/meshes/mushroom_head_01_collider0159.col_mesh",
+        "shape": "tri_mesh",
+        "type": "static",
+        "group":
+        [
+          "scenario"
+        ]
+      }
+    }
+  },
+  {
+    "entity":
+    {
+      "name": "mushroom_body_2129",
+      "transform":
+      {
+        "pos": "-68.7014 -15.1904 235.463",
+        "rotation": "-0.0898418 -0.886657 -0.00973958 -0.453512"
+      },
+      "render":
+      [
+        {
+          "mesh": "data/meshes/mushroom_body_2129.mesh",
+          "materials":
+          [
+            "data/materials/mushroom_body_01.material"
+          ],
+          "enabled": true
+        }
+      ],
+      "collider":
+      {
+        "mesh_src": "data/meshes/mushroom_body_01_collider0159.col_mesh",
+        "shape": "tri_mesh",
+        "type": "static",
+        "group":
+        [
+          "scenario"
+        ]
+      }
+    }
+  },
+  {
+    "entity":
+    {
+      "name": "root_grany_052",
+      "transform":
+      {
+        "pos": "-39.7107 -33.1152 142.831",
+        "rotation": "0.0 0.0 0.0 -1.0"
+      },
+      "render":
+      [
+        {
+          "mesh": "data/meshes/root_grany_052.mesh",
+          "materials":
+          [
+            "data/materials/m_roots.material"
+          ],
+          "enabled": true
+        }
+      ]
+    }
+  },
+  {
+    "entity":
+    {
+      "name": "root_grany_053",
+      "transform":
+      {
+        "pos": "-132.544 -38.2729 134.777",
+        "rotation": "0.0 -0.130526 0.0 -0.991445"
+      },
+      "render":
+      [
+        {
+          "mesh": "data/meshes/root_grany_053.mesh",
+          "materials":
+          [
+            "data/materials/m_roots.material"
+          ],
+          "enabled": true
+        }
+      ]
+    }
+  }
+]
