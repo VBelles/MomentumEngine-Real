@@ -50,4 +50,6 @@ function finalDoorCutscene()
 	wait(0.5)
 	rotateFinalDoor()
 	wait(6)
+	startScreenTransition(0,1,0,1,0)
+	startScreenTransition(1,1,1,1,3600)
 end
