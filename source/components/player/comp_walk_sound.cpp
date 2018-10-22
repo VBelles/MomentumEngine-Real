@@ -68,11 +68,11 @@ void TCompWalkSound::update(float delta) {
 	}
 
 	IActionState* state = getPlayerModel()->getStateManager()->getState();
-	if (getPlayerModel()->getPowerGauge()->getPowerLevel() == 3) {
-		if (!getSound()->isPlaying("float")) getSound()->play("float");
+	if (state->state == State::Walk && state->getMovementInput().Length() > 0) {
+		if (!getSound()->isPlaying("walk")) getSound()->play("walk");
 	}
 	else {
-		getSound()->stop("float");
+		getSound()->stop("walk");
 	}
 }
 

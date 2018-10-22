@@ -39,8 +39,8 @@ void TCompFirePuzzle::onFireTurnOff(const TMsgFireTurnOff& msg) {
 			if (!done) {
 				EngineSound.emitEvent(SOUND_CHRYSALIS_PUZZLE);
 
-				CEntity* owner = CHandle(this).getOwner();
 				auto unique = EngineUniques.getUniqueChrysalis(chrysalisName);
+				if (!unique) return; // Para evitar problemas si se destruye el fichero de uniques
 				if (!unique->done) {
 					// Spawn chrysalis
 					TEntityParseContext ctx;
