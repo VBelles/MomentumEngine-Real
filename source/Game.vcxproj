@@ -237,6 +237,7 @@
     <ClCompile Include="gui\widgets\gui_map_marker.cpp" />
     <ClCompile Include="gui\widgets\gui_option.cpp" />
     <ClCompile Include="modules\game_modules\game\enemy_manager.cpp" />
+    <ClCompile Include="modules\game_modules\module_controls_help.cpp" />
     <ClCompile Include="modules\game_modules\module_instancing.cpp" />
     <ClCompile Include="components\player\comp_walk_sound.cpp" />
     <ClCompile Include="modules\game_modules\module_map_menu.cpp" />
@@ -618,6 +619,7 @@
     <ClInclude Include="gui\widgets\gui_map_marker.h" />
     <ClInclude Include="gui\widgets\gui_option.h" />
     <ClInclude Include="modules\game_modules\game\enemy_manager.h" />
+    <ClInclude Include="modules\game_modules\module_controls_help.h" />
     <ClInclude Include="modules\game_modules\module_instancing.h" />
     <ClInclude Include="components\player\comp_walk_sound.h" />
     <ClInclude Include="modules\game_modules\module_map_menu.h" />
