@@ -408,7 +408,7 @@
 					{
 						"name": "gate_of_doom_teleport",
 						"type": "map_marker",
-						"position": "-110.287 5.62795 -112.539",
+						"position": "-108.715 5.12907 -113.173",
 						"map": "map",
 						"altern_text": "???",
 						"visible": true,
