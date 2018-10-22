@@ -24,7 +24,7 @@ function onLevelStart_game_state()
 
     local tiempoParaCancelarDialogo = 0.01 --1
 
-    local fontSize = 1
+    local fontSize = 46
 
     -- setPlatformEnabled("cine_cam_011", true)
 	-- blendInCamera("cine_cam_011", 0.001, CAMERA_PRIORITY_GAMEPLAY, INTERPOLATOR_CUBIC_OUT)
