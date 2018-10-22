@@ -21,6 +21,7 @@ void TCompPowerUp::load(const json& j, TEntityParseContext& ctx) {
 	stateToUnlock = j.value("state_to_unlock","");
 	message = j.value("message", "You unlocked a new ability!");
 	rotationSpeed = j.value("rotation_speed", rotationSpeed);
+	fontSize = j.value("font_size", fontSize);
 }
 
 void TCompPowerUp::onGroupCreated(const TMsgEntitiesGroupCreated & msg) {
@@ -88,7 +89,7 @@ void TCompPowerUp::onTriggerEnter(const TMsgTriggerEnter & msg) {
 		collectTimer.reset();
 		playerModel->setHp(playerModel->getMaxHp());
 
-		EngineGUI.showDialog(message, 16);
+		EngineGUI.showDialog(message, fontSize);
 		EngineSound.emitEvent(SOUND_POWER_UP);
 
 	}
