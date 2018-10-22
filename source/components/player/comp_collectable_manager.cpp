@@ -51,6 +51,7 @@ void TCompCollectableManager::update(float delta) {
 			CEntity* playerCameraEntity = getEntityByName(PLAYER_CAMERA);
 			TCompCameraPlayer* cameraPlayer = playerCameraEntity->get<TCompCameraPlayer>();
 			cameraPlayer->resetSuggested();
+			playerModel->setHp(playerModel->getMaxHp());
 		}
 	}
 }
@@ -185,6 +186,7 @@ void TCompCollectableManager::onCollect(const TMsgCollect& msg) {
 		}
 		else if(numberOfChrysalisTaken == CHRYSALIS_TARGET_NUMBER){
 			EngineScripting.throwEvent(lastChrysalisTaken, "");
+			//activar final door trigger
 		}
 		if (numberOfChrysalisTaken <= CHRYSALIS_TARGET_NUMBER) {
 			//esperar 4 segundos y hacer aparecer chrysalis (final_door_chrysalis_X)
@@ -198,7 +200,7 @@ void TCompCollectableManager::onCollect(const TMsgCollect& msg) {
 		EngineSound.emitEvent(SOUND_HEAL);
 		(static_cast<TCompDummyCollectable*>(get<TCompDummyCollectable>()))->activateSequence(DummyCollectableType::CHRYSALIS);
 		//Esto de aqu� molar�a no hacerlo el mismo frame en que recoges el objeto 
-		playerModel->setHp(playerModel->getMaxHp());
+		//playerModel->setHp(playerModel->getMaxHp());
 		EngineGame->showChrysalis(showChrysalisTime);
 		break;
 	case Type::COIN:
@@ -216,7 +218,7 @@ void TCompCollectableManager::onCollect(const TMsgCollect& msg) {
 		(static_cast<TCompDummyCollectable*>(get<TCompDummyCollectable>()))->activateSequence(DummyCollectableType::LIFEPIECE);
 		if (getNumberOfLifePieces() % lifePiecesPerHeart == 0) {
 			playerModel->setMaxHp(playerModel->getMaxHp() + 1);
-			playerModel->setHp(playerModel->getMaxHp());
+			//playerModel->setHp(playerModel->getMaxHp());
 		}
 		EngineSound.emitEvent(SOUND_HEAL);
 		break;
