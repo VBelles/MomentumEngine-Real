@@ -134,6 +134,12 @@
 					"data/skeletons/ella/ellaSS3_post_outline.material"
 				],
 				"locked_states": [
+					"AirDodge",
+					"FastFinisher2",
+					"StrongAttack3",
+					"HuggingWall",
+					"JumpSquatSpring",
+					"WallJumpSquatPlummet"
 				],
 				"locked_concurrent_states": [],
 				"particle_systems": [
