@@ -1,0 +1,47 @@
+{
+  "unique_life_pieces":
+  [
+    {
+      "id": "dani_life_piece_000",
+      "done": false,
+      "position": "159.784 51.4228 -76.2752",
+      "level": "level00",
+      "type": "life_piece"
+    },
+    {
+      "id": "dani_life_piece_001",
+      "done": false,
+      "position": "-105.722 -33.565 391.673",
+      "level": "level00",
+      "type": "life_piece"
+    },
+    {
+      "id": "nes_life_piece004",
+      "done": false,
+      "position": "-219.607 2.787 -53.5191",
+      "level": "level00",
+      "type": "life_piece"
+    },
+    {
+      "id": "nes_life_piece003",
+      "done": false,
+      "position": "-195.482 3.00563 45.3169",
+      "level": "level00",
+      "type": "life_piece"
+    },
+    {
+      "id": "nes_life_piece002",
+      "done": false,
+      "position": "-3.26427 15.8012 -292.878",
+      "level": "level00",
+      "type": "life_piece"
+    },
+    {
+      "id": "nes_life_piece001",
+      "done": false,
+      "position": "163.812 99.5826 -152.985",
+      "level": "level00",
+      "type": "life_piece"
+    }
+  ]
+}

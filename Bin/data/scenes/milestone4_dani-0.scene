@@ -2,41 +2,19 @@
   {
     "entity":
     {
-      "name": "grabado_roto_01",
+      "name": "grabado_roto_02_copia",
       "transform":
       {
-        "pos": "-104.854 -19.055 363.749",
-        "rotation": "-0.571871 0.415888 -0.415888 -0.571871"
+        "pos": "-128.589 -19.055 365.547",
+        "rotation": "-0.533498 -0.46409 0.46409 -0.533498"
       },
       "render":
       [
         {
-          "mesh": "data/meshes/grabado_roto_01.mesh",
+          "mesh": "data/meshes/grabado_roto_02_copia.mesh",
           "materials":
           [
-            "data/materials/m_grabado_roto_01.material"
-          ],
-          "enabled": true
-        }
-      ]
-    }
-  },
-  {
-    "entity":
-    {
-      "name": "grabado_roto_01_copia",
-      "transform":
-      {
-        "pos": "-120.949 -19.099 378.745",
-        "rotation": "0.136532 0.6938 -0.693801 0.136532"
-      },
-      "render":
-      [
-        {
-          "mesh": "data/meshes/grabado_roto_01_copia.mesh",
-          "materials":
-          [
-            "data/materials/m_grabado_roto_01.material"
+            "data/materials/m_grabado_roto_02.material"
           ],
           "enabled": true
         }
@@ -68,19 +46,41 @@
   {
     "entity":
     {
-      "name": "grabado_roto_02_copia",
+      "name": "grabado_roto_01_copia",
       "transform":
       {
-        "pos": "-128.589 -19.055 365.547",
-        "rotation": "-0.533498 -0.46409 0.46409 -0.533498"
+        "pos": "-120.949 -19.099 378.745",
+        "rotation": "0.136532 0.6938 -0.693801 0.136532"
       },
       "render":
       [
         {
-          "mesh": "data/meshes/grabado_roto_02_copia.mesh",
+          "mesh": "data/meshes/grabado_roto_01_copia.mesh",
           "materials":
           [
-            "data/materials/m_grabado_roto_02.material"
+            "data/materials/m_grabado_roto_01.material"
+          ],
+          "enabled": true
+        }
+      ]
+    }
+  },
+  {
+    "entity":
+    {
+      "name": "grabado_roto_01",
+      "transform":
+      {
+        "pos": "-104.854 -19.055 363.749",
+        "rotation": "-0.571871 0.415888 -0.415888 -0.571871"
+      },
+      "render":
+      [
+        {
+          "mesh": "data/meshes/grabado_roto_01.mesh",
+          "materials":
+          [
+            "data/materials/m_grabado_roto_01.material"
           ],
           "enabled": true
         }

@@ -1,0 +1,254 @@
+[
+  {
+    "entity":
+    {
+      "name": "nes_chrysalis010",
+      "prefab": "data/prefabs/crisalida.prefab",
+      "transform":
+      {
+        "pos": "38.3721 45.317 -118.957",
+        "rotation": "0.0 0.130526 0.0 -0.991445"
+      }
+    }
+  },
+  {
+    "entity":
+    {
+      "name": "dani_chrysalis_000",
+      "prefab": "data/prefabs/crisalida.prefab",
+      "transform":
+      {
+        "pos": "323.767 -4.17547 -54.0877",
+        "rotation": "0.0 0.0 0.0 -1.0"
+      }
+    }
+  },
+  {
+    "entity":
+    {
+      "name": "plataformeo_chrysalis001",
+      "prefab": "data/prefabs/crisalida.prefab",
+      "transform":
+      {
+        "pos": "147.018 77.047 -248.187",
+        "rotation": "0.0 -0.461749 0.0 -0.887011"
+      }
+    }
+  },
+  {
+    "entity":
+    {
+      "name": "plataformeo_chrysalis002",
+      "prefab": "data/prefabs/crisalida.prefab",
+      "transform":
+      {
+        "pos": "64.7748 77.9533 161.012",
+        "rotation": "0.0 0.173648 0.0 -0.984808"
+      }
+    }
+  },
+  {
+    "entity":
+    {
+      "name": "dani_chrysalis_001",
+      "prefab": "data/prefabs/crisalida.prefab",
+      "transform":
+      {
+        "pos": "208.282 65.8826 -225.115",
+        "rotation": "0.0 0.0 0.0 -1.0"
+      }
+    }
+  },
+  {
+    "entity":
+    {
+      "name": "dani_chrysalis_002",
+      "prefab": "data/prefabs/crisalida.prefab",
+      "transform":
+      {
+        "pos": "-71.859 -14.6563 231.77",
+        "rotation": "0.0 0.0 0.0 -1.0"
+      }
+    }
+  },
+  {
+    "entity":
+    {
+      "name": "dani_chrysalis_003",
+      "prefab": "data/prefabs/crisalida.prefab",
+      "transform":
+      {
+        "pos": "-116.579 -1.52567 367.218",
+        "rotation": "0.0 0.0 0.0 -1.0"
+      }
+    }
+  },
+  {
+    "entity":
+    {
+      "name": "nes_chrysalis016",
+      "prefab": "data/prefabs/crisalida.prefab",
+      "transform":
+      {
+        "pos": "-22.5303 50.2004 205.431",
+        "rotation": "0.0 0.130526 0.0 -0.991445"
+      }
+    }
+  },
+  {
+    "entity":
+    {
+      "name": "nes_chrysalis015",
+      "prefab": "data/prefabs/crisalida.prefab",
+      "transform":
+      {
+        "pos": "-211.276 51.3446 -46.8401",
+        "rotation": "0.0 0.130526 0.0 -0.991445"
+      }
+    }
+  },
+  {
+    "entity":
+    {
+      "name": "nes_chrysalis014",
+      "prefab": "data/prefabs/crisalida.prefab",
+      "transform":
+      {
+        "pos": "-107.621 71.734 -0.0996259",
+        "rotation": "0.0 0.130526 0.0 -0.991445"
+      }
+    }
+  },
+  {
+    "entity":
+    {
+      "name": "nes_chrysalis013",
+      "prefab": "data/prefabs/crisalida.prefab",
+      "transform":
+      {
+        "pos": "76.1644 43.9547 -15.2952",
+        "rotation": "0.0 -0.173648 0.0 -0.984808"
+      }
+    }
+  },
+  {
+    "entity":
+    {
+      "name": "nes_chrysalis012",
+      "prefab": "data/prefabs/crisalida.prefab",
+      "transform":
+      {
+        "pos": "-102.177 58.2705 -89.8067",
+        "rotation": "0.0 0.130526 0.0 -0.991445"
+      }
+    }
+  },
+  {
+    "entity":
+    {
+      "name": "nes_chrysalis011",
+      "prefab": "data/prefabs/crisalida.prefab",
+      "transform":
+      {
+        "pos": "-226.064 61.3252 36.7811",
+        "rotation": "0.0 0.130526 0.0 -0.991445"
+      }
+    }
+  },
+  {
+    "entity":
+    {
+      "name": "nes_chrysalis007",
+      "prefab": "data/prefabs/crisalida.prefab",
+      "transform":
+      {
+        "pos": "-58.1265 38.763 -35.1392",
+        "rotation": "0.0 -0.707107 0.0 -0.707107"
+      }
+    }
+  },
+  {
+    "entity":
+    {
+      "name": "nes_chrysalis006",
+      "prefab": "data/prefabs/crisalida.prefab",
+      "transform":
+      {
+        "pos": "-12.9909 42.4924 -144.56",
+        "rotation": "0.0 -0.92388 0.0 -0.382683"
+      }
+    }
+  },
+  {
+    "entity":
+    {
+      "name": "nes_chrysalis008",
+      "prefab": "data/prefabs/crisalida.prefab",
+      "transform":
+      {
+        "pos": "51.9843 44.2449 -49.1208",
+        "rotation": "0.0 0.0436194 0.0 -0.999048"
+      }
+    }
+  },
+  {
+    "entity":
+    {
+      "name": "nes_chrysalis005",
+      "prefab": "data/prefabs/crisalida.prefab",
+      "transform":
+      {
+        "pos": "-143.461 51.7081 122.43",
+        "rotation": "0.0 -0.422618 0.0 -0.906308"
+      }
+    }
+  },
+  {
+    "entity":
+    {
+      "name": "nes_chrysalis004",
+      "prefab": "data/prefabs/crisalida.prefab",
+      "transform":
+      {
+        "pos": "152.186 145.216 -148.834",
+        "rotation": "0.0 0.130526 0.0 -0.991445"
+      }
+    }
+  },
+  {
+    "entity":
+    {
+      "name": "nes_chrysalis003",
+      "prefab": "data/prefabs/crisalida.prefab",
+      "transform":
+      {
+        "pos": "20.3768 52.5476 -238.221",
+        "rotation": "0.0 0.130526 0.0 -0.991445"
+      }
+    }
+  },
+  {
+    "entity":
+    {
+      "name": "nes_chrysalis002",
+      "prefab": "data/prefabs/crisalida.prefab",
+      "transform":
+      {
+        "pos": "27.8394 34.8865 -204.39",
+        "rotation": "0.0 0.130526 0.0 -0.991445"
+      }
+    }
+  },
+  {
+    "entity":
+    {
+      "name": "nes_chrysalis001",
+      "prefab": "data/prefabs/crisalida.prefab",
+      "transform":
+      {
+        "pos": "-11.2709 15.1494 -187.693",
+        "rotation": "0.0 0.130526 0.0 -0.991445"
+      }
+    }
+  }
+]
