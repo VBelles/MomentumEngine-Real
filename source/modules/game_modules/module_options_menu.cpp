@@ -16,6 +16,9 @@ bool CModuleOptionsMenu::start() {
 	Engine.getGUI().activateWidget("options_menu");
 
 	controller = new GUI::COptionsMenuController();
+	controller->registerOption("master_volume", jOptions["sound"]["master_volume"]);
+	controller->registerOption("music_volume", jOptions["sound"]["music_volume"]);
+	controller->registerOption("sound_volume", jOptions["sound"]["sound_volume"]);
 	controller->registerOption("camera_speed", jOptions["camera"]["camera_speed"]);
 	controller->registerOption("camera_speed_pad", jOptions["camera"]["camera_speed_pad"]);
 	controller->registerOption("invert_x_axis", jOptions["camera"]["invert_x_axis"]);
@@ -46,6 +49,9 @@ bool CModuleOptionsMenu::stop() {
 	jOptions["screen"]["vsync"] = controller->getOptionValue("vsync");
 	jOptions["camera"]["camera_speed"] = controller->getOptionValue("camera_speed");
 	jOptions["camera"]["camera_speed_pad"] = controller->getOptionValue("camera_speed_pad");
+	jOptions["sound"]["master_volume"] = controller->getOptionValue("master_volume");
+	jOptions["sound"]["music_volume"] = controller->getOptionValue("music_volume");
+	jOptions["sound"]["sound_volume"] = controller->getOptionValue("sound_volume");
 
 
 	std::string string = jOptions.dump(1, '\t');

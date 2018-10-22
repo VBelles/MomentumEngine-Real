@@ -30,6 +30,9 @@ struct GlobalConfig {
 	bool fullscreen;
 	bool vSync;
 	float time_scale_factor = 1.f;
+	float masterVolume = 1.f;
+	float musicVolume = 1.f;
+	float soundVolume = 1.f;
 };
 
 class CEngine {

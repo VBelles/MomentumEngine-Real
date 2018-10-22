@@ -74,6 +74,15 @@ void COption::setCurrentOption(int newOption) {
 	int nOptions = static_cast<int>(_options.size());
 	_currentOption = (newOption + nOptions) % nOptions;
 	_text->getTextParams()->_text = _options[_currentOption].first;
+	if (getName() == "master_volume") {
+		EngineSound.setMasterVolume((float)_options[_currentOption].second);
+	}
+	else if (getName() == "music_volume") {
+		EngineSound.setMusicVolume((float)_options[_currentOption].second);
+	}
+	else if (getName() == "sound_volume") {
+		EngineSound.setSoundVolume((float)_options[_currentOption].second);
+	}
 }
 
 void COption::setCurrentValue(json newValue) {

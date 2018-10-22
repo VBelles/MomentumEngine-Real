@@ -37,6 +37,10 @@ bool CModuleSound::start() {
 	soundsVCA = j.value("sounds_VCA", soundsVCA);
 	musicVCA = j.value("music_VCA", musicVCA);
 
+	setMasterVolume(Engine.globalConfig.masterVolume);
+	setMusicVolume(Engine.globalConfig.musicVolume);
+	setSoundVolume(Engine.globalConfig.soundVolume);
+
 	return true;
 }
 
@@ -191,9 +195,7 @@ void CModuleSound::setMusicVolume(float volume) {
 void CModuleSound::setPaused(bool paused) {
 	this->paused = paused;
 	forEachEventInstance([this](FMOD::Studio::Bank* bank, FMOD::Studio::EventDescription* description, FMOD::Studio::EventInstance* event) {
-		char buffer[256];
-		description->getPath(buffer, 256, nullptr);
-		std::string path = buffer;
+		std::string path = getPath(description);
 		std::transform(path.begin(), path.end(), path.begin(), ::tolower);
 		if (unpausableEvents.find(path) == unpausableEvents.end()) {
 			event->setPaused(this->paused);
@@ -232,7 +234,6 @@ void CModuleSound::render() {
 			if (ImGui::DragFloat("Music volume", &musicVolume, 0.01f, 0.f, 1.f)) {
 				setMusicVolume(musicVolume);
 			}
-
 
 			auto banks = getBanks(getSystem());
 			ImGui::Text("Banks: %d", banks.size());

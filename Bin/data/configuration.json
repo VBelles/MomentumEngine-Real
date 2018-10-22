@@ -9,5 +9,10 @@
 		"fullscreen": false,
 		"resolution": "1280 720",
 		"vsync": false
+	},
+	"sound": {
+		"master_volume": 1.0,
+		"music_volume": 1.0,
+		"sound_volume": 1.0
 	}
 }

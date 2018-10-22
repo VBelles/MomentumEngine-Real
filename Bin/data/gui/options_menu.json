@@ -18,9 +18,276 @@
 				"position": "10 10",
 				"children": [
 					{
-						"name": "camera_speed",
+						"name": "master_volume",
 						"type": "option",
 						"position": "0 0",
+						"size": "1900 64",
+						"idle": {
+							"size": "412 104",
+							"texture": "data/textures/gui/bt_master_volume.dds"
+						},
+						"selected": {
+							"size": "412 104",
+							"texture": "data/textures/gui/bt_master_volume_selected.dds"
+						},
+						"previous_button": {
+							"name": "previous",
+							"type": "button",
+							"size": "64 64",
+							"texture": "data/textures/gui/flecha_izq_selected.dds",
+							"selected": {
+								"font_size": 64.0,
+								"color": "0.2 0.2 0.2 1"
+							},
+							"pressed": {
+								"font_size": 64.0,
+								"font_color": "0.5 0.5 0.5 1"
+							}
+						},
+						"next_button": {
+							"name": "next",
+							"type": "button",
+							"size": "64 64",
+							"texture": "data/textures/gui/flecha_der_selected.dds",
+							"selected": {
+								"font_size": 64.0,
+								"color": "0.2 0.2 0.2 1"
+							},
+							"pressed": {
+								"font_size": 64.0,
+								"font_color": "0.5 0.5 0.5 1"
+							}
+						},
+						"option_text": {
+							"size": "400 64",
+							"font_size": 64.0,
+							"text": "OP"
+						},
+						"options": [
+							[
+								"0.1",
+								0.1
+							],
+							[
+								"0.2",
+								0.2
+							],
+							[
+								"0.3",
+								0.3
+							],
+							[
+								"0.4",
+								0.4
+							],
+							[
+								"0.5",
+								0.5
+							],
+							[
+								"0.6",
+								0.6
+							],
+							[
+								"0.7",
+								0.7
+							],
+							[
+								"0.8",
+								0.8
+							],
+							[
+								"0.9",
+								0.9
+							],
+							[
+								"1.0",
+								1.0
+							]
+						]
+					},
+					{
+						"name": "music_volume",
+						"type": "option",
+						"position": "0 66",
+						"size": "1900 64",
+						"idle": {
+							"size": "412 104",
+							"texture": "data/textures/gui/bt_music_volume.dds"
+						},
+						"selected": {
+							"size": "412 104",
+							"texture": "data/textures/gui/bt_music_volume_selected.dds"
+						},
+						"previous_button": {
+							"name": "previous",
+							"type": "button",
+							"size": "64 64",
+							"texture": "data/textures/gui/flecha_izq_selected.dds",
+							"selected": {
+								"font_size": 64.0,
+								"color": "0.2 0.2 0.2 1"
+							},
+							"pressed": {
+								"font_size": 64.0,
+								"font_color": "0.5 0.5 0.5 1"
+							}
+						},
+						"next_button": {
+							"name": "next",
+							"type": "button",
+							"size": "64 64",
+							"texture": "data/textures/gui/flecha_der_selected.dds",
+							"selected": {
+								"font_size": 64.0,
+								"color": "0.2 0.2 0.2 1"
+							},
+							"pressed": {
+								"font_size": 64.0,
+								"font_color": "0.5 0.5 0.5 1"
+							}
+						},
+						"option_text": {
+							"size": "400 64",
+							"font_size": 64.0,
+							"text": "OP"
+						},
+						"options": [
+							[
+								"0.1",
+								0.1
+							],
+							[
+								"0.2",
+								0.2
+							],
+							[
+								"0.3",
+								0.3
+							],
+							[
+								"0.4",
+								0.4
+							],
+							[
+								"0.5",
+								0.5
+							],
+							[
+								"0.6",
+								0.6
+							],
+							[
+								"0.7",
+								0.7
+							],
+							[
+								"0.8",
+								0.8
+							],
+							[
+								"0.9",
+								0.9
+							],
+							[
+								"1.0",
+								1.0
+							]
+						]
+					},
+					{
+						"name": "sound_volume",
+						"type": "option",
+						"position": "0 132",
+						"size": "1900 64",
+						"idle": {
+							"size": "412 104",
+							"texture": "data/textures/gui/bt_sound_volume.dds"
+						},
+						"selected": {
+							"size": "412 104",
+							"texture": "data/textures/gui/bt_sound_volume_selected.dds"
+						},
+						"previous_button": {
+							"name": "previous",
+							"type": "button",
+							"size": "64 64",
+							"texture": "data/textures/gui/flecha_izq_selected.dds",
+							"selected": {
+								"font_size": 64.0,
+								"color": "0.2 0.2 0.2 1"
+							},
+							"pressed": {
+								"font_size": 64.0,
+								"font_color": "0.5 0.5 0.5 1"
+							}
+						},
+						"next_button": {
+							"name": "next",
+							"type": "button",
+							"size": "64 64",
+							"texture": "data/textures/gui/flecha_der_selected.dds",
+							"selected": {
+								"font_size": 64.0,
+								"color": "0.2 0.2 0.2 1"
+							},
+							"pressed": {
+								"font_size": 64.0,
+								"font_color": "0.5 0.5 0.5 1"
+							}
+						},
+						"option_text": {
+							"size": "400 64",
+							"font_size": 64.0,
+							"text": "OP"
+						},
+						"options": [
+							[
+								"0.1",
+								0.1
+							],
+							[
+								"0.2",
+								0.2
+							],
+							[
+								"0.3",
+								0.3
+							],
+							[
+								"0.4",
+								0.4
+							],
+							[
+								"0.5",
+								0.5
+							],
+							[
+								"0.6",
+								0.6
+							],
+							[
+								"0.7",
+								0.7
+							],
+							[
+								"0.8",
+								0.8
+							],
+							[
+								"0.9",
+								0.9
+							],
+							[
+								"1.0",
+								1.0
+							]
+						]
+					},
+					{
+						"name": "camera_speed",
+						"type": "option",
+						"position": "0 198",
 						"size": "1900 64",
 						"idle": {
 							"size": "412 104",
@@ -189,7 +456,7 @@
 					{
 						"name": "camera_speed_pad",
 						"type": "option",
-						"position": "0 66",
+						"position": "0 264",
 						"size": "1900 64",
 						"idle": {
 							"size": "496 104",
@@ -358,7 +625,7 @@
 					{
 						"name": "invert_x_axis",
 						"type": "option",
-						"position": "0 132",
+						"position": "0 330",
 						"size": "1900 64",
 						"idle": {
 							"size": "372 104",
@@ -415,7 +682,7 @@
 					{
 						"name": "invert_y_axis",
 						"type": "option",
-						"position": "0 198",
+						"position": "0 396",
 						"size": "1900 64",
 						"idle": {
 							"size": "372 104",
@@ -472,7 +739,7 @@
 					{
 						"name": "fullscreen",
 						"type": "option",
-						"position": "0 264",
+						"position": "0 462",
 						"size": "1900 64",
 						"idle": {
 							"size": "336 104",
@@ -529,7 +796,7 @@
 					{
 						"name": "resolution",
 						"type": "option",
-						"position": "0 330",
+						"position": "0 528",
 						"size": "1900 64",
 						"idle": {
 							"size": "336 104",
@@ -606,7 +873,7 @@
 					{
 						"name": "vsync",
 						"type": "option",
-						"position": "0 396",
+						"position": "0 594",
 						"size": "1900 64",
 						"idle": {
 							"size": "336 104",
