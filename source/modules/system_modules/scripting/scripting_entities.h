@@ -35,4 +35,7 @@ public:
 
 	static void rotateFinalDoor();
 	static void enableRender(std::string entityName, bool enabled);
+	static void createCollider(std::string entityName);
+	static void destroyCollider(std::string entityName);
+	static void blockMenu(bool blocked);
 };

@@ -28,6 +28,9 @@ void ScriptingEntities::bind(SLB::Manager* manager) {
 	manager->set("resumeEnemies", SLB::FuncCall::create(ScriptingEntities::resumeEnemies));
 	manager->set("rotateFinalDoor", SLB::FuncCall::create(ScriptingEntities::rotateFinalDoor));
 	manager->set("enableRender", SLB::FuncCall::create(ScriptingEntities::enableRender));
+	manager->set("createCollider", SLB::FuncCall::create(ScriptingEntities::createCollider));
+	manager->set("destroyCollider", SLB::FuncCall::create(ScriptingEntities::destroyCollider));
+	manager->set("blockMenu", SLB::FuncCall::create(ScriptingEntities::blockMenu));
 }
 
 void ScriptingEntities::bindConstants(SLB::Manager* manager) {
@@ -194,4 +197,41 @@ void ScriptingEntities::enableRender(std::string entityName, bool enabled) {
 	}
 }
 
+void ScriptingEntities::createCollider(std::string entityName) {
+	CEntity* entity = getEntityByName(entityName);
+	if (entity) {
+		TCompCollider* collider = entity->get<TCompCollider>();
+		if (collider) {
+			dbg("Creating collider %s\n", entityName.c_str());
+			collider->create();
+		}
+		else {
+			dbg("Not creating %s (collider not found)\n", entityName.c_str());
+		}
+	}
+	else {
+		dbg("Not creating %s (entity not found)\n", entityName.c_str());
+	}
+}
+
+void ScriptingEntities::destroyCollider(std::string entityName) {
+	CEntity* entity = getEntityByName(entityName);
+	if (entity) {
+		TCompCollider* collider = entity->get<TCompCollider>();
+		if (collider) {
+			dbg("Destroying collider %s\n", entityName.c_str());
+			collider->destroy();
+		}
+		else {
+			dbg("Not destroyed %s (collider not found)\n", entityName.c_str());
+		}
+	}
+	else {
+		dbg("Not destroyed %s (entity not found)\n", entityName.c_str());
+	}
+}
+
+void ScriptingEntities::blockMenu(bool blocked) {
+
+}
 
