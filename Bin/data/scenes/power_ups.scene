@@ -2,6 +2,93 @@
 	{
 		"entity":
 		{
+			"name" : "power_up_air_dodge",
+			"power_up":{
+				"state_to_unlock" : "AirDodge",
+				"message" : "You got the power to dodge in the air."
+			},
+			"transform": {
+				"pos": "28.7937 5.91278 -14.4006"
+			},
+			"render": [
+				{
+					"mesh": "data/meshes/powerup_00.mesh",
+					"materials": [
+						"data/materials/m_powerup.material"
+					]
+				}
+			],
+			"collider" : {
+				"shape": "sphere",
+				"is_trigger" : true,
+				"radius" : 0.65,
+				"type": "kinematic",
+				"group": ["scenario"],
+				"mask": ["player"]
+			}
+		}
+	},
+	{
+		"entity":
+		{
+			"name" : "power_up_fast_finisher_2",
+			"power_up":{
+				"state_to_unlock" : "FastFinisher2",
+				"message" : "You can perform a new combo:\nStrong Attack + Strong Attack + Fast Attack."
+			},
+			"transform": {
+				"pos": "-167.243 75.472 -82.1206"
+			},
+			"render": [
+				{
+					"mesh": "data/meshes/powerup_00.mesh",
+					"materials": [
+						"data/materials/m_powerup.material"
+					]
+				}
+			],
+			"collider" : {
+				"shape": "sphere",
+				"is_trigger" : true,
+				"radius" : 0.65,
+				"type": "kinematic",
+				"group": ["scenario"],
+				"mask": ["player"]
+			}
+		}
+	},
+	{
+		"entity":
+		{
+			"name" : "power_up_strong_attack_3",
+			"power_up":{
+				"state_to_unlock" : "StrongAttack3",
+				"message" : "You can perform a new powerful attack:\nPress Strong Attack three times."
+			},
+			"transform": {
+				"pos": "-90.7143 48.6282 5.26836"
+			},
+			"render": [
+				{
+					"mesh": "data/meshes/powerup_00.mesh",
+					"materials": [
+						"data/materials/m_powerup.material"
+					]
+				}
+			],
+			"collider" : {
+				"shape": "sphere",
+				"is_trigger" : true,
+				"radius" : 0.65,
+				"type": "kinematic",
+				"group": ["scenario"],
+				"mask": ["player"]
+			}
+		}
+	},
+	{
+		"entity":
+		{
 			"name" : "power_up_hugging_wall",
 			"power_up":{
 				"state_to_unlock" : "HuggingWall",

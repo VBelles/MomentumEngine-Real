@@ -6,6 +6,7 @@
 #include "components/platforms/comp_platforms_director.h"
 #include "components/comp_day_night_cycle.h"
 #include "components/platforms/comp_platform_simple.h"
+#include "components/comp_final_door_controller.h"
 
 ScriptingEntities* ScriptingEntities::instance = nullptr;
 
@@ -25,6 +26,8 @@ void ScriptingEntities::bind(SLB::Manager* manager) {
 	manager->set("resumeEntitiesCutscene", SLB::FuncCall::create(ScriptingEntities::resumeEntitiesCutscene));
 	manager->set("stopEnemies", SLB::FuncCall::create(ScriptingEntities::stopEnemies));
 	manager->set("resumeEnemies", SLB::FuncCall::create(ScriptingEntities::resumeEnemies));
+	manager->set("rotateFinalDoor", SLB::FuncCall::create(ScriptingEntities::rotateFinalDoor));
+	manager->set("enableRender", SLB::FuncCall::create(ScriptingEntities::enableRender));
 }
 
 void ScriptingEntities::bindConstants(SLB::Manager* manager) {
@@ -165,3 +168,30 @@ void ScriptingEntities::stopEnemies() {
 void ScriptingEntities::resumeEnemies() {
 	Engine.getEntities().setManagerUpdate("enemy", true);
 }
+
+void ScriptingEntities::rotateFinalDoor() {
+	CEntity* entity = getEntityByName(FINAL_DOOR_CONTROLLER);
+	if (entity) {
+		TCompFinalDoorController* controller = entity->get<TCompFinalDoorController>();
+		if (controller) {
+			controller->rotateFinalDoor();
+		}
+	}
+}
+
+void ScriptingEntities::enableRender(std::string entityName, bool enabled) {
+	CEntity* entity = getEntityByName(entityName);
+	if (entity) {
+		TCompRender* render = entity->get<TCompRender>();
+		if (render) {
+			if (enabled) {
+				render->enable();
+			}
+			else {
+				render->disable();
+			}
+		}
+	}
+}
+
+

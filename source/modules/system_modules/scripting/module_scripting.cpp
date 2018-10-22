@@ -78,7 +78,8 @@ bool CModuleScripting::start() {
 		{ onMechanismSystemActivated, "onMechanismSystemActivated" },
 		{ onMechanismSystemDeactivated, "onMechanismSystemDeactivated" },
 		{ lastChrysalisTaken, "lastChrysalisTaken" },
-		{ firstChrysalisTaken, "firstChrysalisTaken" }
+		{ firstChrysalisTaken, "firstChrysalisTaken" },
+		{ finalDoorCutscene, "finalDoorCutscene"}
 	};
 
 	callsFirstParamOnFunction = {
