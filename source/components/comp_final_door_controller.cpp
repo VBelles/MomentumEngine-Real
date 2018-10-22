@@ -24,11 +24,17 @@ void TCompFinalDoorController::update(float delta){
 		TCompTransform* transform = finalDoorTransform;
 		float yaw, pitch, roll;
 		transform->getYawPitchRoll(&yaw, &pitch, &roll);
-		transform->setYawPitchRoll(yaw, pitch + M_PI, roll);
+		float ratio = rotationTimer.elapsed() / rotationTime;
+		roll = lerp(initialRotation, targetRotation, clamp(ratio, 0.f, 1.f));
+		transform->setYawPitchRoll(yaw, pitch, roll);
+
 		auto kinematicActor = static_cast<PxRigidDynamic*>(collider->actor);
 		kinematicActor->setKinematicTarget(toPxTransform(transform));
 		//si ha acabado
-		isRotating = false;
+		if (ratio >= 1) {
+			isRotating = false;
+		}
+
 		dbg("Rotating\n");
 	}
 }
@@ -42,6 +48,9 @@ void TCompFinalDoorController::onAllScenesCreated(const TMsgAllScenesCreated & m
 	CEntity* entity = getEntityByName(finalDoorName);
 	finalDoorCollider = entity->get<TCompCollider>();
 	finalDoorTransform = entity->get<TCompTransform>();
+	float yaw, pitch, initialRotation;
+	((TCompTransform*)finalDoorTransform)->getYawPitchRoll(&yaw, &pitch, &initialRotation);
+	targetRotation = initialRotation + M_PI;
 }
 
 void TCompFinalDoorController::onTriggerEnter(const TMsgTriggerEnter & msg) {
@@ -72,6 +81,7 @@ void TCompFinalDoorController::onChrysalisCollected(const TMsgChrysalisCollected
 
 void TCompFinalDoorController::rotateFinalDoor() {
 	isRotating = true;
+	rotationTimer.reset();
 }
 
 void TCompFinalDoorController::onColliderDestroyed(const TMsgColliderDestroyed& msg) {

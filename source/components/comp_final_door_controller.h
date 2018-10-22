@@ -14,6 +14,10 @@ private:
 	CHandle finalDoorCollider;
 	CHandle finalDoorTransform;
 
+	CTimer2 rotationTimer;
+	float rotationTime = 3.f;
+	float initialRotation;
+	float targetRotation;
 	bool isRotating = false;
 
 public:
