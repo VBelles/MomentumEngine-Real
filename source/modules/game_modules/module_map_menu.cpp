@@ -33,8 +33,8 @@ bool CModuleMapMenu::stop() {
 }
 
 void CModuleMapMenu::update(float delta) {
-	if (!CApp::get().isDebug()
-		&& EngineInput["map"].getsPressed()
+
+	if (!CApp::get().isDebug() && EngineInput["map"].getsPressed()
 		|| pause && EngineInput["menu_back"].getsPressed()) {
 		onMapButtonPressed();
 	}
@@ -43,6 +43,10 @@ void CModuleMapMenu::update(float delta) {
 void CModuleMapMenu::render() {}
 
 void CModuleMapMenu::onMapButtonPressed() {
+	if (!pause && !ScriptingPlayer::isPlayerGrounded()) {
+		EngineSound.emitEvent(SOUND_MENU_BACK);
+		return;
+	}
 	pause = !pause;
 
 	if (pause) {
