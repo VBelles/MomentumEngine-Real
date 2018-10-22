@@ -15,7 +15,7 @@ private:
 	CHandle finalDoorTransform;
 
 	CTimer2 rotationTimer;
-	float rotationTime = 3.f;
+	float rotationTime = 6.f;
 	float initialRotation;
 	float targetRotation;
 	bool isRotating = false;

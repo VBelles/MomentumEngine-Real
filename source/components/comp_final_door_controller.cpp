@@ -34,8 +34,6 @@ void TCompFinalDoorController::update(float delta){
 		if (ratio >= 1) {
 			isRotating = false;
 		}
-
-		dbg("Rotating\n");
 	}
 }
 
@@ -56,12 +54,8 @@ void TCompFinalDoorController::onAllScenesCreated(const TMsgAllScenesCreated & m
 void TCompFinalDoorController::onTriggerEnter(const TMsgTriggerEnter & msg) {
 	CEntity* entity = msg.h_other_entity;
 	if (PLAYER_NAME == entity->getName()) {
-		//lanzar lo que sea
-		dbg("Final door trigger entered\n");
 		//llamar evento de lua
-
-		//quitar, esto se tiene que llamar desde lua
-		rotateFinalDoor();
+		EngineScripting.throwEvent(finalDoorCutscene, "");
 	}
 }
 

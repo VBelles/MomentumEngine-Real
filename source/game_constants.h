@@ -6,6 +6,7 @@ static const std::string PLAYER_CAMERA = "player_camera";
 static const std::string GAME_CAMERA = "game_camera";
 static const std::string DEBUG_CAMERA = "debug_camera";
 static const std::string MUSIC_PLAYER = "music_player";
+static const std::string FINAL_DOOR_CONTROLLER = "final_door_controller_trigger";
 
 static const std::string CURVE_INTERPOLATION_CAMERA = "curve_interpolation_camera";
 static const std::string TELEPORT_CAMERA = "teleport_camera";

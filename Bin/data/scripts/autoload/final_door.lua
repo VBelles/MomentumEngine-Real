@@ -27,3 +27,14 @@ function lastChrysalisTaken()
 	wait(0.5)
 	givePlayerControl()
 end
+
+function finalDoorCutscene()
+	takePlayerControl()
+	stopPlayerVelocity()
+	changePlayerState("Idle")
+	blendInCamera("final_door_camera", 0.001, CAMERA_PRIORITY_GAMEPLAY, INTERPOLATOR_CUBIC_OUT)
+	showHUD(false)
+	wait(1)
+	rotateFinalDoor()
+	wait(6)
+end

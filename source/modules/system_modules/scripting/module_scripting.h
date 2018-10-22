@@ -12,7 +12,8 @@ enum LuaCall {
 	onMechanismSystemActivated, //param mechanismSystemName; la call sera onMechanismSystemActivated_mechanismSystemName()
 	onMechanismSystemDeactivated, //param mechanismSystemName; la call sera onMechanismSystemDeactivated_mechanisSystemmName()
 	lastChrysalisTaken,
-	firstChrysalisTaken
+	firstChrysalisTaken,
+	finalDoorCutscene
 };
 
 namespace SLB {
