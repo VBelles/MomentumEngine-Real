@@ -35,13 +35,16 @@ private:
 	FMOD::Studio::EventInstance* currentSongInstance = nullptr;
 	FMOD::Studio::EventInstance* momentumThemeInstance = nullptr;
 	FMOD::Studio::EventInstance* introThemeInstance = nullptr;
+	FMOD::Studio::EventInstance* menuThemeInstance = nullptr;
 
 	FMOD::Studio::EventDescription* currentSongDescriptor = nullptr;
 	FMOD::Studio::EventDescription* momentumThemeDescriptor = nullptr;
 	FMOD::Studio::EventDescription* introThemeDescriptor = nullptr;
+	FMOD::Studio::EventDescription* menuThemeDescriptor = nullptr;
 
 	std::string mainTheme = "event:/momentum_theme";
-	std::string introTheme = "event:/momentum_theme_placeholder";
+	std::string introTheme = "event:/intro_theme";
+	std::string menuTheme = "event:/menu_theme";
 
 	CTimer2 fadeOutTimer;
 	bool isSongPlaying = false;

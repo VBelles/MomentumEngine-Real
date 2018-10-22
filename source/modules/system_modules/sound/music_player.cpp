@@ -16,6 +16,7 @@ void CMusicPlayer::debugInMenu() {
 void CMusicPlayer::load(const json& j) {
 	mainTheme = j.value("main_theme", mainTheme);
 	introTheme = j.value("intro_theme", introTheme);
+	menuTheme = j.value("menu_theme", menuTheme);
 
 	pausedVolumeMultiplier = j.value("paused_volume_multiplier", pausedVolumeMultiplier);
 	tempo = j.value("tempo", tempo);
@@ -27,7 +28,8 @@ void CMusicPlayer::load(const json& j) {
 
 	momentumThemeDescriptor = EngineSound.getEventDescription(mainTheme);
 	introThemeDescriptor = EngineSound.getEventDescription(introTheme);
-	currentSongDescriptor = introThemeDescriptor;
+	menuThemeDescriptor = EngineSound.getEventDescription(menuTheme);
+	currentSongDescriptor = menuThemeDescriptor;
 	/*introThemeInstance = EngineSound.emitEvent(introTheme);
 	momentumThemeInstance = EngineSound.emitEvent(mainTheme);
 	currentSongInstance = momentumThemeInstance;*/
@@ -343,11 +345,21 @@ void CMusicPlayer::setCurrentSong(Song song) {
 			play();
 		}
 		break;
+	case MENU:
+		if (currentSongDescriptor != menuThemeDescriptor) {
+			stop();
+			currentSongDescriptor = menuThemeDescriptor;
+			play();
+		}
+		else if (!isSongPlaying) {
+			play();
+		}
+		break;
 	}
 }
 
 void CMusicPlayer::setCurrentSong(std::string song) {
 	if (song == "main" || song == "MAIN") setCurrentSong(MAIN);
 	else if (song == "intro" || song == "INTRO") setCurrentSong(INTRO);
-	//else if (song == "menu" || song == "MENU") setCurrentSong(MENU);
+	else if (song == "menu" || song == "MENU") setCurrentSong(MENU);
 }

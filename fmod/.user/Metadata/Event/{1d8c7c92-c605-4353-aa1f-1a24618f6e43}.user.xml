@@ -8,7 +8,7 @@
             <destination>{ab59ce06-bf55-4ced-a0d9-a6523a4ca4df}</destination>
         </relationship>
         <relationship name="uiLastParameterSelection">
-            <destination>{ac981ee0-9430-4414-9b28-33106dd1e089}</destination>
+            <destination>{1874e82f-be37-4054-bc67-3abbe616da0d}</destination>
         </relationship>
     </object>
     <object class="MasterTrack" id="{ab59ce06-bf55-4ced-a0d9-a6523a4ca4df}">
@@ -157,25 +157,40 @@
         <property name="uiLastRulerScaleRatio">
             <value>0.000942507068803016</value>
         </property>
+        <property name="uiLastHorizontalScrollBarValue">
+            <value>421</value>
+        </property>
     </object>
     <object class="ParameterProxy" id="{205f93e0-e75f-4b10-a51c-14bc5bc30aeb}">
         <property name="uiLastRulerScaleRatio">
             <value>0.000942507068803016</value>
+        </property>
+        <property name="uiLastHorizontalScrollBarValue">
+            <value>421</value>
         </property>
     </object>
     <object class="ParameterProxy" id="{39345a49-1066-4022-8e2f-50473c379173}">
         <property name="uiLastRulerScaleRatio">
             <value>0.000942507068803016</value>
         </property>
+        <property name="uiLastHorizontalScrollBarValue">
+            <value>421</value>
+        </property>
     </object>
     <object class="ParameterProxy" id="{bde328d0-ecfd-40f9-8098-6cfdefce8057}">
         <property name="uiLastRulerScaleRatio">
             <value>0.000942507068803016</value>
         </property>
+        <property name="uiLastHorizontalScrollBarValue">
+            <value>421</value>
+        </property>
     </object>
     <object class="ParameterProxy" id="{5080a73f-dd0b-46b4-a130-0ebb6b55686f}">
         <property name="uiLastRulerScaleRatio">
             <value>0.000942507068803016</value>
+        </property>
+        <property name="uiLastHorizontalScrollBarValue">
+            <value>421</value>
         </property>
     </object>
     <object class="ParameterProxy" id="{7b0578a8-308e-4b78-9ca7-ead29189eeb7}">
@@ -195,25 +210,40 @@
         <property name="uiLastRulerScaleRatio">
             <value>0.000942507068803016</value>
         </property>
+        <property name="uiLastHorizontalScrollBarValue">
+            <value>421</value>
+        </property>
     </object>
     <object class="ParameterProxy" id="{55f84824-3dea-4b22-8ab9-b31d0026b7e0}">
         <property name="uiLastRulerScaleRatio">
             <value>0.000942507068803016</value>
+        </property>
+        <property name="uiLastHorizontalScrollBarValue">
+            <value>421</value>
         </property>
     </object>
     <object class="ParameterProxy" id="{f32969f8-a792-4c83-b0d8-3bc7ae543087}">
         <property name="uiLastRulerScaleRatio">
             <value>0.000942507068803016</value>
         </property>
+        <property name="uiLastHorizontalScrollBarValue">
+            <value>421</value>
+        </property>
     </object>
     <object class="ParameterProxy" id="{d188a827-7b68-4902-81a6-68143814544c}">
         <property name="uiLastRulerScaleRatio">
             <value>0.000942507068803016</value>
         </property>
+        <property name="uiLastHorizontalScrollBarValue">
+            <value>421</value>
+        </property>
     </object>
     <object class="ParameterProxy" id="{6e10c5db-5f89-41f9-b3cb-753a8b42f4ca}">
         <property name="uiLastRulerScaleRatio">
             <value>0.000942507068803016</value>
+        </property>
+        <property name="uiLastHorizontalScrollBarValue">
+            <value>421</value>
         </property>
     </object>
     <object class="EventMixerMaster" id="{ca37ed58-293e-4ab2-875b-67f829f5592d}">
