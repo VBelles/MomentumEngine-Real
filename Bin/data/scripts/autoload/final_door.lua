@@ -51,5 +51,8 @@ function finalDoorCutscene()
 	rotateFinalDoor()
 	wait(6)
 	startScreenTransition(0,1,0,1,0)
+	wait(0.5)
 	startScreenTransition(1,1,1,1,3600)
+	wait(3)
+	goToMainMenu()
 end

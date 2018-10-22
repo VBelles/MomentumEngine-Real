@@ -99,7 +99,7 @@ public:
 	Location locationState = NONE;
 
 	enum Song {
-		INTRO, MAIN
+		INTRO, MAIN, MENU
 	};
 
 	CMusicPlayer() = default;

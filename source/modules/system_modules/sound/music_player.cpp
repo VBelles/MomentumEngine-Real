@@ -349,4 +349,5 @@ void CMusicPlayer::setCurrentSong(Song song) {
 void CMusicPlayer::setCurrentSong(std::string song) {
 	if (song == "main" || song == "MAIN") setCurrentSong(MAIN);
 	else if (song == "intro" || song == "INTRO") setCurrentSong(INTRO);
+	//else if (song == "menu" || song == "MENU") setCurrentSong(MENU);
 }

@@ -14,6 +14,8 @@ void ScriptingGUI::bind(SLB::Manager* manager) {
 
 	manager->set("showHUD",		   SLB::FuncCall::create(ScriptingGUI::showHUD));
 	manager->set("skipCinematics", SLB::FuncCall::create(ScriptingGUI::skipCinematics));
+
+	manager->set("goToMainMenu", SLB::FuncCall::create(ScriptingGUI::goToMainMenu));
 }
 
 void ScriptingGUI::bindConstants(SLB::Manager* manager) {
@@ -45,4 +47,10 @@ void ScriptingGUI::showHUD(bool how) {
 
 bool ScriptingGUI::skipCinematics() {
 	return EngineInput["menu_accept"].getsPressed();
+}
+
+void ScriptingGUI::goToMainMenu() {
+	EngineGUI.hideDialog();
+	EngineModules.changeGameState("main_menu", true);
+	EngineSound.getMusicPlayer()->setCurrentSong(CMusicPlayer::Song::MENU);
 }

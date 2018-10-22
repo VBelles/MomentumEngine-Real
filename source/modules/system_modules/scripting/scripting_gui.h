@@ -19,4 +19,6 @@ public:
 
 	static void showHUD(bool how);
 	static bool skipCinematics();
+
+	static void goToMainMenu();
 };
