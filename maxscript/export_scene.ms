@@ -2127,7 +2127,7 @@ struct TSceneExporter (
 	),
 
 	fn exportResourcesFile = (
-		local resourcesFilePath = project_path + base_path + "resourcesTEST.json"
+		local resourcesFilePath = project_path + base_path + "resources.json"
 		
 		fs.begin resourcesFilePath --Create file.
 			fs.beginArray()
