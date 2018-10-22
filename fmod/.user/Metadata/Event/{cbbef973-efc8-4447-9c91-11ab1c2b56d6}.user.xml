@@ -38,4 +38,5 @@
     <object class="ChorusEffect" id="{a1383c8e-d590-4268-8389-bcfe42541c70}"/>
     <object class="MixerBusFader" id="{e8c54436-8626-4b3e-b5c7-aaf712956196}"/>
     <object class="SFXReverbEffect" id="{ff466a08-22f3-45a3-9f2e-53f43fb8e8b3}"/>
+    <object class="LimiterEffect" id="{8d3712e8-e035-439e-bd40-d066275412e5}"/>
 </objects>

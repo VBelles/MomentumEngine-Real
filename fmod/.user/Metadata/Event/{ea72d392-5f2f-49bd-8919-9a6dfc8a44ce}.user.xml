@@ -1,6 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <objects serializationModel="Studio.01.10.00">
     <object class="Event" id="{ea72d392-5f2f-49bd-8919-9a6dfc8a44ce}">
+        <relationship name="selectables">
+            <destination>{bd55b5ca-4a0b-418f-954b-cea4311f2a28}</destination>
+        </relationship>
         <relationship name="uiLastParameterSelection">
             <destination>{16cb4266-971d-4049-8a1e-a0054068f128}</destination>
         </relationship>
@@ -29,13 +32,10 @@
     <object class="MixerBusFader" id="{e29dc52b-3200-4c97-8d99-eb100109221b}"/>
     <object class="MixerBusEffectChain" id="{5805c686-8b3b-45fa-9122-1008cace35be}"/>
     <object class="MixerBusPanner" id="{cf41fe21-062d-422b-9fda-00e99b08d388}"/>
-    <object class="ChorusEffect" id="{718ce377-a6aa-4a46-8300-4aaed2416723}"/>
     <object class="MixerBusFader" id="{368ed3f1-f895-4b36-a985-28a5c4aff88a}"/>
-    <object class="ThreeEQEffect" id="{96ae21eb-4805-447a-af30-c0e5641f293f}"/>
-    <object class="CompressorEffect" id="{7727a30b-91dc-43a5-884d-ef619b589d0f}"/>
-    <object class="PluginEffect" id="{14c474d2-db97-47bb-ad9d-b4ef7bf3dccf}"/>
+    <object class="ChorusEffect" id="{0eb1d486-f285-4dcc-b7cc-9ea427f6623a}"/>
     <object class="MixerBusFader" id="{6d8f508d-3c81-4a2a-9ab6-98118ea1598e}"/>
-    <object class="RandomizerModulator" id="{394ecf0d-267b-4255-a5f0-c695eae8a6ae}"/>
-    <object class="FloatPluginParameter" id="{e27e8b5e-fb3b-4488-aee6-c052b6a9fa85}"/>
-    <object class="BoolPluginParameter" id="{1e8661a7-632e-4840-af73-cfa76b8d7329}"/>
+    <object class="ThreeEQEffect" id="{925bb21f-debb-491a-b597-d8c308597318}"/>
+    <object class="CompressorEffect" id="{71c63d48-4dcd-4a86-b4f4-16ccd35fc07f}"/>
+    <object class="RandomizerModulator" id="{595f9c8d-4ee6-47a7-b4bc-d40383c03c6f}"/>
 </objects>

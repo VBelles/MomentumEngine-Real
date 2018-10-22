@@ -151,6 +151,7 @@
         <relationship name="effects">
             <destination>{a9fe5ec7-2d99-4653-87c4-066798b11830}</destination>
             <destination>{350c1aa7-e824-4c92-856a-ce7a9c2b9bc4}</destination>
+            <destination>{f381465d-8307-4518-936d-3443fa4d5231}</destination>
         </relationship>
     </object>
     <object class="MixerBusPanner" id="{8f2f6779-56df-4fd2-86f6-07bf17d1f688}"/>
@@ -170,6 +171,17 @@
         </property>
         <property name="decayTime">
             <value>3700</value>
+        </property>
+    </object>
+    <object class="FlangerEffect" id="{f381465d-8307-4518-936d-3443fa4d5231}">
+        <property name="rate">
+            <value>10</value>
+        </property>
+        <property name="delay">
+            <value>0.709999979</value>
+        </property>
+        <property name="mix">
+            <value>100</value>
         </property>
     </object>
 </objects>

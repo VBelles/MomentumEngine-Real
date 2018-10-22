@@ -104,7 +104,7 @@
     </object>
     <object class="EventMixerGroup" id="{3e4f33ff-8803-49e0-8534-ec3d89e7ac10}">
         <property name="volume">
-            <value>-8.5</value>
+            <value>-11</value>
         </property>
         <property name="name">
             <value>Audio 1</value>
@@ -152,6 +152,7 @@
             <destination>{a1383c8e-d590-4268-8389-bcfe42541c70}</destination>
             <destination>{e8c54436-8626-4b3e-b5c7-aaf712956196}</destination>
             <destination>{ff466a08-22f3-45a3-9f2e-53f43fb8e8b3}</destination>
+            <destination>{8d3712e8-e035-439e-bd40-d066275412e5}</destination>
         </relationship>
     </object>
     <object class="MixerBusPanner" id="{edb00254-a1a7-4b15-8886-c2cf7b7d4964}"/>
@@ -187,6 +188,17 @@
         </property>
         <property name="wetLevel">
             <value>-14.5</value>
+        </property>
+    </object>
+    <object class="LimiterEffect" id="{8d3712e8-e035-439e-bd40-d066275412e5}">
+        <property name="boost">
+            <value>8.49999905</value>
+        </property>
+        <property name="ceiling">
+            <value>-3.49999976</value>
+        </property>
+        <property name="release">
+            <value>1.60000002</value>
         </property>
     </object>
 </objects>

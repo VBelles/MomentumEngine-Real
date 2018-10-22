@@ -34,4 +34,5 @@
     <object class="MixerBusPanner" id="{b0a833ae-e15f-4f44-9d84-90761f6f3c8d}"/>
     <object class="MixerBusFader" id="{7756742d-d41d-4449-987b-f2959708b4b4}"/>
     <object class="MixerBusFader" id="{7540800b-d89c-4132-ae55-b937adac2472}"/>
+    <object class="SFXReverbEffect" id="{58f8bee7-0511-4a4d-8fc5-2992bbe73bb6}"/>
 </objects>

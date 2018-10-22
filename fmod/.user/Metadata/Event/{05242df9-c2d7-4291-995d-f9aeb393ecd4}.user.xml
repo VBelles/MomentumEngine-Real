@@ -40,4 +40,5 @@
     <object class="ThreeEQEffect" id="{3ce16cd7-1bd0-443f-9682-8254d38a619a}"/>
     <object class="MixerBusFader" id="{a9fe5ec7-2d99-4653-87c4-066798b11830}"/>
     <object class="SFXReverbEffect" id="{350c1aa7-e824-4c92-856a-ce7a9c2b9bc4}"/>
+    <object class="FlangerEffect" id="{f381465d-8307-4518-936d-3443fa4d5231}"/>
 </objects>

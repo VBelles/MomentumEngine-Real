@@ -106,9 +106,6 @@
         </relationship>
     </object>
     <object class="EventMixerGroup" id="{d07cd30e-520e-4bc8-9c52-ebb9357de40a}">
-        <property name="volume">
-            <value>10</value>
-        </property>
         <property name="name">
             <value>Audio 1</value>
         </property>
@@ -139,7 +136,7 @@
     <object class="MixerBusEffectChain" id="{f041acca-a1e1-4edb-8d86-9084b5cdb157}">
         <relationship name="effects">
             <destination>{507c1393-491e-47fc-a563-b6cc843a24e7}</destination>
-            <destination>{9adee4c2-e0d8-4eec-b6ee-a3ee8e8163fc}</destination>
+            <destination>{69f48be7-280f-4511-8c99-5a120ab9482b}</destination>
         </relationship>
     </object>
     <object class="MixerBusPanner" id="{1288b4a6-9bea-451d-b233-d66b4daa2dee}"/>
@@ -147,33 +144,30 @@
     <object class="MixerBusEffectChain" id="{9a66b1c7-70bb-49a3-bb04-365c7de6bbd0}">
         <relationship name="effects">
             <destination>{40324f18-85f4-42fe-9393-5136bd8338f7}</destination>
-            <destination>{84ca8d9e-b262-45c9-80d5-33409d5ffcba}</destination>
             <destination>{5909fb4b-7cee-44f3-8db6-cff6430b2371}</destination>
             <destination>{f4a9a5f7-e8fe-423f-9ab7-899da230818f}</destination>
+            <destination>{84ca8d9e-b262-45c9-80d5-33409d5ffcba}</destination>
+            <destination>{6d3dcfb3-60c9-45b0-b3d1-84b2b5a897a5}</destination>
+            <destination>{177c8fb1-3ad4-4f4a-a2a3-4b38a4d55e3e}</destination>
         </relationship>
     </object>
     <object class="MixerBusPanner" id="{ffd8e066-34e7-44a3-9d1a-263f90b8eea1}"/>
     <object class="MixerBusFader" id="{507c1393-491e-47fc-a563-b6cc843a24e7}"/>
-    <object class="SpatialiserEffect" id="{9adee4c2-e0d8-4eec-b6ee-a3ee8e8163fc}">
+    <object class="SpatialiserEffect" id="{69f48be7-280f-4511-8c99-5a120ab9482b}">
+        <property name="minimumDistance">
+            <value>0</value>
+        </property>
         <property name="maximumDistance">
-            <value>250</value>
+            <value>25</value>
         </property>
         <property name="extentMode">
             <value>1</value>
         </property>
-        <property name="soundSize">
-            <value>10000</value>
+        <property name="minimumExtent">
+            <value>360</value>
         </property>
     </object>
     <object class="MixerBusFader" id="{40324f18-85f4-42fe-9393-5136bd8338f7}"/>
-    <object class="ChorusEffect" id="{84ca8d9e-b262-45c9-80d5-33409d5ffcba}">
-        <property name="rate">
-            <value>0.064000003</value>
-        </property>
-        <property name="depth">
-            <value>0</value>
-        </property>
-    </object>
     <object class="DistortionEffect" id="{5909fb4b-7cee-44f3-8db6-cff6430b2371}">
         <property name="level">
             <value>0.840000033</value>
@@ -184,16 +178,58 @@
             <value>-80</value>
         </property>
         <property name="midGain">
-            <value>-13</value>
+            <value>-15.5</value>
         </property>
         <property name="highGain">
-            <value>9.5</value>
+            <value>-17.5</value>
         </property>
         <property name="lowCrossover">
             <value>600</value>
         </property>
         <property name="highCrossover">
             <value>1650</value>
+        </property>
+    </object>
+    <object class="ChorusEffect" id="{84ca8d9e-b262-45c9-80d5-33409d5ffcba}">
+        <property name="rate">
+            <value>0.119999997</value>
+        </property>
+        <property name="depth">
+            <value>64.5</value>
+        </property>
+    </object>
+    <object class="FlangerEffect" id="{6d3dcfb3-60c9-45b0-b3d1-84b2b5a897a5}">
+        <property name="rate">
+            <value>20</value>
+        </property>
+        <property name="delay">
+            <value>0.0560000017</value>
+        </property>
+        <property name="mix">
+            <value>100</value>
+        </property>
+    </object>
+    <object class="SFXReverbEffect" id="{177c8fb1-3ad4-4f4a-a2a3-4b38a4d55e3e}">
+        <property name="earlyDelay">
+            <value>162</value>
+        </property>
+        <property name="lateDelay">
+            <value>88</value>
+        </property>
+        <property name="HFDecayRatio">
+            <value>54</value>
+        </property>
+        <property name="diffusion">
+            <value>79</value>
+        </property>
+        <property name="highCut">
+            <value>760</value>
+        </property>
+        <property name="earlyLateMix">
+            <value>94</value>
+        </property>
+        <property name="wetLevel">
+            <value>-12.3000002</value>
         </property>
     </object>
 </objects>

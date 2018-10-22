@@ -87,6 +87,9 @@
         </relationship>
     </object>
     <object class="EventMixerMaster" id="{accf72a4-9c97-464f-8c41-81d30149e4db}">
+        <property name="volume">
+            <value>-6</value>
+        </property>
         <relationship name="effectChain">
             <destination>{34499856-37da-4884-80d5-b884253695c2}</destination>
         </relationship>
@@ -175,6 +178,7 @@
     </object>
     <object class="MixerBusEffectChain" id="{34499856-37da-4884-80d5-b884253695c2}">
         <relationship name="effects">
+            <destination>{d803395e-e385-4b66-9fad-006726e9dbc7}</destination>
             <destination>{9f736069-ab93-4483-a02d-c206212ec953}</destination>
             <destination>{fd8c4567-8296-43ce-b946-206dac3f562f}</destination>
         </relationship>
@@ -199,6 +203,11 @@
         </relationship>
     </object>
     <object class="MixerBusPanner" id="{7fa3fee0-b7fa-460e-86b2-bf3fa4cf8a93}"/>
+    <object class="PitchShifterEffect" id="{d803395e-e385-4b66-9fad-006726e9dbc7}">
+        <property name="pitch">
+            <value>1.53000009</value>
+        </property>
+    </object>
     <object class="MixerBusFader" id="{9f736069-ab93-4483-a02d-c206212ec953}"/>
     <object class="SpatialiserEffect" id="{fd8c4567-8296-43ce-b946-206dac3f562f}"/>
     <object class="ChorusEffect" id="{c38fffcc-00ec-4b25-9bda-63252092b5ac}">

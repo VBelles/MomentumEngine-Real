@@ -4,8 +4,11 @@
         <property name="uiMaxMarkerTracksVisible">
             <value>9</value>
         </property>
+        <relationship name="selectables">
+            <destination>{ab59ce06-bf55-4ced-a0d9-a6523a4ca4df}</destination>
+        </relationship>
         <relationship name="uiLastParameterSelection">
-            <destination>{1874e82f-be37-4054-bc67-3abbe616da0d}</destination>
+            <destination>{ac981ee0-9430-4414-9b28-33106dd1e089}</destination>
         </relationship>
     </object>
     <object class="MasterTrack" id="{ab59ce06-bf55-4ced-a0d9-a6523a4ca4df}">
@@ -180,12 +183,12 @@
             <value>0.000942507068803016</value>
         </property>
         <property name="uiLastHorizontalScrollBarValue">
-            <value>421</value>
+            <value>432</value>
         </property>
     </object>
     <object class="ParameterProxy" id="{ac981ee0-9430-4414-9b28-33106dd1e089}">
         <property name="uiLastRulerScaleRatio">
-            <value>0.000942507068803016</value>
+            <value>0.00082781456953642384</value>
         </property>
     </object>
     <object class="ParameterProxy" id="{2134ceaa-fddb-4d64-b58c-f19b1723dbdd}">
