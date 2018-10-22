@@ -17,7 +17,9 @@
     "sound",
     "pause",
     "options_menu",
+    "options_ingame",
     "map_menu",
+    "controls_help",
     "instancing"
   ],
   "render": [

@@ -1,0 +1,21 @@
+[
+	{
+		"name": "controls",
+		"type": "widget",
+		"size": "1920 1080",
+		"children": [
+			{
+				"name": "keyboard",
+				"type": "image",
+				"size": "1920 1080",
+				"texture": "data/textures/gui/loading/teclado.dds"
+			},
+			{
+				"name": "controller",
+				"type": "image",
+				"size": "1920 1080",
+				"texture": "data/textures/gui/loading/mando_xbox.dds"
+			}
+		]
+	}
+]

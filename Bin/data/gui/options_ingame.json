@@ -1,6 +1,6 @@
 [
 	{
-		"name": "options_menu",
+		"name": "options_ingame",
 		"type": "widget",
 		"size": "1920 1080",
 		"children": [
@@ -749,143 +749,9 @@
 						]
 					},
 					{
-						"name": "fullscreen",
-						"type": "option",
-						"position": "0 462",
-						"size": "1900 64",
-						"idle": {
-							"size": "336 104",
-							"texture": "data/textures/gui/bt_full_screen.dds"
-						},
-						"selected": {
-							"size": "336 104",
-							"texture": "data/textures/gui/bt_full_screen_selected.dds"
-						},
-						"previous_button": {
-							"name": "previous",
-							"type": "button",
-							"size": "64 64",
-							"texture": "data/textures/gui/flecha_izq_selected.dds",
-							"selected": {
-								"font_size": 64.0,
-								"color": "0.2 0.2 0.2 1"
-							},
-							"pressed": {
-								"font_size": 64.0,
-								"font_color": "0.5 0.5 0.5 1"
-							}
-						},
-						"next_button": {
-							"name": "next",
-							"type": "button",
-							"size": "64 64",
-							"texture": "data/textures/gui/flecha_der_selected.dds",
-							"selected": {
-								"font_size": 64.0,
-								"color": "0.2 0.2 0.2 1"
-							},
-							"pressed": {
-								"font_size": 64.0,
-								"font_color": "0.5 0.5 0.5 1"
-							}
-						},
-						"option_text": {
-							"size": "400 64",
-							"font_size": 64.0,
-							"text": "OP"
-						},
-						"options": [
-							[
-								"NO",
-								false
-							],
-							[
-								"YES",
-								true
-							]
-						]
-					},
-					{
-						"name": "resolution",
-						"type": "option",
-						"position": "0 528",
-						"size": "1900 64",
-						"idle": {
-							"size": "336 104",
-							"texture": "data/textures/gui/bt_resolution.dds"
-						},
-						"selected": {
-							"size": "336 104",
-							"texture": "data/textures/gui/bt_resolution_selected.dds"
-						},
-						"previous_button": {
-							"name": "previous",
-							"type": "button",
-							"size": "64 64",
-							"texture": "data/textures/gui/flecha_izq_selected.dds",
-							"selected": {
-								"font_size": 64.0,
-								"color": "0.2 0.2 0.2 1"
-							},
-							"pressed": {
-								"font_size": 64.0,
-								"font_color": "0.5 0.5 0.5 1"
-							}
-						},
-						"next_button": {
-							"name": "next",
-							"type": "button",
-							"size": "64 64",
-							"texture": "data/textures/gui/flecha_der_selected.dds",
-							"selected": {
-								"font_size": 64.0,
-								"color": "0.2 0.2 0.2 1"
-							},
-							"pressed": {
-								"font_size": 64.0,
-								"font_color": "0.5 0.5 0.5 1"
-							}
-						},
-						"option_text": {
-							"size": "400 64",
-							"font_size": 64.0,
-							"text": "OP"
-						},
-						"options": [
-							[
-								"Auto",
-								"auto"
-							],
-							[
-								"1280X720",
-								"1280 720"
-							],
-							[
-								"1920X1080",
-								"1920 1080"
-							],
-							[
-								"2560X1440",
-								"2560 1440"
-							],
-							[
-								"3840X2160",
-								"3840 2160"
-							],
-							[
-								"5120X2880",
-								"5120 2880"
-							],
-							[
-								"7680X4320",
-								"7680 4320"
-							]
-						]
-					},
-					{
 						"name": "vsync",
 						"type": "option",
-						"position": "0 594",
+						"position": "0 462",
 						"size": "1900 64",
 						"idle": {
 							"size": "336 104",
