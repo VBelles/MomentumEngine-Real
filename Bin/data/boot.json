@@ -57,6 +57,8 @@
     "data/scenes/tutorial_triggers_definitivos.scene",
     "data/scenes/tutorial_enemies.scene",
     "data/scenes/cinematica-cameras.scene",
+    
+    "data/scenes/golems.scene",
 
     "data/scenes/power_ups.scene",
     "data/scenes/setichuelas_lod.scene",
