@@ -184,7 +184,8 @@
 					"final_door_chrysalis_10",
 					"final_door_chrysalis_11",
 					"final_door_chrysalis_12"
-				]
+				],
+				"final_door_controller" : "final_door_controller_trigger"
 			},
 			"dummy_collectable": {
 				"chrysalis" : "dummy_chrysalis",

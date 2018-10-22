@@ -1,4 +1,34 @@
 [
+	{
+    "entity":
+    {
+      "name": "final_door_controller_trigger",
+      "transform":
+      {
+        "pos": "-143.495 -6.37629 -177.713",
+        "rotation": "0.0 -0.382683 0.0 -0.92388"
+      },
+      "collider":
+      {
+        "mesh_src": "data/meshes/final_door_controller_trigger.col_mesh",
+        "shape": "convex_mesh",
+				"type": "static",
+				"is_trigger": true,
+        "group":
+        [
+          "trigger"
+        ],
+        "mask":
+        [
+          "player"
+				],
+				"enabled": false
+			},
+			"final_door_controller":{
+				"final_door_name": "puerta_cuerpo"
+			}
+    }
+  },
   {
 		"entity":{
 			"name": "final_door_chrysalis_1",

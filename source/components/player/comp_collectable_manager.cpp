@@ -26,6 +26,7 @@ void TCompCollectableManager::load(const json & j, TEntityParseContext & ctx) {
 			finalDoorChrysalidesNames.push_back(chrysalis);
 		}
 	}
+	finalDoorControllerName = j.value("final_door_controller", "");
 }
 
 void TCompCollectableManager::onAllScenesCreated(const TMsgAllScenesCreated & msg) {
@@ -34,6 +35,7 @@ void TCompCollectableManager::onAllScenesCreated(const TMsgAllScenesCreated & ms
 		CHandle handle = entity->get<TCompRender>();
 		finalDoorChrysalides.push_back(handle);
 	}
+	finalDoorControllerEntity = getEntityByName(finalDoorControllerName);
 }
 
 void TCompCollectableManager::update(float delta) {
@@ -187,6 +189,9 @@ void TCompCollectableManager::onCollect(const TMsgCollect& msg) {
 		else if(numberOfChrysalisTaken == CHRYSALIS_TARGET_NUMBER){
 			EngineScripting.throwEvent(lastChrysalisTaken, "");
 			//activar final door trigger
+			TMsgChrysalisCollected msgChrysalisCollected = { numberOfChrysalisTaken };
+			CEntity* entity = finalDoorControllerEntity;
+			entity->sendMsg(msgChrysalisCollected);
 		}
 		if (numberOfChrysalisTaken <= CHRYSALIS_TARGET_NUMBER) {
 			//esperar 4 segundos y hacer aparecer chrysalis (final_door_chrysalis_X)

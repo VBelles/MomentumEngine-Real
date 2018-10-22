@@ -28,6 +28,8 @@ private:
 	CTimer2 doorChrysalidesTimer;
 	float doorChrysalidesTime = 4.3f;
 	bool spawnDoorChrysalis = false;
+	std::string finalDoorControllerName;
+	CHandle finalDoorControllerEntity;
 
 	float showChrysalisTime = 5.f;
 

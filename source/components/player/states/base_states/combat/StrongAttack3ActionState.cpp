@@ -152,5 +152,4 @@ void StrongAttack3ActionState::onHitboxEnter(std::string hitbox, CHandle entity)
 	msgAttackHit.info.givesPower = true;
 	msgAttackHit.info.damage = damage;
 	otherEntity->sendMsg(msgAttackHit);
-
 }
