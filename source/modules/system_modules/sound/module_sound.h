@@ -20,10 +20,14 @@ private:
 
 	std::vector<FollowingEvent> followingEvents;
 
+	std::set<std::string> unpausableEvents;
+
 
 	float masterVolume = 1.f;
 	float soundVolume = 1.f;
 	float musicVolume = 1.f;
+
+	bool paused = false;
 
 	void updateListenerAttributes();
 	void updateFollowingEvents();
@@ -51,6 +55,10 @@ public:
 	std::vector<FMOD::Studio::Bank*> getBanks();
 	std::vector<FMOD::Studio::EventDescription*> getEventDescriptions(FMOD::Studio::Bank* bank);
 	std::vector<FMOD::Studio::EventInstance*> getEventInstances(FMOD::Studio::EventDescription* eventDescription);
+
+	void setPaused(bool paused);
+
+	void forEachEventInstance(std::function<void(FMOD::Studio::Bank*, FMOD::Studio::EventDescription*, FMOD::Studio::EventInstance*)> callback);
 
 
 

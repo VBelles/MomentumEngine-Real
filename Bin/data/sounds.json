@@ -1,7 +1,14 @@
 {
-    "banks":[
+    "banks": [
         "data/sound/Master Bank.bank",
         "data/sound/Music Bank.bank",
         "data/sound/Master Bank.strings.bank"
+    ],
+    "unpausable_events": [
+        "event:/momentum_theme",
+        "event:/momentum_theme_placeholder",
+        "event:/MENU-PAUSA/menu_accept",
+        "event:/MENU-PAUSA/menu_back",
+        "event:/MENU-PAUSA/menu_roll"
     ]
 }

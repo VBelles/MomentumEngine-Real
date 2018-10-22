@@ -79,6 +79,7 @@ void CModulePause::onPausePressed() {
 	EngineScripting.setActive(!pause);
 	Engine.getEntities().setActive(!pause);
 	EngineParticles.setPaused(pause);
+	EngineSound.setPaused(pause);
 	CTimerFrames::get().setPaused(pause);
 	CGameState* currentGamestate = EngineModules.getCurrentGameState();
 	for (auto& module : *currentGamestate) {

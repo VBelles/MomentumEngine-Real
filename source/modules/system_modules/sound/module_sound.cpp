@@ -26,7 +26,12 @@ bool CModuleSound::start() {
 		assert(res == FMOD_OK);
 		banks[bankFile] = bank;
 	}
-	
+
+	for (std::string event : j["unpausable_events"]) {
+		std::transform(event.begin(), event.end(), event.begin(), ::tolower);
+		unpausableEvents.insert(event);
+	}
+
 	return true;
 }
 
@@ -168,7 +173,7 @@ void CModuleSound::setVolume(float volume) {
 			}
 		}
 	}*/
-	
+
 }
 
 std::vector<Studio::Bank*> CModuleSound::getBanks() {
@@ -197,6 +202,34 @@ std::vector<FMOD::Studio::EventInstance*> CModuleSound::getEventInstances(Studio
 	events.resize(eventsCount);
 	eventDescription->getInstanceList(&events[0], eventsCount, &eventsCount);
 	return events;
+}
+
+void CModuleSound::setPaused(bool paused) {
+	this->paused = paused;
+	forEachEventInstance([this](FMOD::Studio::Bank* bank, FMOD::Studio::EventDescription* description, FMOD::Studio::EventInstance* event) {
+		char buffer[256];
+		description->getPath(buffer, 256, nullptr);
+		std::string path = buffer;
+		std::transform(path.begin(), path.end(), path.begin(), ::tolower);
+		if (unpausableEvents.find(path) == unpausableEvents.end()) {
+			event->setPaused(this->paused);
+		}
+		dbg("path: %s\n", path.c_str());
+
+	});
+	for (auto& e : unpausableEvents) {
+		dbg("%s\n", e.c_str());
+	}
+}
+
+void CModuleSound::forEachEventInstance(std::function<void(FMOD::Studio::Bank*, FMOD::Studio::EventDescription*, FMOD::Studio::EventInstance*)> callback) {
+	for (auto bank : getBanks()) {
+		for (auto description : getEventDescriptions(bank)) {
+			for (auto event : getEventInstances(description)) {
+				callback(bank, description, event);
+			}
+		}
+	}
 }
 
 void CModuleSound::render() {
