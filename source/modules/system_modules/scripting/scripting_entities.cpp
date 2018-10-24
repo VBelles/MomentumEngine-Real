@@ -8,6 +8,7 @@
 #include "components/platforms/comp_platform_simple.h"
 #include "components/comp_final_door_controller.h"
 #include "modules/game_modules/module_pause.h"
+#include "modules/game_modules/module_map_menu.h"
 
 ScriptingEntities* ScriptingEntities::instance = nullptr;
 
@@ -234,6 +235,8 @@ void ScriptingEntities::destroyCollider(std::string entityName) {
 
 void ScriptingEntities::blockMenu(bool blocked) {
 	auto modulePause = (CModulePause*)EngineModules.getModule("pause");
+	auto moduleMAp = (CModuleMapMenu*)EngineModules.getModule("map_menu");
 	modulePause->setBlocked(blocked);
+	moduleMAp->setBlocked(blocked);
 }
 

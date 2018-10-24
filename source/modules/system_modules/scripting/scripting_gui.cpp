@@ -51,6 +51,7 @@ bool ScriptingGUI::skipCinematics() {
 
 void ScriptingGUI::goToMainMenu() {
 	EngineGUI.hideDialog();
-	EngineModules.changeGameState("main_menu", true);
 	EngineSound.getMusicPlayer()->setCurrentSong(CMusicPlayer::Song::MENU);
+	EngineModules.changeGameState("main_menu", true);
+	CApp::get().setResetMouse(false);
 }
