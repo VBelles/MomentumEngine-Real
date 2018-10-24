@@ -107,6 +107,9 @@ void CModuleUniques::parseChunk(const json & j, ElementType type) {
 		case ElementType::EVENT:
 			events.emplace(id, element);
 			break;
+		case ElementType::LIFEPIECE:
+			lifePieces.emplace(id, element);
+			break;
 		}
 	}
 }
@@ -154,17 +157,50 @@ void CModuleUniques::parsePowerUp(const json & j, std::string id) {
 bool CModuleUniques::stop() {
 	//clear maps
 	coins.clear();
+	lifePieces.clear();
 	chrysalides.clear();
 	altars.clear();
 	events.clear();
-	lifePieces.clear();
 	enemies.clear();
 	powerUps.clear();
 	return true;
 }
 
+void CModuleUniques::reset() {
+	stop();
+	start();
+}
+
 void CModuleUniques::update(float delta) {
 
+}
+
+UniqueElement* CModuleUniques::getUniqueElement(ElementType type, std::string id) {
+	UniqueElement* elem = nullptr;
+	switch (type) {
+	case ElementType::COIN:
+		elem = getUniqueCoin(id);
+		break;
+	case ElementType::CHRYSALIS:
+		elem = getUniqueChrysalis(id);
+		break;
+	case ElementType::ALTAR:
+		elem = getUniqueAltar(id);
+		break;
+	case ElementType::EVENT:
+		elem = getUniqueCoin(id);
+		break;
+	case ElementType::ENEMY:
+		elem = getUniqueEnemy(id);
+		break;
+	case ElementType::LIFEPIECE:
+		elem = getUniqueLifePiece(id);
+		break;
+	case ElementType::POWERUP:
+		elem = getUniquePowerUp(id);
+		break;
+	}
+	return elem;
 }
 
 UniqueElement* CModuleUniques::getUniqueCoin(std::string id) {

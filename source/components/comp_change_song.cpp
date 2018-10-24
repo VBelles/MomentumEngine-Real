@@ -35,12 +35,12 @@ void TCompChangeSong::onTriggerEnter(const TMsgTriggerEnter & msg) {
 		else {
 			getMusicPlayer()->setCurrentSong(song);
 		}
-		std::string name = ((CEntity*)CHandle(this).getOwner())->getName();
-		UniqueElement* uniqueEvent = EngineUniques.getUniqueEvent(name);
-		if (uniqueEvent && !uniqueEvent->done) {
-			uniqueEvent->done = true;
-			((TCompCollider*)get<TCompCollider>())->destroy();
-		}
+		//std::string name = ((CEntity*)CHandle(this).getOwner())->getName();
+		//UniqueElement* uniqueEvent = EngineUniques.getUniqueEvent(name);
+		//if (uniqueEvent && !uniqueEvent->done) {
+		//	uniqueEvent->done = true;
+		//	((TCompCollider*)get<TCompCollider>())->destroy();
+		//}
 	}
 }
 

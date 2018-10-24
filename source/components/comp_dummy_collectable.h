@@ -3,7 +3,7 @@
 struct TMsgEntitiesGroupCreated;
 
 enum DummyCollectableType {
-	CHRYSALIS, POWERUP, LIFEPIECE
+	DUMMY_CHRYSALIS, DUMMY_POWERUP, DUMMY_LIFEPIECE
 };
 
 class TCompDummyCollectable : public TCompBase {

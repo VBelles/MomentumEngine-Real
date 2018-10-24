@@ -1,6 +1,7 @@
 #pragma once
 
 #include "entity/msgs.h"
+#include "modules/system_modules/module_uniques.h"
 
 struct TMsgEntitiesGroupCreated;
 struct TMsgTriggerEnter;
@@ -10,11 +11,7 @@ struct TMsgColliderDestroyed;
 class TCompCollectable : public TCompBase {
 
 public:
-	enum Type {
-		UNDEFINED, CHRYSALIS, COIN, LIFEPIECE
-	};
-
-	std::map<std::string, Type> typeByName = {
+	std::map<std::string, ElementType> typeByName = {
 		{ "undefined", UNDEFINED },
 		{ "chrysalis", CHRYSALIS },
 		{ "coin", COIN },
@@ -23,7 +20,7 @@ public:
 
 private:
 	bool collected = false;
-	Type type;
+	ElementType type;
 
 	float rotationSpeed;
 	VEC3 rotationAxis;
@@ -45,13 +42,13 @@ public:
 	void onColliderDestroyed(const TMsgColliderDestroyed& msg);
 
 	void collect();
-	Type getTypeByName(std::string name);
+	ElementType getTypeByName(std::string name);
 	void setActive(bool active);
 	bool isActive();
 };
 
 struct TMsgCollect {
 	CHandle collectableHandle;
-	TCompCollectable::Type type;
+	ElementType type;
 	DECL_MSG_ID();
 };

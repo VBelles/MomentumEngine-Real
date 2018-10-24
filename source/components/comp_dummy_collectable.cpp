@@ -91,16 +91,16 @@ void TCompDummyCollectable::activateSequence(DummyCollectableType type) {
 	positionOffset = chrysalisPositionOffset;
 	float yawOffset = chrysalisYawOffset;
 	switch (type) {
-	case CHRYSALIS:
+	case DUMMY_CHRYSALIS:
 		currentCollectableHandle = chrysalisHandle;
 		break;
-	case POWERUP:
+	case DUMMY_POWERUP:
 		currentCollectableHandle = powerupHandle;
 		startingScale = powerupStartingScale;
 		positionOffset = powerupPositionOffset;
 		yawOffset = powerupYawOffset;
 		break;
-	case LIFEPIECE:
+	case DUMMY_LIFEPIECE:
 		currentCollectableHandle = lifePieceHandle;
 		startingScale = lifePieceStartingScale;
 		positionOffset = lifePiecePositionOffset;

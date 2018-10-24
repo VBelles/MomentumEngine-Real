@@ -116,6 +116,7 @@ bool CModuleGame::stop() {
 	EngineScripting.reset();
 	Engine.getEntities().reset();
 	EngineParticles.reset();
+	EngineUniques.reset();
 	safeDelete(respawner);
 	safeDelete(enemyManager);
 	

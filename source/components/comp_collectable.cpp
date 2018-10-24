@@ -27,6 +27,12 @@ void TCompCollectable::load(const json& j, TEntityParseContext& ctx) {
 void TCompCollectable::onGroupCreated(const TMsgEntitiesGroupCreated & msg) {
 	transformHandle = get<TCompTransform>();
 	assert(transformHandle.isValid());
+
+	std::string name = ((CEntity*)CHandle(this).getOwner())->getName();
+	UniqueElement* uniqueElement = EngineUniques.getUniqueElement(type, name);
+	if (uniqueElement && uniqueElement->done) {
+		((TCompCollider*)get<TCompCollider>())->destroy();
+	}
 }
 
 void TCompCollectable::update(float delta) {
@@ -56,12 +62,12 @@ void TCompCollectable::onColliderDestroyed(const TMsgColliderDestroyed& msg) {
 	CHandle(this).getOwner().destroy();
 }
 
-TCompCollectable::Type TCompCollectable::getTypeByName(std::string name) {
+ElementType TCompCollectable::getTypeByName(std::string name) {
 	auto it = typeByName.find(name);
 	if (it != typeByName.end()) {
 		return typeByName[name];
 	}
-	return Type::UNDEFINED;
+	return UNDEFINED;
 }
 
 void TCompCollectable::setActive(bool active) {
