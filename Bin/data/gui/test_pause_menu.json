@@ -7,7 +7,7 @@
 			{
 				"name" : "test_buttons",
 				"type" : "widget",
-				"position" : "810 650",
+				"position" : "810 550",
 				"children" : [
 					{
 						"name" : "resume_game",
