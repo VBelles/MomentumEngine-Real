@@ -1,5 +1,5 @@
 function onLevelStart_game_state()
-	blockMenu(true)
+--[[	blockMenu(true)
 	takePlayerControl()
     startSong("intro")
     
@@ -158,5 +158,5 @@ function onLevelStart_game_state()
 
     stopMusic(6)
 	givePlayerControl()
-	blockMenu(false)
+	blockMenu(false)]]
 end

@@ -18,7 +18,7 @@ void TCompPowerUp::registerMsgs() {
 }
 
 void TCompPowerUp::load(const json& j, TEntityParseContext& ctx) {
-	stateToUnlock = j.value("state_to_unlock","");
+	stateToUnlock = j.value("state_to_unlock", "");
 	message = j.value("message", "You unlocked a new ability!");
 	rotationSpeed = j.value("rotation_speed", rotationSpeed);
 	fontSize = j.value("font_size", fontSize);
@@ -35,6 +35,12 @@ void TCompPowerUp::onAllScenesCreated(const TMsgAllScenesCreated & msg) {
 	assert(playerModelHandle.isValid());
 	playerTransformHandle = player->get<TCompTransform>();
 	assert(playerTransformHandle.isValid());
+
+	std::string name = ((CEntity*)CHandle(this).getOwner())->getName();
+	UniquePowerUp* uniquePowerUp = EngineUniques.getUniquePowerUp(name);
+	if (uniquePowerUp && uniquePowerUp->done) {
+		((TCompCollider*)get<TCompCollider>())->destroy();
+	}
 }
 
 void TCompPowerUp::update(float delta) {
@@ -84,14 +90,13 @@ void TCompPowerUp::onTriggerEnter(const TMsgTriggerEnter & msg) {
 		//if camera is already suggested, remember parameters
 		cameraPlayer->suggestYawPitchDistance(yaw, collectPitch, collectDistance, true, false, true, true, false);
 		cameraPlayer->placeCameraOnSuggestedPosition(cameraSpeed);
-		(static_cast<TCompDummyCollectable*>(entity->get<TCompDummyCollectable>()))->activateSequence(DummyCollectableType::POWERUP);
+		(static_cast<TCompDummyCollectable*>(entity->get<TCompDummyCollectable>()))->activateSequence(DummyCollectableType::DUMMY_POWERUP);
 
 		isCollecting = true;
 		collectTimer.reset();
 
 		EngineGUI.showDialog(message, fontSize);
 		EngineSound.emitEvent(SOUND_POWER_UP);
-
 	}
 }
 

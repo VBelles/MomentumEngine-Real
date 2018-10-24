@@ -10,7 +10,7 @@
 
 DECL_OBJ_MANAGER("collectable_manager", TCompCollectableManager);
 
-using Type = TCompCollectable::Type;
+using Type = ElementType;
 
 void TCompCollectableManager::registerMsgs() {
 	DECL_MSG(TCompCollectableManager, TMsgCollect, onCollect);
@@ -203,7 +203,7 @@ void TCompCollectableManager::onCollect(const TMsgCollect& msg) {
 		addUniqueCollectable(Type::CHRYSALIS, entity->getName());
 		EngineSound.emitEvent(SOUND_COLLECT_CHRYSALIS, transform);
 		EngineSound.emitEvent(SOUND_HEAL);
-		(static_cast<TCompDummyCollectable*>(get<TCompDummyCollectable>()))->activateSequence(DummyCollectableType::CHRYSALIS);
+		(static_cast<TCompDummyCollectable*>(get<TCompDummyCollectable>()))->activateSequence(DummyCollectableType::DUMMY_CHRYSALIS);
 		//Esto de aqu� molar�a no hacerlo el mismo frame en que recoges el objeto 
 		//playerModel->setHp(playerModel->getMaxHp());
 		EngineGame->showChrysalis(showChrysalisTime);
@@ -220,7 +220,7 @@ void TCompCollectableManager::onCollect(const TMsgCollect& msg) {
 	case Type::LIFEPIECE:
 		collectable->collect();
 		addUniqueCollectable(Type::LIFEPIECE, entity->getName());
-		(static_cast<TCompDummyCollectable*>(get<TCompDummyCollectable>()))->activateSequence(DummyCollectableType::LIFEPIECE);
+		(static_cast<TCompDummyCollectable*>(get<TCompDummyCollectable>()))->activateSequence(DummyCollectableType::DUMMY_LIFEPIECE);
 		if (getNumberOfLifePieces() % lifePiecesPerHeart == 0) {
 			playerModel->setMaxHp(playerModel->getMaxHp() + 1);
 			//playerModel->setHp(playerModel->getMaxHp());

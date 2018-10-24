@@ -4,37 +4,33 @@ enum EnemyType {
 	DREIDEL, KIPPAH, GOLEM, DREIDEL_DUMMY, KIPPAH_DUMMY, GOLEM_DUMMY
 };
 
+enum ElementType {
+	UNDEFINED,
+	COIN,
+	CHRYSALIS,
+	ALTAR,
+	EVENT,
+	ENEMY,
+	LIFEPIECE,
+	POWERUP
+};
+
 struct UniqueElement {
 	bool done;
 	VEC3 position;
 	std::string level;
 };
 
-struct UniqueEnemy {
-	bool done;
-	VEC3 position;
-	std::string level;
+struct UniqueEnemy : public UniqueElement {
 	EnemyType type;
 };
 
-struct UniquePowerUp {
-	bool done;
-	VEC3 position;
-	std::string level;
+struct UniquePowerUp : public UniqueElement {
 	std::string stateToUnlock;
 };
 
 class CModuleUniques : public IModule {
 private:
-	enum ElementType {
-		COIN,
-		CHRYSALIS,
-		ALTAR,
-		EVENT,
-		ENEMY,
-		LIFEPIECE,
-		POWERUP
-	};
 
 	//maps
 	std::map<std::string, UniqueElement> coins;
@@ -54,8 +50,10 @@ public:
 	CModuleUniques(const std::string& aname) : IModule(aname) {}
 	bool start() override;
 	bool stop() override;
+	void reset();
 	void update(float delta) override;
 
+	UniqueElement* getUniqueElement(ElementType type, std::string id);
 	UniqueElement* getUniqueCoin(std::string id);
 	UniqueElement* getUniqueLifePiece(std::string id);
 	UniqueElement* getUniqueChrysalis(std::string id);

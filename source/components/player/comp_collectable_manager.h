@@ -1,5 +1,5 @@
 #pragma once
-#include "components/comp_collectable.h"
+#include "modules/system_modules/module_uniques.h"
 
 struct TMsgCollect;
 struct TMsgEntityCreated;
@@ -11,8 +11,8 @@ struct TMsgAllScenesCreated;
 class TCompCollectableManager : public TCompBase {
 private:
 	//maps
-	std::map<TCompCollectable::Type, int> objectsCollected;
-	std::map<TCompCollectable::Type, std::vector<std::string>> uniqueObjectsCollected;
+	std::map<ElementType, int> objectsCollected;
+	std::map<ElementType, std::vector<std::string>> uniqueObjectsCollected;
 
 	void onEntityCreated(const TMsgEntityCreated& msg);
 	void onCollect(const TMsgCollect& msg);
@@ -50,8 +50,8 @@ public:
 	void update(float delta);
 	void debugInMenu();
 
-	void addUniqueCollectable(TCompCollectable::Type type, std::string id);
-	void addCollectable(TCompCollectable::Type type, int amount);
+	void addUniqueCollectable(ElementType type, std::string id);
+	void addCollectable(ElementType type, int amount);
 	int getNumberOfChrysalis();
 	int getNumberOfCoins();
 	int getMaxCoins();
