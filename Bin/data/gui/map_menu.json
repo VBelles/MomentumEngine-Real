@@ -48,16 +48,16 @@
 							"type" : "button",
 							"position" : "90 200",
 							"size" : "50 50",
-							"texture" : "data/textures/gui/map/Teleport_brillante.dds",
+							"texture" : "data/textures/gui/map/Teleport_sinbrillo.dds",
 							"font_size" : 64,
 							"halign" : "center",
 							"valign" : "center",
 							"color" : "1 1 1 1",
 							"selected" : {
-								"color" : "0.5 0.5 0.5 1"
+								"texture" : "data/textures/gui/map/Teleport_brillante.dds"
 							},
 							"pressed" : {
-								"color" : "0.5 0.5 0.5 1"
+								"texture" : "data/textures/gui/map/Teleport_brillante.dds"
 							}
 						}
 					},
@@ -91,16 +91,16 @@
 							"type" : "button",
 							"position" : "305 270",
 							"size" : "50 50",
-							"texture" : "data/textures/gui/map/Teleport_brillante.dds",
+							"texture" : "data/textures/gui/map/Teleport_sinbrillo.dds",
 							"font_size" : 64,
 							"halign" : "center",
 							"valign" : "center",
 							"color" : "1 1 1 1",
 							"selected" : {
-								"color" : "0.5 0.5 0.5 1"
+								"texture" : "data/textures/gui/map/Teleport_brillante.dds"
 							},
 							"pressed" : {
-								"color" : "0.5 0.5 0.5 1"
+								"texture" : "data/textures/gui/map/Teleport_brillante.dds"
 							}
 						}
 					},
@@ -134,16 +134,16 @@
 							"type" : "button",
 							"position" : "460 355",
 							"size" : "50 50",
-							"texture" : "data/textures/gui/map/Teleport_brillante.dds",
+							"texture" : "data/textures/gui/map/Teleport_sinbrillo.dds",
 							"font_size" : 64,
 							"halign" : "center",
 							"valign" : "center",
 							"color" : "1 1 1 1",
 							"selected" : {
-								"color" : "0.5 0.5 0.5 1"
+								"texture" : "data/textures/gui/map/Teleport_brillante.dds"
 							},
 							"pressed" : {
-								"color" : "0.5 0.5 0.5 1"
+								"texture" : "data/textures/gui/map/Teleport_brillante.dds"
 							}
 						}
 					},
@@ -177,16 +177,16 @@
 							"type" : "button",
 							"position" : "575 527",
 							"size" : "50 50",
-							"texture" : "data/textures/gui/map/Teleport_brillante.dds",
+							"texture" : "data/textures/gui/map/Teleport_sinbrillo.dds",
 							"font_size" : 64,
 							"halign" : "center",
 							"valign" : "center",
 							"color" : "1 1 1 1",
 							"selected" : {
-								"color" : "0.5 0.5 0.5 1"
+								"texture" : "data/textures/gui/map/Teleport_brillante.dds"
 							},
 							"pressed" : {
-								"color" : "0.5 0.5 0.5 1"
+								"texture" : "data/textures/gui/map/Teleport_brillante.dds"
 							}
 						}
 					},
@@ -220,16 +220,16 @@
 							"type" : "button",
 							"position" : "475 128",
 							"size" : "50 50",
-							"texture" : "data/textures/gui/map/Teleport_brillante.dds",
+							"texture" : "data/textures/gui/map/Teleport_sinbrillo.dds",
 							"font_size" : 64,
 							"halign" : "center",
 							"valign" : "center",
 							"color" : "1 1 1 1",
 							"selected" : {
-								"color" : "0.5 0.5 0.5 1"
+								"texture" : "data/textures/gui/map/Teleport_brillante.dds"
 							},
 							"pressed" : {
-								"color" : "0.5 0.5 0.5 1"
+								"texture" : "data/textures/gui/map/Teleport_brillante.dds"
 							}
 						}
 					},
@@ -263,16 +263,16 @@
 							"type" : "button",
 							"position" : "285 495",
 							"size" : "50 50",
-							"texture" : "data/textures/gui/map/Teleport_brillante.dds",
+							"texture" : "data/textures/gui/map/Teleport_sinbrillo.dds",
 							"font_size" : 64,
 							"halign" : "center",
 							"valign" : "center",
 							"color" : "1 1 1 1",
 							"selected" : {
-								"color" : "0.5 0.5 0.5 1"
+								"texture" : "data/textures/gui/map/Teleport_brillante.dds"
 							},
 							"pressed" : {
-								"color" : "0.5 0.5 0.5 1"
+								"texture" : "data/textures/gui/map/Teleport_brillante.dds"
 							}
 						}
 					},
@@ -306,16 +306,16 @@
 							"type" : "button",
 							"position" : "543 675",
 							"size" : "50 50",
-							"texture" : "data/textures/gui/map/Teleport_brillante.dds",
+							"texture" : "data/textures/gui/map/Teleport_sinbrillo.dds",
 							"font_size" : 64,
 							"halign" : "center",
 							"valign" : "center",
 							"color" : "1 1 1 1",
 							"selected" : {
-								"color" : "0.5 0.5 0.5 1"
+								"texture" : "data/textures/gui/map/Teleport_brillante.dds"
 							},
 							"pressed" : {
-								"color" : "0.5 0.5 0.5 1"
+								"texture" : "data/textures/gui/map/Teleport_brillante.dds"
 							}
 						}
 					},
@@ -349,16 +349,16 @@
 							"type" : "button",
 							"position" : "379 470",
 							"size" : "50 50",
-							"texture" : "data/textures/gui/map/Teleport_brillante.dds",
+							"texture" : "data/textures/gui/map/Teleport_sinbrillo.dds",
 							"font_size" : 64,
 							"halign" : "center",
 							"valign" : "center",
 							"color" : "1 1 1 1",
 							"selected" : {
-								"color" : "0.5 0.5 0.5 1"
+								"texture" : "data/textures/gui/map/Teleport_brillante.dds"
 							},
 							"pressed" : {
-								"color" : "0.5 0.5 0.5 1"
+								"texture" : "data/textures/gui/map/Teleport_brillante.dds"
 							}
 						}
 					},
@@ -392,16 +392,16 @@
 							"type" : "button",
 							"position" : "660 560",
 							"size" : "50 50",
-							"texture" : "data/textures/gui/map/Teleport_brillante.dds",
+							"texture" : "data/textures/gui/map/Teleport_sinbrillo.dds",
 							"font_size" : 64,
 							"halign" : "center",
 							"valign" : "center",
 							"color" : "1 1 1 1",
 							"selected" : {
-								"color" : "0.5 0.5 0.5 1"
+								"texture" : "data/textures/gui/map/Teleport_brillante.dds"
 							},
 							"pressed" : {
-								"color" : "0.5 0.5 0.5 1"
+								"texture" : "data/textures/gui/map/Teleport_brillante.dds"
 							}
 						}
 					},
@@ -435,16 +435,16 @@
 							"type" : "button",
 							"position" : "580 224",
 							"size" : "50 50",
-							"texture" : "data/textures/gui/map/Teleport_brillante.dds",
+							"texture" : "data/textures/gui/map/Teleport_sinbrillo.dds",
 							"font_size" : 64,
 							"halign" : "center",
 							"valign" : "center",
 							"color" : "1 1 1 1",
 							"selected" : {
-								"color" : "0.5 0.5 0.5 1"
+								"texture" : "data/textures/gui/map/Teleport_brillante.dds"
 							},
 							"pressed" : {
-								"color" : "0.5 0.5 0.5 1"
+								"texture" : "data/textures/gui/map/Teleport_brillante.dds"
 							}
 						}
 					}
