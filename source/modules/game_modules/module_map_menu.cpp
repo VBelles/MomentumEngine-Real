@@ -6,6 +6,7 @@
 
 bool CModuleMapMenu::start() {
 	pause = false;
+	blocked = false;
 
 	GUI::CParser parser;
 	parser.parseFile(menuFile);
@@ -29,12 +30,12 @@ bool CModuleMapMenu::stop() {
 	Engine.getGUI().unregisterController(controller);
 	safeDelete(controller);
 	Engine.getGUI().unregisterWidget("map_menu", true);
+	blocked = false;
 	return true;
 }
 
 void CModuleMapMenu::update(float delta) {
-
-	if (!CApp::get().isDebug() && EngineInput["map"].getsPressed()
+	if (!blocked && !CApp::get().isDebug() && EngineInput["map"].getsPressed()
 		|| pause && EngineInput["menu_back"].getsPressed()) {
 		onMapButtonPressed();
 	}
@@ -80,5 +81,12 @@ void CModuleMapMenu::onMapButtonPressed() {
 	}
 
 	CApp::get().setResetMouse(!pause);
+}
 
+void CModuleMapMenu::setBlocked(bool blocked) {
+	this->blocked = blocked;
+}
+
+bool CModuleMapMenu::isBlocked() {
+	return blocked;
 }
