@@ -41,7 +41,9 @@ void TCompCollectableManager::onAllScenesCreated(const TMsgAllScenesCreated & ms
 void TCompCollectableManager::update(float delta) {
 	if (spawnDoorChrysalis) {
 		if (doorChrysalidesTimer.elapsed() >= doorChrysalidesTime) {
-			((TCompRender*)finalDoorChrysalides[numberOfChrysalisTaken - 1])->enable();
+			for (int i = 0; i < finalDoorChrysalides.size() && i < numberOfChrysalisTaken; i++) {
+				((TCompRender*)finalDoorChrysalides[i])->enable();
+			}
 			spawnDoorChrysalis = false;
 		}
 	}
@@ -186,7 +188,7 @@ void TCompCollectableManager::onCollect(const TMsgCollect& msg) {
 		if (numberOfChrysalisTaken == 1) {
 			EngineScripting.throwEvent(firstChrysalisTaken, "");
 		}
-		else if(numberOfChrysalisTaken == CHRYSALIS_TARGET_NUMBER){
+		else if (numberOfChrysalisTaken == CHRYSALIS_TARGET_NUMBER) {
 			EngineScripting.throwEvent(lastChrysalisTaken, "");
 			//activar final door trigger
 			TMsgChrysalisCollected msgChrysalisCollected = { numberOfChrysalisTaken };
