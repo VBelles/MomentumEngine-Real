@@ -55,9 +55,9 @@ void TCompRangedAttack::update(float delta) {
 			transform->setPosition(transform->getPosition() + transform->getFront() * speed * delta);
 			rigidDynamic->setKinematicTarget(toPxTransform(transform));
 		}
-		if (speed == 0.f && grabTimer.elapsed() >= grabTime) {
+		/*if (speed == 0.f && grabTimer.elapsed() >= grabTime) {
 			speed = initialSpeed;
-		}
+		}*/
 	}
 
 }

@@ -27,7 +27,7 @@ private:
 	CTimer grabTimer;
 	CTimer warmUpTimer;
 
-	bool effectsLaunched = false;
+	bool projectilLaunched = false;
 
 	CHandle particlesHandle;
 	CHandle soundHandle;
