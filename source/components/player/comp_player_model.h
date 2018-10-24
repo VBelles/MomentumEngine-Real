@@ -73,7 +73,7 @@ private:
 	PowerStats* currentPowerStats = nullptr;
 
 	const float PLAYER_MAX_HP = 5.f;
-	float maxHp = 0.f;
+	float maxHp = PLAYER_MAX_HP;
 	float hp = 0.f;
 
 	float maxAttackSlots = 4.f;
@@ -214,7 +214,7 @@ public:
 	void damage(float damage);
 	void makeInvulnerable(float time);
 	void startDamageVision(float time);
-	void resetHp() { maxHp = PLAYER_MAX_HP; setHp(maxHp); }
+	void refillHp() { setHp(maxHp); }
 	float getHp() { return hp; }
 	float getMaxHp() { return maxHp; }
 	void setHp(float hp);

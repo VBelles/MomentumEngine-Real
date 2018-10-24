@@ -81,7 +81,7 @@ void DeathActionState::respawn() {
 	TCompCameraPlayer* playerCamera = playerCameraEntity->get<TCompCameraPlayer>();
 	cameraTransform->setYawPitchRoll(getPlayerModel()->getRespawnYaw(), playerCamera->getInitialPitch());
 
-	getPlayerModel()->resetHp();
+	getPlayerModel()->refillHp();
 	getPowerGauge()->resetPower();
 }
 
