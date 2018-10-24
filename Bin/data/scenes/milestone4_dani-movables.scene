@@ -754,58 +754,5 @@
         ]
       }
     }
-  },
-  {
-    "entity":
-    {
-      "name": "plataforma_roca011",
-      "transform":
-      {
-        "pos": "927.972 126.793 14.6968",
-        "rotation": "0.0 0.0 0.0 -1.0"
-      },
-      "render":
-      [
-        {
-          "mesh": "data/meshes/plataforma_roca011.mesh",
-          "materials":
-          [
-            "data/materials/Material_#197.material"
-          ],
-          "enabled": true
-        }
-      ],
-      "collider":
-      {
-        "mesh_src": "data/meshes/dani_collider_dummy_000.col_mesh",
-        "shape": "convex_mesh",
-        "type": "kinematic",
-        "group":
-        [
-          "scenario"
-        ]
-      },
-      "platform_simple":
-      {
-        "curve_type": "circular",
-        "enabled": true,
-        "automove": true,
-        "loop": true,
-        "closed": true,
-        "move_offset": 0.00138856,
-        "travel_wait_time": 1.0,
-        "speed": 0.001,
-        "knots":
-        [
-           "34.9054 127.339 22.4887",
-           "929.241 127.339 22.4887",
-           "929.241 127.339 22.4887",
-           "34.9054 127.338 -871.846",
-           "-859.43 127.339 22.4888",
-           "34.9054 127.339 916.824",
-           "34.9054 127.339 916.824"
-        ]
-      }
-    }
   }
 ]
