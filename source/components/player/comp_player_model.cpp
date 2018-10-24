@@ -124,7 +124,7 @@ void TCompPlayerModel::load(const json& j, TEntityParseContext& ctx) {
 	attackSlotsTaken = 0.f;
 	attackers.clear();
 
-	resetHp();
+	refillHp();
 }
 
 PowerStats * TCompPlayerModel::loadPowerStats(const json & j) {
