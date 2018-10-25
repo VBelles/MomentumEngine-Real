@@ -3,6 +3,7 @@
 #include "gui/gui_parser.h"
 #include "modules/system_modules/scripting/scripting_player.h"
 #include "modules/system_modules/sound/music_player.h"
+#include "modules/game_modules/game/module_game.h"
 
 bool CModuleMapMenu::start() {
 	pause = false;
@@ -67,6 +68,8 @@ void CModuleMapMenu::onMapButtonPressed() {
 		EngineSound.emitEvent(SOUND_MENU_BACK);
 	}
 
+	EngineGame->showHUD(!pause);
+	EngineGUI.setDialogActive(!pause);
 	EngineRender.setActive(!pause);
 	EngineScripting.setActive(!pause);
 	Engine.getEntities().setActive(!pause);
