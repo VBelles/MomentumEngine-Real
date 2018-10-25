@@ -84,7 +84,7 @@ namespace GUI {
 		CEntity* playerEntity = getEntityByName(PLAYER_NAME);
 		TCompTransform* playerTransform = playerEntity->get<TCompTransform>();
 		VEC3 playerPos = playerTransform->getPosition();
-		VEC2 playerImagePos = VEC2(playerPos.x, playerPos.z);
+		VEC2 playerImagePos = VEC2(playerPos.z, playerPos.x);
 
 		float ratio = 3.41211085f;
 		float ratio2 = -0.293073714;
