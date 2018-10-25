@@ -80,6 +80,26 @@ namespace GUI {
 			}
 			_options[_currentOption]->setCurrentState(CButton::EState::ST_Selected);
 		}
+
+		CEntity* playerEntity = getEntityByName(PLAYER_NAME);
+		TCompTransform* playerTransform = playerEntity->get<TCompTransform>();
+		VEC3 playerPos = playerTransform->getPosition();
+		VEC2 playerImagePos = VEC2(playerPos.x, playerPos.z);
+
+		float ratio = 3.41211085f;
+		float ratio2 = -0.293073714;
+		VEC2 vRatio = VEC2(ratio2, -ratio2);
+		VEC2 offset = VEC2(1792.177, 1926.837);
+		
+		playerImagePos *= vRatio;
+		//playerImagePos += offset;
+
+		dbg("%f %f\n", playerImagePos.x, playerImagePos.y);
+
+		auto playerMapWidget = Engine.getGUI().getWidget("map_player", true);
+		playerMapWidget->getParams()->_position = playerImagePos;
+		playerMapWidget->computeAbsolute();
+
 	}
 
 	void CMapMenuController::registerOption(const std::string& name) {
