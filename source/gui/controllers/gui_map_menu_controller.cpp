@@ -89,10 +89,9 @@ namespace GUI {
 		float ratio = 3.41211085f;
 		float ratio2 = -0.293073714;
 		VEC2 vRatio = VEC2(ratio2, -ratio2);
-		VEC2 offset = VEC2(1792.177, 1926.837);
 		
 		playerImagePos *= vRatio;
-		//playerImagePos += offset;
+		playerImagePos += offset;
 
 		dbg("%f %f\n", playerImagePos.x, playerImagePos.y);
 

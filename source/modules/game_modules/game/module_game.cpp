@@ -24,6 +24,8 @@
 
 #include "modules/system_modules/sound/music_player.h"
 
+#include "modules/game_modules/game/module_game.h"
+
 CCamera camera;
 //extern void registerMesh(CRenderMesh* new_mesh, const char* name);
 
@@ -129,6 +131,8 @@ void CModuleGame::update(float delta) {
 			Engine.setInputType(InputType::Game);
 		}
 	}
+
+	CModuleGame* game = (CModuleGame*) Engine.getModules().getModule("game");
 
 	respawner->update(delta);
 	hudController->update(delta);
