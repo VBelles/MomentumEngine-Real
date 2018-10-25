@@ -13,7 +13,7 @@ function onLevelStart_game_state()
     showHUD(false)
 	disablePlayerOutline()
 
-    local tiempoBarridoHorizonal = 0.01 --20
+    local tiempoBarridoHorizonal = 20
     local tiempoMuralVertical    = 0.1 --10s para verse completo.
     local blendTimeMural         = 0.001
     local tiempoIntroFloteProta  = 6
@@ -23,7 +23,7 @@ function onLevelStart_game_state()
     local tiempoAterrizajeAndar  = 6
     local tiempoTravellingSalir  = 4
 
-    local tiempoParaCancelarDialogo = 0.6 --1
+    local tiempoParaCancelarDialogo = 0.2
 
     local fontSize = 46
 
