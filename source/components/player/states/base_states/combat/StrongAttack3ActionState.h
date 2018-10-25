@@ -17,7 +17,7 @@ private:
 	bool isUltraSlash2Out = false;
 	bool isUltraSlash3Out = false;
 
-	CTimer movementTimer;
+	CTimer2 movementTimer;
 
 	std::string animation = "strong_attack3";
 

@@ -4,7 +4,7 @@
 
 class WallJumpPlummetActionState : public AirborneActionState, public AttackState {
 protected:
-	CTimer timer;
+	CTimer2 timer;
 	float endingTime;
 	float deceleration = 0.5f;
 
@@ -14,7 +14,7 @@ protected:
 	float propelDuration = 0.5f;
 
 	bool isSlashOut = false;
-	CTimer movementTimer;
+	CTimer2 movementTimer;
 
 	std::string animation = "wall_jump_plummet_loop";
 

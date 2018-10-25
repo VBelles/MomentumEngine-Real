@@ -4,7 +4,7 @@
 
 class ReleasePowerAirActionState : public AirborneActionState, public AttackState {
 private:
-	CTimer timer;
+	CTimer2 timer;
 	float hitboxOutTime = frames2sec(7);
 	float hitEndTime = frames2sec(26);
 	float animationEndTime = frames2sec(20);

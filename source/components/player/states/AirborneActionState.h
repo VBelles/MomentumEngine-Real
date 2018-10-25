@@ -6,7 +6,7 @@ struct PowerStats;
 
 class AirborneActionState : public IActionState {
 protected:
-	CTimer turnAroundTimer;
+	CTimer2 turnAroundTimer;
 	bool isTurnAround = false;
 	float turnAroundTime = frames2sec(8);
 	float exitYaw;
@@ -25,10 +25,10 @@ protected:
 	float backwardsAirDriftFactorWall = 0.9f;
 	PowerStats* enteringPowerStats;
 
-	CTimer slideWindowTimer;
+	CTimer2 slideWindowTimer;
 	float slideWindowTime = frames2sec(5);
 
-	CTimer hardLandingTimer;
+	CTimer2 hardLandingTimer;
 	float hardLandingTime = 2.2f;
 
 public:

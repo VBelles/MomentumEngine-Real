@@ -4,7 +4,7 @@
 
 class GhostJumpWindowActionState : public AirborneActionState {
 private:
-	CTimer timer;
+	CTimer2 timer;
 	float regularWindow = frames2sec(6);
 	float specialWindow = frames2sec(12);
 	float jumpTimeWindow = regularWindow;

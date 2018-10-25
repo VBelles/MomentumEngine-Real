@@ -4,12 +4,12 @@
 
 class HardLandingActionState : public LandingActionState {
 private:
-	CTimer hitboxTimer;
+	CTimer2 hitboxTimer;
 	float impactAttackDurationTime = frames2sec(3);
-	CTimer fallingAttackHitboxTimer;
+	CTimer2 fallingAttackHitboxTimer;
 	float fallingAttackTime = frames2sec(5);
 
-	CTimer springJumpTimer;
+	CTimer2 springJumpTimer;
 	float springJumpWindowStartTime = frames2sec(15);
 	float springJumpWindowEndTime = frames2sec(30);
 	bool hasTriedSpringJump = false;

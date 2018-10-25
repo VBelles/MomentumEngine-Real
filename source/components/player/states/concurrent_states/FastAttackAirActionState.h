@@ -4,7 +4,7 @@
 
 class FastAttackAirActionState : public AirborneActionState, public AttackState {
 private:
-	CTimer timer;
+	CTimer2 timer;
 	float hitboxOutTime = frames2sec(10);
 	float hitEndTime = frames2sec(7);
 	float animationEndTime = frames2sec(10);
@@ -16,7 +16,7 @@ private:
 	float powerToGet = 1000.f;
 
 	bool isSlashOut = false;
-	CTimer movementTimer;
+	CTimer2 movementTimer;
 
 	std::string animation = "strong_attack2";
 	std::string hitbox = "fast_attack_air";
