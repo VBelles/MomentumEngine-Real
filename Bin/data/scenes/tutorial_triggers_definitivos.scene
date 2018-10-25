@@ -97,7 +97,7 @@
       "show_dialog":{
         "dialogs":[
           "Launch enemies by holding attack buttons, then combo that into a jump and a propel.",
-          "Holding the long jump button will result in a horizontal launcher, while holding the regular jump button will result in a vertical launcher."
+          "Holding the fast attack button will result in a horizontal launcher, while holding the strong attack button will result in a vertical launcher."
         ],
         "show_time": 0.5,
         "refresh_time": 3,
