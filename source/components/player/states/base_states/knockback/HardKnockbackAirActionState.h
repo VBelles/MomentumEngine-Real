@@ -4,7 +4,7 @@
 
 class HardKnockbackAirActionState : public AirborneActionState {
 private:
-	CTimer timer;
+	CTimer2 timer;
 	float duration = 0.8f;
 
 	std::string animation = "hard_knockback_air";

@@ -4,7 +4,7 @@
 
 class LandingActionState : public GroundedActionState {
 protected:
-	CTimer timer;
+	CTimer2 timer;
 	float landingLagTime = frames2sec(9);
 	float enteringSpeed;
 

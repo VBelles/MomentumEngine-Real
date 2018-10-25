@@ -6,7 +6,7 @@ class TCompScreenTransition;
 
 class DeathActionState : public IActionState {
 private:
-	CTimer timer;
+	CTimer2 timer;
 	float deathTime = frames2sec(95);
 	float respawnTime = 2.2f;
 	bool finish = false;

@@ -4,7 +4,7 @@
 
 class IdleTurnAroundActionState : public GroundedActionState {
 private:
-	CTimer timer;
+	CTimer2 timer;
 	float turnAroundTime = frames2sec(12);
 	float exitYaw;
 	float rotationSpeed;

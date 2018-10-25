@@ -5,9 +5,9 @@
 class HuggingWallActionState : public AirborneActionState {
 private:
 	bool isClimbing = true;
-	CTimer climbTimer;
+	CTimer2 climbTimer;
 	float climbTime = 0.4f;
-	CTimer releaseWallTimer;
+	CTimer2 releaseWallTimer;
 	float releaseWallTime = 0.14f;
 	float releaseWallMinDotProduct = -0.2f;
 	bool isTryingToRelease = false;
@@ -32,7 +32,7 @@ private:
 	float huggingWallMinPitch = 0.f;
 
 	bool tryingToSlide = false;
-	CTimer slideTimer;
+	CTimer2 slideTimer;
 	float slideWindowTime = 1.1f;
 
 public:

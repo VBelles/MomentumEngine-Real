@@ -4,7 +4,7 @@
 
 class FastAttack2ActionState : public GroundedActionState, public AttackState {
 private:
-	CTimer timer;
+	CTimer2 timer;
 	float hitboxOutTime = frames2sec(10);
 	float hitEndTime = frames2sec(15);
 	float animationEndTime = frames2sec(40);

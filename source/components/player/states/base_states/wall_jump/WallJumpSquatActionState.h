@@ -4,7 +4,7 @@
 
 class WallJumpSquatActionState : public AirborneActionState {
 protected:
-	CTimer timer;
+	CTimer2 timer;
 	float endingTime = frames2sec(4);
 
 	std::string animation = "wall_jump";

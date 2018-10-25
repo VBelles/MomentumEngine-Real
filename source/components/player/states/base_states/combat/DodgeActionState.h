@@ -4,18 +4,18 @@
 
 class DodgeActionState : public GroundedActionState {
 private:
-	CTimer timer;
+	CTimer2 timer;
 	float movingTime = frames2sec(12);
 	float recoveryTime = frames2sec(15);
 	float regularRecoveryTime = recoveryTime;
 	float staleRecoveryTime = frames2sec(70);
-	CTimer invencibilityTimer;
+	CTimer2 invencibilityTimer;
 	float invencibilityTime = frames2sec(12);
 	float takeActionTime = frames2sec(3);
 	float dodgeSpeed = 22.f;
 	
 	static constexpr int numberOfDodgesToStale = 2;
-	CTimer staleTimers[numberOfDodgesToStale - 1];//si abusas, te comes el lag
+	CTimer2 staleTimers[numberOfDodgesToStale - 1];//si abusas, te comes el lag
 	float staleTime = 0.9f;
 	int staleTimerIndex = 0;
 	int currentNumberOfCloseDodges = 0;

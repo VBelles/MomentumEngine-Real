@@ -17,7 +17,7 @@ private:
 	bool fromRun = false;
 	bool isSlashOut = false;
 
-	CTimer movementTimer;
+	CTimer2 movementTimer;
 	
 	std::string animation = "strong_attack";
 	std::string animationIdle = "idle";

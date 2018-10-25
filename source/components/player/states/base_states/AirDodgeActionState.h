@@ -4,10 +4,10 @@
 
 class AirDodgeActionState : public AirborneActionState {
 private:
-	CTimer timer;
+	CTimer2 timer;
 	float dodgingTime = frames2sec(12);
 	float recoveryTime = frames2sec(30);
-	CTimer invencibilityTimer;
+	CTimer2 invencibilityTimer;
 	float invencibilityTime = frames2sec(12);
 	float takeActionTime = frames2sec(3);
 	float dodgeSpeed = 22.f;

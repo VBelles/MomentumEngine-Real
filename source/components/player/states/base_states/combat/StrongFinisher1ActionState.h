@@ -12,7 +12,7 @@ private:
 	float suspensionTime = 1.5f;
 	bool isSlashOut = false;
 
-	CTimer movementTimer;
+	CTimer2 movementTimer;
 
 	std::string animation = "strong_finisher1";
 
