@@ -1,0 +1,5 @@
+{
+  "instanced_mesh": "data/meshes/spike_crystal_04.mesh",
+  "instances_type": "Instance",
+  "num_instances_reserved": 8
+}
