@@ -1,0 +1,14 @@
+{
+  "technique": "pbr_instanced.tech",
+  "shadows": true,
+  "textures":
+  {
+    "albedo": "data/textures/spikes_BaseColor.dds",
+    "normal": "data/textures/spikes_Normal.dds",
+    "metallic": "data/textures/spikes_Metallic.dds",
+    "roughness": "data/textures/spikes_Roughness.dds",
+    "self_illum": "data/textures/spikes_Emissive.dds",
+    "height": "data/textures/null_height.dds",
+    "detail_normal": "data/textures/null_detail_normal.dds"
+  }
+}
