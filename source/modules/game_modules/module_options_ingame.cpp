@@ -4,6 +4,7 @@
 #include "modules/system_modules/sound/comp_sound.h"
 #include "modules/system_modules/sound/music_player.h"
 #include "modules/system_modules/scripting/scripting_player.h"
+#include "modules/game_modules/game/module_game.h"
 
 #include <fstream>
 
@@ -105,6 +106,8 @@ void CModuleOptionsIngame::activate(bool newActive) {
 		CApp::get().readConfig();
 	}
 
+	EngineGame->showHUD(!active);
+	EngineGUI.setDialogActive(!active);
 	EngineRender.setActive(!active);
 	EngineScripting.setActive(!active);
 	Engine.getEntities().setActive(!active);

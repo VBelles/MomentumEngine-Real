@@ -242,7 +242,6 @@ CWidget* CParser::parseMapMarker(const json& data, const std::string& name) {
 		wdgt->pos = loadVEC3(data["position"]);
 	}
 	wdgt->mapWidget = data.value("map", wdgt->mapWidget);
-	wdgt->alternText = data.value("altern_text", wdgt->alternText);
 	UniqueElement* uniqueEvent = EngineUniques.getUniqueEvent(name);
 	if (uniqueEvent) {
 		wdgt->_visible = uniqueEvent->done;
@@ -250,6 +249,10 @@ CWidget* CParser::parseMapMarker(const json& data, const std::string& name) {
 	else {
 		wdgt->_visible = data.value("visible", wdgt->_visible);
 	}
+
+	json jAlternButton = data["altern_button"];
+	wdgt->_alternButton = (CButton*)parseButton(jAlternButton);
+	wdgt->_alternButton->_parent = wdgt;
 
 	json jButton = data["button"];
 	wdgt->_button = (CButton*)parseButton(jButton);

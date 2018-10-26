@@ -6,6 +6,7 @@
 
 namespace GUI {
 	void CMapMenuController::update(float delta) {
+		int option = _currentOption;
 		auto& mouse = EngineInput[Input::PLAYER_1].mouse();
 		if (mouse.position_delta.Length() > 0) {
 			int i = 0;
@@ -87,6 +88,10 @@ namespace GUI {
 				}
 			}
 			setState(_currentOption, CButton::EState::ST_Selected);
+		}
+
+		if (_currentOption != option) {
+			EngineSound.emitEvent(SOUND_MENU_ROLL);
 		}
 	}
 

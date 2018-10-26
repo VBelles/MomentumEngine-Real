@@ -13,16 +13,17 @@ CMapMarker::~CMapMarker() {
 void CMapMarker::render() {
 	// render button
 	if (!_visible) {
-		std::string text = _button->getTextParams()->_text;
-		auto templates = _button->getTextParams()->_templateText.texts;
+		//std::string text = _button->getTextParams()->_text;
+		//auto templates = _button->getTextParams()->_templateText.texts;
 
-		_button->getTextParams()->_templateText.texts.clear();
-		_button->getTextParams()->_text = alternText;
+		//_button->getTextParams()->_templateText.texts.clear();
+		//_button->getTextParams()->_text = alternText;
 
-		_button->render();
+		//_button->render();
 
-		_button->getTextParams()->_text = text;
-		_button->getTextParams()->_templateText.texts = templates;
+		//_button->getTextParams()->_text = text;
+		//_button->getTextParams()->_templateText.texts = templates;
+		_alternButton->render();
 	}
 	else {
 		_button->render();
@@ -32,15 +33,22 @@ void CMapMarker::render() {
 	if (_visible) _marker->render();
 }
 
+void CMapMarker::renderAll() {
+	render();
+}
+
 void CMapMarker::setCurrentState(CButton::EState newState) {
+	_alternButton->setCurrentState(newState);
 	_button->setCurrentState(newState);
 	_marker->setCurrentState(newState);
 }
 
 void CMapMarker::computeAbsolute() {
 	CWidget::computeAbsolute();
+	_alternButton->setParent(_parent);
 	_button->setParent(_parent);
 	_marker->setParent(EngineGUI.getWidget(mapWidget, true));
+	_alternButton->computeAbsolute();
 	_button->computeAbsolute();
 	_marker->computeAbsolute();
 }

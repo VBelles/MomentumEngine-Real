@@ -5,6 +5,13 @@
 		"size" : "1920 1080",
 		"children" : [
 			{
+				"name": "background",
+				"type": "image",
+				"size": "2000 1200",
+				"position": "-50 -50",
+				"texture": "data/textures/gui/hud/dialog_box_clean.dds"
+			},
+			{
 				"name" : "test_buttons",
 				"type" : "widget",
 				"position" : "810 550",
