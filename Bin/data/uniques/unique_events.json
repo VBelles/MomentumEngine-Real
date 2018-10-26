@@ -82,6 +82,12 @@
       "position": "-108.715 5.12907 -113.173",
       "level": "level00",
       "type": "teleport_point"
+    },
+    {
+      "id": "chrysalis_help",
+      "done": false,
+      "position": "0 0 0",
+      "level": "level00"
     }
   ]
 }

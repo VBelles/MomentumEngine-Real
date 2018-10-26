@@ -19,7 +19,7 @@ ButtonText: "Momentum"
 
 	local baseHeight = 66
 	local heightPerButton = 26
-	local numberOfButtons = 6
+	local numberOfButtons = 7
 	local height = baseHeight + heightPerButton * numberOfButtons
 
 	/* To get desktop resolution, valid for multiple screens:
@@ -145,8 +145,11 @@ ButtonText: "Momentum"
 		button btn_sel_children "Select children" tooltip:"Selects children of selected objects"
 
 		button btn_import_scene "Import scene..." tooltip:"Import scene objects from scene file"
-		button btn_copy_posrot "Copy pos & rot" across:2 tooltip:"Copy name, position and rotation of selected object"
-		button btn_paste_posrot "Paste pos & rot" tooltip:"Paste name, position and rotation on selected object"
+		button btn_copy_posrot "Copy pos+rot+n" across:2 tooltip:"Copy name, position and rotation of selected object"
+		button btn_paste_posrot "Paste pos+rot+n" tooltip:"Paste name, position and rotation on selected object"
+		
+		button btn_copy_pos "Copy pos" across:2 tooltip:"Copy position of selected object"
+		button btn_paste_pos "Paste pos" tooltip:"Paste position on selected object"
 		
 		button btn_copy_pivot "Copy pivot pos" across:2 tooltip:"Copy pivot position of selected object"
 		button btn_paste_pivot "Paste pivot pos" tooltip:"Paste pivot position on selected object"
@@ -287,6 +290,30 @@ ButtonText: "Momentum"
 			)
 		)
 
+		fn copyPos = (
+			try (
+				gc()
+				clearListener()
+				if selection.count == 1 then (
+					global copiedPosOnly  = $.pos
+				) else if selection.count > 1 then MessageBox ("Select only one object")
+			) catch (
+				MessageBox ("Error copying:\n" + getCurrentException()) title:"Error"
+			)
+		)
+
+		fn pastePos = (
+			try (
+				gc()
+				clearListener()
+				if selection.count == 1 then (
+					$.pos = copiedPosOnly
+				)
+			) catch (
+				MessageBox ("Error pasting:\n" + getCurrentException()) title:"Error"
+			)
+		)
+
 		fn hideAllLayersButCurrent = (
 			try (
 				gc()
@@ -341,6 +368,8 @@ ButtonText: "Momentum"
 		on btn_import_scene 	pressed do ( importScene() )
 		on btn_copy_posrot  	pressed do ( copyNamePosRot() )
 		on btn_paste_posrot 	pressed do ( pasteNamePosRot() )
+		on btn_copy_pos  		pressed do ( copyPos() )
+		on btn_paste_pos 		pressed do ( pastePos() )
 		on btn_copy_pivot  		pressed do ( copyPivotPos() )
 		on btn_paste_pivot 		pressed do ( pastePivotPos() )
 		on btn_hideOtherLayers  pressed do ( hideAllLayersButCurrent() )
