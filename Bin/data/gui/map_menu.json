@@ -3,20 +3,33 @@
 		"name": "map_menu",
 		"type": "widget",
 		"size": "1920 1080",
+		"position": "0 100",
 		"children": [
 			{
 				"name": "map",
-				"position": "970 190",
+				"position": "970 0",
 				"type": "image",
 				"size": "800 800",
 				"texture": "data/textures/gui/map/mapa_ms4_Gemma.dds",
-				"minUV": "0 0",
-				"maxUV": "1 1"
+				"children": [
+					{
+						"name": "chrysalises_map_menu",
+						"children": [
+							{
+								"name": "chrysalis_fire_puzzle",
+								"position": "0 0",
+								"type": "image",
+								"size": "31 58",
+								"texture": "data/textures/gui/hud/chrysalis_icon.dds"
+							}
+						]
+					}
+				]
 			},
 			{
-				"name": "test_buttons",
+				"name": "buttons_map_menu",
 				"type": "widget",
-				"position": "100 200",
+				"position": "100 0",
 				"children": [
 					{
 						"name": "temple_teleport",
@@ -26,38 +39,38 @@
 						"altern_text": "???",
 						"visible": true,
 						"button": {
-							"name" : "temple_teleport_button",
-							"type" : "button",
-							"position" : "0 0",
-							"size" : "800 64",
-							"texture" : "data/textures/gui/hud/dialog_box_clean.dds",
-							"font_size" : 64,
-							"text" : "AWAKENING SHRINE",
-							"halign" : "center",
-							"valign" : "center",
-							"color" : "1 1 1 1",
-							"selected" : {
-								"color" : "0.5 0.5 0.5 1"
+							"name": "temple_teleport_button",
+							"type": "button",
+							"position": "0 0",
+							"size": "800 64",
+							"texture": "data/textures/gui/hud/dialog_box_clean.dds",
+							"font_size": 64,
+							"text": "AWAKENING SHRINE",
+							"halign": "center",
+							"valign": "center",
+							"color": "1 1 1 1",
+							"selected": {
+								"color": "0.5 0.5 0.5 1"
 							},
-							"pressed" : {
-								"color" : "0.5 0.5 0.5 1"
+							"pressed": {
+								"color": "0.5 0.5 0.5 1"
 							}
 						},
 						"marker": {
-							"name" : "temple_teleport_marker",
-							"type" : "button",
-							"position" : "90 200",
-							"size" : "50 50",
-							"texture" : "data/textures/gui/map/Teleport_sinbrillo.dds",
-							"font_size" : 64,
-							"halign" : "center",
-							"valign" : "center",
-							"color" : "1 1 1 1",
-							"selected" : {
-								"texture" : "data/textures/gui/map/Teleport_brillante.dds"
+							"name": "temple_teleport_marker",
+							"type": "button",
+							"position": "90 200",
+							"size": "50 50",
+							"texture": "data/textures/gui/map/Teleport_sinbrillo.dds",
+							"font_size": 64,
+							"halign": "center",
+							"valign": "center",
+							"color": "1 1 1 1",
+							"selected": {
+								"texture": "data/textures/gui/map/Teleport_brillante.dds"
 							},
-							"pressed" : {
-								"texture" : "data/textures/gui/map/Teleport_brillante.dds"
+							"pressed": {
+								"texture": "data/textures/gui/map/Teleport_brillante.dds"
 							}
 						}
 					},
@@ -69,38 +82,38 @@
 						"altern_text": "???",
 						"visible": true,
 						"button": {
-							"name" : "main_entrance_teleport_button",
-							"type" : "button",
-							"position" : "0 70",
-							"size" : "800 64",
-							"texture" : "data/textures/gui/hud/dialog_box_clean.dds",
-							"font_size" : 64,
-							"text" : "MAIN ENTRANCE",
-							"halign" : "center",
-							"valign" : "center",
-							"color" : "1 1 1 1",
-							"selected" : {
-								"color" : "0.5 0.5 0.5 1"
+							"name": "main_entrance_teleport_button",
+							"type": "button",
+							"position": "0 70",
+							"size": "800 64",
+							"texture": "data/textures/gui/hud/dialog_box_clean.dds",
+							"font_size": 64,
+							"text": "MAIN ENTRANCE",
+							"halign": "center",
+							"valign": "center",
+							"color": "1 1 1 1",
+							"selected": {
+								"color": "0.5 0.5 0.5 1"
 							},
-							"pressed" : {
-								"color" : "0.5 0.5 0.5 1"
+							"pressed": {
+								"color": "0.5 0.5 0.5 1"
 							}
 						},
 						"marker": {
-							"name" : "main_entrance_teleport_marker",
-							"type" : "button",
-							"position" : "305 270",
-							"size" : "50 50",
-							"texture" : "data/textures/gui/map/Teleport_sinbrillo.dds",
-							"font_size" : 64,
-							"halign" : "center",
-							"valign" : "center",
-							"color" : "1 1 1 1",
-							"selected" : {
-								"texture" : "data/textures/gui/map/Teleport_brillante.dds"
+							"name": "main_entrance_teleport_marker",
+							"type": "button",
+							"position": "305 270",
+							"size": "50 50",
+							"texture": "data/textures/gui/map/Teleport_sinbrillo.dds",
+							"font_size": 64,
+							"halign": "center",
+							"valign": "center",
+							"color": "1 1 1 1",
+							"selected": {
+								"texture": "data/textures/gui/map/Teleport_brillante.dds"
 							},
-							"pressed" : {
-								"texture" : "data/textures/gui/map/Teleport_brillante.dds"
+							"pressed": {
+								"texture": "data/textures/gui/map/Teleport_brillante.dds"
 							}
 						}
 					},
@@ -112,38 +125,38 @@
 						"altern_text": "???",
 						"visible": true,
 						"button": {
-							"name" : "central_field_teleport_button",
-							"type" : "button",
-							"position" : "0 140",
-							"size" : "800 64",
-							"texture" : "data/textures/gui/hud/dialog_box_clean.dds",
-							"font_size" : 64,
-							"text" : "CENTRAL FIELD",
-							"halign" : "center",
-							"valign" : "center",
-							"color" : "1 1 1 1",
-							"selected" : {
-								"color" : "0.5 0.5 0.5 1"
+							"name": "central_field_teleport_button",
+							"type": "button",
+							"position": "0 140",
+							"size": "800 64",
+							"texture": "data/textures/gui/hud/dialog_box_clean.dds",
+							"font_size": 64,
+							"text": "CENTRAL FIELD",
+							"halign": "center",
+							"valign": "center",
+							"color": "1 1 1 1",
+							"selected": {
+								"color": "0.5 0.5 0.5 1"
 							},
-							"pressed" : {
-								"color" : "0.5 0.5 0.5 1"
+							"pressed": {
+								"color": "0.5 0.5 0.5 1"
 							}
 						},
 						"marker": {
-							"name" : "central_field_teleport_marker",
-							"type" : "button",
-							"position" : "460 355",
-							"size" : "50 50",
-							"texture" : "data/textures/gui/map/Teleport_sinbrillo.dds",
-							"font_size" : 64,
-							"halign" : "center",
-							"valign" : "center",
-							"color" : "1 1 1 1",
-							"selected" : {
-								"texture" : "data/textures/gui/map/Teleport_brillante.dds"
+							"name": "central_field_teleport_marker",
+							"type": "button",
+							"position": "460 355",
+							"size": "50 50",
+							"texture": "data/textures/gui/map/Teleport_sinbrillo.dds",
+							"font_size": 64,
+							"halign": "center",
+							"valign": "center",
+							"color": "1 1 1 1",
+							"selected": {
+								"texture": "data/textures/gui/map/Teleport_brillante.dds"
 							},
-							"pressed" : {
-								"texture" : "data/textures/gui/map/Teleport_brillante.dds"
+							"pressed": {
+								"texture": "data/textures/gui/map/Teleport_brillante.dds"
 							}
 						}
 					},
@@ -155,38 +168,38 @@
 						"altern_text": "???",
 						"visible": true,
 						"button": {
-							"name" : "tower_entrance_teleport_button",
-							"type" : "button",
-							"position" : "0 210",
-							"size" : "800 64",
-							"texture" : "data/textures/gui/hud/dialog_box_clean.dds",
-							"font_size" : 64,
-							"text" : "TOWER ENTRANCE",
-							"halign" : "center",
-							"valign" : "center",
-							"color" : "1 1 1 1",
-							"selected" : {
-								"color" : "0.5 0.5 0.5 1"
+							"name": "tower_entrance_teleport_button",
+							"type": "button",
+							"position": "0 210",
+							"size": "800 64",
+							"texture": "data/textures/gui/hud/dialog_box_clean.dds",
+							"font_size": 64,
+							"text": "TOWER ENTRANCE",
+							"halign": "center",
+							"valign": "center",
+							"color": "1 1 1 1",
+							"selected": {
+								"color": "0.5 0.5 0.5 1"
 							},
-							"pressed" : {
-								"color" : "0.5 0.5 0.5 1"
+							"pressed": {
+								"color": "0.5 0.5 0.5 1"
 							}
 						},
 						"marker": {
-							"name" : "tower_entrance_teleport_marker",
-							"type" : "button",
-							"position" : "575 527",
-							"size" : "50 50",
-							"texture" : "data/textures/gui/map/Teleport_sinbrillo.dds",
-							"font_size" : 64,
-							"halign" : "center",
-							"valign" : "center",
-							"color" : "1 1 1 1",
-							"selected" : {
-								"texture" : "data/textures/gui/map/Teleport_brillante.dds"
+							"name": "tower_entrance_teleport_marker",
+							"type": "button",
+							"position": "575 527",
+							"size": "50 50",
+							"texture": "data/textures/gui/map/Teleport_sinbrillo.dds",
+							"font_size": 64,
+							"halign": "center",
+							"valign": "center",
+							"color": "1 1 1 1",
+							"selected": {
+								"texture": "data/textures/gui/map/Teleport_brillante.dds"
 							},
-							"pressed" : {
-								"texture" : "data/textures/gui/map/Teleport_brillante.dds"
+							"pressed": {
+								"texture": "data/textures/gui/map/Teleport_brillante.dds"
 							}
 						}
 					},
@@ -198,38 +211,38 @@
 						"altern_text": "???",
 						"visible": true,
 						"button": {
-							"name" : "behind_statue_teleport_button",
-							"type" : "button",
-							"position" : "0 280",
-							"size" : "800 64",
-							"texture" : "data/textures/gui/hud/dialog_box_clean.dds",
-							"font_size" : 64,
-							"text" : "BEHIND STATUE",
-							"halign" : "center",
-							"valign" : "center",
-							"color" : "1 1 1 1",
-							"selected" : {
-								"color" : "0.5 0.5 0.5 1"
+							"name": "behind_statue_teleport_button",
+							"type": "button",
+							"position": "0 280",
+							"size": "800 64",
+							"texture": "data/textures/gui/hud/dialog_box_clean.dds",
+							"font_size": 64,
+							"text": "BEHIND STATUE",
+							"halign": "center",
+							"valign": "center",
+							"color": "1 1 1 1",
+							"selected": {
+								"color": "0.5 0.5 0.5 1"
 							},
-							"pressed" : {
-								"color" : "0.5 0.5 0.5 1"
+							"pressed": {
+								"color": "0.5 0.5 0.5 1"
 							}
 						},
 						"marker": {
-							"name" : "behind_statue_teleport_marker",
-							"type" : "button",
-							"position" : "475 128",
-							"size" : "50 50",
-							"texture" : "data/textures/gui/map/Teleport_sinbrillo.dds",
-							"font_size" : 64,
-							"halign" : "center",
-							"valign" : "center",
-							"color" : "1 1 1 1",
-							"selected" : {
-								"texture" : "data/textures/gui/map/Teleport_brillante.dds"
+							"name": "behind_statue_teleport_marker",
+							"type": "button",
+							"position": "475 128",
+							"size": "50 50",
+							"texture": "data/textures/gui/map/Teleport_sinbrillo.dds",
+							"font_size": 64,
+							"halign": "center",
+							"valign": "center",
+							"color": "1 1 1 1",
+							"selected": {
+								"texture": "data/textures/gui/map/Teleport_brillante.dds"
 							},
-							"pressed" : {
-								"texture" : "data/textures/gui/map/Teleport_brillante.dds"
+							"pressed": {
+								"texture": "data/textures/gui/map/Teleport_brillante.dds"
 							}
 						}
 					},
@@ -241,38 +254,38 @@
 						"altern_text": "???",
 						"visible": true,
 						"button": {
-							"name" : "kings_graveyard_teleport_button",
-							"type" : "button",
-							"position" : "0 350",
-							"size" : "800 64",
-							"texture" : "data/textures/gui/hud/dialog_box_clean.dds",
-							"font_size" : 64,
-							"text" : "KING'S GRAVEYARD",
-							"halign" : "center",
-							"valign" : "center",
-							"color" : "1 1 1 1",
-							"selected" : {
-								"color" : "0.5 0.5 0.5 1"
+							"name": "kings_graveyard_teleport_button",
+							"type": "button",
+							"position": "0 350",
+							"size": "800 64",
+							"texture": "data/textures/gui/hud/dialog_box_clean.dds",
+							"font_size": 64,
+							"text": "KING'S GRAVEYARD",
+							"halign": "center",
+							"valign": "center",
+							"color": "1 1 1 1",
+							"selected": {
+								"color": "0.5 0.5 0.5 1"
 							},
-							"pressed" : {
-								"color" : "0.5 0.5 0.5 1"
+							"pressed": {
+								"color": "0.5 0.5 0.5 1"
 							}
 						},
 						"marker": {
-							"name" : "kings_graveyard_teleport_marker",
-							"type" : "button",
-							"position" : "285 495",
-							"size" : "50 50",
-							"texture" : "data/textures/gui/map/Teleport_sinbrillo.dds",
-							"font_size" : 64,
-							"halign" : "center",
-							"valign" : "center",
-							"color" : "1 1 1 1",
-							"selected" : {
-								"texture" : "data/textures/gui/map/Teleport_brillante.dds"
+							"name": "kings_graveyard_teleport_marker",
+							"type": "button",
+							"position": "285 495",
+							"size": "50 50",
+							"texture": "data/textures/gui/map/Teleport_sinbrillo.dds",
+							"font_size": 64,
+							"halign": "center",
+							"valign": "center",
+							"color": "1 1 1 1",
+							"selected": {
+								"texture": "data/textures/gui/map/Teleport_brillante.dds"
 							},
-							"pressed" : {
-								"texture" : "data/textures/gui/map/Teleport_brillante.dds"
+							"pressed": {
+								"texture": "data/textures/gui/map/Teleport_brillante.dds"
 							}
 						}
 					},
@@ -284,38 +297,38 @@
 						"altern_text": "???",
 						"visible": true,
 						"button": {
-							"name" : "mushroom_kingdom_teleport_button",
-							"type" : "button",
-							"position" : "0 420",
-							"size" : "800 64",
-							"texture" : "data/textures/gui/hud/dialog_box_clean.dds",
-							"font_size" : 64,
-							"text" : "COLOSSAL FUNGUS",
-							"halign" : "center",
-							"valign" : "center",
-							"color" : "1 1 1 1",
-							"selected" : {
-								"color" : "0.5 0.5 0.5 1"
+							"name": "mushroom_kingdom_teleport_button",
+							"type": "button",
+							"position": "0 420",
+							"size": "800 64",
+							"texture": "data/textures/gui/hud/dialog_box_clean.dds",
+							"font_size": 64,
+							"text": "COLOSSAL FUNGUS",
+							"halign": "center",
+							"valign": "center",
+							"color": "1 1 1 1",
+							"selected": {
+								"color": "0.5 0.5 0.5 1"
 							},
-							"pressed" : {
-								"color" : "0.5 0.5 0.5 1"
+							"pressed": {
+								"color": "0.5 0.5 0.5 1"
 							}
 						},
 						"marker": {
-							"name" : "mushroom_kingdom_teleport_marker",
-							"type" : "button",
-							"position" : "543 675",
-							"size" : "50 50",
-							"texture" : "data/textures/gui/map/Teleport_sinbrillo.dds",
-							"font_size" : 64,
-							"halign" : "center",
-							"valign" : "center",
-							"color" : "1 1 1 1",
-							"selected" : {
-								"texture" : "data/textures/gui/map/Teleport_brillante.dds"
+							"name": "mushroom_kingdom_teleport_marker",
+							"type": "button",
+							"position": "543 675",
+							"size": "50 50",
+							"texture": "data/textures/gui/map/Teleport_sinbrillo.dds",
+							"font_size": 64,
+							"halign": "center",
+							"valign": "center",
+							"color": "1 1 1 1",
+							"selected": {
+								"texture": "data/textures/gui/map/Teleport_brillante.dds"
 							},
-							"pressed" : {
-								"texture" : "data/textures/gui/map/Teleport_brillante.dds"
+							"pressed": {
+								"texture": "data/textures/gui/map/Teleport_brillante.dds"
 							}
 						}
 					},
@@ -327,38 +340,38 @@
 						"altern_text": "???",
 						"visible": true,
 						"button": {
-							"name" : "graveyard_teleport_button",
-							"type" : "button",
-							"position" : "0 490",
-							"size" : "800 64",
-							"texture" : "data/textures/gui/hud/dialog_box_clean.dds",
-							"font_size" : 64,
-							"text" : "GRAVEYARD",
-							"halign" : "center",
-							"valign" : "center",
-							"color" : "1 1 1 1",
-							"selected" : {
-								"color" : "0.5 0.5 0.5 1"
+							"name": "graveyard_teleport_button",
+							"type": "button",
+							"position": "0 490",
+							"size": "800 64",
+							"texture": "data/textures/gui/hud/dialog_box_clean.dds",
+							"font_size": 64,
+							"text": "GRAVEYARD",
+							"halign": "center",
+							"valign": "center",
+							"color": "1 1 1 1",
+							"selected": {
+								"color": "0.5 0.5 0.5 1"
 							},
-							"pressed" : {
-								"color" : "0.5 0.5 0.5 1"
+							"pressed": {
+								"color": "0.5 0.5 0.5 1"
 							}
 						},
 						"marker": {
-							"name" : "graveyard_teleport_marker",
-							"type" : "button",
-							"position" : "379 470",
-							"size" : "50 50",
-							"texture" : "data/textures/gui/map/Teleport_sinbrillo.dds",
-							"font_size" : 64,
-							"halign" : "center",
-							"valign" : "center",
-							"color" : "1 1 1 1",
-							"selected" : {
-								"texture" : "data/textures/gui/map/Teleport_brillante.dds"
+							"name": "graveyard_teleport_marker",
+							"type": "button",
+							"position": "379 470",
+							"size": "50 50",
+							"texture": "data/textures/gui/map/Teleport_sinbrillo.dds",
+							"font_size": 64,
+							"halign": "center",
+							"valign": "center",
+							"color": "1 1 1 1",
+							"selected": {
+								"texture": "data/textures/gui/map/Teleport_brillante.dds"
 							},
-							"pressed" : {
-								"texture" : "data/textures/gui/map/Teleport_brillante.dds"
+							"pressed": {
+								"texture": "data/textures/gui/map/Teleport_brillante.dds"
 							}
 						}
 					},
@@ -370,38 +383,38 @@
 						"altern_text": "???",
 						"visible": true,
 						"button": {
-							"name" : "behind_tower_teleport_button",
-							"type" : "button",
-							"position" : "0 560",
-							"size" : "800 64",
-							"texture" : "data/textures/gui/hud/dialog_box_clean.dds",
-							"font_size" : 64,
-							"text" : "BEHIND TOWER",
-							"halign" : "center",
-							"valign" : "center",
-							"color" : "1 1 1 1",
-							"selected" : {
-								"color" : "0.5 0.5 0.5 1"
+							"name": "behind_tower_teleport_button",
+							"type": "button",
+							"position": "0 560",
+							"size": "800 64",
+							"texture": "data/textures/gui/hud/dialog_box_clean.dds",
+							"font_size": 64,
+							"text": "BEHIND TOWER",
+							"halign": "center",
+							"valign": "center",
+							"color": "1 1 1 1",
+							"selected": {
+								"color": "0.5 0.5 0.5 1"
 							},
-							"pressed" : {
-								"color" : "0.5 0.5 0.5 1"
+							"pressed": {
+								"color": "0.5 0.5 0.5 1"
 							}
 						},
 						"marker": {
-							"name" : "behind_tower_teleport_marker",
-							"type" : "button",
-							"position" : "660 560",
-							"size" : "50 50",
-							"texture" : "data/textures/gui/map/Teleport_sinbrillo.dds",
-							"font_size" : 64,
-							"halign" : "center",
-							"valign" : "center",
-							"color" : "1 1 1 1",
-							"selected" : {
-								"texture" : "data/textures/gui/map/Teleport_brillante.dds"
+							"name": "behind_tower_teleport_marker",
+							"type": "button",
+							"position": "660 560",
+							"size": "50 50",
+							"texture": "data/textures/gui/map/Teleport_sinbrillo.dds",
+							"font_size": 64,
+							"halign": "center",
+							"valign": "center",
+							"color": "1 1 1 1",
+							"selected": {
+								"texture": "data/textures/gui/map/Teleport_brillante.dds"
 							},
-							"pressed" : {
-								"texture" : "data/textures/gui/map/Teleport_brillante.dds"
+							"pressed": {
+								"texture": "data/textures/gui/map/Teleport_brillante.dds"
 							}
 						}
 					},
@@ -413,42 +426,55 @@
 						"altern_text": "???",
 						"visible": true,
 						"button": {
-							"name" : "gate_of_doom_teleport_button",
-							"type" : "button",
-							"position" : "0 630",
-							"size" : "800 64",
-							"texture" : "data/textures/gui/hud/dialog_box_clean.dds",
-							"font_size" : 64,
-							"text" : "FINAL GATE",
-							"halign" : "center",
-							"valign" : "center",
-							"color" : "1 1 1 1",
-							"selected" : {
-								"color" : "0.5 0.5 0.5 1"
+							"name": "gate_of_doom_teleport_button",
+							"type": "button",
+							"position": "0 630",
+							"size": "800 64",
+							"texture": "data/textures/gui/hud/dialog_box_clean.dds",
+							"font_size": 64,
+							"text": "FINAL GATE",
+							"halign": "center",
+							"valign": "center",
+							"color": "1 1 1 1",
+							"selected": {
+								"color": "0.5 0.5 0.5 1"
 							},
-							"pressed" : {
-								"color" : "0.5 0.5 0.5 1"
+							"pressed": {
+								"color": "0.5 0.5 0.5 1"
 							}
 						},
 						"marker": {
-							"name" : "gate_of_doom_teleport_marker",
-							"type" : "button",
-							"position" : "580 224",
-							"size" : "50 50",
-							"texture" : "data/textures/gui/map/Teleport_sinbrillo.dds",
-							"font_size" : 64,
-							"halign" : "center",
-							"valign" : "center",
-							"color" : "1 1 1 1",
-							"selected" : {
-								"texture" : "data/textures/gui/map/Teleport_brillante.dds"
+							"name": "gate_of_doom_teleport_marker",
+							"type": "button",
+							"position": "580 224",
+							"size": "50 50",
+							"texture": "data/textures/gui/map/Teleport_sinbrillo.dds",
+							"font_size": 64,
+							"halign": "center",
+							"valign": "center",
+							"color": "1 1 1 1",
+							"selected": {
+								"texture": "data/textures/gui/map/Teleport_brillante.dds"
 							},
-							"pressed" : {
-								"texture" : "data/textures/gui/map/Teleport_brillante.dds"
+							"pressed": {
+								"texture": "data/textures/gui/map/Teleport_brillante.dds"
 							}
 						}
 					}
 				]
+			},
+			{
+				"name": "show_chrysalis_button",
+				"type": "button",
+				"position": "1202 825",
+				"size": "336 104",
+				"texture": "data/textures/gui/start_game.dds",
+				"selected": {
+					"texture": "data/textures/gui/start_game_selected.dds"
+				},
+				"pressed": {
+					"texture": "data/textures/gui/start_game_selected.dds"
+				}
 			}
 		]
 	}

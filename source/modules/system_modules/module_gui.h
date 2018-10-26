@@ -42,6 +42,7 @@ public:
 
 	void showDialog(const std::string& text, const int& fontSize = 16, bool cancelable = true);
 	void hideDialog();
+	void setDialogActive(bool active);
 	bool isDialogActive();
 	void setCancelableWithButton(bool cancelable);
 
@@ -65,5 +66,6 @@ private:
 	std::string fontsFile = "data/gui/fonts.json";
 	std::map<int, GUI::CFont> fonts;
 
+	bool dialogActive = true;
 	GUI::CDialogController* dialogController = nullptr;
 };
