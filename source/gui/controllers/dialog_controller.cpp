@@ -15,7 +15,7 @@ namespace GUI {
 	}
 
 	void CDialogController::update(float delta) {
-		if (isCancelableWithButton && EngineInput["menu_accept"].getsPressed()) {
+		if (isCancelableWithButton && (EngineInput["menu_accept"].getsPressed() || EngineInput["next_dialog"].getsPressed())) {
 			if (dialogActive) {
 				if (dialogWidget->getCurrentFragment() < dialogWidget->getNumFragments() - 1) {
 					dialogWidget->showNext();

@@ -5,6 +5,8 @@ struct TMsgTriggerEnter;
 struct TMsgTriggerExit;
 struct TMsgColliderDestroyed;
 
+class CDialog;
+
 class TCompShowDialog : public TCompBase {
 private:
 	//json
@@ -14,12 +16,15 @@ private:
 	float timeToAllowCancel = 0.5f;
 	int fontSize = 1;
 
+	//std::string widgetName = "dialog_box";
+	//CDialog* dialogWidget = nullptr;
+
 	int dialogIndex = 0;
 
 	bool lastMessageReached = false;
 
 	CTimer2 cancelTimer;
-	bool isCancelable = false;
+	bool isCancelable = true;
 	CTimer2 showMessageTimer;
 	bool firstMessageShown = false;
 	CTimer2 refreshMessageTimer;
