@@ -2,6 +2,91 @@
   {
     "entity":
     {
+      "name": "nes_tapar_agujeros_021",
+      "transform":
+      {
+        "pos": "47.8796 17.4632 -145.626",
+        "rotation": "0.378875 -0.692503 0.612266 0.0449876"
+      },
+      "collider":
+      {
+        "mesh_src": "data/meshes/nes_tapar_agujeros_021.col_mesh",
+        "shape": "tri_mesh",
+        "type": "static"
+      }
+    }
+  },
+  {
+    "entity":
+    {
+      "name": "nes_tapar_agujeros_020",
+      "transform":
+      {
+        "pos": "50.5863 15.4576 -147.463",
+        "rotation": "-0.0504795 0.59204 -0.71824 -0.362038"
+      },
+      "collider":
+      {
+        "mesh_src": "data/meshes/nes_tapar_agujeros_020.col_mesh",
+        "shape": "tri_mesh",
+        "type": "static"
+      }
+    }
+  },
+  {
+    "entity":
+    {
+      "name": "nes_tapar_agujeros_019",
+      "transform":
+      {
+        "pos": "42.5305 30.3798 -148.683",
+        "rotation": "-0.664463 -0.241845 0.241845 -0.664463"
+      },
+      "collider":
+      {
+        "mesh_src": "data/meshes/nes_tapar_agujeros_019.col_mesh",
+        "shape": "tri_mesh",
+        "type": "static"
+      }
+    }
+  },
+  {
+    "entity":
+    {
+      "name": "nes_tapar_agujeros_018",
+      "transform":
+      {
+        "pos": "48.1831 35.4793 -148.572",
+        "rotation": "0.241845 -0.664463 0.664463 0.241845"
+      },
+      "collider":
+      {
+        "mesh_src": "data/meshes/nes_tapar_agujeros_018.col_mesh",
+        "shape": "tri_mesh",
+        "type": "static"
+      }
+    }
+  },
+  {
+    "entity":
+    {
+      "name": "nes_tapar_agujeros_017",
+      "transform":
+      {
+        "pos": "-100.489 41.9403 -69.2709",
+        "rotation": "0.0 -0.707107 0.707107 0.0"
+      },
+      "collider":
+      {
+        "mesh_src": "data/meshes/nes_tapar_agujeros_017.col_mesh",
+        "shape": "tri_mesh",
+        "type": "static"
+      }
+    }
+  },
+  {
+    "entity":
+    {
       "name": "nes_tapar_agujeros_016",
       "transform":
       {
@@ -181,7 +266,7 @@
       "collider":
       {
         "mesh_src": "data/meshes/nes_tapar_agujeros_005.col_mesh",
-        "shape": "convex_mesh",
+        "shape": "tri_mesh",
         "type": "static"
       }
     }
