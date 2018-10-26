@@ -273,6 +273,12 @@ void CModuleRender::generateFrame() {
 		activateMainCamera();
 		cb_globals.updateGPU();
 
+		{
+			PROFILE_FUNCTION("Modules");
+			CTraceScoped gpu_scope("Modules");
+			EngineModules.render();
+		}
+
 		if (h_e_camera.isValid()) {
 			deferred.render(rt_main, h_e_camera);
 		}
@@ -282,12 +288,6 @@ void CModuleRender::generateFrame() {
 		CRenderManager::get().renderCategory("distorsions");
 		CRenderManager::get().renderCategory("textured");
 		CRenderManager::get().renderCategory("general");
-
-		{
-			PROFILE_FUNCTION("Modules");
-			CTraceScoped gpu_scope("Modules");
-			EngineModules.render();
-		}
 
 		// Apply postFX
 		CTexture* curr_rt = rt_main;
