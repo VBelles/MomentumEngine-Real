@@ -105,3 +105,4 @@ private:
 #define EngineParticles CEngine::get().getParticles()
 #define EngineSlash		CEngine::get().getTrailSlash()
 #define EngineGame		((CModuleGame*)CEngine::get().getModules().getModule("game"))
+#define EngineInstancing		((CModuleInstancing*)CEngine::get().getModules().getModule("instancing"))

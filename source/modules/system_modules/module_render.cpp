@@ -1,6 +1,7 @@
 #include "mcv_platform.h"
 #include "module_render.h"
 #include "modules/module.h"
+#include "modules/game_modules/module_instancing.h"
 #include "windows/app.h"
 #include "imgui/imgui_impl_dx11.h"
 #include "render/render_objects.h"
@@ -177,7 +178,6 @@ void CModuleRender::update(float delta) {
 
 void CModuleRender::render() {
 	// Notify ImGUI that we are starting a new frame
-	ImGui_ImplDX11_NewFrame();
 	if (CApp::get().isDebug()) {
 		ImGui::Text("Application average %.3f ms/frame (%.1f FPS)", 1000.0f / ImGui::GetIO().Framerate, ImGui::GetIO().Framerate);
 		static int nframes = 5;
@@ -270,14 +270,12 @@ void CModuleRender::generateFrame() {
 		CTraceScoped gpu_scope("Frame");
 		PROFILE_FUNCTION("CModuleRender::generateFrame");
 
+		ImGui_ImplDX11_NewFrame();
+
 		activateMainCamera();
 		cb_globals.updateGPU();
 
-		{
-			PROFILE_FUNCTION("Modules");
-			CTraceScoped gpu_scope("Modules");
-			EngineModules.render();
-		}
+		EngineInstancing->render();
 
 		if (h_e_camera.isValid()) {
 			deferred.render(rt_main, h_e_camera);
@@ -288,6 +286,14 @@ void CModuleRender::generateFrame() {
 		CRenderManager::get().renderCategory("distorsions");
 		CRenderManager::get().renderCategory("textured");
 		CRenderManager::get().renderCategory("general");
+
+		{
+			PROFILE_FUNCTION("Modules");
+			CTraceScoped gpu_scope("Modules");
+			EngineInstancing->setRender(false);
+			EngineModules.render();
+			EngineInstancing->setRender(true);
+		}
 
 		// Apply postFX
 		CTexture* curr_rt = rt_main;
