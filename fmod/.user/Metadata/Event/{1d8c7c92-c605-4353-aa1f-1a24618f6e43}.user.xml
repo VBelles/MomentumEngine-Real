@@ -5,7 +5,7 @@
             <value>9</value>
         </property>
         <relationship name="selectables">
-            <destination>{ab59ce06-bf55-4ced-a0d9-a6523a4ca4df}</destination>
+            <destination>{baac938f-edcb-442a-9a2d-f7cf7aa202bf}</destination>
         </relationship>
         <relationship name="uiLastParameterSelection">
             <destination>{1874e82f-be37-4054-bc67-3abbe616da0d}</destination>
@@ -151,6 +151,9 @@
     <object class="Timeline" id="{1874e82f-be37-4054-bc67-3abbe616da0d}">
         <property name="uiLastRulerScaleRatio">
             <value>0.015564480633802816</value>
+        </property>
+        <property name="uiLastHorizontalScrollBarValue">
+            <value>3579</value>
         </property>
     </object>
     <object class="ParameterProxy" id="{2fb1f4df-565c-45e3-a957-8681a3d42e33}">
@@ -452,6 +455,7 @@
     <object class="MixerBusEffectChain" id="{ddeac3c8-76f4-4c79-b0e0-5a97a774ed2b}"/>
     <object class="MixerBusPanner" id="{ff72c9eb-9b3d-42bd-84a9-9f796ad7ab40}"/>
     <object class="MixerBusFader" id="{6bf47de4-0a2a-444b-8851-e9cc2bec0a4b}"/>
+    <object class="CompressorEffect" id="{dcbc32cf-2543-4858-988d-b63614482b32}"/>
     <object class="LowpassEffect" id="{3b43f8b7-f6a9-4a47-8603-c8295fed5163}"/>
     <object class="MixerBusFader" id="{2ee70f43-2770-4978-8641-09825bf51d64}"/>
     <object class="MixerBusFader" id="{95ac440b-6bef-46fe-b9f9-1d973d0710e1}"/>

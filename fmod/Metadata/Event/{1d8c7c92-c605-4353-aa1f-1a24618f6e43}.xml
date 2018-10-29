@@ -558,6 +558,9 @@
         </relationship>
     </object>
     <object class="EventMixerMaster" id="{ca37ed58-293e-4ab2-875b-67f829f5592d}">
+        <property name="volume">
+            <value>4</value>
+        </property>
         <relationship name="effectChain">
             <destination>{efa2ac27-7ab4-4a03-90ce-adb44af93e1d}</destination>
         </relationship>
@@ -1758,6 +1761,7 @@
     <object class="MixerBusEffectChain" id="{efa2ac27-7ab4-4a03-90ce-adb44af93e1d}">
         <relationship name="effects">
             <destination>{6bf47de4-0a2a-444b-8851-e9cc2bec0a4b}</destination>
+            <destination>{dcbc32cf-2543-4858-988d-b63614482b32}</destination>
             <destination>{3b43f8b7-f6a9-4a47-8603-c8295fed5163}</destination>
         </relationship>
     </object>
@@ -2156,6 +2160,20 @@
     </object>
     <object class="MixerBusPanner" id="{ff72c9eb-9b3d-42bd-84a9-9f796ad7ab40}"/>
     <object class="MixerBusFader" id="{6bf47de4-0a2a-444b-8851-e9cc2bec0a4b}"/>
+    <object class="CompressorEffect" id="{dcbc32cf-2543-4858-988d-b63614482b32}">
+        <property name="threshold">
+            <value>-3</value>
+        </property>
+        <property name="ratio">
+            <value>10.5</value>
+        </property>
+        <property name="attackTime">
+            <value>0.100000001</value>
+        </property>
+        <property name="releaseTime">
+            <value>60</value>
+        </property>
+    </object>
     <object class="LowpassEffect" id="{3b43f8b7-f6a9-4a47-8603-c8295fed5163}">
         <relationship name="automators">
             <destination>{0a166c29-f17a-4e24-932a-abd1bbf20075}</destination>
@@ -2675,7 +2693,7 @@
             <value>0.99905749293119694</value>
         </property>
         <property name="value">
-            <value>0</value>
+            <value>-37</value>
         </property>
     </object>
     <object class="AutomationPoint" id="{bda2304c-f05b-49f7-801e-ca1b8698a4ac}">

@@ -36,5 +36,8 @@
         <property name="ceiling">
             <value>-0.599999964</value>
         </property>
+        <property name="release">
+            <value>1</value>
+        </property>
     </object>
 </objects>
