@@ -22,7 +22,11 @@ private:
 	int maxCoins = 144;
 	int lifePiecesPerHeart = 1;
 
+	float musicVolumeMultiplier = 0.3f;
+	float soundVolumeMultiplier = 0.7f;
+
 	int numberOfChrysalisTaken = 0;
+	int numberOfLifePiecesTaken = 0;
 	std::vector<std::string> finalDoorChrysalidesNames;
 	std::vector<CHandle> finalDoorChrysalides;
 	CTimer2 doorChrysalidesTimer;
@@ -44,6 +48,7 @@ private:
 
 public:
 	DECL_SIBLING_ACCESS();
+	int numberOfPowerUpsTaken = 0;
 
 	static void registerMsgs();
 	void load(const json& j, TEntityParseContext& ctx);

@@ -60,6 +60,9 @@ public:
 	void setMasterVolume(float volume);
 	void setSoundVolume(float volume);
 	void setMusicVolume(float volume);
+	float getMasterVolume();
+	float getSoundVolume();
+	float getMusicVolume();
 
 	void setPaused(bool paused);
 

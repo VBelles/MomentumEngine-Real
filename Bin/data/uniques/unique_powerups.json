@@ -1,0 +1,46 @@
+{
+    "unique_powerups": [
+        {
+            "id": "power_up_air_dodge",
+            "done": false,
+            "position": "28.7937 5.91278 -14.4006",
+            "level": "level00",
+            "state": "AirDodge"
+        },
+        {
+            "id": "power_up_fast_finisher_2",
+            "done": false,
+            "position": "-167.243 75.472 -82.1206",
+            "level": "level00",
+            "state": "FastFinisher2"
+        },
+        {
+            "id": "power_up_strong_attack_3",
+            "done": false,
+            "position": "-90.7143 48.6282 5.26836",
+            "level": "level00",
+            "state": "StrongAttack3"
+        },
+        {
+            "id": "power_up_hugging_wall",
+            "done": false,
+            "position": "-85.162 -37.629 185.119",
+            "level": "level00",
+            "state": "HuggingWall"
+        },
+        {
+            "id": "power_up_spring_jump",
+            "done": false,
+            "position": "179.352 53.951 124.619",
+            "level": "level00",
+            "state": "JumpSquatSpring"
+        },
+        {
+            "id": "power_up_plummet",
+            "done": false,
+            "position": "221.027 25.807 -215.852",
+            "level": "level00",
+            "state": "WallJumpSquatPlummet"
+        }
+    ]
+}

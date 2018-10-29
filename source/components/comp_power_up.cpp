@@ -1,6 +1,7 @@
 #include "mcv_platform.h"
 #include "comp_power_up.h"
 #include "components/player/comp_player_model.h"
+#include "components/player/comp_collectable_manager.h"
 #include "components/comp_dummy_collectable.h"
 #include "entity/common_msgs.h"
 
@@ -35,6 +36,8 @@ void TCompPowerUp::onAllScenesCreated(const TMsgAllScenesCreated & msg) {
 	assert(playerModelHandle.isValid());
 	playerTransformHandle = player->get<TCompTransform>();
 	assert(playerTransformHandle.isValid());
+	collectableManagerHandle = player->get<TCompCollectableManager>();
+	assert(collectableManagerHandle.isValid());
 
 	std::string name = ((CEntity*)CHandle(this).getOwner())->getName();
 	UniquePowerUp* uniquePowerUp = EngineUniques.getUniquePowerUp(name);
@@ -54,6 +57,8 @@ void TCompPowerUp::update(float delta) {
 		if (collectTimer.elapsed() >= collectDuration) {
 			getPlayerModel()->changeState("AirborneNormal");
 			isCollecting = false;
+			EngineSound.setMusicVolume(EngineSound.getMusicVolume() / musicVolumeMultiplier);
+			EngineSound.setSoundVolume(EngineSound.getSoundVolume() / soundVolumeMultiplier);
 			CEntity* playerCameraEntity = getEntityByName(PLAYER_CAMERA);
 			TCompCameraPlayer* cameraPlayer = playerCameraEntity->get<TCompCameraPlayer>();
 			cameraPlayer->resetSuggested();
@@ -68,7 +73,9 @@ void TCompPowerUp::onTriggerEnter(const TMsgTriggerEnter & msg) {
 	if (entity->getName() == PLAYER_NAME) {
 		//unlock state in player manager through player model
 		((TCompPlayerModel*)getPlayerModel())->unlockState(stateToUnlock);
-
+		getCollectableManager()->numberOfPowerUpsTaken++;
+		EngineSound.setMusicVolume(EngineSound.getMusicVolume() * musicVolumeMultiplier);
+		EngineSound.setSoundVolume(EngineSound.getSoundVolume() * soundVolumeMultiplier);
 		std::string name = ((CEntity*)CHandle(this).getOwner())->getName();
 		UniquePowerUp* uniquePowerUp = EngineUniques.getUniquePowerUp(name);
 		if (uniquePowerUp && !uniquePowerUp->done) {
@@ -115,4 +122,9 @@ TCompPlayerModel* TCompPowerUp::getPlayerModel() {
 
 TCompTransform * TCompPowerUp::getPlayerTransform() {
 	return playerTransformHandle;
+}
+
+TCompCollectableManager * TCompPowerUp::getCollectableManager()
+{
+	return collectableManagerHandle;
 }

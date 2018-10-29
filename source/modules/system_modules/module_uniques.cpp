@@ -67,8 +67,8 @@ bool CModuleUniques::start() {
 				}
 			}
 		}
-		if (jUnique.count("unique_power_up")) {
-			json jPowerUps = jUnique["unique_power_up"];
+		if (jUnique.count("unique_powerups")) {
+			json jPowerUps = jUnique["unique_powerups"];
 			if (jPowerUps.is_array()) {
 				for (size_t i = 0; i < jPowerUps.size(); ++i) {
 					parseChunk(jPowerUps[i], ElementType::POWERUP);

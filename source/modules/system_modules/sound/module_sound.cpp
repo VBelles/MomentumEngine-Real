@@ -198,6 +198,18 @@ void CModuleSound::setMusicVolume(float volume) {
 	vca->setVolume(volume);
 }
 
+float CModuleSound::getMasterVolume() {
+	return masterVolume;
+}
+
+float CModuleSound::getSoundVolume() {
+	return soundVolume;
+}
+
+float CModuleSound::getMusicVolume() {
+	return musicVolume;
+}
+
 void CModuleSound::setPaused(bool paused) {
 	this->paused = paused;
 	forEachEventInstance([this](FMOD::Studio::Bank* bank, FMOD::Studio::EventDescription* description, FMOD::Studio::EventInstance* event) {
