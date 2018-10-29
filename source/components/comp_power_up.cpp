@@ -57,6 +57,8 @@ void TCompPowerUp::update(float delta) {
 		if (collectTimer.elapsed() >= collectDuration) {
 			getPlayerModel()->changeState("AirborneNormal");
 			isCollecting = false;
+			EngineSound.setMusicVolume(EngineSound.getMusicVolume() / musicVolumeMultiplier);
+			EngineSound.setSoundVolume(EngineSound.getSoundVolume() / soundVolumeMultiplier);
 			CEntity* playerCameraEntity = getEntityByName(PLAYER_CAMERA);
 			TCompCameraPlayer* cameraPlayer = playerCameraEntity->get<TCompCameraPlayer>();
 			cameraPlayer->resetSuggested();
@@ -72,7 +74,8 @@ void TCompPowerUp::onTriggerEnter(const TMsgTriggerEnter & msg) {
 		//unlock state in player manager through player model
 		((TCompPlayerModel*)getPlayerModel())->unlockState(stateToUnlock);
 		getCollectableManager()->numberOfPowerUpsTaken++;
-
+		EngineSound.setMusicVolume(EngineSound.getMusicVolume() * musicVolumeMultiplier);
+		EngineSound.setSoundVolume(EngineSound.getSoundVolume() * soundVolumeMultiplier);
 		std::string name = ((CEntity*)CHandle(this).getOwner())->getName();
 		UniquePowerUp* uniquePowerUp = EngineUniques.getUniquePowerUp(name);
 		if (uniquePowerUp && !uniquePowerUp->done) {

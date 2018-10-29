@@ -26,6 +26,9 @@ private:
 	TCompTransform* getPlayerTransform();
 	TCompCollectableManager* getCollectableManager();
 
+	float musicVolumeMultiplier = 0.3f;
+	float soundVolumeMultiplier = 0.7f;
+
 	float rotationSpeed = 2.5f;
 
 	CTimer2 collectTimer;

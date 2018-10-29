@@ -22,6 +22,9 @@ private:
 	int maxCoins = 144;
 	int lifePiecesPerHeart = 1;
 
+	float musicVolumeMultiplier = 0.3f;
+	float soundVolumeMultiplier = 0.7f;
+
 	int numberOfChrysalisTaken = 0;
 	int numberOfLifePiecesTaken = 0;
 	std::vector<std::string> finalDoorChrysalidesNames;
