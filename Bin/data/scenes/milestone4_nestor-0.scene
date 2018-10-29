@@ -2,6 +2,71 @@
   {
     "entity":
     {
+      "name": "nes_crystal_low_329",
+      "transform":
+      {
+        "pos": "158.94 98.6184 -145.165",
+        "rotation": "0.715531 -0.461407 0.106483 -0.513596"
+      },
+      "render":
+      [
+        {
+          "mesh": "data/meshes/nes_crystal_low_329.mesh",
+          "materials":
+          [
+            "data/materials/m_crystal_00.material",
+            "data/materials/m_crystal_02.material"
+          ],
+          "enabled": true
+        }
+      ],
+      "collider":
+      {
+        "mesh_src": "data/meshes/nes_crystal_low_col_317.col_mesh",
+        "shape": "convex_mesh",
+        "type": "static",
+        "group":
+        [
+          "scenario"
+        ]
+      }
+    }
+  },
+  {
+    "entity":
+    {
+      "name": "nes_estaca_emisivo_3_010",
+      "transform":
+      {
+        "pos": "-55.4631 23.1817 -47.8222",
+        "rotation": "-0.0147604 -0.985047 -0.0154242 0.170958"
+      },
+      "render":
+      [
+        {
+          "mesh": "data/meshes/nes_estaca_emisivo_3_010.mesh",
+          "materials":
+          [
+            "data/materials/m_estaca_04.material"
+          ],
+          "enabled": true
+        }
+      ],
+      "collider":
+      {
+        "mesh_src": "data/meshes/nes_estaca_emisivo_3_col_010.col_mesh",
+        "shape": "convex_mesh",
+        "type": "static",
+        "group":
+        [
+          "scenario"
+        ]
+      }
+    }
+  },
+  {
+    "entity":
+    {
       "name": "nes_pasarela016",
       "transform":
       {
@@ -101,7 +166,7 @@
       "name": "nes_columna_piezas_capitel_013",
       "transform":
       {
-        "pos": "2.98155 44.2316 198.99",
+        "pos": "2.38688 42.6114 197.589",
         "rotation": "-0.965926 0.0 0.258819 0.0"
       },
       "render":
@@ -968,7 +1033,7 @@
       "name": "nes_columna_piezas_capitel_012",
       "transform":
       {
-        "pos": "-33.4737 13.3693 185.776",
+        "pos": "-34.0683 12.7222 184.375",
         "rotation": "-1.0 0.0 0.0 0.0"
       },
       "render":
@@ -1000,7 +1065,7 @@
       "name": "nes_columna_piezas_capitel_011",
       "transform":
       {
-        "pos": "-33.3208 13.464 157.922",
+        "pos": "-33.9155 12.8169 156.521",
         "rotation": "0.0 0.0 -1.0 0.0"
       },
       "render":
@@ -1032,7 +1097,7 @@
       "name": "nes_columna_piezas_capitel_010",
       "transform":
       {
-        "pos": "-10.3456 13.3693 185.776",
+        "pos": "-10.9402 12.7222 184.375",
         "rotation": "-1.0 0.0 0.0 0.0"
       },
       "render":
@@ -1064,7 +1129,7 @@
       "name": "nes_columna_piezas_basa_005",
       "transform":
       {
-        "pos": "-10.3464 13.3119 157.925",
+        "pos": "-10.941 12.6647 156.524",
         "rotation": "0.0 0.0 0.0 -1.0"
       },
       "render":
@@ -1096,7 +1161,7 @@
       "name": "nes_escalera_caracol_M_002",
       "transform":
       {
-        "pos": "-1.42909 15.8061 183.365",
+        "pos": "-2.02375 15.159 181.964",
         "rotation": "0.0 -0.965926 0.0 0.258819"
       },
       "render":
@@ -1128,7 +1193,7 @@
       "name": "nes_platform_civilization_emissive_099",
       "transform":
       {
-        "pos": "-27.1821 10.296 176.38",
+        "pos": "-27.7768 9.64885 174.979",
         "rotation": "0.0 0.707107 0.0 -0.707107"
       },
       "render":
@@ -1160,7 +1225,7 @@
       "name": "nes_platform_civilization_emissive_098",
       "transform":
       {
-        "pos": "-16.3823 10.296 176.367",
+        "pos": "-16.977 9.64885 174.966",
         "rotation": "0.0 0.707107 0.0 -0.707107"
       },
       "render":
@@ -1192,7 +1257,7 @@
       "name": "nes_platform_civilization_emissive_097",
       "transform":
       {
-        "pos": "-21.7814 10.296 167.041",
+        "pos": "-22.3761 9.64885 165.641",
         "rotation": "0.0 0.707107 0.0 -0.707107"
       },
       "render":

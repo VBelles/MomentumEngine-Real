@@ -670,6 +670,8 @@ struct TSceneExporter (
 		)
 
 		if obj.layer.name == "trimesh" or forcedTri then meshShape = "tri_mesh"
+		format "---obj.name: %\n" obj.name
+		format "---obj.layer.name: %\n" obj.layer.name
 		local mesh_name = mesh_path + obj.name + ".col_mesh"
 		if forceMesh != "" then mesh_name = mesh_path + forceMesh + ".col_mesh"
 
