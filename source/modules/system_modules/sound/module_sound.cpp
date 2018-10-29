@@ -43,7 +43,7 @@ bool CModuleSound::start() {
 	setSoundVolume(Engine.globalConfig.soundVolume);
 
 	musicPlayer = new CMusicPlayer(loadJson("data/sound/_test_music.json"));
-	
+
 	return true;
 }
 
@@ -231,6 +231,16 @@ void CModuleSound::forEachEventInstance(FMOD::Studio::Bank* bank, std::function<
 void CModuleSound::render() {
 	if (CApp::get().isDebug()) {
 		if (ImGui::TreeNode("Sound")) {
+			if (ImGui::TreeNode("FMOD Cpu usage")) {
+				FMOD_STUDIO_CPU_USAGE cpuUsage;
+				system->getCPUUsage(&cpuUsage);
+				ImGui::Text("DSP %f", cpuUsage.dspusage);
+				ImGui::Text("Stream %f", cpuUsage.streamusage);
+				ImGui::Text("Geometry %f", cpuUsage.geometryusage);
+				ImGui::Text("Update %f", cpuUsage.updateusage);
+				ImGui::Text("Studio %f", cpuUsage.studiousage);
+				ImGui::TreePop();
+			}
 			if (ImGui::DragFloat("Master volume", &masterVolume, 0.01f, 0.f, 1.f)) {
 				setMasterVolume(masterVolume);
 			}
