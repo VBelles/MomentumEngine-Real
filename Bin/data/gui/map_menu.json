@@ -25,7 +25,7 @@
 						"name": "map_player",
 						"position": "25 25",
 						"type": "image",
-						"size": "50 50",
+						"size": "25 25",
 						"texture": "data/textures/gui/map/mapa_ms4_Gemma.dds"
 					},
 					{

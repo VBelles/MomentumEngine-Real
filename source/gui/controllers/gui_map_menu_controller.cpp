@@ -90,6 +90,31 @@ namespace GUI {
 			setState(_currentOption, CButton::EState::ST_Selected);
 		}
 
+		CEntity* playerEntity = getEntityByName(PLAYER_NAME);
+		TCompTransform* playerTransform = playerEntity->get<TCompTransform>();
+		VEC3 playerPos = playerTransform->getPosition();
+		VEC2 playerImagePos = VEC2(playerPos.z, playerPos.x);
+
+		float ratio = 0.961217872;
+		float ratio2 = -1.040346865;
+		VEC2 vRatio = VEC2(ratio2, ratio);
+
+		VEC2 dir = playerImagePos * vRatio;
+		dir.Normalize();
+
+		playerImagePos = dir * playerImagePos.Length();
+
+		CModuleMapMenu* module = (CModuleMapMenu*)EngineModules.getModule(mapModule);
+		playerImagePos += module->mapOffset;
+
+		//dbg("%f %f\n", playerImagePos.x, playerImagePos.y);
+
+		auto playerMapWidget = Engine.getGUI().getWidget("map_player", true);
+		playerMapWidget->getParams()->_position = playerImagePos;
+		playerMapWidget->computeAbsolute();
+		auto mapWidget = Engine.getGUI().getWidget("map_menu", true);
+		mapWidget->computeAbsolute();
+
 		if (_currentOption != option) {
 			EngineSound.emitEvent(SOUND_MENU_ROLL);
 		}
@@ -111,30 +136,6 @@ namespace GUI {
 				_options.push_back(marker);
 			}
 		}
-
-		CEntity* playerEntity = getEntityByName(PLAYER_NAME);
-		TCompTransform* playerTransform = playerEntity->get<TCompTransform>();
-		VEC3 playerPos = playerTransform->getPosition();
-		VEC2 playerImagePos = VEC2(playerPos.z, playerPos.x);
-
-		float ratio = 3.41211085f;
-		float ratio2 = -0.293073714;
-		VEC2 vRatio = VEC2(ratio2, -ratio2);
-		
-		playerImagePos *= vRatio;
-
-		CModuleMapMenu* module = (CModuleMapMenu*)EngineModules.getModule(mapModule);
-		playerImagePos +=module->mapOffset;
-
-		//dbg("%f %f\n", playerImagePos.x, playerImagePos.y);
-
-		auto playerMapWidget = Engine.getGUI().getWidget("map_player", true);
-		playerMapWidget->getParams()->_position = playerImagePos;
-		playerMapWidget->computeAbsolute();
-		auto mapWidget = Engine.getGUI().getWidget("map_menu", true);
-		mapWidget->computeAbsolute();
-
-
 	}
 
 	void CMapMenuController::unregisterOption(const std::string& name) {
