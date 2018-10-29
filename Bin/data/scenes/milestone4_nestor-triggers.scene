@@ -25,7 +25,7 @@
       },
       "respawn_point":
       {
-        "respawn_position": "-1.58796 11.8588 -253.014",
+        "respawn_position": "-1.58796 10.9083 -253.014",
         "respawn_rotation": "0.0 -0.0871557 0.0 -0.996195"
       }
     }
@@ -56,7 +56,7 @@
       },
       "respawn_point":
       {
-        "respawn_position": "2.38067 44.5984 197.639",
+        "respawn_position": "2.38067 43.648 197.639",
         "respawn_rotation": "0.0 0.384039 0.0 -0.923317"
       }
     }
@@ -87,7 +87,7 @@
       },
       "respawn_point":
       {
-        "respawn_position": "22.4661 -2.55464 15.7185",
+        "respawn_position": "22.4661 -3.50508 15.7185",
         "respawn_rotation": "0.0 -0.818309 0.0 -0.574778"
       }
     }
@@ -118,7 +118,7 @@
       },
       "respawn_point":
       {
-        "respawn_position": "47.3128 38.5391 55.2046",
+        "respawn_position": "47.3128 37.5887 55.2046",
         "respawn_rotation": "0.0 -0.984552 0.0 -0.175093"
       }
     }
@@ -149,7 +149,7 @@
       },
       "respawn_point":
       {
-        "respawn_position": "-198.911 38.7908 -44.2298",
+        "respawn_position": "-198.911 37.8404 -44.2298",
         "respawn_rotation": "0.0 -0.172203 0.0 -0.985062"
       }
     }
@@ -180,7 +180,7 @@
       },
       "respawn_point":
       {
-        "respawn_position": "-122.852 -5.26814 110.968",
+        "respawn_position": "-122.852 -6.21858 110.968",
         "respawn_rotation": "0.0 -0.940194 0.0 0.340641"
       }
     }
@@ -211,7 +211,7 @@
       },
       "respawn_point":
       {
-        "respawn_position": "-76.953 16.9086 5.76005",
+        "respawn_position": "-76.953 15.9582 5.76005",
         "respawn_rotation": "0.0 -0.984808 0.0 -0.173648"
       }
     }
@@ -242,7 +242,7 @@
       },
       "respawn_point":
       {
-        "respawn_position": "141.684 106.156 -148.928",
+        "respawn_position": "141.684 105.206 -148.928",
         "respawn_rotation": "0.0 -0.461749 0.0 -0.887011"
       }
     }
@@ -273,7 +273,7 @@
       },
       "respawn_point":
       {
-        "respawn_position": "161.332 67.1469 -138.867",
+        "respawn_position": "161.332 66.1965 -138.867",
         "respawn_rotation": "0.0 -0.92388 0.0 0.382684"
       }
     }
@@ -304,7 +304,7 @@
       },
       "respawn_point":
       {
-        "respawn_position": "58.7424 4.60766 -91.2775",
+        "respawn_position": "58.7424 3.65722 -91.2775",
         "respawn_rotation": "0.0 -0.939693 0.0 -0.34202"
       }
     }
@@ -335,7 +335,7 @@
       },
       "respawn_point":
       {
-        "respawn_position": "-28.764 -8.53577 -163.304",
+        "respawn_position": "-28.764 -9.48621 -163.304",
         "respawn_rotation": "0.0 -0.939693 0.0 -0.34202"
       }
     }
