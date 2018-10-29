@@ -9,6 +9,12 @@ private:
 	bool pause = false;
 	bool blocked = false;
 
+	void showChrysalisesCallback();
+	void showChrysalises();
+	void hideCrysalises();
+
+	int coinsToSpend = 72;
+
 public:
 	VEC2 mapOffset = VEC2(0, 0);
 

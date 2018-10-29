@@ -1,0 +1,107 @@
+[
+  {
+    "entity":
+    {
+      "name": "spike_crystal_05",
+      "transform":
+      {
+        "pos": "-4.81259 0.0 -2.00188",
+        "rotation": "0.0 0.0 0.0 -1.0"
+      },
+      "render":
+      [
+        {
+          "mesh": "data/meshes/spike_crystal_05.instanced_mesh",
+          "materials":
+          [
+             "data/materials/spike_crystal_05.material"
+          ]
+        }
+      ]
+    }
+  },
+  {
+    "entity":
+    {
+      "name": "spike_crystal_04",
+      "transform":
+      {
+        "pos": "-4.81259 0.0 -2.00188",
+        "rotation": "0.0 0.0 0.0 -1.0"
+      },
+      "render":
+      [
+        {
+          "mesh": "data/meshes/spike_crystal_04.instanced_mesh",
+          "materials":
+          [
+             "data/materials/spike_crystal_04.material"
+          ]
+        }
+      ]
+    }
+  },
+  {
+    "entity":
+    {
+      "name": "spike_crystal_03",
+      "transform":
+      {
+        "pos": "-4.81259 0.0 -2.00188",
+        "rotation": "0.0 0.0 0.0 -1.0"
+      },
+      "render":
+      [
+        {
+          "mesh": "data/meshes/spike_crystal_03.instanced_mesh",
+          "materials":
+          [
+             "data/materials/spike_crystal_03.material"
+          ]
+        }
+      ]
+    }
+  },
+  {
+    "entity":
+    {
+      "name": "spike_crystal_02",
+      "transform":
+      {
+        "pos": "-4.81259 0.0 -2.00188",
+        "rotation": "0.0 0.0 0.0 -1.0"
+      },
+      "render":
+      [
+        {
+          "mesh": "data/meshes/spike_crystal_02.instanced_mesh",
+          "materials":
+          [
+             "data/materials/spike_crystal_02.material"
+          ]
+        }
+      ]
+    }
+  },
+  {
+    "entity":
+    {
+      "name": "spike_crystal_01",
+      "transform":
+      {
+        "pos": "-4.81259 0.0 -2.00188",
+        "rotation": "0.0 0.0 0.0 -1.0"
+      },
+      "render":
+      [
+        {
+          "mesh": "data/meshes/spike_crystal_01.instanced_mesh",
+          "materials":
+          [
+             "data/materials/spike_crystal_01.material"
+          ]
+        }
+      ]
+    }
+  }
+]

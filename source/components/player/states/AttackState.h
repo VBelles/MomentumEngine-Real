@@ -13,17 +13,17 @@ protected:
 		Launch, Startup, Active, Recovery
 	};
 
-	CTimer timer;
+	CTimer2 timer;
 	float hitboxOutTime;
 	float hitEndTime;
 	float animationEndTime;
 
-	CTimer cancelTimer;
+	CTimer2 cancelTimer;
 	float cancelableTime;
 	float interruptibleTime;
 	float walkableTime = frames2sec(120.f);
 
-	CTimer invulnerableTimer;
+	CTimer2 invulnerableTimer;
 	float invulnerabilityStartTime;
 	float invulnerabilityEndTime;
 	float superarmorStartTime;

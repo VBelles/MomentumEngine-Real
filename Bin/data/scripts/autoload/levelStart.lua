@@ -1,5 +1,4 @@
 -- function onLevelStart_game_state()
-
 -- 	blockMenu(true)
 -- 	takePlayerControl()
 --     startSong("intro")

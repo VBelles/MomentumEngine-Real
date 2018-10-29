@@ -8,7 +8,7 @@ private:
 	std::string animation = "run1";
 
 	bool hasSlash = false;
-	CTimer movementTimer;
+	CTimer2 movementTimer;
 
 public:
 	RunActionState(StateManager* stateManager);

@@ -443,20 +443,6 @@
       "type": "kippah"
     },
     {
-      "id": "tutorialEnemyAir",
-      "done": false,
-      "position": "-110.116 -42.6276 225.273",
-      "level": "level00",
-      "type": "kippah"
-    },
-    {
-      "id": "tutorialEnemyMelee",
-      "done": false,
-      "position": "-98.8553 -39.612 200.162",
-      "level": "level00",
-      "type": "dreidel"
-    },
-    {
       "id": "dani_air_021",
       "done": false,
       "position": "288.58 -8.86743 -117.576",

@@ -618,7 +618,7 @@
         }
       ],
       "lod" : {
-        "threshold" : 0.5,
+        "threshold" : 0.25,
         "children" : [
           "rocas_ojo_derecho"
         ]

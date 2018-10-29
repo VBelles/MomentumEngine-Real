@@ -7,7 +7,7 @@ class TCompScreenTransition;
 class TeleportActionState : public IActionState {
 private:
 	bool finish = false;
-	CTimer timer;
+	CTimer2 timer;
 	float respawnTime = 0.7f;
 	float fallingDamage = 1;
 	int frameCounter = 0;

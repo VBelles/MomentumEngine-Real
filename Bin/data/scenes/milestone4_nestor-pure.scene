@@ -2,6 +2,47 @@
   {
     "entity":
     {
+      "name": "nes_platform_civilization_emissive_102",
+      "transform":
+      {
+        "pos": "-102.296 43.3288 -73.3538",
+        "rotation": "0.0 0.0 0.0 -1.0"
+      },
+      "render":
+      [
+        {
+          "mesh": "data/meshes/nes_platform_civilization_emissive_102.mesh",
+          "materials":
+          [
+            "data/materials/platform_v1_pureON.material"
+          ],
+          "enabled": false
+        },
+        {
+          "mesh": "data/meshes/nes_platform_civilization_emissive_102.mesh",
+          "materials":
+          [
+            "data/materials/platform_v1_pure.material"
+          ],
+          "enabled": true
+        }
+      ],
+      "purity": {},
+      "collider":
+      {
+        "mesh_src": "data/meshes/nes_platform_civilization_emissive_102.col_mesh",
+        "shape": "convex_mesh",
+        "type": "static",
+        "group":
+        [
+          "scenario"
+        ]
+      }
+    }
+  },
+  {
+    "entity":
+    {
       "name": "nes_platform_civilization_emissive_101",
       "transform":
       {

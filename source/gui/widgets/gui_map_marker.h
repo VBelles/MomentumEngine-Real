@@ -10,6 +10,7 @@ namespace GUI {
 		CMapMarker() = default;
 		~CMapMarker();
 		void render() override;
+		void renderAll() override;
 		void setCurrentState(CButton::EState newState);
 		void computeAbsolute() override;
 		bool overlaps(VEC2 pos) override;
@@ -23,10 +24,9 @@ namespace GUI {
 	private:
 		VEC3 pos = VEC3::Zero;
 		bool _visible = false;
-		std::string alternText = "???";
-		CButton::EState _currentState = CButton::EState::ST_Idle;
 		std::string mapWidget = "";
 
+		CButton* _alternButton = nullptr;
 		CButton* _button = nullptr;
 		CButton* _marker = nullptr;
 

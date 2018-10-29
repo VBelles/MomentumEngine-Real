@@ -150,17 +150,17 @@ public:
 	float huggingWallMaxPitch = deg2rad(15);
 	float attachWallByInputMinDot = 0.3f;
 	float attachWallByFrontMinDot = 0.7f;
-	CTimer sameNormalReattachTimer;
+	CTimer2 sameNormalReattachTimer;
 	float sameNormalReattachTime = 0.8f;
-	CTimer lockHuggingWallTimer;
+	CTimer2 lockHuggingWallTimer;
 	float lockHuggingWallTime = 0.8f;
 	PxVec3 lastWallNormal = { 0,0,0 };
 
 	CHandle grabTarget;
 
-	CTimer disabledClimbingTimer;
+	CTimer2 disabledClimbingTimer;
 	bool canClimb = true;
-	CTimer platformChangeSlopeTimer;
+	CTimer2 platformChangeSlopeTimer;
 
 	//Parent methods
 	static void registerMsgs();

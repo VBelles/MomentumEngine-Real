@@ -4,7 +4,7 @@
 
 class FallingAttackActionState : public AirborneActionState, public AttackState {
 private:
-	CTimer timer;
+	CTimer2 timer;
 	float hitboxOutTime = frames2sec(12);
 	float fallingMultiplier = 2.5f;
 	float maxFallingVelocity = 55.f;
@@ -16,7 +16,7 @@ private:
 	float propelDuration = 0.5f;
 
 	bool isSlashOut = false;
-	CTimer movementTimer;
+	CTimer2 movementTimer;
 
 	std::string animation = "falling_attack";
 	std::string animationPositioning = "falling_attack_positioning";

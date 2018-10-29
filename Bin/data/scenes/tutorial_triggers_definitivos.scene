@@ -29,7 +29,7 @@
           "Press \"BACK\" (\"M\") to view the map."
         ],
         "show_time": 0.5,
-        "refresh_time": 10,
+        "refresh_time": 5,
         "cancel_time": 0.5,
         "font_size": 46
       }
@@ -97,7 +97,7 @@
       "show_dialog":{
         "dialogs":[
           "Launch enemies by holding attack buttons, then combo that into a jump and a propel.",
-          "Holding the long jump button will result in a horizontal launcher, while holding the regular jump button will result in a vertical launcher."
+          "Holding the fast attack button will result in a horizontal launcher, while holding the strong attack button will result in a vertical launcher."
         ],
         "show_time": 0.5,
         "refresh_time": 3,
@@ -135,7 +135,7 @@
           "You can grab and propel on enemies by pressing the long or regular jump buttons in the air.\nDoing so will also grant you power."
         ],
         "show_time": 0.3,
-        "refresh_time": 2,
+        "refresh_time": 3,
         "cancel_time": 0.8,
         "font_size": 46
       }
@@ -170,7 +170,7 @@
           "There are elements which you can only interact with if you have no energy.\nYou release one level of energy each time you press \"LB\" (\"E\")."
         ],
         "show_time": 0.3,
-        "refresh_time": 1,
+        "refresh_time": 3,
         "cancel_time": 0.8,
         "font_size": 46
       }
@@ -242,7 +242,7 @@
           "Press \"X\" (\"Left Shift\") to perform a long jump."
         ],
         "show_time": 0.5,
-        "refresh_time": 0.5,
+        "refresh_time": 3,
         "cancel_time": 1,
         "font_size": 46
       }
@@ -277,7 +277,7 @@
           "Press \"A\" (\"Space Bar\") to jump."
         ],
         "show_time": 2.5,
-        "refresh_time": 0.5,
+        "refresh_time": 3,
         "cancel_time": 1,
         "font_size": 46
       }

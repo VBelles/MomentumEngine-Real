@@ -1,5 +1,6 @@
 #include "mcv_platform.h"
 #include "comp_show_dialog.h"
+//#include "gui/widgets/gui_dialog.h"
 
 DECL_OBJ_MANAGER("show_dialog", TCompShowDialog);
 
@@ -31,7 +32,7 @@ void TCompShowDialog::update(float delta){
 	if (!isPlayerInside) return;
 	if (!firstMessageShown) {
 		if (showMessageTimer.elapsed() >= timeToShowMessage) {
-			isCancelable = false;
+			isCancelable = true;
 			EngineGUI.showDialog(dialogsToShow[dialogIndex], fontSize, isCancelable);
 			firstMessageShown = true;
 			dialogIndex = (dialogIndex + 1) % dialogsToShow.size();
@@ -42,6 +43,7 @@ void TCompShowDialog::update(float delta){
 		}
 	}
 	else {
+		//alargar estos tiempos?
 		if (!isCancelable && cancelTimer.elapsed() >= timeToAllowCancel) {
 			isCancelable = true;
 			EngineGUI.setCancelableWithButton(isCancelable);
@@ -53,8 +55,8 @@ void TCompShowDialog::update(float delta){
 			}
 			if(dialogIndex == 0){
 				//time to refresh
-				if (refreshMessageTimer.elapsed() >= timeToRefreshMessage) {
-					isCancelable = false;
+				if (EngineInput["previous_dialog"].getsPressed() || refreshMessageTimer.elapsed() >= timeToRefreshMessage) {
+					isCancelable = true;
 					EngineGUI.showDialog(dialogsToShow[dialogIndex], fontSize, isCancelable);
 					dialogIndex = (dialogIndex + 1) % dialogsToShow.size();
 					cancelTimer.reset();
@@ -65,7 +67,7 @@ void TCompShowDialog::update(float delta){
 			}
 			else {
 				//show next dialog
-				isCancelable = false;
+				isCancelable = true;
 				EngineGUI.showDialog(dialogsToShow[dialogIndex], fontSize, isCancelable);
 				dialogIndex = (dialogIndex + 1) % dialogsToShow.size();
 				cancelTimer.reset();
@@ -74,11 +76,34 @@ void TCompShowDialog::update(float delta){
 				}
 			}
 		}
+		else {
+			if (EngineInput["previous_dialog"].getsPressed()) {
+				if (dialogIndex == 0 && lastMessageReached) {
+					dialogIndex = dialogsToShow.size() - 2;
+					if (dialogIndex < 0) dialogIndex = 0;
+					EngineGUI.showDialog(dialogsToShow[dialogIndex], fontSize, isCancelable);
+					isCancelable = true;
+					dialogIndex = (dialogIndex + 1) % dialogsToShow.size();
+					cancelTimer.reset();
+					if (dialogIndex == 0) {
+						lastMessageReached = true;
+					}
+				}else if(dialogIndex > 0){
+					dialogIndex = dialogIndex - 2;
+					if (dialogIndex < 0) dialogIndex = 0;
+					EngineGUI.showDialog(dialogsToShow[dialogIndex], fontSize, isCancelable);
+					isCancelable = true;
+					dialogIndex = (dialogIndex + 1) % dialogsToShow.size();
+					cancelTimer.reset();
+				}
+			}
+		}
 	}
 
 }
 
 void TCompShowDialog::onAllScenesCreated(const TMsgAllScenesCreated & msg) {
+	//dialogWidget = (CDialog*)EngineGUI.getWidget(widgetName);
 	std::string name = ((CEntity*)CHandle(this).getOwner())->getName();
 	UniqueElement* uniqueEvent = EngineUniques.getUniqueEvent(name);
 	if (uniqueEvent && uniqueEvent->done) {

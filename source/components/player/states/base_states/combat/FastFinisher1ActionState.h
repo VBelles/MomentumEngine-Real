@@ -16,7 +16,7 @@ private:
 	VEC2 launchSpeed = { 30.f, 6.f };
 	bool isSlashOut = false;
 
-	CTimer movementTimer;
+	CTimer2 movementTimer;
 
 	std::string animation = "fast_finisher1";
 

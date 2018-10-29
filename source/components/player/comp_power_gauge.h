@@ -9,7 +9,7 @@ private:
 	float dropSpeed[NUMBER_OF_POWER_LEVELS];
 	bool isPure = true;
 	float freezeDropTime = 1.8f;
-	CTimer freezeDropTimer;
+	CTimer2 freezeDropTimer;
 
 	float minIncreasePerFrame = 1.f;
 	float targetPower;

@@ -3,6 +3,8 @@
 #include "gui/gui_parser.h"
 #include "modules/system_modules/scripting/scripting_player.h"
 #include "modules/system_modules/sound/music_player.h"
+#include "modules/game_modules/game/module_game.h"
+#include "components/player/comp_player_model.h"
 
 bool CModuleMapMenu::start() {
 	pause = false;
@@ -10,6 +12,10 @@ bool CModuleMapMenu::start() {
 
 	GUI::CParser parser;
 	parser.parseFile(menuFile);
+
+	auto showChrysalisCB = [&] {
+		showChrysalisesCallback();
+	};
 
 	controller = new GUI::CMapMenuController();
 	controller->registerOption("temple_teleport");
@@ -22,6 +28,18 @@ bool CModuleMapMenu::start() {
 	controller->registerOption("graveyard_teleport");
 	controller->registerOption("behind_tower_teleport");
 	controller->registerOption("gate_of_doom_teleport");
+
+	controller->registerOption("show_chrysalis_button", showChrysalisCB);
+
+	UniqueElement* unique = EngineUniques.getUniqueEvent("chrysalis_help");
+	if (unique && unique->done) {
+		controller->unregisterOption("show_chrysalis_button");
+		EngineGUI.getWidget("show_chrysalis_button", true)->getParams()->_visible = false;
+		showChrysalises();
+	}
+	else {
+		hideCrysalises();
+	}
 
 	return true;
 }
@@ -42,7 +60,7 @@ void CModuleMapMenu::update(float delta) {
 }
 
 void CModuleMapMenu::render() {
-	dbg("Render map menu\n");
+	//dbg("Render map menu\n");
 	if (CApp::get().isDebug()) {
 		//if (ImGui::TreeNode("Map menu")) {
 			ImGui::DragFloat2("Map offset", &mapOffset.x, 1.f, -1000.f, 1000.f);
@@ -74,6 +92,8 @@ void CModuleMapMenu::onMapButtonPressed() {
 		EngineSound.emitEvent(SOUND_MENU_BACK);
 	}
 
+	EngineGame->showHUD(!pause);
+	EngineGUI.setDialogActive(!pause);
 	EngineRender.setActive(!pause);
 	EngineScripting.setActive(!pause);
 	Engine.getEntities().setActive(!pause);
@@ -96,4 +116,40 @@ void CModuleMapMenu::setBlocked(bool blocked) {
 
 bool CModuleMapMenu::isBlocked() {
 	return blocked;
+}
+
+void CModuleMapMenu::showChrysalisesCallback() {
+	CEntity* playerEntity = getEntityByName(PLAYER_NAME);
+	TCompPlayerModel* playerModel = playerEntity->get<TCompPlayerModel>();
+	TCompCollectableManager* collectableManager = playerModel->get<TCompCollectableManager>();
+	if (collectableManager->spendCoins(coinsToSpend)) {
+		controller->unregisterOption("show_chrysalis_button");
+		EngineGUI.getWidget("show_chrysalis_button", true)->getParams()->_visible = false;
+		showChrysalises();
+		UniqueElement* unique = EngineUniques.getUniqueEvent("chrysalis_help");
+		if (unique) unique->done = true;
+	}
+	else {
+		EngineSound.emitEvent(SOUND_MENU_UNAVAILABLE);
+	}
+}
+
+void CModuleMapMenu::showChrysalises() {
+	GUI::CWidget* wdgt = EngineGUI.getWidget("chrysalises_map_menu", true);
+	if (wdgt) {
+		for (GUI::CWidget* child : wdgt->getChildren()) {
+			if (!EngineUniques.getUniqueChrysalis(child->getName())->done) {
+				child->getParams()->_visible = true;
+			}
+		}
+	}
+}
+
+void CModuleMapMenu::hideCrysalises() {
+	GUI::CWidget* wdgt = EngineGUI.getWidget("chrysalises_map_menu", true);
+	if (wdgt) {
+		for (GUI::CWidget* child : wdgt->getChildren()) {
+			child->getParams()->_visible = false;
+		}
+	}
 }
