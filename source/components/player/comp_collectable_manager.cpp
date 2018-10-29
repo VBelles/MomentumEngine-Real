@@ -220,6 +220,7 @@ void TCompCollectableManager::onCollect(const TMsgCollect& msg) {
 		EngineSound.emitEvent(SOUND_COLLECT_COIN, transform);
 		break;
 	case Type::LIFEPIECE:
+		numberOfLifePiecesTaken++;
 		collectable->collect();
 		addUniqueCollectable(Type::LIFEPIECE, entity->getName());
 		(static_cast<TCompDummyCollectable*>(get<TCompDummyCollectable>()))->activateSequence(DummyCollectableType::DUMMY_LIFEPIECE);

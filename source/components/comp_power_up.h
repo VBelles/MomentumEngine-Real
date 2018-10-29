@@ -8,6 +8,7 @@ struct TMsgTriggerEnter;
 struct TMsgColliderDestroyed;
 
 class TCompPlayerModel;
+class TCompCollectableManager;
 
 class TCompPowerUp : public TCompBase {
 	
@@ -19,9 +20,11 @@ private:
 	CHandle transformHandle;
 	CHandle playerModelHandle;
 	CHandle playerTransformHandle;
+	CHandle collectableManagerHandle;
 	TCompTransform* getTransform();
 	TCompPlayerModel* getPlayerModel();
 	TCompTransform* getPlayerTransform();
+	TCompCollectableManager* getCollectableManager();
 
 	float rotationSpeed = 2.5f;
 
