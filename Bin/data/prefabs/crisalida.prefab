@@ -33,6 +33,16 @@
 			"light_flicker": {
 				"intensityVariation": 0.3,
 				"variationSpeed": 0.5
+			},
+			"particles":{
+				"launch": true,
+				"systems":[
+					{
+						"id": "ray",
+						"core": "data/particles/chrysalis.particles",
+						"offset": "0 2 0"
+					}
+				]
 			}
 		}
 	}
