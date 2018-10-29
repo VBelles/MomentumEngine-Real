@@ -7,6 +7,7 @@
 #include "components/comp_day_night_cycle.h"
 #include "components/platforms/comp_platform_simple.h"
 #include "components/comp_final_door_controller.h"
+#include "components/comp_light_point.h"
 #include "modules/game_modules/module_pause.h"
 #include "modules/game_modules/module_map_menu.h"
 
@@ -30,6 +31,8 @@ void ScriptingEntities::bind(SLB::Manager* manager) {
 	manager->set("resumeEnemies", SLB::FuncCall::create(ScriptingEntities::resumeEnemies));
 	manager->set("rotateFinalDoor", SLB::FuncCall::create(ScriptingEntities::rotateFinalDoor));
 	manager->set("enableRender", SLB::FuncCall::create(ScriptingEntities::enableRender));
+	manager->set("turnOnLight", SLB::FuncCall::create(ScriptingEntities::turnOnLight));
+	manager->set("turnOffLight", SLB::FuncCall::create(ScriptingEntities::turnOffLight));
 	manager->set("createCollider", SLB::FuncCall::create(ScriptingEntities::createCollider));
 	manager->set("destroyCollider", SLB::FuncCall::create(ScriptingEntities::destroyCollider));
 	manager->set("blockMenu", SLB::FuncCall::create(ScriptingEntities::blockMenu));
@@ -195,6 +198,26 @@ void ScriptingEntities::enableRender(std::string entityName, bool enabled) {
 			else {
 				render->disable();
 			}
+		}
+	}
+}
+
+void ScriptingEntities::turnOnLight(std::string entityName) {
+	CEntity* entity = getEntityByName(entityName);
+	if (entity) {
+		TCompLightPoint* light = entity->get<TCompLightPoint>();
+		if (light) {
+			light->setOn(true);
+		}
+	}
+}
+
+void ScriptingEntities::turnOffLight(std::string entityName) {
+	CEntity* entity = getEntityByName(entityName);
+	if (entity) {
+		TCompLightPoint* light = entity->get<TCompLightPoint>();
+		if (light) {
+			light->setOn(false);
 		}
 	}
 }
