@@ -7,6 +7,174 @@
             "rotation": "0.0 0.766044 0.0 -0.642788",
             "level": "level00",
             "type": "chrysalis"
+        },
+        {
+            "id": "dani_chrysalis_003",
+            "done": false,
+            "position": "-116.579 -1.52567 367.218",
+            "rotation": "0.0 0.0 0.0 -1.0",
+            "level": "level00",
+            "type": "chrysalis"
+        },
+        {
+            "id": "dani_chrysalis_002",
+            "done": false,
+            "position": "-71.859 -14.6563 231.77",
+            "rotation": "0.0 0.0 0.0 -1.0",
+            "level": "level00",
+            "type": "chrysalis"
+        },
+        {
+            "id": "dani_chrysalis_001",
+            "done": false,
+            "position": "208.282 65.8826 -225.115",
+            "rotation": "0.0 0.0 0.0 -1.0",
+            "level": "level00",
+            "type": "chrysalis"
+        },
+        {
+            "id": "plataformeo_chrysalis002",
+            "done": false,
+            "position": "64.7748 77.9533 161.012",
+            "rotation": "0.0 0.173648 0.0 -0.984808",
+            "level": "level00",
+            "type": "chrysalis"
+        },
+        {
+            "id": "plataformeo_chrysalis001",
+            "done": false,
+            "position": "147.018 77.047 -248.187",
+            "rotation": "0.0 -0.461749 0.0 -0.887011",
+            "level": "level00",
+            "type": "chrysalis"
+        },
+        {
+            "id": "dani_chrysalis_000",
+            "done": false,
+            "position": "323.767 -4.17547 -54.0877",
+            "rotation": "0.0 0.0 0.0 -1.0",
+            "level": "level00",
+            "type": "chrysalis"
+        },
+        {
+            "id": "nes_chrysalis016",
+            "done": false,
+            "position": "-22.5303 50.2004 205.431",
+            "rotation": "0.0 0.130526 0.0 -0.991445",
+            "level": "level00",
+            "type": "chrysalis"
+        },
+        {
+            "id": "nes_chrysalis015",
+            "done": false,
+            "position": "-211.276 51.3446 -46.8401",
+            "rotation": "0.0 0.130526 0.0 -0.991445",
+            "level": "level00",
+            "type": "chrysalis"
+        },
+        {
+            "id": "nes_chrysalis014",
+            "done": false,
+            "position": "-107.621 71.734 -0.0996259",
+            "rotation": "0.0 0.130526 0.0 -0.991445",
+            "level": "level00",
+            "type": "chrysalis"
+        },
+        {
+            "id": "nes_chrysalis013",
+            "done": false,
+            "position": "76.1644 43.9547 -15.2952",
+            "rotation": "0.0 -0.173648 0.0 -0.984808",
+            "level": "level00",
+            "type": "chrysalis"
+        },
+        {
+            "id": "nes_chrysalis012",
+            "done": false,
+            "position": "-102.177 58.2705 -89.8067",
+            "rotation": "0.0 0.130526 0.0 -0.991445",
+            "level": "level00",
+            "type": "chrysalis"
+        },
+        {
+            "id": "nes_chrysalis011",
+            "done": false,
+            "position": "-226.064 61.3252 36.7811",
+            "rotation": "0.0 0.130526 0.0 -0.991445",
+            "level": "level00",
+            "type": "chrysalis"
+        },
+        {
+            "id": "nes_chrysalis010",
+            "done": false,
+            "position": "38.3721 45.317 -118.957",
+            "rotation": "0.0 0.130526 0.0 -0.991445",
+            "level": "level00",
+            "type": "chrysalis"
+        },
+        {
+            "id": "nes_chrysalis007",
+            "done": false,
+            "position": "-58.1265 38.763 -35.1392",
+            "rotation": "0.0 -0.707107 0.0 -0.707107",
+            "level": "level00",
+            "type": "chrysalis"
+        },
+        {
+            "id": "nes_chrysalis006",
+            "done": false,
+            "position": "-12.9909 42.4924 -144.56",
+            "rotation": "0.0 -0.92388 0.0 -0.382683",
+            "level": "level00",
+            "type": "chrysalis"
+        },
+        {
+            "id": "nes_chrysalis008",
+            "done": false,
+            "position": "51.9843 44.2449 -49.1208",
+            "rotation": "0.0 0.0436194 0.0 -0.999048",
+            "level": "level00",
+            "type": "chrysalis"
+        },
+        {
+            "id": "nes_chrysalis005",
+            "done": false,
+            "position": "-143.461 51.7081 122.43",
+            "rotation": "0.0 -0.422618 0.0 -0.906308",
+            "level": "level00",
+            "type": "chrysalis"
+        },
+        {
+            "id": "nes_chrysalis004",
+            "done": false,
+            "position": "152.186 145.216 -148.834",
+            "rotation": "0.0 0.130526 0.0 -0.991445",
+            "level": "level00",
+            "type": "chrysalis"
+        },
+        {
+            "id": "nes_chrysalis003",
+            "done": false,
+            "position": "20.3768 52.5476 -238.221",
+            "rotation": "0.0 0.130526 0.0 -0.991445",
+            "level": "level00",
+            "type": "chrysalis"
+        },
+        {
+            "id": "nes_chrysalis002",
+            "done": false,
+            "position": "27.8394 34.8865 -204.39",
+            "rotation": "0.0 0.130526 0.0 -0.991445",
+            "level": "level00",
+            "type": "chrysalis"
+        },
+        {
+            "id": "nes_chrysalis001",
+            "done": false,
+            "position": "-11.2709 15.1494 -187.693",
+            "rotation": "0.0 0.130526 0.0 -0.991445",
+            "level": "level00",
+            "type": "chrysalis"
         }
     ]
 }
