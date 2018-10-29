@@ -16,7 +16,6 @@ private:
 	Respawner* respawner;
 	EnemyManager* enemyManager;
 	bool ambientSoundLaunched = false;
-	VEC2 offset = VEC2(500, 500);
 
 public:
 	CModuleGame(const std::string& aname) : IModule(aname) {}

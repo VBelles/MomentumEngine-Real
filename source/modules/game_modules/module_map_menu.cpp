@@ -35,13 +35,20 @@ bool CModuleMapMenu::stop() {
 }
 
 void CModuleMapMenu::update(float delta) {
-	if (!blocked && !CApp::get().isDebug() && EngineInput["map"].getsPressed()
+	if (!blocked && /*!CApp::get().isDebug() &&*/ EngineInput["map"].getsPressed()
 		|| pause && EngineInput["menu_back"].getsPressed()) {
 		onMapButtonPressed();
 	}
 }
 
-void CModuleMapMenu::render() {}
+void CModuleMapMenu::render() {
+	dbg("Render map menu\n");
+	if (CApp::get().isDebug()) {
+		//if (ImGui::TreeNode("Map menu")) {
+			ImGui::DragFloat2("Map offset", &mapOffset.x, 1.f, -1000.f, 1000.f);
+		//}
+	}
+}
 
 void CModuleMapMenu::onMapButtonPressed() {
 	if (!pause && !ScriptingPlayer::isPlayerGrounded()) {
@@ -55,7 +62,7 @@ void CModuleMapMenu::onMapButtonPressed() {
 		controller->setCurrentOption(0);
 		Engine.getGUI().activateWidget("map_menu");
 		ScriptingPlayer::givePlayerControl(); //Necesario ya que se fuerza salir del debug y puede no tener el control
-		CApp::get().setDebugMode(false);
+		//CApp::get().setDebugMode(false);
 		cb_globals.game_paused = 1;
 		EngineSound.getMusicPlayer()->setPauseMenu(true);
 	}

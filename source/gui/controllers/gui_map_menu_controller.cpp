@@ -91,9 +91,11 @@ namespace GUI {
 		VEC2 vRatio = VEC2(ratio2, -ratio2);
 		
 		playerImagePos *= vRatio;
-		playerImagePos += offset;
 
-		dbg("%f %f\n", playerImagePos.x, playerImagePos.y);
+		CModuleMapMenu* module = (CModuleMapMenu*)EngineModules.getModule(mapModule);
+		playerImagePos +=module->mapOffset;
+
+		//dbg("%f %f\n", playerImagePos.x, playerImagePos.y);
 
 		auto playerMapWidget = Engine.getGUI().getWidget("map_player", true);
 		playerMapWidget->getParams()->_position = playerImagePos;

@@ -10,6 +10,8 @@ private:
 	bool blocked = false;
 
 public:
+	VEC2 mapOffset = VEC2(0, 0);
+
 	CModuleMapMenu(const std::string& name) : IModule(name) {}
 	bool start() override;
 	bool stop() override;
