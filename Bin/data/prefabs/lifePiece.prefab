@@ -24,6 +24,16 @@
 				"radius" : 0.65,
 				"group": ["all"],
 				"mask": ["player"]
+			},
+			"light_point": {
+				"intensity": 5,
+				"radius": 4,
+				"color" :  "0.73 0.47 0.95 1",
+				"is_on" : true
+			},
+			"light_flicker": {
+				"intensityVariation": 0.3,
+				"variationSpeed": 0.5
 			}
 		}
 	}

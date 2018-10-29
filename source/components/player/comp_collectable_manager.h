@@ -29,6 +29,7 @@ private:
 	int numberOfLifePiecesTaken = 0;
 	std::vector<std::string> finalDoorChrysalidesNames;
 	std::vector<CHandle> finalDoorChrysalides;
+	std::vector<CHandle> finalDoorChrysalisLights;
 	CTimer2 doorChrysalidesTimer;
 	float doorChrysalidesTime = 4.3f;
 	bool spawnDoorChrysalis = false;
