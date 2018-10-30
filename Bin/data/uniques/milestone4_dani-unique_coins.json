@@ -1061,14 +1061,14 @@
     {
       "id": "dani_coin_062",
       "done": false,
-      "position": "170.199 31.4588 -158.303",
+      "position": "170.199 33.9977 -158.303",
       "level": "level00",
       "type": "coins"
     },
     {
       "id": "dani_coin_061",
       "done": false,
-      "position": "160.724 31.5499 -169.658",
+      "position": "160.724 33.5344 -169.658",
       "level": "level00",
       "type": "coins"
     },
@@ -1082,7 +1082,7 @@
     {
       "id": "dani_coin_059",
       "done": false,
-      "position": "171.191 34.6732 -132.354",
+      "position": "170.429 34.6732 -136.065",
       "level": "level00",
       "type": "coins"
     },
