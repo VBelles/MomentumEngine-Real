@@ -15,7 +15,7 @@ CModuleSound::CModuleSound(const std::string& name) : IModule(name) {
 bool CModuleSound::start() {
 	res = Studio::System::create(&system);
 	assert(res == FMOD_OK);
-	res = system->initialize(128, FMOD_STUDIO_INIT_ALLOW_MISSING_PLUGINS, FMOD_INIT_3D_RIGHTHANDED, extraDriverData);
+	res = system->initialize(1024, FMOD_STUDIO_INIT_ALLOW_MISSING_PLUGINS, FMOD_INIT_3D_RIGHTHANDED, extraDriverData);
 	//extraDriverData.
 	system->setListenerAttributes(0, &listenerAttributes);
 	system->getLowLevelSystem(&lowLevelSystem);
@@ -336,5 +336,9 @@ void CModuleSound::render() {
 
 CMusicPlayer* CModuleSound::getMusicPlayer() {
 	return musicPlayer;
+}
+
+FMOD_3D_ATTRIBUTES* CModuleSound::getListener() {
+	return &listenerAttributes;
 }
 
