@@ -76,6 +76,10 @@ void CModuleMapMenu::onMapButtonPressed() {
 		CApp::get().setDebugMode(false);
 		cb_globals.game_paused = 1;
 		EngineSound.getMusicPlayer()->setPauseMenu(true);
+		UniqueElement* unique = EngineUniques.getUniqueEvent("chrysalis_help");
+		if (unique && unique->done) {
+			showChrysalises();
+		}
 	}
 	else {
 		Engine.getGUI().deactivateWidget("map_menu");
@@ -130,9 +134,7 @@ void CModuleMapMenu::showChrysalisesCallback() {
 void CModuleMapMenu::showChrysalises() {
 	GUI::CWidget* wdgt = EngineGUI.getWidget("chrysalises_map_menu", true);
 	for (GUI::CWidget* child : wdgt->getChildren()) {
-		if (!EngineUniques.getUniqueChrysalis(child->getName())->done) {
-			child->getParams()->_visible = true;
-		}
+		child->getParams()->_visible = !EngineUniques.getUniqueChrysalis(child->getName())->done;
 	}
 }
 
