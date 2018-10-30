@@ -14,7 +14,7 @@
 			{
 				"name" : "test_buttons",
 				"type" : "widget",
-				"position" : "810 550",
+				"position" : "810 450",
 				"children" : [
 					{
 						"name" : "resume_game",
@@ -47,7 +47,8 @@
 							"color" : "0.8 0.8 0.8 1",
 							"texture" : "data/textures/gui/options_selected.dds"
 						}
-					},					{
+					},
+					{
 						"name" : "controls",
 						"type" : "button",
 						"position" : "0 160",
@@ -80,17 +81,33 @@
 						}
 					},
 					{
-						"name" : "exit_game",
+						"name" : "credits",
 						"type" : "button",
 						"position" : "0 320",
-						"size" :"336 104",
-						"texture" : "data/textures/gui/bt_exit_game.dds",
+						"size" : "360 104",
+						"texture" : "data/textures/gui/bt_credits.dds",
 						"selected" : {
 							"position" : "-30 320",
-							"texture" : "data/textures/gui/bt_exit_game_selected.dds"
+							"texture" : "data/textures/gui/bt_credits_selected.dds"
 						},
 						"pressed" : {
 							"position" : "-30 320",
+							"color" : "0.8 0.8 0.8 1",
+							"texture" : "data/textures/gui/bt_credits_selected.dds"
+						}
+					},
+					{
+						"name" : "exit_game",
+						"type" : "button",
+						"position" : "0 400",
+						"size" :"336 104",
+						"texture" : "data/textures/gui/bt_exit_game.dds",
+						"selected" : {
+							"position" : "-30 400",
+							"texture" : "data/textures/gui/bt_exit_game_selected.dds"
+						},
+						"pressed" : {
+							"position" : "-30 400",
 							"color" : "0.8 0.8 0.8 1",
 							"texture" : "data/textures/gui/bt_exit_game_selected.dds"
 						}

@@ -11,6 +11,7 @@
 #include "modules/game_modules/module_map_menu.h"
 #include "modules/game_modules/module_options_ingame.h"
 #include "modules/game_modules/module_controls_help.h"
+#include "modules/game_modules/module_credits.h"
 #include "utils/timer_frames.h"
 
 std::recursive_mutex mtx;
@@ -47,6 +48,7 @@ bool CEngine::start() {
 	static CModuleOptionsMenu module_options_ingame("options_menu");
 	static CModuleOptionsIngame module_options_menu("options_ingame");
 	static CModuleControlsHelp module_controls_help("controls_help");
+	static CModuleCredits module_credits("credits");
 	static CModuleMapMenu module_map_menu("map_menu");
 
 	_modules.registerSystemModule(&_module_entities);
@@ -73,6 +75,7 @@ bool CEngine::start() {
 	_modules.registerGameModule(&module_options_menu);
 	_modules.registerGameModule(&module_options_ingame);
 	_modules.registerGameModule(&module_controls_help);
+	_modules.registerGameModule(&module_credits);
 	_modules.registerGameModule(&module_map_menu);
 
 	_modules.loadModules("data/modules.json");

@@ -13,13 +13,13 @@ bool CModuleControlsHelp::start() {
 }
 
 bool CModuleControlsHelp::stop() {
-	Engine.getGUI().unregisterWidget("controls");
+	EngineGUI.unregisterWidget("controls");
 	return true;
 }
 
 void CModuleControlsHelp::update(float delta) {
 	if (active && EngineInput["menu_back"].getsReleased()) {
-		Engine.getGUI().deactivateWidget("controls");
+		EngineGUI.deactivateWidget("controls");
 		active = false;
 
 		cb_globals.game_paused = 0;
@@ -41,7 +41,7 @@ void CModuleControlsHelp::update(float delta) {
 		}
 	}
 	else if (active && EngineInput["menu_accept"].getsReleased()) {
-		GUI::CWidget* wdgt = Engine.getGUI().getWidget("controls")->getChild("controller");
+		GUI::CWidget* wdgt = EngineGUI.getWidget("controls")->getChild("controller");
 		wdgt->getParams()->_visible = !wdgt->getParams()->_visible;
 	}
 }
@@ -50,7 +50,7 @@ void CModuleControlsHelp::render() {}
 
 void CModuleControlsHelp::activate() {
 	active = true;
-	Engine.getGUI().activateWidget("controls");
+	EngineGUI.activateWidget("controls");
 
 	TCompSound* sound = static_cast<CEntity*>(getEntityByName(SOUND_PLAYER))->get<TCompSound>();
 	ScriptingPlayer::givePlayerControl(); //Necesario ya que se fuerza salir del debug y puede no tener el control

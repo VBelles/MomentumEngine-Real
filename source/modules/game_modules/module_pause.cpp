@@ -9,6 +9,7 @@
 #include "modules/system_modules/sound/music_player.h"
 #include "modules/game_modules/module_options_ingame.h"
 #include "modules/game_modules/module_controls_help.h"
+#include "modules/game_modules/module_credits.h"
 
 bool CModulePause::start() {
 	pause = false;
@@ -34,6 +35,10 @@ bool CModulePause::start() {
 		EngineModules.changeGameState("main_menu", true);
 		EngineSound.getMusicPlayer()->setCurrentSong(CMusicPlayer::Song::MENU);
 	};
+	auto creditsCB = [&] {
+		onPausePressed();
+		((CModuleCredits*)EngineModules.getModule("credits"))->activate();
+	};
 	auto exitCB = []() {
 		CApp::get().stopMainLoop = true;
 	};
@@ -43,6 +48,7 @@ bool CModulePause::start() {
 	controller->registerOption("options", optionsCB);
 	controller->registerOption("controls", controlsCB);
 	controller->registerOption("main_menu", mainMenuCB);
+	controller->registerOption("credits", creditsCB);
 	controller->registerOption("exit_game", exitCB);
 	blocked = false;
 
@@ -50,9 +56,9 @@ bool CModulePause::start() {
 }
 
 bool CModulePause::stop() {
-	Engine.getGUI().unregisterController(controller);
+	EngineGUI.unregisterController(controller);
 	safeDelete(controller);
-	Engine.getGUI().unregisterWidget("test_pause_menu", true);
+	EngineGUI.unregisterWidget("test_pause_menu", true);
 	blocked = false;
 	return true;
 }
@@ -72,9 +78,9 @@ void CModulePause::onPausePressed() {
 
 	if (pause) {
 		EngineGame->hideChrysalis();
-		Engine.getGUI().registerController(controller);
+		EngineGUI.registerController(controller);
 		controller->setCurrentOption(0);
-		Engine.getGUI().activateWidget("test_pause_menu");
+		EngineGUI.activateWidget("test_pause_menu");
 		ScriptingPlayer::givePlayerControl(); //Necesario ya que se fuerza salir del debug y puede no tener el control
 		CApp::get().setDebugMode(false);
 		cb_globals.game_paused = 1;
@@ -83,8 +89,8 @@ void CModulePause::onPausePressed() {
 	}
 	else {
 		EngineGame->showChrysalis(0.f);
-		Engine.getGUI().deactivateWidget("test_pause_menu");
-		Engine.getGUI().unregisterController(controller);
+		EngineGUI.deactivateWidget("test_pause_menu");
+		EngineGUI.unregisterController(controller);
 		cb_globals.game_paused = 0;
 		EngineSound.getMusicPlayer()->setPauseMenu(false);
 		EngineSound.emitEvent(SOUND_MENU_BACK);

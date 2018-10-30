@@ -20,6 +20,7 @@
     "options_ingame",
     "map_menu",
     "controls_help",
+    "credits",
     "instancing"
   ],
   "render": [

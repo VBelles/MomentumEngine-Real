@@ -401,6 +401,7 @@
     <ClCompile Include="components\comp_final_door_controller.cpp" />
     <ClCompile Include="modules\game_modules\module_options_ingame.cpp" />
     <ClCompile Include="modules\game_modules\module_controls_help.cpp" />
+    <ClCompile Include="modules\game_modules\module_credits.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="..\Bin\data\shaders\ctes.h" />
@@ -834,6 +835,7 @@
     <ClInclude Include="components\comp_final_door_controller.h" />
     <ClInclude Include="modules\game_modules\module_options_ingame.h" />
     <ClInclude Include="modules\game_modules\module_controls_help.h" />
+    <ClInclude Include="modules\game_modules\module_credits.h" />
   </ItemGroup>
   <ItemGroup>
     <None Include="geometry\SimpleMath.inl" />

@@ -1,0 +1,24 @@
+[
+  {
+    "entity":
+    {
+      "name": "nubes_sphere_001",
+      "transform":
+      {
+        "pos": "0.0 0.0 0.0",
+        "rotation": "0.0 0.0 0.0 -1.0"
+      },
+      "render":
+      [
+        {
+          "mesh": "data/meshes/nubes_sphere_001.mesh",
+          "materials":
+          [
+            "data/materials/nubes.material"
+          ],
+          "enabled": true
+        }
+      ]
+    }
+  }
+]
