@@ -96,6 +96,69 @@
 						}
 					}
 				]
+			},
+			{
+				"name": "life_pieces",
+				"type": "widget",
+				"position": "1740 20",
+				"children": [
+					{
+						"name": "life_pieces_icon",
+						"type": "image",
+						"size": "60 66",
+						"texture": "data/textures/gui/hud/life_mask.dds"
+					},
+					{
+						"name": "life_pieces_text",
+						"type": "text",
+						"size": "128 64",
+						"position": "75 0",
+						"font_size": 64,
+						"template_text": "{{life_pieces}}/{{max_life_pieces}}"
+					}
+				]
+			},
+			{
+				"name": "power_ups",
+				"type": "widget",
+				"position": "1740 110",
+				"children": [
+					{
+						"name": "power_ups_icon",
+						"type": "image",
+						"size": "64 64",
+						"texture": "data/textures/gui/monguer.dds"
+					},
+					{
+						"name": "power_ups_text",
+						"type": "text",
+						"size": "128 64",
+						"position": "75 0",
+						"font_size": 64,
+						"template_text": "{{power_ups}}/{{max_power_ups}}"
+					}
+				]
+			},
+			{
+				"name": "chrysalises",
+				"type": "widget",
+				"position": "1690 950",
+				"children": [
+					{
+						"name": "chrysalis_icon",
+						"type": "image",
+						"size": "62 116",
+						"texture": "data/textures/gui/hud/chrysalis_icon.dds"
+					},
+					{
+						"name": "chrysalis_text",
+						"type": "text",
+						"size": "128 64",
+						"position": "75 44",
+						"font_size": 64,
+						"template_text": "{{chrysalis1}}{{chrysalis2}}/{{max_chrysalis}}"
+					}
+				]
 			}
 		]
 	}

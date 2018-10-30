@@ -36,6 +36,15 @@ namespace GUI {
 		EngineGUI.getVariables().getVariant("coin_progress")->setFloat(coinProgress);
 
 		EngineGUI.getVariables().getVariant("chrysalis")->setInt(playermodel->getCollectableManager()->getNumberOfChrysalis());
+		EngineGUI.getVariables().getVariant("chrysalis1")->setInt(playermodel->getCollectableManager()->getNumberOfChrysalis() / 10);
+		EngineGUI.getVariables().getVariant("chrysalis2")->setInt(playermodel->getCollectableManager()->getNumberOfChrysalis() % 10);
+		EngineGUI.getVariables().getVariant("max_chrysalis")->setInt(EngineUniques.getNumUniqueElement(ElementType::CHRYSALIS));
+
+		EngineGUI.getVariables().getVariant("life_pieces")->setInt(playermodel->getCollectableManager()->getNumberOfLifePieces());
+		EngineGUI.getVariables().getVariant("max_life_pieces")->setInt(EngineUniques.getNumUniqueElement(ElementType::LIFEPIECE));
+
+		EngineGUI.getVariables().getVariant("power_ups")->setInt(playermodel->getCollectableManager()->numberOfPowerUpsTaken);
+		EngineGUI.getVariables().getVariant("max_power_ups")->setInt(EngineUniques.getNumUniqueElement(ElementType::POWERUP));
 
 		//EngineGUI.getVariables().getVariant("power_progress")->setFloat(powerGauge->getBarPercentage());
 		if (powerGauge->getPowerLevel() == 1) {
@@ -70,6 +79,5 @@ namespace GUI {
 
 	void CHudController::hideChrysalis() {
 		chrysalisWidget->getParams()->_visible = false;
-		chrysalisVisibleTime = 0.f;
 	}
 }

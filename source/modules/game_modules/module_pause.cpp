@@ -71,7 +71,7 @@ void CModulePause::onPausePressed() {
 	TCompSound* sound = static_cast<CEntity*>(getEntityByName(SOUND_PLAYER))->get<TCompSound>();
 
 	if (pause) {
-		EngineGame->showChrysalis(0.f);
+		EngineGame->hideChrysalis();
 		Engine.getGUI().registerController(controller);
 		controller->setCurrentOption(0);
 		Engine.getGUI().activateWidget("test_pause_menu");
@@ -82,6 +82,7 @@ void CModulePause::onPausePressed() {
 		EngineSound.getMusicPlayer()->setPauseMenu(true);
 	}
 	else {
+		EngineGame->showChrysalis(0.f);
 		Engine.getGUI().deactivateWidget("test_pause_menu");
 		Engine.getGUI().unregisterController(controller);
 		cb_globals.game_paused = 0;

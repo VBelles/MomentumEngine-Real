@@ -48,5 +48,40 @@
         "name": "chrysalis",
         "type": "int",
         "value": 0
+    },
+    {
+        "name": "chrysalis1",
+        "type": "int",
+        "value": 0
+    },
+    {
+        "name": "chrysalis2",
+        "type": "int",
+        "value": 0
+    },
+    {
+        "name": "max_chrysalis",
+        "type": "int",
+        "value": 23
+    },
+    {
+        "name": "life_pieces",
+        "type": "int",
+        "value": 0
+    },
+        {
+        "name": "max_life_pieces",
+        "type": "int",
+        "value": 6
+    },
+    {
+        "name": "power_ups",
+        "type": "int",
+        "value": 0
+    },
+        {
+        "name": "max_power_ups",
+        "type": "int",
+        "value": 6
     }
 ]

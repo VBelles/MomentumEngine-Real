@@ -252,6 +252,34 @@ UniquePowerUp * CModuleUniques::getUniquePowerUp(std::string id) {
 	return nullptr;
 }
 
+int CModuleUniques::getNumUniqueElement(ElementType type) {
+	int num = 0;
+	switch (type) {
+	case ElementType::COIN:
+		num = coins.size();
+		break;
+	case ElementType::CHRYSALIS:
+		num = chrysalides.size();
+		break;
+	case ElementType::ALTAR:
+		num = altars.size();
+		break;
+	case ElementType::EVENT:
+		num = events.size();
+		break;
+	case ElementType::ENEMY:
+		num = enemies.size();
+		break;
+	case ElementType::LIFEPIECE:
+		num = lifePieces.size();
+		break;
+	case ElementType::POWERUP:
+		num = powerUps.size();
+		break;
+	}
+	return num;
+}
+
 bool CModuleUniques::setCoinTaken(std::string id, bool isTaken) {
 	if (coins.find(id) != coins.end()) {
 		coins[id].done = isTaken;
