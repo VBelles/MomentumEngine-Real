@@ -71,6 +71,7 @@ public:
 
 	CMusicPlayer* getMusicPlayer();
 	FMOD_3D_ATTRIBUTES* getListener();
+	VEC3 getListenerPosition();
 };
 
 

@@ -348,3 +348,7 @@ FMOD_3D_ATTRIBUTES* CModuleSound::getListener() {
 	return &listenerAttributes;
 }
 
+VEC3 CModuleSound::getListenerPosition() {
+	return VEC3(listenerAttributes.position.x, listenerAttributes.position.y, listenerAttributes.position.z);
+}
+

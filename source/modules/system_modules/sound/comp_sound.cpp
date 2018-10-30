@@ -75,9 +75,6 @@ void TCompSound::onDestroyed(const TMsgEntityDestroyed&) {
 
 void TCompSound::update(float delta) {
 	TCompTransform* transform = get<TCompTransform>();
-	auto listener = EngineSound.getListener();
-	VEC3 listenerPos = VEC3(listener->position.x, listener->position.y, listener->position.z);
-
 	for (auto& p : events) {
 		auto& sound = p.second;
 		sound.eventInstances.erase(std::remove_if(sound.eventInstances.begin(), sound.eventInstances.end(), [&](FMOD::Studio::EventInstance*& eventInstance) -> bool {
@@ -87,7 +84,7 @@ void TCompSound::update(float delta) {
 			}
 			if (transform && sound.is3D && sound.maxDistance > 0.f) {
 				float maxDistanceSquared = sound.maxDistance * sound.maxDistance;
-				float distanceSquared = VEC3::DistanceSquared(listenerPos, transform->getPosition());
+				float distanceSquared = VEC3::DistanceSquared(EngineSound.getListenerPosition(), transform->getPosition());
 				if (distanceSquared > maxDistanceSquared) {
 					//dbg("Distance: %f/%f\n", maxDistance, sqrt(distanceSquared));
 					FarEvent farEvent;
@@ -110,7 +107,7 @@ void TCompSound::update(float delta) {
 
 		if (transform) {
 			sound.farEvents.erase(std::remove_if(sound.farEvents.begin(), sound.farEvents.end(), [&](auto& farEvent) -> bool {
-				float distanceSquared = VEC3::DistanceSquared(listenerPos, transform->getPosition());
+				float distanceSquared = VEC3::DistanceSquared(EngineSound.getListenerPosition(), transform->getPosition());
 				if (distanceSquared <= farEvent.maxDistanceSquared) {
 					if (play(sound.id)) {
 						auto eventInstance = sound.eventInstances[sound.eventInstances.size() - 1];
