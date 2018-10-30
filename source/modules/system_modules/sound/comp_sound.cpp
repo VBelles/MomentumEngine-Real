@@ -76,21 +76,18 @@ void TCompSound::update(float delta) {
 
 	for (auto& p : events) {
 		auto& sound = p.second;
-		auto& eventInstances = sound.eventInstances;
-		auto it = eventInstances.begin();
-		while (it != eventInstances.end()) {
-			auto& eventInstance = *it;
-			if (!eventInstance || !eventInstance->isValid()) { // Event has been released
-				it = eventInstances.erase(it);
+		sound.eventInstances.erase(std::remove_if(sound.eventInstances.begin(), sound.eventInstances.end(), [&](auto& eventInstance) -> bool {
+			// Event has been released
+			if (!eventInstance || !eventInstance->isValid()) { 
+				return true;
 			}
-			else {
-				if (transform && sound.following) {
-					FMOD_3D_ATTRIBUTES attributes = toFMODAttributes(*transform);
-					eventInstance->set3DAttributes(&attributes);
-				}
-				++it;
+			// Update following event
+			if (transform && sound.following) {
+				FMOD_3D_ATTRIBUTES attributes = toFMODAttributes(*transform);
+				eventInstance->set3DAttributes(&attributes);
 			}
-		}
+			return false;
+		}), sound.eventInstances.end());
 	}
 }
 

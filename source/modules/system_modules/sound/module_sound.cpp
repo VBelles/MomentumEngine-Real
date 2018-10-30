@@ -311,7 +311,7 @@ void CModuleSound::render() {
 
 					auto descriptions = getEventDescriptions(bank);
 					if (ImGui::TreeNode("Events")) {
-						ImGui::Text("Count: %d", descriptions.size());
+						ImGui::Text("Descriptions: %d", descriptions.size());
 						for (auto description : descriptions) {
 							std::string path = getPath(description);
 							if (!Filter.IsActive() || Filter.PassFilter(path.c_str())) {
