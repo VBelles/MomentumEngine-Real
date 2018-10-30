@@ -2,6 +2,37 @@
   {
     "entity":
     {
+      "name": "respawn_tuto_006",
+      "transform":
+      {
+        "pos": "-69.598 -24.4752 188.301",
+        "rotation": "0.0 -0.737277 0.0 -0.67559"
+      },
+      "collider":
+      {
+        "mesh_src": "data/meshes/respawn_tuto_006.col_mesh",
+        "shape": "convex_mesh",
+        "is_trigger": true,
+        "type": "static",
+        "group":
+        [
+          "trigger"
+        ],
+        "mask":
+        [
+          "player"
+        ]
+      },
+      "respawn_point":
+      {
+        "respawn_position": "-71.4365 -24.1744 191.992",
+        "respawn_rotation": "0.0 0.67559 0.0 -0.737277"
+      }
+    }
+  },
+  {
+    "entity":
+    {
       "name": "dani_respawn_008",
       "transform":
       {
@@ -25,7 +56,7 @@
       },
       "respawn_point":
       {
-        "respawn_position": "76.7119 16.5506 -231.26",
+        "respawn_position": "76.7119 15.6243 -231.26",
         "respawn_rotation": "0.0 0.0871558 0.0 -0.996195"
       }
     }
@@ -56,7 +87,7 @@
       },
       "respawn_point":
       {
-        "respawn_position": "-76.7856 -7.52111 134.114",
+        "respawn_position": "-76.7856 -8.44738 134.114",
         "respawn_rotation": "0.0 -0.984808 0.0 -0.173648"
       }
     }
@@ -87,7 +118,7 @@
       },
       "respawn_point":
       {
-        "respawn_position": "-117.619 -26.9915 348.78",
+        "respawn_position": "-117.619 -27.9178 348.78",
         "respawn_rotation": "0.0 -1.0 0.0 0.0"
       }
     }
@@ -199,7 +230,7 @@
       },
       "respawn_point":
       {
-        "respawn_position": "-83.8237 -39.6825 198.569",
+        "respawn_position": "-83.8237 -40.6087 198.569",
         "respawn_rotation": "0.0 0.67559 0.0 -0.737277"
       }
     }
@@ -230,7 +261,7 @@
       },
       "respawn_point":
       {
-        "respawn_position": "-107.065 -44.1992 220.151",
+        "respawn_position": "-107.065 -45.1254 220.151",
         "respawn_rotation": "0.0 -0.953717 0.0 -0.300706"
       }
     }
@@ -261,7 +292,7 @@
       },
       "respawn_point":
       {
-        "respawn_position": "-113.93 -48.1773 251.551",
+        "respawn_position": "-113.93 -49.1036 251.551",
         "respawn_rotation": "0.0 -0.991445 0.0 0.130526"
       }
     }
@@ -292,7 +323,7 @@
       },
       "respawn_point":
       {
-        "respawn_position": "-132.799 -34.9729 284.594",
+        "respawn_position": "-132.799 -35.8991 284.594",
         "respawn_rotation": "0.0 -0.999048 0.0 -0.0436193"
       }
     }
@@ -323,7 +354,7 @@
       },
       "respawn_point":
       {
-        "respawn_position": "-117.619 -35.0267 333.851",
+        "respawn_position": "-117.619 -35.953 333.851",
         "respawn_rotation": "0.0 -1.0 0.0 0.0"
       }
     }
@@ -354,7 +385,7 @@
       },
       "respawn_point":
       {
-        "respawn_position": "220.087 85.4809 -244.866",
+        "respawn_position": "220.087 84.5547 -244.866",
         "respawn_rotation": "0.0 0.258819 0.0 -0.965926"
       }
     }
@@ -385,7 +416,7 @@
       },
       "respawn_point":
       {
-        "respawn_position": "219.543 16.3942 -230.375",
+        "respawn_position": "219.543 15.4679 -230.375",
         "respawn_rotation": "0.0 0.21644 0.0 -0.976296"
       }
     }
@@ -416,7 +447,7 @@
       },
       "respawn_point":
       {
-        "respawn_position": "228.964 1.45361 -55.527",
+        "respawn_position": "228.964 0.527341 -55.527",
         "respawn_rotation": "0.0 -0.707107 0.0 -0.707107"
       }
     }
@@ -447,7 +478,7 @@
       },
       "respawn_point":
       {
-        "respawn_position": "293.237 -2.01075 -143.299",
+        "respawn_position": "293.237 -2.93702 -143.299",
         "respawn_rotation": "0.0 0.608761 0.0 -0.793353"
       }
     }
@@ -478,7 +509,7 @@
       },
       "respawn_point":
       {
-        "respawn_position": "35.5956 2.05542 -1.5029",
+        "respawn_position": "35.5956 1.12915 -1.5029",
         "respawn_rotation": "0.0 -0.953717 0.0 -0.300706"
       }
     }
@@ -509,7 +540,7 @@
       },
       "respawn_point":
       {
-        "respawn_position": "147.164 24.8396 -65.8465",
+        "respawn_position": "147.164 23.9133 -65.8465",
         "respawn_rotation": "0.0 -0.573577 0.0 -0.819152"
       }
     }
@@ -540,7 +571,7 @@
       },
       "respawn_point":
       {
-        "respawn_position": "114.452 23.183 109.767",
+        "respawn_position": "114.452 22.2567 109.767",
         "respawn_rotation": "0.0 -0.67559 0.0 -0.737277"
       }
     }

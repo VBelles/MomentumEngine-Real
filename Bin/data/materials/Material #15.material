@@ -1,8 +1,0 @@
-{
-  "shadows": true,
-  "textures":
-  {
-    "albedo": "data/textures/rocas-dark-grey.dds",
-    "normal": "data/textures/null_normal.dds"
-  }
-}

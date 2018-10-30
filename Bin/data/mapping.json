@@ -135,6 +135,16 @@
 		"buttons" : ["m", "pad_options"]
 	},
 	{
+		"name" : "next_dialog",
+		"all" : false,
+		"buttons" : ["down", "pad_down"]
+	},
+	{
+		"name" : "previous_dialog",
+		"all" : false,
+		"buttons" : ["up", "pad_up"]
+	},
+	{
 		"name" : "test_particles",
 		"all" : false,
 		"buttons" : ["1"]

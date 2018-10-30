@@ -1,5 +1,5 @@
 #pragma once
-#include "components/comp_collectable.h"
+#include "modules/system_modules/module_uniques.h"
 
 struct TMsgCollect;
 struct TMsgEntityCreated;
@@ -11,8 +11,8 @@ struct TMsgAllScenesCreated;
 class TCompCollectableManager : public TCompBase {
 private:
 	//maps
-	std::map<TCompCollectable::Type, int> objectsCollected;
-	std::map<TCompCollectable::Type, std::vector<std::string>> uniqueObjectsCollected;
+	std::map<ElementType, int> objectsCollected;
+	std::map<ElementType, std::vector<std::string>> uniqueObjectsCollected;
 
 	void onEntityCreated(const TMsgEntityCreated& msg);
 	void onCollect(const TMsgCollect& msg);
@@ -22,9 +22,14 @@ private:
 	int maxCoins = 144;
 	int lifePiecesPerHeart = 1;
 
+	float musicVolumeMultiplier = 0.3f;
+	float soundVolumeMultiplier = 0.7f;
+
 	int numberOfChrysalisTaken = 0;
+	int numberOfLifePiecesTaken = 0;
 	std::vector<std::string> finalDoorChrysalidesNames;
 	std::vector<CHandle> finalDoorChrysalides;
+	std::vector<CHandle> finalDoorChrysalisLights;
 	CTimer2 doorChrysalidesTimer;
 	float doorChrysalidesTime = 4.3f;
 	bool spawnDoorChrysalis = false;
@@ -44,14 +49,15 @@ private:
 
 public:
 	DECL_SIBLING_ACCESS();
+	int numberOfPowerUpsTaken = 0;
 
 	static void registerMsgs();
 	void load(const json& j, TEntityParseContext& ctx);
 	void update(float delta);
 	void debugInMenu();
 
-	void addUniqueCollectable(TCompCollectable::Type type, std::string id);
-	void addCollectable(TCompCollectable::Type type, int amount);
+	void addUniqueCollectable(ElementType type, std::string id);
+	void addCollectable(ElementType type, int amount);
 	int getNumberOfChrysalis();
 	int getNumberOfCoins();
 	int getMaxCoins();

@@ -4,7 +4,7 @@
 
 class GrabActionState : public AirborneActionState, public AttackState {
 protected:
-	CTimer timer;
+	CTimer2 timer;
 	float hitboxOutTime = frames2sec(0);
 	float hitEndTime = frames2sec(20);
 	float animationEndTime = frames2sec(10);

@@ -2,6 +2,28 @@
   {
     "entity":
     {
+      "name": "luz_cegadora",
+      "transform":
+      {
+        "pos": "-154.145 5.55576 -186.028",
+        "rotation": "0.0 -0.92388 0.0 -0.382683"
+      },
+      "render":
+      [
+        {
+          "mesh": "data/meshes/luz_cegadora.mesh",
+          "materials":
+          [
+            "data/materials/luz_cegadora.material"
+          ],
+          "enabled": true
+        }
+      ]
+    }
+  },
+  {
+    "entity":
+    {
       "name": "puerta_base",
       "transform":
       {

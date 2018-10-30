@@ -11,9 +11,10 @@ class TCompSound;
 
 class TCompRangedAttack : public TCompBase {
 private:
-	CHandle particlesHandle;
-	CHandle soundHandle;
 	CHandle ownerHandle;
+	CHandle targetTransformHandle;
+	VEC3 targetOffset;
+
 	float initialSpeed = 10.f;
 	float speed = initialSpeed;
 	float lifetime = 30.0f;
@@ -26,7 +27,11 @@ private:
 	CTimer grabTimer;
 	CTimer warmUpTimer;
 
-	bool effectsLaunched = false;
+	bool projectilLaunched = false;
+
+	CHandle particlesHandle;
+	CHandle soundHandle;
+	CHandle transformHandle;
 
 	void onGroupCreated(const TMsgEntitiesGroupCreated& msg);
 	void onAssignRangedAttackOwner(const TMsgAssignRangedAttackOwner& msg);
@@ -36,6 +41,7 @@ private:
 
 	TCompParticles* getParticles();
 	TCompSound* getSound();
+	TCompTransform* getTransform();
 
 public:
 	DECL_SIBLING_ACCESS();

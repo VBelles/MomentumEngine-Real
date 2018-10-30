@@ -4,7 +4,7 @@
 
 class JumpSquatSpringActionState : public GroundedActionState {
 private:
-	CTimer timer;
+	CTimer2 timer;
 	float squatTime = frames2sec(12);
 
 	std::string animation = "spring_jump_squat";

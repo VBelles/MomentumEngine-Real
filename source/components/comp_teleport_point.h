@@ -7,6 +7,7 @@ struct TMsgTriggerEnter;
 class TCompTeleportPoint : public TCompBase {
 private:
 	void setActive();
+	void setAlreadyActive();
 
 	bool isActivated = false;
 	CTimer2 activationTimer;

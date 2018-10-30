@@ -2,6 +2,28 @@
 	{
     "entity":
     {
+      "name": "luz_cegadora",
+      "transform":
+      {
+        "pos": "-154.145 5.55576 -186.028",
+        "rotation": "0.0 -0.92388 0.0 -0.382683"
+      },
+      "render":
+      [
+        {
+          "mesh": "data/meshes/luz_cegadora.mesh",
+          "materials":
+          [
+            "data/materials/luz_cegadora.material"
+          ],
+          "enabled": false
+        }
+      ]
+    }
+  },
+	{
+    "entity":
+    {
       "name": "final_door_controller_trigger",
       "transform":
       {
@@ -45,7 +67,17 @@
 					],
 					"enabled": false
 				}
-			]
+			],
+			"light_point": {
+				"intensity": 5,
+				"radius": 4,
+				"color" :  "0.38 0.05 0.95 1",
+				"is_on" : false
+			},
+			"light_flicker": {
+				"intensityVariation": 0.3,
+				"variationSpeed": 0.5
+			}
 		}
   },
   {
@@ -64,7 +96,17 @@
 					],
 					"enabled": false
 				}
-			]
+			],
+			"light_point": {
+				"intensity": 5,
+				"radius": 4,
+				"color" :  "0.38 0.05 0.95 1",
+				"is_on" : false
+			},
+			"light_flicker": {
+				"intensityVariation": 0.3,
+				"variationSpeed": 0.5
+			}
 		}
   },
   {
@@ -83,7 +125,17 @@
 					],
 					"enabled": false
 				}
-			]
+			],
+			"light_point": {
+				"intensity": 5,
+				"radius": 4,
+				"color" :  "0.38 0.05 0.95 1",
+				"is_on" : false
+			},
+			"light_flicker": {
+				"intensityVariation": 0.3,
+				"variationSpeed": 0.5
+			}
 		}
   },
   {
@@ -102,7 +154,17 @@
 					],
 					"enabled": false
 				}
-			]
+			],
+			"light_point": {
+				"intensity": 5,
+				"radius": 4,
+				"color" :  "0.38 0.05 0.95 1",
+				"is_on" : false
+			},
+			"light_flicker": {
+				"intensityVariation": 0.3,
+				"variationSpeed": 0.5
+			}
 		}
   },
   {
@@ -121,7 +183,17 @@
 					],
 					"enabled": false
 				}
-			]
+			],
+			"light_point": {
+				"intensity": 5,
+				"radius": 4,
+				"color" :  "0.38 0.05 0.95 1",
+				"is_on" : false
+			},
+			"light_flicker": {
+				"intensityVariation": 0.3,
+				"variationSpeed": 0.5
+			}
 		}
   },
   {
@@ -140,7 +212,17 @@
 					],
 					"enabled": false
 				}
-			]
+			],
+			"light_point": {
+				"intensity": 5,
+				"radius": 4,
+				"color" :  "0.38 0.05 0.95 1",
+				"is_on" : false
+			},
+			"light_flicker": {
+				"intensityVariation": 0.3,
+				"variationSpeed": 0.5
+			}
 		}
   },
   {
@@ -159,7 +241,17 @@
 					],
 					"enabled": false
 				}
-			]
+			],
+			"light_point": {
+				"intensity": 5,
+				"radius": 4,
+				"color" :  "0.38 0.05 0.95 1",
+				"is_on" : false
+			},
+			"light_flicker": {
+				"intensityVariation": 0.3,
+				"variationSpeed": 0.5
+			}
 		}
   },
   {
@@ -178,7 +270,17 @@
 					],
 					"enabled": false
 				}
-			]
+			],
+			"light_point": {
+				"intensity": 5,
+				"radius": 4,
+				"color" :  "0.38 0.05 0.95 1",
+				"is_on" : false
+			},
+			"light_flicker": {
+				"intensityVariation": 0.3,
+				"variationSpeed": 0.5
+			}
 		}
   },
   {
@@ -197,7 +299,17 @@
 					],
 					"enabled": false
 				}
-			]
+			],
+			"light_point": {
+				"intensity": 5,
+				"radius": 4,
+				"color" :  "0.38 0.05 0.95 1",
+				"is_on" : false
+			},
+			"light_flicker": {
+				"intensityVariation": 0.3,
+				"variationSpeed": 0.5
+			}
 		}
   },
   {
@@ -216,7 +328,17 @@
 					],
 					"enabled": false
 				}
-			]
+			],
+			"light_point": {
+				"intensity": 5,
+				"radius": 4,
+				"color" :  "0.38 0.05 0.95 1",
+				"is_on" : false
+			},
+			"light_flicker": {
+				"intensityVariation": 0.3,
+				"variationSpeed": 0.5
+			}
 		}
   },
   {
@@ -235,7 +357,17 @@
 					],
 					"enabled": false
 				}
-			]
+			],
+			"light_point": {
+				"intensity": 5,
+				"radius": 4,
+				"color" :  "0.38 0.05 0.95 1",
+				"is_on" : false
+			},
+			"light_flicker": {
+				"intensityVariation": 0.3,
+				"variationSpeed": 0.5
+			}
 		}
   },
   {
@@ -254,7 +386,17 @@
 					],
 					"enabled": false
 				}
-			]
+			],
+			"light_point": {
+				"intensity": 5,
+				"radius": 4,
+				"color" :  "0.38 0.05 0.95 1",
+				"is_on" : false
+			},
+			"light_flicker": {
+				"intensityVariation": 0.3,
+				"variationSpeed": 0.5
+			}
 		}
 	},
   {

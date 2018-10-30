@@ -5,6 +5,7 @@
 
 namespace GUI {
 	void COptionsMenuController::update(float delta) {
+		int option = _currentOption;
 		auto& mouse = EngineInput[Input::PLAYER_1].mouse();
 		if (mouse.position_delta.Length() > 0) {
 			_options[_currentOption]->getPreviousButton()->setCurrentState(CButton::EState::ST_Idle);
@@ -87,9 +88,8 @@ namespace GUI {
 			}
 		}
 
-		if (EngineInput["menu_back"].getsReleased()) {
-			EngineModules.changeGameState("main_menu");
-			EngineSound.emitEvent(SOUND_MENU_BACK);
+		if (_currentOption != option) {
+			EngineSound.emitEvent(SOUND_MENU_ROLL);
 		}
 	}
 

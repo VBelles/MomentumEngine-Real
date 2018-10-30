@@ -670,6 +670,8 @@ struct TSceneExporter (
 		)
 
 		if obj.layer.name == "trimesh" or forcedTri then meshShape = "tri_mesh"
+		--TODO: Find out why here it says sometimes the layer is "trimesh" when it's really "trigger"
+		format "---obj.name: % obj.layer.name: %\n" obj.name obj.layer.name --DEBUG
 		local mesh_name = mesh_path + obj.name + ".col_mesh"
 		if forceMesh != "" then mesh_name = mesh_path + forceMesh + ".col_mesh"
 

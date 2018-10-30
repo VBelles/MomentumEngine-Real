@@ -36,7 +36,7 @@ bool CModuleMainMenu::start() {
 
 	Engine.setInputType(InputType::Menu);
 
-	EngineSound.getMusicPlayer()->setCurrentSong(CMusicPlayer::Song::INTRO);
+	EngineSound.getMusicPlayer()->setCurrentSong(CMusicPlayer::Song::MENU);
 
 	return true;
 }

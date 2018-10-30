@@ -1,5 +1,6 @@
 #include "mcv_platform.h"
 #include "comp_dummy_collectable.h"
+#include "components/comp_light_point.h"
 #include "entity/entity_parser.h"
 #include "entity/common_msgs.h"
 
@@ -82,6 +83,10 @@ void TCompDummyCollectable::update(float delta) {
 		//desactivar render
 		TCompRender* render = entity->get<TCompRender>();
 		render->disable();
+		TCompLightPoint* light = entity->get<TCompLightPoint>();
+		if (light) {
+			light->setOn(false);
+		}
 		isActive = false;
 	}
 }
@@ -91,16 +96,16 @@ void TCompDummyCollectable::activateSequence(DummyCollectableType type) {
 	positionOffset = chrysalisPositionOffset;
 	float yawOffset = chrysalisYawOffset;
 	switch (type) {
-	case CHRYSALIS:
+	case DUMMY_CHRYSALIS:
 		currentCollectableHandle = chrysalisHandle;
 		break;
-	case POWERUP:
+	case DUMMY_POWERUP:
 		currentCollectableHandle = powerupHandle;
 		startingScale = powerupStartingScale;
 		positionOffset = powerupPositionOffset;
 		yawOffset = powerupYawOffset;
 		break;
-	case LIFEPIECE:
+	case DUMMY_LIFEPIECE:
 		currentCollectableHandle = lifePieceHandle;
 		startingScale = lifePieceStartingScale;
 		positionOffset = lifePiecePositionOffset;
@@ -111,6 +116,12 @@ void TCompDummyCollectable::activateSequence(DummyCollectableType type) {
 	//activar render
 	TCompRender* render = entity->get<TCompRender>();
 	render->enable();
+
+	TCompLightPoint* light = entity->get<TCompLightPoint>();
+	if (light) {//si alguno queda mal se quita y no peta
+		light->setOn(true);
+	}
+
 	//situar delante de player
 	TCompTransform* transform = entity->get<TCompTransform>();
 	VEC3 position = getPlayerTransform()->getPosition() +

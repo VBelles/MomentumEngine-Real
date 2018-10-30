@@ -1,6 +1,7 @@
 {
-  "intro_theme": "event:/momentum_theme_placeholder",
+  "intro_theme": "event:/intro_theme",
   "main_theme": "event:/momentum_theme",
+  "menu_theme": "event:/menu_theme",
   "paused_volume_multiplier": 0.5,
   "tempo": 80,
   "time_signature": 4,

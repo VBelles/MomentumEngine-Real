@@ -4,7 +4,7 @@
 
 class SoftKnockbackGroundActionState : public GroundedActionState {
 private:
-	CTimer timer;
+	CTimer2 timer;
 	float duration = 0.8f;
 
 	std::string animation = "soft_knockback_ground";

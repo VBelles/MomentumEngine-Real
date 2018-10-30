@@ -15,7 +15,7 @@ namespace GUI {
 	}
 
 	void CDialogController::update(float delta) {
-		if (isCancelableWithButton && EngineInput["menu_accept"].getsPressed()) {
+		if (isCancelableWithButton && (EngineInput["menu_accept"].getsPressed() || EngineInput["next_dialog"].getsPressed())) {
 			if (dialogActive) {
 				if (dialogWidget->getCurrentFragment() < dialogWidget->getNumFragments() - 1) {
 					dialogWidget->showNext();
@@ -32,19 +32,33 @@ namespace GUI {
 		dialogWidget->setText(text, fontSize);
 		EngineGUI.activateWidget(widgetName);
 		dialogActive = true;
+		visible = true;
 		isCancelableWithButton = cancelable;
 	}
 
 	void CDialogController::hideDialog() {
 		EngineGUI.deactivateWidget(widgetName);
 		dialogActive = false;
+		visible = false;
 	}
 
 	bool CDialogController::isActive() {
 		return dialogActive;
 	}
 
-	void CDialogController::setCancelableWithButton(bool cancelable){
+	void CDialogController::setVisible(bool newVisible) {
+		if (visible != newVisible) {
+			visible = newVisible;
+			if (visible && dialogActive) {
+				EngineGUI.activateWidget(widgetName);
+			}
+			else if (!visible) {
+				EngineGUI.deactivateWidget(widgetName);
+			}
+		}
+	}
+
+	void CDialogController::setCancelableWithButton(bool cancelable) {
 		isCancelableWithButton = cancelable;
 	}
 }

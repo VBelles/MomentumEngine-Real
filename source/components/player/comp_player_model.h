@@ -73,7 +73,7 @@ private:
 	PowerStats* currentPowerStats = nullptr;
 
 	const float PLAYER_MAX_HP = 5.f;
-	float maxHp = 0.f;
+	float maxHp = PLAYER_MAX_HP;
 	float hp = 0.f;
 
 	float maxAttackSlots = 4.f;
@@ -150,17 +150,17 @@ public:
 	float huggingWallMaxPitch = deg2rad(15);
 	float attachWallByInputMinDot = 0.3f;
 	float attachWallByFrontMinDot = 0.7f;
-	CTimer sameNormalReattachTimer;
+	CTimer2 sameNormalReattachTimer;
 	float sameNormalReattachTime = 0.8f;
-	CTimer lockHuggingWallTimer;
+	CTimer2 lockHuggingWallTimer;
 	float lockHuggingWallTime = 0.8f;
 	PxVec3 lastWallNormal = { 0,0,0 };
 
 	CHandle grabTarget;
 
-	CTimer disabledClimbingTimer;
+	CTimer2 disabledClimbingTimer;
 	bool canClimb = true;
-	CTimer platformChangeSlopeTimer;
+	CTimer2 platformChangeSlopeTimer;
 
 	//Parent methods
 	static void registerMsgs();
@@ -214,7 +214,7 @@ public:
 	void damage(float damage);
 	void makeInvulnerable(float time);
 	void startDamageVision(float time);
-	void resetHp() { maxHp = PLAYER_MAX_HP; setHp(maxHp); }
+	void refillHp() { setHp(maxHp); }
 	float getHp() { return hp; }
 	float getMaxHp() { return maxHp; }
 	void setHp(float hp);

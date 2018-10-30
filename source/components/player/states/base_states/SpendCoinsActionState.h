@@ -7,7 +7,7 @@ private:
 	std::string animation = "spend_coins";
 	std::string animationLoop = "spend_coins_loop";
 
-	CTimer spendTimer;
+	CTimer2 spendTimer;
 	int coinsEachCycle = 1;
 	float cycleTime = 7 / 60.f;
 	float powerPerCoin = 2500.f;

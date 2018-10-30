@@ -71,6 +71,11 @@ bool CModuleOptionsMenu::stop() {
 	return true;
 }
 
-void CModuleOptionsMenu::update(float delta) {}
+void CModuleOptionsMenu::update(float delta) {
+	if (EngineInput["menu_back"].getsReleased()) {
+		EngineModules.changeGameState("main_menu");
+		EngineSound.emitEvent(SOUND_MENU_BACK);
+	}
+}
 
 void CModuleOptionsMenu::render() {}

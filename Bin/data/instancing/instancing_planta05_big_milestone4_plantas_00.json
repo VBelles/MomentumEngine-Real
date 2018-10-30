@@ -1,16 +1,14 @@
 {
-  "TInstance":
-  [
-    {
-      "mesh": "data/meshes/planta05_big.instanced_mesh",
-      "data":
-      [
-        {
-          "pos": "-50.8905 -40.2207 0.389971",
-          "scale": 1.0,
-          "rot": "0.0 0.0 0.0 -1.0"
-        }
-      ]
-    }
-  ]
+	"TInstance": [
+		{
+			"mesh": "data/meshes/planta05_big.instanced_mesh",
+			"data": [
+				{
+					"pos": "-50.8905 -40.2207 0.389971",
+					"scale": 1,
+					"rot": "0.0 0.0 0.0 -1.0"
+				}
+			]
+		}
+	]
 }

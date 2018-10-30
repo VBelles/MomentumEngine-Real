@@ -1,0 +1,112 @@
+[
+  {
+    "entity":
+    {
+      "name": "spike_crystal_05",
+      "transform":
+      {
+        "pos": "0.0 0.338108 0.0",
+        "rotation": "0.0 0.0 0.0 -1.0"
+      },
+      "render":
+      [
+        {
+          "mesh": "data/meshes/spike_crystal_05.mesh",
+          "materials":
+          [
+            "data/materials/spike_crystals.material"
+          ],
+          "enabled": true
+        }
+      ]
+    }
+  },
+  {
+    "entity":
+    {
+      "name": "spike_crystal_04",
+      "transform":
+      {
+        "pos": "0.0 0.295539 0.0",
+        "rotation": "0.0 0.0 0.0 -1.0"
+      },
+      "render":
+      [
+        {
+          "mesh": "data/meshes/spike_crystal_04.mesh",
+          "materials":
+          [
+            "data/materials/spike_crystals.material"
+          ],
+          "enabled": true
+        }
+      ]
+    }
+  },
+  {
+    "entity":
+    {
+      "name": "spike_crystal_03",
+      "transform":
+      {
+        "pos": "0.0 0.329914 0.0",
+        "rotation": "0.0 0.0 0.0 -1.0"
+      },
+      "render":
+      [
+        {
+          "mesh": "data/meshes/spike_crystal_03.mesh",
+          "materials":
+          [
+            "data/materials/spike_crystals.material"
+          ],
+          "enabled": true
+        }
+      ]
+    }
+  },
+  {
+    "entity":
+    {
+      "name": "spike_crystal_02",
+      "transform":
+      {
+        "pos": "0.0 0.360321 0.0",
+        "rotation": "0.0 0.0 0.0 -1.0"
+      },
+      "render":
+      [
+        {
+          "mesh": "data/meshes/spike_crystal_02.mesh",
+          "materials":
+          [
+            "data/materials/spike_crystals.material"
+          ],
+          "enabled": true
+        }
+      ]
+    }
+  },
+  {
+    "entity":
+    {
+      "name": "spike_crystal_01",
+      "transform":
+      {
+        "pos": "0.0 0.396821 0.0",
+        "rotation": "0.0 0.0 0.0 -1.0"
+      },
+      "render":
+      [
+        {
+          "mesh": "data/meshes/spike_crystal_01.mesh",
+          "materials":
+          [
+            "data/materials/spike_crystals.material"
+          ],
+          "enabled": true
+        }
+      ]
+    }
+  }
+]

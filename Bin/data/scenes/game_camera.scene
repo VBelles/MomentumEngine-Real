@@ -18,10 +18,10 @@
 			},
 			"render_ao": {
 				"enabled": true,
-				"amount": 0.4,
-				"radius": 0.3,
-				"zrange_discard": 0.02,
-				"amount_spreading": 0.7
+				"amount": 0.375,
+				"radius": 0.08,
+				"zrange_discard": 0.00075,
+				"amount_spreading": 0.9
 			},
 			"render_outlines": {
 				"enabled": true

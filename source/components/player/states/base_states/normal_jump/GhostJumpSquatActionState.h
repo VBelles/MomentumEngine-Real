@@ -4,7 +4,7 @@
 
 class GhostJumpSquatActionState : public AirborneActionState {
 private:
-	CTimer timer;
+	CTimer2 timer;
 	float squatTime = frames2sec(2);
 	float enteringVelocity = 0.f;
 

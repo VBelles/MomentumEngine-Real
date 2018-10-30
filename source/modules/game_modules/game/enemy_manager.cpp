@@ -8,7 +8,7 @@
 EnemyManager::EnemyManager() {
 	//hacer que coincida más o menos con el tiempo que se tarda en perder el poder que da cada enemigo
 	respawnTimes[EnemyType::DREIDEL] = 15.f;
-	respawnTimes[EnemyType::KIPPAH] = 15.f;
+	respawnTimes[EnemyType::KIPPAH] = 8.f;
 	respawnTimes[EnemyType::GOLEM] = 15.f;
 	respawnTimes[EnemyType::DREIDEL_DUMMY] = 3.f;
 	respawnTimes[EnemyType::KIPPAH_DUMMY] = 3.f;

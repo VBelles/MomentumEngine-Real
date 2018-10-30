@@ -30,12 +30,21 @@ void TCompRangedAttack::update(float delta) {
 	if (hit) {
 		return;
 	}
-	TCompTransform* transform = get<TCompTransform>();
+	TCompTransform* transform = getTransform();
+	// Updating scale
 	if (scaleSpeed && warmUpTimer.elapsed() < warmUpTime) {
 		float newScale = clamp(transform->getScale() + scaleSpeed * delta, 0.f, 1.f);
 		transform->setScale(newScale);
 	}
 	else {
+		// Launch
+		if (!projectilLaunched) {
+			TCompTransform* targetTransform = targetTransformHandle;
+			transform->lookAt(transform->getPosition(), targetTransform->getPosition() + targetOffset);
+			getParticles()->launch();
+			getSound()->play("shot_air");
+			projectilLaunched = true;
+		}
 		TCompCollider* collider = get<TCompCollider>();
 		if (timer.elapsed() > lifetime) {
 			collider->destroy();
@@ -49,12 +58,6 @@ void TCompRangedAttack::update(float delta) {
 		if (speed == 0.f && grabTimer.elapsed() >= grabTime) {
 			speed = initialSpeed;
 		}
-
-		if (!effectsLaunched) {
-			getParticles()->launch();
-			getSound()->play("shot_air");
-			effectsLaunched = true;
-		}
 	}
 
 }
@@ -62,20 +65,22 @@ void TCompRangedAttack::update(float delta) {
 void TCompRangedAttack::onGroupCreated(const TMsgEntitiesGroupCreated& msg) {
 	particlesHandle = get<TCompParticles>();
 	soundHandle = get<TCompSound>();
+	transformHandle = get<TCompTransform>();
 }
 
 void TCompRangedAttack::onAssignRangedAttackOwner(const TMsgAssignRangedAttackOwner& msg) {
 	ownerHandle = msg.ownerHandle;
 	attackInfo = msg.attackInfo;
 	warmUpTime = msg.warmUpTime;
-	TCompTransform* transform = get<TCompTransform>();
-	transform->lookAt(msg.initialPos, msg.initialPos + msg.direction);
+	targetTransformHandle = msg.targetTransformHandle;
+	targetOffset = msg.targetOffset;
+	getTransform()->setPosition(msg.initialPos);
 	if (msg.warmUpTime) {
 		scaleSpeed = 1.f / warmUpTime;
-		transform->setScale(0.f);
+		getTransform()->setScale(0.f);
 	}
 	timer.reset();
-	effectsLaunched = false;
+	projectilLaunched = false;
 
 }
 
@@ -135,4 +140,8 @@ TCompParticles* TCompRangedAttack::getParticles() {
 
 TCompSound* TCompRangedAttack::getSound() {
 	return soundHandle;
+}
+
+TCompTransform* TCompRangedAttack::getTransform() {
+	return transformHandle;
 }

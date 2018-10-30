@@ -99,7 +99,7 @@ bool CModuleGame::start() {
 	TCompSound* sound = soundEntity->get<TCompSound>();
 	sound->play("ambient_day");
 	//EngineSound.startEvent(SOUND_AMBIENT);
-	EngineSound.getMusicPlayer()->setCurrentSong(CMusicPlayer::Song::MAIN);
+	EngineSound.getMusicPlayer()->setCurrentSong(CMusicPlayer::Song::INTRO);
 
 	return true;
 }
@@ -116,6 +116,7 @@ bool CModuleGame::stop() {
 	EngineScripting.reset();
 	Engine.getEntities().reset();
 	EngineParticles.reset();
+	EngineUniques.reset();
 	safeDelete(respawner);
 	safeDelete(enemyManager);
 	

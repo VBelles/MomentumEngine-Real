@@ -121,7 +121,7 @@
           {
             "name": "area_attack",
             "shape": "sphere",
-            "radius": 5.0,
+            "radius": 2.5,
             "group": [
               "enemy"
             ],

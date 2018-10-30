@@ -2,6 +2,189 @@
   {
     "entity":
     {
+      "name": "nes_camera_015_anillo_central",
+      "transform":
+      {
+        "pos": "19.4963 54.3846 -118.903",
+        "lookat": "39.511 37.9511 -121.711"
+      },
+      "camera":
+      {
+        "fov": 45.0
+      },
+      "fixed_camera":
+      {
+        "returnToPlayerCameraWithInput": false,
+        "modifyPlayerCameraRotation": true,
+        "timeToMixOut": 1.0,
+        "panningSpeed": 0.0,
+        "panningRadius": 3.0
+      }
+    }
+  },
+  {
+    "entity":
+    {
+      "name": "nes_camera_trigger_015",
+      "transform":
+      {
+        "pos": "39.3928 27.7211 -120.619",
+        "rotation": "0.0 0.707108 0.0 -0.707106"
+      },
+      "collider":
+      {
+        "mesh_src": "data/meshes/nes_camera_trigger_015.col_mesh",
+        "shape": "tri_mesh",
+        "is_trigger": true,
+        "type": "static",
+        "group":
+        [
+          "trigger"
+        ],
+        "mask":
+        [
+          "player"
+        ]
+      },
+      "suggestCameraTrigger":
+      {
+        "cameraSuggestion": "nes_camera_015_anillo_central",
+        "suggestYaw": true,
+        "hasOppositeYaw": false,
+        "suggestPitch": true,
+        "forceDistance": true,
+        "distanceToCamera": 10.2889,
+        "changeCenteringCamera": true,
+        "forcePositionOnEnter": true,
+        "centeringCameraSpeed": "2.0 2.0"
+      }
+    }
+  },
+  {
+    "entity":
+    {
+      "name": "nes_camera_014",
+      "transform":
+      {
+        "pos": "-122.357 66.1682 -67.9665",
+        "lookat": "-102.343 49.7347 -70.7746"
+      },
+      "camera":
+      {
+        "fov": 45.0
+      },
+      "fixed_camera":
+      {
+        "returnToPlayerCameraWithInput": false,
+        "modifyPlayerCameraRotation": true,
+        "timeToMixOut": 1.0,
+        "panningSpeed": 0.0,
+        "panningRadius": 3.0
+      }
+    }
+  },
+  {
+    "entity":
+    {
+      "name": "nes_camera_trigger_014",
+      "transform":
+      {
+        "pos": "-100.313 40.5747 -68.7269",
+        "rotation": "0.0 0.707108 0.0 -0.707106"
+      },
+      "collider":
+      {
+        "mesh_src": "data/meshes/nes_camera_trigger_014.col_mesh",
+        "shape": "tri_mesh",
+        "is_trigger": true,
+        "type": "static",
+        "group":
+        [
+          "trigger"
+        ],
+        "mask":
+        [
+          "player"
+        ]
+      },
+      "suggestCameraTrigger":
+      {
+        "cameraSuggestion": "nes_camera_014",
+        "suggestYaw": true,
+        "hasOppositeYaw": false,
+        "suggestPitch": true,
+        "forceDistance": true,
+        "distanceToCamera": 9.60308,
+        "changeCenteringCamera": true,
+        "forcePositionOnEnter": true,
+        "centeringCameraSpeed": "2.0 2.0"
+      }
+    }
+  },
+  {
+    "entity":
+    {
+      "name": "nes_camera_013_zona_asquerosa_3",
+      "transform":
+      {
+        "pos": "-97.8934 45.458 -49.6563",
+        "lookat": "-109.016 26.0501 -55.7482"
+      },
+      "camera":
+      {
+        "fov": 45.0
+      },
+      "fixed_camera":
+      {
+        "returnToPlayerCameraWithInput": false,
+        "modifyPlayerCameraRotation": true,
+        "timeToMixOut": 1.0,
+        "panningSpeed": 0.0,
+        "panningRadius": 3.0
+      }
+    }
+  },
+  {
+    "entity":
+    {
+      "name": "nes_camera_trigger_013",
+      "transform":
+      {
+        "pos": "-104.932 17.3398 -55.8616",
+        "rotation": "0.0 -0.0436193 0.0 -0.999048"
+      },
+      "collider":
+      {
+        "mesh_src": "data/meshes/nes_camera_trigger_013.col_mesh",
+        "shape": "tri_mesh",
+        "is_trigger": true,
+        "type": "static",
+        "group":
+        [
+          "trigger"
+        ],
+        "mask":
+        [
+          "player"
+        ]
+      },
+      "suggestCameraTrigger":
+      {
+        "cameraSuggestion": "nes_camera_013_zona_asquerosa_3",
+        "suggestYaw": false,
+        "hasOppositeYaw": false,
+        "suggestPitch": true,
+        "forceDistance": false,
+        "distanceToCamera": 9.62079,
+        "changeCenteringCamera": false,
+        "forcePositionOnEnter": false,
+        "centeringCameraSpeed": "4.0 3.0"
+      }
+    }
+  },
+  {
+    "entity":
+    {
       "name": "nes_camera_012_zona_asquerosa_2",
       "transform":
       {
@@ -34,7 +217,7 @@
       "collider":
       {
         "mesh_src": "data/meshes/nes_camera_trigger_012.col_mesh",
-        "shape": "convex_mesh",
+        "shape": "tri_mesh",
         "is_trigger": true,
         "type": "static",
         "group":
@@ -95,7 +278,7 @@
       "collider":
       {
         "mesh_src": "data/meshes/nes_camera_trigger_011.col_mesh",
-        "shape": "convex_mesh",
+        "shape": "tri_mesh",
         "is_trigger": true,
         "type": "static",
         "group":
@@ -156,7 +339,7 @@
       "collider":
       {
         "mesh_src": "data/meshes/nes_camera_trigger_010.col_mesh",
-        "shape": "convex_mesh",
+        "shape": "tri_mesh",
         "is_trigger": true,
         "type": "static",
         "group":
@@ -217,7 +400,7 @@
       "collider":
       {
         "mesh_src": "data/meshes/nes_camera_trigger_009.col_mesh",
-        "shape": "convex_mesh",
+        "shape": "tri_mesh",
         "is_trigger": true,
         "type": "static",
         "group":
@@ -278,7 +461,7 @@
       "collider":
       {
         "mesh_src": "data/meshes/nes_camera_trigger_008.col_mesh",
-        "shape": "convex_mesh",
+        "shape": "tri_mesh",
         "is_trigger": true,
         "type": "static",
         "group":
@@ -339,7 +522,7 @@
       "collider":
       {
         "mesh_src": "data/meshes/nes_camera_trigger_007.col_mesh",
-        "shape": "convex_mesh",
+        "shape": "tri_mesh",
         "is_trigger": true,
         "type": "static",
         "group":
@@ -400,7 +583,7 @@
       "collider":
       {
         "mesh_src": "data/meshes/nes_camera_trigger_006.col_mesh",
-        "shape": "convex_mesh",
+        "shape": "tri_mesh",
         "is_trigger": true,
         "type": "static",
         "group":
@@ -461,7 +644,7 @@
       "collider":
       {
         "mesh_src": "data/meshes/nes_camera_trigger_005.col_mesh",
-        "shape": "convex_mesh",
+        "shape": "tri_mesh",
         "is_trigger": true,
         "type": "static",
         "group":
@@ -493,8 +676,8 @@
       "name": "nes_camera_004_temploPuro",
       "transform":
       {
-        "pos": "32.6589 43.5029 191.866",
-        "lookat": "2.86784 33.9903 191.292"
+        "pos": "32.0642 41.8827 190.465",
+        "lookat": "2.27317 32.3701 189.891"
       },
       "camera":
       {
@@ -516,13 +699,13 @@
       "name": "nes_camera_trigger_004",
       "transform":
       {
-        "pos": "1.85873 19.0899 191.452",
+        "pos": "1.26407 17.4696 190.051",
         "rotation": "0.0 0.707107 0.0 -0.707106"
       },
       "collider":
       {
         "mesh_src": "data/meshes/nes_camera_trigger_004.col_mesh",
-        "shape": "convex_mesh",
+        "shape": "tri_mesh",
         "is_trigger": true,
         "type": "static",
         "group":
@@ -554,8 +737,8 @@
       "name": "nes_camera_003_temploPuroSky",
       "transform":
       {
-        "pos": "23.5807 87.46 179.081",
-        "lookat": "-11.4581 44.2136 208.862"
+        "pos": "22.986 85.8397 177.68",
+        "lookat": "-12.0528 42.5933 207.461"
       },
       "camera":
       {
@@ -577,13 +760,13 @@
       "name": "nes_camera_trigger_003",
       "transform":
       {
-        "pos": "-13.7938 42.6739 208.957",
+        "pos": "-14.3885 41.0536 207.556",
         "rotation": "0.0 -0.707107 0.0 -0.707106"
       },
       "collider":
       {
         "mesh_src": "data/meshes/nes_camera_trigger_003.col_mesh",
-        "shape": "convex_mesh",
+        "shape": "tri_mesh",
         "is_trigger": true,
         "type": "static",
         "group":
@@ -644,7 +827,7 @@
       "collider":
       {
         "mesh_src": "data/meshes/nes_camera_trigger_002.col_mesh",
-        "shape": "convex_mesh",
+        "shape": "tri_mesh",
         "is_trigger": true,
         "type": "static",
         "group":
@@ -705,7 +888,7 @@
       "collider":
       {
         "mesh_src": "data/meshes/nes_camera_trigger_001.col_mesh",
-        "shape": "convex_mesh",
+        "shape": "tri_mesh",
         "is_trigger": true,
         "type": "static",
         "group":

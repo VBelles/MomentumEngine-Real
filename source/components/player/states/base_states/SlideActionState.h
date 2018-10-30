@@ -14,7 +14,7 @@ private:
 	constexpr static float STUCK_THRESHOLD = 0.5f;
 	bool canJump = false;
 	float stuckY = 0.f;
-	CTimer stuckTimer;
+	CTimer2 stuckTimer;
 
 	bool isJumping = false;
 	bool isLongJumping = false;

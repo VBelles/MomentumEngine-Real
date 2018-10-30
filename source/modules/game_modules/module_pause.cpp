@@ -7,6 +7,8 @@
 #include "modules/system_modules/sound/comp_music.h"
 #include "modules/system_modules/sound/comp_sound.h"
 #include "modules/system_modules/sound/music_player.h"
+#include "modules/game_modules/module_options_ingame.h"
+#include "modules/game_modules/module_controls_help.h"
 
 bool CModulePause::start() {
 	pause = false;
@@ -18,11 +20,19 @@ bool CModulePause::start() {
 		onPausePressed();
 		CApp::get().setResetMouse(!pause);
 	};
+	auto optionsCB = [&] {
+		onPausePressed();
+		((CModuleOptionsIngame*)EngineModules.getModule("options_ingame"))->activate();
+	};
+	auto controlsCB = [&] {
+		onPausePressed();
+		((CModuleControlsHelp*)EngineModules.getModule("controls_help"))->activate();
+	};
 	auto mainMenuCB = [&]() {
 		onPausePressed();
 		EngineGUI.hideDialog();
 		EngineModules.changeGameState("main_menu", true);
-		EngineSound.getMusicPlayer()->setCurrentSong(CMusicPlayer::Song::INTRO);
+		EngineSound.getMusicPlayer()->setCurrentSong(CMusicPlayer::Song::MENU);
 	};
 	auto exitCB = []() {
 		CApp::get().stopMainLoop = true;
@@ -30,8 +40,11 @@ bool CModulePause::start() {
 
 	controller = new GUI::CMainMenuController();
 	controller->registerOption("resume_game", resumeGameCB);
+	controller->registerOption("options", optionsCB);
+	controller->registerOption("controls", controlsCB);
 	controller->registerOption("main_menu", mainMenuCB);
 	controller->registerOption("exit_game", exitCB);
+	blocked = false;
 
 	return true;
 }
@@ -40,11 +53,12 @@ bool CModulePause::stop() {
 	Engine.getGUI().unregisterController(controller);
 	safeDelete(controller);
 	Engine.getGUI().unregisterWidget("test_pause_menu", true);
+	blocked = false;
 	return true;
 }
 
 void CModulePause::update(float delta) {
-	if (EngineInput["pause"].getsPressed()
+	if (!blocked && EngineInput["pause"].getsPressed()
 		|| pause && EngineInput["menu_back"].getsPressed()) {
 		onPausePressed();
 		CApp::get().setResetMouse(!pause);
@@ -88,6 +102,14 @@ void CModulePause::onPausePressed() {
 			module->setActive(!pause);
 		}
 	}
+}
+
+void CModulePause::setBlocked(bool blocked) {
+	this->blocked = blocked;
+}
+
+bool CModulePause::isBlocked() {
+	return blocked;
 }
 
 void CModulePause::render() {}

@@ -5,9 +5,16 @@
 		"size" : "1920 1080",
 		"children" : [
 			{
+				"name": "background",
+				"type": "image",
+				"size": "2000 1200",
+				"position": "-50 -50",
+				"texture": "data/textures/gui/hud/dialog_box_clean.dds"
+			},
+			{
 				"name" : "test_buttons",
 				"type" : "widget",
-				"position" : "810 650",
+				"position" : "810 550",
 				"children" : [
 					{
 						"name" : "resume_game",
@@ -26,17 +33,48 @@
 						}
 					},
 					{
-						"name" : "main_menu",
+						"name" : "options",
 						"type" : "button",
 						"position" : "0 80",
-						"size" : "360 104",
-						"texture" : "data/textures/gui/bt_main_menu.dds",
+						"size" : "336 104",
+						"texture" : "data/textures/gui/options.dds",
 						"selected" : {
 							"position" : "-30 80",
-							"texture" : "data/textures/gui/bt_main_menu_selected.dds"
+							"texture" : "data/textures/gui/options_selected.dds"
 						},
 						"pressed" : {
 							"position" : "-30 80",
+							"color" : "0.8 0.8 0.8 1",
+							"texture" : "data/textures/gui/options_selected.dds"
+						}
+					},					{
+						"name" : "controls",
+						"type" : "button",
+						"position" : "0 160",
+						"size" : "412 104",
+						"texture" : "data/textures/gui/bt_controls.dds",
+						"selected" : {
+							"position" : "-30 160",
+							"texture" : "data/textures/gui/bt_controls_selected.dds"
+						},
+						"pressed" : {
+							"position" : "-30 160",
+							"color" : "0.8 0.8 0.8 1",
+							"texture" : "data/textures/gui/bt_controls_selected.dds"
+						}
+					},
+					{
+						"name" : "main_menu",
+						"type" : "button",
+						"position" : "0 240",
+						"size" : "336 104",
+						"texture" : "data/textures/gui/bt_main_menu.dds",
+						"selected" : {
+							"position" : "-30 240",
+							"texture" : "data/textures/gui/bt_main_menu_selected.dds"
+						},
+						"pressed" : {
+							"position" : "-30 240",
 							"color" : "0.8 0.8 0.8 1",
 							"texture" : "data/textures/gui/bt_main_menu_selected.dds"
 						}
@@ -44,15 +82,15 @@
 					{
 						"name" : "exit_game",
 						"type" : "button",
-						"position" : "0 160",
-						"size" :"360 104",
+						"position" : "0 320",
+						"size" :"336 104",
 						"texture" : "data/textures/gui/bt_exit_game.dds",
 						"selected" : {
-							"position" : "-30 160",
+							"position" : "-30 320",
 							"texture" : "data/textures/gui/bt_exit_game_selected.dds"
 						},
 						"pressed" : {
-							"position" : "-30 160",
+							"position" : "-30 320",
 							"color" : "0.8 0.8 0.8 1",
 							"texture" : "data/textures/gui/bt_exit_game_selected.dds"
 						}
