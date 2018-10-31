@@ -16,6 +16,8 @@ private:
 	int coinsToSpend = 72;
 
 public:
+	VEC2 mapOffset = VEC2(443.5f, 352.5f); //VEC2(456.f, 365.f) - markerImage.size() / 2
+
 	CModuleMapMenu(const std::string& name) : IModule(name) {}
 	bool start() override;
 	bool stop() override;
