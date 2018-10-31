@@ -90,6 +90,24 @@ namespace GUI {
 			setState(_currentOption, CButton::EState::ST_Selected);
 		}
 
+		CEntity* playerEntity = getEntityByName(PLAYER_NAME);
+		TCompTransform* playerTransform = playerEntity->get<TCompTransform>();
+		VEC3 playerPos = playerTransform->getPosition();
+		VEC2 playerImagePos = VEC2(playerPos.z, playerPos.x);
+
+		playerImagePos *= vRatio;
+
+		CModuleMapMenu* module = (CModuleMapMenu*)EngineModules.getModule(mapModule);
+		playerImagePos += module->mapOffset;
+
+		//dbg("%f %f\n", playerImagePos.x, playerImagePos.y);
+
+		auto playerMapWidget = Engine.getGUI().getWidget("map_player", true);
+		playerMapWidget->getParams()->_position = playerImagePos;
+		playerMapWidget->computeAbsolute();
+		auto mapWidget = Engine.getGUI().getWidget("map_menu", true);
+		mapWidget->computeAbsolute();
+
 		if (_currentOption != option) {
 			EngineSound.emitEvent(SOUND_MENU_ROLL);
 		}

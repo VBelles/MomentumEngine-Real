@@ -17,8 +17,17 @@
 				"position": "970 0",
 				"type": "image",
 				"size": "800 800",
-				"texture": "data/textures/gui/map/mapa_ms4_Gemma.dds",
+				"texture": "data/textures/gui/map/mapa_ms4_Gemma_new_retocado.dds",
+				"minUV": "0 0",
+				"maxUV": "1 1",					
 				"children": [
+					{
+						"name": "map_player",
+						"position": "25 25",
+						"type": "image",
+						"size": "25 25",
+						"texture": "data/textures/gui/monguer.dds"
+					},
 					{
 						"name": "chrysalises_map_menu",
 						"children": [
