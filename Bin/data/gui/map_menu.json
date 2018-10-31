@@ -82,7 +82,7 @@
 						"marker": {
 							"name": "temple_teleport_marker",
 							"type": "button",
-							"position": "90 200",
+							"position": "53.499725 198.078903",
 							"size": "50 50",
 							"texture": "data/textures/gui/map/Teleport_sinbrillo.dds",
 							"selected": {
@@ -128,7 +128,7 @@
 						"marker": {
 							"name": "main_entrance_teleport_marker",
 							"type": "button",
-							"position": "305 270",
+							"position": "302.954468 261.400055",
 							"size": "50 50",
 							"texture": "data/textures/gui/map/Teleport_sinbrillo.dds",
 							"selected": {
@@ -174,7 +174,7 @@
 						"marker": {
 							"name": "central_field_teleport_marker",
 							"type": "button",
-							"position": "460 355",
+							"position": "440.061401 346.681946",
 							"size": "50 50",
 							"texture": "data/textures/gui/map/Teleport_sinbrillo.dds",
 							"selected": {
@@ -220,7 +220,7 @@
 						"marker": {
 							"name": "tower_entrance_teleport_marker",
 							"type": "button",
-							"position": "575 527",
+							"position": "569.042358 522.175537",
 							"size": "50 50",
 							"texture": "data/textures/gui/map/Teleport_sinbrillo.dds",
 							"selected": {
@@ -266,7 +266,7 @@
 						"marker": {
 							"name": "behind_statue_teleport_marker",
 							"type": "button",
-							"position": "475 128",
+							"position": "448.919067 132.489609",
 							"size": "50 50",
 							"texture": "data/textures/gui/map/Teleport_sinbrillo.dds",
 							"selected": {
@@ -312,7 +312,7 @@
 						"marker": {
 							"name": "kings_graveyard_teleport_marker",
 							"type": "button",
-							"position": "285 495",
+							"position": "264.914673 493.486572",
 							"size": "50 50",
 							"texture": "data/textures/gui/map/Teleport_sinbrillo.dds",
 							"selected": {
@@ -358,7 +358,7 @@
 						"marker": {
 							"name": "mushroom_kingdom_teleport_marker",
 							"type": "button",
-							"position": "543 675",
+							"position": "554.230042 674.702881",
 							"size": "50 50",
 							"texture": "data/textures/gui/map/Teleport_sinbrillo.dds",
 							"selected": {
@@ -404,7 +404,7 @@
 						"marker": {
 							"name": "graveyard_teleport_marker",
 							"type": "button",
-							"position": "379 470",
+							"position": "350.055389 462.145264",
 							"size": "50 50",
 							"texture": "data/textures/gui/map/Teleport_sinbrillo.dds",
 							"selected": {
@@ -450,7 +450,7 @@
 						"marker": {
 							"name": "behind_tower_teleport_marker",
 							"type": "button",
-							"position": "660 560",
+							"position": "654.002930 552.718567",
 							"size": "50 50",
 							"texture": "data/textures/gui/map/Teleport_sinbrillo.dds",
 							"selected": {
@@ -496,7 +496,7 @@
 						"marker": {
 							"name": "gate_of_doom_teleport_marker",
 							"type": "button",
-							"position": "580 224",
+							"position": "552.430664 223.352600",
 							"size": "50 50",
 							"texture": "data/textures/gui/map/Teleport_sinbrillo.dds",
 							"selected": {
