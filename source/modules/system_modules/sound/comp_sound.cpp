@@ -174,7 +174,7 @@ bool TCompSound::isPlaying(std::string event) {
 	if (it == events.end())
 		return false;
 	auto& sound = it->second;
-	return !sound.eventInstances.empty() && !sound.farEvents.empty();
+	return !sound.eventInstances.empty() /*&& !sound.farEvents.empty()*/;
 }
 
 
