@@ -86,6 +86,7 @@ void TCompPlatformSimple::load(const json& j, TEntityParseContext& ctx) {
 		auto& jRoll = j["roll"];
 		rollSpeed = jRoll.value("speed", 5.f);
 		rollWaitDuration = jRoll.value("wait_duration", rollWaitDuration);
+		maxSoundDistanceSquared = pow(jRoll.value("max_sound_distance", sqrt(maxSoundDistanceSquared)), 2);
 	}
 
 	enabled = j.value("enabled", enabled);
@@ -103,7 +104,7 @@ void TCompPlatformSimple::onCreated(const TMsgEntityCreated& msg) {
 	rotationAxisGlobal = transform->getLeft()  * rotationAxisLocal.x +
 		transform->getUp()    * rotationAxisLocal.y +
 		transform->getFront() * rotationAxisLocal.z;
-	
+
 	if (rollSpeed != 0) {
 		float yaw, pitch;
 		transform->getYawPitchRoll(&yaw, &pitch, &targetRoll);
@@ -116,7 +117,9 @@ void TCompPlatformSimple::onCreated(const TMsgEntityCreated& msg) {
 
 void TCompPlatformSimple::turnAround() {
 	doRoll = true;
-	EngineSound.emitEvent(SOUND_ROTATE_PLATFORM, getTransform());
+	if (VEC3::DistanceSquared(EngineSound.getListenerPosition(), getTransform()->getPosition()) <= maxSoundDistanceSquared) {
+		EngineSound.emitEvent(SOUND_ROTATE_PLATFORM, getTransform());
+	}
 }
 
 void TCompPlatformSimple::update(float delta) {
@@ -225,7 +228,7 @@ TCompCollider* TCompPlatformSimple::getCollider() { return colliderHandle; }
 PxRigidDynamic* TCompPlatformSimple::getRigidDynamic() {
 	TCompCollider* col = getCollider();
 	if (col) {
-		return static_cast<PxRigidDynamic*>(col->actor); 
+		return static_cast<PxRigidDynamic*>(col->actor);
 	}
 	else return nullptr;
 }

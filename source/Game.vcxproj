@@ -397,7 +397,6 @@
     <ClCompile Include="modules\system_modules\particles\module_particles.cpp" />
     <ClCompile Include="modules\system_modules\sound\comp_music.cpp" />
     <ClCompile Include="modules\system_modules\sound\comp_sound.cpp" />
-    <ClCompile Include="modules\system_modules\sound\comp_sound_emmiter.cpp" />
     <ClCompile Include="modules\system_modules\sound\fmod_utils.cpp" />
     <ClCompile Include="modules\system_modules\sound\module_sound.cpp" />
     <ClCompile Include="modules\system_modules\module_uniques.cpp" />
@@ -791,7 +790,6 @@
     <ClInclude Include="modules\system_modules\particles\module_particles.h" />
     <ClInclude Include="modules\system_modules\sound\comp_music.h" />
     <ClInclude Include="modules\system_modules\sound\comp_sound.h" />
-    <ClInclude Include="modules\system_modules\sound\comp_sound_emmiter.h" />
     <ClInclude Include="modules\system_modules\sound\fmod_utils.h" />
     <ClInclude Include="modules\system_modules\sound\module_sound.h" />
     <ClInclude Include="modules\system_modules\module_uniques.h" />
