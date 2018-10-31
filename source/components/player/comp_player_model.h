@@ -213,6 +213,7 @@ public:
 
 	void damage(float damage);
 	void makeInvulnerable(float time);
+	void makeVulnerable();
 	void startDamageVision(float time);
 	void refillHp() { setHp(maxHp); }
 	float getHp() { return hp; }

@@ -27,6 +27,8 @@ void ScriptingPlayer::bind(SLB::Manager* manager) {
 	manager->set("enablePlayerOutline", SLB::FuncCall::create(ScriptingPlayer::enablePlayerOutline));
 	manager->set("isPlayerGrounded", SLB::FuncCall::create(ScriptingPlayer::isPlayerGrounded));
 	manager->set("setDummyState", SLB::FuncCall::create(ScriptingPlayer::setDummyState));
+	manager->set("makeInvulnerable", SLB::FuncCall::create(ScriptingPlayer::makeInvulnerable));
+	manager->set("makeVulnerable", SLB::FuncCall::create(ScriptingPlayer::makeVulnerable));
 }
 
 float ScriptingPlayer::getPlayerHp() {
@@ -109,6 +111,14 @@ void ScriptingPlayer::rotatePlayerTowards(float x, float z, float speed) {
 
 void ScriptingPlayer::setDummyState(std::string animation, bool isLoop, float duration, std::string exitAnimation) {
 	getPlayerModel()->setDummyState(animation, isLoop, duration, exitAnimation);
+}
+
+void ScriptingPlayer::makeInvulnerable(float time) {
+	getPlayerModel()->makeInvulnerable(time);
+}
+
+void ScriptingPlayer::makeVulnerable() {
+	getPlayerModel()->makeVulnerable();
 }
 
 TCompPlayerModel* ScriptingPlayer::getPlayerModel() {
