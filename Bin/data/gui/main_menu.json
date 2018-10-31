@@ -145,17 +145,33 @@
 						}
 					},
 					{
-						"name": "exit_game",
+						"name": "credits",
 						"type": "button",
 						"position": "0 160",
-						"size": "336 104",
-						"texture": "data/textures/gui/exit.dds",
+						"size": "360 104",
+						"texture": "data/textures/gui/bt_credits.dds",
 						"selected": {
 							"position": "-30 160",
-							"texture": "data/textures/gui/exit_selected.dds"
+							"texture": "data/textures/gui/bt_credits_selected.dds"
 						},
 						"pressed": {
 							"position": "-30 160",
+							"color": "0.8 0.8 0.8 1",
+							"texture": "data/textures/gui/bt_credits_selected.dds"
+						}
+					},
+					{
+						"name": "exit_game",
+						"type": "button",
+						"position": "0 240",
+						"size": "336 104",
+						"texture": "data/textures/gui/exit.dds",
+						"selected": {
+							"position": "-30 240",
+							"texture": "data/textures/gui/exit_selected.dds"
+						},
+						"pressed": {
+							"position": "-30 240",
 							"color": "0.8 0.8 0.8 1",
 							"texture": "data/textures/gui/exit_selected.dds"
 						}

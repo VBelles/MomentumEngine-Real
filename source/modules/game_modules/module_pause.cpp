@@ -9,7 +9,6 @@
 #include "modules/system_modules/sound/music_player.h"
 #include "modules/game_modules/module_options_ingame.h"
 #include "modules/game_modules/module_controls_help.h"
-#include "modules/game_modules/module_credits.h"
 
 bool CModulePause::start() {
 	pause = false;
@@ -35,10 +34,6 @@ bool CModulePause::start() {
 		EngineModules.changeGameState("main_menu", true);
 		EngineSound.getMusicPlayer()->setCurrentSong(CMusicPlayer::Song::MENU);
 	};
-	auto creditsCB = [&] {
-		onPausePressed();
-		((CModuleCredits*)EngineModules.getModule("credits"))->activate();
-	};
 	auto exitCB = []() {
 		CApp::get().stopMainLoop = true;
 	};
@@ -48,7 +43,6 @@ bool CModulePause::start() {
 	controller->registerOption("options", optionsCB);
 	controller->registerOption("controls", controlsCB);
 	controller->registerOption("main_menu", mainMenuCB);
-	controller->registerOption("credits", creditsCB);
 	controller->registerOption("exit_game", exitCB);
 	blocked = false;
 
