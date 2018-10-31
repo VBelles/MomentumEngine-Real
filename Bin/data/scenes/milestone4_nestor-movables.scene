@@ -2,6 +2,342 @@
   {
     "entity":
     {
+      "name": "nes_orbitas_rock_001",
+      "transform":
+      {
+        "pos": "0.0 207.333 0.0",
+        "rotation": "0.0 0.0 0.0 -1.0"
+      },
+      "render":
+      [
+        {
+          "mesh": "data/meshes/nes_orbitas_rock_001.mesh",
+          "materials":
+          [
+            "data/materials/Material_roca07.material"
+          ],
+          "enabled": true
+        }
+      ],
+      "platform_simple":
+      {
+        "rotation_axis": "0.0 -1.0 0.0",
+        "rotation_speed": 0.07,
+        "enabled": true
+      }
+    }
+  },
+  {
+    "entity":
+    {
+      "name": "nes_orbitas_column_05",
+      "transform":
+      {
+        "pos": "116.228 225.234 18.0206",
+        "rotation": "-0.112505 -0.108245 0.202665 -0.966723"
+      },
+      "render":
+      [
+        {
+          "mesh": "data/meshes/nes_orbitas_column_05.mesh",
+          "materials":
+          [
+            "data/materials/m_columna_piezas.material"
+          ],
+          "enabled": true
+        }
+      ],
+      "platform_simple":
+      {
+        "rotation_axis": "1.0 -1.0 0.0",
+        "rotation_speed": 0.1,
+        "enabled": true
+      }
+    }
+  },
+  {
+    "entity":
+    {
+      "name": "nes_orbitas_column_04",
+      "transform":
+      {
+        "pos": "116.228 225.234 18.0206",
+        "rotation": "-0.0732332 -0.185304 -0.0688729 -0.977525"
+      },
+      "render":
+      [
+        {
+          "mesh": "data/meshes/nes_orbitas_column_04.mesh",
+          "materials":
+          [
+            "data/materials/m_columna_piezas.material"
+          ],
+          "enabled": true
+        }
+      ],
+      "platform_simple":
+      {
+        "rotation_axis": "0.0 1.0 1.0",
+        "rotation_speed": 0.2,
+        "enabled": true
+      }
+    }
+  },
+  {
+    "entity":
+    {
+      "name": "nes_orbitas_column_03",
+      "transform":
+      {
+        "pos": "116.228 225.234 18.0206",
+        "rotation": "-0.331913 -0.215219 -0.522691 -0.755188"
+      },
+      "render":
+      [
+        {
+          "mesh": "data/meshes/nes_orbitas_column_03.mesh",
+          "materials":
+          [
+            "data/materials/m_columna_piezas.material"
+          ],
+          "enabled": true
+        }
+      ],
+      "platform_simple":
+      {
+        "rotation_axis": "0.0 0.0 1.0",
+        "rotation_speed": 0.4,
+        "enabled": true
+      }
+    }
+  },
+  {
+    "entity":
+    {
+      "name": "nes_orbitas_column_02",
+      "transform":
+      {
+        "pos": "116.228 225.234 18.0206",
+        "rotation": "-0.21004 -0.34123 -0.109143 -0.909688"
+      },
+      "render":
+      [
+        {
+          "mesh": "data/meshes/nes_orbitas_column_02.mesh",
+          "materials":
+          [
+            "data/materials/m_columna_piezas.material"
+          ],
+          "enabled": true
+        }
+      ],
+      "platform_simple":
+      {
+        "rotation_axis": "1.0 1.0 1.0",
+        "rotation_speed": 0.3,
+        "enabled": true
+      }
+    }
+  },
+  {
+    "entity":
+    {
+      "name": "nes_orbitas_column_01",
+      "transform":
+      {
+        "pos": "116.228 225.234 18.0206",
+        "rotation": "0.388476 -0.0870639 -0.0300724 -0.916844"
+      },
+      "render":
+      [
+        {
+          "mesh": "data/meshes/nes_orbitas_column_01.mesh",
+          "materials":
+          [
+            "data/materials/m_columna_piezas.material"
+          ],
+          "enabled": true
+        }
+      ],
+      "platform_simple":
+      {
+        "rotation_axis": "0.0 -1.0 0.0",
+        "rotation_speed": 0.5,
+        "enabled": true
+      }
+    }
+  },
+  {
+    "entity":
+    {
+      "name": "nes_orbitas_column_06",
+      "transform":
+      {
+        "pos": "116.228 225.234 18.0206",
+        "rotation": "-0.0773813 -0.0984806 -0.206034 -0.970497"
+      },
+      "render":
+      [
+        {
+          "mesh": "data/meshes/nes_orbitas_column_06.mesh",
+          "materials":
+          [
+            "data/materials/m_columna_piezas.material"
+          ],
+          "enabled": true
+        }
+      ],
+      "platform_simple":
+      {
+        "rotation_axis": "-1.0 0.0 0.0",
+        "rotation_speed": 0.5,
+        "enabled": true
+      }
+    }
+  },
+  {
+    "entity":
+    {
+      "name": "nes_orbitas_crystal_003",
+      "transform":
+      {
+        "pos": "-33.6212 155.398 52.6036",
+        "rotation": "0.0 -0.34202 0.0 -0.939693"
+      },
+      "render":
+      [
+        {
+          "mesh": "data/meshes/nes_orbitas_crystal_003.mesh",
+          "materials":
+          [
+            "data/materials/m_crystal_05.material"
+          ],
+          "enabled": true
+        }
+      ],
+      "platform_simple":
+      {
+        "rotation_axis": "0.0 -1.0 0.0",
+        "rotation_speed": 0.2,
+        "enabled": true
+      }
+    }
+  },
+  {
+    "entity":
+    {
+      "name": "nes_orbitas_crystal_002",
+      "transform":
+      {
+        "pos": "-33.6212 155.398 52.6036",
+        "rotation": "0.0 0.0 0.0 -1.0"
+      },
+      "render":
+      [
+        {
+          "mesh": "data/meshes/nes_orbitas_crystal_002.mesh",
+          "materials":
+          [
+            "data/materials/m_crystal_03.material"
+          ],
+          "enabled": true
+        }
+      ],
+      "platform_simple":
+      {
+        "rotation_axis": "0.0 1.0 0.0",
+        "rotation_speed": 0.1,
+        "enabled": true
+      }
+    }
+  },
+  {
+    "entity":
+    {
+      "name": "nes_orbitas_crystal_001",
+      "transform":
+      {
+        "pos": "-33.6212 155.398 52.6036",
+        "rotation": "0.0 -0.34202 0.0 -0.939693"
+      },
+      "render":
+      [
+        {
+          "mesh": "data/meshes/nes_orbitas_crystal_001.mesh",
+          "materials":
+          [
+            "data/materials/m_crystal_00.material"
+          ],
+          "enabled": true
+        }
+      ],
+      "platform_simple":
+      {
+        "rotation_axis": "0.0 1.0 0.0",
+        "rotation_speed": 0.5,
+        "enabled": true
+      }
+    }
+  },
+  {
+    "entity":
+    {
+      "name": "nes_orbitas_arcoTorre001",
+      "transform":
+      {
+        "pos": "-214.593 118.525 -221.425",
+        "rotation": "-0.277816 -0.88112 -0.115075 -0.364972"
+      },
+      "render":
+      [
+        {
+          "mesh": "data/meshes/nes_orbitas_arcoTorre001.mesh",
+          "materials":
+          [
+            "data/materials/Material_Torre.material"
+          ],
+          "enabled": true
+        }
+      ],
+      "platform_simple":
+      {
+        "rotation_axis": "0.0 1.0 0.0",
+        "rotation_speed": 0.02,
+        "enabled": true
+      }
+    }
+  },
+  {
+    "entity":
+    {
+      "name": "nes_orbitas_arcoTorre",
+      "transform":
+      {
+        "pos": "0.0 0.0 0.0",
+        "rotation": "-0.0778284 -0.24684 -0.29046 -0.92122"
+      },
+      "render":
+      [
+        {
+          "mesh": "data/meshes/nes_orbitas_arcoTorre.mesh",
+          "materials":
+          [
+            "data/materials/Material_Torre.material"
+          ],
+          "enabled": true
+        }
+      ],
+      "platform_simple":
+      {
+        "rotation_axis": "0.0 1.0 1.0",
+        "rotation_speed": 0.01,
+        "enabled": true
+      }
+    }
+  },
+  {
+    "entity":
+    {
       "name": "nes_platform_civilization_emissive_104",
       "transform":
       {

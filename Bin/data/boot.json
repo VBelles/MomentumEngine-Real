@@ -55,27 +55,30 @@
     "data/scenes/milestone4_miguel_raices-0.scene",
     "data/scenes/milestone4_miguel_raices-lights.scene",
     
+    
+    
     "data/scenes/fireplace_puzzle.scene",
     "data/scenes/final_door_definitiva.scene",
     "data/scenes/tutorial_triggers_definitivos.scene",
     "data/scenes/tutorial_enemies.scene",
-
+    
     "data/scenes/cinematica-cameras.scene",
     
     "data/scenes/golems.scene",
-
+    
     "data/scenes/power_ups.scene",
     "data/scenes/setichuelas_lod.scene",
     "data/scenes/dani_rocas_islas_lod.scene",
     "data/scenes/crystals_lod_definitivos.scene",
     
     "data/scenes/milestone4_locations_definitivas.scene",
-
+    
     "data/scenes/music_player.scene",
     
     "data/scenes/ambiental_particles.scene"
   ],
   "unused_scenes": [
+    "data/scenes/prueba_cubo-0.scene",
     "data/scenes/_test_wind.scene",
     "data/scenes/_test_music.scene",
     

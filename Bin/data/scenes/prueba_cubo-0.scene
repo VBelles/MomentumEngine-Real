@@ -2,7 +2,7 @@
   {
     "entity":
     {
-      "name": "nubes_sphere_001",
+      "name": "_nubes_sphere_001",
       "transform":
       {
         "pos": "0.0 0.0 0.0",
@@ -11,7 +11,7 @@
       "render":
       [
         {
-          "mesh": "data/meshes/nubes_sphere_001.mesh",
+          "mesh": "data/meshes/_nubes_sphere_001.mesh",
           "materials":
           [
             "data/materials/nubes.material"
