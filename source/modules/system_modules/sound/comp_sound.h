@@ -4,16 +4,24 @@
 
 class TCompSound : public TCompBase {
 private:
+	struct FarEvent {
+		std::string id;
+		CTimer2 timer;
+		int timeline = 0;
+		float maxDistanceSquared;
+	};
 	struct Sound {
 		std::string id;
 		std::string path;
 		FMOD::Studio::EventDescription* eventDescription = nullptr;
 		std::vector<FMOD::Studio::EventInstance*> eventInstances;
+		std::vector<FarEvent> farEvents;
 		bool stopFadeOut = false;
 		bool following = false;
 		bool multiInstancing = true;
 		bool is3D = true;
 		bool playOnStart = false;
+		float maxDistance = -1.f;
 	};
 	
 	std::map<std::string, Sound> events;
@@ -29,7 +37,7 @@ public:
 	void debugInMenu();
 	void load(const json& j, TEntityParseContext& ctx);
 	void update(float delta);
-	void play(std::string sound);
+	bool play(std::string sound);
 	void stop(std::string sound);
 	void stop();
 	bool isPlaying(std::string event);

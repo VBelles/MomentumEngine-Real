@@ -85,6 +85,7 @@
 				"variationSpeed": 0.5
 			},
 			"sound": {
+				"max_distance": 30,
 				"events": [
 				  {
 					"id": "fire",

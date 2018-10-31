@@ -35,6 +35,8 @@ private:
 	CHandle transformHandle;
 	CHandle colliderHandle;
 
+	float maxSoundDistanceSquared = 40.f * 40.f;
+
 public:
 	DECL_SIBLING_ACCESS();
 

@@ -70,6 +70,8 @@ public:
 	void forEachEventInstance(FMOD::Studio::Bank * bank, std::function<void(FMOD::Studio::EventDescription*, FMOD::Studio::EventInstance*)> callback);
 
 	CMusicPlayer* getMusicPlayer();
+	FMOD_3D_ATTRIBUTES* getListener();
+	VEC3 getListenerPosition();
 };
 
 
