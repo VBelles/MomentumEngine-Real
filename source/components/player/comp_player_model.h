@@ -130,6 +130,8 @@ public:
 	DECL_SIBLING_ACCESS();
 	~TCompPlayerModel();
 
+	int numberOfDeaths = 0;
+
 	bool isOnPlatform = false;
 
 	bool lockWalk = false;

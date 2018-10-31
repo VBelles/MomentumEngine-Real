@@ -73,6 +73,7 @@ void PitFallingActionState::respawn() {
 
 	getPlayerModel()->damage(fallingDamage);
 	if (getPlayerModel()->getHp() < 1) {
+		getPlayerModel()->numberOfDeaths++;
 		getPlayerModel()->refillHp();
 		getPowerGauge()->resetPower();
 	}
