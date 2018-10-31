@@ -19,7 +19,7 @@ private:
 	void onAllScenesCreated(const TMsgAllScenesCreated& msg);
 
 	float timeToRespawnCoin = 30.f;
-	int maxCoins = 144;
+	int maxCoins = 168;
 	int lifePiecesPerHeart = 1;
 
 	float musicVolumeMultiplier = 0.3f;
