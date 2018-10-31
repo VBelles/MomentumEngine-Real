@@ -95,14 +95,7 @@ namespace GUI {
 		VEC3 playerPos = playerTransform->getPosition();
 		VEC2 playerImagePos = VEC2(playerPos.z, playerPos.x);
 
-		float ratio = 0.961217872;
-		float ratio2 = -1.040346865;
-		VEC2 vRatio = VEC2(ratio2, ratio);
-
-		VEC2 dir = playerImagePos * vRatio;
-		dir.Normalize();
-
-		playerImagePos = dir * playerImagePos.Length();
+		playerImagePos *= vRatio;
 
 		CModuleMapMenu* module = (CModuleMapMenu*)EngineModules.getModule(mapModule);
 		playerImagePos += module->mapOffset;
