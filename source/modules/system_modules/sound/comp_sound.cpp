@@ -82,6 +82,7 @@ void TCompSound::update(float delta) {
 			if (!eventInstance || !eventInstance->isValid()) {
 				return true;
 			}
+			// Stop and save event if its too far
 			if (transform && sound.is3D && sound.maxDistance > 0.f) {
 				float maxDistanceSquared = sound.maxDistance * sound.maxDistance;
 				float distanceSquared = VEC3::DistanceSquared(EngineSound.getListenerPosition(), transform->getPosition());
@@ -106,13 +107,13 @@ void TCompSound::update(float delta) {
 		}), sound.eventInstances.end());
 
 		if (transform) {
-			sound.farEvents.erase(std::remove_if(sound.farEvents.begin(), sound.farEvents.end(), [&](auto& farEvent) -> bool {
+			sound.farEvents.erase(std::remove_if(sound.farEvents.begin(), sound.farEvents.end(), [&](FarEvent& farEvent) -> bool {
 				float distanceSquared = VEC3::DistanceSquared(EngineSound.getListenerPosition(), transform->getPosition());
 				if (distanceSquared <= farEvent.maxDistanceSquared) {
 					if (play(sound.id)) {
 						auto eventInstance = sound.eventInstances[sound.eventInstances.size() - 1];
 						int timelineElapse = (int)(farEvent.timer.elapsed() * 1000.f);
-						eventInstance->setTimelinePosition(timelineElapse);
+						eventInstance->setTimelinePosition(farEvent.timeline + timelineElapse);
 					}
 					return true;
 				}
@@ -173,7 +174,7 @@ bool TCompSound::isPlaying(std::string event) {
 	if (it == events.end())
 		return false;
 	auto& sound = it->second;
-	return !sound.eventInstances.empty();
+	return !sound.eventInstances.empty() && !sound.farEvents.empty();
 }
 
 
