@@ -186,8 +186,8 @@
 						"name": "map_player",
 						"position": "25 25",
 						"type": "image",
-						"size": "25 25",
-						"texture": "data/textures/gui/monguer.dds"
+						"size": "50 50",
+						"texture": "data/textures/gui/map/mascara_brillante.dds"
 					}
 				]
 			},
