@@ -2,6 +2,67 @@
   {
     "entity":
     {
+      "name": "nes_camera_017_torre",
+      "transform":
+      {
+        "pos": "257.426 105.08 -186.748",
+        "lookat": "149.052 66.9041 -153.497"
+      },
+      "camera":
+      {
+        "fov": 45.0
+      },
+      "fixed_camera":
+      {
+        "returnToPlayerCameraWithInput": false,
+        "modifyPlayerCameraRotation": true,
+        "timeToMixOut": 1.0,
+        "panningSpeed": 0.0,
+        "panningRadius": 3.0
+      }
+    }
+  },
+  {
+    "entity":
+    {
+      "name": "nes_camera_trigger_017",
+      "transform":
+      {
+        "pos": "152.991 52.5792 -148.226",
+        "rotation": "0.0 0.707107 0.0 -0.707107"
+      },
+      "collider":
+      {
+        "mesh_src": "data/meshes/nes_camera_trigger_017.col_mesh",
+        "shape": "tri_mesh",
+        "is_trigger": true,
+        "type": "static",
+        "group":
+        [
+          "trigger"
+        ],
+        "mask":
+        [
+          "player"
+        ]
+      },
+      "suggestCameraTrigger":
+      {
+        "cameraSuggestion": "nes_camera_017_torre",
+        "suggestYaw": false,
+        "hasOppositeYaw": false,
+        "suggestPitch": true,
+        "forceDistance": false,
+        "distanceToCamera": 15.7638,
+        "changeCenteringCamera": false,
+        "forcePositionOnEnter": false,
+        "centeringCameraSpeed": "4.0 3.0"
+      }
+    }
+  },
+  {
+    "entity":
+    {
       "name": "nes_camera_016",
       "transform":
       {
