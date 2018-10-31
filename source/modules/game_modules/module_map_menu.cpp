@@ -80,7 +80,7 @@ void CModuleMapMenu::onMapButtonPressed() {
 		controller->setCurrentOption(0);
 		Engine.getGUI().activateWidget("map_menu");
 		ScriptingPlayer::givePlayerControl(); //Necesario ya que se fuerza salir del debug y puede no tener el control
-		//CApp::get().setDebugMode(false);
+		CApp::get().setDebugMode(false);
 		cb_globals.game_paused = 1;
 		EngineSound.getMusicPlayer()->setPauseMenu(true);
 		UniqueElement* unique = EngineUniques.getUniqueEvent("chrysalis_help");

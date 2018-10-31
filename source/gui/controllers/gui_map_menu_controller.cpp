@@ -100,7 +100,7 @@ namespace GUI {
 		CModuleMapMenu* module = (CModuleMapMenu*)EngineModules.getModule(mapModule);
 		playerImagePos += module->mapOffset;
 
-		//dbg("%f %f\n", playerImagePos.x, playerImagePos.y);
+		//dbg("Player image pos: %f %f\n", playerImagePos.x, playerImagePos.y);
 
 		auto playerMapWidget = Engine.getGUI().getWidget("map_player", true);
 		playerMapWidget->getParams()->_position = playerImagePos;
