@@ -2822,7 +2822,7 @@
       "name": "nes_platform_civilization_emissive_049",
       "transform":
       {
-        "pos": "-139.795 49.4382 85.7953",
+        "pos": "-138.02 49.4382 85.3668",
         "rotation": "0.0 0.0 0.0 -1.0"
       },
       "render":
@@ -2863,8 +2863,8 @@
       "name": "nes_platform_civilization_emissive_048",
       "transform":
       {
-        "pos": "-134.98 46.8613 80.3486",
-        "rotation": "0.0 0.0 0.0 -1.0"
+        "pos": "-133.203 46.8613 79.9194",
+        "rotation": "0.0 -0.21644 0.0 -0.976296"
       },
       "render":
       [

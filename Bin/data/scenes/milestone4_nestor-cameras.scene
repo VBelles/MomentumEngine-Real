@@ -2,6 +2,67 @@
   {
     "entity":
     {
+      "name": "nes_camera_016",
+      "transform":
+      {
+        "pos": "-53.4386 40.8324 52.6628",
+        "lookat": "-85.1727 27.2342 46.7341"
+      },
+      "camera":
+      {
+        "fov": 45.0
+      },
+      "fixed_camera":
+      {
+        "returnToPlayerCameraWithInput": false,
+        "modifyPlayerCameraRotation": true,
+        "timeToMixOut": 1.0,
+        "panningSpeed": 0.0,
+        "panningRadius": 3.0
+      }
+    }
+  },
+  {
+    "entity":
+    {
+      "name": "nes_camera_trigger_016",
+      "transform":
+      {
+        "pos": "-85.6499 23.8664 46.3421",
+        "rotation": "0.0 0.5 0.0 -0.866025"
+      },
+      "collider":
+      {
+        "mesh_src": "data/meshes/nes_camera_trigger_016.col_mesh",
+        "shape": "tri_mesh",
+        "is_trigger": true,
+        "type": "static",
+        "group":
+        [
+          "trigger"
+        ],
+        "mask":
+        [
+          "player"
+        ]
+      },
+      "suggestCameraTrigger":
+      {
+        "cameraSuggestion": "nes_camera_016",
+        "suggestYaw": false,
+        "hasOppositeYaw": false,
+        "suggestPitch": true,
+        "forceDistance": false,
+        "distanceToCamera": 3.42388,
+        "changeCenteringCamera": false,
+        "forcePositionOnEnter": false,
+        "centeringCameraSpeed": "4.0 3.0"
+      }
+    }
+  },
+  {
+    "entity":
+    {
       "name": "nes_camera_015_anillo_central",
       "transform":
       {

@@ -2,6 +2,41 @@
   {
     "entity":
     {
+      "name": "nes_mushroom_bi005",
+      "transform":
+      {
+        "pos": "-140.083 52.5296 123.796",
+        "rotation": "0.0 -0.737277 0.0 -0.67559"
+      },
+      "render":
+      [
+        {
+          "mesh": "data/meshes/nes_mushroom_bi005.mesh",
+          "materials":
+          [
+            "data/materials/mushroom_head_05.material",
+            "data/materials/mushroom_body_05.material",
+            "data/materials/mushroom_head_06.material",
+            "data/materials/mushroom_body_06.material"
+          ],
+          "enabled": true
+        }
+      ],
+      "collider":
+      {
+        "mesh_src": "data/meshes/nes_mushroom_bi_col005.col_mesh",
+        "shape": "tri_mesh",
+        "type": "static",
+        "group":
+        [
+          "scenario"
+        ]
+      }
+    }
+  },
+  {
+    "entity":
+    {
       "name": "nes_crystal_noLOD_000",
       "transform":
       {
@@ -6302,7 +6337,7 @@
       "name": "nes_columna_piezas_grande_capitel_003",
       "transform":
       {
-        "pos": "-141.814 48.0194 96.9868",
+        "pos": "-140.038 48.0194 96.5583",
         "rotation": "0.0 0.0 0.0 -1.0"
       },
       "render":
@@ -6334,7 +6369,7 @@
       "name": "nes_plataforma_roca_008",
       "transform":
       {
-        "pos": "-143.592 47.9246 122.926",
+        "pos": "-141.817 47.9246 122.498",
         "rotation": "0.0 0.0 0.0 -1.0"
       },
       "render":
@@ -6366,7 +6401,7 @@
       "name": "nes_plataforma_roca_007",
       "transform":
       {
-        "pos": "-143.84 48.5332 111.352",
+        "pos": "-142.064 48.5332 110.923",
         "rotation": "0.0 0.0 0.0 -1.0"
       },
       "render":
