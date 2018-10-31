@@ -1,7 +1,7 @@
 [
 	{
 		"name": "map_menu",
-		"type": "widget",
+		"type": "wnameget",
 		"size": "1920 1080",
 		"position": "0 100",
 		"children": [
@@ -22,29 +22,178 @@
 				"maxUV": "1 1",					
 				"children": [
 					{
-						"name": "map_player",
-						"position": "25 25",
-						"type": "image",
-						"size": "25 25",
-						"texture": "data/textures/gui/monguer.dds"
-					},
-					{
 						"name": "chrysalises_map_menu",
 						"children": [
 							{
 								"name": "chrysalis_fire_puzzle",
-								"position": "0 0",
+								"position": "250.068008 500.720520",
+								"type": "image",
+								"size": "31 58",
+								"texture": "data/textures/gui/hud/chrysalis_icon.dds"
+							},
+							{
+								"name": "dani_chrysalis_003",
+								"position": "46.487885 210.914795",
+								"type": "image",
+								"size": "31 58",
+								"texture": "data/textures/gui/hud/chrysalis_icon.dds"
+							},
+							{
+								"name": "dani_chrysalis_002",
+								"position": "191.818863 258.897797",
+								"type": "image",
+								"size": "31 58",
+								"texture": "data/textures/gui/hud/chrysalis_icon.dds"
+							},
+							{
+								"name": "dani_chrysalis_001",
+								"position": "682.040527 559.479309",
+								"type": "image",
+								"size": "31 58",
+								"texture": "data/textures/gui/hud/chrysalis_icon.dds"
+							},
+							{
+								"name": "plataformeo_chrysalis002",
+								"position": "267.739746 405.501099",
+								"type": "image",
+								"size": "31 58",
+								"texture": "data/textures/gui/hud/chrysalis_icon.dds"
+								
+							},
+							{
+								"name": "plataformeo_chrysalis001",
+								"position": "706.796021 493.745178",
+								"type": "image",
+								"size": "31 58",
+								"texture": "data/textures/gui/hud/chrysalis_icon.dds"
+							},
+							{
+								"name": "dani_chrysalis_000",
+								"position": "498.534210 683.390747",
+								"type": "image",
+								"size": "31 58",
+								"texture": "data/textures/gui/hud/chrysalis_icon.dds"
+							},
+							{
+								"name": "nes_chrysalis016",
+								"position": "221.582916 311.187683",
+								"type": "image",
+								"size": "31 58",
+								"texture": "data/textures/gui/hud/chrysalis_icon.dds"
+							},
+							{
+								"name": "nes_chrysalis015",
+								"position": "490.757782 109.308212",
+								"type": "image",
+								"size": "31 58",
+								"texture": "data/textures/gui/hud/chrysalis_icon.dds"
+							},
+							{
+								"name": "nes_chrysalis014",
+								"position": "440.606903 220.526413",
+								"type": "image",
+								"size": "31 58",
+								"texture": "data/textures/gui/hud/chrysalis_icon.dds"
+							},
+							{
+								"name": "nes_chrysalis013",
+								"position": "456.911224 417.721741",
+								"type": "image",
+								"size": "31 58",
+								"texture": "data/textures/gui/hud/chrysalis_icon.dds"
+							},
+							{
+								"name": "nes_chrysalis012",
+								"position": "536.859436 226.367645",
+								"type": "image",
+								"size": "31 58",
+								"texture": "data/textures/gui/hud/chrysalis_icon.dds"
+								
+							},
+							{
+								"name": "nes_chrysalis011",
+								"position": "401.035156 93.441208",
+								"type": "image",
+								"size": "31 58",
+								"texture": "data/textures/gui/hud/chrysalis_icon.dds"
+							},
+							{
+								"name": "nes_chrysalis010",
+								"position": "568.136719 377.171936",
+								"type": "image",
+								"size": "31 58",
+								"texture": "data/textures/gui/hud/chrysalis_icon.dds"
+							},
+							{
+								"name": "nes_chrysalis007",
+								"position": "478.203125 273.632294",
+								"type": "image",
+								"size": "31 58",
+								"texture": "data/textures/gui/hud/chrysalis_icon.dds"
+							},
+							{
+								"name": "nes_chrysalis006",
+								"position": "595.607849 322.061218",
+								"type": "image",
+								"size": "31 58",
+								"texture": "data/textures/gui/hud/chrysalis_icon.dds"
+							},
+							{
+								"name": "nes_chrysalis008",
+								"position": "493.204895 391.777344",
+								"type": "image",
+								"size": "31 58",
+								"texture": "data/textures/gui/hud/chrysalis_icon.dds"
+							},
+							{
+								"name": "nes_chrysalis005",
+								"position": "309.136871 182.071350",
+								"type": "image",
+								"size": "31 58",
+								"texture": "data/textures/gui/hud/chrysalis_icon.dds"
+							},
+							{
+								"name": "nes_chrysalis004",
+								"position": "600.193726 499.290283",
+								"type": "image",
+								"size": "31 58",
+								"texture": "data/textures/gui/hud/chrysalis_icon.dds"
+							},
+							{
+								"name": "nes_chrysalis003",
+								"position": "696.102844 357.863586",
+								"type": "image",
+								"size": "31 58",
+								"texture": "data/textures/gui/hud/chrysalis_icon.dds"
+							},
+							{
+								"name": "nes_chrysalis002",
+								"position": "659.803345 365.870697",
+								"type": "image",
+								"size": "31 58",
+								"texture": "data/textures/gui/hud/chrysalis_icon.dds"
+							},
+							{
+								"name": "nes_chrysalis001",
+								"position": "641.888062 323.906708",
 								"type": "image",
 								"size": "31 58",
 								"texture": "data/textures/gui/hud/chrysalis_icon.dds"
 							}
 						]
+					},
+					{
+						"name": "map_player",
+						"position": "25 25",
+						"type": "image",
+						"size": "25 25",
+						"texture": "data/textures/gui/monguer.dds"
 					}
 				]
 			},
 			{
 				"name": "buttons_map_menu",
-				"type": "widget",
+				"type": "wnameget",
 				"position": "0 0",
 				"children": [
 					{
@@ -82,7 +231,7 @@
 						"marker": {
 							"name": "temple_teleport_marker",
 							"type": "button",
-							"position": "90 200",
+							"position": "53.499725 198.078903",
 							"size": "50 50",
 							"texture": "data/textures/gui/map/Teleport_sinbrillo.dds",
 							"selected": {
@@ -128,7 +277,7 @@
 						"marker": {
 							"name": "main_entrance_teleport_marker",
 							"type": "button",
-							"position": "305 270",
+							"position": "302.954468 261.400055",
 							"size": "50 50",
 							"texture": "data/textures/gui/map/Teleport_sinbrillo.dds",
 							"selected": {
@@ -174,7 +323,7 @@
 						"marker": {
 							"name": "central_field_teleport_marker",
 							"type": "button",
-							"position": "460 355",
+							"position": "440.061401 346.681946",
 							"size": "50 50",
 							"texture": "data/textures/gui/map/Teleport_sinbrillo.dds",
 							"selected": {
@@ -220,7 +369,7 @@
 						"marker": {
 							"name": "tower_entrance_teleport_marker",
 							"type": "button",
-							"position": "575 527",
+							"position": "569.042358 522.175537",
 							"size": "50 50",
 							"texture": "data/textures/gui/map/Teleport_sinbrillo.dds",
 							"selected": {
@@ -266,7 +415,7 @@
 						"marker": {
 							"name": "behind_statue_teleport_marker",
 							"type": "button",
-							"position": "475 128",
+							"position": "448.919067 132.489609",
 							"size": "50 50",
 							"texture": "data/textures/gui/map/Teleport_sinbrillo.dds",
 							"selected": {
@@ -312,7 +461,7 @@
 						"marker": {
 							"name": "kings_graveyard_teleport_marker",
 							"type": "button",
-							"position": "285 495",
+							"position": "264.914673 493.486572",
 							"size": "50 50",
 							"texture": "data/textures/gui/map/Teleport_sinbrillo.dds",
 							"selected": {
@@ -358,7 +507,7 @@
 						"marker": {
 							"name": "mushroom_kingdom_teleport_marker",
 							"type": "button",
-							"position": "543 675",
+							"position": "554.230042 674.702881",
 							"size": "50 50",
 							"texture": "data/textures/gui/map/Teleport_sinbrillo.dds",
 							"selected": {
@@ -404,7 +553,7 @@
 						"marker": {
 							"name": "graveyard_teleport_marker",
 							"type": "button",
-							"position": "379 470",
+							"position": "350.055389 462.145264",
 							"size": "50 50",
 							"texture": "data/textures/gui/map/Teleport_sinbrillo.dds",
 							"selected": {
@@ -450,7 +599,7 @@
 						"marker": {
 							"name": "behind_tower_teleport_marker",
 							"type": "button",
-							"position": "660 560",
+							"position": "654.002930 552.718567",
 							"size": "50 50",
 							"texture": "data/textures/gui/map/Teleport_sinbrillo.dds",
 							"selected": {
@@ -496,7 +645,7 @@
 						"marker": {
 							"name": "gate_of_doom_teleport_marker",
 							"type": "button",
-							"position": "580 224",
+							"position": "552.430664 223.352600",
 							"size": "50 50",
 							"texture": "data/textures/gui/map/Teleport_sinbrillo.dds",
 							"selected": {
