@@ -3,19 +3,19 @@
 		"name": "hud",
 		"type": "widget",
 		"size": "1920 1080",
-		"position": "0 0",
+		"position": "15 5",
 		"children": [
 			{
 				"name": "life_points",
 				"type": "points_bar",
 				"variable": "hp",
 				"variable_max": "max_hp",
-				"position": "250 55",
+				"position": "225 45",
 				"children": [
 					{
 						"name": "life_point00",
 						"type": "point",
-						"size": "60 66",
+						"size": "64 64",
 						"position": "0 0",
 						"texture": "data/textures/gui/hud/life_mask.dds",
 						"empty": {
@@ -25,8 +25,8 @@
 					{
 						"name": "life_point01",
 						"type": "point",
-						"size": "60 66",
-						"position": "65 0",
+						"size": "64 64",
+						"position": "64 0",
 						"texture": "data/textures/gui/hud/life_mask.dds",
 						"empty": {
 							"texture": "data/textures/gui/hud/life_mask_empty.dds"
@@ -35,8 +35,8 @@
 					{
 						"name": "life_point02",
 						"type": "point",
-						"size": "60 66",
-						"position": "130 0",
+						"size": "64 64",
+						"position": "128 0",
 						"texture": "data/textures/gui/hud/life_mask.dds",
 						"empty": {
 							"texture": "data/textures/gui/hud/life_mask_empty.dds"
@@ -45,8 +45,8 @@
 					{
 						"name": "life_point03",
 						"type": "point",
-						"size": "60 66",
-						"position": "195 0",
+						"size": "64 64",
+						"position": "192 0",
 						"texture": "data/textures/gui/hud/life_mask.dds",
 						"empty": {
 							"texture": "data/textures/gui/hud/life_mask_empty.dds"
@@ -55,8 +55,8 @@
 					{
 						"name": "life_point04",
 						"type": "point",
-						"size": "60 66",
-						"position": "260 0",
+						"size": "64 64",
+						"position": "256 0",
 						"texture": "data/textures/gui/hud/life_mask.dds",
 						"empty": {
 							"texture": "data/textures/gui/hud/life_mask_empty.dds"
@@ -65,8 +65,8 @@
 					{
 						"name": "life_point05",
 						"type": "point",
-						"size": "60 66",
-						"position": "325 0",
+						"size": "64 64",
+						"position": "320 0",
 						"texture": "data/textures/gui/hud/life_mask.dds",
 						"empty": {
 							"texture": "data/textures/gui/hud/life_mask_empty.dds"
@@ -75,8 +75,8 @@
 					{
 						"name": "life_point06",
 						"type": "point",
-						"size": "60 66",
-						"position": "390 0",
+						"size": "64 64",
+						"position": "384 0",
 						"texture": "data/textures/gui/hud/life_mask.dds",
 						"empty": {
 							"texture": "data/textures/gui/hud/life_mask_empty.dds"
@@ -85,8 +85,8 @@
 					{
 						"name": "life_point07",
 						"type": "point",
-						"size": "60 66",
-						"position": "455 0",
+						"size": "64 64",
+						"position": "448 0",
 						"texture": "data/textures/gui/hud/life_mask.dds",
 						"empty": {
 							"texture": "data/textures/gui/hud/life_mask_empty.dds"
@@ -95,8 +95,8 @@
 					{
 						"name": "life_point08",
 						"type": "point",
-						"size": "60 66",
-						"position": "520 0",
+						"size": "64 64",
+						"position": "512 0",
 						"texture": "data/textures/gui/hud/life_mask.dds",
 						"empty": {
 							"texture": "data/textures/gui/hud/life_mask_empty.dds"
@@ -105,8 +105,8 @@
 					{
 						"name": "life_point09",
 						"type": "point",
-						"size": "60 66",
-						"position": "585 0",
+						"size": "64 64",
+						"position": "576 0",
 						"texture": "data/textures/gui/hud/life_mask.dds",
 						"empty": {
 							"texture": "data/textures/gui/hud/life_mask_empty.dds"
@@ -115,95 +115,12 @@
 					{
 						"name": "life_point10",
 						"type": "point",
-						"size": "60 66",
-						"position": "650 0",
+						"size": "64 64",
+						"position": "640 0",
 						"texture": "data/textures/gui/hud/life_mask.dds",
 						"empty": {
 							"texture": "data/textures/gui/hud/life_mask_empty.dds"
 						}
-					}
-				]
-			},
-			{
-				"name": "coins",
-				"type": "widget",
-				"children": [
-					{
-						"name": "coin_full",
-						"type": "bar",
-						"size": "24 374",
-						"position": "47.5 250",
-						"texture": "data/textures/gui/hud/coin_bar.dds",
-						"variable": "coin_progress",
-						"direction": "vertical"
-					},
-					{
-						"name": "coin_bars_points",
-						"type": "points_bar",
-						"variable": "coin_bars",
-						"variable_max": "max_coin_bars",
-						"children": [
-							{
-								"name": "coin_point01",
-								"type": "point",
-								"size": "36 36",
-								"position": "11.5 153.5",
-								"texture": "data/textures/gui/hud/coin_1.dds",
-								"empty": {
-									"texture": "data/textures/gui/hud/coin_1_empty.dds"
-								}
-							},
-							{
-								"name": "coin_point02",
-								"type": "point",
-								"size": "36 36",
-								"position": "4.5 108.5",
-								"texture": "data/textures/gui/hud/coin_2.dds",
-								"empty": {
-									"texture": "data/textures/gui/hud/coin_2_empty.dds"
-								}
-							},
-							{
-								"name": "coin_point03",
-								"type": "point",
-								"size": "36 36",
-								"position": "14 67",
-								"texture": "data/textures/gui/hud/coin_3.dds",
-								"empty": {
-									"texture": "data/textures/gui/hud/coin_3_empty.dds"
-								}
-							},
-							{
-								"name": "coin_point04",
-								"type": "point",
-								"size": "36 36",
-								"position": "39 34",
-								"texture": "data/textures/gui/hud/coin_4.dds",
-								"empty": {
-									"texture": "data/textures/gui/hud/coin_4_empty.dds"
-								}
-							},
-							{
-								"name": "coin_point05",
-								"type": "point",
-								"size": "36 36",
-								"position": "72.5 13.5",
-								"texture": "data/textures/gui/hud/coin_5.dds",
-								"empty": {
-									"texture": "data/textures/gui/hud/coin_5_empty.dds"
-								}
-							},
-							{
-								"name": "coin_point06",
-								"type": "point",
-								"size": "36 36",
-								"position": "111 1",
-								"texture": "data/textures/gui/hud/coin_6.dds",
-								"empty": {
-									"texture": "data/textures/gui/hud/coin_6_empty.dds"
-								}
-							}
-						]
 					}
 				]
 			},
@@ -257,8 +174,92 @@
 					{
 						"name": "foreground",
 						"type": "image",
-						"size": "310 640",
+						"size": "210 570",
 						"texture": "data/textures/gui/hud/power_foreground.dds"
+					}
+				]
+			},
+			{
+				"name": "coins",
+				"type": "widget",
+				"children": [
+					{
+						"name": "coin_full",
+						"type": "bar",
+						"size": "9 294",
+						"position": "27 269",
+						"texture": "data/textures/gui/hud/coin_bar.dds",
+						"variable": "coin_progress",
+						"direction": "vertical"
+					},
+					{
+						"name": "coin_bars_points",
+						"type": "points_bar",
+						"position": "-40 -30",
+						"variable": "coin_bars",
+						"variable_max": "max_coin_bars",
+						"children": [
+							{
+								"name": "coin_point01",
+								"type": "point",
+								"size": "42 42",
+								"position": "28 158",
+								"texture": "data/textures/gui/hud/coin.dds",
+								"empty": {
+									"texture": "data/textures/gui/hud/coin_empty.dds"
+								}
+							},
+							{
+								"name": "coin_point02",
+								"type": "point",
+								"size": "42 42",
+								"position": "24.5 125",
+								"texture": "data/textures/gui/hud/coin.dds",
+								"empty": {
+									"texture": "data/textures/gui/hud/coin_empty.dds"
+								}
+							},
+							{
+								"name": "coin_point03",
+								"type": "point",
+								"size": "42 42",
+								"position": "31.5 92.5",
+								"texture": "data/textures/gui/hud/coin.dds",
+								"empty": {
+									"texture": "data/textures/gui/hud/coin_empty.dds"
+								}
+							},
+							{
+								"name": "coin_point04",
+								"type": "point",
+								"size": "42 42",
+								"position": "48.5 63.5",
+								"texture": "data/textures/gui/hud/coin.dds",
+								"empty": {
+									"texture": "data/textures/gui/hud/coin_empty.dds"
+								}
+							},
+							{
+								"name": "coin_point05",
+								"type": "point",
+								"size": "42 42",
+								"position": "73 41.5",
+								"texture": "data/textures/gui/hud/coin.dds",
+								"empty": {
+									"texture": "data/textures/gui/hud/coin_empty.dds"
+								}
+							},
+							{
+								"name": "coin_point06",
+								"type": "point",
+								"size": "42 42",
+								"position": "104 28.5",
+								"texture": "data/textures/gui/hud/coin.dds",
+								"empty": {
+									"texture": "data/textures/gui/hud/coin_empty.dds"
+								}
+							}
+						]
 					}
 				]
 			},
