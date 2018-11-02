@@ -45,15 +45,17 @@ void TCompPowerGauge::load(const json & j, TEntityParseContext & ctx) {
 }
 
 void TCompPowerGauge::update(float delta) {
-	if (power < targetPower) {
-		increasePower(std::max(powerIncreaseSpeed * delta, minIncreasePerFrame));
-		freezeDropTimer.reset();
-		if (power >= targetPower) {
-			targetPower = 0;
+	if (!frozen) {
+		if (power < targetPower) {
+			increasePower(std::max(powerIncreaseSpeed * delta, minIncreasePerFrame));
+			freezeDropTimer.reset();
+			if (power >= targetPower) {
+				targetPower = 0;
+			}
 		}
-	}
-	else if (freezeDropTimer.elapsed() > freezeDropTime) {
-		increasePower(-dropSpeed[powerLevel - 1] * delta);
+		else if (freezeDropTimer.elapsed() > freezeDropTime) {
+			increasePower(-dropSpeed[powerLevel - 1] * delta);
+		}
 	}
 }
 
@@ -151,5 +153,15 @@ float TCompPowerGauge::getPowerLevelPercentage() {
 	percentage /= powerPerLevel[powerLevel - 1];
 
 	return percentage;
+}
+
+void TCompPowerGauge::freeze() {
+	frozen = true;
+	elapsedWhenFrozen = freezeDropTimer.elapsed();
+}
+
+void TCompPowerGauge::unfreeze() {
+	frozen = false;
+	freezeDropTimer.setElapsed(elapsedWhenFrozen);
 }
 

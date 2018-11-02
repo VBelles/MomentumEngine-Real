@@ -53,8 +53,8 @@ void TCompCollectableManager::update(float delta) {
 	}
 	if (isCollecting) {
 		if (collectTimer.elapsed() >= collectDuration) {
-			EngineSound.setMusicVolume(EngineSound.getMusicVolume() / musicVolumeMultiplier);
-			EngineSound.setSoundVolume(EngineSound.getSoundVolume() / soundVolumeMultiplier);
+			EngineSound.setMusicVolume(Engine.globalConfig.musicVolume);
+			EngineSound.setSoundVolume(Engine.globalConfig.soundVolume);
 			TCompPlayerModel* playerModel = get<TCompPlayerModel>();
 			playerModel->changeState("AirborneNormal");
 			isCollecting = false;

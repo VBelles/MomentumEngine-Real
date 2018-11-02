@@ -21,4 +21,5 @@ public:
 	static bool skipCinematics();
 
 	static void goToMainMenu();
+	static void goToCredits();
 };

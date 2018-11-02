@@ -29,6 +29,8 @@ void ScriptingPlayer::bind(SLB::Manager* manager) {
 	manager->set("setDummyState", SLB::FuncCall::create(ScriptingPlayer::setDummyState));
 	manager->set("makeInvulnerable", SLB::FuncCall::create(ScriptingPlayer::makeInvulnerable));
 	manager->set("makeVulnerable", SLB::FuncCall::create(ScriptingPlayer::makeVulnerable));
+	manager->set("freezePower", SLB::FuncCall::create(ScriptingPlayer::freezePower));
+	manager->set("unfreezePower", SLB::FuncCall::create(ScriptingPlayer::unfreezePower));
 }
 
 float ScriptingPlayer::getPlayerHp() {
@@ -153,4 +155,12 @@ TCompCameraPlayer* ScriptingPlayer::getPlayerCamera() {
 
 bool ScriptingPlayer::isPlayerGrounded() {
 	return getPlayerModel()->isGrounded();
+}
+
+void ScriptingPlayer::freezePower() {
+	getPowerGauge()->freeze();
+}
+
+void ScriptingPlayer::unfreezePower() {
+	getPowerGauge()->unfreeze();
 }

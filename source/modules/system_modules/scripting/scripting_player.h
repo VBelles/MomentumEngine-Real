@@ -42,4 +42,6 @@ public:
 	static void setDummyState(std::string animation, bool isLoop, float duration, std::string exitAnimation);
 	static void makeInvulnerable(float time);
 	static void makeVulnerable();
+	static void freezePower();
+	static void unfreezePower();
 };

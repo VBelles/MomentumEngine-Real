@@ -11,7 +11,7 @@ bool CModuleCredits::start() {
 	EngineGUI.activateWidget("credits");
 
 	Engine.setInputType(InputType::Menu);
-	EngineSound.getMusicPlayer()->setCurrentSong(CMusicPlayer::Song::MENU);
+	EngineSound.getMusicPlayer()->setCurrentSong(CMusicPlayer::Song::INTRO);
 
 	return true;
 }
