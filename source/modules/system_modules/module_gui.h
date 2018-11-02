@@ -53,6 +53,7 @@ private:
 	CCameraGui _orthoCamera;
 	const CRenderTechnique* _technique = nullptr;
 	const CRenderTechnique* _technique_clamp = nullptr;
+	const CRenderTechnique* _technique_mask = nullptr;
 	const CRenderTechnique* _technique_font = nullptr;
 	const CRenderMesh* _quadMesh = nullptr;
 	const CTexture* _fontTexture = nullptr;

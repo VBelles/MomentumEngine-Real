@@ -20,6 +20,7 @@
     "options_ingame",
     "map_menu",
     "controls_help",
+    "credits",
     "instancing"
   ],
   "render": [
@@ -37,6 +38,7 @@
     "slash",
     "scripting",
     "sound",
+    "map_menu",
     "instancing"
   ]
 }

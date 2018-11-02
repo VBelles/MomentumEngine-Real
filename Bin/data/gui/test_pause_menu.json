@@ -14,7 +14,7 @@
 			{
 				"name" : "test_buttons",
 				"type" : "widget",
-				"position" : "810 550",
+				"position" : "810 450",
 				"children" : [
 					{
 						"name" : "resume_game",
@@ -47,7 +47,8 @@
 							"color" : "0.8 0.8 0.8 1",
 							"texture" : "data/textures/gui/options_selected.dds"
 						}
-					},					{
+					},
+					{
 						"name" : "controls",
 						"type" : "button",
 						"position" : "0 160",
@@ -94,6 +95,69 @@
 							"color" : "0.8 0.8 0.8 1",
 							"texture" : "data/textures/gui/bt_exit_game_selected.dds"
 						}
+					}
+				]
+			},
+			{
+				"name": "life_pieces",
+				"type": "widget",
+				"position": "1740 20",
+				"children": [
+					{
+						"name": "life_pieces_icon",
+						"type": "image",
+						"size": "60 66",
+						"texture": "data/textures/gui/hud/life_mask.dds"
+					},
+					{
+						"name": "life_pieces_text",
+						"type": "text",
+						"size": "128 64",
+						"position": "75 7",
+						"font_size": 64,
+						"template_text": "{{life_pieces}}/{{max_life_pieces}}"
+					}
+				]
+			},
+			{
+				"name": "power_ups",
+				"type": "widget",
+				"position": "1740 110",
+				"children": [
+					{
+						"name": "power_ups_icon",
+						"type": "image",
+						"size": "64 64",
+						"texture": "data/textures/gui/hud/icon_power_up_emissive.dds"
+					},
+					{
+						"name": "power_ups_text",
+						"type": "text",
+						"size": "128 64",
+						"position": "75 5",
+						"font_size": 64,
+						"template_text": "{{power_ups}}/{{max_power_ups}}"
+					}
+				]
+			},
+			{
+				"name": "chrysalises",
+				"type": "widget",
+				"position": "1690 950",
+				"children": [
+					{
+						"name": "chrysalis_icon",
+						"type": "image",
+						"size": "62 116",
+						"texture": "data/textures/gui/hud/chrysalis_icon.dds"
+					},
+					{
+						"name": "chrysalis_text",
+						"type": "text",
+						"size": "128 64",
+						"position": "75 44",
+						"font_size": 64,
+						"template_text": "{{chrysalis1}}{{chrysalis2}}/{{max_chrysalis}}"
 					}
 				]
 			}

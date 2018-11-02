@@ -130,6 +130,8 @@ public:
 	DECL_SIBLING_ACCESS();
 	~TCompPlayerModel();
 
+	int numberOfDeaths = 0;
+
 	bool isOnPlatform = false;
 
 	bool lockWalk = false;
@@ -213,6 +215,7 @@ public:
 
 	void damage(float damage);
 	void makeInvulnerable(float time);
+	void makeVulnerable();
 	void startDamageVision(float time);
 	void refillHp() { setHp(maxHp); }
 	float getHp() { return hp; }

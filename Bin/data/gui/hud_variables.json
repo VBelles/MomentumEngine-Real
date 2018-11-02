@@ -15,12 +15,27 @@
         "value": 0
     },
     {
+        "name": "power_progress_level1_empty",
+        "type": "float",
+        "value": 0.0
+    },
+    {
         "name": "power_progress_level1",
         "type": "float",
         "value": 0.0
     },
     {
+        "name": "power_progress_level2_empty",
+        "type": "float",
+        "value": 0.0
+    },
+    {
         "name": "power_progress_level2",
+        "type": "float",
+        "value": 0.0
+    },
+    {
+        "name": "power_progress_level3_empty",
         "type": "float",
         "value": 0.0
     },
@@ -48,5 +63,40 @@
         "name": "chrysalis",
         "type": "int",
         "value": 0
+    },
+    {
+        "name": "chrysalis1",
+        "type": "int",
+        "value": 0
+    },
+    {
+        "name": "chrysalis2",
+        "type": "int",
+        "value": 0
+    },
+    {
+        "name": "max_chrysalis",
+        "type": "int",
+        "value": 23
+    },
+    {
+        "name": "life_pieces",
+        "type": "int",
+        "value": 0
+    },
+        {
+        "name": "max_life_pieces",
+        "type": "int",
+        "value": 6
+    },
+    {
+        "name": "power_ups",
+        "type": "int",
+        "value": 0
+    },
+        {
+        "name": "max_power_ups",
+        "type": "int",
+        "value": 6
     }
 ]

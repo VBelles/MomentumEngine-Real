@@ -117,6 +117,7 @@
         ]
       },
       "sound": {
+        "max_distance": 40,
         "events": [
           {
             "id": "launcher_loop",

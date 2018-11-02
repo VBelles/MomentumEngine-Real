@@ -492,6 +492,10 @@ void TCompPlayerModel::makeInvulnerable(float time) {
 	invulnerableTimer.reset();
 }
 
+void TCompPlayerModel::makeVulnerable() {
+	isInvulnerable = false;
+}
+
 void TCompPlayerModel::startDamageVision(float time) {
 	damageVisionTimer.reset();
 	//if (time > 0) {

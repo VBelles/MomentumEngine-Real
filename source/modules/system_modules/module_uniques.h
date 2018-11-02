@@ -62,6 +62,8 @@ public:
 	UniqueEnemy* getUniqueEnemy(std::string id);
 	UniquePowerUp* getUniquePowerUp(std::string id);
 
+	int getNumUniqueElement(ElementType type);
+
 	bool setCoinTaken(std::string id, bool isTaken);
 	bool setLifePieceTaken(std::string id, bool isTaken);
 	bool setChrysalisTaken(std::string id, bool isTaken);

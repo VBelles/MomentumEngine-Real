@@ -60,6 +60,9 @@ public:
 	void setMasterVolume(float volume);
 	void setSoundVolume(float volume);
 	void setMusicVolume(float volume);
+	float getMasterVolume();
+	float getSoundVolume();
+	float getMusicVolume();
 
 	void setPaused(bool paused);
 
@@ -67,6 +70,8 @@ public:
 	void forEachEventInstance(FMOD::Studio::Bank * bank, std::function<void(FMOD::Studio::EventDescription*, FMOD::Studio::EventInstance*)> callback);
 
 	CMusicPlayer* getMusicPlayer();
+	FMOD_3D_ATTRIBUTES* getListener();
+	VEC3 getListenerPosition();
 };
 
 

@@ -4,6 +4,7 @@
 #include "entity/common_msgs.h"
 #include "comp_player_model.h"
 #include "components/comp_dummy_collectable.h"
+#include "components/comp_light_point.h"
 #include "modules/game_modules/game/respawner.h"
 #include "modules/game_modules/game/module_game.h"
 #include <algorithm>
@@ -34,6 +35,8 @@ void TCompCollectableManager::onAllScenesCreated(const TMsgAllScenesCreated & ms
 		CEntity* entity = getEntityByName(name);
 		CHandle handle = entity->get<TCompRender>();
 		finalDoorChrysalides.push_back(handle);
+		CHandle lightHandle = entity->get<TCompLightPoint>();
+		finalDoorChrysalisLights.push_back(lightHandle);
 	}
 	finalDoorControllerEntity = getEntityByName(finalDoorControllerName);
 }
@@ -43,12 +46,15 @@ void TCompCollectableManager::update(float delta) {
 		if (doorChrysalidesTimer.elapsed() >= doorChrysalidesTime) {
 			for (int i = 0; i < finalDoorChrysalides.size() && i < numberOfChrysalisTaken; i++) {
 				((TCompRender*)finalDoorChrysalides[i])->enable();
+				((TCompLightPoint*)finalDoorChrysalisLights[i])->setOn(true);
 			}
 			spawnDoorChrysalis = false;
 		}
 	}
 	if (isCollecting) {
 		if (collectTimer.elapsed() >= collectDuration) {
+			EngineSound.setMusicVolume(Engine.globalConfig.musicVolume);
+			EngineSound.setSoundVolume(Engine.globalConfig.soundVolume);
 			TCompPlayerModel* playerModel = get<TCompPlayerModel>();
 			playerModel->changeState("AirborneNormal");
 			isCollecting = false;
@@ -203,6 +209,8 @@ void TCompCollectableManager::onCollect(const TMsgCollect& msg) {
 
 		collectable->collect();
 		addUniqueCollectable(Type::CHRYSALIS, entity->getName());
+		EngineSound.setMusicVolume(EngineSound.getMusicVolume() * musicVolumeMultiplier);
+		EngineSound.setSoundVolume(EngineSound.getSoundVolume() * soundVolumeMultiplier);
 		EngineSound.emitEvent(SOUND_COLLECT_CHRYSALIS);
 		EngineSound.emitEvent(SOUND_HEAL);
 		(static_cast<TCompDummyCollectable*>(get<TCompDummyCollectable>()))->activateSequence(DummyCollectableType::DUMMY_CHRYSALIS);
@@ -220,6 +228,7 @@ void TCompCollectableManager::onCollect(const TMsgCollect& msg) {
 		EngineSound.emitEvent(SOUND_COLLECT_COIN, transform);
 		break;
 	case Type::LIFEPIECE:
+		numberOfLifePiecesTaken++;
 		collectable->collect();
 		addUniqueCollectable(Type::LIFEPIECE, entity->getName());
 		(static_cast<TCompDummyCollectable*>(get<TCompDummyCollectable>()))->activateSequence(DummyCollectableType::DUMMY_LIFEPIECE);
@@ -227,6 +236,8 @@ void TCompCollectableManager::onCollect(const TMsgCollect& msg) {
 			playerModel->setMaxHp(playerModel->getMaxHp() + 1);
 			//playerModel->setHp(playerModel->getMaxHp());
 		}
+		EngineSound.setMusicVolume(EngineSound.getMusicVolume() * musicVolumeMultiplier);
+		EngineSound.setSoundVolume(EngineSound.getSoundVolume() * soundVolumeMultiplier);
 		EngineSound.emitEvent(SOUND_COLLECT_CHRYSALIS);
 		EngineSound.emitEvent(SOUND_HEAL);
 		break;

@@ -8,16 +8,6 @@
         "pos": "16.8622 1.67382 -151.244",
         "rotation": "0.285335 -0.0414259 -0.0460607 -0.956424"
       },
-      "render":
-      [
-        {
-          "mesh": "data/meshes/spikes.mesh",
-          "materials":
-          [
-            "data/materials/spikes.material"
-          ]
-        }
-      ],
       "collider":
       {
         "mesh_src": "data/meshes/spikes_col.col_mesh",
@@ -45,16 +35,6 @@
         "pos": "16.8622 1.60351 -156.994",
         "rotation": "-0.271107 0.0109171 -0.131261 -0.953495"
       },
-      "render":
-      [
-        {
-          "mesh": "data/meshes/spikes.mesh",
-          "materials":
-          [
-            "data/materials/spikes.material"
-          ]
-        }
-      ],
       "collider":
       {
         "mesh_src": "data/meshes/spikes_col.col_mesh",
@@ -82,16 +62,6 @@
         "pos": "-90.1878 47.753 -65.7424",
         "rotation": "-0.702475 -0.676207 -0.195601 -0.104941"
       },
-      "render":
-      [
-        {
-          "mesh": "data/meshes/spikes.mesh",
-          "materials":
-          [
-            "data/materials/spikes.material"
-          ]
-        }
-      ],
       "collider":
       {
         "mesh_src": "data/meshes/spikes_col.col_mesh",
@@ -119,16 +89,6 @@
         "pos": "-91.6415 52.0448 -61.571",
         "rotation": "-0.455272 -0.709484 -0.466366 0.268072"
       },
-      "render":
-      [
-        {
-          "mesh": "data/meshes/spikes.mesh",
-          "materials":
-          [
-            "data/materials/spikes.material"
-          ]
-        }
-      ],
       "collider":
       {
         "mesh_src": "data/meshes/spikes_col.col_mesh",
@@ -156,16 +116,6 @@
         "pos": "-110.93 23.9205 -63.6795",
         "rotation": "0.0324194 -0.571722 -0.818747 0.0416632"
       },
-      "render":
-      [
-        {
-          "mesh": "data/meshes/spikes.mesh",
-          "materials":
-          [
-            "data/materials/spikes.material"
-          ]
-        }
-      ],
       "collider":
       {
         "mesh_src": "data/meshes/spikes_col.col_mesh",
@@ -193,16 +143,6 @@
         "pos": "-84.5037 51.6064 -51.0348",
         "rotation": "0.438169 -0.101513 -0.151618 -0.880179"
       },
-      "render":
-      [
-        {
-          "mesh": "data/meshes/spikes.mesh",
-          "materials":
-          [
-            "data/materials/spikes.material"
-          ]
-        }
-      ],
       "collider":
       {
         "mesh_src": "data/meshes/spikes_col.col_mesh",
@@ -230,16 +170,6 @@
         "pos": "-210.708 55.2443 -46.2992",
         "rotation": "-0.707107 0.0 -0.707107 0.0"
       },
-      "render":
-      [
-        {
-          "mesh": "data/meshes/spikes.mesh",
-          "materials":
-          [
-            "data/materials/spikes.material"
-          ]
-        }
-      ],
       "collider":
       {
         "mesh_src": "data/meshes/spikes_col.col_mesh",
@@ -267,16 +197,6 @@
         "pos": "-205.823 55.2443 -38.224",
         "rotation": "-0.707107 0.0 -0.707107 0.0"
       },
-      "render":
-      [
-        {
-          "mesh": "data/meshes/spikes.mesh",
-          "materials":
-          [
-            "data/materials/spikes.material"
-          ]
-        }
-      ],
       "collider":
       {
         "mesh_src": "data/meshes/spikes_col.col_mesh",
@@ -304,16 +224,6 @@
         "pos": "-208.111 55.2443 -42.18",
         "rotation": "-0.707107 0.0 -0.707107 0.0"
       },
-      "render":
-      [
-        {
-          "mesh": "data/meshes/spikes.mesh",
-          "materials":
-          [
-            "data/materials/spikes.material"
-          ]
-        }
-      ],
       "collider":
       {
         "mesh_src": "data/meshes/spikes_col.col_mesh",
@@ -341,16 +251,6 @@
         "pos": "-203.436 55.2443 -33.7042",
         "rotation": "-0.707107 0.0 -0.707107 0.0"
       },
-      "render":
-      [
-        {
-          "mesh": "data/meshes/spikes.mesh",
-          "materials":
-          [
-            "data/materials/spikes.material"
-          ]
-        }
-      ],
       "collider":
       {
         "mesh_src": "data/meshes/spikes_col.col_mesh",
@@ -378,16 +278,6 @@
         "pos": "-198.551 55.2443 -25.629",
         "rotation": "-0.707107 0.0 -0.707107 0.0"
       },
-      "render":
-      [
-        {
-          "mesh": "data/meshes/spikes.mesh",
-          "materials":
-          [
-            "data/materials/spikes.material"
-          ]
-        }
-      ],
       "collider":
       {
         "mesh_src": "data/meshes/spikes_col.col_mesh",
@@ -415,16 +305,6 @@
         "pos": "-200.84 55.2443 -29.585",
         "rotation": "-0.707107 0.0 -0.707107 0.0"
       },
-      "render":
-      [
-        {
-          "mesh": "data/meshes/spikes.mesh",
-          "materials":
-          [
-            "data/materials/spikes.material"
-          ]
-        }
-      ],
       "collider":
       {
         "mesh_src": "data/meshes/spikes_col.col_mesh",
@@ -452,16 +332,6 @@
         "pos": "-193.764 55.2443 -17.0737",
         "rotation": "-0.707107 0.0 -0.707107 0.0"
       },
-      "render":
-      [
-        {
-          "mesh": "data/meshes/spikes.mesh",
-          "materials":
-          [
-            "data/materials/spikes.material"
-          ]
-        }
-      ],
       "collider":
       {
         "mesh_src": "data/meshes/spikes_col.col_mesh",
@@ -489,16 +359,6 @@
         "pos": "-188.879 55.2443 -8.99852",
         "rotation": "-0.707107 0.0 -0.707107 0.0"
       },
-      "render":
-      [
-        {
-          "mesh": "data/meshes/spikes.mesh",
-          "materials":
-          [
-            "data/materials/spikes.material"
-          ]
-        }
-      ],
       "collider":
       {
         "mesh_src": "data/meshes/spikes_col.col_mesh",
@@ -526,16 +386,6 @@
         "pos": "-191.168 55.2443 -12.9545",
         "rotation": "-0.707107 0.0 -0.707107 0.0"
       },
-      "render":
-      [
-        {
-          "mesh": "data/meshes/spikes.mesh",
-          "materials":
-          [
-            "data/materials/spikes.material"
-          ]
-        }
-      ],
       "collider":
       {
         "mesh_src": "data/meshes/spikes_col.col_mesh",
@@ -563,16 +413,6 @@
         "pos": "-186.492 55.2443 -4.47869",
         "rotation": "-0.707107 0.0 -0.707107 0.0"
       },
-      "render":
-      [
-        {
-          "mesh": "data/meshes/spikes.mesh",
-          "materials":
-          [
-            "data/materials/spikes.material"
-          ]
-        }
-      ],
       "collider":
       {
         "mesh_src": "data/meshes/spikes_col.col_mesh",
@@ -600,16 +440,6 @@
         "pos": "-181.607 55.2443 3.59651",
         "rotation": "-0.707107 0.0 -0.707107 0.0"
       },
-      "render":
-      [
-        {
-          "mesh": "data/meshes/spikes.mesh",
-          "materials":
-          [
-            "data/materials/spikes.material"
-          ]
-        }
-      ],
       "collider":
       {
         "mesh_src": "data/meshes/spikes_col.col_mesh",
@@ -637,16 +467,6 @@
         "pos": "-183.896 55.2443 -0.359493",
         "rotation": "-0.707107 0.0 -0.707107 0.0"
       },
-      "render":
-      [
-        {
-          "mesh": "data/meshes/spikes.mesh",
-          "materials":
-          [
-            "data/materials/spikes.material"
-          ]
-        }
-      ],
       "collider":
       {
         "mesh_src": "data/meshes/spikes_col.col_mesh",
@@ -674,16 +494,6 @@
         "pos": "-182.708 -2.99682 61.5377",
         "rotation": "0.100182 -0.00919881 0.0114293 -0.994861"
       },
-      "render":
-      [
-        {
-          "mesh": "data/meshes/spikes.mesh",
-          "materials":
-          [
-            "data/materials/spikes.material"
-          ]
-        }
-      ],
       "collider":
       {
         "mesh_src": "data/meshes/spikes_col.col_mesh",
@@ -711,16 +521,6 @@
         "pos": "-165.308 -1.57812 76.042",
         "rotation": "-0.0131428 0.00108034 0.0819167 -0.996552"
       },
-      "render":
-      [
-        {
-          "mesh": "data/meshes/spikes.mesh",
-          "materials":
-          [
-            "data/materials/spikes.material"
-          ]
-        }
-      ],
       "collider":
       {
         "mesh_src": "data/meshes/spikes_col.col_mesh",
@@ -748,16 +548,6 @@
         "pos": "-200.261 -5.04165 41.4569",
         "rotation": "-0.0334691 0.0104919 -0.0312086 -0.998897"
       },
-      "render":
-      [
-        {
-          "mesh": "data/meshes/spikes.mesh",
-          "materials":
-          [
-            "data/materials/spikes.material"
-          ]
-        }
-      ],
       "collider":
       {
         "mesh_src": "data/meshes/spikes_col.col_mesh",
@@ -785,16 +575,6 @@
         "pos": "-204.194 -5.17373 44.1319",
         "rotation": "-0.0509416 0.0100753 0.0300956 -0.998197"
       },
-      "render":
-      [
-        {
-          "mesh": "data/meshes/spikes.mesh",
-          "materials":
-          [
-            "data/materials/spikes.material"
-          ]
-        }
-      ],
       "collider":
       {
         "mesh_src": "data/meshes/spikes_col.col_mesh",
@@ -822,16 +602,6 @@
         "pos": "-188.046 -2.79812 37.5655",
         "rotation": "-0.0914999 0.0138337 -0.108905 -0.989735"
       },
-      "render":
-      [
-        {
-          "mesh": "data/meshes/spikes.mesh",
-          "materials":
-          [
-            "data/materials/spikes.material"
-          ]
-        }
-      ],
       "collider":
       {
         "mesh_src": "data/meshes/spikes_col.col_mesh",
@@ -859,16 +629,6 @@
         "pos": "-192.365 -4.04067 40.2882",
         "rotation": "-0.0895861 0.0122908 -0.0714392 -0.993338"
       },
-      "render":
-      [
-        {
-          "mesh": "data/meshes/spikes.mesh",
-          "materials":
-          [
-            "data/materials/spikes.material"
-          ]
-        }
-      ],
       "collider":
       {
         "mesh_src": "data/meshes/spikes_col.col_mesh",
@@ -896,16 +656,6 @@
         "pos": "-179.662 -1.95181 41.6403",
         "rotation": "-0.0457081 0.018847 -0.108151 -0.992904"
       },
-      "render":
-      [
-        {
-          "mesh": "data/meshes/spikes.mesh",
-          "materials":
-          [
-            "data/materials/spikes.material"
-          ]
-        }
-      ],
       "collider":
       {
         "mesh_src": "data/meshes/spikes_col.col_mesh",
@@ -933,16 +683,6 @@
         "pos": "-183.648 -3.08291 44.2951",
         "rotation": "-0.0457081 0.018847 -0.108151 -0.992904"
       },
-      "render":
-      [
-        {
-          "mesh": "data/meshes/spikes.mesh",
-          "materials":
-          [
-            "data/materials/spikes.material"
-          ]
-        }
-      ],
       "collider":
       {
         "mesh_src": "data/meshes/spikes_col.col_mesh",
@@ -970,16 +710,6 @@
         "pos": "-183.629 -2.36123 39.889",
         "rotation": "-0.0914999 0.0138337 -0.108905 -0.989735"
       },
-      "render":
-      [
-        {
-          "mesh": "data/meshes/spikes.mesh",
-          "materials":
-          [
-            "data/materials/spikes.material"
-          ]
-        }
-      ],
       "collider":
       {
         "mesh_src": "data/meshes/spikes_col.col_mesh",
@@ -1007,16 +737,6 @@
         "pos": "-187.778 -3.63833 42.254",
         "rotation": "-0.0734073 0.0130659 -0.083593 -0.993707"
       },
-      "render":
-      [
-        {
-          "mesh": "data/meshes/spikes.mesh",
-          "materials":
-          [
-            "data/materials/spikes.material"
-          ]
-        }
-      ],
       "collider":
       {
         "mesh_src": "data/meshes/spikes_col.col_mesh",
@@ -1044,16 +764,6 @@
         "pos": "-200.215 -5.28677 46.1241",
         "rotation": "-0.0206172 0.0100896 -0.0137427 -0.999642"
       },
-      "render":
-      [
-        {
-          "mesh": "data/meshes/spikes.mesh",
-          "materials":
-          [
-            "data/materials/spikes.material"
-          ]
-        }
-      ],
       "collider":
       {
         "mesh_src": "data/meshes/spikes_col.col_mesh",
@@ -1081,16 +791,6 @@
         "pos": "-196.2 -5.03384 43.3524",
         "rotation": "-0.0334691 0.0104919 -0.0312086 -0.998897"
       },
-      "render":
-      [
-        {
-          "mesh": "data/meshes/spikes.mesh",
-          "materials":
-          [
-            "data/materials/spikes.material"
-          ]
-        }
-      ],
       "collider":
       {
         "mesh_src": "data/meshes/spikes_col.col_mesh",
@@ -1118,16 +818,6 @@
         "pos": "-191.891 -4.58779 44.7618",
         "rotation": "-0.0734073 0.0130659 -0.083593 -0.993707"
       },
-      "render":
-      [
-        {
-          "mesh": "data/meshes/spikes.mesh",
-          "materials":
-          [
-            "data/materials/spikes.material"
-          ]
-        }
-      ],
       "collider":
       {
         "mesh_src": "data/meshes/spikes_col.col_mesh",
@@ -1155,16 +845,6 @@
         "pos": "-195.859 -5.25112 47.9361",
         "rotation": "-0.00413028 0.0129385 0.00340513 -0.999902"
       },
-      "render":
-      [
-        {
-          "mesh": "data/meshes/spikes.mesh",
-          "materials":
-          [
-            "data/materials/spikes.material"
-          ]
-        }
-      ],
       "collider":
       {
         "mesh_src": "data/meshes/spikes_col.col_mesh",
@@ -1192,16 +872,6 @@
         "pos": "-193.369 -5.25552 51.8187",
         "rotation": "-0.00413028 0.0129385 0.00340513 -0.999902"
       },
-      "render":
-      [
-        {
-          "mesh": "data/meshes/spikes.mesh",
-          "materials":
-          [
-            "data/materials/spikes.material"
-          ]
-        }
-      ],
       "collider":
       {
         "mesh_src": "data/meshes/spikes_col.col_mesh",
@@ -1229,16 +899,6 @@
         "pos": "-186.091 -4.39639 57.3051",
         "rotation": "0.0523474 0.0059718 -0.178169 -0.982588"
       },
-      "render":
-      [
-        {
-          "mesh": "data/meshes/spikes.mesh",
-          "materials":
-          [
-            "data/materials/spikes.material"
-          ]
-        }
-      ],
       "collider":
       {
         "mesh_src": "data/meshes/spikes_col.col_mesh",
@@ -1266,16 +926,6 @@
         "pos": "-189.901 -5.01919 54.3557",
         "rotation": "-0.0478676 0.000314589 -0.0220389 -0.99861"
       },
-      "render":
-      [
-        {
-          "mesh": "data/meshes/spikes.mesh",
-          "materials":
-          [
-            "data/materials/spikes.material"
-          ]
-        }
-      ],
       "collider":
       {
         "mesh_src": "data/meshes/spikes_col.col_mesh",
@@ -1303,16 +953,6 @@
         "pos": "-189.054 -4.8605 49.3723",
         "rotation": "-0.0478676 0.000314589 -0.0220389 -0.99861"
       },
-      "render":
-      [
-        {
-          "mesh": "data/meshes/spikes.mesh",
-          "materials":
-          [
-            "data/materials/spikes.material"
-          ]
-        }
-      ],
       "collider":
       {
         "mesh_src": "data/meshes/spikes_col.col_mesh",
@@ -1340,16 +980,6 @@
         "pos": "-184.401 -4.07791 47.6164",
         "rotation": "-0.0864855 0.00322485 -0.0653352 -0.994103"
       },
-      "render":
-      [
-        {
-          "mesh": "data/meshes/spikes.mesh",
-          "materials":
-          [
-            "data/materials/spikes.material"
-          ]
-        }
-      ],
       "collider":
       {
         "mesh_src": "data/meshes/spikes_col.col_mesh",
@@ -1377,16 +1007,6 @@
         "pos": "-185.451 -4.73538 52.2126",
         "rotation": "-0.0193279 0.00312353 -0.0638168 -0.99777"
       },
-      "render":
-      [
-        {
-          "mesh": "data/meshes/spikes.mesh",
-          "materials":
-          [
-            "data/materials/spikes.material"
-          ]
-        }
-      ],
       "collider":
       {
         "mesh_src": "data/meshes/spikes_col.col_mesh",
@@ -1414,16 +1034,6 @@
         "pos": "-182.244 -4.16238 55.5252",
         "rotation": "0.0662365 0.0040806 -0.0172942 -0.997646"
       },
-      "render":
-      [
-        {
-          "mesh": "data/meshes/spikes.mesh",
-          "materials":
-          [
-            "data/materials/spikes.material"
-          ]
-        }
-      ],
       "collider":
       {
         "mesh_src": "data/meshes/spikes_col.col_mesh",
@@ -1451,16 +1061,6 @@
         "pos": "-180.6 -3.61819 50.7574",
         "rotation": "-0.0872964 -0.00432552 -0.100281 -0.991113"
       },
-      "render":
-      [
-        {
-          "mesh": "data/meshes/spikes.mesh",
-          "materials":
-          [
-            "data/materials/spikes.material"
-          ]
-        }
-      ],
       "collider":
       {
         "mesh_src": "data/meshes/spikes_col.col_mesh",
@@ -1488,16 +1088,6 @@
         "pos": "-178.172 -2.60498 64.1975",
         "rotation": "0.119413 -0.0105964 0.0588916 -0.99104"
       },
-      "render":
-      [
-        {
-          "mesh": "data/meshes/spikes.mesh",
-          "materials":
-          [
-            "data/materials/spikes.material"
-          ]
-        }
-      ],
       "collider":
       {
         "mesh_src": "data/meshes/spikes_col.col_mesh",
@@ -1525,16 +1115,6 @@
         "pos": "-173.943 -2.4021 66.4545",
         "rotation": "0.127633 -0.0382617 0.0642765 -0.988997"
       },
-      "render":
-      [
-        {
-          "mesh": "data/meshes/spikes.mesh",
-          "materials":
-          [
-            "data/materials/spikes.material"
-          ]
-        }
-      ],
       "collider":
       {
         "mesh_src": "data/meshes/spikes_col.col_mesh",
@@ -1562,16 +1142,6 @@
         "pos": "-169.518 -2.30298 68.9877",
         "rotation": "0.123084 -0.0101175 0.0812967 -0.989009"
       },
-      "render":
-      [
-        {
-          "mesh": "data/meshes/spikes.mesh",
-          "materials":
-          [
-            "data/materials/spikes.material"
-          ]
-        }
-      ],
       "collider":
       {
         "mesh_src": "data/meshes/spikes_col.col_mesh",
@@ -1599,16 +1169,6 @@
         "pos": "-161.621 -2.53454 69.0708",
         "rotation": "-0.0724647 -0.00593841 -0.0696929 -0.994915"
       },
-      "render":
-      [
-        {
-          "mesh": "data/meshes/spikes.mesh",
-          "materials":
-          [
-            "data/materials/spikes.material"
-          ]
-        }
-      ],
       "collider":
       {
         "mesh_src": "data/meshes/spikes_col.col_mesh",
@@ -1636,16 +1196,6 @@
         "pos": "-165.404 -2.08496 71.7566",
         "rotation": "0.11535 -0.00948177 0.0813733 -0.989941"
       },
-      "render":
-      [
-        {
-          "mesh": "data/meshes/spikes.mesh",
-          "materials":
-          [
-            "data/materials/spikes.material"
-          ]
-        }
-      ],
       "collider":
       {
         "mesh_src": "data/meshes/spikes_col.col_mesh",
@@ -1673,16 +1223,6 @@
         "pos": "-177.358 -3.46853 54.0173",
         "rotation": "-0.0866449 -0.00533414 -0.0808166 -0.992942"
       },
-      "render":
-      [
-        {
-          "mesh": "data/meshes/spikes.mesh",
-          "materials":
-          [
-            "data/materials/spikes.material"
-          ]
-        }
-      ],
       "collider":
       {
         "mesh_src": "data/meshes/spikes_col.col_mesh",
@@ -1710,16 +1250,6 @@
         "pos": "-173.995 -3.13894 61.3975",
         "rotation": "0.001893 0.0017533 -0.0133264 -0.999908"
       },
-      "render":
-      [
-        {
-          "mesh": "data/meshes/spikes.mesh",
-          "materials":
-          [
-            "data/materials/spikes.material"
-          ]
-        }
-      ],
       "collider":
       {
         "mesh_src": "data/meshes/spikes_col.col_mesh",
@@ -1747,16 +1277,6 @@
         "pos": "-173.003 -2.13857 51.7881",
         "rotation": "-0.0795122 0.000116692 -0.138083 -0.987224"
       },
-      "render":
-      [
-        {
-          "mesh": "data/meshes/spikes.mesh",
-          "materials":
-          [
-            "data/materials/spikes.material"
-          ]
-        }
-      ],
       "collider":
       {
         "mesh_src": "data/meshes/spikes_col.col_mesh",
@@ -1784,16 +1304,6 @@
         "pos": "-173.52 -3.02358 56.5803",
         "rotation": "-0.0795122 0.000116692 -0.138083 -0.987224"
       },
-      "render":
-      [
-        {
-          "mesh": "data/meshes/spikes.mesh",
-          "materials":
-          [
-            "data/materials/spikes.material"
-          ]
-        }
-      ],
       "collider":
       {
         "mesh_src": "data/meshes/spikes_col.col_mesh",
@@ -1821,16 +1331,6 @@
         "pos": "-169.464 -1.43752 54.3763",
         "rotation": "-0.0795122 0.000116692 -0.138083 -0.987224"
       },
-      "render":
-      [
-        {
-          "mesh": "data/meshes/spikes.mesh",
-          "materials":
-          [
-            "data/materials/spikes.material"
-          ]
-        }
-      ],
       "collider":
       {
         "mesh_src": "data/meshes/spikes_col.col_mesh",
@@ -1858,16 +1358,6 @@
         "pos": "-176.47 -2.36917 49.2327",
         "rotation": "-0.0872964 -0.00432552 -0.100281 -0.991113"
       },
-      "render":
-      [
-        {
-          "mesh": "data/meshes/spikes.mesh",
-          "materials":
-          [
-            "data/materials/spikes.material"
-          ]
-        }
-      ],
       "collider":
       {
         "mesh_src": "data/meshes/spikes_col.col_mesh",
@@ -1895,16 +1385,6 @@
         "pos": "-169.651 -2.40505 59.1999",
         "rotation": "-0.0948983 -0.00826323 -0.152392 -0.983719"
       },
-      "render":
-      [
-        {
-          "mesh": "data/meshes/spikes.mesh",
-          "materials":
-          [
-            "data/materials/spikes.material"
-          ]
-        }
-      ],
       "collider":
       {
         "mesh_src": "data/meshes/spikes_col.col_mesh",
@@ -1932,16 +1412,6 @@
         "pos": "-165.539 -1.95608 61.5538",
         "rotation": "-0.11119 -0.0115029 -0.100895 -0.988597"
       },
-      "render":
-      [
-        {
-          "mesh": "data/meshes/spikes.mesh",
-          "materials":
-          [
-            "data/materials/spikes.material"
-          ]
-        }
-      ],
       "collider":
       {
         "mesh_src": "data/meshes/spikes_col.col_mesh",
@@ -1969,16 +1439,6 @@
         "pos": "-169.78 -3.13894 63.9411",
         "rotation": "0.001893 0.0017533 -0.0133264 -0.999908"
       },
-      "render":
-      [
-        {
-          "mesh": "data/meshes/spikes.mesh",
-          "materials":
-          [
-            "data/materials/spikes.material"
-          ]
-        }
-      ],
       "collider":
       {
         "mesh_src": "data/meshes/spikes_col.col_mesh",
@@ -2006,16 +1466,6 @@
         "pos": "-165.443 -2.8876 66.4624",
         "rotation": "-0.0422315 0.00106027 -0.0696416 -0.996677"
       },
-      "render":
-      [
-        {
-          "mesh": "data/meshes/spikes.mesh",
-          "materials":
-          [
-            "data/materials/spikes.material"
-          ]
-        }
-      ],
       "collider":
       {
         "mesh_src": "data/meshes/spikes_col.col_mesh",
@@ -2043,16 +1493,6 @@
         "pos": "-161.09 -2.30371 73.8925",
         "rotation": "0.0115887 -0.000952588 0.0819183 -0.996571"
       },
-      "render":
-      [
-        {
-          "mesh": "data/meshes/spikes.mesh",
-          "materials":
-          [
-            "data/materials/spikes.material"
-          ]
-        }
-      ],
       "collider":
       {
         "mesh_src": "data/meshes/spikes_col.col_mesh",

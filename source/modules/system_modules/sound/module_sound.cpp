@@ -15,11 +15,17 @@ CModuleSound::CModuleSound(const std::string& name) : IModule(name) {
 bool CModuleSound::start() {
 	res = Studio::System::create(&system);
 	assert(res == FMOD_OK);
-	res = system->initialize(1024, FMOD_STUDIO_INIT_ALLOW_MISSING_PLUGINS, FMOD_INIT_3D_RIGHTHANDED, extraDriverData);
-	//extraDriverData.
+
+	res = system->initialize(
+		256,
+		FMOD_STUDIO_INIT_ALLOW_MISSING_PLUGINS,
+		FMOD_INIT_3D_RIGHTHANDED | FMOD_INIT_VOL0_BECOMES_VIRTUAL,
+		extraDriverData
+	);
+	assert(res == FMOD_OK);
+
 	system->setListenerAttributes(0, &listenerAttributes);
 	system->getLowLevelSystem(&lowLevelSystem);
-	assert(res == FMOD_OK);
 
 	auto j = loadJson("data/sounds.json");
 	for (const std::string& bankFile : j["banks"]) {
@@ -43,7 +49,7 @@ bool CModuleSound::start() {
 	setSoundVolume(Engine.globalConfig.soundVolume);
 
 	musicPlayer = new CMusicPlayer(loadJson("data/sound/_test_music.json"));
-	
+
 	return true;
 }
 
@@ -198,6 +204,18 @@ void CModuleSound::setMusicVolume(float volume) {
 	vca->setVolume(volume);
 }
 
+float CModuleSound::getMasterVolume() {
+	return masterVolume;
+}
+
+float CModuleSound::getSoundVolume() {
+	return soundVolume;
+}
+
+float CModuleSound::getMusicVolume() {
+	return musicVolume;
+}
+
 void CModuleSound::setPaused(bool paused) {
 	this->paused = paused;
 	forEachEventInstance([this](FMOD::Studio::Bank* bank, FMOD::Studio::EventDescription* description, FMOD::Studio::EventInstance* event) {
@@ -231,6 +249,16 @@ void CModuleSound::forEachEventInstance(FMOD::Studio::Bank* bank, std::function<
 void CModuleSound::render() {
 	if (CApp::get().isDebug()) {
 		if (ImGui::TreeNode("Sound")) {
+			if (ImGui::TreeNode("FMOD Cpu usage")) {
+				FMOD_STUDIO_CPU_USAGE cpuUsage;
+				system->getCPUUsage(&cpuUsage);
+				ImGui::Text("DSP %f", cpuUsage.dspusage);
+				ImGui::Text("Stream %f", cpuUsage.streamusage);
+				ImGui::Text("Geometry %f", cpuUsage.geometryusage);
+				ImGui::Text("Update %f", cpuUsage.updateusage);
+				ImGui::Text("Studio %f", cpuUsage.studiousage);
+				ImGui::TreePop();
+			}
 			if (ImGui::DragFloat("Master volume", &masterVolume, 0.01f, 0.f, 1.f)) {
 				setMasterVolume(masterVolume);
 			}
@@ -289,7 +317,7 @@ void CModuleSound::render() {
 
 					auto descriptions = getEventDescriptions(bank);
 					if (ImGui::TreeNode("Events")) {
-						ImGui::Text("Count: %d", descriptions.size());
+						ImGui::Text("Descriptions: %d", descriptions.size());
 						for (auto description : descriptions) {
 							std::string path = getPath(description);
 							if (!Filter.IsActive() || Filter.PassFilter(path.c_str())) {
@@ -314,5 +342,13 @@ void CModuleSound::render() {
 
 CMusicPlayer* CModuleSound::getMusicPlayer() {
 	return musicPlayer;
+}
+
+FMOD_3D_ATTRIBUTES* CModuleSound::getListener() {
+	return &listenerAttributes;
+}
+
+VEC3 CModuleSound::getListenerPosition() {
+	return VEC3(listenerAttributes.position.x, listenerAttributes.position.y, listenerAttributes.position.z);
 }
 

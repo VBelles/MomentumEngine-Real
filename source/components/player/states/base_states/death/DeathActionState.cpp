@@ -47,7 +47,7 @@ void DeathActionState::onStateEnter(IActionState* lastState) {
 	timer.reset();
 	finish = false;
 	EngineScripting.throwEvent(onPlayerKilled, "");
-
+	getPlayerModel()->numberOfDeaths++;
 	copyCam();
 	CEntity* teleportCameraEntity = getEntityByName(TELEPORT_CAMERA);
 	EngineCameras.blendInCamera(teleportCameraEntity, 0.001f, CModuleCameras::EPriority::GAMEPLAY);

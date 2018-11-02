@@ -29,28 +29,50 @@ namespace GUI {
 
 		int coinBars = playermodel->getNumberOfCoins() * playermodel->getPowerPerCoin() / powerGauge->getMaxPower();
 		int coinsPerBar = powerGauge->getMaxPower() / playermodel->getPowerPerCoin();
-		float coinProgress = playermodel->getNumberOfCoins() / (float)coinsPerBar - coinBars;
+		int maxCoinBars = playermodel->getMaxNumberOfCoins() / coinsPerBar;
+		float coinProgress = 1.f;
+		if (coinBars != maxCoinBars) {
+			coinProgress = playermodel->getNumberOfCoins() / (float)coinsPerBar - coinBars;
+		}
 		//EngineGUI.getVariables().getVariant("coin_full_foreground")->setFloat(coinBars);
 		EngineGUI.getVariables().getVariant("coin_bars")->setInt(coinBars);
-		EngineGUI.getVariables().getVariant("max_coin_bars")->setInt((int)(playermodel->getMaxNumberOfCoins() / coinsPerBar));
+		EngineGUI.getVariables().getVariant("max_coin_bars")->setInt(maxCoinBars - 1);
 		EngineGUI.getVariables().getVariant("coin_progress")->setFloat(coinProgress);
 
 		EngineGUI.getVariables().getVariant("chrysalis")->setInt(playermodel->getCollectableManager()->getNumberOfChrysalis());
+		EngineGUI.getVariables().getVariant("chrysalis1")->setInt(playermodel->getCollectableManager()->getNumberOfChrysalis() / 10);
+		EngineGUI.getVariables().getVariant("chrysalis2")->setInt(playermodel->getCollectableManager()->getNumberOfChrysalis() % 10);
+		EngineGUI.getVariables().getVariant("max_chrysalis")->setInt(EngineUniques.getNumUniqueElement(ElementType::CHRYSALIS));
+
+		EngineGUI.getVariables().getVariant("life_pieces")->setInt(playermodel->getCollectableManager()->getNumberOfLifePieces());
+		EngineGUI.getVariables().getVariant("max_life_pieces")->setInt(EngineUniques.getNumUniqueElement(ElementType::LIFEPIECE));
+
+		EngineGUI.getVariables().getVariant("power_ups")->setInt(playermodel->getCollectableManager()->numberOfPowerUpsTaken);
+		EngineGUI.getVariables().getVariant("max_power_ups")->setInt(EngineUniques.getNumUniqueElement(ElementType::POWERUP));
 
 		//EngineGUI.getVariables().getVariant("power_progress")->setFloat(powerGauge->getBarPercentage());
 		if (powerGauge->getPowerLevel() == 1) {
+			EngineGUI.getVariables().getVariant("power_progress_level1_empty")->setFloat(1.f);
+			EngineGUI.getVariables().getVariant("power_progress_level2_empty")->setFloat(0.f);
+			EngineGUI.getVariables().getVariant("power_progress_level3_empty")->setFloat(0.f);
 			EngineGUI.getVariables().getVariant("power_progress_level1")->setFloat(powerGauge->getPowerLevelPercentage());
-			EngineGUI.getVariables().getVariant("power_progress_level2")->setFloat(0);
-			EngineGUI.getVariables().getVariant("power_progress_level3")->setFloat(0);
+			EngineGUI.getVariables().getVariant("power_progress_level2")->setFloat(0.f);
+			EngineGUI.getVariables().getVariant("power_progress_level3")->setFloat(0.f);
 		}
 		else if (playermodel->getPowerGauge()->getPowerLevel() == 2) {
-			EngineGUI.getVariables().getVariant("power_progress_level1")->setFloat(1);
+			EngineGUI.getVariables().getVariant("power_progress_level1_empty")->setFloat(1.f);
+			EngineGUI.getVariables().getVariant("power_progress_level2_empty")->setFloat(1.f);
+			EngineGUI.getVariables().getVariant("power_progress_level3_empty")->setFloat(0.f);
+			EngineGUI.getVariables().getVariant("power_progress_level1")->setFloat(1.f);
 			EngineGUI.getVariables().getVariant("power_progress_level2")->setFloat(powerGauge->getPowerLevelPercentage());
-			EngineGUI.getVariables().getVariant("power_progress_level3")->setFloat(0);
+			EngineGUI.getVariables().getVariant("power_progress_level3")->setFloat(0.f);
 		}
 		else if (playermodel->getPowerGauge()->getPowerLevel() == 3) {
-			EngineGUI.getVariables().getVariant("power_progress_level1")->setFloat(1);
-			EngineGUI.getVariables().getVariant("power_progress_level2")->setFloat(1);
+			EngineGUI.getVariables().getVariant("power_progress_level1_empty")->setFloat(1.f);
+			EngineGUI.getVariables().getVariant("power_progress_level2_empty")->setFloat(1.f);
+			EngineGUI.getVariables().getVariant("power_progress_level3_empty")->setFloat(1.f);
+			EngineGUI.getVariables().getVariant("power_progress_level1")->setFloat(1.f);
+			EngineGUI.getVariables().getVariant("power_progress_level2")->setFloat(1.f);
 			EngineGUI.getVariables().getVariant("power_progress_level3")->setFloat(powerGauge->getPowerLevelPercentage());
 		}
 	}
@@ -70,6 +92,5 @@ namespace GUI {
 
 	void CHudController::hideChrysalis() {
 		chrysalisWidget->getParams()->_visible = false;
-		chrysalisVisibleTime = 0.f;
 	}
 }

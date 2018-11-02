@@ -33,6 +33,7 @@ void TCompLightPoint::load(const json& j, TEntityParseContext& ctx) {
 		color = loadVEC4(j["color"]);
 	intensity = j.value("intensity", intensity);
 	radius = j.value("radius", radius);
+	isOn = j.value("is_on", isOn);
 }
 
 // -------------------------------------------------
@@ -43,7 +44,12 @@ void TCompLightPoint::activate() {
 		return;
 
 	cb_light.light_color = color;
-	cb_light.light_intensity = intensity;
+	if (isOn) {
+		cb_light.light_intensity = intensity;
+	}
+	else {
+		cb_light.light_intensity = 0.f;
+	}
 	cb_light.light_pos = c->getPosition();
 	cb_light.light_radius = radius * c->getScale();
 	cb_light.light_view_proj_offset = MAT44::Identity;
@@ -56,4 +62,8 @@ float TCompLightPoint::getIntensity() {
 
 void TCompLightPoint::setIntensity(float newIntensity) {
 	intensity = newIntensity;
+}
+
+void TCompLightPoint::setOn(bool isOn) {
+	this->isOn = isOn;
 }

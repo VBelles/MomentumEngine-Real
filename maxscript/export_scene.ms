@@ -670,6 +670,8 @@ struct TSceneExporter (
 		)
 
 		if obj.layer.name == "trimesh" or forcedTri then meshShape = "tri_mesh"
+		--TODO: Find out why here it says sometimes the layer is "trimesh" when it's really "trigger"
+		format "---obj.name: % obj.layer.name: %\n" obj.name obj.layer.name --DEBUG
 		local mesh_name = mesh_path + obj.name + ".col_mesh"
 		if forceMesh != "" then mesh_name = mesh_path + forceMesh + ".col_mesh"
 
@@ -986,13 +988,13 @@ struct TSceneExporter (
 
 		local colliderCount = 0
 		local movable = hasChildLine obj
+		local onlyRot = hasOnlyRot obj
 		if hasChildCollider obj then ( --We need the collider first.
 			for child in obj.children do (
 				if isCollider child then (
 					colliderCount += 1
 					local isFirst = colliderCount == 1
 					if isFirst then fs.writeComma()
-					local onlyRot = hasOnlyRot obj
 					local groups = #("scenario")
 					if breakable then append groups "enemy"
 
@@ -1012,12 +1014,13 @@ struct TSceneExporter (
 					exportCompCollider objToExport first:isFirst \
 						mech:mech mov:(movable or onlyRot or spike) colliderGroups:groups
 
-					if movable then exportSpline obj
-					if onlyRot then exportPlatfRotationOnly obj
 					exportPowerUpIfSelected child
 				)
 			)
 		)
+		if movable then exportSpline obj
+		if onlyRot then exportPlatfRotationOnly obj
+		
 		--Loop again, shouldn't have a lot of children.
 		for child in obj.children do (
 			if isDummyLOD child then (
@@ -2261,7 +2264,7 @@ TODO: Que el trigger de las cámaras sea el parent, y no el hijo como ahora.
 
 NOTA: Si una capa pasa a estar vacía, no se exporta pero no se borra el
 	  archivo anterior, así que se queda basura.
-NOTA: En las splines hijas de las cámaras y enemigos se exporta información
+NOTA: En las splines hijas de los  enemigos se exporta información
 	  sobre plataforma móvil que no viene muy a cuento, pero así al menos
 	  se tienen los knots por si hacen falta.
 */

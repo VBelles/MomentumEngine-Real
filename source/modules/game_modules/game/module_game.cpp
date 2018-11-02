@@ -24,6 +24,8 @@
 
 #include "modules/system_modules/sound/music_player.h"
 
+#include "modules/game_modules/game/module_game.h"
+
 CCamera camera;
 //extern void registerMesh(CRenderMesh* new_mesh, const char* name);
 
@@ -130,6 +132,8 @@ void CModuleGame::update(float delta) {
 		}
 	}
 
+	CModuleGame* game = (CModuleGame*) Engine.getModules().getModule("game");
+
 	respawner->update(delta);
 	hudController->update(delta);
 
@@ -171,12 +175,12 @@ void CModuleGame::render() {
 	solid->activate();
 
 	if (CApp::get().isDebug()) {
-		if (ImGui::Button("Copy pos")) {
+		/*if (ImGui::Button("Copy pos")) {
 			CEntity* cameraEntity = EngineRender.getCurrentCameraHandle();
 			TCompCamera* camera = cameraEntity->get<TCompCamera>();
 			VEC3 cameraPos = camera->getCamera()->getPosition();
 			WindowsUtils::toClipboard(string_format("%f %f %f", cameraPos.x, cameraPos.y, cameraPos.z));
-		}
+		}*/
 		if (ImGui::TreeNode("Points of interest")) {
 			for (auto& point : pointsOfInterest) {
 				if (ImGui::Button(point.name.c_str())) {

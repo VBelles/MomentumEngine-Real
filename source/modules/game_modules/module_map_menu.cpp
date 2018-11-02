@@ -53,13 +53,20 @@ bool CModuleMapMenu::stop() {
 }
 
 void CModuleMapMenu::update(float delta) {
-	if (!blocked && !CApp::get().isDebug() && EngineInput["map"].getsPressed()
+	if (!blocked && /*!CApp::get().isDebug() &&*/ EngineInput["map"].getsPressed()
 		|| pause && EngineInput["menu_back"].getsPressed()) {
 		onMapButtonPressed();
 	}
 }
 
-void CModuleMapMenu::render() {}
+void CModuleMapMenu::render() {
+	//dbg("Render map menu\n");
+	if (CApp::get().isDebug()) {
+		//if (ImGui::TreeNode("Map menu")) {
+			ImGui::DragFloat2("Map offset", &mapOffset.x, 1.f, -1000.f, 1000.f);
+		//}
+	}
+}
 
 void CModuleMapMenu::onMapButtonPressed() {
 	if (!pause && !ScriptingPlayer::isPlayerGrounded()) {
@@ -76,6 +83,10 @@ void CModuleMapMenu::onMapButtonPressed() {
 		CApp::get().setDebugMode(false);
 		cb_globals.game_paused = 1;
 		EngineSound.getMusicPlayer()->setPauseMenu(true);
+		UniqueElement* unique = EngineUniques.getUniqueEvent("chrysalis_help");
+		if (unique && unique->done) {
+			showChrysalises();
+		}
 	}
 	else {
 		Engine.getGUI().deactivateWidget("map_menu");
@@ -130,15 +141,15 @@ void CModuleMapMenu::showChrysalisesCallback() {
 void CModuleMapMenu::showChrysalises() {
 	GUI::CWidget* wdgt = EngineGUI.getWidget("chrysalises_map_menu", true);
 	for (GUI::CWidget* child : wdgt->getChildren()) {
-		if (!EngineUniques.getUniqueChrysalis(child->getName())->done) {
-			child->getParams()->_visible = true;
-		}
+		child->getParams()->_visible = !EngineUniques.getUniqueChrysalis(child->getName())->done;
 	}
 }
 
 void CModuleMapMenu::hideCrysalises() {
 	GUI::CWidget* wdgt = EngineGUI.getWidget("chrysalises_map_menu", true);
-	for (GUI::CWidget* child : wdgt->getChildren()) {
-		child->getParams()->_visible = false;
+	if (wdgt) {
+		for (GUI::CWidget* child : wdgt->getChildren()) {
+			child->getParams()->_visible = false;
+		}
 	}
 }

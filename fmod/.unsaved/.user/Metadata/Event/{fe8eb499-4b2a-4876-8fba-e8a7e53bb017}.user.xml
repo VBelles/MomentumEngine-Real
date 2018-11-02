@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<objects serializationModel="Studio.01.10.00">
+    <object class="Event" id="{fe8eb499-4b2a-4876-8fba-e8a7e53bb017}">
+        <relationship name="uiLastParameterSelection">
+            <destination>{7c78e63e-a3cd-4451-9655-cbae08a3999b}</destination>
+        </relationship>
+    </object>
+    <object class="MasterTrack" id="{35e107de-5037-4cfa-a981-63a89b6081ea}"/>
+    <object class="MixerInput" id="{e10fedb7-8b04-4e3b-86ee-640c450444c6}"/>
+    <object class="EventAutomatableProperties" id="{fc84f404-bfdb-4e96-804c-8c5742ccb93c}"/>
+    <object class="MarkerTrack" id="{80773e81-c48d-4004-85af-bf5559ec3662}"/>
+    <object class="GroupTrack" id="{11d64122-5c56-48ca-b557-f5069e29e440}"/>
+    <object class="Timeline" id="{7c78e63e-a3cd-4451-9655-cbae08a3999b}">
+        <property name="uiLastRulerScaleRatio">
+            <value>0.0027902066486972144</value>
+        </property>
+    </object>
+    <object class="EventMixerMaster" id="{99895d52-5952-4d22-95e2-8b8d76dc26e7}">
+        <relationship name="input">
+            <destination>{5c5337dd-145e-4125-aeba-2e641d21a63a}</destination>
+        </relationship>
+    </object>
+    <object class="MixerBusEffectChain" id="{d3f99fc5-b933-4ad9-bc32-d83936379c18}"/>
+    <object class="MixerBusPanner" id="{161b3417-0983-4003-923f-a64c09dbdc94}"/>
+    <object class="SingleSound" id="{2fef1183-0fd4-407a-9292-388f7bfebf11}"/>
+    <object class="EventMixerGroup" id="{5c5337dd-145e-4125-aeba-2e641d21a63a}"/>
+    <object class="MixerBusEffectChain" id="{95c6f55e-2ff9-4d48-bed5-81d2f91d43eb}"/>
+    <object class="MixerBusPanner" id="{25b9227b-4541-4565-bb9d-b8db555697fd}"/>
+    <object class="MixerBusFader" id="{5583f3f8-1011-441e-a73a-393b571a2df0}"/>
+    <object class="MixerBusEffectChain" id="{d7f14aa6-730c-4f96-a285-b24f19914ee5}"/>
+    <object class="MixerBusPanner" id="{a5c4265b-3b9d-485a-8f1d-0c4b974481e9}"/>
+    <object class="MixerBusFader" id="{e2be75b8-714d-4718-8c94-3e7e60149406}"/>
+    <object class="ChorusEffect" id="{a8321d1f-0eef-4fca-b0c9-f65feace4887}"/>
+    <object class="ThreeEQEffect" id="{36012966-7cd2-4330-9324-6ce1375042bc}"/>
+    <object class="CompressorEffect" id="{112fdfe3-f416-4865-9b98-abd809f91085}"/>
+    <object class="GainEffect" id="{faf9209e-acb7-4947-886f-fe2c04b6bbf7}"/>
+    <object class="MixerBusFader" id="{e4d1ba7b-3ed5-4101-8131-45a333cea63c}"/>
+</objects>

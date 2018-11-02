@@ -19,7 +19,7 @@ ButtonText: "Momentum"
 
 	local baseHeight = 66
 	local heightPerButton = 26
-	local numberOfButtons = 7
+	local numberOfButtons = 8
 	local height = baseHeight + heightPerButton * numberOfButtons
 
 	/* To get desktop resolution, valid for multiple screens:
@@ -145,14 +145,16 @@ ButtonText: "Momentum"
 		button btn_sel_children "Select children" tooltip:"Selects children of selected objects"
 
 		button btn_import_scene "Import scene..." tooltip:"Import scene objects from scene file"
-		button btn_copy_posrot "Copy pos+rot+n" across:2 tooltip:"Copy name, position and rotation of selected object"
-		button btn_paste_posrot "Paste pos+rot+n" tooltip:"Paste name, position and rotation on selected object"
+		button btn_copy_posrot "Copy pos+rot" across:2 tooltip:"Copy position and rotation of selected object"
+		button btn_paste_posrot "Paste pos+rot" tooltip:"Paste position and rotation on selected objects"
 		
 		button btn_copy_pos "Copy pos" across:2 tooltip:"Copy position of selected object"
 		button btn_paste_pos "Paste pos" tooltip:"Paste position on selected object"
 		
 		button btn_copy_pivot "Copy pivot pos" across:2 tooltip:"Copy pivot position of selected object"
 		button btn_paste_pivot "Paste pivot pos" tooltip:"Paste pivot position on selected object"
+
+		button btn_get_parent_pivot "Get parent pivot" tooltip:"Copies parent pivot position on selected object"
 
 		button btn_hideOtherLayers "Hide other layers" across:2 tooltip:"Hide all layers except selected object's layer"
 		button btn_showAllLayers "Show all layers" tooltip:"Shows all layers"
@@ -262,12 +264,24 @@ ButtonText: "Momentum"
 			)
 		)
 
-		fn copyNamePosRot = (
+		fn getParentPivot = (
+			try (
+				gc()
+				clearListener()
+				if selection.count == 1 and $.parent != undefind then (
+					$.pivot = $.parent.pivot
+				)
+			) catch (
+				MessageBox ("Error getting pivot:\n" + getCurrentException()) title:"Error"
+			)
+		)
+
+		fn copyPosRot = (
 			try (
 				gc()
 				clearListener()
 				if selection.count == 1 then (
-					global copiedName = $.name
+					--global copiedName = $.name
 					global copiedRot  = $.rotation
 					global copiedPos  = $.pos
 				) else if selection.count > 1 then MessageBox ("Select only one object")
@@ -276,14 +290,14 @@ ButtonText: "Momentum"
 			)
 		)
 
-		fn pasteNamePosRot = (
+		fn pastePosRot = (
 			try (
 				gc()
 				clearListener()
-				if selection.count == 1 then (
-					$.name		= copiedName
-					$.rotation	= copiedRot
-					$.pos		= copiedPos
+				for o in selection do (
+					--o.name	   = copiedName
+					o.rotation = copiedRot
+					o.pos	   = copiedPos
 				)
 			) catch (
 				MessageBox ("Error pasting:\n" + getCurrentException()) title:"Error"
@@ -366,12 +380,13 @@ ButtonText: "Momentum"
 		on btn_sel_children 	pressed do ( selectChildren() )
 		on btn_sel_parents  	pressed do ( selectParents() )
 		on btn_import_scene 	pressed do ( importScene() )
-		on btn_copy_posrot  	pressed do ( copyNamePosRot() )
-		on btn_paste_posrot 	pressed do ( pasteNamePosRot() )
+		on btn_copy_posrot  	pressed do ( copyPosRot() )
+		on btn_paste_posrot 	pressed do ( pastePosRot() )
 		on btn_copy_pos  		pressed do ( copyPos() )
 		on btn_paste_pos 		pressed do ( pastePos() )
 		on btn_copy_pivot  		pressed do ( copyPivotPos() )
 		on btn_paste_pivot 		pressed do ( pastePivotPos() )
+		on btn_get_parent_pivot	pressed do ( getParentPivot() )
 		on btn_hideOtherLayers  pressed do ( hideAllLayersButCurrent() )
 		on btn_showAllLayers    pressed do ( showAllLayers() )
 		on btn_collapAllLayers  pressed do ( collapseAllLayers() )

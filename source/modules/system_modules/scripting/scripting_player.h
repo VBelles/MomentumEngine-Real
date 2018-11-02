@@ -40,4 +40,8 @@ public:
 	static void walkTo(float x, float z);
 	static void rotatePlayerTowards(float x, float z, float speed);
 	static void setDummyState(std::string animation, bool isLoop, float duration, std::string exitAnimation);
+	static void makeInvulnerable(float time);
+	static void makeVulnerable();
+	static void freezePower();
+	static void unfreezePower();
 };

@@ -22,6 +22,10 @@
 		{
 			"name" : "options_menu",
 			"modules" : [ "options_menu" ]
+		},
+		{
+			"name" : "credits",
+			"modules" : [ "credits" ]
 		}
 	]
 }

@@ -238,6 +238,7 @@
     <ClCompile Include="gui\widgets\gui_option.cpp" />
     <ClCompile Include="modules\game_modules\game\enemy_manager.cpp" />
     <ClCompile Include="modules\game_modules\module_controls_help.cpp" />
+    <ClCompile Include="modules\game_modules\module_credits.cpp" />
     <ClCompile Include="modules\game_modules\module_instancing.cpp" />
     <ClCompile Include="components\player\comp_walk_sound.cpp" />
     <ClCompile Include="modules\game_modules\module_map_menu.cpp" />
@@ -397,7 +398,6 @@
     <ClCompile Include="modules\system_modules\particles\module_particles.cpp" />
     <ClCompile Include="modules\system_modules\sound\comp_music.cpp" />
     <ClCompile Include="modules\system_modules\sound\comp_sound.cpp" />
-    <ClCompile Include="modules\system_modules\sound\comp_sound_emmiter.cpp" />
     <ClCompile Include="modules\system_modules\sound\fmod_utils.cpp" />
     <ClCompile Include="modules\system_modules\sound\module_sound.cpp" />
     <ClCompile Include="modules\system_modules\module_uniques.cpp" />
@@ -620,6 +620,7 @@
     <ClInclude Include="gui\widgets\gui_option.h" />
     <ClInclude Include="modules\game_modules\game\enemy_manager.h" />
     <ClInclude Include="modules\game_modules\module_controls_help.h" />
+    <ClInclude Include="modules\game_modules\module_credits.h" />
     <ClInclude Include="modules\game_modules\module_instancing.h" />
     <ClInclude Include="components\player\comp_walk_sound.h" />
     <ClInclude Include="modules\game_modules\module_map_menu.h" />
@@ -791,7 +792,6 @@
     <ClInclude Include="modules\system_modules\particles\module_particles.h" />
     <ClInclude Include="modules\system_modules\sound\comp_music.h" />
     <ClInclude Include="modules\system_modules\sound\comp_sound.h" />
-    <ClInclude Include="modules\system_modules\sound\comp_sound_emmiter.h" />
     <ClInclude Include="modules\system_modules\sound\fmod_utils.h" />
     <ClInclude Include="modules\system_modules\sound\module_sound.h" />
     <ClInclude Include="modules\system_modules\module_uniques.h" />

@@ -35,7 +35,7 @@ namespace GUI {
 	};
 
 	struct TBarParams {
-		enum EDirection { Horizontal, Vertical, VerticalAnim };
+		enum EDirection { Horizontal, Vertical, VerticalAnim, Mask };
 		EDirection _direction;
 		std::string _variable;
 	};

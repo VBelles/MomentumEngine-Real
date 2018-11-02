@@ -16,6 +16,9 @@ void DummyActionState::update(float delta) {
 void DummyActionState::onStateEnter(IActionState * lastState) {
 	IActionState::onStateEnter(lastState);
 	//se debería quitar collider, pero hay muchas cosas que lo usan
+	if (animation == "get_chrysalis") {
+		getPlayerModel()->makeInvulnerable(4.0f);
+	}
 	stateManager->changeConcurrentState(Free);
 	getPlayerModel()->setGravityMultiplier(0);
 	*velocityVector = VEC3::Zero;
@@ -34,7 +37,6 @@ void DummyActionState::onStateEnter(IActionState * lastState) {
 void DummyActionState::onStateExit(IActionState * nextState) {
 	IActionState::onStateExit(nextState);
 	getPlayerModel()->resetGravity();
-	getPlayerModel()->makeInvulnerable(0.5f);
 }
 
 void DummyActionState::setDummyState(std::string animation, bool isLoop, float duration, std::string exitAnimation) {

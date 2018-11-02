@@ -712,7 +712,17 @@
 					],
 					"enabled": false
 				}
-			]
+			],
+			"light_point": {
+				"intensity": 5,
+				"radius": 6.5,
+				"color" :  "0.38 0.05 0.95 1",
+				"is_on" : false
+			},
+			"light_flicker": {
+				"intensityVariation": 0.3,
+				"variationSpeed": 0.5
+			}
 		}
 	},
 	{
@@ -746,7 +756,17 @@
 					],
 					"enabled": false
 				}
-			]
+			],
+			"light_point": {
+				"intensity": 5,
+				"radius": 6.5,
+				"color" :  "0.73 0.47 0.95 1",
+				"is_on" : false
+			},
+			"light_flicker": {
+				"intensityVariation": 0.3,
+				"variationSpeed": 0.5
+			}
 		}
 	}
 ]

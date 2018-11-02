@@ -15,6 +15,8 @@ private:
 	float targetPower;
 	float powerIncreaseSpeed;
 
+	bool frozen = false;
+	float elapsedWhenFrozen = 0.f;
 
 public:
 	DECL_SIBLING_ACCESS();
@@ -38,4 +40,7 @@ public:
 
 	float getBarPercentage();
 	float getPowerLevelPercentage();
+
+	void freeze();
+	void unfreeze();
 };

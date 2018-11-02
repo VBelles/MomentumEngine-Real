@@ -16,6 +16,7 @@ void ScriptingGUI::bind(SLB::Manager* manager) {
 	manager->set("skipCinematics", SLB::FuncCall::create(ScriptingGUI::skipCinematics));
 
 	manager->set("goToMainMenu", SLB::FuncCall::create(ScriptingGUI::goToMainMenu));
+	manager->set("goToCredits", SLB::FuncCall::create(ScriptingGUI::goToCredits));
 }
 
 void ScriptingGUI::bindConstants(SLB::Manager* manager) {
@@ -52,6 +53,12 @@ bool ScriptingGUI::skipCinematics() {
 void ScriptingGUI::goToMainMenu() {
 	EngineGUI.hideDialog();
 	EngineSound.getMusicPlayer()->setCurrentSong(CMusicPlayer::Song::MENU);
-	EngineModules.changeGameState("main_menu", true);
+	EngineModules.changeGameState("main_menu", false);
 	CApp::get().setResetMouse(false);
+}
+
+void ScriptingGUI::goToCredits() {
+	EngineGUI.hideDialog();
+	EngineSound.getMusicPlayer()->setCurrentSong(CMusicPlayer::Song::INTRO);
+	EngineModules.changeGameState("credits", false);
 }

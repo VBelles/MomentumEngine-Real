@@ -35,6 +35,7 @@ void TCompSound::load(const json& j, TEntityParseContext& ctx) {
 	assert(j.count("events"));
 	bool is3D = j.value("3D", true);
 	bool playOnStart = j.value("play", false);
+	float maxDistance = j.value("max_distance", -1.f);
 	for (auto& jEvent : j["events"]) {
 		Sound sound;
 		sound.id = jEvent.value("id", "");
@@ -45,6 +46,7 @@ void TCompSound::load(const json& j, TEntityParseContext& ctx) {
 		sound.stopFadeOut = jEvent.value("stop_fade_out", sound.stopFadeOut);
 		sound.is3D = jEvent.value("3D", is3D);
 		sound.playOnStart = jEvent.value("play", playOnStart);
+		sound.maxDistance = jEvent.value("max_distance", maxDistance);
 		events[sound.id] = sound;
 	}
 }
@@ -73,31 +75,59 @@ void TCompSound::onDestroyed(const TMsgEntityDestroyed&) {
 
 void TCompSound::update(float delta) {
 	TCompTransform* transform = get<TCompTransform>();
-
 	for (auto& p : events) {
 		auto& sound = p.second;
-		auto& eventInstances = sound.eventInstances;
-		auto it = eventInstances.begin();
-		while (it != eventInstances.end()) {
-			auto& eventInstance = *it;
-			if (!eventInstance || !eventInstance->isValid()) { // Event has been released
-				it = eventInstances.erase(it);
+		sound.eventInstances.erase(std::remove_if(sound.eventInstances.begin(), sound.eventInstances.end(), [&](FMOD::Studio::EventInstance*& eventInstance) -> bool {
+			// Event has been released
+			if (!eventInstance || !eventInstance->isValid()) {
+				return true;
 			}
-			else {
-				if (transform && sound.following) {
-					FMOD_3D_ATTRIBUTES attributes = toFMODAttributes(*transform);
-					eventInstance->set3DAttributes(&attributes);
+			// Stop and save event if its too far
+			if (transform && sound.is3D && sound.maxDistance > 0.f) {
+				float maxDistanceSquared = sound.maxDistance * sound.maxDistance;
+				float distanceSquared = VEC3::DistanceSquared(EngineSound.getListenerPosition(), transform->getPosition());
+				if (distanceSquared > maxDistanceSquared) {
+					//dbg("Distance: %f/%f\n", maxDistance, sqrt(distanceSquared));
+					FarEvent farEvent;
+					farEvent.timer.reset();
+					farEvent.maxDistanceSquared = maxDistanceSquared;
+					farEvent.id = sound.id;
+					eventInstance->getTimelinePosition(&farEvent.timeline);
+					eventInstance->stop(FMOD_STUDIO_STOP_IMMEDIATE);
+					sound.farEvents.push_back(farEvent);
+					return true;
 				}
-				++it;
 			}
+			// Update following event
+			if (transform && sound.following) {
+				FMOD_3D_ATTRIBUTES attributes = toFMODAttributes(*transform);
+				eventInstance->set3DAttributes(&attributes);
+			}
+			return false;
+		}), sound.eventInstances.end());
+
+		if (transform) {
+			sound.farEvents.erase(std::remove_if(sound.farEvents.begin(), sound.farEvents.end(), [&](FarEvent& farEvent) -> bool {
+				float distanceSquared = VEC3::DistanceSquared(EngineSound.getListenerPosition(), transform->getPosition());
+				if (distanceSquared <= farEvent.maxDistanceSquared) {
+					if (play(sound.id)) {
+						auto eventInstance = sound.eventInstances[sound.eventInstances.size() - 1];
+						int timelineElapse = (int)(farEvent.timer.elapsed() * 1000.f);
+						eventInstance->setTimelinePosition(farEvent.timeline + timelineElapse);
+					}
+					return true;
+				}
+				return false;
+			}), sound.farEvents.end());
 		}
+
 	}
 }
 
-void TCompSound::play(std::string event) {
+bool TCompSound::play(std::string event) {
 	auto it = events.find(event);
 	if (it == events.end())
-		return;
+		return true;
 	auto& sound = it->second;
 	if (!sound.multiInstancing) {
 		stop(event);
@@ -113,6 +143,7 @@ void TCompSound::play(std::string event) {
 	eventInstance->start();
 	eventInstance->release();
 	sound.eventInstances.push_back(eventInstance);
+	return false;
 }
 
 void TCompSound::stop(std::string event) {
@@ -123,6 +154,7 @@ void TCompSound::stop(std::string event) {
 	for (auto& eventInstance : sound.eventInstances) {
 		eventInstance->stop(sound.stopFadeOut ? FMOD_STUDIO_STOP_ALLOWFADEOUT : FMOD_STUDIO_STOP_IMMEDIATE);
 	}
+	sound.farEvents.clear();
 	sound.eventInstances.clear();
 }
 
@@ -133,6 +165,7 @@ void TCompSound::stop() {
 			eventInstance->stop(sound.stopFadeOut ? FMOD_STUDIO_STOP_ALLOWFADEOUT : FMOD_STUDIO_STOP_IMMEDIATE);
 		}
 		sound.eventInstances.clear();
+		sound.farEvents.clear();
 	}
 }
 
@@ -141,7 +174,7 @@ bool TCompSound::isPlaying(std::string event) {
 	if (it == events.end())
 		return false;
 	auto& sound = it->second;
-	return !sound.eventInstances.empty();
+	return !sound.eventInstances.empty() /*&& !sound.farEvents.empty()*/;
 }
 
 

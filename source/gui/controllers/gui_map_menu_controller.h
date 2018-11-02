@@ -27,5 +27,8 @@ namespace GUI {
 
 		void setState(int option, CButton::EState state);
 		bool optionOverlaps(int option, VEC2 pos);
+
+		float ratio = 1.072965159f;
+		VEC2 vRatio = VEC2(-ratio, ratio);
 	};
 }

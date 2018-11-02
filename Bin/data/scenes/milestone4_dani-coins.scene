@@ -1667,7 +1667,7 @@
       "prefab": "data/prefabs/coin.prefab",
       "transform":
       {
-        "pos": "170.199 31.4588 -158.303"
+        "pos": "170.199 33.9977 -158.303"
       }
     }
   },
@@ -1678,7 +1678,7 @@
       "prefab": "data/prefabs/coin.prefab",
       "transform":
       {
-        "pos": "160.724 31.5499 -169.658"
+        "pos": "160.724 33.5344 -169.658"
       }
     }
   },
@@ -1700,7 +1700,7 @@
       "prefab": "data/prefabs/coin.prefab",
       "transform":
       {
-        "pos": "171.191 34.6732 -132.354"
+        "pos": "170.429 34.6732 -136.065"
       }
     }
   },

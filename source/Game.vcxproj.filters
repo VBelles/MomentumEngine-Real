@@ -294,7 +294,6 @@
     <ClCompile Include="modules\system_modules\particles\module_particles.cpp" />
     <ClCompile Include="modules\system_modules\sound\comp_music.cpp" />
     <ClCompile Include="modules\system_modules\sound\comp_sound.cpp" />
-    <ClCompile Include="modules\system_modules\sound\comp_sound_emmiter.cpp" />
     <ClCompile Include="modules\system_modules\sound\module_sound.cpp" />
     <ClCompile Include="modules\system_modules\module_uniques.cpp" />
     <ClCompile Include="modules\system_modules\scripting\console.cpp" />
@@ -401,6 +400,7 @@
     <ClCompile Include="components\comp_final_door_controller.cpp" />
     <ClCompile Include="modules\game_modules\module_options_ingame.cpp" />
     <ClCompile Include="modules\game_modules\module_controls_help.cpp" />
+    <ClCompile Include="modules\game_modules\module_credits.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="..\Bin\data\shaders\ctes.h" />
@@ -713,7 +713,6 @@
     <ClInclude Include="modules\system_modules\particles\module_particles.h" />
     <ClInclude Include="modules\system_modules\sound\comp_music.h" />
     <ClInclude Include="modules\system_modules\sound\comp_sound.h" />
-    <ClInclude Include="modules\system_modules\sound\comp_sound_emmiter.h" />
     <ClInclude Include="modules\system_modules\sound\module_sound.h" />
     <ClInclude Include="modules\system_modules\module_uniques.h" />
     <ClInclude Include="modules\system_modules\scripting\console.h" />
@@ -834,6 +833,7 @@
     <ClInclude Include="components\comp_final_door_controller.h" />
     <ClInclude Include="modules\game_modules\module_options_ingame.h" />
     <ClInclude Include="modules\game_modules\module_controls_help.h" />
+    <ClInclude Include="modules\game_modules\module_credits.h" />
   </ItemGroup>
   <ItemGroup>
     <None Include="geometry\SimpleMath.inl" />

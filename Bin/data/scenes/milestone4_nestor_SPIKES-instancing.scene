@@ -1,0 +1,107 @@
+[
+  {
+    "entity":
+    {
+      "name": "spike_crystal_01",
+      "transform":
+      {
+        "pos": "-161.09 -2.30371 73.8925",
+        "rotation": "0.0115886 -0.000952578 0.0819183 -0.996571"
+      },
+      "render":
+      [
+        {
+          "mesh": "data/meshes/spike_crystal_01.instanced_mesh",
+          "materials":
+          [
+             "data/materials/spike_crystal_01.material"
+          ]
+        }
+      ]
+    }
+  },
+  {
+    "entity":
+    {
+      "name": "spike_crystal_02",
+      "transform":
+      {
+        "pos": "-161.09 -2.30371 73.8925",
+        "rotation": "0.0115886 -0.000952578 0.0819183 -0.996571"
+      },
+      "render":
+      [
+        {
+          "mesh": "data/meshes/spike_crystal_02.instanced_mesh",
+          "materials":
+          [
+             "data/materials/spike_crystal_02.material"
+          ]
+        }
+      ]
+    }
+  },
+  {
+    "entity":
+    {
+      "name": "spike_crystal_03",
+      "transform":
+      {
+        "pos": "-161.09 -2.30371 73.8925",
+        "rotation": "0.0115886 -0.000952578 0.0819183 -0.996571"
+      },
+      "render":
+      [
+        {
+          "mesh": "data/meshes/spike_crystal_03.instanced_mesh",
+          "materials":
+          [
+             "data/materials/spike_crystal_03.material"
+          ]
+        }
+      ]
+    }
+  },
+  {
+    "entity":
+    {
+      "name": "spike_crystal_04",
+      "transform":
+      {
+        "pos": "-161.09 -2.30371 73.8925",
+        "rotation": "0.0115886 -0.000952578 0.0819183 -0.996571"
+      },
+      "render":
+      [
+        {
+          "mesh": "data/meshes/spike_crystal_04.instanced_mesh",
+          "materials":
+          [
+             "data/materials/spike_crystal_04.material"
+          ]
+        }
+      ]
+    }
+  },
+  {
+    "entity":
+    {
+      "name": "spike_crystal_05",
+      "transform":
+      {
+        "pos": "-161.09 -2.30371 73.8925",
+        "rotation": "0.0115886 -0.000952578 0.0819183 -0.996571"
+      },
+      "render":
+      [
+        {
+          "mesh": "data/meshes/spike_crystal_05.instanced_mesh",
+          "materials":
+          [
+             "data/materials/spike_crystal_05.material"
+          ]
+        }
+      ]
+    }
+  }
+]

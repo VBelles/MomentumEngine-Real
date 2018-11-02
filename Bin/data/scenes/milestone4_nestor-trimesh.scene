@@ -2,6 +2,23 @@
   {
     "entity":
     {
+      "name": "nes_escalera_caracol_M_002",
+      "transform":
+      {
+        "pos": "-2.02375 15.159 181.964",
+        "rotation": "0.0 -0.965926 0.0 0.258819"
+      },
+      "collider":
+      {
+        "mesh_src": "data/meshes/nes_escalera_caracol_M_002.col_mesh",
+        "shape": "tri_mesh",
+        "type": "static"
+      }
+    }
+  },
+  {
+    "entity":
+    {
       "name": "nes_crystal_low_col_316",
       "transform":
       {
