@@ -1,7 +1,7 @@
 [
 	{
 		"name": "map_menu",
-		"type": "wnameget",
+		"type": "widget",
 		"size": "1920 1080",
 		"position": "0 100",
 		"children": [
@@ -193,8 +193,8 @@
 			},
 			{
 				"name": "buttons_map_menu",
-				"type": "wnameget",
-				"position": "0 0",
+				"type": "widget",
+				"position": "80 0",
 				"children": [
 					{
 						"name": "temple_teleport",
@@ -251,7 +251,7 @@
 						"altern_button": {
 							"name": "main_entrance_teleport_altern_button",
 							"type": "button",
-							"position": "0 70",
+							"position": "0 80",
 							"size": "800 104",
 							"texture": "data/textures/gui/map/bt_map_unknown.dds",
 							"selected": {
@@ -264,7 +264,7 @@
 						"button": {
 							"name": "main_entrance_teleport_button",
 							"type": "button",
-							"position": "0 70",
+							"position": "0 80",
 							"size": "800 104",
 							"texture": "data/textures/gui/map/bt_map_kingdom.dds",
 							"selected": {
@@ -297,7 +297,7 @@
 						"altern_button": {
 							"name": "central_field_teleport_altern_button",
 							"type": "button",
-							"position": "0 140",
+							"position": "0 160",
 							"size": "800 104",
 							"texture": "data/textures/gui/map/bt_map_unknown.dds",
 							"selected": {
@@ -310,7 +310,7 @@
 						"button": {
 							"name": "central_field_teleport_button",
 							"type": "button",
-							"position": "0 140",
+							"position": "0 160",
 							"size": "800 104",
 							"texture": "data/textures/gui/map/bt_map_atlas.dds",
 							"selected": {
@@ -343,7 +343,7 @@
 						"altern_button": {
 							"name": "tower_entrance_teleport_altern_button",
 							"type": "button",
-							"position": "0 210",
+							"position": "0 240",
 							"size": "800 104",
 							"texture": "data/textures/gui/map/bt_map_unknown.dds",
 							"selected": {
@@ -356,7 +356,7 @@
 						"button": {
 							"name": "tower_entrance_teleport_button",
 							"type": "button",
-							"position": "0 210",
+							"position": "0 240",
 							"size": "800 104",
 							"texture": "data/textures/gui/map/bt_map_nameless.dds",
 							"selected": {
@@ -389,7 +389,7 @@
 						"altern_button": {
 							"name": "behind_statue_teleport_altern_button",
 							"type": "button",
-							"position": "0 280",
+							"position": "0 320",
 							"size": "800 104",
 							"texture": "data/textures/gui/map/bt_map_unknown.dds",
 							"selected": {
@@ -402,7 +402,7 @@
 						"button": {
 							"name": "behind_statue_teleport_button",
 							"type": "button",
-							"position": "0 280",
+							"position": "0 320",
 							"size": "800 104",
 							"texture": "data/textures/gui/map/bt_map_monument.dds",
 							"selected": {
@@ -435,7 +435,7 @@
 						"altern_button": {
 							"name": "kings_graveyard_teleport_altern_button",
 							"type": "button",
-							"position": "0 350",
+							"position": "0 400",
 							"size": "800 104",
 							"texture": "data/textures/gui/map/bt_map_unknown.dds",
 							"selected": {
@@ -448,7 +448,7 @@
 						"button": {
 							"name": "kings_graveyard_teleport_button",
 							"type": "button",
-							"position": "0 350",
+							"position": "0 400",
 							"size": "800 104",
 							"texture": "data/textures/gui/map/bt_map_king.dds",
 							"selected": {
@@ -481,7 +481,7 @@
 						"altern_button": {
 							"name": "mushroom_kingdom_teleport_altern_button",
 							"type": "button",
-							"position": "0 420",
+							"position": "0 480",
 							"size": "800 104",
 							"texture": "data/textures/gui/map/bt_map_unknown.dds",
 							"selected": {
@@ -494,7 +494,7 @@
 						"button": {
 							"name": "mushroom_kingdom_teleport_button",
 							"type": "button",
-							"position": "0 420",
+							"position": "0 480",
 							"size": "800 104",
 							"texture": "data/textures/gui/map/bt_map_colossal.dds",
 							"selected": {
@@ -527,7 +527,7 @@
 						"altern_button": {
 							"name": "graveyard_teleport_altern_button",
 							"type": "button",
-							"position": "0 490",
+							"position": "0 560",
 							"size": "800 104",
 							"texture": "data/textures/gui/map/bt_map_unknown.dds",
 							"selected": {
@@ -540,7 +540,7 @@
 						"button": {
 							"name": "graveyard_teleport_button",
 							"type": "button",
-							"position": "0 490",
+							"position": "0 560",
 							"size": "800 104",
 							"texture": "data/textures/gui/map/bt_map_forgotten.dds",
 							"selected": {
@@ -573,7 +573,7 @@
 						"altern_button": {
 							"name": "behind_tower_teleport_button",
 							"type": "button",
-							"position": "0 560",
+							"position": "0 640",
 							"size": "800 104",
 							"texture": "data/textures/gui/map/bt_map_unknown.dds",
 							"selected": {
@@ -586,7 +586,7 @@
 						"button": {
 							"name": "behind_tower_teleport_button",
 							"type": "button",
-							"position": "0 560",
+							"position": "0 640",
 							"size": "800 104",
 							"texture": "data/textures/gui/map/bt_map_henkou.dds",
 							"selected": {
@@ -619,7 +619,7 @@
 						"altern_button": {
 							"name": "gate_of_doom_teleport_altern_button",
 							"type": "button",
-							"position": "0 630",
+							"position": "0 720",
 							"size": "800 104",
 							"texture": "data/textures/gui/map/bt_map_unknown.dds",
 							"selected": {
@@ -632,7 +632,7 @@
 						"button": {
 							"name": "gate_of_doom_teleport_button",
 							"type": "button",
-							"position": "0 630",
+							"position": "0 720",
 							"size": "800 104",
 							"texture": "data/textures/gui/map/bt_map_final.dds",
 							"selected": {
