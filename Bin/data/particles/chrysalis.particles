@@ -11,7 +11,8 @@
     "angle": 0.0,
     "interval": 0.1,
     "count": 7,
-    "cyclic": true
+    "cyclic": true,
+    "fade_out": 2
   },
   "movement": {
     "velocity": 10,

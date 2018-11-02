@@ -26,9 +26,15 @@ private:
 	VEC3 rotationAxis;
 
 	bool active = true;
+	float helpDistance = -1.f;
+	bool nearEffectLaunched = false;
 
 	CHandle transformHandle;
+	CHandle playerHandle;
+
 	TCompTransform* getTransform();
+
+
 
 public:
 	DECL_SIBLING_ACCESS();

@@ -1,6 +1,7 @@
 #include "mcv_platform.h"
 #include "comp_collectable.h"
 #include "entity/common_msgs.h"
+#include "modules/system_modules/particles/comp_particles.h"
 
 DECL_OBJ_MANAGER("collectable", TCompCollectable);
 
@@ -22,6 +23,7 @@ void TCompCollectable::load(const json& j, TEntityParseContext& ctx) {
 		rotationAxis = loadVEC3(j["rotation_axis"]);
 	}
 	active = j.value("active", active);
+	helpDistance = j.value("help_distance", helpDistance);
 }
 
 void TCompCollectable::onGroupCreated(const TMsgEntitiesGroupCreated & msg) {
@@ -40,6 +42,27 @@ void TCompCollectable::update(float delta) {
 		TCompTransform* transform = getTransform();
 		QUAT quat = QUAT::CreateFromAxisAngle(rotationAxis, rotationSpeed * delta);
 		transform->setRotation(transform->getRotation() * quat);
+	}
+
+
+	if (!playerHandle.isValid()) {
+		playerHandle = getEntityByName(PLAYER_NAME);
+	}
+	CEntity* player = playerHandle;
+	TCompTransform* playerTransform = player->get<TCompTransform>();
+	if (helpDistance >= 0.f && VEC3::Distance(playerTransform->getPosition(), getTransform()->getPosition()) > helpDistance) {
+		TCompParticles* particles = get<TCompParticles>();
+		if (particles && nearEffectLaunched) {
+			particles->kill("help");
+			nearEffectLaunched = false;
+		}
+	}
+	else if (helpDistance >= 0.f) {
+		TCompParticles* particles = get<TCompParticles>();
+		if (particles && !nearEffectLaunched) {
+			nearEffectLaunched = true;
+			particles->launch("help");
+		}
 	}
 }
 

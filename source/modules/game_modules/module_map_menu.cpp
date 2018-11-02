@@ -53,7 +53,7 @@ bool CModuleMapMenu::stop() {
 }
 
 void CModuleMapMenu::update(float delta) {
-	if (!blocked && /*!CApp::get().isDebug() &&*/ EngineInput["map"].getsPressed()
+	if (!blocked && !CApp::get().isDebug() && EngineInput["map"].getsPressed()
 		|| pause && EngineInput["menu_back"].getsPressed()) {
 		onMapButtonPressed();
 	}
