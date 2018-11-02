@@ -132,7 +132,7 @@
 	{
 		"name" : "map",
 		"all" : false,
-		"buttons" : ["m", "pad_options"]
+		"buttons" : ["m", "tab", "pad_options"]
 	},
 	{
 		"name" : "next_dialog",
