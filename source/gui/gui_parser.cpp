@@ -345,5 +345,6 @@ void CParser::parseBarParams(TBarParams& params, const json& data) {
 	const std::string direction = data.value("direction", "horizontal");
 	if (direction == "vertical") params._direction = TBarParams::Vertical;
 	else if (direction == "vertical_anim") params._direction = TBarParams::VerticalAnim;
+	else if (direction == "mask") params._direction = TBarParams::Mask;
 	else params._direction = TBarParams::Horizontal;
 }

@@ -15,12 +15,27 @@
         "value": 0
     },
     {
+        "name": "power_progress_level1_empty",
+        "type": "float",
+        "value": 0.0
+    },
+    {
         "name": "power_progress_level1",
         "type": "float",
         "value": 0.0
     },
     {
+        "name": "power_progress_level2_empty",
+        "type": "float",
+        "value": 0.0
+    },
+    {
         "name": "power_progress_level2",
+        "type": "float",
+        "value": 0.0
+    },
+    {
+        "name": "power_progress_level3_empty",
         "type": "float",
         "value": 0.0
     },

@@ -130,46 +130,61 @@
 				"position": "0 0",
 				"children": [
 					{
+						"name": "level1_empty",
+						"type": "bar",
+						"position": "30 40",
+						"size": "152 152",
+						"texture": "data/textures/gui/hud/power_level1_empty.dds",
+						"variable": "power_progress_level1_empty",
+						"direction": "mask"
+					},
+					{
 						"name": "level1",
 						"type": "bar",
-						"position": "60 60",
-						"size": "144 144",
+						"position": "30 40",
+						"size": "152 152",
 						"texture": "data/textures/gui/hud/power_level1.dds",
 						"variable": "power_progress_level1",
-						"direction": "vertical_anim",
-						"initial_frame": 0,
-						"frame_size": "0.2 1",
-						"num_frames": 5,
-						"frame_speed": 9,
-						"mask": "data/textures/gui/hud/power_level_mask.dds"
+						"direction": "mask",
+						"mask": "data/textures/screen_transitions/degradado.dds"
+					},
+					{
+						"name": "level2_empty",
+						"type": "bar",
+						"position": "30 40",
+						"size": "152 152",
+						"texture": "data/textures/gui/hud/power_level2_empty.dds",
+						"variable": "power_progress_level2_empty",
+						"direction": "mask"
 					},
 					{
 						"name": "level2",
 						"type": "bar",
-						"position": "60 60",
-						"size": "144 144",
+						"position": "30 40",
+						"size": "152 152",
 						"texture": "data/textures/gui/hud/power_level2.dds",
 						"variable": "power_progress_level2",
-						"direction": "vertical_anim",
-						"initial_frame": 0,
-						"frame_size": "0.2 1",
-						"num_frames": 5,
-						"frame_speed": 9,
-						"mask": "data/textures/gui/hud/power_level_mask.dds"
+						"direction": "mask",
+						"mask": "data/textures/screen_transitions/degradado.dds"
+					},
+					{
+						"name": "level3_empty",
+						"type": "bar",
+						"position": "30 40",
+						"size": "152 152",
+						"texture": "data/textures/gui/hud/power_level3_empty.dds",
+						"variable": "power_progress_level3_empty",
+						"direction": "mask"
 					},
 					{
 						"name": "level3",
 						"type": "bar",
-						"position": "60 60",
-						"size": "144 144",
+						"position": "30 40",
+						"size": "152 152",
 						"texture": "data/textures/gui/hud/power_level3.dds",
 						"variable": "power_progress_level3",
-						"direction": "vertical_anim",
-						"initial_frame": 0,
-						"frame_size": "0.2 1",
-						"num_frames": 5,
-						"frame_speed": 9,
-						"mask": "data/textures/gui/hud/power_level_mask.dds"
+						"direction": "mask",
+						"mask": "data/textures/screen_transitions/degradado.dds"
 					},
 					{
 						"name": "foreground",

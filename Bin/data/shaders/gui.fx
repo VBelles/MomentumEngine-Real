@@ -56,3 +56,18 @@ float4 PS_GUI_FONT(
   }
   return oColor;
 }
+
+float4 PS_GUI_MASK(
+  VS_FULL_OUTPUT input
+  ) : SV_Target
+{
+  float4 textureColor = txAlbedo.Sample(samLinear, input.UV);
+	float transition = txNormal.Sample(samClampLinear, input.UV).r;
+
+	if (transition <= charSize.x) {
+		return textureColor;
+	}
+	else {
+    	return float4(0,0,0,0);
+	}
+}
