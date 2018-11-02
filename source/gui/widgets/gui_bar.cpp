@@ -13,6 +13,7 @@ void CBar::render() {
 	VEC2 maxUV = UVs.second;
 	VEC2 maskMinUV = VEC2::Zero;
 	VEC2 maskMaxUV = VEC2::One;
+	std::string tech = "clamp";
 
 	if (_barParams._direction == TBarParams::EDirection::Horizontal) {
 		w = MAT44::CreateScale(ratio, 1.f, 1.f) * sz * _absolute;
@@ -33,6 +34,12 @@ void CBar::render() {
 		w = MAT44::CreateScale(1.f, ratio, 1.f) * sz * _absolute * MAT44::CreateTranslation(0.f, _params._size.y * (1.f - ratio), 0.f);
 		maskMinUV.y += (maskMaxUV.y - maskMinUV.y) * (1.f - ratio);
 	}
+	else if (_barParams._direction == TBarParams::EDirection::Mask) {
+		w = MAT44::CreateScale(1.f, 1.f, 1.f) * sz * _absolute;
+		tech = "mask";
+		if (ratio == 0.f) maskMinUV.x = -1.f;
+		else  maskMinUV.x = ratio;
+	}
 
 	EngineGUI.renderTexture(w,
 		_imageParams._texture,
@@ -42,7 +49,7 @@ void CBar::render() {
 		_imageParams._mask,
 		maskMinUV,
 		maskMaxUV,
-		"clamp");
+		tech);
 }
 
 TImageParams* CBar::getImageParams() {

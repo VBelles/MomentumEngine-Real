@@ -15,6 +15,7 @@ bool CModuleGUI::start() {
 
 	_technique = Resources.get("gui.tech")->as<CRenderTechnique>();
 	_technique_clamp = Resources.get("gui_clamp.tech")->as<CRenderTechnique>();
+	_technique_mask = Resources.get("gui_mask.tech")->as<CRenderTechnique>();
 	_technique_font = Resources.get("gui_font.tech")->as<CRenderTechnique>();
 	_quadMesh = Resources.get("unit_quad_xy.mesh")->as<CRenderMesh>();
 	_fontTexture = Resources.get("data/textures/gui/font_sheet.dds")->as<CTexture>();
@@ -174,6 +175,9 @@ void CModuleGUI::renderTexture(const MAT44& world, const CTexture* texture, cons
 
 	if (tech == "clamp") {
 		_technique_clamp->activate();
+	}
+	else if (tech == "mask") {
+		_technique_mask->activate();
 	}
 	else {
 		_technique->activate();
