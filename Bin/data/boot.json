@@ -51,11 +51,12 @@
     "data/scenes/milestone4_nestor-coins.scene",
     "data/scenes/milestone4_nestor-enemies.scene",
     "data/scenes/milestone4_nestor-life_pieces.scene",
+    
+    "data/scenes/milestone4_nestor_orbit-movables.scene",
       
     "data/scenes/milestone4_miguel_raices-0.scene",
     "data/scenes/milestone4_miguel_raices-lights.scene",
-    
-    
+
     
     "data/scenes/fireplace_puzzle.scene",
     "data/scenes/final_door_definitiva.scene",
