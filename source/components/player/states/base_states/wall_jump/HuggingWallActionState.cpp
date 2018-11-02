@@ -15,6 +15,7 @@ void HuggingWallActionState::update(float delta) {
 	float yaw, pitch;
 	getYawPitchFromVector(toVec3(wallNormal), &yaw, &pitch);
 	VEC3 tangentVector;
+	
 	if (CheckIfHuggingWall(wallDirection)) {
 		VEC3 worldInput = getCamera()->getCamera()->TransformToWorld(movementInput);
 		VEC3 normal = { wallNormal.x, 0.f, wallNormal.z };
@@ -62,11 +63,24 @@ void HuggingWallActionState::update(float delta) {
 			stateManager->changeState(AirborneNormal);
 		}
 	}
+
+	if (isWallJumpBuffered) {
+		onJumpHighButton();
+	}
+	else if (isPlummetBuffered) {
+		onJumpLongButton();
+	}
 }
 
 void HuggingWallActionState::onStateEnter(IActionState * lastState) {
 	AirborneActionState::onStateEnter(lastState);
 	FaceWall();
+	if (isWallJumpBuffered) {
+		dbg("wall jump buffered\n");
+	}
+	else {
+		dbg("wall jump NOT buffered\n");
+	}
 	if (CheckIfHuggingWall(wallDirection)) {
 		stateManager->changeConcurrentState(Free);
 		getPlayerModel()->lastWallNormal = wallNormal;
@@ -81,7 +95,6 @@ void HuggingWallActionState::onStateEnter(IActionState * lastState) {
 	else {
 		stateManager->changeState(AirborneNormal);
 	}
-
 }
 
 void HuggingWallActionState::onStateExit(IActionState * nextState) {
@@ -89,6 +102,8 @@ void HuggingWallActionState::onStateExit(IActionState * nextState) {
 	getPlayerModel()->sameNormalReattachTimer.reset();
 	getSound()->stop("hugging_wall");
 	getSound()->stop("climbing");
+	isWallJumpBuffered = false;
+	isPlummetBuffered = false;
 }
 
 void HuggingWallActionState::onJumpHighButton() {
@@ -168,4 +183,12 @@ void HuggingWallActionState::TurnAround() {
 	y = atan2(wallNormal.x, wallNormal.z);
 	getPlayerTransform()->setYawPitchRoll(y, p, r);
 	wallDirection = -getPlayerTransform()->getFront();
+}
+
+void HuggingWallActionState::bufferWallJump(bool buffer) {
+	isWallJumpBuffered = buffer;
+}
+
+void HuggingWallActionState::bufferPlummet(bool buffer) {
+	isPlummetBuffered = buffer;
 }

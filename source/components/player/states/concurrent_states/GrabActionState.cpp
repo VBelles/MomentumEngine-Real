@@ -1,5 +1,6 @@
 #include "mcv_platform.h"
 #include "GrabHighActionState.h"
+#include "components/player/states/base_states/wall_jump/HuggingWallActionState.h"
 
 
 GrabActionState::GrabActionState(StateManager* stateManager, ConcurrentState state) :
@@ -33,7 +34,7 @@ void GrabActionState::onStateEnter(IActionState * lastState) {
 	AttackState::onStateEnter(lastState);
 	phase = AttackPhases::Startup;
 	timer.reset();
-	
+	bufferTimer.reset();
 	getSkeleton()->executeAction(animation, 0.2f, 0.2f);
 }
 
@@ -43,6 +44,11 @@ void GrabActionState::onStateExit(IActionState * nextState) {
 	getHitboxes()->disable(hitbox);
 	getPlayerModel()->lockTurning = false;
 	getSkeleton()->removeAction(animation, 0.02f);
+
+	if (bufferTimer.elapsed() >= bufferTime) {
+		(dynamic_cast<HuggingWallActionState*>(stateManager->getState(HuggingWall)))->bufferWallJump(false);
+		(dynamic_cast<HuggingWallActionState*>(stateManager->getState(HuggingWall)))->bufferWallJump(false);
+	}
 }
 
 void GrabActionState::onLanding() {

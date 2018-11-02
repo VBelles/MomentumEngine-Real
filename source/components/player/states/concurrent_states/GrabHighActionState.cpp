@@ -1,9 +1,15 @@
 #include "mcv_platform.h"
 #include "GrabHighActionState.h"
+#include "components/player/states/base_states/wall_jump/HuggingWallActionState.h"
 
 
 GrabHighActionState::GrabHighActionState(StateManager* stateManager) :
 	GrabActionState(stateManager, GrabHigh) {
+}
+
+void GrabHighActionState::onStateEnter(IActionState * lastState) {
+	GrabActionState::onStateEnter(lastState);
+	(dynamic_cast<HuggingWallActionState*>(stateManager->getState(HuggingWall)))->bufferWallJump(true);
 }
 
 void GrabHighActionState::onHitboxEnter(std::string hitbox, CHandle entity) {
