@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<objects serializationModel="Studio.01.10.00">
+    <object class="Event" id="{353c48ad-76f6-4afc-a05b-9f145e7c82d1}">
+        <relationship name="uiLastParameterSelection">
+            <destination>{251a8fd2-e3c1-4800-b203-c05ca3276a75}</destination>
+        </relationship>
+    </object>
+    <object class="MasterTrack" id="{50358183-b45f-496a-8595-a8ccb76e0eea}"/>
+    <object class="MixerInput" id="{af0fdc13-1a88-4f88-b82a-b61c1d387294}"/>
+    <object class="EventAutomatableProperties" id="{b78d8c9a-d5a9-46dc-8da4-70130f2c0aa3}"/>
+    <object class="MarkerTrack" id="{2ee48293-99aa-4307-bac7-782f352fc8ac}"/>
+    <object class="GroupTrack" id="{960fad2e-ab17-4b86-94d2-03ab84d2bf95}"/>
+    <object class="Timeline" id="{251a8fd2-e3c1-4800-b203-c05ca3276a75}">
+        <property name="uiLastRulerScaleRatio">
+            <value>0.0015055619732169596</value>
+        </property>
+    </object>
+    <object class="EventMixerMaster" id="{c4674e8b-6acf-4ec0-94c6-1bc29c006c1b}">
+        <relationship name="input">
+            <destination>{e74ef1f7-f02a-469f-a4bc-69e1b1b337a1}</destination>
+        </relationship>
+    </object>
+    <object class="MixerBusEffectChain" id="{19e3b39c-f31a-45b6-8e9e-3af764b8f099}"/>
+    <object class="MixerBusPanner" id="{3299a82a-2c44-48d8-9164-500120714741}"/>
+    <object class="SingleSound" id="{ecddf214-5419-4f16-ac1f-173a0630aee2}"/>
+    <object class="EventMixerGroup" id="{e74ef1f7-f02a-469f-a4bc-69e1b1b337a1}"/>
+    <object class="MixerBusEffectChain" id="{9eec05c4-5cb9-4452-85f2-759f4381ae2c}"/>
+    <object class="MixerBusPanner" id="{3ce55072-5795-4992-96cc-0fb760978360}"/>
+    <object class="MixerBusFader" id="{13488191-11e8-45f0-9e99-6f38ce99eadc}"/>
+    <object class="MixerBusEffectChain" id="{eee494a9-7c0a-4359-ae80-3ba04160b62c}"/>
+    <object class="MixerBusPanner" id="{55981450-e6e7-4034-ba20-91918ca3492b}"/>
+    <object class="MixerBusFader" id="{bc12b24e-c104-4254-8f2f-280472993699}"/>
+    <object class="CompressorEffect" id="{1f2ff0e4-3048-4dcc-8021-f987026eecb7}"/>
+    <object class="SFXReverbEffect" id="{6a20c6f5-413f-4193-a364-c0cde7480182}"/>
+    <object class="GainEffect" id="{9b2f7e67-f6d1-4332-a9dd-46bd15b400fb}"/>
+    <object class="MixerBusFader" id="{50cdcf81-6ad3-4178-aac6-3f4deee0b1a9}"/>
+</objects>

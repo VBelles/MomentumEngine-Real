@@ -2,6 +2,7 @@
 
 
 class TCompPlayerModel;
+class TCompPowerGauge;
 class TCompSound;
 
 struct FootConfig {
@@ -28,6 +29,7 @@ private:
 	CHandle skeletonHandle;
 	CHandle transformHandle;
 	CHandle playerModelHandle;
+	CHandle powerGaugeHandle;
 	CHandle soundHandle;
 	void onGroupCreated(const TMsgEntitiesGroupCreated& msg);
 
@@ -41,6 +43,7 @@ public:
 	TCompTransform* getTransform();
 	TCompSkeleton* getSkeleton();
 	TCompPlayerModel* getPlayerModel();
+	TCompPowerGauge* getPowerGauge();
 	TCompSound* getSound();
 };
 

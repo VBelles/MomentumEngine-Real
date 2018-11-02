@@ -29,6 +29,7 @@ void TCompWalkSound::onGroupCreated(const TMsgEntitiesGroupCreated& msg) {
 	skeletonHandle = get<TCompSkeleton>();
 	transformHandle = get<TCompTransform>();
 	playerModelHandle = get<TCompPlayerModel>();
+	powerGaugeHandle = get<TCompPowerGauge>();
 	soundHandle = get<TCompSound>();
 	assert(skeletonHandle.isValid());
 	for (auto& footConfig : feetConfig) {
@@ -68,7 +69,7 @@ void TCompWalkSound::update(float delta) {
 	}
 
 	IActionState* state = getPlayerModel()->getStateManager()->getState();
-	if (state->state == State::Walk && state->getMovementInput().Length() > 0) {
+	if (state->state == State::Walk && state->getMovementInput().Length() > 0 && getPowerGauge()->getPowerLevel() != 3) {
 		if (!getSound()->isPlaying("walk")) getSound()->play("walk");
 	}
 	else {
@@ -99,6 +100,10 @@ TCompSkeleton* TCompWalkSound::getSkeleton() {
 
 TCompPlayerModel* TCompWalkSound::getPlayerModel() {
 	return playerModelHandle;
+}
+
+TCompPowerGauge * TCompWalkSound::getPowerGauge() {
+	return powerGaugeHandle;
 }
 
 TCompSound* TCompWalkSound::getSound() {
