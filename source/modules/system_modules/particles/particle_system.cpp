@@ -449,7 +449,6 @@ namespace Particles {
 	}
 
 	void CSystem::updateWorld() {
-		world = MAT44::Identity;
 		if (config.targetEntity.isValid()) {
 			CEntity* e = config.targetEntity;
 
