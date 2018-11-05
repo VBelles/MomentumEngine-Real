@@ -17,7 +17,7 @@
 				"type": "chrysalis",
 				"rotation_axis": "0 1 0",
 				"rotation_speed": 2.5,
-				"help_distance": 30
+				"help_distance": 50
 			},
 			"collider" : {
 				"shape": "sphere",

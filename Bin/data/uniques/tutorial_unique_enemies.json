@@ -25,14 +25,14 @@
     {
       "id": "gorila_melee_000",
       "done": false,
-      "position": "94.8697 18.9834 122.679",
+      "position": "94.8697 18.2 122.679",
       "level": "level00",
       "type": "golem"
     },
     {
       "id": "gorila_melee_003",
       "done": false,
-      "position": "-133.236 14.2893 48.7963",
+      "position": "-133.236 13.6 48.7963",
       "level": "level00",
       "type": "golem"
     },
@@ -46,7 +46,7 @@
     {
       "id": "gorila_melee_001",
       "done": false,
-      "position": "265.407 -21.585 -80.6642",
+      "position": "265.407 -20.885 -80.6642",
       "level": "level00",
       "type": "golem"
     }

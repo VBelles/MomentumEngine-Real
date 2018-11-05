@@ -6,8 +6,8 @@
       "prefab": "data/prefabs/gorila.prefab",
       "transform":
       {
-        "pos": "94.8697 18.9834 122.679",
-        "lookat": "-1.0 18.9834 -1.0"
+        "pos": "94.8697 18.2 122.679",
+        "lookat": "-1.0 18.2 -1.0"
       }
     }
   },
@@ -18,8 +18,8 @@
       "prefab": "data/prefabs/gorila.prefab",
       "transform":
       {
-        "pos": "-133.236 14.2893 48.7963",
-        "lookat": "-1.0 14.2893 -1.0"
+        "pos": "-133.236 13.6 48.7963",
+        "lookat": "-1.0 13.6 -1.0"
       }
     }
   },
@@ -42,8 +42,8 @@
       "prefab": "data/prefabs/gorila.prefab",
       "transform":
       {
-        "pos": "265.407 -21.585 -80.6642",
-        "lookat": "-1.0 -21.585 -1.0"
+        "pos": "265.407 -20.885 -80.6642",
+        "lookat": "-1.0 -20.885 -1.0"
       }
     }
   }
