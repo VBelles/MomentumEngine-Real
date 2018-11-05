@@ -223,8 +223,13 @@ bool StateManager::changeConcurrentState(std::string newStateName) {
 }
 
 void StateManager::performStateChange() {
+
 	if (baseState != nextBaseState ||
 		(isChangingBaseState && dynamic_cast<DummyActionState*>(nextBaseState)) ) {
+		if (!dynamic_cast<HuggingWallActionState*>(nextBaseState)) {
+			(dynamic_cast<HuggingWallActionState*>(getState(HuggingWall)))->bufferWallJump(false);
+			(dynamic_cast<HuggingWallActionState*>(getState(HuggingWall)))->bufferPlummet(false);
+		}
 		IActionState* exitingState = baseState;
 		baseState = nextBaseState;
 		if (exitingState) {

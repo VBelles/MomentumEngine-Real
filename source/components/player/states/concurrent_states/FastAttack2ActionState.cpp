@@ -33,7 +33,7 @@ void FastAttack2ActionState::update(float delta) {
 }
 
 void FastAttack2ActionState::onStateEnter(IActionState * lastState) {
-	GroundedActionState::onStateEnter(lastState);
+	//GroundedActionState::onStateEnter(lastState);
 	AttackState::onStateEnter(lastState);
 	//dbg("Fast attack 2\n");
 	phase = AttackPhases::Launch;
@@ -43,7 +43,7 @@ void FastAttack2ActionState::onStateEnter(IActionState * lastState) {
 }
 
 void FastAttack2ActionState::onStateExit(IActionState * nextState) {
-	GroundedActionState::onStateExit(nextState);
+	//GroundedActionState::onStateExit(nextState);
 	AttackState::onStateExit(nextState);
 	getHitboxes()->disable(hitbox);
 	getPlayerModel()->lockAttack = false;

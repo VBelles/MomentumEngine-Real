@@ -1,8 +1,14 @@
 #include "mcv_platform.h"
 #include "GrabLongActionState.h"
+#include "components/player/states/base_states/wall_jump/HuggingWallActionState.h"
 
 GrabLongActionState::GrabLongActionState(StateManager* stateManager) :
 	GrabActionState(stateManager, GrabLong) {
+}
+
+void GrabLongActionState::onStateEnter(IActionState * lastState) {
+	GrabActionState::onStateEnter(lastState);
+	(dynamic_cast<HuggingWallActionState*>(stateManager->getState(HuggingWall)))->bufferPlummet(true);
 }
 
 void GrabLongActionState::onHitboxEnter(std::string hitbox, CHandle entity) {
