@@ -2,6 +2,68 @@
   {
     "entity":
     {
+      "name": "respawn_tuto_007",
+      "transform":
+      {
+        "pos": "-73.1609 -18.0145 233.156",
+        "rotation": "0.0 -0.737277 0.0 -0.67559"
+      },
+      "collider":
+      {
+        "mesh_src": "data/meshes/respawn_tuto_007.col_mesh",
+        "shape": "convex_mesh",
+        "is_trigger": true,
+        "type": "static",
+        "group":
+        [
+          "trigger"
+        ],
+        "mask":
+        [
+          "player"
+        ]
+      },
+      "respawn_point":
+      {
+        "respawn_position": "-73.6459 -16.2709 227.344",
+        "respawn_rotation": "0.0 -0.0436195 0.0 -0.999048"
+      }
+    }
+  },
+  {
+    "entity":
+    {
+      "name": "dani_respawn_009",
+      "transform":
+      {
+        "pos": "155.574 59.8656 170.993",
+        "rotation": "0.0 0.130526 0.0 -0.991445"
+      },
+      "collider":
+      {
+        "mesh_src": "data/meshes/dani_respawn_009.col_mesh",
+        "shape": "convex_mesh",
+        "is_trigger": true,
+        "type": "static",
+        "group":
+        [
+          "trigger"
+        ],
+        "mask":
+        [
+          "player"
+        ]
+      },
+      "respawn_point":
+      {
+        "respawn_position": "166.985 68.3981 126.268",
+        "respawn_rotation": "0.0 0.130526 0.0 -0.991445"
+      }
+    }
+  },
+  {
+    "entity":
+    {
       "name": "respawn_tuto_006",
       "transform":
       {
