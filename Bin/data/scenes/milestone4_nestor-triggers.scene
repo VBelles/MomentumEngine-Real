@@ -2,6 +2,37 @@
   {
     "entity":
     {
+      "name": "nes_respawn012",
+      "transform":
+      {
+        "pos": "-57.5455 19.5673 53.9098",
+        "rotation": "0.0 -0.642788 0.0 -0.766044"
+      },
+      "collider":
+      {
+        "mesh_src": "data/meshes/nes_respawn012.col_mesh",
+        "shape": "convex_mesh",
+        "is_trigger": true,
+        "type": "static",
+        "group":
+        [
+          "trigger"
+        ],
+        "mask":
+        [
+          "player"
+        ]
+      },
+      "respawn_point":
+      {
+        "respawn_position": "-49.6908 19.6242 57.7981",
+        "respawn_rotation": "0.0 0.819152 0.0 -0.573576"
+      }
+    }
+  },
+  {
+    "entity":
+    {
       "name": "nes_respawn011puerta",
       "transform":
       {

@@ -89,7 +89,7 @@
       "name": "nes_camera_trigger_016",
       "transform":
       {
-        "pos": "-85.6499 23.8664 46.3421",
+        "pos": "-91.8778 23.8664 39.7225",
         "rotation": "0.0 0.5 0.0 -0.866025"
       },
       "collider":

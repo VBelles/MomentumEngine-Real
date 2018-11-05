@@ -2,6 +2,38 @@
   {
     "entity":
     {
+      "name": "nes_columna_piezas_fuste_2_008",
+      "transform":
+      {
+        "pos": "-49.6789 17.951 57.8037",
+        "rotation": "-0.0282249 -0.0367839 -0.608107 -0.7925"
+      },
+      "render":
+      [
+        {
+          "mesh": "data/meshes/nes_columna_piezas_fuste_2_008.mesh",
+          "materials":
+          [
+            "data/materials/m_columna_piezas.material"
+          ],
+          "enabled": true
+        }
+      ],
+      "collider":
+      {
+        "mesh_src": "data/meshes/nes_columna_piezas_fuste_2_col_008.col_mesh",
+        "shape": "convex_mesh",
+        "type": "static",
+        "group":
+        [
+          "scenario"
+        ]
+      }
+    }
+  },
+  {
+    "entity":
+    {
       "name": "nes_mushroom_bi005",
       "transform":
       {
@@ -443,7 +475,7 @@
       "name": "nes_muro_vertical033",
       "transform":
       {
-        "pos": "-170.727 60.4741 -22.719",
+        "pos": "-170.727 59.4055 -22.719",
         "rotation": "0.0 0.0 0.0 -1.0"
       },
       "render":
@@ -668,7 +700,7 @@
       "name": "nes_muro_vertical032",
       "transform":
       {
-        "pos": "-170.727 60.4741 -24.6099",
+        "pos": "-170.727 59.4055 -24.6099",
         "rotation": "0.0 0.0 0.0 -1.0"
       },
       "render":
@@ -1098,7 +1130,7 @@
       "name": "nes_roca_14_009",
       "transform":
       {
-        "pos": "-111.249 40.3965 39.2211",
+        "pos": "-111.249 40.1216 39.2211",
         "rotation": "0.0 0.0 0.0 -1.0"
       },
       "render":
@@ -1127,7 +1159,7 @@
       "name": "nes_cacho_de_suelo_1_009",
       "transform":
       {
-        "pos": "-111.249 40.3965 39.2211",
+        "pos": "-111.249 40.1216 39.2211",
         "rotation": "0.0 0.0 0.0 -1.0"
       },
       "render":
@@ -1159,7 +1191,7 @@
       "name": "nes_roca_14_008",
       "transform":
       {
-        "pos": "-123.119 45.2825 65.7713",
+        "pos": "-123.119 44.1981 65.7713",
         "rotation": "0.0 0.0 0.0 -1.0"
       },
       "render":
@@ -1188,7 +1220,7 @@
       "name": "nes_cacho_de_suelo_1_008",
       "transform":
       {
-        "pos": "-123.119 45.2825 65.7713",
+        "pos": "-123.119 44.1981 65.7713",
         "rotation": "0.0 0.0 0.0 -1.0"
       },
       "render":
