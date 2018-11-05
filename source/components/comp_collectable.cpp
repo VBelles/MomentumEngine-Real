@@ -50,7 +50,9 @@ void TCompCollectable::update(float delta) {
 	}
 	CEntity* player = playerHandle;
 	TCompTransform* playerTransform = player->get<TCompTransform>();
-	if (helpDistance >= 0.f && VEC3::Distance(playerTransform->getPosition(), getTransform()->getPosition()) > helpDistance) {
+	VEC2 playerPos = { playerTransform->getPosition().x, playerTransform->getPosition().z };
+	VEC2 pos = { getTransform()->getPosition().x, getTransform()->getPosition().z };
+	if (helpDistance >= 0.f && VEC2::Distance(playerPos, pos) > helpDistance) {
 		TCompParticles* particles = get<TCompParticles>();
 		if (particles && nearEffectLaunched) {
 			particles->kill("help");
