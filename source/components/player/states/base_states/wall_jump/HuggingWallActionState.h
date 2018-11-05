@@ -35,6 +35,9 @@ private:
 	CTimer2 slideTimer;
 	float slideWindowTime = 1.1f;
 
+	bool isWallJumpBuffered = false;
+	bool isPlummetBuffered = false;
+
 public:
 	HuggingWallActionState(StateManager* stateManager);
 
@@ -51,4 +54,7 @@ public:
 	bool CheckIfHuggingWall(VEC3 wallDirection);
 	void FaceWall();
 	void TurnAround();
+
+	void bufferWallJump(bool buffer);
+	void bufferPlummet(bool buffer);
 };

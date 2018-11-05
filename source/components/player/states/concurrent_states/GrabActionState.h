@@ -18,6 +18,9 @@ protected:
 	std::string animation = "grab";
 	std::string hitbox = "grab";
 
+	CTimer2 bufferTimer;
+	float bufferTime = frames2sec(15);
+
 public:
 	GrabActionState(StateManager* stateManager, ConcurrentState state);
 
