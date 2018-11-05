@@ -76,6 +76,10 @@ void TCompCollectable::onTriggerEnter(const TMsgTriggerEnter & msg) {
 
 void TCompCollectable::collect() {
 	if (!collected && active) {
+		TCompParticles* particles = get<TCompParticles>();
+		if (particles) {
+			particles->kill();
+		}
 		collected = true;
 		((TCompCollider*)get<TCompCollider>())->destroy();
 	}

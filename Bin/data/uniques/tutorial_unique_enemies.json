@@ -21,6 +21,34 @@
       "position": "-136.49 -34.55 308.6",
       "level": "level00",
       "type": "dreidel_dummy"
+    },
+    {
+      "id": "gorila_melee_000",
+      "done": false,
+      "position": "94.8697 18.9834 122.679",
+      "level": "level00",
+      "type": "golem"
+    },
+    {
+      "id": "gorila_melee_003",
+      "done": false,
+      "position": "-133.236 14.2893 48.7963",
+      "level": "level00",
+      "type": "golem"
+    },
+    {
+      "id": "gorila_melee_002",
+      "done": false,
+      "position": "-88.8888 7.23653 -108.263",
+      "level": "level00",
+      "type": "golem"
+    },
+    {
+      "id": "gorila_melee_001",
+      "done": false,
+      "position": "265.407 -21.585 -80.6642",
+      "level": "level00",
+      "type": "golem"
     }
   ]
 }
