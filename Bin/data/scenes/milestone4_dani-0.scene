@@ -1284,7 +1284,7 @@
       "collider":
       {
         "mesh_src": "data/meshes/tutorial_plataforma_roca_grande_col_001.col_mesh",
-        "shape": "tri_mesh",
+        "shape": "convex_mesh",
         "type": "static",
         "group":
         [
@@ -1700,7 +1700,7 @@
       "collider":
       {
         "mesh_src": "data/meshes/tutorial_plataforma_roca_grande_col_000.col_mesh",
-        "shape": "tri_mesh",
+        "shape": "convex_mesh",
         "type": "static",
         "group":
         [

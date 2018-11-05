@@ -678,7 +678,7 @@
       "prefab": "data/prefabs/dreidel.prefab",
       "transform":
       {
-        "pos": "112.962 24.9782 91.4404",
+        "pos": "113.937 24.9782 87.0006",
         "lookat": "-1.0 24.9782 -1.0"
       }
     }
