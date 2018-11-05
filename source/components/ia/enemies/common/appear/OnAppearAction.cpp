@@ -15,7 +15,7 @@ OnAppearAction::OnAppearAction(Enemy* enemy, std::string animation) :
 }
 
 int OnAppearAction::execAction(float delta) {
-	enemy->getSkeleton()->executeAction(animation, 0.1f, 0.1f);
+	enemy->getSkeleton()->executeAction(animation, 0.f, 0.f);
 	enemy->animationTimer.reset();
 	enemy->getSound()->play("appear");
 	return Leave;
