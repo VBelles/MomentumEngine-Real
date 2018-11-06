@@ -43,6 +43,7 @@ struct TSceneExporter (
 	brokenMaps    	  = #(),
 
 	uniqueCoins   	  = #(),
+	uniqueChrysalis	  = #(),
 	uniqueEnemies 	  = #(),
 	uniqueAltars  	  = #(),
 	uniqueTeleports   = #(),
@@ -1222,7 +1223,18 @@ struct TSceneExporter (
 	fn exportEntityChrysalis obj nValidObjs = (
 		if nValidObjs > 0 then fs.writeComma()
 
+		if isUnique obj then append uniqueChrysalis obj.name
+
 		exportPrefabEntity obj "crisalida"
+		
+		return true
+	),
+
+	-- --ENTITY: EGG------------------------------------------------------------
+	fn exportEntityEgg obj nValidObjs = (
+		if nValidObjs > 0 then fs.writeComma()
+
+		exportPrefabEntity obj "egg"
 		
 		return true
 	),
@@ -1954,8 +1966,9 @@ struct TSceneExporter (
 		local type = "none"
 
 		case obj.layer.name of (
-			"altars":   type = "altars"
-			"coins":    type = "coins"
+			"altars":    type = "altars"
+			"chrysalis": type = "chrysalis"
+			"coins":     type = "coins"
 			"enemies": (
 				if (stringContainsSubstring obj.name "melee") then type = "dreidel" --peonza
 				else type = "kippah" --medusa
@@ -1986,6 +1999,7 @@ struct TSceneExporter (
 		local uniquesArray = #()
 		case uniqueType of (
 			"altars":  		uniquesArray = uniqueAltars
+			"chrysalides":	uniquesArray = uniqueChrysalis
 			"coins":   		uniquesArray = uniqueCoins
 			"enemies": 		uniquesArray = uniqueEnemies
 			"events":  		uniquesArray = uniqueTeleports
@@ -2011,6 +2025,7 @@ struct TSceneExporter (
 	--Globals uniqueCoins, uniqueAltars & uniqueEnemies contain the object names.
 	fn exportUniques = (
 		if uniqueAltars.count     > 0 then exportUniqueFile uniqueType:"altars"
+		if uniqueChrysalis.count  > 0 then exportUniqueFile uniqueType:"chrysalides"
 		if uniqueCoins.count      > 0 then exportUniqueFile uniqueType:"coins"
 		if uniqueEnemies.count    > 0 then exportUniqueFile uniqueType:"enemies"
 		if uniqueTeleports.count  > 0 then exportUniqueFile uniqueType:"events"
@@ -2216,6 +2231,7 @@ struct TSceneExporter (
 							"chrysalis":    ( wasValid = exportEntityChrysalis obj nValidObjs )
 							"coins": 	    ( wasValid = exportEntityCoin      obj nValidObjs )
 							"collisions":   ( wasValid = exportEntityCollision obj nValidObjs )
+							"eggs":		    ( wasValid = exportEntityEgg	   obj nValidObjs )
 							"enemies":      ( wasValid = exportEntityEnemy	   obj nValidObjs )
 							"fireplaces":	( wasValid = exportEntityFireplace obj nValidObjs )
 							"instancing":   ( wasValid = exportEntityInstance  obj nValidObjs )
@@ -2250,7 +2266,7 @@ struct TSceneExporter (
 		)--End for.
 		-- All layers and objects processed, begin export of stored objects.
 		exportUniques()
-		exportLuaMechs()
+		--exportLuaMechs()
 		exportPlatfDirector()
 		exportSpikes()
 		showBrokenMaps()
