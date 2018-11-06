@@ -3,7 +3,7 @@
 		"name": "hud",
 		"type": "widget",
 		"size": "1920 1080",
-		"position": "15 5",
+		"position": "25 5",
 		"children": [
 			{
 				"name": "life_points",
@@ -141,8 +141,8 @@
 					{
 						"name": "level1",
 						"type": "bar",
-						"position": "30 40",
-						"size": "152 152",
+						"position": "25 35",
+						"size": "162 162",
 						"texture": "data/textures/gui/hud/power_level1.dds",
 						"variable": "power_progress_level1",
 						"direction": "mask",
@@ -160,8 +160,8 @@
 					{
 						"name": "level2",
 						"type": "bar",
-						"position": "30 40",
-						"size": "152 152",
+						"position": "25 35",
+						"size": "162 162",
 						"texture": "data/textures/gui/hud/power_level2.dds",
 						"variable": "power_progress_level2",
 						"direction": "mask",
@@ -179,8 +179,8 @@
 					{
 						"name": "level3",
 						"type": "bar",
-						"position": "30 40",
-						"size": "152 152",
+						"position": "25 35",
+						"size": "162 162",
 						"texture": "data/textures/gui/hud/power_level3.dds",
 						"variable": "power_progress_level3",
 						"direction": "mask",
@@ -210,7 +210,7 @@
 					{
 						"name": "coin_bars_points",
 						"type": "points_bar",
-						"position": "-40 -30",
+						"position": "-45 -35",
 						"variable": "coin_bars",
 						"variable_max": "max_coin_bars",
 						"children": [

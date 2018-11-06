@@ -126,7 +126,7 @@ bool CModuleGame::stop() {
 }
 
 void CModuleGame::update(float delta) {
-	if (EngineInput["debug_mode"].getsPressed()) {
+	if (EngineInput["debug_mode"].getsPressed() && IsDebuggerPresent()) {
 		if (!CApp::get().toggleDebug()) {
 			Engine.setInputType(InputType::Game);
 		}
