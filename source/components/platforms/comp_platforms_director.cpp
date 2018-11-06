@@ -38,6 +38,8 @@ void TCompPlatformsDirector::setEnabled(bool enabled) {
 }
 
 void TCompPlatformsDirector::load(const json& j, TEntityParseContext& ctx) {
+	platformEntitiesNames.clear();
+	waitTimes.clear();
 	for (auto& jSlot : j["slots"]) {
 		std::vector<std::string> v;
 		for (std::string platformName : jSlot["platforms"]) {
