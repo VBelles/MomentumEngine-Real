@@ -9,16 +9,15 @@
         "rotation": "-0.533498 -0.46409 0.46409 -0.533498"
       },
       "render":
-      [
-        {
-          "mesh": "data/meshes/grabado_roto_02_copia.mesh",
-          "materials":
-          [
-            "data/materials/m_grabado_roto_02.material"
-          ],
-          "enabled": true
-        }
-      ]
+      {
+        "mesh": "data/meshes/grabado_roto_02_copia.mesh",
+        "materials":
+        [
+          "data/materials/m_grabado_roto_02.material"
+        ],
+        "enabled": true,
+        "self_illum": 0.7
+      }
     }
   },
   {
@@ -31,16 +30,15 @@
         "rotation": "-0.188513 0.681515 -0.681515 -0.188513"
       },
       "render":
-      [
-        {
-          "mesh": "data/meshes/grabado_roto_02.mesh",
-          "materials":
-          [
-            "data/materials/m_grabado_roto_02.material"
-          ],
-          "enabled": true
-        }
-      ]
+      {
+        "mesh": "data/meshes/grabado_roto_02.mesh",
+        "materials":
+        [
+          "data/materials/m_grabado_roto_02.material"
+        ],
+        "enabled": true,
+        "self_illum": 0.7
+      }
     }
   },
   {
@@ -53,16 +51,15 @@
         "rotation": "0.136532 0.6938 -0.693801 0.136532"
       },
       "render":
-      [
-        {
-          "mesh": "data/meshes/grabado_roto_01_copia.mesh",
-          "materials":
-          [
-            "data/materials/m_grabado_roto_01.material"
-          ],
-          "enabled": true
-        }
-      ]
+      {
+        "mesh": "data/meshes/grabado_roto_01_copia.mesh",
+        "materials":
+        [
+          "data/materials/m_grabado_roto_01.material"
+        ],
+        "enabled": true,
+        "self_illum": 0.7
+      }
     }
   },
   {
@@ -75,16 +72,15 @@
         "rotation": "-0.571871 0.415888 -0.415888 -0.571871"
       },
       "render":
-      [
-        {
-          "mesh": "data/meshes/grabado_roto_01.mesh",
-          "materials":
-          [
-            "data/materials/m_grabado_roto_01.material"
-          ],
-          "enabled": true
-        }
-      ]
+      {
+        "mesh": "data/meshes/grabado_roto_01.mesh",
+        "materials":
+        [
+          "data/materials/m_grabado_roto_01.material"
+        ],
+        "enabled": true,
+        "self_illum": 0.7
+      }
     }
   },
   {
@@ -225,16 +221,15 @@
         "rotation": "-0.681434 -0.188806 0.188806 -0.681434"
       },
       "render":
-      [
-        {
-          "mesh": "data/meshes/grabado_09.mesh",
-          "materials":
-          [
-            "data/materials/grabado_09.material"
-          ],
-          "enabled": true
-        }
-      ]
+      {
+        "mesh": "data/meshes/grabado_09.mesh",
+        "materials":
+        [
+          "data/materials/grabado_09.material"
+        ],
+        "enabled": true,
+        "self_illum": 0.7
+      }
     }
   },
   {
@@ -247,16 +242,15 @@
         "rotation": "-0.624078 -0.332456 0.332456 -0.624078"
       },
       "render":
-      [
-        {
-          "mesh": "data/meshes/grabado_08.mesh",
-          "materials":
-          [
-            "data/materials/grabado_08.material"
-          ],
-          "enabled": true
-        }
-      ]
+      {
+        "mesh": "data/meshes/grabado_08.mesh",
+        "materials":
+        [
+          "data/materials/grabado_08.material"
+        ],
+        "enabled": true,
+        "self_illum": 0.7
+      }
     }
   },
   {
@@ -269,16 +263,15 @@
         "rotation": "-0.420495 -0.568492 0.568492 -0.420495"
       },
       "render":
-      [
-        {
-          "mesh": "data/meshes/grabado_07.mesh",
-          "materials":
-          [
-            "data/materials/grabado_07.material"
-          ],
-          "enabled": true
-        }
-      ]
+      {
+        "mesh": "data/meshes/grabado_07.mesh",
+        "materials":
+        [
+          "data/materials/grabado_07.material"
+        ],
+        "enabled": true,
+        "self_illum": 0.7
+      }
     }
   },
   {
@@ -291,16 +284,15 @@
         "rotation": "-0.276598 -0.650764 0.650764 -0.276598"
       },
       "render":
-      [
-        {
-          "mesh": "data/meshes/grabado_06.mesh",
-          "materials":
-          [
-            "data/materials/grabado_06.material"
-          ],
-          "enabled": true
-        }
-      ]
+      {
+        "mesh": "data/meshes/grabado_06.mesh",
+        "materials":
+        [
+          "data/materials/grabado_06.material"
+        ],
+        "enabled": true,
+        "self_illum": 0.7
+      }
     }
   },
   {
@@ -313,16 +305,15 @@
         "rotation": "-0.0308436 0.706434 -0.706434 -0.0308436"
       },
       "render":
-      [
-        {
-          "mesh": "data/meshes/grabado_05.mesh",
-          "materials":
-          [
-            "data/materials/grabado_05.material"
-          ],
-          "enabled": true
-        }
-      ]
+      {
+        "mesh": "data/meshes/grabado_05.mesh",
+        "materials":
+        [
+          "data/materials/grabado_05.material"
+        ],
+        "enabled": true,
+        "self_illum": 0.7
+      }
     }
   },
   {
@@ -335,16 +326,15 @@
         "rotation": "-0.33506 0.622684 -0.622684 -0.33506"
       },
       "render":
-      [
-        {
-          "mesh": "data/meshes/grabado_04.mesh",
-          "materials":
-          [
-            "data/materials/grabado_04.material"
-          ],
-          "enabled": true
-        }
-      ]
+      {
+        "mesh": "data/meshes/grabado_04.mesh",
+        "materials":
+        [
+          "data/materials/grabado_04.material"
+        ],
+        "enabled": true,
+        "self_illum": 0.7
+      }
     }
   },
   {
@@ -357,16 +347,15 @@
         "rotation": "-0.45922 0.537696 -0.537696 -0.45922"
       },
       "render":
-      [
-        {
-          "mesh": "data/meshes/grabado_03.mesh",
-          "materials":
-          [
-            "data/materials/grabado_03.material"
-          ],
-          "enabled": true
-        }
-      ]
+      {
+        "mesh": "data/meshes/grabado_03.mesh",
+        "materials":
+        [
+          "data/materials/grabado_03.material"
+        ],
+        "enabled": true,
+        "self_illum": 0.7
+      }
     }
   },
   {
@@ -379,16 +368,15 @@
         "rotation": "-0.646374 0.286707 -0.286707 -0.646374"
       },
       "render":
-      [
-        {
-          "mesh": "data/meshes/grabado_02.mesh",
-          "materials":
-          [
-            "data/materials/grabado_02.material"
-          ],
-          "enabled": true
-        }
-      ]
+      {
+        "mesh": "data/meshes/grabado_02.mesh",
+        "materials":
+        [
+          "data/materials/grabado_02.material"
+        ],
+        "enabled": true,
+        "self_illum": 0.7
+      }
     }
   },
   {
@@ -401,16 +389,15 @@
         "rotation": "0.0 -0.67559 0.0 -0.737277"
       },
       "render":
-      [
-        {
-          "mesh": "data/meshes/grabado_01.mesh",
-          "materials":
-          [
-            "data/materials/grabado_01.material"
-          ],
-          "enabled": true
-        }
-      ]
+      {
+        "mesh": "data/meshes/grabado_01.mesh",
+        "materials":
+        [
+          "data/materials/grabado_01.material"
+        ],
+        "enabled": true,
+        "self_illum": 0.7
+      }
     }
   },
   {
