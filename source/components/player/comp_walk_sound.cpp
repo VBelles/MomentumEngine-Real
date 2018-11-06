@@ -75,6 +75,12 @@ void TCompWalkSound::update(float delta) {
 	else {
 		getSound()->stop("walk");
 	}
+	if (getPowerGauge()->getPowerLevel() == 3) {
+		if (!getSound()->isPlaying("float")) getSound()->play("float");
+	}
+	else {
+		getSound()->stop("float");
+	}
 }
 
 
