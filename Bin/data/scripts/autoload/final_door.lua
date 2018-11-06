@@ -92,7 +92,7 @@ function finalDoorCutscene()
 	startScreenTransition(0,1,0,1,0)
 	wait(0.5)
 	startScreenTransition(1,1,1,1,3600)
-	wait(5)
+	wait(9)
 	goToCredits()
 	blockMenu(false)
 end
