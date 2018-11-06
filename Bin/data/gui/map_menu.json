@@ -676,14 +676,14 @@
 						"type": "image",
 						"size": "72 72",
 						"position": "325 16",
-						"texture": "data/textures/gui/hud/coin_6_empty.dds",
+						"texture": "data/textures/gui/hud/coin_empty.dds",
 						"children": [
 							{
 								"name": "coin_image_full",
 								"type": "image",
 								"size": "72 72",
 								"position": "0 0",
-								"texture": "data/textures/gui/hud/coin_6.dds"
+								"texture": "data/textures/gui/hud/coin.dds"
 							}
 						]
 					},
