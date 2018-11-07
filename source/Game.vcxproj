@@ -851,6 +851,7 @@
     <ClInclude Include="render\texture\material.h" />
     <ClInclude Include="render\texture\render_to_texture.h" />
     <ClInclude Include="render\texture\texture.h" />
+    <ClInclude Include="resource.h" />
     <ClInclude Include="resources\json_resource.h" />
     <ClInclude Include="resources\resource.h" />
     <ClInclude Include="resources\resources_manager.h" />
@@ -882,6 +883,12 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="geometry\SimpleMath.inl" />
+  </ItemGroup>
+  <ItemGroup>
+    <ResourceCompile Include="Game.rc" />
+  </ItemGroup>
+  <ItemGroup>
+    <Image Include="..\Bin\data\icons\momentum.ico" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">
