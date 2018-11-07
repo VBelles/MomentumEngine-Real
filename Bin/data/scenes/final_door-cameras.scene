@@ -2,6 +2,29 @@
   {
     "entity":
     {
+      "name": "final_cutscene_camera",
+      "transform":
+      {
+        "pos": "-130.299 -4.63343 -163.957",
+        "rotation": "-0.90198 0.0828279 0.373612 0.199964"
+      },
+      "camera":
+      {
+        "fov": 80.0
+      },
+      "fixed_camera":
+      {
+        "returnToPlayerCameraWithInput": false,
+        "modifyPlayerCameraRotation": true,
+        "timeToMixOut": 1.0,
+        "panningSpeed": 0.0,
+        "panningRadius": 3.0
+      }
+    }
+  },
+  {
+    "entity":
+    {
       "name": "final_door_camera",
       "transform":
       {
