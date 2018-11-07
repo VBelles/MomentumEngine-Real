@@ -15,7 +15,7 @@ void DeathActionState::update(float delta) {
 			getScreenTransition()->startTransition(0.f, 1.f);
 			screenTransitionStarted = true;
 		}
-		else {
+		else if (!getScreenTransition()->isTransitioning()) {
 			respawn();
 			frameCounter = 0;
 			finish = true;

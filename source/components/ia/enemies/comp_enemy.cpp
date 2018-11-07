@@ -97,7 +97,7 @@ void TCompEnemy::onPerfectDodged(const TMsgPerfectDodged & msg) {
 		&& !enemy->ignoreMessages) {
 		dbg("Damn! I've been dodged.\n");
 		if (enemy->hpGiven < enemy->maxHpToGive) {
-			enemy->getPlayerModel()->setHp(enemy->getPlayerModel()->getHp() + 1);
+			enemy->getPlayerModel()->setHp(clamp(enemy->getPlayerModel()->getHp() + 1, 1.f, enemy->getPlayerModel()->getMaxHp()));
 			enemy->hpGiven++;
 		}
 	}
