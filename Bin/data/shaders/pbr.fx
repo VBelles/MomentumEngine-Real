@@ -534,7 +534,7 @@ float4 PS_dir_lights_player(in float4 iPosition : SV_Position) : SV_Target
 
 	float  NdL = saturate(dot(N, light_dir));
 
-	if (NdL < 0.01) {
+	if (NdL < 0.1) {
 		shadow_factor = 1;
 	}
 
