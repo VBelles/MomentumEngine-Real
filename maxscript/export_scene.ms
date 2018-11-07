@@ -1102,22 +1102,6 @@ struct TSceneExporter (
 		endEntity() -- - - - - - - - - - - - - - - - - - - - - -
 	),
 
-	-- --ENTITY: ALTAR ---------------------------------------------------------
-	-- This obj is the sphere representing the "giratiempo".
-	fn exportEntityAltar obj nValidObjs = (
-		if nValidObjs > 0 then fs.writeComma()
-		
-		if isUnique obj then append uniqueAltars obj.name
-
-		exportAltarRing obj ringName:"_central_ring" main:true
-		fs.writeComma()
-		exportAltarRing obj ringName:"_inner_ring"
-		fs.writeComma()
-		exportAltarRing obj ringName:"_outer_ring"
-
-		return true
-	),
-
 	fn exportPrefabEntity obj prefab noRot:false = (
 		beginEntity() -- - - - - - - - - - - - - - - - - - - - -
 			exportName obj
@@ -1128,6 +1112,30 @@ struct TSceneExporter (
 			-- Add child spline if it exists.
 			if hasChildLine obj then exportSpline obj
 		endEntity() -- - - - - - - - - - - - - - - - - - - - - -
+	),
+
+	-- --ENTITY: ALTAR ---------------------------------------------------------
+	-- This obj is the sphere representing the "giratiempo".
+-- 	fn exportEntityAltar obj nValidObjs = (
+-- 		if nValidObjs > 0 then fs.writeComma()
+		
+-- 		if isUnique obj then append uniqueAltars obj.name
+
+-- 		exportAltarRing obj ringName:"_central_ring" main:true
+-- 		fs.writeComma()
+-- 		exportAltarRing obj ringName:"_inner_ring"
+-- 		fs.writeComma()
+-- 		exportAltarRing obj ringName:"_outer_ring"
+
+-- 		return true
+-- 	),
+
+	fn exportEntityAltar obj nValidObjs = (
+		if nValidObjs > 0 then fs.writeComma()
+		
+		exportPrefabEntity obj "altar"
+
+		return true
 	),
 
 	-- --ENTITY: CAMERA (also exports child line)-------------------------------
