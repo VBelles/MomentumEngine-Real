@@ -16,21 +16,14 @@ void DeathActionState::update(float delta) {
 			screenTransitionStarted = true;
 		}
 		else {
-			if (!getScreenTransition()->isTransitioning()) {
-				if (finish) {
-					stateManager->changeConcurrentState(Free);
-					stateManager->changeState(AirborneNormal);
-				}
-				else {
-					respawn();
-					frameCounter = 0;
-					finish = true;
-					getSkeleton()->blendCycle(animationIdle, 0.0f, 0.0f);
-					CEntity* playerCameraEntity = getEntityByName(PLAYER_CAMERA);
-					EngineCameras.blendInCamera(playerCameraEntity, 0.00001f, CModuleCameras::EPriority::GAMEPLAY);
-					getScreenTransition()->startTransition(1.f, 0.f, 0.25f);
-				}
-			}
+			respawn();
+			frameCounter = 0;
+			finish = true;
+			CEntity* playerCameraEntity = getEntityByName(PLAYER_CAMERA);
+			EngineCameras.blendInCamera(playerCameraEntity, 0.00001f, CModuleCameras::EPriority::GAMEPLAY);
+			getScreenTransition()->startTransition(1.f, 0.f, 0.25f);
+			stateManager->changeConcurrentState(Free);
+			stateManager->changeState(Idle);
 		}
 	}
 	if (timer.elapsed() >= startSelfIllumDecreaseTime) {
@@ -40,7 +33,7 @@ void DeathActionState::update(float delta) {
 }
 
 void DeathActionState::onStateEnter(IActionState* lastState) {
-	IActionState::onStateEnter(lastState); 
+	IActionState::onStateEnter(lastState);
 	getSkeleton()->blendCycle(animationLoop, 0.0f, 0.0f);
 	getSkeleton()->executeAction(animation, 0.1f, 0.0f);
 	getPlayerModel()->setGravity(0);

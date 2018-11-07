@@ -13,21 +13,14 @@ void PitFallingActionState::update(float delta) {
 			screenTransitionStarted = true;
 		}
 		else {
-			if (!getScreenTransition()->isTransitioning()) {
-				if (finish) {
-					stateManager->changeConcurrentState(Free);
-					stateManager->changeState(AirborneNormal);
-				}
-				else {
-					respawn();
-					frameCounter = 0;
-					finish = true;
-					getSkeleton()->blendCycle(animationIdle, 0.0f, 0.0f);
-					CEntity* playerCameraEntity = getEntityByName(PLAYER_CAMERA);
-					EngineCameras.blendInCamera(playerCameraEntity, 0.00001f, CModuleCameras::EPriority::GAMEPLAY);
-					getScreenTransition()->startTransition(1.f, 0.f, 0.25f);
-				}
-			}
+			respawn();
+			frameCounter = 0;
+			finish = true;
+			CEntity* playerCameraEntity = getEntityByName(PLAYER_CAMERA);
+			EngineCameras.blendInCamera(playerCameraEntity, 0.00001f, CModuleCameras::EPriority::GAMEPLAY);
+			getScreenTransition()->startTransition(1.f, 0.f, 0.25f);
+			stateManager->changeConcurrentState(Free);
+			stateManager->changeState(Idle);
 		}
 	}
 	else {
@@ -57,7 +50,7 @@ void PitFallingActionState::onStateExit(IActionState* nextState) {
 }
 
 void PitFallingActionState::respawn() {
-	*velocityVector = VEC3();
+	*velocityVector = VEC3::Zero;
 	assert(getPlayerModel());
 	VEC3 respawnPosition = getPlayerModel()->getRespawnPosition();
 	TCompTransform* transform = getPlayerTransform();
