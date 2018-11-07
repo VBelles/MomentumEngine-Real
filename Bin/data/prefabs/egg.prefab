@@ -1,0 +1,35 @@
+[
+  {
+    "entity":
+    {
+      "name": "breakable_egg",
+      "transform":
+      {
+        "pos": "0 0 0",
+        "rotation": "0.0 0.0 0.0 -1.0"
+      },
+      "render":
+      [
+        {
+          "mesh": "data/meshes/_egg_prefab.mesh",
+          "materials":
+          [
+            "data/materials/m_huevo_breakable.material",
+            "data/materials/m_huevo_base.material"
+          ],
+          "enabled": true
+        }
+      ],
+      "collider":
+      {
+        "mesh_src": "data/meshes/_egg_prefab_col.col_mesh",
+        "shape": "tri_mesh",
+        "type": "static",
+        "group":
+        [
+          "scenario"
+        ]
+      }
+    }
+  }
+]

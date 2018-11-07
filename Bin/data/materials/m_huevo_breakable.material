@@ -1,0 +1,14 @@
+{
+  "technique": "pbr.tech",
+  "shadows": true,
+  "textures":
+  {
+    "albedo": "data/textures/breakable_egg_BaseColor.dds",
+    "normal": "data/textures/breakable_egg_Normal.dds",
+    "metallic": "data/textures/breakable_egg_Metallic.dds",
+    "roughness": "data/textures/breakable_egg_Roughness.dds",
+    "self_illum": "data/textures/breakable_egg_Emissive.dds",
+    "height": "data/textures/breakable_egg_Height.dds",
+    "detail_normal": "data/textures/null_detail_normal.dds"
+  }
+}

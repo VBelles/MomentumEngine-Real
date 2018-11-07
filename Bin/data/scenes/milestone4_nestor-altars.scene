@@ -1,0 +1,50 @@
+[
+  {
+    "entity":
+    {
+      "name": "nes_altar003",
+      "prefab": "data/prefabs/altar.prefab",
+      "transform":
+      {
+        "pos": "51.4322 43.6898 -49.0339",
+        "rotation": "0.0 -0.939693 0.0 -0.34202"
+      }
+    }
+  },
+  {
+    "entity":
+    {
+      "name": "nes_altar002",
+      "prefab": "data/prefabs/altar.prefab",
+      "transform":
+      {
+        "pos": "-13.3173 40.8867 -143.543",
+        "rotation": "-0.0321596 0.736576 -0.0294689 -0.674947"
+      }
+    }
+  },
+  {
+    "entity":
+    {
+      "name": "nes_altar001",
+      "prefab": "data/prefabs/altar.prefab",
+      "transform":
+      {
+        "pos": "-142.108 51.1699 122.342",
+        "rotation": "0.0 -0.939693 0.0 -0.34202"
+      }
+    }
+  },
+  {
+    "entity":
+    {
+      "name": "nes_altar",
+      "prefab": "data/prefabs/altar.prefab",
+      "transform":
+      {
+        "pos": "152.26 143.786 -147.362",
+        "rotation": "0.0 0.0 0.0 -1.0"
+      }
+    }
+  }
+]

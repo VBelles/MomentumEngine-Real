@@ -1,0 +1,47 @@
+{
+  "unique_chrysalides":
+  [
+    {
+      "id": "dani_chrysalis_003",
+      "done": false,
+      "position": "-116.579 -1.52567 367.218",
+      "level": "level00",
+      "type": "chrysalis"
+    },
+    {
+      "id": "dani_chrysalis_002",
+      "done": false,
+      "position": "-71.859 -14.6563 231.77",
+      "level": "level00",
+      "type": "chrysalis"
+    },
+    {
+      "id": "dani_chrysalis_001",
+      "done": false,
+      "position": "207.662 66.9683 -224.189",
+      "level": "level00",
+      "type": "chrysalis"
+    },
+    {
+      "id": "plataformeo_chrysalis002",
+      "done": false,
+      "position": "64.5749 79.5275 161.271",
+      "level": "level00",
+      "type": "chrysalis"
+    },
+    {
+      "id": "plataformeo_chrysalis001",
+      "done": false,
+      "position": "146.369 78.6226 -248.648",
+      "level": "level00",
+      "type": "chrysalis"
+    },
+    {
+      "id": "dani_chrysalis_000",
+      "done": false,
+      "position": "323.767 -4.17547 -54.0877",
+      "level": "level00",
+      "type": "chrysalis"
+    }
+  ]
+}

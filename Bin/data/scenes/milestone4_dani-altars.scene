@@ -1,0 +1,38 @@
+[
+  {
+    "entity":
+    {
+      "name": "dani_altar002",
+      "prefab": "data/prefabs/altar.prefab",
+      "transform":
+      {
+        "pos": "208.308 65.4097 -225.489",
+        "rotation": "0.0 -0.965926 0.0 -0.258819"
+      }
+    }
+  },
+  {
+    "entity":
+    {
+      "name": "dani_altar001",
+      "prefab": "data/prefabs/altar.prefab",
+      "transform":
+      {
+        "pos": "147.621 76.8273 -247.851",
+        "rotation": "0.0 -0.461749 0.0 -0.887011"
+      }
+    }
+  },
+  {
+    "entity":
+    {
+      "name": "dani_altar",
+      "prefab": "data/prefabs/altar.prefab",
+      "transform":
+      {
+        "pos": "65.6634 77.6945 160.244",
+        "rotation": "0.0 -0.906308 0.0 -0.422618"
+      }
+    }
+  }
+]

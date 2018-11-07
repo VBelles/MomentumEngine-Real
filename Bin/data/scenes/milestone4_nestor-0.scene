@@ -37,7 +37,7 @@
       "name": "nes_mushroom_bi005",
       "transform":
       {
-        "pos": "-140.083 52.5296 123.796",
+        "pos": "-138.913 52.5296 124.453",
         "rotation": "0.0 -0.737277 0.0 -0.67559"
       },
       "render":
@@ -240,6 +240,41 @@
   {
     "entity":
     {
+      "name": "nes_crystal_noLOD_004",
+      "transform":
+      {
+        "pos": "45.1317 -3.00466 -83.2832",
+        "rotation": "0.0489877 0.031296 -0.0736331 -0.99559"
+      },
+      "render":
+      [
+        {
+          "mesh": "data/meshes/nes_crystal_noLOD_004.mesh",
+          "materials":
+          [
+            "data/materials/m_crystal_01.material",
+            "data/materials/m_crystal_00.material",
+            "data/materials/m_crystal_05.material",
+            "data/materials/m_crystal_06.material"
+          ],
+          "enabled": true
+        }
+      ],
+      "collider":
+      {
+        "mesh_src": "data/meshes/nes_crystal_noLOD_004_col.col_mesh",
+        "shape": "tri_mesh",
+        "type": "static",
+        "group":
+        [
+          "scenario"
+        ]
+      }
+    }
+  },
+  {
+    "entity":
+    {
       "name": "nes_crystal_noLOD_003",
       "transform":
       {
@@ -312,7 +347,7 @@
       "name": "nes_crystal_noLOD_001",
       "transform":
       {
-        "pos": "-53.1385 7.83075 -98.5756",
+        "pos": "-52.268 8.03711 -97.5589",
         "rotation": "0.148079 0.0232285 0.0538854 -0.987233"
       },
       "render":
@@ -327,17 +362,7 @@
           ],
           "enabled": true
         }
-      ],
-      "collider":
-      {
-        "mesh_src": "data/meshes/nes_crystal_noLOD_001_col.col_mesh",
-        "shape": "tri_mesh",
-        "type": "static",
-        "group":
-        [
-          "scenario"
-        ]
-      }
+      ]
     }
   },
   {
@@ -7383,38 +7408,6 @@
       {
         "mesh_src": "data/meshes/nes_platform_civilization_mini_col_001.col_mesh",
         "shape": "convex_mesh",
-        "type": "static",
-        "group":
-        [
-          "scenario"
-        ]
-      }
-    }
-  },
-  {
-    "entity":
-    {
-      "name": "nes_altar",
-      "transform":
-      {
-        "pos": "152.26 143.786 -147.362",
-        "rotation": "0.0 0.0 0.0 -1.0"
-      },
-      "render":
-      [
-        {
-          "mesh": "data/meshes/nes_altar.mesh",
-          "materials":
-          [
-            "data/materials/m_altar.material"
-          ],
-          "enabled": true
-        }
-      ],
-      "collider":
-      {
-        "mesh_src": "data/meshes/nes_altar_collider.col_mesh",
-        "shape": "tri_mesh",
         "type": "static",
         "group":
         [

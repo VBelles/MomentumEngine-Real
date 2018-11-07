@@ -1,0 +1,170 @@
+[
+  {
+    "entity":
+    {
+      "name": "breakable_egg_013",
+      "prefab": "data/prefabs/egg.prefab",
+      "transform":
+      {
+        "pos": "69.7526 16.4569 -234.583",
+        "rotation": "0.0 -0.984808 0.0 -0.173648"
+      }
+    }
+  },
+  {
+    "entity":
+    {
+      "name": "breakable_egg_012",
+      "prefab": "data/prefabs/egg.prefab",
+      "transform":
+      {
+        "pos": "-19.6618 5.27664 -48.5225",
+        "rotation": "0.0 0.0 0.0 -1.0"
+      }
+    }
+  },
+  {
+    "entity":
+    {
+      "name": "breakable_egg_011",
+      "prefab": "data/prefabs/egg.prefab",
+      "transform":
+      {
+        "pos": "29.4822 -4.244 -109.513",
+        "rotation": "0.0 0.34202 0.0 -0.939693"
+      }
+    }
+  },
+  {
+    "entity":
+    {
+      "name": "breakable_egg_010",
+      "prefab": "data/prefabs/egg.prefab",
+      "transform":
+      {
+        "pos": "176.433 1.95426 108.625",
+        "rotation": "0.0 -0.34202 0.0 -0.939693"
+      }
+    }
+  },
+  {
+    "entity":
+    {
+      "name": "breakable_egg_009",
+      "prefab": "data/prefabs/egg.prefab",
+      "transform":
+      {
+        "pos": "4.42997 3.29935 96.5356",
+        "rotation": "0.0 -0.34202 0.0 -0.939693"
+      }
+    }
+  },
+  {
+    "entity":
+    {
+      "name": "breakable_egg_008",
+      "prefab": "data/prefabs/egg.prefab",
+      "transform":
+      {
+        "pos": "-144.729 12.7769 1.36536",
+        "rotation": "0.0 0.0 0.0 -1.0"
+      }
+    }
+  },
+  {
+    "entity":
+    {
+      "name": "breakable_egg_007",
+      "prefab": "data/prefabs/egg.prefab",
+      "transform":
+      {
+        "pos": "-106.837 -0.383023 77.1715",
+        "rotation": "0.0 0.258819 0.0 -0.965926"
+      }
+    }
+  },
+  {
+    "entity":
+    {
+      "name": "breakable_egg_006",
+      "prefab": "data/prefabs/egg.prefab",
+      "transform":
+      {
+        "pos": "164.937 60.7068 186.624",
+        "rotation": "0.0 0.173648 0.0 -0.984808"
+      }
+    }
+  },
+  {
+    "entity":
+    {
+      "name": "breakable_egg_005",
+      "prefab": "data/prefabs/egg.prefab",
+      "transform":
+      {
+        "pos": "53.2035 -3.13596 100.622",
+        "rotation": "0.0 0.0 0.0 -1.0"
+      }
+    }
+  },
+  {
+    "entity":
+    {
+      "name": "breakable_egg_004",
+      "prefab": "data/prefabs/egg.prefab",
+      "transform":
+      {
+        "pos": "175.165 -0.426858 -106.429",
+        "rotation": "0.0429567 0.00757449 0.173483 -0.98387"
+      }
+    }
+  },
+  {
+    "entity":
+    {
+      "name": "breakable_egg_003",
+      "prefab": "data/prefabs/egg.prefab",
+      "transform":
+      {
+        "pos": "95.9231 9.05031 -169.023",
+        "rotation": "0.0 0.0 0.0 -1.0"
+      }
+    }
+  },
+  {
+    "entity":
+    {
+      "name": "breakable_egg_002",
+      "prefab": "data/prefabs/egg.prefab",
+      "transform":
+      {
+        "pos": "-221.156 23.0474 -41.3514",
+        "rotation": "0.0 0.0 0.0 -1.0"
+      }
+    }
+  },
+  {
+    "entity":
+    {
+      "name": "breakable_egg_001",
+      "prefab": "data/prefabs/egg.prefab",
+      "transform":
+      {
+        "pos": "-156.618 -1.92722 88.5691",
+        "rotation": "0.0 0.0 0.0 -1.0"
+      }
+    }
+  },
+  {
+    "entity":
+    {
+      "name": "breakable_egg_000",
+      "prefab": "data/prefabs/egg.prefab",
+      "transform":
+      {
+        "pos": "-104.741 -26.6784 349.303",
+        "rotation": "0.0 0.0 0.0 -1.0"
+      }
+    }
+  }
+]

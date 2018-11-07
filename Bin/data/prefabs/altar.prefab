@@ -1,0 +1,34 @@
+[
+  {
+    "entity":
+    {
+      "name": "altar",
+      "transform":
+      {
+        "pos": "0 0 0",
+        "rotation": "0.0 0.0 0.0 -1.0"
+      },
+      "render":
+      [
+        {
+          "mesh": "data/meshes/_altar_prefab.mesh",
+          "materials":
+          [
+            "data/materials/m_altar.material"
+          ],
+          "enabled": true
+        }
+      ],
+      "collider":
+      {
+        "mesh_src": "data/meshes/_altar_prefab_col.col_mesh",
+        "shape": "tri_mesh",
+        "type": "static",
+        "group":
+        [
+          "scenario"
+        ]
+      }
+    }
+  }
+]

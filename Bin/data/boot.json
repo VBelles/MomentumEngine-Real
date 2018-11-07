@@ -15,6 +15,7 @@
     "data/scenes/milestone4_spike_crystals-instancing.scene",
         
     "data/scenes/milestone4_dani-0.scene",
+    "data/scenes/milestone4_dani-altars.scene",
     "data/scenes/milestone4_dani-cameras_definitivas.scene",
     "data/scenes/milestone4_dani-fireplaces.scene",
     "data/scenes/milestone4_dani-lights.scene",
@@ -34,6 +35,7 @@
     "data/scenes/milestone4_dani-life_pieces.scene",
     
     "data/scenes/milestone4_nestor-0.scene",
+    "data/scenes/milestone4_nestor-altars.scene",
     "data/scenes/milestone4_nestor-cameras_definitivas.scene",
     "data/scenes/milestone4_nestor-collisions.scene",
     "data/scenes/milestone4_nestor-fireplaces.scene",
@@ -56,8 +58,9 @@
       
     "data/scenes/milestone4_miguel_raices-0.scene",
     "data/scenes/milestone4_miguel_raices-lights.scene",
-
     
+    "data/scenes/milestone4_full-eggs.scene",
+   
     "data/scenes/fireplace_puzzle.scene",
     "data/scenes/final_door_definitiva.scene",
     "data/scenes/tutorial_triggers_definitivos.scene",

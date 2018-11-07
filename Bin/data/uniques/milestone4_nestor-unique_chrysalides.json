@@ -1,0 +1,110 @@
+{
+  "unique_chrysalides":
+  [
+    {
+      "id": "nes_chrysalis016",
+      "done": false,
+      "position": "-23.125 48.5801 204.03",
+      "level": "level00",
+      "type": "chrysalis"
+    },
+    {
+      "id": "nes_chrysalis015",
+      "done": false,
+      "position": "-211.276 51.3446 -46.8401",
+      "level": "level00",
+      "type": "chrysalis"
+    },
+    {
+      "id": "nes_chrysalis014",
+      "done": false,
+      "position": "-107.621 71.734 -0.0996259",
+      "level": "level00",
+      "type": "chrysalis"
+    },
+    {
+      "id": "nes_chrysalis013",
+      "done": false,
+      "position": "76.1644 43.9547 -15.2952",
+      "level": "level00",
+      "type": "chrysalis"
+    },
+    {
+      "id": "nes_chrysalis012",
+      "done": false,
+      "position": "-102.177 58.2705 -89.8067",
+      "level": "level00",
+      "type": "chrysalis"
+    },
+    {
+      "id": "nes_chrysalis011",
+      "done": false,
+      "position": "-226.064 61.3252 36.7811",
+      "level": "level00",
+      "type": "chrysalis"
+    },
+    {
+      "id": "nes_chrysalis010",
+      "done": false,
+      "position": "38.3546 45.3755 -118.952",
+      "level": "level00",
+      "type": "chrysalis"
+    },
+    {
+      "id": "nes_chrysalis007",
+      "done": false,
+      "position": "-58.1265 38.763 -35.1392",
+      "level": "level00",
+      "type": "chrysalis"
+    },
+    {
+      "id": "nes_chrysalis006",
+      "done": false,
+      "position": "-11.8859 42.7406 -143.532",
+      "level": "level00",
+      "type": "chrysalis"
+    },
+    {
+      "id": "nes_chrysalis008",
+      "done": false,
+      "position": "50.5575 45.897 -47.8812",
+      "level": "level00",
+      "type": "chrysalis"
+    },
+    {
+      "id": "nes_chrysalis005",
+      "done": false,
+      "position": "-142.992 52.7888 123.499",
+      "level": "level00",
+      "type": "chrysalis"
+    },
+    {
+      "id": "nes_chrysalis004",
+      "done": false,
+      "position": "152.186 145.216 -148.834",
+      "level": "level00",
+      "type": "chrysalis"
+    },
+    {
+      "id": "nes_chrysalis003",
+      "done": false,
+      "position": "20.3768 52.5476 -238.221",
+      "level": "level00",
+      "type": "chrysalis"
+    },
+    {
+      "id": "nes_chrysalis002",
+      "done": false,
+      "position": "27.8394 34.8865 -204.39",
+      "level": "level00",
+      "type": "chrysalis"
+    },
+    {
+      "id": "nes_chrysalis001",
+      "done": false,
+      "position": "-11.2709 15.1494 -187.693",
+      "level": "level00",
+      "type": "chrysalis"
+    }
+  ]
+}

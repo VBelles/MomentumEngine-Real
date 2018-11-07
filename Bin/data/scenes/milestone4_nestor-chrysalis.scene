@@ -102,7 +102,7 @@
       "prefab": "data/prefabs/crisalida.prefab",
       "transform":
       {
-        "pos": "-12.9909 42.4924 -144.56",
+        "pos": "-11.8859 42.7406 -143.532",
         "rotation": "0.0 -0.92388 0.0 -0.382683"
       }
     }
@@ -114,7 +114,7 @@
       "prefab": "data/prefabs/crisalida.prefab",
       "transform":
       {
-        "pos": "51.9843 44.2449 -49.1208",
+        "pos": "50.5575 45.897 -47.8812",
         "rotation": "0.0 0.0436194 0.0 -0.999048"
       }
     }
@@ -126,7 +126,7 @@
       "prefab": "data/prefabs/crisalida.prefab",
       "transform":
       {
-        "pos": "-143.461 51.7081 122.43",
+        "pos": "-142.992 52.7888 123.499",
         "rotation": "0.0 -0.422618 0.0 -0.906308"
       }
     }
