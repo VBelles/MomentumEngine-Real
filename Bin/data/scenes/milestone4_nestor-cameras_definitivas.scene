@@ -51,11 +51,11 @@
         "cameraSuggestion": "nes_camera_017_torre",
         "suggestYaw": false,
         "hasOppositeYaw": false,
-        "suggestPitch": true,
+        "suggestPitch": false,
         "forceDistance": true,
         "distanceToCamera": 8,
-        "changeCenteringCamera": true,
-        "forcePositionOnEnter": true,
+        "changeCenteringCamera": false,
+        "forcePositionOnEnter": false,
         "centeringCameraSpeed": "2.0 2.0"
       }
     }
@@ -112,11 +112,11 @@
         "cameraSuggestion": "nes_camera_016",
         "suggestYaw": false,
         "hasOppositeYaw": false,
-        "suggestPitch": true,
+        "suggestPitch": false,
         "forceDistance": true,
         "distanceToCamera": 12,
-        "changeCenteringCamera": true,
-        "forcePositionOnEnter": true,
+        "changeCenteringCamera": false,
+        "forcePositionOnEnter": false,
         "centeringCameraSpeed": "4.0 3.0"
       }
     }
